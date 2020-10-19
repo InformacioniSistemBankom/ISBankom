@@ -78,7 +78,7 @@ namespace Bankom
 
             Application.EnableVisualStyles();
 
-            Application.Run(new frmLogin());
+            Application.Run(new BankomMDI());
         
 
             if (IntLogovanje == 1)
