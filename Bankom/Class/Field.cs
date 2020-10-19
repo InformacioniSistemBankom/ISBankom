@@ -896,7 +896,7 @@ namespace Bankom.Class
                             {
                                 if (pb.cIzborno.Trim() != "")
                                 {
-                                    string cQuery1 = "Select * from " + pb.cIzborno + " WHERE " + pb.cPolje + "='" + pb.comboBox.Text + "'";
+                                    string cQuery1 = "Select * from " + pb.cIzborno + " WHERE ID_" + pb.cIzborno + "=" + dt2.Rows[0]["ID_"+pb.cIzborno] .ToString();
                                     Console.WriteLine(cQuery1);
                                     DataTable dt1 = db.ReturnDataTable(cQuery1);
                                     if (dt1.Rows.Count > 0)
