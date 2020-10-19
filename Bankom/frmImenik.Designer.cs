@@ -1,0 +1,469 @@
+﻿namespace Bankom
+{
+    partial class frmImenik
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmImenik));
+            this.button2 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnIzmena = new System.Windows.Forms.Button();
+            this.btnBrisanje = new System.Windows.Forms.Button();
+            this.btnUnos = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbDrzava = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbMesto = new System.Windows.Forms.TextBox();
+            this.tbAdresa = new System.Windows.Forms.TextBox();
+            this.tbIme = new System.Windows.Forms.TextBox();
+            this.tbFirma = new System.Windows.Forms.TextBox();
+            this.tbBroj = new System.Windows.Forms.TextBox();
+            this.tbEmail = new System.Windows.Forms.TextBox();
+            this.tbNapomena1 = new System.Windows.Forms.TextBox();
+            this.tbNapomena2 = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.DimGray;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button2.Location = new System.Drawing.Point(1106, 0);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(27, 28);
+            this.button2.TabIndex = 26;
+            this.button2.Text = "X";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label2.Location = new System.Drawing.Point(264, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 18);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Pretraga";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(161, 48);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dataGridView1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView1.Location = new System.Drawing.Point(33, 366);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(1071, 435);
+            this.dataGridView1.TabIndex = 27;
+            this.dataGridView1.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseDoubleClick);
+            // 
+            // Column1
+            // 
+            this.Column1.Name = "Column1";
+            Column1.Width = 200;
+            // 
+            // Column2
+            // 
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.Name = "Column4";
+            Column4.Width = 130;
+            // 
+            // Column5
+            // 
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            this.Column6.Name = "Column6";
+            // 
+            // Column7
+            // 
+            this.Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            this.Column8.Name = "Column8";
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button1.Location = new System.Drawing.Point(728, 40);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 25);
+            this.button1.TabIndex = 28;
+            this.button1.Text = "Tra`i";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(358, 41);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(311, 24);
+            this.textBox1.TabIndex = 29;
+            // 
+            // btnIzmena
+            // 
+            this.btnIzmena.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIzmena.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIzmena.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnIzmena.Location = new System.Drawing.Point(922, 300);
+            this.btnIzmena.Name = "btnIzmena";
+            this.btnIzmena.Size = new System.Drawing.Size(75, 30);
+            this.btnIzmena.TabIndex = 103;
+            this.btnIzmena.Text = "Izmena";
+            this.btnIzmena.UseVisualStyleBackColor = true;
+            this.btnIzmena.Click += new System.EventHandler(this.btnIzmena_Click);
+            // 
+            // btnBrisanje
+            // 
+            this.btnBrisanje.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBrisanje.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBrisanje.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnBrisanje.Location = new System.Drawing.Point(808, 300);
+            this.btnBrisanje.Name = "btnBrisanje";
+            this.btnBrisanje.Size = new System.Drawing.Size(90, 30);
+            this.btnBrisanje.TabIndex = 102;
+            this.btnBrisanje.Text = "Brisanje";
+            this.btnBrisanje.UseVisualStyleBackColor = true;
+            this.btnBrisanje.Click += new System.EventHandler(this.btnBrisanje_Click);
+            // 
+            // btnUnos
+            // 
+            this.btnUnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUnos.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUnos.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnUnos.Location = new System.Drawing.Point(695, 300);
+            this.btnUnos.Name = "btnUnos";
+            this.btnUnos.Size = new System.Drawing.Size(75, 30);
+            this.btnUnos.TabIndex = 101;
+            this.btnUnos.Text = "Unos";
+            this.btnUnos.UseVisualStyleBackColor = true;
+            this.btnUnos.Click += new System.EventHandler(this.btnUnos_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label10.Location = new System.Drawing.Point(617, 250);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(63, 18);
+            this.label10.TabIndex = 100;
+            this.label10.Text = "Dr`ava";
+            // 
+            // tbDrzava
+            // 
+            this.tbDrzava.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDrzava.Location = new System.Drawing.Point(686, 244);
+            this.tbDrzava.Name = "tbDrzava";
+            this.tbDrzava.Size = new System.Drawing.Size(311, 24);
+            this.tbDrzava.TabIndex = 99;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label9.Location = new System.Drawing.Point(624, 208);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(54, 18);
+            this.label9.TabIndex = 98;
+            this.label9.Text = "Mesto";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label8.Location = new System.Drawing.Point(61, 306);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(97, 18);
+            this.label8.TabIndex = 97;
+            this.label8.Text = "Napomena1";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label7.Location = new System.Drawing.Point(581, 115);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(97, 18);
+            this.label7.TabIndex = 96;
+            this.label7.Text = "Napomena2";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label6.Location = new System.Drawing.Point(617, 160);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(63, 18);
+            this.label6.TabIndex = 95;
+            this.label6.Text = "Adresa";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label5.Location = new System.Drawing.Point(30, 214);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(131, 18);
+            this.label5.TabIndex = 94;
+            this.label5.Text = "Brojevi telefona";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label4.Location = new System.Drawing.Point(100, 260);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 18);
+            this.label4.TabIndex = 93;
+            this.label4.Text = "E-mail";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label3.Location = new System.Drawing.Point(106, 163);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 18);
+            this.label3.TabIndex = 92;
+            this.label3.Text = "Firma";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label1.Location = new System.Drawing.Point(49, 112);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(112, 18);
+            this.label1.TabIndex = 91;
+            this.label1.Text = "Ime i prezime";
+            // 
+            // tbMesto
+            // 
+            this.tbMesto.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbMesto.Location = new System.Drawing.Point(686, 204);
+            this.tbMesto.Name = "tbMesto";
+            this.tbMesto.Size = new System.Drawing.Size(311, 24);
+            this.tbMesto.TabIndex = 90;
+            // 
+            // tbAdresa
+            // 
+            this.tbAdresa.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbAdresa.Location = new System.Drawing.Point(686, 160);
+            this.tbAdresa.Name = "tbAdresa";
+            this.tbAdresa.Size = new System.Drawing.Size(311, 24);
+            this.tbAdresa.TabIndex = 89;
+            // 
+            // tbIme
+            // 
+            this.tbIme.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbIme.Location = new System.Drawing.Point(167, 112);
+            this.tbIme.Name = "tbIme";
+            this.tbIme.Size = new System.Drawing.Size(311, 24);
+            this.tbIme.TabIndex = 88;
+            // 
+            // tbFirma
+            // 
+            this.tbFirma.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbFirma.Location = new System.Drawing.Point(167, 163);
+            this.tbFirma.Name = "tbFirma";
+            this.tbFirma.Size = new System.Drawing.Size(311, 24);
+            this.tbFirma.TabIndex = 87;
+            // 
+            // tbBroj
+            // 
+            this.tbBroj.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbBroj.Location = new System.Drawing.Point(167, 211);
+            this.tbBroj.Name = "tbBroj";
+            this.tbBroj.Size = new System.Drawing.Size(311, 24);
+            this.tbBroj.TabIndex = 86;
+            // 
+            // tbEmail
+            // 
+            this.tbEmail.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbEmail.Location = new System.Drawing.Point(167, 254);
+            this.tbEmail.Name = "tbEmail";
+            this.tbEmail.Size = new System.Drawing.Size(311, 25);
+            this.tbEmail.TabIndex = 85;
+            // 
+            // tbNapomena1
+            // 
+            this.tbNapomena1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNapomena1.Location = new System.Drawing.Point(167, 300);
+            this.tbNapomena1.Name = "tbNapomena1";
+            this.tbNapomena1.Size = new System.Drawing.Size(311, 24);
+            this.tbNapomena1.TabIndex = 84;
+            // 
+            // tbNapomena2
+            // 
+            this.tbNapomena2.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNapomena2.Location = new System.Drawing.Point(686, 112);
+            this.tbNapomena2.Name = "tbNapomena2";
+            this.tbNapomena2.Size = new System.Drawing.Size(311, 24);
+            this.tbNapomena2.TabIndex = 83;
+            // 
+            // frmImenik
+            // 
+            this.AcceptButton = this.button1;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.SeaShell;
+            this.ClientSize = new System.Drawing.Size(1133, 887);
+            this.Controls.Add(this.btnIzmena);
+            this.Controls.Add(this.btnBrisanje);
+            this.Controls.Add(this.btnUnos);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.tbDrzava);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tbMesto);
+            this.Controls.Add(this.tbAdresa);
+            this.Controls.Add(this.tbIme);
+            this.Controls.Add(this.tbFirma);
+            this.Controls.Add(this.tbBroj);
+            this.Controls.Add(this.tbEmail);
+            this.Controls.Add(this.tbNapomena1);
+            this.Controls.Add(this.tbNapomena2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label2);
+            this.Font = new System.Drawing.Font("TimesRoman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.Name = "frmImenik";
+            this.Load += new System.EventHandler(this.frmImenik_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnIzmena;
+        private System.Windows.Forms.Button btnBrisanje;
+        private System.Windows.Forms.Button btnUnos;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tbDrzava;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbMesto;
+        private System.Windows.Forms.TextBox tbAdresa;
+        private System.Windows.Forms.TextBox tbIme;
+        private System.Windows.Forms.TextBox tbFirma;
+        private System.Windows.Forms.TextBox tbBroj;
+        private System.Windows.Forms.TextBox tbEmail;
+        private System.Windows.Forms.TextBox tbNapomena1;
+        private System.Windows.Forms.TextBox tbNapomena2;
+    }
+}
