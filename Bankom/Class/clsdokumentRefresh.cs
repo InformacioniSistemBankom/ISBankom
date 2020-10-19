@@ -363,19 +363,29 @@ namespace Bankom.Class
             return dt;
         }       
         public void setingWidthOfColumns(string dokument, DataGridView dv, string tud)
-        { 
-            string sel = "SELECT  AlijasPolja, T.Tip,WidthKolone, width,T.Format,T.CSharp,T.Alajment  FROM dbo.RecnikPodataka AS R1,TipoviPodataka AS T ";
+        {
+            //Djora 26.09.20
+            //string sel = "SELECT  AlijasPolja, T.Tip,WidthKolone, width,T.Format,T.CSharp,T.Alajment  FROM dbo.RecnikPodataka AS R1,TipoviPodataka AS T ";
+            //sel += " WHERE  R1.ID_TipoviPodataka=T.ID_TipoviPodataka  AND ";
+            //sel += " TUD = @param0 AND Dokument = @param1  AND ";
+            //sel += "(width>0 OR ID_NaziviNaFormi = 20 OR ID_NaziviNaFormi = 25 OR AlijasPolja LIKE 'IId%' OR ";
+            //sel += "LTRIM(RTRIM(AlijasPolja)) = 'ID_' + LTRIM(RTRIM(AlijasTabele))   or (Izborno <> '' and alijaspolja like 'ID_'+ Izborno)) ORDER BY TabIndex ";
+            string sel = "SELECT  AlijasPolja, T.Tip,cWidthKolone as WidthKolone, width,T.Format,T.CSharp,T.Alajment  FROM dbo.RecnikPodataka AS R1,TipoviPodataka AS T ";
             sel += " WHERE  R1.ID_TipoviPodataka=T.ID_TipoviPodataka  AND ";
             sel += " TUD = @param0 AND Dokument = @param1  AND ";
             sel += "(width>0 OR ID_NaziviNaFormi = 20 OR ID_NaziviNaFormi = 25 OR AlijasPolja LIKE 'IId%' OR ";
             sel += "LTRIM(RTRIM(AlijasPolja)) = 'ID_' + LTRIM(RTRIM(AlijasTabele))   or (Izborno <> '' and alijaspolja like 'ID_'+ Izborno)) ORDER BY TabIndex ";
+
             Console.WriteLine(sel);
             DataTable t2 = db.ParamsQueryDT(sel,tud,dokument);            
             for (int i = 0; i < dv.ColumnCount; i++)
             {
-                    double ofset = Program.RacioWith * 1.3333333333333333;
-                    int sirina = (int)Convert.ToDouble(Convert.ToDouble(t2.Rows[i]["WidthKolone"].ToString()) * ofset);
+                    //Djora 26.09.20
+                    //double ofset = Program.RacioWith * 1.3333333333333333;
+                    double ofset = Program.RacioWith;
 
+                    int sirina = (int)Convert.ToDouble(Convert.ToDouble(t2.Rows[i]["WidthKolone"].ToString()) * ofset);
+                
                     if (sirina == 0)
                         dv.Columns[i].Visible = false;
                     else

@@ -38,17 +38,31 @@ namespace Bankom.Class
             //           + "  AND(dbo.Prevodi.ID_Jezik = "+Program.ID_Jezik.ToString()+") "
             //           + " ORDER BY RecnikPodatakaDjora.TabelaVView DESC, RecnikPodatakaDjora.TabIndex
 
-            string query = " SELECT RecnikPodatakaDjora.ID_RecnikPodataka AS ID, RecnikPodatakaDjora.levo, RecnikPodatakaDjora.vrh, RecnikPodatakaDjora.width, RecnikPodatakaDjora.height, "
-                   + " RecnikPodatakaDjora.AlijasPolja, RecnikPodatakaDjora.AlijasTabele, dbo.TipoviPodataka.tip, dbo.TipoviPodataka.velicina, dbo.TipoviPodataka.naziv, dbo.TipoviPodataka.DifoltZaIzvestaje, "
-                   + " dbo.TipoviPodataka.Format, dbo.TipoviPodataka.Alajment, RecnikPodatakaDjora.Izborno, RecnikPodatakaDjora.Polje, RecnikPodatakaDjora.PostojiLabela, RecnikPodatakaDjora.ID_NaziviNaFormi, "
-                   + " RecnikPodatakaDjora.TUD, RecnikPodatakaDjora.TabelaVView, RecnikPodatakaDjora.StornoIUpdate, RecnikPodatakaDjora.Tabela, dbo.Prevodi.Prevod as Srpski, "
-                   + " dbo.TipoviPodataka.CSharp as FormatPolja,RecnikPodatakaDjora.Restrikcije,RecnikPodatakaDjora.JJoinTvV as ImaNaslov,RecnikPodatakaDjora.FormulaForme"
-                   + " FROM dbo.RecnikPodataka AS RecnikPodatakaDjora INNER JOIN "
-                   + " dbo.TipoviPodataka ON RecnikPodatakaDjora.ID_TipoviPodataka = dbo.TipoviPodataka.ID_TipoviPodataka INNER JOIN "
-                   + " dbo.Prevodi ON RecnikPodatakaDjora.ID_NaziviNaFormi = dbo.Prevodi.ID_NaziviNaFormi "
-                   + " WHERE(RecnikPodatakaDjora.Dokument = N'" + dokument + "') AND(RecnikPodatakaDjora.TabIndex >= 0) AND(RecnikPodatakaDjora.width <> 0) AND(dbo.Prevodi.ID_Jezik = " + Program.ID_Jezik.ToString() + ") OR "
-                   + " (RecnikPodatakaDjora.Dokument = N'" + dokument + "') AND(RecnikPodatakaDjora.ID_NaziviNaFormi = 20)  AND(dbo.Prevodi.ID_Jezik = " + Program.ID_Jezik.ToString() + ") "
-                   + " ORDER BY RecnikPodatakaDjora.TabelaVView DESC, RecnikPodatakaDjora.TabIndex";
+            //Djora 26.09.20
+            //string query = " SELECT RecnikPodatakaDjora.ID_RecnikPodataka AS ID, RecnikPodatakaDjora.levo, RecnikPodatakaDjora.vrh, RecnikPodatakaDjora.width, RecnikPodatakaDjora.height, "
+            //       + " RecnikPodatakaDjora.AlijasPolja, RecnikPodatakaDjora.AlijasTabele, dbo.TipoviPodataka.tip, dbo.TipoviPodataka.velicina, dbo.TipoviPodataka.naziv, dbo.TipoviPodataka.DifoltZaIzvestaje, "
+            //       + " dbo.TipoviPodataka.Format, dbo.TipoviPodataka.Alajment, RecnikPodatakaDjora.Izborno, RecnikPodatakaDjora.Polje, RecnikPodatakaDjora.PostojiLabela, RecnikPodatakaDjora.ID_NaziviNaFormi, "
+            //       + " RecnikPodatakaDjora.TUD, RecnikPodatakaDjora.TabelaVView, RecnikPodatakaDjora.StornoIUpdate, RecnikPodatakaDjora.Tabela, dbo.Prevodi.Prevod as Srpski, "
+            //       + " dbo.TipoviPodataka.CSharp as FormatPolja,RecnikPodatakaDjora.Restrikcije,RecnikPodatakaDjora.JJoinTvV as ImaNaslov,RecnikPodatakaDjora.FormulaForme"
+            //       + " FROM dbo.RecnikPodataka AS RecnikPodatakaDjora INNER JOIN "
+            //       + " dbo.TipoviPodataka ON RecnikPodatakaDjora.ID_TipoviPodataka = dbo.TipoviPodataka.ID_TipoviPodataka INNER JOIN "
+            //       + " dbo.Prevodi ON RecnikPodatakaDjora.ID_NaziviNaFormi = dbo.Prevodi.ID_NaziviNaFormi "
+            //       + " WHERE(RecnikPodatakaDjora.Dokument = N'" + dokument + "') AND(RecnikPodatakaDjora.TabIndex >= 0) AND(RecnikPodatakaDjora.width <> 0) AND(dbo.Prevodi.ID_Jezik = " + Program.ID_Jezik.ToString() + ") OR "
+            //       + " (RecnikPodatakaDjora.Dokument = N'" + dokument + "') AND(RecnikPodatakaDjora.ID_NaziviNaFormi = 20)  AND(dbo.Prevodi.ID_Jezik = " + Program.ID_Jezik.ToString() + ") "
+            //       + " ORDER BY RecnikPodatakaDjora.TabelaVView DESC, RecnikPodatakaDjora.TabIndex";
+
+            //Djora 26.09.20
+            string query = " SELECT RecnikPodatakaDjora.ID_RecnikPodataka AS ID, RecnikPodatakaDjora.Clevo as levo, RecnikPodatakaDjora.Cvrh as vrh, RecnikPodatakaDjora.Cwidth as width, RecnikPodatakaDjora.height, "
+                  + " RecnikPodatakaDjora.AlijasPolja, RecnikPodatakaDjora.AlijasTabele, dbo.TipoviPodataka.tip, dbo.TipoviPodataka.velicina, dbo.TipoviPodataka.naziv, dbo.TipoviPodataka.DifoltZaIzvestaje, "
+                  + " dbo.TipoviPodataka.Format, dbo.TipoviPodataka.Alajment, RecnikPodatakaDjora.Izborno, RecnikPodatakaDjora.Polje, RecnikPodatakaDjora.PostojiLabela, RecnikPodatakaDjora.ID_NaziviNaFormi, "
+                  + " RecnikPodatakaDjora.TUD, RecnikPodatakaDjora.TabelaVView, RecnikPodatakaDjora.StornoIUpdate, RecnikPodatakaDjora.Tabela, dbo.Prevodi.Prevod as Srpski, "
+                  + " dbo.TipoviPodataka.CSharp as FormatPolja,RecnikPodatakaDjora.Restrikcije,RecnikPodatakaDjora.JJoinTvV as ImaNaslov,RecnikPodatakaDjora.FormulaForme"
+                  + " FROM dbo.RecnikPodataka AS RecnikPodatakaDjora INNER JOIN "
+                  + " dbo.TipoviPodataka ON RecnikPodatakaDjora.ID_TipoviPodataka = dbo.TipoviPodataka.ID_TipoviPodataka INNER JOIN "
+                  + " dbo.Prevodi ON RecnikPodatakaDjora.ID_NaziviNaFormi = dbo.Prevodi.ID_NaziviNaFormi "
+                  + " WHERE(RecnikPodatakaDjora.Dokument = N'" + dokument + "') AND(RecnikPodatakaDjora.TabIndex >= 0) AND(RecnikPodatakaDjora.width <> 0) AND(dbo.Prevodi.ID_Jezik = " + Program.ID_Jezik.ToString() + ") OR "
+                  + " (RecnikPodatakaDjora.Dokument = N'" + dokument + "') AND(RecnikPodatakaDjora.ID_NaziviNaFormi = 20)  AND(dbo.Prevodi.ID_Jezik = " + Program.ID_Jezik.ToString() + ") "
+                  + " ORDER BY RecnikPodatakaDjora.TabelaVView DESC, RecnikPodatakaDjora.TabIndex";
 
             Console.WriteLine(query);
             DataTable t = db.ReturnDataTable(query);

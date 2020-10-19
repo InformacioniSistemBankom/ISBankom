@@ -46,9 +46,11 @@ namespace Bankom.Class
         //public double ofset = 3.2;
         //public double ofsety = 1.8;
 
-        public double ofset = Program.RacioWith * 1.3333333333333333;
-        public double ofsety = Program.RacioHeight * 1.3333333333333333;
-
+        //Djora 26.09.20
+        //public double ofset = Program.RacioWith * 1.3333333333333333;
+        //public double ofsety = Program.RacioHeight * 1.3333333333333333;
+        public double ofset = Program.RacioWith;
+        public double ofsety = Program.RacioHeight;
 
         public string cPolje;
         public string cIzborno;
@@ -64,6 +66,9 @@ namespace Bankom.Class
         public int cTabIndex;
         public int cImaNaslov;
         public string ctekst;
+        //Djora 26.09.20
+        public string cIdNaziviNaFormi;
+
         Form forma = new Form();
         //private int izmena;
         private string aaa = "";
@@ -91,6 +96,14 @@ namespace Bankom.Class
             cFormulaForme = FormulaForme;
             cEnDis = EnDis; //jovana
             cTip = Tip;
+            //Djora 26.09.20
+            cIdNaziviNaFormi = idNaziviNaFormi;
+
+            //Djora 26.09.20
+            //this.BackColor = Color.Red;
+            this.BorderStyle = BorderStyle.None;
+            //this.Margin= new Padding(0, 0, 0, 0);
+
 
             if (Ime == "Ugovor")
             {
@@ -117,9 +130,15 @@ namespace Bankom.Class
                     label.Text = ctekst;//label_text;
                     label.Anchor = AnchorStyles.Left;
                     label.TextAlign = ContentAlignment.MiddleCenter;    //MiddleLeft;
-                    label.Height = (int)(visina * 1.2);
+                    //Djora 26.09.20
+                    //label.Height = (int)(visina * 1.2);
                     label.Font = new Font("TimesRoman", 13, FontStyle.Regular);
                     //label.Font = new Font("TimesRoman", 10.8F, FontStyle.Bold);
+
+                    //Djora 26.09.20
+                    PromenaFonta(label);
+                    //Djora 26.09.20
+                    label.Margin = new Padding(0, 0, 0, 0);
 
                     Controls.Add(label);
                 }
@@ -159,7 +178,11 @@ namespace Bankom.Class
                         dtp.Enabled = false;
                     }
 
-                    dtp.Height = (int)visina;
+
+                    //Djora 26.09.20
+                    //dtp.Height = (int)visina;
+                    //dtp.Height = (int)visina * ofsety;
+                    dtp.Height = (int)(visina * ofsety);
 
                     if (PozicijaLabele == "1")
                     {
@@ -173,12 +196,22 @@ namespace Bankom.Class
                         dtp.Width = (int)Convert.ToDouble(sirina * ofset);
                     }
 
+
                     //dtp.Font = new Font("TimesRoman", 10.8F, FontStyle.Bold);
                     //dtp.Text.a
-                    dtp.Font = new Font("TimesRoman", 13, FontStyle.Regular);
+
+                    //Djora 26.09.20
+                    //dtp.Font = new Font("TimesRoman", 13, FontStyle.Regular);
+
+                    PromenaFonta(dtp);
+
                     dtp.Format = DateTimePickerFormat.Custom;
                     dtp.CustomFormat = "dd.MM.yyyy";
                     //dtp.Format = DateTimePickerFormat.Short;
+
+                    //Djora 26.09.20
+                    dtp.Margin = new Padding(0, 0, 0, 0);
+
                     this.Controls.Add(dtp);
 
                     //Djora 08.07.20
@@ -221,6 +254,10 @@ namespace Bankom.Class
                         Vrednost = "1";
                     else
                         Vrednost = "0";
+
+                    //Djora 26.09.20
+                    cekboks.Margin = new Padding(0, 0, 0, 0);
+
                     Controls.Add(cekboks);
 
                     //Djora 08.07.20
@@ -263,12 +300,19 @@ namespace Bankom.Class
                             comboBox.Width = (int)Convert.ToDouble(sirina * ofset);
                             comboBox.Left = Left;
                         }
-                        comboBox.Font = new Font("TimesRoman", 13, FontStyle.Regular);
+
+                        //Djora 26.09.20
+                        //comboBox.Font = new Font("TimesRoman", 13, FontStyle.Regular);
+                        PromenaFonta(comboBox);
+                        
                         comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
                         comboBox.MaxDropDownItems = 10;
                         comboBox.Enabled = true;
                         //Djora 13.07.20
                         comboBox.Height = (int)visina;
+
+                        //Djora 26.09.20
+                        comboBox.Margin = new Padding(0, 0, 0, 0);
 
                         Controls.Add(comboBox);
 
@@ -320,8 +364,9 @@ namespace Bankom.Class
                             textBox.Width = (int)Convert.ToDouble(sirina * ofset);
                         }
 
-                        textBox.Height = (int)visina;
-
+                        //Djora 26.09.20
+                        //textBox.Height = (int)visina;
+                        textBox.Height = (int)(visina * ofsety);
 
 
                         if (Tip == 3 || Tip == 4 || Tip == 5 || Tip == 6 || Tip == 7 || Tip == 11 || Tip == 13 || Tip == 17 || Tip == 19 || Tip == 20 || Tip == 21)
@@ -355,12 +400,19 @@ namespace Bankom.Class
 
                             Vrednost = textBox.Text;
                             ID = "1";
-                            //textBox.Font = new Font("TimesRoman", 10.8F, FontStyle.Bold);
-                            textBox.Font = new Font("TimesRoman", 13, FontStyle.Regular);
+
+                            //Djora 26.09.20
+                            //textBox.Font = new Font("TimesRoman", 13, FontStyle.Regular);
+                            PromenaFonta(textBox);
+
                             if (textBox.Tag == null)
                             {
                                 //MessageBox.Show(Ime);
                             }
+
+                            //Djora 26.09.20
+                            textBox.Margin = new Padding(0, 0, 0, 0);
+
                             Controls.Add(textBox);
 
                             //Djora 08.07.20
@@ -374,11 +426,19 @@ namespace Bankom.Class
             if (idNaziviNaFormi == "20"  && tud != "0")
             {
                 string tIme = Ime.Replace("ID_", "GgRr");
-                string sel = " SELECT TUD, MaxHeight, Levo, Vrh, Width, height, Upit, Ime "
+                //26.09.20
+                //string sel = " SELECT TUD, MaxHeight, Levo, Vrh, Width, height, Upit, Ime "
+                //                                + " FROM dbo.Upiti "
+                //                                + " WHERE(NazivDokumenta = N'" + dokument + "') "
+                //                                + " AND(Ime = N'" + tIme + "') "
+                //                                + " AND(TUD <> 0) ORDER By TUD";
+                //26.09.20
+                string sel = " SELECT TUD, MaxHeight, Levo, CVrh as Vrh, cWidth as Width, height, Upit, Ime "
                                                 + " FROM dbo.Upiti "
                                                 + " WHERE(NazivDokumenta = N'" + dokument + "') "
                                                 + " AND(Ime = N'" + tIme + "') "
                                                 + " AND(TUD <> 0) ORDER By TUD";
+
                 //Console.WriteLine(sel);
                 DataTable t = db.ReturnDataTable(sel);
                 if (t.Rows.Count > 0)
@@ -397,7 +457,12 @@ namespace Bankom.Class
                     //Djora 09.07.20
                     //var brredova = Convert.ToDouble(t.Rows[0]["MaxHeight"].ToString());
                     var brredova = Convert.ToDouble(t.Rows[0]["MaxHeight"].ToString()); //* ofsety;
-                    var theight = (Convert.ToDouble(t.Rows[0]["height"].ToString())) * ofsety * brredova;
+                   
+                    //Djora 26.09.20 14.10.20
+                    //var theight = (Convert.ToDouble(t.Rows[0]["height"].ToString())) * ofsety * brredova;
+                    var theight = (Convert.ToDouble(t.Rows[0]["height"].ToString())) * ofsety * 1.33333333 * 1.8;
+
+
 
                     dv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                     dv.AllowUserToResizeRows = false;
@@ -409,10 +474,20 @@ namespace Bankom.Class
 
                     dv.EnableHeadersVisualStyles = false;
                     dv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-                    dv.DefaultCellStyle.Font = new Font("TimesRoman", 13);
+
+
+                    //Djora 26.09.20
+                    PromenaFonta(dv);
+                    //Djora 26.09.20
+                    //dv.DefaultCellStyle.Font = new Font("TimesRoman", 13);
+
                     dv.Width = (int)(tWidth);
                     dv.Top = (int)tVrh;
-                    dv.Height = (int)(theight);
+                    
+                    //Djora 26.09.20
+                    //dv.Height = (int)(theight);
+                    dv.Height = (int)(theight * brredova);
+
                     dv.Tag = ttud;
                     dv.Name = tIme;
 
@@ -427,10 +502,17 @@ namespace Bankom.Class
                     //dv.SelectionMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 
                     dv.BackgroundColor = Color.White;
+
+
                     //Da duge reci vide cele u koloni (WRAP)
-                    dv.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
+                    //Djora 26.09.20
+                    //dv.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
                     //Da se poveca visina reda ako imamo wrap reci. Da bi moglo sve da se vidi 
-                    dv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                    //Djora 26.09.20
+                    //dv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+                    //Djora 26.09.20
+                    dv.RowTemplate.Height = Convert.ToInt32(theight); // 80;
 
                     switch (cImaNaslov)
                     {
@@ -454,7 +536,13 @@ namespace Bankom.Class
                     dv.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
                     dv.Visible = true;
                     //dv.ColumnHeader.Font = new Font("TimesRoman", 5, FontStyle.Regular);
-                    dv.Font = new Font("TimesRoman", 13, FontStyle.Regular);
+
+                    //Djora 26.09.20
+                    //dv.Font = new Font("TimesRoman", 13, FontStyle.Regular);
+
+                    //Djora 26.09.20
+                    dv.Margin = new Padding(0, 0, 0, 0);
+
                     Controls.Add(dv);
 
                     //Djora 08.07.20
@@ -1517,6 +1605,27 @@ namespace Bankom.Class
             }
 
                 //KRAJ:
+        }
+
+        //Djora 26.09.20
+        public void PromenaFonta(Control kontrola)
+        {
+
+            if (Screen.PrimaryScreen.Bounds.Width < 1440)
+            {
+                //if (Screen.PrimaryScreen.Bounds.Width <= 800)
+                //{
+                //    kontrola.Font = new Font("TimesRoman", 7F);
+                //}
+                //else
+                //{
+                kontrola.Font = new Font("TimesRoman", 8F);
+                //}
+            }
+            else
+            {
+                kontrola.Font = new Font("TimesRoman", 13F);
+            }
         }
     }
 }
