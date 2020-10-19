@@ -386,6 +386,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.frmChield_Activated);
             this.Load += new System.EventHandler(this.frmChield_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmChield_KeyDown);
             this.Resize += new System.EventHandler(this.frmChield_Resize);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

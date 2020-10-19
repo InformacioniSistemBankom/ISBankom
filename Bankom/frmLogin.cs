@@ -522,8 +522,10 @@ namespace Bankom
 
         private void OK_Click(object sender, EventArgs e)
             {
-            int standardHeight = 600;  //900
-            int standardWidth = 800;  //1440
+            //Djora 26.09.20
+            int standardHeight = 1080; // 600;  //900
+            int standardWidth = 1920; // 800;  //1440
+
             int presentHeight = Screen.PrimaryScreen.Bounds.Height;//.Bounds.Height;
             int presentWidth = Screen.PrimaryScreen.Bounds.Width;
             float heightRatio = (float)((float)presentHeight / (float)standardHeight);
