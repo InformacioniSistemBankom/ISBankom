@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
+using System.Globalization;
+using System.Drawing;
+
+
+namespace Bankom.Class
+{
+    class clsRefreshForm
+    {
+        private Form forma = new Form();
+        DataBaseBroker db = new DataBaseBroker();
+        public void refreshform()
+        {
+            forma = Program.Parent.ActiveMdiChild;
+            //string dokje,string imestabla,string ime,string idstablo,string ident)
+            string supit = "";
+            string dokje = forma.Controls["ldokje"].Text;
+            string imestabla = forma.Controls["limestabla"].Text;
+            string ident = forma.Controls["liddok"].Text;
+            string idstablo = forma.Controls["lidstablo"].Text;
+            string ime = forma.Controls["limedok"].Text;
+
+            clsFormInitialisation finit = new clsFormInitialisation();
+            finit.InitValues();
+            clsdokumentRefresh dr = new clsdokumentRefresh();
+
+            switch (dokje)
+            {
+                case "S":
+                    clsObradaStablaStipa procs = new clsObradaStablaStipa();
+                    supit = procs.Proces(imestabla, ime, Convert.ToInt32(idstablo));
+                    dr.refreshDokumentBody(forma, imestabla, idstablo, dokje);
+                    dr.refreshDokumentGrid(forma, imestabla, idstablo, supit,"1",dokje);
+                    break;
+                case "P":
+                    clsObradaStablaPtipa procp = new clsObradaStablaPtipa();
+                    supit = procp.Proces(imestabla, ime, Convert.ToInt32(idstablo));
+                    dr.refreshDokumentGrid(forma, ime, idstablo, supit,"1", dokje);
+                    break;
+                case "I":
+                    string sel = "Select TUD From Upiti Where NazivDokumenta='" + ime + "' and ime like'GGrr%' AND TUD>0 Order by TUD";
+                    Console.WriteLine(sel);
+                    DataTable ti = db.ReturnDataTable(sel);
+                    clsObradaStablaItipa proci = new clsObradaStablaItipa();
+                    for (int j = 0; j < ti.Rows.Count; j++)
+                    {
+                        supit = proci.Proces(ime, ti.Rows[j]["TUD"].ToString());
+                        Console.WriteLine(supit);
+                        dr.refreshDokumentGrid(forma, ime, idstablo.ToString(), supit, ti.Rows[j]["TUD"].ToString(), dokje);
+                    }                   
+                    break;
+
+                default:
+                    dr.refreshDokumentBody(forma, ime, ident, dokje);
+                    dr.refreshDokumentGrid(forma, ime, ident, ""," ", dokje);
+                    break;
+            }
+        }
+    }
+}
