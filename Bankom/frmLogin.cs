@@ -20,7 +20,7 @@ namespace Bankom
     {
         public frmLogin()
         {
-            // inicijalizacija a
+            // inicijalizacija aaaaa
             InitializeComponent();
         }
 
