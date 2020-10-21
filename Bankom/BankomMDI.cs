@@ -27,7 +27,7 @@ namespace Bankom
     public partial class BankomMDI : Form
     {
         public string connectionString = Program.connectionString;
-        //private int childFormNumber = 0;  
+      
         public static string filter = "";
         private AutoCompleteStringCollection DataCollectionSpisak = new AutoCompleteStringCollection();
       
@@ -35,9 +35,9 @@ namespace Bankom
         public BankomMDI()
         {
             InitializeComponent();
+       
            
-            //menuStrip1.Enabled = true;
-            //this.Oodjava.Enabled = true;
+
         }
        
 
@@ -241,6 +241,9 @@ namespace Bankom
             addKombo();
             clsSettingsButtons sb = new clsSettingsButtons();
             sb.ToolBarItemsEnDis();
+            // ivana 21.10.2020.
+            CreateMenu();
+          
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
@@ -3101,17 +3104,142 @@ namespace Bankom
             Application.Exit();
         }
 
+      
+       
 
 
-        private void panel1_Click_1(object sender, EventArgs e)
+
+        //ivana 21.10.2020.
+
+        DataTable dt = new DataTable();
+
+        private void CreateMenu()
         {
-            if (panel1.Width == 100)
+            //stil 21.10.2020.
+
+            menuStrip1.BackColor = Color.SeaShell;
+            menuStrip1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            menuStrip1.ForeColor = System.Drawing.Color.MidnightBlue;
+
+
+            dt = GetDataSet();
+
+            foreach (DataRow r in dt.Select("MenuParent='1'"))
             {
-                panel1.Width = 10;
+                CreateMenuItem(r[0].ToString());
+            }
+        }
+
+        private void CreateMenuItem(string strMenu)
+        {
+            ToolStripMenuItem t = new ToolStripMenuItem(GetMenuName(strMenu));
+
+            //stil 21.10.2020.
+            t.TextAlign = ContentAlignment.MiddleLeft;
+            t.AutoSize = false;
+            t.Width = 150;
+            t.Height = 50;
+            t.BackColor = Color.SeaShell;
+            t.Font= new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            t.ForeColor = System.Drawing.Color.MidnightBlue;
+            //
+            menuStrip1.Items.Add(t);
+            if (dt.Select("MenuParent='" + strMenu + "'").Length > 0)
+            {
+                foreach (DataRow r in dt.Select("MenuParent='" + strMenu + "'"))
+                {
+                    CreateMenuItems(t, r[0].ToString());
+                }
+            }
+        }
+
+        private string CreateMenuItems(ToolStripMenuItem t, string strMenu)
+        {
+            if (dt.Select("MenuParent='" + strMenu + "'").Length > 0)
+            {
+                ToolStripMenuItem t1 = new ToolStripMenuItem(GetMenuName(strMenu));
+                //stil 21.10.2020.
+                t1.TextAlign = ContentAlignment.TopLeft;
+                t1.Height = 70;
+                t1.BackColor = Color.SeaShell;
+                t1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                t1.ForeColor = System.Drawing.Color.MidnightBlue;
+                //
+                t.DropDownItems.Add(t1);
+                foreach (DataRow r in dt.Select("MenuParent='" + strMenu + "'"))
+                {
+                    CreateMenuItems(t1, r[0].ToString());
+                }
             }
             else
             {
-                panel1.Width = 100;
+                ToolStripMenuItem t1 = new ToolStripMenuItem(GetMenuName(strMenu));
+                t.DropDownItems.Add(t1);
+                //stil 21.10.2020.
+                t1.TextAlign = ContentAlignment.TopLeft;
+                t1.Height = 70;
+                t1.BackColor = Color.SeaShell;
+                t1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                t1.ForeColor = System.Drawing.Color.MidnightBlue;
+                //
+                return strMenu;
+            }
+            return strMenu;
+        }
+
+        private string GetMenuName(string strMenuID)
+        {
+            return dt.Select("MenuID='" + strMenuID + "'")[0][1].ToString();
+        }
+
+        public DataTable ReturnDT(string str)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            try
+            {
+                if (con.State == ConnectionState.Closed) { con.Open(); }
+                using (SqlDataAdapter da = new SqlDataAdapter(str, con)) { da.Fill(dt); }
+                con.Close();
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (con != null) { ((IDisposable)con).Dispose(); }
+
+                return null;
+            }
+        }
+        private DataTable GetDataSet()
+        {
+            DataTable dt = new DataTable("Menu");
+            String SQL = ";  WITH RekurzivnoStablo (ID_MenuStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS " +
+                         "  (SELECT e.ID_MenuStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave,  PrikazDetaljaDaNe as pd,PrikazPo as pp " +
+                         " FROM MenuStablo AS e WITH(NOLOCK)  where Naziv in (select g.naziv from Grupa as g, KadroviIOrganizacionaStrukturaStavkeView as ko Where(KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura " +
+                         "  Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = 6 and ko.id_kadrovskaevidencija = 23)UNION ALL " +
+                         " SELECT e.ID_MenuStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level + 1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave,  PrikazDetaljaDaNe As pd, PrikazPo As pp " +
+                         "   FROM MenuStablo AS e WITH(NOLOCK)  INNER JOIN RekurzivnoStablo AS d ON e.ID_MenuStablo = d.Vezan) " +
+                         "   SELECT distinct ID_MenuStablo as MenuID, NazivJavni AS  MenuName,Vezan AS MenuParent,'Y' AS MenuEnable,'DEMO' AS USERID,Naziv, RedniBroj FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0 and vezan<> 0  order by RedniBroj ";
+            dt = ReturnDT(SQL);
+            return dt;
+        }
+
+
+
+        // tamara 21.10.2020.
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (flowLayoutPanel1.Width == 162)
+            {
+                flowLayoutPanel1.Width = 0;
+                menuStrip1.Enabled = false;
+                button1.Location = new Point(0,301);
+            }
+            else
+            {
+                flowLayoutPanel1.Width = 162;
+                menuStrip1.Enabled = true;
+                button1.Location = new Point(159, 301);
             }
         }
     }

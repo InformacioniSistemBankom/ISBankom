@@ -166,9 +166,18 @@ namespace Bankom
             this.Oorigin = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tbPretraga = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.exchangeRateXmlService1 = new Bankom.rs.nbs.webservicesListe.ExchangeRateXmlService();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.asdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asdfToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.asdfToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.asdeffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asdefgToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sdfgghToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.ToolBar.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Dokumenta
@@ -875,7 +884,7 @@ namespace Bankom
             this.Oorigin});
             this.ToolBar.Location = new System.Drawing.Point(0, 0);
             this.ToolBar.Name = "ToolBar";
-            this.ToolBar.Size = new System.Drawing.Size(1242, 43);
+            this.ToolBar.Size = new System.Drawing.Size(1246, 43);
             this.ToolBar.TabIndex = 32;
             this.ToolBar.Text = "toolbar";
             this.ToolBar.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ToolBar_ItemClicked);
@@ -1344,31 +1353,80 @@ namespace Bankom
             this.tbPretraga.DoubleClick += new System.EventHandler(this.tbPretraga_DoubleClick);
             this.tbPretraga.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbPretraga_KeyDown);
             // 
-            // panel1
+            // flowLayoutPanel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 43);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(100, 777);
-            this.panel1.TabIndex = 38;
-            this.panel1.Click += new System.EventHandler(this.panel1_Click_1);
+            this.flowLayoutPanel1.Controls.Add(this.menuStrip1);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 43);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 734);
+            this.flowLayoutPanel1.TabIndex = 40;
             // 
-            // exchangeRateXmlService1
+            // menuStrip1
             // 
-            this.exchangeRateXmlService1.AuthenticationHeaderValue = null;
-            this.exchangeRateXmlService1.Credentials = null;
-            this.exchangeRateXmlService1.Url = "https://webservices.nbs.rs/CommunicationOfficeService1_0/ExchangeRateXmlService.a" +
-    "smx";
-            this.exchangeRateXmlService1.UseDefaultCredentials = false;
+            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(30, 206);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // asdToolStripMenuItem
+            // 
+            this.asdToolStripMenuItem.Name = "asdToolStripMenuItem";
+            this.asdToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // asdfToolStripMenuItem1
+            // 
+            this.asdfToolStripMenuItem1.Name = "asdfToolStripMenuItem1";
+            this.asdfToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
+            // 
+            // asdfToolStripMenuItem2
+            // 
+            this.asdfToolStripMenuItem2.Name = "asdfToolStripMenuItem2";
+            this.asdfToolStripMenuItem2.Size = new System.Drawing.Size(32, 19);
+            // 
+            // asdeffToolStripMenuItem
+            // 
+            this.asdeffToolStripMenuItem.Name = "asdeffToolStripMenuItem";
+            this.asdeffToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // asdefgToolStripMenuItem
+            // 
+            this.asdefgToolStripMenuItem.Name = "asdefgToolStripMenuItem";
+            this.asdefgToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // sdfgghToolStripMenuItem
+            // 
+            this.sdfgghToolStripMenuItem.Name = "sdfgghToolStripMenuItem";
+            this.sdfgghToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // esfredstgrfdToolStripMenuItem
+            // 
+            this.esfredstgrfdToolStripMenuItem.Name = "esfredstgrfdToolStripMenuItem";
+            this.esfredstgrfdToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(159, 301);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(25, 29);
+            this.button1.TabIndex = 42;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // BankomMDI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(1242, 820);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(1246, 777);
+            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tbPretraga);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.ToolBar);
@@ -1384,6 +1442,8 @@ namespace Bankom
             this.Load += new System.EventHandler(this.BankomMDI_Load);
             this.ToolBar.ResumeLayout(false);
             this.ToolBar.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1525,9 +1585,17 @@ namespace Bankom
         private System.Windows.Forms.ToolStripMenuItem opadajuci;
         private EventHandler Ruski_Click;
         private System.Windows.Forms.TextBox tbPretraga;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripButton Oorgsema;
-        private rs.nbs.webservicesListe.ExchangeRateXmlService exchangeRateXmlService1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.ToolStripMenuItem asdToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem asdfToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem asdfToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem asdeffToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem asdefgToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sdfgghToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem esfredstgrfdToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

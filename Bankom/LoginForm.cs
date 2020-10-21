@@ -516,7 +516,7 @@ namespace Bankom
 
             if (Control.IsKeyLocked(Keys.CapsLock))
             {
-                lblPotvrda.Text = "Uključen vam je CapsLock";
+                //lblPotvrda.Text = "Uključen vam je CapsLock";
 
             }
 
@@ -524,157 +524,644 @@ namespace Bankom
 
         private void OK_Click(object sender, EventArgs e)
         {
-            //Djora 26.09.20
-            int standardHeight = 1080; // 600;  //900
-            int standardWidth = 1920; // 800;  //1440
+            //tamara 21.10.2020.
 
-            int presentHeight = Screen.PrimaryScreen.Bounds.Height;//.Bounds.Height;
-            int presentWidth = Screen.PrimaryScreen.Bounds.Width;
-            float heightRatio = (float)((float)presentHeight / (float)standardHeight);
-            float widthRatio = (float)((float)presentWidth / (float)standardWidth);
+         
 
-            Program.RacioWith = (float)widthRatio;
-            Program.RacioHeight = (float)heightRatio;
-            if (changePassword)
+          if(radioButton1.Checked == true)
             {
-                if (PasswordTextBox.Text.Trim().Equals(txtPotvrda.Text.Trim()))
+                Program.ID_Jezik = 4;
+                //Djora 26.09.20
+                int standardHeight = 1080; // 600;  //900
+                int standardWidth = 1920; // 800;  //1440
+
+                int presentHeight = Screen.PrimaryScreen.Bounds.Height;//.Bounds.Height;
+                int presentWidth = Screen.PrimaryScreen.Bounds.Width;
+                float heightRatio = (float)((float)presentHeight / (float)standardHeight);
+                float widthRatio = (float)((float)presentWidth / (float)standardWidth);
+
+                Program.RacioWith = (float)widthRatio;
+                Program.RacioHeight = (float)heightRatio;
+                if (changePassword)
                 {
-                    DB.ReturnDataTable("UPDATE KadrovskaEvidencija SET pass ='" + txtPotvrda.Text.Trim() +
-                                       "' WHERE Suser = '" + UsernameTextBox.Text.Trim() + "'");
+                    //if (PasswordTextBox.Text.Trim().Equals(txtPotvrda.Text.Trim()))
+                    //{
+                    //    DB.ReturnDataTable("UPDATE KadrovskaEvidencija SET pass ='" + txtPotvrda.Text.Trim() +
+                    //                       "' WHERE Suser = '" + UsernameTextBox.Text.Trim() + "'");
 
-                    MessageBox.Show("Uspešno ste promenili lozinku!");
-                    ReloadLogin();
-                    changePassword = false;
-                }
-                else
-                {
-                    MessageBox.Show("Ne podudaraju se lozinke,pokušajte ponovo!");
-                }
-
-
-                return;
-            }
-
-            string ImeKorisnika = "";
-            string PassKorisnika = "";
-
-            string n = UsernameTextBox.Text;
-            lblBaza.Text = "";
-            lblGrupa.Text = "";
-
-            if (n.Length == 0)
-            {
-                MessageBox.Show("Polje korisničko ime je prazno.");
-
-                return;
-            }
-            n = PasswordTextBox.Text;
-            if (n.Length == 0)
-            {
-                MessageBox.Show("Polje za lozinku je prazno.");
-                return;
-            }
-            using (SqlConnection cnn = new SqlConnection(connectionString))
-            {
-                if (cnn.State == ConnectionState.Closed) { cnn.Open(); }
-
-                string str = " select  suser,Pass,ID_KadrovskaEvidencija,SifRadnika from KadrovskaEvidencija WITH (NOLOCK) where SUSER = @username and id_kadrovskaevidencija <> 1 	";
-
-                var usernameParam = new SqlParameter("username", SqlDbType.NVarChar) { Value = UsernameTextBox.Text.Trim() };
+                    //    MessageBox.Show("Uspešno ste promenili lozinku!");
+                    //    ReloadLogin();
+                    //    changePassword = false;
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Ne podudaraju se lozinke,pokušajte ponovo!");
+                    //}
 
 
-                var cmd = new SqlCommand
-                {
-                    CommandText = str,
-                    Connection = cnn
-                };
-                cmd.Parameters.Add(usernameParam);
-
-
-                SqlDataReader rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    ImeKorisnika = Convert.ToString(rdr[0]);
-                    PassKorisnika = Convert.ToString(rdr[1]);
-                    Program.idkadar = Convert.ToInt32(rdr[2]);
-                    Program.SifRadnika = Convert.ToString(rdr[3]);
-                }
-                else
-                {
-                    MessageBox.Show("Pogrešno korisničko ime.");
-                    rdr.Close();
-                    cmd.Dispose();
-                    cnn.Close();
                     return;
                 }
 
-                rdr.Close();
-                cmd.Dispose();
+                string ImeKorisnika = "";
+                string PassKorisnika = "";
 
-                string strOrgDeo = "select o.ID_OrganizacionaStruktura,o.ID_OrganizacionaStrukturaStablo,os.Naziv  ";
-                strOrgDeo += " from OrganizacionaStruktura as o WITH(NOLOCK) ,organizacionastrukturastablo os WITH(NOLOCK) ";
-                strOrgDeo += "  where o.Naziv = '" + CmbOrg.SelectedValue + "' and o.ID_OrganizacionaStrukturaStablo=os.ID_OrganizacionaStrukturaStablo   ;";
+                string n = UsernameTextBox.Text;
+                lblBaza.Text = "";
+                lblGrupa.Text = "";
 
-                DataSet ds = new DataSet();
+                if (n.Length == 0)
+                {
+                    MessageBox.Show("Polje korisničko ime je prazno.");
 
-                ds = DB.ReturnDS(strOrgDeo);
-                DataView dv = ds.Tables[0].DefaultView;
+                    return;
+                }
+                n = PasswordTextBox.Text;
+                if (n.Length == 0)
+                {
+                    MessageBox.Show("Polje za lozinku je prazno.");
+                    return;
+                }
+                using (SqlConnection cnn = new SqlConnection(connectionString))
+                {
+                    if (cnn.State == ConnectionState.Closed) { cnn.Open(); }
 
-                Program.idOrgDeo = Convert.ToInt32(dv[0]["ID_OrganizacionaStruktura"]);
-                Program.idFirme = Convert.ToInt32(dv[0]["ID_OrganizacionaStrukturaStablo"]);
-                Program.imeFirme = dv[0]["Naziv"].ToString();
+                    string str = " select  suser,Pass,ID_KadrovskaEvidencija,SifRadnika from KadrovskaEvidencija WITH (NOLOCK) where SUSER = @username and id_kadrovskaevidencija <> 1 	";
+
+                    var usernameParam = new SqlParameter("username", SqlDbType.NVarChar) { Value = UsernameTextBox.Text.Trim() };
+
+
+                    var cmd = new SqlCommand
+                    {
+                        CommandText = str,
+                        Connection = cnn
+                    };
+                    cmd.Parameters.Add(usernameParam);
+
+
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        ImeKorisnika = Convert.ToString(rdr[0]);
+                        PassKorisnika = Convert.ToString(rdr[1]);
+                        Program.idkadar = Convert.ToInt32(rdr[2]);
+                        Program.SifRadnika = Convert.ToString(rdr[3]);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Pogrešno korisničko ime.");
+                        rdr.Close();
+                        cmd.Dispose();
+                        cnn.Close();
+                        return;
+                    }
+
+                    rdr.Close();
+                    cmd.Dispose();
+
+                    string strOrgDeo = "select o.ID_OrganizacionaStruktura,o.ID_OrganizacionaStrukturaStablo,os.Naziv  ";
+                    strOrgDeo += " from OrganizacionaStruktura as o WITH(NOLOCK) ,organizacionastrukturastablo os WITH(NOLOCK) ";
+                    strOrgDeo += "  where o.Naziv = '" + CmbOrg.SelectedValue + "' and o.ID_OrganizacionaStrukturaStablo=os.ID_OrganizacionaStrukturaStablo   ;";
+
+                    DataSet ds = new DataSet();
+
+                    ds = DB.ReturnDS(strOrgDeo);
+                    DataView dv = ds.Tables[0].DefaultView;
+
+                    Program.idOrgDeo = Convert.ToInt32(dv[0]["ID_OrganizacionaStruktura"]);
+                    Program.idFirme = Convert.ToInt32(dv[0]["ID_OrganizacionaStrukturaStablo"]);
+                    Program.imeFirme = dv[0]["Naziv"].ToString();
 
 
 
-                cnn.Close();
+                    cnn.Close();
+
+                }
+
+                if (UsernameTextBox.Text != ImeKorisnika)
+                {
+                    MessageBox.Show("Pogrešno korisničko ime.");
+                    UsernameTextBox.Text = "";
+                    return;
+                }
+
+
+
+
+                bool result = PasswordTextBox.Text.Equals(PassKorisnika);
+                if (result == false)
+                {
+                    MessageBox.Show("Pogrešna lozinka.");
+                    return;
+                }
+
+                Program.imekorisnika = ImeKorisnika;
+                Program.IntLogovanje = 1;
+                Hide();
+                try
+                {
+                    ((BankomMDI)MdiParent).Controls["menuStrip"].Enabled = true;
+                    ((BankomMDI)MdiParent).Controls["menuStrip1"].Enabled = true;
+                    ((BankomMDI)MdiParent).Text = Program.imeFirme + "-" + Program.imekorisnika;
+                }
+                catch { }
+                Program.Parent.Text = Program.imeFirme + "-" + Program.imekorisnika;
+                Close();
+
+                int godina = DateTime.Now.Year;
+                string ssel = " Select DatumPocetkaObrade  from ZakljucenjeKnjiga WITH(NOLOCK) "
+                              + " where GodinaZakljucenja=" + (godina - 1).ToString() + " and id_firma =1 ";
+                DataBaseBroker dk = new DataBaseBroker();
+                DataTable tk = new DataTable();
+                tk = dk.ReturnDataTable(ssel);
+                if (tk.Rows.Count > 0)
+                {
+                    Program.kDatum = Convert.ToDateTime(tk.Rows[0]["DatumPocetkaObrade"]);
+                }
+                else
+                {
+                    Program.kDatum = Convert.ToDateTime("01.01." + (godina - 1).ToString());
+                }
+
 
             }
 
-            if (UsernameTextBox.Text != ImeKorisnika)
+            else  if (radioButton2.Checked == true)
             {
-                MessageBox.Show("Pogrešno korisničko ime.");
-                UsernameTextBox.Text = "";
-                return;
+                Program.ID_Jezik = 5;
+                //Djora 26.09.20
+                int standardHeight = 1080; // 600;  //900
+                int standardWidth = 1920; // 800;  //1440
+
+                int presentHeight = Screen.PrimaryScreen.Bounds.Height;//.Bounds.Height;
+                int presentWidth = Screen.PrimaryScreen.Bounds.Width;
+                float heightRatio = (float)((float)presentHeight / (float)standardHeight);
+                float widthRatio = (float)((float)presentWidth / (float)standardWidth);
+
+                Program.RacioWith = (float)widthRatio;
+                Program.RacioHeight = (float)heightRatio;
+                if (changePassword)
+                {
+                    //if (PasswordTextBox.Text.Trim().Equals(txtPotvrda.Text.Trim()))
+                    //{
+                    //    DB.ReturnDataTable("UPDATE KadrovskaEvidencija SET pass ='" + txtPotvrda.Text.Trim() +
+                    //                       "' WHERE Suser = '" + UsernameTextBox.Text.Trim() + "'");
+
+                    //    MessageBox.Show("Uspešno ste promenili lozinku!");
+                    //    ReloadLogin();
+                    //    changePassword = false;
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Ne podudaraju se lozinke,pokušajte ponovo!");
+                    //}
+
+
+                    return;
+                }
+
+                string ImeKorisnika = "";
+                string PassKorisnika = "";
+
+                string n = UsernameTextBox.Text;
+                lblBaza.Text = "";
+                lblGrupa.Text = "";
+
+                if (n.Length == 0)
+                {
+                    MessageBox.Show("Polje korisničko ime je prazno.");
+
+                    return;
+                }
+                n = PasswordTextBox.Text;
+                if (n.Length == 0)
+                {
+                    MessageBox.Show("Polje za lozinku je prazno.");
+                    return;
+                }
+                using (SqlConnection cnn = new SqlConnection(connectionString))
+                {
+                    if (cnn.State == ConnectionState.Closed) { cnn.Open(); }
+
+                    string str = " select  suser,Pass,ID_KadrovskaEvidencija,SifRadnika from KadrovskaEvidencija WITH (NOLOCK) where SUSER = @username and id_kadrovskaevidencija <> 1 	";
+
+                    var usernameParam = new SqlParameter("username", SqlDbType.NVarChar) { Value = UsernameTextBox.Text.Trim() };
+
+
+                    var cmd = new SqlCommand
+                    {
+                        CommandText = str,
+                        Connection = cnn
+                    };
+                    cmd.Parameters.Add(usernameParam);
+
+
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        ImeKorisnika = Convert.ToString(rdr[0]);
+                        PassKorisnika = Convert.ToString(rdr[1]);
+                        Program.idkadar = Convert.ToInt32(rdr[2]);
+                        Program.SifRadnika = Convert.ToString(rdr[3]);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Pogrešno korisničko ime.");
+                        rdr.Close();
+                        cmd.Dispose();
+                        cnn.Close();
+                        return;
+                    }
+
+                    rdr.Close();
+                    cmd.Dispose();
+
+                    string strOrgDeo = "select o.ID_OrganizacionaStruktura,o.ID_OrganizacionaStrukturaStablo,os.Naziv  ";
+                    strOrgDeo += " from OrganizacionaStruktura as o WITH(NOLOCK) ,organizacionastrukturastablo os WITH(NOLOCK) ";
+                    strOrgDeo += "  where o.Naziv = '" + CmbOrg.SelectedValue + "' and o.ID_OrganizacionaStrukturaStablo=os.ID_OrganizacionaStrukturaStablo   ;";
+
+                    DataSet ds = new DataSet();
+
+                    ds = DB.ReturnDS(strOrgDeo);
+                    DataView dv = ds.Tables[0].DefaultView;
+
+                    Program.idOrgDeo = Convert.ToInt32(dv[0]["ID_OrganizacionaStruktura"]);
+                    Program.idFirme = Convert.ToInt32(dv[0]["ID_OrganizacionaStrukturaStablo"]);
+                    Program.imeFirme = dv[0]["Naziv"].ToString();
+
+
+
+                    cnn.Close();
+
+                }
+
+                if (UsernameTextBox.Text != ImeKorisnika)
+                {
+                    MessageBox.Show("Pogrešno korisničko ime.");
+                    UsernameTextBox.Text = "";
+                    return;
+                }
+
+
+
+
+                bool result = PasswordTextBox.Text.Equals(PassKorisnika);
+                if (result == false)
+                {
+                    MessageBox.Show("Pogrešna lozinka.");
+                    return;
+                }
+
+                Program.imekorisnika = ImeKorisnika;
+                Program.IntLogovanje = 1;
+                Hide();
+                try
+                {
+                    ((BankomMDI)MdiParent).Controls["menuStrip"].Enabled = true;
+                    ((BankomMDI)MdiParent).Controls["menuStrip1"].Enabled = true;
+                    ((BankomMDI)MdiParent).Text = Program.imeFirme + "-" + Program.imekorisnika;
+                }
+                catch { }
+                Program.Parent.Text = Program.imeFirme + "-" + Program.imekorisnika;
+                Close();
+
+                int godina = DateTime.Now.Year;
+                string ssel = " Select DatumPocetkaObrade  from ZakljucenjeKnjiga WITH(NOLOCK) "
+                              + " where GodinaZakljucenja=" + (godina - 1).ToString() + " and id_firma =1 ";
+                DataBaseBroker dk = new DataBaseBroker();
+                DataTable tk = new DataTable();
+                tk = dk.ReturnDataTable(ssel);
+                if (tk.Rows.Count > 0)
+                {
+                    Program.kDatum = Convert.ToDateTime(tk.Rows[0]["DatumPocetkaObrade"]);
+                }
+                else
+                {
+                    Program.kDatum = Convert.ToDateTime("01.01." + (godina - 1).ToString());
+                }
+
+
             }
 
-
-
-
-            bool result = PasswordTextBox.Text.Equals(PassKorisnika);
-            if (result == false)
+            else if (radioButton3.Checked == true)
             {
-                MessageBox.Show("Pogrešna lozinka.");
-                return;
+                Program.ID_Jezik = 3;
+                //Djora 26.09.20
+                int standardHeight = 1080; // 600;  //900
+                int standardWidth = 1920; // 800;  //1440
+
+                int presentHeight = Screen.PrimaryScreen.Bounds.Height;//.Bounds.Height;
+                int presentWidth = Screen.PrimaryScreen.Bounds.Width;
+                float heightRatio = (float)((float)presentHeight / (float)standardHeight);
+                float widthRatio = (float)((float)presentWidth / (float)standardWidth);
+
+                Program.RacioWith = (float)widthRatio;
+                Program.RacioHeight = (float)heightRatio;
+                if (changePassword)
+                {
+                    //if (PasswordTextBox.Text.Trim().Equals(txtPotvrda.Text.Trim()))
+                    //{
+                    //    DB.ReturnDataTable("UPDATE KadrovskaEvidencija SET pass ='" + txtPotvrda.Text.Trim() +
+                    //                       "' WHERE Suser = '" + UsernameTextBox.Text.Trim() + "'");
+
+                    //    MessageBox.Show("Uspešno ste promenili lozinku!");
+                    //    ReloadLogin();
+                    //    changePassword = false;
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Ne podudaraju se lozinke,pokušajte ponovo!");
+                    //}
+
+
+                    return;
+                }
+
+                string ImeKorisnika = "";
+                string PassKorisnika = "";
+
+                string n = UsernameTextBox.Text;
+                lblBaza.Text = "";
+                lblGrupa.Text = "";
+
+                if (n.Length == 0)
+                {
+                    MessageBox.Show("Polje korisničko ime je prazno.");
+
+                    return;
+                }
+                n = PasswordTextBox.Text;
+                if (n.Length == 0)
+                {
+                    MessageBox.Show("Polje za lozinku je prazno.");
+                    return;
+                }
+                using (SqlConnection cnn = new SqlConnection(connectionString))
+                {
+                    if (cnn.State == ConnectionState.Closed) { cnn.Open(); }
+
+                    string str = " select  suser,Pass,ID_KadrovskaEvidencija,SifRadnika from KadrovskaEvidencija WITH (NOLOCK) where SUSER = @username and id_kadrovskaevidencija <> 1 	";
+
+                    var usernameParam = new SqlParameter("username", SqlDbType.NVarChar) { Value = UsernameTextBox.Text.Trim() };
+
+
+                    var cmd = new SqlCommand
+                    {
+                        CommandText = str,
+                        Connection = cnn
+                    };
+                    cmd.Parameters.Add(usernameParam);
+
+
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        ImeKorisnika = Convert.ToString(rdr[0]);
+                        PassKorisnika = Convert.ToString(rdr[1]);
+                        Program.idkadar = Convert.ToInt32(rdr[2]);
+                        Program.SifRadnika = Convert.ToString(rdr[3]);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Pogrešno korisničko ime.");
+                        rdr.Close();
+                        cmd.Dispose();
+                        cnn.Close();
+                        return;
+                    }
+
+                    rdr.Close();
+                    cmd.Dispose();
+
+                    string strOrgDeo = "select o.ID_OrganizacionaStruktura,o.ID_OrganizacionaStrukturaStablo,os.Naziv  ";
+                    strOrgDeo += " from OrganizacionaStruktura as o WITH(NOLOCK) ,organizacionastrukturastablo os WITH(NOLOCK) ";
+                    strOrgDeo += "  where o.Naziv = '" + CmbOrg.SelectedValue + "' and o.ID_OrganizacionaStrukturaStablo=os.ID_OrganizacionaStrukturaStablo   ;";
+
+                    DataSet ds = new DataSet();
+
+                    ds = DB.ReturnDS(strOrgDeo);
+                    DataView dv = ds.Tables[0].DefaultView;
+
+                    Program.idOrgDeo = Convert.ToInt32(dv[0]["ID_OrganizacionaStruktura"]);
+                    Program.idFirme = Convert.ToInt32(dv[0]["ID_OrganizacionaStrukturaStablo"]);
+                    Program.imeFirme = dv[0]["Naziv"].ToString();
+
+
+
+                    cnn.Close();
+
+                }
+
+                if (UsernameTextBox.Text != ImeKorisnika)
+                {
+                    MessageBox.Show("Pogrešno korisničko ime.");
+                    UsernameTextBox.Text = "";
+                    return;
+                }
+
+
+
+
+                bool result = PasswordTextBox.Text.Equals(PassKorisnika);
+                if (result == false)
+                {
+                    MessageBox.Show("Pogrešna lozinka.");
+                    return;
+                }
+
+                Program.imekorisnika = ImeKorisnika;
+                Program.IntLogovanje = 1;
+                Hide();
+                try
+                {
+                    ((BankomMDI)MdiParent).Controls["menuStrip"].Enabled = true;
+                    ((BankomMDI)MdiParent).Controls["menuStrip1"].Enabled = true;
+                    ((BankomMDI)MdiParent).Text = Program.imeFirme + "-" + Program.imekorisnika;
+                }
+                catch { }
+                Program.Parent.Text = Program.imeFirme + "-" + Program.imekorisnika;
+                Close();
+
+                int godina = DateTime.Now.Year;
+                string ssel = " Select DatumPocetkaObrade  from ZakljucenjeKnjiga WITH(NOLOCK) "
+                              + " where GodinaZakljucenja=" + (godina - 1).ToString() + " and id_firma =1 ";
+                DataBaseBroker dk = new DataBaseBroker();
+                DataTable tk = new DataTable();
+                tk = dk.ReturnDataTable(ssel);
+                if (tk.Rows.Count > 0)
+                {
+                    Program.kDatum = Convert.ToDateTime(tk.Rows[0]["DatumPocetkaObrade"]);
+                }
+                else
+                {
+                    Program.kDatum = Convert.ToDateTime("01.01." + (godina - 1).ToString());
+                }
+
+
             }
 
-            Program.imekorisnika = ImeKorisnika;
-            Program.IntLogovanje = 1;
-            Hide();
-            try
+            else  if (radioButton4.Checked == true)
             {
-                ((BankomMDI)MdiParent).Controls["menuStrip"].Enabled = true;
-                ((BankomMDI)MdiParent).Controls["menuStrip1"].Enabled = true;
-                ((BankomMDI)MdiParent).Text = Program.imeFirme + "-" + Program.imekorisnika;
-            }
-            catch { }
-            Program.Parent.Text = Program.imeFirme + "-" + Program.imekorisnika;
-            Close();
+                Program.ID_Jezik = 6;
+                //Djora 26.09.20
+                int standardHeight = 1080; // 600;  //900
+                int standardWidth = 1920; // 800;  //1440
 
-            int godina = DateTime.Now.Year;
-            string ssel = " Select DatumPocetkaObrade  from ZakljucenjeKnjiga WITH(NOLOCK) "
-                          + " where GodinaZakljucenja=" + (godina - 1).ToString() + " and id_firma =1 ";
-            DataBaseBroker dk = new DataBaseBroker();
-            DataTable tk = new DataTable();
-            tk = dk.ReturnDataTable(ssel);
-            if (tk.Rows.Count > 0)
-            {
-                Program.kDatum = Convert.ToDateTime(tk.Rows[0]["DatumPocetkaObrade"]);
-            }
-            else
-            {
-                Program.kDatum = Convert.ToDateTime("01.01." + (godina - 1).ToString());
-            }
+                int presentHeight = Screen.PrimaryScreen.Bounds.Height;//.Bounds.Height;
+                int presentWidth = Screen.PrimaryScreen.Bounds.Width;
+                float heightRatio = (float)((float)presentHeight / (float)standardHeight);
+                float widthRatio = (float)((float)presentWidth / (float)standardWidth);
 
+                Program.RacioWith = (float)widthRatio;
+                Program.RacioHeight = (float)heightRatio;
+                if (changePassword)
+                {
+                    //if (PasswordTextBox.Text.Trim().Equals(txtPotvrda.Text.Trim()))
+                    //{
+                    //    DB.ReturnDataTable("UPDATE KadrovskaEvidencija SET pass ='" + txtPotvrda.Text.Trim() +
+                    //                       "' WHERE Suser = '" + UsernameTextBox.Text.Trim() + "'");
+
+                    //    MessageBox.Show("Uspešno ste promenili lozinku!");
+                    //    ReloadLogin();
+                    //    changePassword = false;
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Ne podudaraju se lozinke,pokušajte ponovo!");
+                    //}
+
+
+                    return;
+                }
+
+                string ImeKorisnika = "";
+                string PassKorisnika = "";
+
+                string n = UsernameTextBox.Text;
+                lblBaza.Text = "";
+                lblGrupa.Text = "";
+
+                if (n.Length == 0)
+                {
+                    MessageBox.Show("Polje korisničko ime je prazno.");
+
+                    return;
+                }
+                n = PasswordTextBox.Text;
+                if (n.Length == 0)
+                {
+                    MessageBox.Show("Polje za lozinku je prazno.");
+                    return;
+                }
+                using (SqlConnection cnn = new SqlConnection(connectionString))
+                {
+                    if (cnn.State == ConnectionState.Closed) { cnn.Open(); }
+
+                    string str = " select  suser,Pass,ID_KadrovskaEvidencija,SifRadnika from KadrovskaEvidencija WITH (NOLOCK) where SUSER = @username and id_kadrovskaevidencija <> 1 	";
+
+                    var usernameParam = new SqlParameter("username", SqlDbType.NVarChar) { Value = UsernameTextBox.Text.Trim() };
+
+
+                    var cmd = new SqlCommand
+                    {
+                        CommandText = str,
+                        Connection = cnn
+                    };
+                    cmd.Parameters.Add(usernameParam);
+
+
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        ImeKorisnika = Convert.ToString(rdr[0]);
+                        PassKorisnika = Convert.ToString(rdr[1]);
+                        Program.idkadar = Convert.ToInt32(rdr[2]);
+                        Program.SifRadnika = Convert.ToString(rdr[3]);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Pogrešno korisničko ime.");
+                        rdr.Close();
+                        cmd.Dispose();
+                        cnn.Close();
+                        return;
+                    }
+
+                    rdr.Close();
+                    cmd.Dispose();
+
+                    string strOrgDeo = "select o.ID_OrganizacionaStruktura,o.ID_OrganizacionaStrukturaStablo,os.Naziv  ";
+                    strOrgDeo += " from OrganizacionaStruktura as o WITH(NOLOCK) ,organizacionastrukturastablo os WITH(NOLOCK) ";
+                    strOrgDeo += "  where o.Naziv = '" + CmbOrg.SelectedValue + "' and o.ID_OrganizacionaStrukturaStablo=os.ID_OrganizacionaStrukturaStablo   ;";
+
+                    DataSet ds = new DataSet();
+
+                    ds = DB.ReturnDS(strOrgDeo);
+                    DataView dv = ds.Tables[0].DefaultView;
+
+                    Program.idOrgDeo = Convert.ToInt32(dv[0]["ID_OrganizacionaStruktura"]);
+                    Program.idFirme = Convert.ToInt32(dv[0]["ID_OrganizacionaStrukturaStablo"]);
+                    Program.imeFirme = dv[0]["Naziv"].ToString();
+
+
+
+                    cnn.Close();
+
+                }
+
+                if (UsernameTextBox.Text != ImeKorisnika)
+                {
+                    MessageBox.Show("Pogrešno korisničko ime.");
+                    UsernameTextBox.Text = "";
+                    return;
+                }
+
+
+
+
+                bool result = PasswordTextBox.Text.Equals(PassKorisnika);
+                if (result == false)
+                {
+                    MessageBox.Show("Pogrešna lozinka.");
+                    return;
+                }
+
+                Program.imekorisnika = ImeKorisnika;
+                Program.IntLogovanje = 1;
+                Hide();
+                try
+                {
+                    ((BankomMDI)MdiParent).Controls["menuStrip"].Enabled = true;
+                    ((BankomMDI)MdiParent).Controls["menuStrip1"].Enabled = true;
+                    ((BankomMDI)MdiParent).Text = Program.imeFirme + "-" + Program.imekorisnika;
+                }
+                catch { }
+                Program.Parent.Text = Program.imeFirme + "-" + Program.imekorisnika;
+                Close();
+
+                int godina = DateTime.Now.Year;
+                string ssel = " Select DatumPocetkaObrade  from ZakljucenjeKnjiga WITH(NOLOCK) "
+                              + " where GodinaZakljucenja=" + (godina - 1).ToString() + " and id_firma =1 ";
+                DataBaseBroker dk = new DataBaseBroker();
+                DataTable tk = new DataTable();
+                tk = dk.ReturnDataTable(ssel);
+                if (tk.Rows.Count > 0)
+                {
+                    Program.kDatum = Convert.ToDateTime(tk.Rows[0]["DatumPocetkaObrade"]);
+                }
+                else
+                {
+                    Program.kDatum = Convert.ToDateTime("01.01." + (godina - 1).ToString());
+                }
+
+
+            }
+            else MessageBox.Show("Morate odabrati jezik.");
+
+
+
+
+
+            
 
 
         }
@@ -685,8 +1172,8 @@ namespace Bankom
             //pictureBox3.Visible = true;
             UsernameTextBox.Visible = true;
             UsernameTextBox.Text = "Korisničko ime";
-            lblPotvrda.Visible = false;
-            txtPotvrda.Visible = false;
+            //lblPotvrda.Visible = false;
+            //txtPotvrda.Visible = false;
             //pictureBox5.Visible = false;
         }
 
@@ -776,8 +1263,8 @@ namespace Bankom
             Program.RacioHeight = (float)heightRatio;
 
             //pictureBox5.Visible = false;
-            txtPotvrda.Visible = false;
-            lblPotvrda.Visible = false;
+            //txtPotvrda.Visible = false;
+            //lblPotvrda.Visible = false;
 
         }
 
@@ -830,11 +1317,11 @@ namespace Bankom
 
                 }
 
-                lblPotvrda.Visible = true;
+                //lblPotvrda.Visible = true;
                 // pictureBox5.Visible = true;
-                txtPotvrda.Visible = true;
+               // txtPotvrda.Visible = true;
                 //newpassword.isPassword = true;
-                txtPotvrda.Text = "";
+               // txtPotvrda.Text = "";
                 PasswordTextBox.Text = "";
                 lblBaza.Visible = false;
                 cmbBaze.Visible = false;
@@ -863,5 +1350,7 @@ namespace Bankom
         {
             Application.Exit();
         }
+
+        
     }
 }
