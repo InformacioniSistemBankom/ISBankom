@@ -419,18 +419,18 @@ namespace Bankom.Class
             // BORKKA PROMENILA ID_jezik poji inace kod promene jezika treba da se upise u Program.ID_Jezik
             if (Program.ID_Jezik == 0)
                 Program.ID_Jezik = 3;
-            string ss = "Select AlijasPolja as ap,p.Prevod as Naslov,WidthKolone as Width  From  RecnikPodataka as r,prevodi as p Where p.ID_Jezik="+Program.ID_Jezik.ToString()+" And  r.ID_NaziviNaFormi=p.ID_NaziviNaFormi ";
+            string ss = "Select AlijasPolja as ap,p.Prevod as Naslov,WidthKolone as Width  From  RecnikPodataka as r,prevodi as p Where p.ID_Jezik=" + Program.ID_Jezik.ToString() + " And  r.ID_NaziviNaFormi=p.ID_NaziviNaFormi ";
             ss += "and r.TabelaVView = @param0 AND tud=@param1  ORDER BY TabIndex";
             Console.WriteLine(ss);
             DataTable t = new DataTable();
-            t = db.ParamsQueryDT(ss, tabelavview,tud);
+            t = db.ParamsQueryDT(ss, tabelavview, tud);
             //Console.WriteLine(t.Rows.Count);
             //Console.WriteLine(dg.Columns.Count);
             for (int i = 0; i < dg.Columns.Count; i++)
             {
-                if (i >t.Rows.Count - 1) { break; }
-                
-                if (dg.Columns[i].Name==t.Rows[i]["ap"].ToString())
+                if (i > t.Rows.Count - 1) { break; }
+
+                if (dg.Columns[i].Name == t.Rows[i]["ap"].ToString())
                 {
                     if (dg.Columns[i].Name == "ID_" + tabelavview)
                         dg.Columns[i].HeaderText = "Rb";

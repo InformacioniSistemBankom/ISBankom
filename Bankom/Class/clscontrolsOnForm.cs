@@ -52,6 +52,7 @@ namespace Bankom.Class
             //       + " ORDER BY RecnikPodatakaDjora.TabelaVView DESC, RecnikPodatakaDjora.TabIndex";
 
             //Djora 26.09.20
+            //Djora 26.09.20
             string query = " SELECT RecnikPodatakaDjora.ID_RecnikPodataka AS ID, RecnikPodatakaDjora.Clevo as levo, RecnikPodatakaDjora.Cvrh as vrh, RecnikPodatakaDjora.Cwidth as width, RecnikPodatakaDjora.height, "
                   + " RecnikPodatakaDjora.AlijasPolja, RecnikPodatakaDjora.AlijasTabele, dbo.TipoviPodataka.tip, dbo.TipoviPodataka.velicina, dbo.TipoviPodataka.naziv, dbo.TipoviPodataka.DifoltZaIzvestaje, "
                   + " dbo.TipoviPodataka.Format, dbo.TipoviPodataka.Alajment, RecnikPodatakaDjora.Izborno, RecnikPodatakaDjora.Polje, RecnikPodatakaDjora.PostojiLabela, RecnikPodatakaDjora.ID_NaziviNaFormi, "
@@ -63,6 +64,7 @@ namespace Bankom.Class
                   + " WHERE(RecnikPodatakaDjora.Dokument = N'" + dokument + "') AND(RecnikPodatakaDjora.TabIndex >= 0) AND(RecnikPodatakaDjora.width <> 0) AND(dbo.Prevodi.ID_Jezik = " + Program.ID_Jezik.ToString() + ") OR "
                   + " (RecnikPodatakaDjora.Dokument = N'" + dokument + "') AND(RecnikPodatakaDjora.ID_NaziviNaFormi = 20)  AND(dbo.Prevodi.ID_Jezik = " + Program.ID_Jezik.ToString() + ") "
                   + " ORDER BY RecnikPodatakaDjora.TabelaVView DESC, RecnikPodatakaDjora.TabIndex";
+
 
             Console.WriteLine(query);
             DataTable t = db.ReturnDataTable(query);

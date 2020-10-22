@@ -468,8 +468,8 @@ namespace Bankom.Class
                     dv.AllowUserToResizeRows = false;
                     dv.BorderStyle = BorderStyle.Fixed3D;
                     dv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-                    dv.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-                    dv.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+             
+                    dv.DefaultCellStyle.SelectionForeColor = Color.SeaShell;
                     dv.BackgroundColor = Color.White;
 
                     dv.EnableHeadersVisualStyles = false;
@@ -501,7 +501,7 @@ namespace Bankom.Class
                     dv.RowHeadersVisible = false;
                     //dv.SelectionMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 
-                    dv.BackgroundColor = Color.White;
+                    dv.BackgroundColor = Color.SeaShell;
 
 
                     //Da duge reci vide cele u koloni (WRAP)
