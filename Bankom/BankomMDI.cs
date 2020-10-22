@@ -3242,6 +3242,8 @@ namespace Bankom
                 button1.Location = new Point(159, 301);
             }
         }
+
+       
     }
 
 } 

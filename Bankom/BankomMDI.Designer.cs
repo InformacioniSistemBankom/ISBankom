@@ -1361,6 +1361,7 @@ namespace Bankom
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 734);
             this.flowLayoutPanel1.TabIndex = 40;
+           
             // 
             // menuStrip1
             // 
