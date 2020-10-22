@@ -665,10 +665,7 @@ namespace Bankom
             // pretragaToolStripMenuItem
             // 
             this.pretragaToolStripMenuItem.Name = "pretragaToolStripMenuItem";
-            this.pretragaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
             this.pretragaToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
-            this.pretragaToolStripMenuItem.Text = "Pretraga";
-            this.pretragaToolStripMenuItem.Click += new System.EventHandler(this.pretragaToolStripMenuItem_Click_1);
             // 
             // toolStripMenuRefresh
             // 
@@ -1012,6 +1009,8 @@ namespace Bankom
             // 
             // tstbPretraga
             // 
+            this.tstbPretraga.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.tstbPretraga.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.tstbPretraga.BackColor = System.Drawing.Color.SeaShell;
             this.tstbPretraga.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tstbPretraga.Name = "tstbPretraga";
