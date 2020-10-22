@@ -132,6 +132,8 @@ namespace Bankom
             this.Sstampa = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.Bbrisanje = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tstbPretraga = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.Ggrupisi = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
@@ -148,6 +150,7 @@ namespace Bankom
             this.Iizlaz = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
             this.Kknjzi = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator30 = new System.Windows.Forms.ToolStripSeparator();
             this.Kkalki = new System.Windows.Forms.ToolStripButton();
             this.Kkalku = new System.Windows.Forms.ToolStripButton();
@@ -165,7 +168,6 @@ namespace Bankom
             this.toolStripSeparator33 = new System.Windows.Forms.ToolStripSeparator();
             this.Oorigin = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tbPretraga = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.asdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -850,6 +852,8 @@ namespace Bankom
             this.Sstampa,
             this.toolStripSeparator12,
             this.Bbrisanje,
+            this.toolStripSeparator2,
+            this.tstbPretraga,
             this.toolStripSeparator13,
             this.Ggrupisi,
             this.toolStripSeparator14,
@@ -866,6 +870,7 @@ namespace Bankom
             this.Iizlaz,
             this.toolStripSeparator20,
             this.Kknjzi,
+            this.toolStripSeparator21,
             this.toolStripSeparator30,
             this.Kkalki,
             this.Kkalku,
@@ -884,7 +889,7 @@ namespace Bankom
             this.Oorigin});
             this.ToolBar.Location = new System.Drawing.Point(0, 0);
             this.ToolBar.Name = "ToolBar";
-            this.ToolBar.Size = new System.Drawing.Size(1246, 43);
+            this.ToolBar.Size = new System.Drawing.Size(1429, 43);
             this.ToolBar.TabIndex = 32;
             this.ToolBar.Text = "toolbar";
             this.ToolBar.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ToolBar_ItemClicked);
@@ -899,7 +904,7 @@ namespace Bankom
             this.Uunos.Image = ((System.Drawing.Image)(resources.GetObject("Uunos.Image")));
             this.Uunos.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Uunos.Name = "Uunos";
-            this.Uunos.Size = new System.Drawing.Size(80, 40);
+            this.Uunos.Size = new System.Drawing.Size(75, 40);
             this.Uunos.Text = "Unos";
             this.Uunos.ToolTipText = "Unos podataka";
             this.Uunos.Click += new System.EventHandler(this.Uunos_Click);
@@ -925,7 +930,7 @@ namespace Bankom
             this.Ppregled.Image = ((System.Drawing.Image)(resources.GetObject("Ppregled.Image")));
             this.Ppregled.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Ppregled.Name = "Ppregled";
-            this.Ppregled.Size = new System.Drawing.Size(90, 40);
+            this.Ppregled.Size = new System.Drawing.Size(80, 40);
             this.Ppregled.Text = "Pregled";
             this.Ppregled.Click += new System.EventHandler(this.Ppregled_Click);
             // 
@@ -942,7 +947,7 @@ namespace Bankom
             this.Iizmena.Image = ((System.Drawing.Image)(resources.GetObject("Iizmena.Image")));
             this.Iizmena.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Iizmena.Name = "Iizmena";
-            this.Iizmena.Size = new System.Drawing.Size(80, 40);
+            this.Iizmena.Size = new System.Drawing.Size(75, 40);
             this.Iizmena.Text = "Izmena";
             this.Iizmena.ToolTipText = "Izmena podataka";
             this.Iizmena.Click += new System.EventHandler(this.Iizmena_Click);
@@ -960,7 +965,7 @@ namespace Bankom
             this.Sstorno.Image = ((System.Drawing.Image)(resources.GetObject("Sstorno.Image")));
             this.Sstorno.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Sstorno.Name = "Sstorno";
-            this.Sstorno.Size = new System.Drawing.Size(80, 40);
+            this.Sstorno.Size = new System.Drawing.Size(70, 40);
             this.Sstorno.Text = "Storno";
             this.Sstorno.ToolTipText = "Storno dokumenta";
             this.Sstorno.Click += new System.EventHandler(this.Sstorno_Click);
@@ -978,7 +983,7 @@ namespace Bankom
             this.Sstampa.Image = ((System.Drawing.Image)(resources.GetObject("Sstampa.Image")));
             this.Sstampa.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Sstampa.Name = "Sstampa";
-            this.Sstampa.Size = new System.Drawing.Size(85, 40);
+            this.Sstampa.Size = new System.Drawing.Size(75, 40);
             this.Sstampa.Text = "Štampa";
             this.Sstampa.ToolTipText = "Stampa dokumenta";
             this.Sstampa.Click += new System.EventHandler(this.Sstampa_Click);
@@ -996,9 +1001,27 @@ namespace Bankom
             this.Bbrisanje.Image = ((System.Drawing.Image)(resources.GetObject("Bbrisanje.Image")));
             this.Bbrisanje.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Bbrisanje.Name = "Bbrisanje";
-            this.Bbrisanje.Size = new System.Drawing.Size(85, 40);
+            this.Bbrisanje.Size = new System.Drawing.Size(80, 40);
             this.Bbrisanje.Text = "Brisanje";
             this.Bbrisanje.Click += new System.EventHandler(this.Bbrisanje_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 43);
+            // 
+            // tstbPretraga
+            // 
+            this.tstbPretraga.BackColor = System.Drawing.Color.SeaShell;
+            this.tstbPretraga.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tstbPretraga.Name = "tstbPretraga";
+            this.tstbPretraga.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.tstbPretraga.Size = new System.Drawing.Size(150, 43);
+            this.tstbPretraga.ToolTipText = "Pretraga dokumenata";
+            this.tstbPretraga.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tstbPretraga_KeyDown_1);
+            this.tstbPretraga.Click += new System.EventHandler(this.tstbPretraga_Click_1);
+            this.tstbPretraga.DoubleClick += new System.EventHandler(this.tstbPretraga_DoubleClick_1);
+            this.tstbPretraga.TextChanged += new System.EventHandler(this.tstbPretraga_TextChanged_1);
             // 
             // toolStripSeparator13
             // 
@@ -1013,7 +1036,7 @@ namespace Bankom
             this.Ggrupisi.Image = ((System.Drawing.Image)(resources.GetObject("Ggrupisi.Image")));
             this.Ggrupisi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Ggrupisi.Name = "Ggrupisi";
-            this.Ggrupisi.Size = new System.Drawing.Size(85, 40);
+            this.Ggrupisi.Size = new System.Drawing.Size(80, 40);
             this.Ggrupisi.Text = "Grupiši";
             this.Ggrupisi.ToolTipText = "Rad sa elementima stabla";
             this.Ggrupisi.Click += new System.EventHandler(this.Ggrupisi_Click);
@@ -1031,7 +1054,7 @@ namespace Bankom
             this.Iimenik.Image = ((System.Drawing.Image)(resources.GetObject("Iimenik.Image")));
             this.Iimenik.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Iimenik.Name = "Iimenik";
-            this.Iimenik.Size = new System.Drawing.Size(80, 40);
+            this.Iimenik.Size = new System.Drawing.Size(75, 40);
             this.Iimenik.Text = "Imenik";
             this.Iimenik.ToolTipText = "Imenik";
             this.Iimenik.Click += new System.EventHandler(this.Iimenik_Click);
@@ -1049,7 +1072,7 @@ namespace Bankom
             this.Ddokum.Image = ((System.Drawing.Image)(resources.GetObject("Ddokum.Image")));
             this.Ddokum.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Ddokum.Name = "Ddokum";
-            this.Ddokum.Size = new System.Drawing.Size(90, 40);
+            this.Ddokum.Size = new System.Drawing.Size(80, 40);
             this.Ddokum.Text = "Dokum.";
             this.Ddokum.ToolTipText = "Statusi dokumenata";
             this.Ddokum.Click += new System.EventHandler(this.Ddokum_Click);
@@ -1145,6 +1168,12 @@ namespace Bankom
             this.Kknjzi.ToolTipText = "Knjizenje dokumenata";
             this.Kknjzi.Visible = false;
             this.Kknjzi.Click += new System.EventHandler(this.Kknjzi_Click);
+            // 
+            // toolStripSeparator21
+            // 
+            this.toolStripSeparator21.Name = "toolStripSeparator21";
+            this.toolStripSeparator21.Size = new System.Drawing.Size(6, 43);
+            this.toolStripSeparator21.Visible = false;
             // 
             // toolStripSeparator30
             // 
@@ -1338,21 +1367,6 @@ namespace Bankom
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.Visible = false;
             // 
-            // tbPretraga
-            // 
-            this.tbPretraga.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.tbPretraga.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.tbPretraga.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tbPretraga.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbPretraga.Location = new System.Drawing.Point(497, 43);
-            this.tbPretraga.Name = "tbPretraga";
-            this.tbPretraga.Size = new System.Drawing.Size(175, 23);
-            this.tbPretraga.TabIndex = 36;
-            this.tbPretraga.Click += new System.EventHandler(this.tbPretraga_Click);
-            this.tbPretraga.TextChanged += new System.EventHandler(this.tbPretraga_TextChanged);
-            this.tbPretraga.DoubleClick += new System.EventHandler(this.tbPretraga_DoubleClick);
-            this.tbPretraga.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbPretraga_KeyDown);
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.menuStrip1);
@@ -1424,10 +1438,9 @@ namespace Bankom
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(1246, 777);
+            this.ClientSize = new System.Drawing.Size(1429, 777);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.tbPretraga);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.ToolBar);
             this.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1584,7 +1597,6 @@ namespace Bankom
         private System.Windows.Forms.ToolStripMenuItem rastuci;
         private System.Windows.Forms.ToolStripMenuItem opadajuci;
         private EventHandler Ruski_Click;
-        private System.Windows.Forms.TextBox tbPretraga;
         private System.Windows.Forms.ToolStripButton Oorgsema;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.ToolStripMenuItem asdToolStripMenuItem;
@@ -1596,6 +1608,9 @@ namespace Bankom
         private System.Windows.Forms.ToolStripMenuItem esfredstgrfdToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripTextBox tstbPretraga;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator21;
     }
 }
 

@@ -1351,6 +1351,28 @@ namespace Bankom
             Application.Exit();
         }
 
-        
+        private void pictureBox3_MouseHover(object sender, EventArgs e)
+        {
+           
+           toolTip1.SetToolTip(this.pictureBox3, "СРБ");
+        }
+
+        private void pictureBox5_MouseHover(object sender, EventArgs e)
+        {
+            
+           toolTip1.SetToolTip(this.pictureBox5, "SRB");
+        }
+
+        private void pictureBox4_MouseHover(object sender, EventArgs e)
+        {
+            
+            toolTip1.SetToolTip(this.pictureBox4, "ENG");
+        }
+
+        private void pictureBox6_MouseHover(object sender, EventArgs e)
+        {
+            
+            toolTip1.SetToolTip(this.pictureBox6, "RUS");
+        }
     }
 }
