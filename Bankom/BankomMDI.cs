@@ -26,6 +26,7 @@ namespace Bankom
 {
     public partial class BankomMDI : Form
     {
+     DataBaseBroker db = new DataBaseBroker();
         public string connectionString = Program.connectionString;
       
         public static string filter = "";
@@ -244,8 +245,8 @@ namespace Bankom
 
             //tamara 22.10.2020.
             ToolBar.Enabled = true;
-            Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-            Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+            Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
+            Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
             // ivana 21.10.2020.
             CreateMenu();
            
@@ -274,9 +275,8 @@ namespace Bankom
 
                 string[] novo1 = System.IO.File.ReadAllLines(Application.StartupPath + @"\XmlLat\" + "lista.txt");
                 //string[] novo = alphabet.ToArray();
-                
-                tstbPretraga.AutoCompleteCustomSource.AddRange(novo1);
-                tstbPretraga.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+
+           
                 
          
                 return;
@@ -303,8 +303,7 @@ namespace Bankom
             } while (x1 < dv.Count);
 
             string[] novo = alphabet.ToArray();
-            tstbPretraga.AutoCompleteCustomSource.AddRange(novo);
-            tstbPretraga.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+         
           
             System.IO.File.WriteAllLines(Application.StartupPath + @"\XmlLat\" + "lista.txt", alphabet);
 
@@ -953,7 +952,7 @@ namespace Bankom
             ToolStripSeparator toolStripSeparator42,
             ToolStripSeparator toolStripSeparator8,
             ToolStripMenuItem closeActive,
-            ToolStripTextBox tstbPretraga,
+            ToolStripComboBox toolStripComboBox1,
             ToolStripTextBox toolStripTextBox2,
             ToolStripTextBox toolStripTextBox3,
             ToolStripMenuItem kalkulator,
@@ -1099,9 +1098,9 @@ namespace Bankom
                 return;
             }
 
-            string ss = tstbPretraga.Text.Trim();
+            string ss = item.Text.Trim();
             if (ss == "") { return; }
-            if (ss == "System.Windows.Forms.tstbPretraga") { return; }
+            if (ss == "System.Windows.Forms.ToolStripTextBox") { return; }
 
             string aaa = "";
             for (int n = 6; n < windowsMenu.DropDownItems.Count; n++)
@@ -1111,7 +1110,7 @@ namespace Bankom
                 if (ss == aaa)
                 {
                     //MessageBox.Show("Vec postoji");
-                    //tstbPretraga.Text = "";
+                    //toolStripTextBox1.Text = "";
 
                     //return;
                 }
@@ -1135,7 +1134,7 @@ namespace Bankom
             else
             {
                 MessageBox.Show("Dokumenat nije pronadjen");
-                tstbPretraga.Text = "";
+                toolStripTextBox1.Text = "";
                 return;
             }
 
@@ -1151,7 +1150,7 @@ namespace Bankom
                     {
                         MessageBox.Show("Dokumenat je vec otvoren");
                         this.Text = "";
-                        tstbPretraga.Text = " ";
+                        toolStripTextBox1.Text = " ";
 
                         return;
                     }
@@ -1160,28 +1159,51 @@ namespace Bankom
 
             ShowNewForm("Dokumenta", idstablo, naziv, 1, "", "", "S", "", ""); // na dogadjaju form load otvara se nova forma  sa predatim parametrima 
         }
-        //private void tstbPretraga_Click(object sender, EventArgs e)
-        //{
 
-        //    tstbPretraga.Text = tstbPretraga.Text.Trim();
-        //    tstbPretraga.Focus();
-        //    if (tstbPretraga.Text == "Dokumenta ...") tstbPretraga.Text = "";
-        //    if (tstbPretraga.Text.Trim() != "") return;
-        //    tstbPretraga.Text = "";
-        //    SendKeys.Send(" ");
+  
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        { 
+            
+       
+        string sselect;
+            string idke = Program.idkadar.ToString();
+            string idfirme = Program.idFirme.ToString();
+            sselect = "; WITH RekurzivnoStablo (ID_DokumentaStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS "
+                   + "(SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
+                   + " PrikazDetaljaDaNe as pd,PrikazPo as pp"
+                   + " FROM DokumentaStablo AS e WITH (NOLOCK) "
+                   + " where Naziv in (select g.naziv from Grupa as g,KadroviIOrganizacionaStrukturaStavkeView as ko Where (KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura "
+                   + " Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija=" + idke + " )"
+                   + "UNION ALL  SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level +1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
+                   + " PrikazDetaljaDaNe As pd, PrikazPo As pp  FROM DokumentaStablo  AS e WITH (NOLOCK) "
+                   + " INNER JOIN RekurzivnoStablo AS d  ON e.ID_DokumentaStablo = d.Vezan) "
+                   + " SELECT distinct NazivJavni FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0";
 
 
 
-        //}
-        //private void tstbPretraga_DoubleClick(object sender, EventArgs e)
-        //{
+            DataTable ti = db.ReturnDataTable(sselect);
 
-        //    ToolStripTextBox item = sender as ToolStripTextBox;
-        //    BrziPristup(item);
+            toolStripTextBox1.Text += ti.ToString();
 
-        //}
+            //toolStripTextBox1.Text = toolStripTextBox1.Text.Trim();
+            //toolStripTextBox1.Focus();
+            //if (toolStripTextBox1.Text == "Dokumenta ...") toolStripTextBox1.Text = "";
+            //if (toolStripTextBox1.Text.Trim() != "") return;
+            //toolStripTextBox1.Text = "";
+            //SendKeys.Send(" ");
 
-        private void toolStripTextBox_KeyDown(object sender, KeyEventArgs e)
+
+
+        }
+        private void ToolStripTextBox1_DoubleClick(object sender, EventArgs e)
+        {
+
+            ToolStripTextBox item = sender as ToolStripTextBox;
+            BrziPristup(item);
+
+        }
+
+        private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
         {
 
             if (e.KeyCode != Keys.Enter)
@@ -1192,23 +1214,24 @@ namespace Bankom
             BrziPristup(item);
 
         }
-        //private void tstbPretraga_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (Program.IntLogovanje == -1)
-        //    {
-        //        tstbPretraga.Text = "";
-        //        return;
-        //    }
-        //    if (tstbPretraga.Text.Length == 0)
-        //    {
-        //        string kon = tstbPretraga.Text;
-        //        // if (kon.Trim() != "")
-        //        // {
-        //        // tstbPretraga.Text = " " + tstbPretraga.Text;
-        //        tstbPretraga.SelectionStart = tstbPretraga.Text.Length;
-        //        //  }
-        //    }
-        //}
+        private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (Program.IntLogovanje == -1)
+            {
+                toolStripTextBox1.Text = "";
+                return;
+            }
+            if (toolStripTextBox1.Text.Length == 1)
+            {
+                string kon = toolStripTextBox1.Text;
+                if (kon.Trim() != "")
+                {
+                    toolStripTextBox1.Text = " " + toolStripTextBox1.Text;
+                    toolStripTextBox1.SelectionStart = toolStripTextBox1.Text.Length;
+                }
+            }
+        }
+
         private void CloseActive_Click(object sender, EventArgs e)
         {
             Form childForm = ActiveMdiChild;
@@ -2183,7 +2206,7 @@ namespace Bankom
             {
                 childForm.Close();
             }
-            tstbPretraga.Text = "";
+           toolStripTextBox1.Text = "";
             if (toolStrip1.Items.Count == 0) { toolStrip1.Visible = false; }
         }
         private void CloseAllToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2202,7 +2225,7 @@ namespace Bankom
             }
             toolStrip1.Items.Clear();
 
-            tstbPretraga.Text = "";
+           toolStripTextBox1.Text = "";
             if (toolStrip1.Items.Count == 0) { toolStrip1.Visible = false; }
 
         }
@@ -3256,57 +3279,7 @@ namespace Bankom
             }
         }
 
-        private void tstbPretraga_Click_1(object sender, EventArgs e)
-        {
-            tstbPretraga.Text = tstbPretraga.Text.Trim();
-            tstbPretraga.Focus();
-            if (tstbPretraga.Text == "Dokumenta ...") tstbPretraga.Text = "";
-            if (tstbPretraga.Text.Trim() != "") return;
-            tstbPretraga.Text = "";
-            SendKeys.Send(" ");
-
-
-        }
-
-        private void tstbPretraga_DoubleClick_1(object sender, EventArgs e)
-        {
-            ToolStripTextBox item = sender as ToolStripTextBox;
-            BrziPristup(item);
-           
-        }
-
-        private void tstbPretraga_KeyDown_1(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode != Keys.Enter)
-            {
-                return;
-            }
-            ToolStripTextBox item = sender as ToolStripTextBox;
-            BrziPristup(item);
-           
-        }
-
-        private void tstbPretraga_TextChanged_1(object sender, EventArgs e)
-        {
-            
-            
-
-            if (Program.IntLogovanje == -1)
-            {
-                tstbPretraga.Text = "";
-                return;
-            }
-            if (tstbPretraga.Text.Length == 1)
-            {
-                string kon = tstbPretraga.Text;
-                if (kon.Trim() != "")
-                {
-                    tstbPretraga.Text = " " + tstbPretraga.Text;
-                    tstbPretraga.SelectionStart = tstbPretraga.Text.Length;
-                }
-            }
-
-        }
+       
     }
 
 } 

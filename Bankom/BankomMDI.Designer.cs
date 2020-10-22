@@ -133,7 +133,6 @@ namespace Bankom
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.Bbrisanje = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tstbPretraga = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.Ggrupisi = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
@@ -178,6 +177,7 @@ namespace Bankom
             this.sdfgghToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.ToolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -850,7 +850,7 @@ namespace Bankom
             this.toolStripSeparator12,
             this.Bbrisanje,
             this.toolStripSeparator2,
-            this.tstbPretraga,
+            this.toolStripTextBox1,
             this.toolStripSeparator13,
             this.Ggrupisi,
             this.toolStripSeparator14,
@@ -1006,21 +1006,6 @@ namespace Bankom
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 43);
-            // 
-            // tstbPretraga
-            // 
-            this.tstbPretraga.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.tstbPretraga.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.tstbPretraga.BackColor = System.Drawing.Color.SeaShell;
-            this.tstbPretraga.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tstbPretraga.Name = "tstbPretraga";
-            this.tstbPretraga.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
-            this.tstbPretraga.Size = new System.Drawing.Size(150, 43);
-            this.tstbPretraga.ToolTipText = "Pretraga dokumenata";
-            this.tstbPretraga.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tstbPretraga_KeyDown_1);
-            this.tstbPretraga.Click += new System.EventHandler(this.tstbPretraga_Click_1);
-            this.tstbPretraga.DoubleClick += new System.EventHandler(this.tstbPretraga_DoubleClick_1);
-            this.tstbPretraga.TextChanged += new System.EventHandler(this.tstbPretraga_TextChanged_1);
             // 
             // toolStripSeparator13
             // 
@@ -1432,6 +1417,20 @@ namespace Bankom
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.toolStripTextBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.toolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(200, 25);
+            this.toolStripTextBox1.Text = "Dokumenta ...";
+            this.toolStripTextBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox1_KeyDown);
+            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
+            this.toolStripTextBox1.DoubleClick += new System.EventHandler(this.ToolStripTextBox1_DoubleClick);
+            this.toolStripTextBox1.TextChanged += new System.EventHandler(this.toolStripTextBox1_TextChanged);
+            // 
             // BankomMDI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1608,8 +1607,8 @@ namespace Bankom
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripTextBox tstbPretraga;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator21;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
     }
 }
 
