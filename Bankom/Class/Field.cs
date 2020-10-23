@@ -19,7 +19,8 @@ namespace Bankom.Class
         public string DisplayMember;
 
     }
-
+    // 23.10.2020. promena pozicije kontrola na formi se radi tako sto se selektuje kontrola na formi kada je program pokrenut 
+    //i onda pokretima strelica (gore - dole) namestamo poziciju i cuvamo je klikom na F10. Za sirinu se koriste Ctrl +2 i Ctrl+3.
     class Field : FlowLayoutPanel
     {
         public Label label;

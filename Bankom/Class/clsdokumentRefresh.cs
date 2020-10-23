@@ -202,8 +202,9 @@ namespace Bankom.Class
                 }
             }
         }
-        private void PripremiPodatkeZaGrid(Form form1, DataGridView dv,string dokument, string tUpit, int tud, string iddok, string tIme, string DokumentJe)  
-        {           
+        private void PripremiPodatkeZaGrid(Form form1, DataGridView dv,string dokument, string tUpit, int tud, string iddok, string tIme, string DokumentJe)
+        {
+            dv.BackgroundColor = Color.SeaShell;
             string KojiSegment = tIme.Substring(4);
             clsObradaOsnovnihSifarnika os = new clsObradaOsnovnihSifarnika();
 
@@ -364,6 +365,7 @@ namespace Bankom.Class
         }       
         public void setingWidthOfColumns(string dokument, DataGridView dv, string tud)
         {
+            dv.BackgroundColor = Color.SeaShell;
             //Djora 26.09.20
             //string sel = "SELECT  AlijasPolja, T.Tip,WidthKolone, width,T.Format,T.CSharp,T.Alajment  FROM dbo.RecnikPodataka AS R1,TipoviPodataka AS T ";
             //sel += " WHERE  R1.ID_TipoviPodataka=T.ID_TipoviPodataka  AND ";
@@ -392,7 +394,8 @@ namespace Bankom.Class
                         dv.Columns[i].Visible = true;
 
                     dv.Columns[i].Width = sirina;
-                    dv.Columns[i].SortMode = DataGridViewColumnSortMode.Automatic;
+                dv.BackgroundColor = Color.SeaShell;
+                dv.Columns[i].SortMode = DataGridViewColumnSortMode.Automatic;
                     if (t2.Rows[i]["Format"].ToString() != "@" && t2.Rows[i]["Format"].ToString() != "0" && t2.Rows[i]["Format"].ToString().Trim() != "")
                         dv.Columns[i].DefaultCellStyle.Format = t2.Rows[i]["Format"].ToString();
 
@@ -415,6 +418,7 @@ namespace Bankom.Class
         {
             string tabelavview = dg.Name.Substring(4);
             DataTable myt = (DataTable)dg.DataSource;
+            dg.BackgroundColor = Color.SeaShell;
 
             // BORKKA PROMENILA ID_jezik poji inace kod promene jezika treba da se upise u Program.ID_Jezik
             if (Program.ID_Jezik == 0)
@@ -441,6 +445,7 @@ namespace Bankom.Class
         }
         public void colorofrows(DataGridView dg)
         {
+            dg.BackgroundColor = Color.SeaShell;
             DataTable myt = (DataTable)dg.DataSource;            
             for (int i = 0; i < dg.Rows.Count; i++)
             {
