@@ -620,7 +620,7 @@ namespace Bankom
 
                     string strOrgDeo = "select o.ID_OrganizacionaStruktura,o.ID_OrganizacionaStrukturaStablo,os.Naziv  ";
                     strOrgDeo += " from OrganizacionaStruktura as o WITH(NOLOCK) ,organizacionastrukturastablo os WITH(NOLOCK) ";
-                    strOrgDeo += "  where o.Naziv = '" + CmbOrg.SelectedValue + "' and o.ID_OrganizacionaStrukturaStablo=os.ID_OrganizacionaStrukturaStablo   ;";
+                    strOrgDeo += "  where o.Naziv = '" + CmbOrg.Text + "' and o.ID_OrganizacionaStrukturaStablo=os.ID_OrganizacionaStrukturaStablo   ;";
 
                     DataSet ds = new DataSet();
 
@@ -933,8 +933,8 @@ namespace Bankom
                     cmd.Dispose();
 
                     string strOrgDeo = "select o.ID_OrganizacionaStruktura,o.ID_OrganizacionaStrukturaStablo,os.Naziv  ";
-                    strOrgDeo += " from OrganizacionaStruktura as o WITH(NOLOCK) ,organizacionastrukturastablo os WITH(NOLOCK) ";
-                    strOrgDeo += "  where o.Naziv = '" + CmbOrg.SelectedValue + "' and o.ID_OrganizacionaStrukturaStablo=os.ID_OrganizacionaStrukturaStablo   ;";
+                    strOrgDeo += " from OrganizacionaStruktura as o WITH(NOLOCK) ,organizacionastrukturastablo os  ";
+                    strOrgDeo += "  where o.Naziv = '" + CmbOrg.Text + "' and o.ID_OrganizacionaStrukturaStablo=os.ID_OrganizacionaStrukturaStablo";
 
                     DataSet ds = new DataSet();
 
@@ -971,13 +971,13 @@ namespace Bankom
                 Program.imekorisnika = ImeKorisnika;
                 Program.IntLogovanje = 1;
                 Hide();
-                try
-                {
-                    ((BankomMDI)MdiParent).Controls["menuStrip"].Enabled = true;
-                    ((BankomMDI)MdiParent).Controls["menuStrip1"].Enabled = true;
-                    ((BankomMDI)MdiParent).Text = Program.imeFirme + "-" + Program.imekorisnika;
-                }
-                catch { }
+                //try
+                //{
+                //    ((BankomMDI)MdiParent).Controls["menuStrip"].Enabled = true;
+                //    ((BankomMDI)MdiParent).Controls["menuStrip1"].Enabled = true;
+                //    ((BankomMDI)MdiParent).Text = Program.imeFirme + "-" + Program.imekorisnika;
+                //}
+                //catch { }
                 Program.Parent.Text = Program.imeFirme + "-" + Program.imekorisnika;
                 Close();
 

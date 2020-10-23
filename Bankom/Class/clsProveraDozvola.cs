@@ -28,8 +28,7 @@ namespace Bankom.Class
 
         public Boolean ProveriDozvole(String pdokument, string pidstablo, string pIDDok, string pDokumentJe)
         {
-            Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-            Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+           
             if (pdokument.Trim() == "")
             {
                 return false;
@@ -126,14 +125,12 @@ namespace Bankom.Class
                         {
                             Program.Parent.ToolBar.Items["Sstorno"].Enabled = true;
 
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                            
                         }
                         else
                         {
                             Program.Parent.ToolBar.Items["Sstorno"].Enabled = false;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                         
                         }
                     }
                 }       
@@ -141,39 +138,32 @@ namespace Bankom.Class
                 if (td.Rows[0]["izmena"].ToString() == "1")
                 {
                     Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
-                    Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                    Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                  
                 }
                 else
                 {
                     Program.Parent.ToolBar.Items["Iizmena"].Enabled = false;
-                    Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                    Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                
                 }
 
                 if (td.Rows[0]["unos"].ToString() == "1")
                 {
                     Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
-                    Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                    Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+
                 }
                 else
                 {
                     Program.Parent.ToolBar.Items["Uunos"].Enabled = false;
-                    Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                    Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
                 }
                 if (td.Rows[0]["Brisanje"].ToString() == "1")
                 {
                     Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = true;
-                    Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                    Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+               
                 }
                 else
                 {
                     Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = false;
-                    Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                    Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                 
                 }
 
                 if ((SStatus.IndexOf("tvaranje") > 0) || (idstablo == "24"))
@@ -202,22 +192,18 @@ namespace Bankom.Class
 
                         Program.Parent.ToolBar.Items["Kknjzi"].Visible = true;
                         Program.Parent.ToolBar.Items["Kknjzi"].Enabled = true;
-                        Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                        Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                       
                     }
                     if (td.Rows[0]["potpis"].ToString() == "0")   // NIJE DOZVOLJENA IZMENA STATUSA ONEMOGUCAVAMO BUTTON ZA PROMENU STATUSA
                     {
                         Program.Parent.ToolBar.Items["Oodobri"].Visible = false;
                         Program.Parent.ToolBar.Items["OOdobri"].Enabled = false;
-                        Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                        Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                     
                     }
                     else                                      ///KORISNIK IMA PRAVO DA MENJA STATUS DOKUMENTA OMOGUCAVAMO BUTTON ZA PROMENU STATUSA
                     {
                         Program.Parent.ToolBar.Items["Oodobri"].Visible = true;
                         Program.Parent.ToolBar.Items["OOdobri"].Enabled = true;
-                        Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                        Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
                     }
 
                 }
@@ -236,8 +222,7 @@ namespace Bankom.Class
                                  Program.Parent.ToolBar.Items["Iizmena"].Enabled = false;
                                  Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = false;
                                  Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
-                                Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                                Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;///// promenjeno na True da bi se mogao izabrati UNOS iako je podignut proknjizen dokument
+                               ///// promenjeno na True da bi se mogao izabrati UNOS iako je podignut proknjizen dokument
                                 if (form1.Controls["Ooperacija"].Text == "Unos")
                                  {
                                     pStatus = "1";                             ///// vracamo status da nije proknjizen
@@ -248,8 +233,7 @@ namespace Bankom.Class
                                  Program.Parent.ToolBar.Items["Iizmena"].Enabled = false;
                                  Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = false;
                                  Program.Parent.ToolBar.Items["Uunos"].Enabled = false;
-                                Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                                Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                            
                             }
                     }
                 }
@@ -263,16 +247,14 @@ namespace Bankom.Class
                             {
                                 Program.Parent.ToolBar.Items["Pplati"].Visible = true;
                                 Program.Parent.ToolBar.Items["Pplati"].Enabled = true;
-                                Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                                Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                       
                             }
 
                             else
                             {
                                 Program.Parent.ToolBar.Items["Pplati"].Visible = false;
                                 Program.Parent.ToolBar.Items["Pplati"].Enabled = false;
-                                Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                                Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                             
                             }
                             break;
                         case "PDVPredracun":
@@ -283,70 +265,60 @@ namespace Bankom.Class
                         case "LotOtpremnica":
                             Program.Parent.ToolBar.Items["Kkalki"].Visible = true;
                             Program.Parent.ToolBar.Items["Kkalki"].Enabled = true;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                         
                             if (dokument == "InoRacun" || dokument == "LotOtpremnica")
                             {
                                 Program.Parent.ToolBar.Items["Pporeklo"].Visible = true;
                                 Program.Parent.ToolBar.Items["Pporeklo"].Enabled = true;
-                                Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                                Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                            
                             }
                             if (dokument == "PDVPredracun")
                             {
                                 Program.Parent.ToolBar.Items["PpredlogCena"].Enabled = true;
                                 Program.Parent.ToolBar.Items["PpredlogCena"].Visible = true;
-                                Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                                Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                              
                                 if (td.Rows[0]["potpis"].ToString() == "1")
                                 {
 
                                     Program.Parent.ToolBar.Items["Oodobri"].Visible = true;
                                     Program.Parent.ToolBar.Items["Oodobri"].Enabled = true;
-                                    Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                                    Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                                  
                                 }
                                 else
                                 {
                                     Program.Parent.ToolBar.Items["Oodobri"].Visible = false;
                                     Program.Parent.ToolBar.Items["Oodobri"].Enabled = false;
-                                    Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                                    Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                              
                                 }
                             }
                             break;
                         case "Dobit":
                             Program.Parent.ToolBar.Items["Pppppd"].Visible = true;
                             Program.Parent.ToolBar.Items["Pppppd"].Enabled = true;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                         
                             break;
                         case "PotencijalKupca":
                         case "PotencijalKupcaFsh":
                             Program.Parent.ToolBar.Items["Ppotencijal"].Visible = true;
                             Program.Parent.ToolBar.Items["Ppotencijal"].Enabled = true;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                         
                             break;
                         case "KonacniUlazniRacun":
                             Program.Parent.ToolBar.Items["Kkalku"].Visible = true;
                             Program.Parent.ToolBar.Items["Kkalku"].Enabled = true;
                             Program.Parent.ToolBar.Items["Oorigin"].Visible = true;
                             Program.Parent.ToolBar.Items["Oorigin"].Enabled = true;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                    
                             break;
                         case "PDVUlazniRacunZaUsluge":
                             Program.Parent.ToolBar.Items["Oorigin"].Visible = true;
                             Program.Parent.ToolBar.Items["Oorigin"].Enabled = true;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                        
                             break;
                         case "KnjigaIzlaznePoste":
                             Program.Parent.ToolBar.Items["Kknjiga"].Visible = true;
                             Program.Parent.ToolBar.Items["Kknjiga"].Enabled = true;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                         
                             break;
                         case "Narudzbenica":
                         case "NalogZaUtovar":
@@ -363,23 +335,20 @@ namespace Bankom.Class
                             {
                                 Program.Parent.ToolBar.Items["Oodobri"].Visible = true;
                                 Program.Parent.ToolBar.Items["Oodobri"].Enabled = true;
-                                Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                                Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                                
                             }
                             else
                             {
                                 Program.Parent.ToolBar.Items["Oodobri"].Visible = false;
                                 Program.Parent.ToolBar.Items["Oodobri"].Enabled = false;
-                                Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                                Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                            
                             }
                         }
                         else
                         {
                             Program.Parent.ToolBar.Items["Oodobri"].Visible = false;
                             Program.Parent.ToolBar.Items["Oodobri"].Enabled = false;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                            Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                 
                         }
 
 
@@ -400,8 +369,7 @@ namespace Bankom.Class
                     Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
                     Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
                     Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = true;
-                    Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                    Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+               
                 }
 
                 //string pDatum;
@@ -434,8 +402,7 @@ namespace Bankom.Class
                                     Program.Parent.ToolBar.Items["Uunos"].Enabled = false;
                                     Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
                                     Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = false;
-                                    Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                                    Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                            
                                     provera = true;
                                 }
                                 else                             //Nije ObracunKredita a jeste nalogglavneknjige iz zakljucene godine
@@ -444,8 +411,7 @@ namespace Bankom.Class
                                     Program.Parent.ToolBar.Items["Uunos"].Enabled = false;
                                     Program.Parent.ToolBar.Items["Iizmena"].Enabled = false;
                                     Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = false;
-                                    Program.Parent.ToolBar.Items["tstbPretraga"].Enabled = true;
-                                    Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
+                             
                                     ZakljucenaGodina = true;
                                     provera = true;
                                 }
