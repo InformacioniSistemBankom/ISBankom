@@ -27,19 +27,16 @@ namespace Bankom
     public partial class BankomMDI : Form
     {
         public string connectionString = Program.connectionString;
-      
+
         public static string filter = "";
         private AutoCompleteStringCollection DataCollectionSpisak = new AutoCompleteStringCollection();
-      
+
 
         public BankomMDI()
         {
             InitializeComponent();
-       
-           
-
         }
-       
+
 
         public void ShowNewForm(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
         {
@@ -248,7 +245,7 @@ namespace Bankom
             Program.Parent.ToolBar.Items["tstbPretraga"].Visible = true;
             // ivana 21.10.2020.
             CreateMenu();
-           
+
 
         }
 
@@ -274,11 +271,11 @@ namespace Bankom
 
                 string[] novo1 = System.IO.File.ReadAllLines(Application.StartupPath + @"\XmlLat\" + "lista.txt");
                 //string[] novo = alphabet.ToArray();
-                
+
                 tstbPretraga.AutoCompleteCustomSource.AddRange(novo1);
                 tstbPretraga.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-                
-         
+
+
                 return;
             }
             else
@@ -305,7 +302,7 @@ namespace Bankom
             string[] novo = alphabet.ToArray();
             tstbPretraga.AutoCompleteCustomSource.AddRange(novo);
             tstbPretraga.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-          
+
             System.IO.File.WriteAllLines(Application.StartupPath + @"\XmlLat\" + "lista.txt", alphabet);
 
         }
@@ -3117,8 +3114,8 @@ namespace Bankom
             Application.Exit();
         }
 
-      
-       
+
+
 
 
 
@@ -3133,27 +3130,22 @@ namespace Bankom
             menuStrip1.BackColor = Color.SeaShell;
             menuStrip1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             menuStrip1.ForeColor = System.Drawing.Color.MidnightBlue;
-
-
             dt = GetDataSet();
-
             foreach (DataRow r in dt.Select("MenuParent='1'"))
             {
                 CreateMenuItem(r[0].ToString());
             }
         }
-
         private void CreateMenuItem(string strMenu)
         {
             ToolStripMenuItem t = new ToolStripMenuItem(GetMenuName(strMenu));
-
             //stil 21.10.2020.
             t.TextAlign = ContentAlignment.MiddleLeft;
             t.AutoSize = false;
             t.Width = 150;
             t.Height = 50;
             t.BackColor = Color.SeaShell;
-            t.Font= new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            t.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             t.ForeColor = System.Drawing.Color.MidnightBlue;
             //
             menuStrip1.Items.Add(t);
@@ -3164,13 +3156,17 @@ namespace Bankom
                     CreateMenuItems(t, r[0].ToString());
                 }
             }
+            else
+            {
+                t.Click += new EventHandler(MenuItemClickHandler);
+            }
         }
-
         private string CreateMenuItems(ToolStripMenuItem t, string strMenu)
         {
             if (dt.Select("MenuParent='" + strMenu + "'").Length > 0)
             {
                 ToolStripMenuItem t1 = new ToolStripMenuItem(GetMenuName(strMenu));
+                //t1.Click += new EventHandler(MenuItemClickHandler);
                 //stil 21.10.2020.
                 t1.TextAlign = ContentAlignment.TopLeft;
                 t1.Height = 70;
@@ -3187,6 +3183,7 @@ namespace Bankom
             else
             {
                 ToolStripMenuItem t1 = new ToolStripMenuItem(GetMenuName(strMenu));
+                t1.Click += new EventHandler(MenuItemClickHandler);
                 t.DropDownItems.Add(t1);
                 //stil 21.10.2020.
                 t1.TextAlign = ContentAlignment.TopLeft;
@@ -3199,12 +3196,14 @@ namespace Bankom
             }
             return strMenu;
         }
-
         private string GetMenuName(string strMenuID)
         {
             return dt.Select("MenuID='" + strMenuID + "'")[0][1].ToString();
         }
-
+        private string GetMenuNaziv(string strMenuID)
+        {
+            return dt.Select("MenuName='" + strMenuID + "'")[0][5].ToString();
+        }
         public DataTable ReturnDT(string str)
         {
             SqlConnection con = new SqlConnection(connectionString);
@@ -3223,19 +3222,439 @@ namespace Bankom
                 return null;
             }
         }
+        string idke = Program.idkadar.ToString();
+        string idfirme = Program.idFirme.ToString();
         private DataTable GetDataSet()
         {
-            //DataTable dt = new DataTable("Menu");
             String SQL = ";  WITH RekurzivnoStablo (ID_MenuStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS " +
                          "  (SELECT e.ID_MenuStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave,  PrikazDetaljaDaNe as pd,PrikazPo as pp " +
                          " FROM MenuStablo AS e WITH(NOLOCK)  where Naziv in (select g.naziv from Grupa as g, KadroviIOrganizacionaStrukturaStavkeView as ko Where(KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura " +
-                         "  Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = 6 and ko.id_kadrovskaevidencija = 23)UNION ALL " +
+                         "  Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija=" + idke + ")UNION ALL " +
                          " SELECT e.ID_MenuStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level + 1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave,  PrikazDetaljaDaNe As pd, PrikazPo As pp " +
                          "   FROM MenuStablo AS e WITH(NOLOCK)  INNER JOIN RekurzivnoStablo AS d ON e.ID_MenuStablo = d.Vezan) " +
                          "   SELECT distinct ID_MenuStablo as MenuID, NazivJavni AS  MenuName,Vezan AS MenuParent,'Y' AS MenuEnable,'DEMO' AS USERID,Naziv, RedniBroj FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0 and vezan<> 0  order by RedniBroj ";
             dt = ReturnDT(SQL);
             return dt;
         }
+        private bool IsOpen(string s)
+        {
+            bool pom = false;
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Text == s)
+                {
+                    pom = true;
+                    MessageBox.Show("Već je otvorena ova forma!");
+                    f.Focus();
+                    break;
+                }
+            }
+            return pom;
+        }
+
+        private void MenuItemClickHandler(object sender, EventArgs e)
+        {
+            string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
+            //string s1 = GetMenuName(((ToolStripMenuItem)sender).Text);
+            bool postoji;
+            switch (s)
+            {
+                case "Dokumenta":
+                case "Izvestaji":
+                case "OsnovniSifarnici":
+                case "PomocniSifarnici":
+                case "Artikli":
+                case "Komitenti":
+                    postoji = IsOpen(s);
+                    if (postoji == false)
+                    {
+                        clsObradaOsnovnihSifarnika co = new clsObradaOsnovnihSifarnika();
+                        ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
+                    }
+                break;
+                
+            }
+        }
+        //        case "Dozvole":
+        //            Program.Parent.ShowNewForm("", 1, "Dozvole", 1, "", "", "P", "", "");
+        //            break;
+        //        case "Prenosi":
+        //            Form activeChild = this.ActiveMdiChild;
+        //            if (activeChild != null)
+        //            {
+        //                // activeChild.Controls["OOperacija"].Text = "PRENOSI";
+        //            }
+        //            break;
+        //        case "PreuzimanjeKursneListe":
+        //            KursnaLista kl = new KursnaLista();
+        //            //Djora 15.09.20
+        //            kl.MdiParent = this;
+
+        //            kl.Show();
+
+        //            //Djora 15.09.20
+        //            kl.WindowState = FormWindowState.Maximized;
+        //            addFormTotoolstrip1(kl, "Preuzimanje Kursne Liste");
+        //            break;
+        //        case "PreuzimanjeRateKredita":
+        //            Preuzimanja.PreuzimanjeRateKredita();
+        //            break;
+        //        case "PreuzimanjeManjkovaIViskova":
+        //            Preuzimanja.PreuzimanjeManjkovaIViskova();
+        //            break;
+        //        case "PreuzimanjeUplata":
+        //            Preuzimanja.PreuzimanjeUplataKupacaIzBanaka();
+        //            break;
+        //        case "PrenosNalogaZaPlacanje":
+        //            //clsPreuzimanja cp = new clsPreuzimanja();//BORKA
+        //            DateTime DatOd = DateTime.Parse(DateTime.Now.ToString("dd.MM.yy"));///, "dd/MM/yyyy", null);// , CultureInfo.InvariantCulture);
+        //            string TekuciRacun = "";
+        //            TekuciRacun = Prompt.ShowDialog("", "Unesite tekuci racun za koji prenosimo naloge ", "Prepisivanje naloga iz PripremeZaPlacanje");
+        //            if (TekuciRacun == "") { return; }
+
+        //            //string vrati = cp.PrepisiNaloge(DatOd.ToShortDateString(), TekuciRacun); //BORKA
+        //            MessageBox.Show("Zavrseno!!");
+        //            break;
+        //        case "PreuzimanjeNalogaIzBanaka":
+        //            clsPreuzimanja cp = new clsPreuzimanja();
+        //            string strPreuzimanjePlacanja = cp.preuzimanjeIzvodaizBanaka();
+        //            if (strPreuzimanjePlacanja == "") { return; }
+        //            char[] separators = { '#' };
+        //            frmIzvod childForm = new frmIzvod();
+        //            childForm.MdiParent = this;
+        //            childForm.strPutanjaPlacanja = strPreuzimanjePlacanja.Split(separators)[0];
+        //            childForm.mesecgodina = strPreuzimanjePlacanja.Split(separators)[1];
+        //            childForm.IdDokView = Convert.ToInt32(strPreuzimanjePlacanja.Split(separators)[2]);
+        //            childForm.KojiPrepis = strPreuzimanjePlacanja.Split(separators)[3];
+        //            childForm.Show();
+        //            break;
+        //        case "PrepisPlacanjaIUplataUIzvod"     /// stari je bio ovaj naziv -> "PrepisNaplataIPlacanjaUIzvod":
+        //            clsOperacije co = new clsOperacije();
+        //            clsPreuzimanja cp = new clsPreuzimanja();
+        //            DataBaseBroker db = new DataBaseBroker();
+        //            string DatOd = "";
+        //            string TekuciRacun = "";
+        //            DataTable rsp = new DataTable();
+        //            DatOd = Prompt.ShowDialog("", "Unesite datum za koji prepisujemo izvod ", "Prepisivanje izvoda iz Placanja i naplata");
+        //            if (DatOd == "") { return; }
+
+        //            if (co.IsDateTime(DatOd) == false)
+        //            { MessageBox.Show("pogresno unesen datum ponovite !!"); return; };
+
+        //            TekuciRacun = Prompt.ShowDialog("", "Unesite tekuci racun za koji prepisujete promet ", "Prepisivanje izvoda iz Placanja i naplata");
+        //            if (TekuciRacun == "") { return; }
+        //            rsp = db.ReturnDataTable("if not exists (select datum from  IzvodTotali  where Datum='" + DatOd + "' And Blagajna='" + TekuciRacun.ToString() + "') select 0 else select 1 ");
+        //            if (rsp.Rows.Count == 0) { MessageBox.Show("Ne postoje podaci za datum i tekuci racun !!"); return; }
+
+        //            if (Convert.ToInt16(rsp.Rows[0][0]) == 1)
+        //            { MessageBox.Show("Vec je izvrsen prepis izvoda za datum " + DatOd); }
+        //            else
+        //            {
+        //                cp.izborPReuzimanja(1, DatOd + "#" + TekuciRacun);
+        //            }
+        //            MessageBox.Show("Zavrseno!!");
+        //            break;
+        //        case "FormiranjePPPPDZaPlate":
+        //            DateTime d = DateTime.Now;
+        //            string pDatum = d.ToString("dd.MM.yy");
+        //            string mg = Prompt.ShowDialog(pDatum.Substring(3, 2) + pDatum.Substring(6, 2), "Formiranje PPPPD za plate", "Unesite mesec i godinu za koji formiramo " + Environment.NewLine + " PPPPD za plate ");
+        //            if (string.IsNullOrEmpty(mg)) { return; }
+        //            clsOperacije co = new clsOperacije();
+        //            bool r = co.IsNumeric(mg);
+        //            if (r == false) { MessageBox.Show("Nekorektan unos"); return; }
+        //            if (mg.Length != 4) { MessageBox.Show("Nekorektan unos"); return; }
+        //            string svrsta = Prompt.ShowDialog("", "Formiranje PPPPD za plate", "Unesite vrstu obracuna: A za akontaciju ili K za platu ");
+        //            svrsta = svrsta.ToUpper();
+        //            if (svrsta != "a".ToUpper() && svrsta != "K".ToUpper())
+        //            {
+        //                MessageBox.Show("Pogresno unesena vrsta obracuna moze samo A ili K PONOVITE!!!!!");
+        //                return;
+        //            }
+        //            clsXmlPlacanja cxml = new clsXmlPlacanja();
+        //            cxml.izborPlacanja(2, mg + svrsta);
+        //            frmPrint fs = new frmPrint();
+
+        //            fs.MdiParent = this;
+        //            fs.Text = "plate-" + mg;
+        //            fs.LayoutMdi(MdiLayout.TileVertical);
+        //            fs.imefajla = "plate" + mg;
+        //            fs.kojiprint = "pla";
+        //            fs.Show();
+
+        //            toolStrip1.Visible = true;
+
+        //            ToolStripLabel itemn = new ToolStripLabel();
+        //            ToolStripButton itemB = new ToolStripButton();
+        //            ToolStripSeparator itemnsep = new ToolStripSeparator();
+        //            itemn.Text = "plate-" + mg;
+        //            itemn.Name = "plate-" + mg;
+        //            itemB.Image = global::Bankom.Properties.Resources.del12;
+        //            itemnsep.Name = "plate-" + mg;
+        //            itemn.Click += new EventHandler(itemn_click);
+
+        //            itemB.Click += new EventHandler(itemB_click);
+        //            itemB.Name = "plate-" + mg;
+
+        //            toolStrip1.Items.Add(itemn);
+        //            toolStrip1.Items.Add(itemB);
+        //            toolStrip1.Items.Add(itemnsep);
+        //            LayoutMdi(MdiLayout.TileVertical);
+        //            break;
+        //        case "UvozPlataUPlacanja":
+        //            clsXmlPlacanja cls = new clsXmlPlacanja();
+        //            cls.izborPlacanja(3, "");
+        //            break;
+        //        case "Prevoz":
+        //            DateTime d = DateTime.Now;
+        //            string pDatum = d.ToString("dd.MM.yy");
+
+        //            string mg = Prompt.ShowDialog(pDatum.Substring(3, 2) + pDatum.Substring(6, 2), "Formiranje naloga za knjiženje prevoza : ", "Unesite mesec i godinu za koji isplaćujemo prevoz");
+        //            if (string.IsNullOrEmpty(mg)) { return; }
+        //            clsOperacije co = new clsOperacije();
+        //            bool r = co.IsNumeric(mg);
+        //            if (r == false) { MessageBox.Show("Nekorektan unos"); return; }
+        //            if (mg.Length != 4) { MessageBox.Show("Nekorektan unos"); return; }
+
+
+
+        //            clsXmlPlacanja cxml = new clsXmlPlacanja();
+        //            cxml.izborPlacanja(0, mg);
+        //            frmPrint fs = new frmPrint();
+
+        //            fs.MdiParent = this;
+        //            fs.Text = "prevoz-" + mg;
+        //            fs.LayoutMdi(MdiLayout.TileVertical);
+        //            fs.imefajla = "prevoz" + mg;
+        //            fs.Show();
+
+        //            toolStrip1.Visible = true;
+
+        //            ToolStripLabel itemn = new ToolStripLabel();
+        //            ToolStripButton itemB = new ToolStripButton();
+        //            ToolStripSeparator itemnsep = new ToolStripSeparator();
+        //            itemn.Text = "prevoz-" + mg;
+        //            itemn.Name = "prevoz-" + mg;
+        //            itemB.Image = global::Bankom.Properties.Resources.del12;
+        //            itemnsep.Name = "prevoz-" + mg;
+        //            itemn.Click += new EventHandler(itemn_click);
+
+        //            itemB.Click += new EventHandler(itemB_click);
+        //            itemB.Name = "prevoz-" + mg;
+
+        //            toolStrip1.Items.Add(itemn);
+        //            toolStrip1.Items.Add(itemB);
+        //            toolStrip1.Items.Add(itemnsep);
+        //            LayoutMdi(MdiLayout.TileVertical);
+        //            break;
+        //        case "Nagrade":
+        //            DateTime d = DateTime.Now;
+        //            string pDatum = d.ToString("dd.MM.yy");
+
+        //            string mg = Prompt.ShowDialog(pDatum.Substring(3, 2) + pDatum.Substring(6, 2), "Formiranje naloga za knjiženje nagrada :  ", "Unesite mesec i godinu za koji isplaćujemo nagrade");
+        //            if (string.IsNullOrEmpty(mg)) { return; }
+        //            clsOperacije co = new clsOperacije();
+        //            bool r = co.IsNumeric(mg);
+        //            if (r == false) { MessageBox.Show("Nekorektan unos"); return; }
+        //            if (mg.Length != 4) { MessageBox.Show("Nekorektan unos"); return; }
+
+
+
+        //            clsXmlPlacanja cxml = new clsXmlPlacanja();
+        //            cxml.izborPlacanja(1, mg);
+        //            frmPrint fs = new frmPrint();
+        //            fs.kojiprint = "nag";
+        //            fs.MdiParent = this;
+        //            fs.Text = "nagrade-" + mg;
+        //            fs.LayoutMdi(MdiLayout.TileVertical);
+        //            fs.imefajla = "nagrade" + mg;
+        //            fs.Show();
+
+        //            toolStrip1.Visible = true;
+
+        //            ToolStripLabel itemn = new ToolStripLabel();
+        //            ToolStripButton itemB = new ToolStripButton();
+        //            ToolStripSeparator itemnsep = new ToolStripSeparator();
+        //            itemn.Text = "nagrade-" + mg;
+        //            itemn.Name = "nagrade-" + mg;
+        //            itemB.Image = global::Bankom.Properties.Resources.del12;
+        //            itemnsep.Name = "nagrade-" + mg;
+        //            itemn.Click += new EventHandler(itemn_click);
+
+        //            itemB.Click += new EventHandler(itemB_click);
+        //            itemB.Name = "nagrade-" + mg;
+
+        //            toolStrip1.Items.Add(itemn);
+        //            toolStrip1.Items.Add(itemB);
+        //            toolStrip1.Items.Add(itemnsep);
+        //            LayoutMdi(MdiLayout.TileVertical);
+        //            break;
+        //        case "UvozPrevozaUPlacanja":
+        //            clsXmlPlacanja cls = new clsXmlPlacanja();
+        //            cls.izborPlacanja(4, "");
+        //            break;
+        //        case "PrenosiZaProdajnaMesta":
+        //            Prenosi childForm = new Prenosi();
+
+        //            childForm.MdiParent = this;
+
+        //            // childForm.WindowState = FormWindowState.Maximized;
+        //            childForm.Show();
+        //            break;
+        //        case "FaktureRecepcijeZaOdabraneDatume":
+        //            Preuzimanja.FaktureRecepcijeZaOdabraneDatume();
+        //            break;
+        //        case "FaktureRestoranaZaOdabraneDatume":
+        //            Preuzimanja.FaktureRestoranaZaOdabraneDatume();
+        //            break;
+        //        case "Razduzenjesirovinaminibar:
+        //            Preuzimanja.RazduzenjeSirovinaMiniBar();
+        //            break;
+        //        case "Razduzenjesirovinazaodabraniintervaldatuma":
+        //            Preuzimanja.RazduzenjeSirovinaZaOdabraniIntervalDatuma();
+        //            break;
+        //        case "ZatvaranjeStanjaPoLotu":
+
+        //            break;
+        //        case "PocetakGodine":
+
+        //            break;
+        //        case "UsaglasavanjeRobeIFinansija":
+
+        //            break;
+        //        case "KursnaListaZaCeluGodinu":
+        //            string GodinaKursa = "";
+        //            string PocetniDatumKursa = "";
+        //            int KojiIDDokstablo = 1;
+        //            string sql = "";
+        //            long granica = 0;
+        //            int ret = 1;
+        //            string ID_DokumentaView = "1";
+        //            DateTime DatumKursa;
+        //            DataBaseBroker db = new DataBaseBroker();
+
+        //            if (MessageBox.Show("Upisujemo kursnu listu za " + (System.DateTime.Now).Year.ToString(), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+        //            {
+        //                GodinaKursa = Prompt.ShowDialog("", "Unesite Godinu za kursnu listu ", "Kursna lista");
+        //                PocetniDatumKursa = "01.01." + GodinaKursa.Trim();
+        //                sql = "select ID_DokumentaTotali from  DokumentaTotali where dokument ='KursnaLista' and Datum>@param0";
+        //                DataTable t = db.ParamsQueryDT(sql, PocetniDatumKursa);
+
+        //                if (t.Rows.Count == 0)
+        //                {
+        //                    sql = "select ID_DokumentaStablo from DokumentaStablo where Naziv='KursnaLista'";
+        //                    DataTable dt = db.ParamsQueryDT(sql);
+        //                    if (dt.Rows.Count == 0)
+        //                    {
+        //                        MessageBox.Show("Nije definisana kursna lista !!!");
+        //                    }
+        //                    else
+        //                    {
+        //                        KojiIDDokstablo = Convert.ToInt32(dt.Rows[0]["ID_DokumentaStablo"]);
+
+        //                        clsOperacije cOp = new clsOperacije();
+        //                        if (cOp.Prestupna(Convert.ToInt32(GodinaKursa)) == true)
+        //                            granica = 366;
+        //                        else
+        //                            granica = 365;
+
+        //                        int i = 1;
+
+        //                        for (; i <= granica; i++)
+        //                        {
+        //                            DatumKursa = Convert.ToDateTime(PocetniDatumKursa).AddDays(i);
+
+        //                            clsObradaOsnovnihSifarnika cls = new clsObradaOsnovnihSifarnika();
+        //                            string ParRb = "";
+
+        //                            ret = cls.UpisiDokument(ref ParRb, "Kursna lista " + DatumKursa.Date, KojiIDDokstablo, DatumKursa.ToString());
+
+        //                            if (ret == -1)
+        //                            {
+        //                                MessageBox.Show("Greska prilikom inserta!");
+        //                                return;
+        //                            }
+        //                            ID_DokumentaView = ret.ToString();
+
+        //                            //stavka za domacu valutu
+        //                            sql = " Insert into KursnaLista(ID_SifrarnikValuta,ID_Zemlja,ID_DokumentaView,datum,paritet,"
+        //                                + " Kupovni,Srednji,Prodajni,Dogovorni,verzija,KupovniZaDevize,ProdajniZaDevize,OznVal,UUser,TTIME )"
+        //                                + " Values(@param0,@param1,@param2,@param3,@param4, "
+        //                                + " @param5,@param6,@param7,@param8,@param9,@param10,@param11,@param12,@param13,@param14)";
+
+        //                            DataTable dkl = db.ParamsQueryDT(sql, 1, Program.ID_MojaZemlja, ID_DokumentaView, DatumKursa.ToString(), 001,
+        //                                1, 1, 1, 1, "", 1, 1, Program.DomacaValuta, Program.idkadar.ToString(), (System.DateTime.Now).ToString());
+
+        //                            // Druga stavka za eur ako je zemlja bosna
+
+        //                            if (Program.ID_MojaZemlja == 38)
+        //                            {
+        //                                sql = " Insert into KursnaLista(ID_SifrarnikValuta,ID_Zemlja,ID_DokumentaView,datum,paritet,"
+        //                                    + " Kupovni,Srednji,Prodajni,Dogovorni,verzija,KupovniZaDevize,ProdajniZaDevize,OznVal,UUser,TTIME )"
+        //                                    + " Values(@param0,@param1,@param2,@param3,@param4, "
+        //                                    + " @param5,@param6,@param7,@param8,@param9,@param10,@param11,@param12,@param13,@param14)";
+
+        //                                DataTable dkb = db.ParamsQueryDT(sql, 1, Program.ID_MojaZemlja, ID_DokumentaView, DatumKursa.ToString(), 001,
+        //                                    1.95583, 1.95583, 1.95583, 1.95583, "", 1.95583, 1.95583, "EUR", Program.idkadar.ToString(), (System.DateTime.Now).ToString());
+        //                            }
+        //                            db.ExecuteStoreProcedure("TotaliZaDokument", "NazivDokumenta:Dokumenta", "IdDokument:" + ID_DokumentaView);
+        //                            db.ExecuteStoreProcedure("TotaliZaDokument", "NazivDokumenta:KursnaLista", "IdDokument:" + ID_DokumentaView);
+        //                        }
+        //                        MessageBox.Show("Zavrseno !!!");
+        //                    }
+        //                }
+        //                else MessageBox.Show("Vec je unesena kursna lista za datume tekuce godine !!!");
+
+
+        //            }
+        //            return;
+        //            break;
+        //        case "PopunjavanjeTabeleDatuma":
+        //            string GodinaDatuma = "";
+        //            string sql = "";
+        //            DataBaseBroker db = new DataBaseBroker();
+
+        //            if (MessageBox.Show("Upisujemo tabelu datuma za " + (System.DateTime.Now).Year.ToString(), "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+        //            {
+        //                GodinaDatuma = Prompt.ShowDialog("", "Unesite Godinu za tabelu datuma ", "Tabela datuma");
+        //                if (GodinaDatuma == "") { MessageBox.Show("Niste uneli godinu ponovite !!!"); return; }
+
+        //                if (GodinaDatuma != (System.DateTime.Now).Year.ToString() && GodinaDatuma != (System.DateTime.Now).AddYears(+1).Year.ToString())
+        //                {
+        //                    MessageBox.Show("Pogresno unesena godina ponovite");
+        //                    return;
+        //                }
+        //                else
+        //                {
+        //                    sql = "select time_id from  Time_by_Day where the_year =@param0 ";
+        //                    DataTable t = db.ParamsQueryDT(sql, GodinaDatuma);
+        //                    if (t.Rows.Count == 0)
+        //                    {
+        //                        db.ExecuteStoreProcedure("PopuniTimeByDay", "Godina:" + GodinaDatuma);
+        //                        MessageBox.Show("Zavrseno !!!");
+        //                    }
+        //                    else MessageBox.Show("Vec je unesena godina!!!");
+        //                }
+        //            }
+        //            return;
+        //            break;
+        //        case "ProcesirajeDnevnogiIzvestaja":
+
+        //            break;
+        //        case "ProcesiranjeBrutoBilansa":
+
+        //            break;
+        //            //default:
+        //            //    break;
+        //    }
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 
 
 
