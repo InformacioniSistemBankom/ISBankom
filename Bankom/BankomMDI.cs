@@ -1160,7 +1160,50 @@ namespace Bankom
             ShowNewForm("Dokumenta", idstablo, naziv, 1, "", "", "S", "", ""); // na dogadjaju form load otvara se nova forma  sa predatim parametrima 
         }
 
-  
+        //tamara 23.10.2020.
+
+
+        public void loadData()
+        {
+
+            DataBaseBroker db = new DataBaseBroker();
+            AutoCompleteStringCollection namesCollection = new AutoCompleteStringCollection();
+
+
+            string sselect;
+            string idke = Program.idkadar.ToString();
+            string idfirme = Program.idFirme.ToString();
+            sselect = "; WITH RekurzivnoStablo (ID_DokumentaStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS "
+                   + "(SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
+                   + " PrikazDetaljaDaNe as pd,PrikazPo as pp"
+                   + " FROM DokumentaStablo AS e WITH (NOLOCK) "
+                   + " where Naziv in (select g.naziv from Grupa as g,KadroviIOrganizacionaStrukturaStavkeView as ko Where (KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura "
+                   + " Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija=" + idke + " )"
+                   + "UNION ALL  SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level +1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
+                   + " PrikazDetaljaDaNe As pd, PrikazPo As pp  FROM DokumentaStablo  AS e WITH (NOLOCK) "
+                   + " INNER JOIN RekurzivnoStablo AS d  ON e.ID_DokumentaStablo = d.Vezan) "
+                   + " SELECT distinct NazivJavni FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0";
+
+           var dr= db.ReturnDataReader(sselect);
+
+         
+
+            if (dr.HasRows == true)
+            {
+                while (dr.Read())
+                    namesCollection.Add(dr["NazivJavni"].ToString());
+            }
+
+            
+          
+
+            toolStripTextBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            toolStripTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            toolStripTextBox1.AutoCompleteCustomSource = namesCollection;
+           
+        }
+
+
         private void toolStripTextBox1_Click(object sender, EventArgs e)
         { 
             
@@ -1181,9 +1224,16 @@ namespace Bankom
 
 
 
-            DataTable ti = db.ReturnDataTable(sselect);
+           // DataTable ti = db.ReturnDataTable(sselect);
 
-            toolStripTextBox1.Text += ti.ToString();
+           //// toolStripTextBox1.Text += ti.ToString();
+
+           // toolStripTextBox1.AutoCompleteMode = AutoCompleteMode.Suggest;
+           // toolStripTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
+           // AutoCompleteStringCollection col = new AutoCompleteStringCollection();
+           // col.Add(ti.ToString());
+           
+           // toolStripTextBox1.AutoCompleteCustomSource = col;
 
             //toolStripTextBox1.Text = toolStripTextBox1.Text.Trim();
             //toolStripTextBox1.Focus();
@@ -1195,42 +1245,42 @@ namespace Bankom
 
 
         }
-        private void ToolStripTextBox1_DoubleClick(object sender, EventArgs e)
-        {
+        //private void ToolStripTextBox1_DoubleClick(object sender, EventArgs e)
+        //{
 
-            ToolStripTextBox item = sender as ToolStripTextBox;
-            BrziPristup(item);
+        //    ToolStripTextBox item = sender as ToolStripTextBox;
+        //    BrziPristup(item);
 
-        }
+        //}
 
-        private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
-        {
+        //private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
+        //{
 
-            if (e.KeyCode != Keys.Enter)
-            {
-                return;
-            }
-            ToolStripTextBox item = sender as ToolStripTextBox;
-            BrziPristup(item);
+        //    if (e.KeyCode != Keys.Enter)
+        //    {
+        //        return;
+        //    }
+        //    ToolStripTextBox item = sender as ToolStripTextBox;
+        //    BrziPristup(item);
 
-        }
-        private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (Program.IntLogovanje == -1)
-            {
-                toolStripTextBox1.Text = "";
-                return;
-            }
-            if (toolStripTextBox1.Text.Length == 1)
-            {
-                string kon = toolStripTextBox1.Text;
-                if (kon.Trim() != "")
-                {
-                    toolStripTextBox1.Text = " " + toolStripTextBox1.Text;
-                    toolStripTextBox1.SelectionStart = toolStripTextBox1.Text.Length;
-                }
-            }
-        }
+        //}
+        //private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (Program.IntLogovanje == -1)
+        //    {
+        //        toolStripTextBox1.Text = "";
+        //        return;
+        //    }
+        //    if (toolStripTextBox1.Text.Length == 1)
+        //    {
+        //        string kon = toolStripTextBox1.Text;
+        //        if (kon.Trim() != "")
+        //        {
+        //            toolStripTextBox1.Text = " " + toolStripTextBox1.Text;
+        //            toolStripTextBox1.SelectionStart = toolStripTextBox1.Text.Length;
+        //        }
+        //    }
+        //}
 
         private void CloseActive_Click(object sender, EventArgs e)
         {
@@ -1823,19 +1873,23 @@ namespace Bankom
 
         private void Pprekid_Click(object sender, EventArgs e)
         {
-            Form activeChild = this.ActiveMdiChild;
+            //tamara 23.10.2020.
 
-            if (activeChild != null)
-            {
-                if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
-                clsRefreshForm rf = new clsRefreshForm();
-                rf.refreshform();
-                activeChild.Controls["OOperacija"].Text = "";
-            }
-            else
-            {
-                MessageBox.Show("Nemate aktivnu formu");
-            }
+            Application.Exit();
+
+            //Form activeChild = this.ActiveMdiChild;
+
+            //if (activeChild != null)
+            //{
+            //    if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
+            //    clsRefreshForm rf = new clsRefreshForm();
+            //    rf.refreshform();
+            //    activeChild.Controls["OOperacija"].Text = "";
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Nemate aktivnu formu");
+            //}
 
         }
 
@@ -3187,6 +3241,8 @@ namespace Bankom
                     CreateMenuItems(t, r[0].ToString());
                 }
             }
+            else
+                t.Click += new EventHandler(MenuItemClickHandler);
         }
 
         private string CreateMenuItems(ToolStripMenuItem t, string strMenu)
@@ -3210,6 +3266,7 @@ namespace Bankom
             else
             {
                 ToolStripMenuItem t1 = new ToolStripMenuItem(GetMenuName(strMenu));
+                t1.Click += new EventHandler(MenuItemClickHandler);
                 t.DropDownItems.Add(t1);
                 //stil 21.10.2020.
                 t1.TextAlign = ContentAlignment.TopLeft;
@@ -3227,6 +3284,8 @@ namespace Bankom
         {
             return dt.Select("MenuID='" + strMenuID + "'")[0][1].ToString();
         }
+
+
 
         public DataTable ReturnDT(string str)
         {
@@ -3260,6 +3319,54 @@ namespace Bankom
             return dt;
         }
 
+        //Ivana  23.10.2020.
+
+        private string GetMenuNaziv(string strMenuID)
+        {
+            return dt.Select("MenuName='" + strMenuID + "'")[0][5].ToString();
+        }
+
+        private bool IsOpen(string s)
+        {
+            bool pom = false;
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Text == s)
+                {
+                    pom = true;
+                    MessageBox.Show("Već je otvorena ova forma!");
+                    f.Focus();
+                    break;
+                }
+            }
+            if (pom == false)
+            {
+                return pom;
+            }
+            return pom;
+        }
+
+        private void MenuItemClickHandler(object sender, EventArgs e)
+        {
+            string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
+            bool postoji;
+            switch (s)
+            {
+                case "Dokumenta":
+                case "Izvestaji":
+                case "OsnovniSifarnici":
+                case "PomocniSifarnici":
+                case "Artikli":
+                case "Komitenti":
+                    postoji = IsOpen(s);
+                    if (postoji == true)
+                        break;
+                    clsObradaOsnovnihSifarnika co = new clsObradaOsnovnihSifarnika();
+                    ShowNewForm(s, 1, s, 1, "", "", "", "", "TreeView");
+                    break;
+
+            }
+        }
 
 
         // tamara 21.10.2020.
@@ -3279,7 +3386,10 @@ namespace Bankom
             }
         }
 
-       
+        private void toolStripTextBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            loadData();
+        }
     }
 
 } 
