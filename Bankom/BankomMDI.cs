@@ -276,7 +276,7 @@ namespace Bankom
                 //string[] novo = alphabet.ToArray();
                 
                 tstbPretraga.AutoCompleteCustomSource.AddRange(novo1);
-                tstbPretraga.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+              //  tstbPretraga.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
                 
          
                 return;
@@ -3257,8 +3257,8 @@ namespace Bankom
         }
 
         private void tstbPretraga_Click_1(object sender, EventArgs e)
-        {
-            tstbPretraga.Text = tstbPretraga.Text.Trim();
+         {
+             tstbPretraga.Text = tstbPretraga.Text.Trim();
             tstbPretraga.Focus();
             if (tstbPretraga.Text == "Dokumenta ...") tstbPretraga.Text = "";
             if (tstbPretraga.Text.Trim() != "") return;
