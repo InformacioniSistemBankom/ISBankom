@@ -3305,13 +3305,15 @@ namespace Bankom
                 return null;
             }
         }
+        string idke = Program.idkadar.ToString();
+        string idfirme = Program.idFirme.ToString();
         private DataTable GetDataSet()
         {
             //DataTable dt = new DataTable("Menu");
             String SQL = ";  WITH RekurzivnoStablo (ID_MenuStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS " +
                          "  (SELECT e.ID_MenuStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave,  PrikazDetaljaDaNe as pd,PrikazPo as pp " +
                          " FROM MenuStablo AS e WITH(NOLOCK)  where Naziv in (select g.naziv from Grupa as g, KadroviIOrganizacionaStrukturaStavkeView as ko Where(KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura " +
-                         "  Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = 6 and ko.id_kadrovskaevidencija = 23)UNION ALL " +
+                         "  Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija=" + idke + ")UNION ALL " +
                          " SELECT e.ID_MenuStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level + 1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave,  PrikazDetaljaDaNe As pd, PrikazPo As pp " +
                          "   FROM MenuStablo AS e WITH(NOLOCK)  INNER JOIN RekurzivnoStablo AS d ON e.ID_MenuStablo = d.Vezan) " +
                          "   SELECT distinct ID_MenuStablo as MenuID, NazivJavni AS  MenuName,Vezan AS MenuParent,'Y' AS MenuEnable,'DEMO' AS USERID,Naziv, RedniBroj FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0 and vezan<> 0  order by RedniBroj ";
@@ -3349,6 +3351,7 @@ namespace Bankom
         private void MenuItemClickHandler(object sender, EventArgs e)
         {
             string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
+            //string s1 = GetMenuName(((ToolStripMenuItem)sender).Text);
             bool postoji;
             switch (s)
             {
@@ -3359,12 +3362,12 @@ namespace Bankom
                 case "Artikli":
                 case "Komitenti":
                     postoji = IsOpen(s);
-                    if (postoji == true)
-                        break;
-                    clsObradaOsnovnihSifarnika co = new clsObradaOsnovnihSifarnika();
-                    ShowNewForm(s, 1, s, 1, "", "", "", "", "TreeView");
+                    if (postoji == false)
+                    {
+                        clsObradaOsnovnihSifarnika co = new clsObradaOsnovnihSifarnika();
+                        ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
+                    }
                     break;
-
             }
         }
 
