@@ -62,12 +62,12 @@ namespace Bankom
             {
 
                 frmChield childForm = new frmChield();
-               
+                childForm.FormBorderStyle = FormBorderStyle.None;
                 childForm.BackColor = System.Drawing.Color.SeaShell;
                 childForm.MdiParent = this;
                 childForm.BringToFront();
 
-                this.WindowState = FormWindowState.Normal;
+                this.WindowState = FormWindowState.Maximized;
 
                 if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
                 int sirina = (Width / 100) * 10;
@@ -89,7 +89,7 @@ namespace Bankom
                 //childForm.Top = 300;
 
                 childForm.AutoScroll = false;
-                // childForm.Height = this.Height - this.toolStrip.Height - this.menuStrip1.Height - this.toolStrip.Height - 20;
+                // childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
               //  childForm.WindowState = FormWindowState.Maximized;
                 //childForm.Width = this.Width - 20;
                 childForm.Show();
@@ -574,7 +574,7 @@ namespace Bankom
                     {
                         if (childForm.Text.ToUpper() == b.ToUpper())
                         {
-               
+                            childForm.FormBorderStyle = FormBorderStyle.None;
                             childForm.BackColor = System.Drawing.Color.SeaShell;
                             childForm.Focus();
                             childForm.Activate();
@@ -599,7 +599,7 @@ namespace Bankom
             }
 
             Form childForm1 = ActiveMdiChild;
-    
+            childForm1.FormBorderStyle = FormBorderStyle.None;
             childForm1.BackColor = System.Drawing.Color.SeaShell;
             childForm1.Focus();
             childForm1.Visible = false;
@@ -643,7 +643,7 @@ namespace Bankom
             else
             {
                 Form childForm1 = ActiveMdiChild;
-            
+                childForm1.FormBorderStyle = FormBorderStyle.None;
                 childForm1.BackColor = System.Drawing.Color.SeaShell;
                 childForm1.Focus();
                 childForm1.Visible = false;
@@ -1376,11 +1376,7 @@ namespace Bankom
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             // tamara 26.10.2020.
-            Form activeChild = this.ActiveMdiChild;
-            if (activeChild != null)
-            {
-                activeChild.Left = 162;
-            }
+          
         }
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1743,11 +1739,7 @@ namespace Bankom
         private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             // tamara 26.10.2020.
-            Form activeChild = this.ActiveMdiChild;
-            if (activeChild == null)
-            {
-                activeChild.Left = 162;
-            }
+            
 
         }
 
@@ -3353,13 +3345,15 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                     kl.Show();
                     //Djora 15.09.20
                     kl.WindowState = FormWindowState.Maximized;
+                    kl.FormBorderStyle = FormBorderStyle.None;
                     addFormTotoolstrip1(kl, "Preuzimanje Kursne Liste");
                     break;
                 case "Prenosi":
                     Form activeChild = this.ActiveMdiChild;
+                    activeChild.FormBorderStyle = FormBorderStyle.None;
                     if (activeChild != null)
                     {
-                        // activeChild.Controls["OOperacija"].Text = "PRENOSI";
+                        activeChild.Hide();
                     }
                     break;
                 case "PreuzimanjeRateKredita":
@@ -3387,6 +3381,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                     if (strPreuzimanjePlacanja == "") { return; }
                     char[] separators = { '#' };
                     frmIzvod childForm = new frmIzvod();
+                    childForm.FormBorderStyle = FormBorderStyle.None;
                     childForm.MdiParent = this;
                     childForm.strPutanjaPlacanja = strPreuzimanjePlacanja.Split(separators)[0];
                     childForm.mesecgodina = strPreuzimanjePlacanja.Split(separators)[1];
@@ -3439,6 +3434,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                     clsXmlPlacanja cxml = new clsXmlPlacanja();
                     cxml.izborPlacanja(2, mg + svrsta);
                     frmPrint fs = new frmPrint();
+                    fs.FormBorderStyle = FormBorderStyle.None;
 
                     fs.MdiParent = this;
                     fs.Text = "plate-" + mg;
