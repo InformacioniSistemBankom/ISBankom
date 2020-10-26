@@ -657,13 +657,13 @@ namespace Bankom
                 Program.imekorisnika = ImeKorisnika;
                 Program.IntLogovanje = 1;
                 Hide();
-                try
-                {
-                    ((BankomMDI)MdiParent).Controls["menuStrip"].Enabled = true;
-                    ((BankomMDI)MdiParent).Controls["menuStrip1"].Enabled = true;
-                    ((BankomMDI)MdiParent).Text = Program.imeFirme + "-" + Program.imekorisnika;
-                }
-                catch { }
+                //try
+                //{
+                //    ((BankomMDI)MdiParent).Controls["menuStrip"].Enabled = true;
+                //    ((BankomMDI)MdiParent).Controls["menuStrip1"].Enabled = true;
+                //    ((BankomMDI)MdiParent).Text = Program.imeFirme + "-" + Program.imekorisnika;
+                //}
+                //catch { }
                 Program.Parent.Text = Program.imeFirme + "-" + Program.imekorisnika;
                 Close();
 
