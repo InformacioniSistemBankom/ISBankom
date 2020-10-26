@@ -47,7 +47,8 @@ namespace Bankom.Class
                     if (t.Rows.Count == 0)
                     {
                         MessageBox.Show("Greska kod unosa skladista !!!");
-                        return ObradiZahtev;
+                        ObradiZahtev = true;
+                        return ObradiZahtev; 
                     }
                     else
                     {
@@ -55,7 +56,7 @@ namespace Bankom.Class
                     }
                 }
                 KorekcijaNaDan(datumOd, NazivSkl, ID_Skladiste);
-                ObradiZahtev = true;
+                
             }
             return ObradiZahtev;
         }
