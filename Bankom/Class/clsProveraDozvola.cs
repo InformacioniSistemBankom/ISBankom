@@ -28,7 +28,9 @@ namespace Bankom.Class
 
         public Boolean ProveriDozvole(String pdokument, string pidstablo, string pIDDok, string pDokumentJe)
         {
-           
+            Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
+            Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
+
             if (pdokument.Trim() == "")
             {
                 return false;
@@ -124,13 +126,17 @@ namespace Bankom.Class
                         if (td.Rows[0]["storno"].ToString() == "1")
                         {
                             Program.Parent.ToolBar.Items["Sstorno"].Enabled = true;
+                            Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
+                            Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
 
-                            
+
                         }
                         else
                         {
                             Program.Parent.ToolBar.Items["Sstorno"].Enabled = false;
-                         
+                            Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
+                            Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
+
                         }
                     }
                 }       
@@ -138,12 +144,16 @@ namespace Bankom.Class
                 if (td.Rows[0]["izmena"].ToString() == "1")
                 {
                     Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
-                  
+                    Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
+                    Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
+
                 }
                 else
                 {
                     Program.Parent.ToolBar.Items["Iizmena"].Enabled = false;
-                
+                    Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
+                    Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
+
                 }
 
                 if (td.Rows[0]["unos"].ToString() == "1")

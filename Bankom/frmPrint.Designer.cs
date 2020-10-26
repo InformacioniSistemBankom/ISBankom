@@ -32,11 +32,11 @@
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.statusPrint = new System.Windows.Forms.StatusStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSaveAs = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusPrint.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -51,11 +51,21 @@
             this.toolStripMenuItem1,
             this.toolStripSeparator12,
             this.toolStripSaveAs});
-            this.statusPrint.Location = new System.Drawing.Point(0, 427);
+            this.statusPrint.Location = new System.Drawing.Point(0, 564);
             this.statusPrint.Name = "statusPrint";
-            this.statusPrint.Size = new System.Drawing.Size(800, 23);
+            this.statusPrint.Size = new System.Drawing.Size(943, 23);
             this.statusPrint.TabIndex = 2;
             this.statusPrint.Text = "statusStrip1";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem1.Image")));
+            this.toolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Black;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(60, 23);
+            this.toolStripMenuItem1.Text = "&Print";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // toolStripSeparator12
             // 
@@ -86,24 +96,15 @@
             this.webBrowser1.Size = new System.Drawing.Size(728, 388);
             this.webBrowser1.TabIndex = 1;
             // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem1.Image")));
-            this.toolStripMenuItem1.ImageTransparentColor = System.Drawing.Color.Black;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(60, 20);
-            this.toolStripMenuItem1.Text = "&Print";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
             // frmPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.SeaShell;
+            this.ClientSize = new System.Drawing.Size(943, 587);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusPrint);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPrint";
             this.Text = "frmPrint";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
