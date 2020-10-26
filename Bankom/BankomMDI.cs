@@ -1078,10 +1078,11 @@ namespace Bankom
         }
 
 
-        private void BrziPristup(string s)
+        private void BrziPristup(object sender)
         {
             DataBaseBroker db2 = new DataBaseBroker();
-            string item = s;
+            ToolStripTextBox item = sender as ToolStripTextBox;
+           
 
             //foreach (Form childForm in MdiChildren)
             //{
@@ -1103,16 +1104,17 @@ namespace Bankom
                 return;
             }
 
-            
-            if (item == "") { return; }
-            if (item == "System.Windows.Forms.ToolStripTextBox") { return; }
+
+            string ss = item.Text.Trim();
+            if (ss == "") { return; }
+            if (ss == "System.Windows.Forms.ToolStripTextBox") { return; }
 
             string aaa = "";
             for (int n = 6; n < windowsMenu.DropDownItems.Count; n++)
             {
                 int x = windowsMenu.DropDownItems[n].ToString().IndexOf(" ");
                 if (x > -1) { aaa = windowsMenu.DropDownItems[n].ToString().Substring(x).Trim(); };
-                if (item == aaa)
+                if (ss== aaa)
                 {
                     //MessageBox.Show("Vec postoji");
                     //toolStripTextBox1.Text = "";
@@ -1123,7 +1125,7 @@ namespace Bankom
 
 
             string strSender = "";
-            string str = item;
+            string str = ss;
             int idstablo = 0;
             string naziv = "";
 
@@ -1168,85 +1170,7 @@ namespace Bankom
         //tamara 23.10.2020.
 
 
-        
-
-        //private void toolStripTextBox1_Click(object sender, EventArgs e)
-        //{ 
-            
-       
-        //string sselect;
-        //    string idke = Program.idkadar.ToString();
-        //    string idfirme = Program.idFirme.ToString();
-        //    sselect = "; WITH RekurzivnoStablo (ID_DokumentaStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS "
-        //           + "(SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
-        //           + " PrikazDetaljaDaNe as pd,PrikazPo as pp"
-        //           + " FROM DokumentaStablo AS e WITH (NOLOCK) "
-        //           + " where Naziv in (select g.naziv from Grupa as g,KadroviIOrganizacionaStrukturaStavkeView as ko Where (KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura "
-        //           + " Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija=" + idke + " )"
-        //           + "UNION ALL  SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level +1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
-        //           + " PrikazDetaljaDaNe As pd, PrikazPo As pp  FROM DokumentaStablo  AS e WITH (NOLOCK) "
-        //           + " INNER JOIN RekurzivnoStablo AS d  ON e.ID_DokumentaStablo = d.Vezan) "
-        //           + " SELECT distinct NazivJavni FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0";
-
-
-
-        //   // DataTable ti = db.ReturnDataTable(sselect);
-
-        //   //// toolStripTextBox1.Text += ti.ToString();
-
-        //   // toolStripTextBox1.AutoCompleteMode = AutoCompleteMode.Suggest;
-        //   // toolStripTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
-        //   // AutoCompleteStringCollection col = new AutoCompleteStringCollection();
-        //   // col.Add(ti.ToString());
-           
-        //   // toolStripTextBox1.AutoCompleteCustomSource = col;
-
-        //    //toolStripTextBox1.Text = toolStripTextBox1.Text.Trim();
-        //    //toolStripTextBox1.Focus();
-        //    //if (toolStripTextBox1.Text == "Dokumenta ...") toolStripTextBox1.Text = "";
-        //    //if (toolStripTextBox1.Text.Trim() != "") return;
-        //    //toolStripTextBox1.Text = "";
-        //    //SendKeys.Send(" ");
-
-
-
-        //}
-        //private void ToolStripTextBox1_DoubleClick(object sender, EventArgs e)
-        //{
-
-        //    ToolStripTextBox item = sender as ToolStripTextBox;
-        //    BrziPristup(item);
-
-        //}
-
-        //private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
-        //{
-
-        //    if (e.KeyCode != Keys.Enter)
-        //    {
-        //        return;
-        //    }
-        //    ToolStripTextBox item = sender as ToolStripTextBox;
-        //    BrziPristup(item);
-
-        //}
-        //private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (Program.IntLogovanje == -1)
-        //    {
-        //        toolStripTextBox1.Text = "";
-        //        return;
-        //    }
-        //    if (toolStripTextBox1.Text.Length == 1)
-        //    {
-        //        string kon = toolStripTextBox1.Text;
-        //        if (kon.Trim() != "")
-        //        {
-        //            toolStripTextBox1.Text = " " + toolStripTextBox1.Text;
-        //            toolStripTextBox1.SelectionStart = toolStripTextBox1.Text.Length;
-        //        }
-        //    }
-        //}
+     
 
         private void CloseActive_Click(object sender, EventArgs e)
         {
@@ -3769,9 +3693,13 @@ namespace Bankom
                 button1.Location = new Point(159, 301);
             }
         }
-        public void loadData()
-        {
+       
+        
 
+
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+             
             DataBaseBroker db = new DataBaseBroker();
             AutoCompleteStringCollection namesCollection = new AutoCompleteStringCollection();
 
@@ -3807,71 +3735,19 @@ namespace Bankom
             toolStripTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
             toolStripTextBox1.AutoCompleteCustomSource = namesCollection;
 
-        }
-
-
-        private void toolStripTextBox1_Click_1(object sender, EventArgs e)
-        {
-            loadData();
-
-
-            toolStripTextBox1.Text = toolStripTextBox1.Text.Trim();
-            toolStripTextBox1.Focus();
-            if (toolStripTextBox1.Text == "Dokumenta ...") toolStripTextBox1.Text = "";
-            if (toolStripTextBox1.Text.Trim() != "") return;
-            toolStripTextBox1.Text = "";
-            SendKeys.Send(" ");
-
-        }
-
-            //    string item = toolStripTextBox1.Text;
-            //    BrziPristup(item);
-
-            //}
-
-            private void toolStripTextBox1_DoubleClick(object sender, EventArgs e)
-        {
-                string item =toolStripTextBox1.Text;
+            ToolStripTextBox item = sender as ToolStripTextBox;
             BrziPristup(item);
+            toolStripTextBox1.Text = "";
+
         }
 
-        private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
-        {
-            //DataBaseBroker db = new DataBaseBroker();
-            //AutoCompleteStringCollection namesCollection = new AutoCompleteStringCollection();
 
 
-            //string sselect;
-            //string idke = Program.idkadar.ToString();
-            //string idfirme = Program.idFirme.ToString();
-            //sselect = "; WITH RekurzivnoStablo (ID_DokumentaStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS "
-            //       + "(SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
-            //       + " PrikazDetaljaDaNe as pd,PrikazPo as pp"
-            //       + " FROM DokumentaStablo AS e WITH (NOLOCK) "
-            //       + " where Naziv in (select g.naziv from Grupa as g,KadroviIOrganizacionaStrukturaStavkeView as ko Where (KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura "
-            //       + " Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija=" + idke + " )"
-            //       + "UNION ALL  SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level +1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
-            //       + " PrikazDetaljaDaNe As pd, PrikazPo As pp  FROM DokumentaStablo  AS e WITH (NOLOCK) "
-            //       + " INNER JOIN RekurzivnoStablo AS d  ON e.ID_DokumentaStablo = d.Vezan) "
-            //       + " SELECT distinct NazivJavni FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0";
-
-            //var dr = db.ReturnDataReader(sselect);
-
-
-
-            //if (dr.HasRows == true)
-            //{
-            //    while (dr.Read())
-            //        namesCollection.Add(dr["NazivJavni"].ToString());
-            //}
-
-
-
-
-            //toolStripTextBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            //toolStripTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            //toolStripTextBox1.AutoCompleteCustomSource = namesCollection;
-        }
+        //private void toolStripTextBox1_Enter(object sender, EventArgs e)
+        //{
+        //    ToolStripTextBox item = sender as ToolStripTextBox;
+        //    BrziPristup(item);
+        //}
     }
 
 } 

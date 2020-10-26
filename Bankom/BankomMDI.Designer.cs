@@ -167,6 +167,7 @@ namespace Bankom
             this.Oorgsema = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator33 = new System.Windows.Forms.ToolStripSeparator();
             this.Oorigin = new System.Windows.Forms.ToolStripButton();
+            this.PpredlogCena = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -178,7 +179,6 @@ namespace Bankom
             this.sdfgghToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
-            this.PpredlogCena = new System.Windows.Forms.ToolStripButton();
             this.ToolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -1017,8 +1017,7 @@ namespace Bankom
             this.toolStripTextBox1.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripTextBox1.Name = "toolStripTextBox1";
             this.toolStripTextBox1.Size = new System.Drawing.Size(200, 43);
-            this.toolStripTextBox1.DoubleClick += new System.EventHandler(this.toolStripTextBox1_DoubleClick);
-            this.toolStripTextBox1.TextChanged += new System.EventHandler(this.toolStripTextBox1_TextChanged);
+            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             // 
             // toolStripSeparator13
             // 
@@ -1355,11 +1354,20 @@ namespace Bankom
             this.Oorigin.ToolTipText = "Skenirani original ulaznih dokumenata";
             this.Oorigin.Visible = false;
             // 
+            // PpredlogCena
+            // 
+            this.PpredlogCena.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.PpredlogCena.Image = ((System.Drawing.Image)(resources.GetObject("PpredlogCena.Image")));
+            this.PpredlogCena.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PpredlogCena.Name = "PpredlogCena";
+            this.PpredlogCena.Size = new System.Drawing.Size(23, 20);
+            this.PpredlogCena.Text = "Pregled cena";
+            // 
             // toolStrip1
             // 
-            this.toolStrip1.Location = new System.Drawing.Point(0, 124);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 43);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1712, 33);
+            this.toolStrip1.Size = new System.Drawing.Size(1429, 25);
             this.toolStrip1.TabIndex = 34;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.Visible = false;
@@ -1368,9 +1376,9 @@ namespace Bankom
             // 
             this.flowLayoutPanel1.Controls.Add(this.menuStrip1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 43);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 68);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 734);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 709);
             this.flowLayoutPanel1.TabIndex = 40;
             // 
             // menuStrip1
@@ -1429,15 +1437,6 @@ namespace Bankom
             this.button1.TabIndex = 42;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // PpredlogCena
-            // 
-            this.PpredlogCena.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.PpredlogCena.Image = ((System.Drawing.Image)(resources.GetObject("PpredlogCena.Image")));
-            this.PpredlogCena.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.PpredlogCena.Name = "PpredlogCena";
-            this.PpredlogCena.Size = new System.Drawing.Size(23, 20);
-            this.PpredlogCena.Text = "Pregled cena";
             // 
             // BankomMDI
             // 
