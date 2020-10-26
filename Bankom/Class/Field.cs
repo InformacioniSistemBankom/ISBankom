@@ -470,8 +470,8 @@ namespace Bankom.Class
                     dv.BorderStyle = BorderStyle.Fixed3D;
                     dv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
              
-                    dv.DefaultCellStyle.SelectionForeColor = Color.SeaShell;
-                    dv.BackgroundColor = Color.White;
+                    //dv.DefaultCellStyle.SelectionForeColor = Color.SeaShell;
+                    dv.BackgroundColor = Color.SeaShell;
 
                     dv.EnableHeadersVisualStyles = false;
                     dv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
@@ -1040,9 +1040,11 @@ namespace Bankom.Class
             Program.imegrida = control.Name;
             Program.colname = dv.Columns[e.ColumnIndex].Name;
             Program.activecontrol = control;
+            dv.BackgroundColor = Color.SeaShell;
         }
         private void FillControls(DataGridView control, ref int iid, ref string brdok, ref DateTime datum, DataGridViewCellMouseEventArgs e)
         {
+            dv.BackgroundColor = Color.SeaShell;
             string mimegrida = control.Name;
             mimegrida = mimegrida.Substring(4);
             string sel = "";
@@ -1172,6 +1174,7 @@ namespace Bankom.Class
         }
         private void ObradiDupliKlik(DataGridView control, string Dokument, string DokumentJe, string OperacijaDokumenta, DataGridViewCellMouseEventArgs e)
         {
+            dv.BackgroundColor = Color.SeaShell;
             Form Me = Program.Parent.ActiveMdiChild;
             string[] separators = new[] { "," };
             string d1, d2;

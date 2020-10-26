@@ -75,6 +75,7 @@ namespace Bankom.Class
             Console.WriteLine(sselect);
 			DataTable ti = db.ReturnDataTable(sselect);            
             DataTable tj = ti;
+           
 
             //PUNIStablo:
 
@@ -223,6 +224,7 @@ namespace Bankom.Class
                                 if (odgovor == false)
                                 {
                                     frmPrint fs = new frmPrint();
+                                    fs.BackColor = Color.SeaShell;
                                     fs.MdiParent = Program.Parent;
                                     fs.Text = ime;
                                     fs.intCurrentdok = Convert.ToInt32(iddok); //id

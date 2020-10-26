@@ -394,22 +394,26 @@ namespace Bankom.Class
                         dv.Columns[i].Visible = true;
 
                     dv.Columns[i].Width = sirina;
-                dv.BackgroundColor = Color.SeaShell;
+        
                 dv.Columns[i].SortMode = DataGridViewColumnSortMode.Automatic;
-                    if (t2.Rows[i]["Format"].ToString() != "@" && t2.Rows[i]["Format"].ToString() != "0" && t2.Rows[i]["Format"].ToString().Trim() != "")
+                dv.BackgroundColor = Color.SeaShell;
+                if (t2.Rows[i]["Format"].ToString() != "@" && t2.Rows[i]["Format"].ToString() != "0" && t2.Rows[i]["Format"].ToString().Trim() != "")
                         dv.Columns[i].DefaultCellStyle.Format = t2.Rows[i]["Format"].ToString();
 
                     switch (t2.Rows[i]["Alajment"].ToString())
                     {
                         case "0":
                             dv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-                            break;
+                        dv.BackgroundColor = Color.SeaShell;
+                        break;
                         case "1":
                             dv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                            break;
+                        dv.BackgroundColor = Color.SeaShell;
+                        break;
                         case "2":
                             dv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                            break;
+                        dv.BackgroundColor = Color.SeaShell;
+                        break;
                     }
             }            
             dv.Visible = true;

@@ -93,6 +93,7 @@ namespace Bankom
                     webBrowser1.Top = Top - 25;
                     webBrowser1.Width = MdiParent.Width;
                     webBrowser1.Height = MdiParent.Height;
+
                     
                     putanja =  @"c:\TempXml\prevoz.xml";
                     if (kojiprint == "nag") { putanja = @"c:\TempXml\nagrade.xml"; }
@@ -107,6 +108,7 @@ namespace Bankom
 
             //System.Diagnostics.Process.Start(putanja);
             webBrowser1.Navigate(new Uri(putanja));
+            
         Izlaz:;
 
         }
@@ -124,6 +126,7 @@ namespace Bankom
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             webBrowser1.Print();
+            
         }
 
         private void toolStripStatusLabel1_Click(object sender, EventArgs e)
