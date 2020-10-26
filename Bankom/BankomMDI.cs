@@ -27,6 +27,7 @@ namespace Bankom
     public partial class BankomMDI : Form
     {
      DataBaseBroker db = new DataBaseBroker();
+        
         public string connectionString = Program.connectionString;
       
         public static string filter = "";
@@ -66,12 +67,12 @@ namespace Bankom
                 childForm.MdiParent = this;
                 childForm.BringToFront();
 
-                this.WindowState = FormWindowState.Maximized;
+                this.WindowState = FormWindowState.Normal;
 
                 if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
                 int sirina = (Width / 100) * 10;
 
-
+             
                 childForm.imedokumenta = imedokumenta;
                 childForm.iddokumenta = iddokument;
                 childForm.idstablo = idstablo;
@@ -84,11 +85,13 @@ namespace Bankom
                 childForm.toolStripTextBroj.Text = Convert.ToString(idstablo);
                 childForm.Text = ss;
                 childForm.Name = ss;
-                childForm.Left = 0;
-                childForm.AutoScroll = true;
+                //childForm.Left = 380;
+                //childForm.Top = 300;
+
+                childForm.AutoScroll = false;
                 // childForm.Height = this.Height - this.toolStrip.Height - this.menuStrip1.Height - this.toolStrip.Height - 20;
-                childForm.WindowState = FormWindowState.Maximized;
-                childForm.Width = this.Width - 20;
+              //  childForm.WindowState = FormWindowState.Maximized;
+                //childForm.Width = this.Width - 20;
                 childForm.Show();
 
                 addFormTotoolstrip1(childForm, imedokumenta);
@@ -542,6 +545,7 @@ namespace Bankom
                     {
                         if (childForm.Text.ToUpper() == b.ToUpper())
                         {
+               
                             childForm.BackColor = System.Drawing.Color.SeaShell;
                             childForm.Focus();
                             childForm.Activate();
@@ -566,6 +570,7 @@ namespace Bankom
             }
 
             Form childForm1 = ActiveMdiChild;
+    
             childForm1.BackColor = System.Drawing.Color.SeaShell;
             childForm1.Focus();
             childForm1.Visible = false;
@@ -609,6 +614,7 @@ namespace Bankom
             else
             {
                 Form childForm1 = ActiveMdiChild;
+            
                 childForm1.BackColor = System.Drawing.Color.SeaShell;
                 childForm1.Focus();
                 childForm1.Visible = false;
@@ -1340,7 +1346,12 @@ namespace Bankom
         }
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-
+            // tamara 26.10.2020.
+            Form activeChild = this.ActiveMdiChild;
+            if (activeChild != null)
+            {
+                activeChild.Left = 162;
+            }
         }
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1702,6 +1713,12 @@ namespace Bankom
 
         private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            // tamara 26.10.2020.
+            Form activeChild = this.ActiveMdiChild;
+            if (activeChild == null)
+            {
+                activeChild.Left = 162;
+            }
 
         }
 
