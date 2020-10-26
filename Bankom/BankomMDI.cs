@@ -3338,6 +3338,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                     postoji = IsOpen(s);
                     if (postoji == false)
                     {
+
                         clsObradaOsnovnihSifarnika co0 = new clsObradaOsnovnihSifarnika();
                         ShowNewForm(s, 1, s, 1, "", "", slovo.ToString(), "", "TreeView");
                     }
