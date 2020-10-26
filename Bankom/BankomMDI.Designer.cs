@@ -902,7 +902,7 @@ namespace Bankom
             this.toolStripButton1});
             this.ToolBar.Location = new System.Drawing.Point(0, 0);
             this.ToolBar.Name = "ToolBar";
-            this.ToolBar.Size = new System.Drawing.Size(1214, 43);
+            this.ToolBar.Size = new System.Drawing.Size(1216, 43);
             this.ToolBar.TabIndex = 32;
             this.ToolBar.Text = "toolbar";
             this.ToolBar.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ToolBar_ItemClicked);
@@ -1419,7 +1419,7 @@ namespace Bankom
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 43);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 672);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 1018);
             this.flowLayoutPanel1.TabIndex = 40;
             // 
             // menuStrip1
@@ -1427,7 +1427,7 @@ namespace Bankom
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(126, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(30, 206);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1489,7 +1489,7 @@ namespace Bankom
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(1214, 715);
+            this.ClientSize = new System.Drawing.Size(1216, 1061);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.toolStrip1);

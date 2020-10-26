@@ -1376,11 +1376,7 @@ namespace Bankom
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             // tamara 26.10.2020.
-            Form activeChild = this.ActiveMdiChild;
-            if (activeChild != null)
-            {
-                activeChild.Left = 162;
-            }
+          
         }
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1743,11 +1739,7 @@ namespace Bankom
         private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             // tamara 26.10.2020.
-            Form activeChild = this.ActiveMdiChild;
-            if (activeChild == null)
-            {
-                activeChild.Left = 162;
-            }
+            
 
         }
 
@@ -3360,7 +3352,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                     activeChild.FormBorderStyle = FormBorderStyle.None;
                     if (activeChild != null)
                     {
-                        // activeChild.Controls["OOperacija"].Text = "PRENOSI";
+                        activeChild.Hide();
                     }
                     break;
                 case "PreuzimanjeRateKredita":
