@@ -61,7 +61,8 @@ namespace Bankom
             {
 
                 frmChield childForm = new frmChield();
-
+               
+                childForm.BackColor = System.Drawing.Color.SeaShell;
                 childForm.MdiParent = this;
                 childForm.BringToFront();
 
@@ -121,6 +122,7 @@ namespace Bankom
         }
         public void addFormTotoolstrip1(Form forma, string imedokumenta)
         {
+            this.BackColor = System.Drawing.Color.SeaShell;
             toolStrip1.Visible = true;
             this.Width = Width - 20;
             ToolStripLabel itemn = new ToolStripLabel();
@@ -540,6 +542,7 @@ namespace Bankom
                     {
                         if (childForm.Text.ToUpper() == b.ToUpper())
                         {
+                            childForm.BackColor = System.Drawing.Color.SeaShell;
                             childForm.Focus();
                             childForm.Activate();
                             childForm.LayoutMdi(MdiLayout.TileVertical);
@@ -563,6 +566,7 @@ namespace Bankom
             }
 
             Form childForm1 = ActiveMdiChild;
+            childForm1.BackColor = System.Drawing.Color.SeaShell;
             childForm1.Focus();
             childForm1.Visible = false;
             childForm1.Dispose();
@@ -605,6 +609,7 @@ namespace Bankom
             else
             {
                 Form childForm1 = ActiveMdiChild;
+                childForm1.BackColor = System.Drawing.Color.SeaShell;
                 childForm1.Focus();
                 childForm1.Visible = false;
                 childForm1.Dispose();
@@ -1077,6 +1082,7 @@ namespace Bankom
         {
             DataBaseBroker db2 = new DataBaseBroker();
             ToolStripTextBox item = sender as ToolStripTextBox;
+           
 
             //foreach (Form childForm in MdiChildren)
             //{
@@ -1098,6 +1104,7 @@ namespace Bankom
                 return;
             }
 
+
             string ss = item.Text.Trim();
             if (ss == "") { return; }
             if (ss == "System.Windows.Forms.ToolStripTextBox") { return; }
@@ -1107,7 +1114,7 @@ namespace Bankom
             {
                 int x = windowsMenu.DropDownItems[n].ToString().IndexOf(" ");
                 if (x > -1) { aaa = windowsMenu.DropDownItems[n].ToString().Substring(x).Trim(); };
-                if (ss == aaa)
+                if (ss== aaa)
                 {
                     //MessageBox.Show("Vec postoji");
                     //toolStripTextBox1.Text = "";
@@ -1122,7 +1129,7 @@ namespace Bankom
             int idstablo = 0;
             string naziv = "";
 
-            str = "select ID_DokumentaStablo,NazivJavni,Naziv from DokumentaStablo where NazivJavni = '" + ss + "'";
+            str = "select ID_DokumentaStablo,NazivJavni,Naziv from DokumentaStablo where NazivJavni = '" + item + "'";
             DataTable tt = new DataTable();
             tt = db2.ReturnDataTable(str);
 
@@ -1163,124 +1170,7 @@ namespace Bankom
         //tamara 23.10.2020.
 
 
-        public void loadData()
-        {
-
-            DataBaseBroker db = new DataBaseBroker();
-            AutoCompleteStringCollection namesCollection = new AutoCompleteStringCollection();
-
-
-            string sselect;
-            string idke = Program.idkadar.ToString();
-            string idfirme = Program.idFirme.ToString();
-            sselect = "; WITH RekurzivnoStablo (ID_DokumentaStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS "
-                   + "(SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
-                   + " PrikazDetaljaDaNe as pd,PrikazPo as pp"
-                   + " FROM DokumentaStablo AS e WITH (NOLOCK) "
-                   + " where Naziv in (select g.naziv from Grupa as g,KadroviIOrganizacionaStrukturaStavkeView as ko Where (KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura "
-                   + " Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija=" + idke + " )"
-                   + "UNION ALL  SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level +1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
-                   + " PrikazDetaljaDaNe As pd, PrikazPo As pp  FROM DokumentaStablo  AS e WITH (NOLOCK) "
-                   + " INNER JOIN RekurzivnoStablo AS d  ON e.ID_DokumentaStablo = d.Vezan) "
-                   + " SELECT distinct NazivJavni FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0";
-
-           var dr= db.ReturnDataReader(sselect);
-
-         
-
-            if (dr.HasRows == true)
-            {
-                while (dr.Read())
-                    namesCollection.Add(dr["NazivJavni"].ToString());
-            }
-
-            
-          
-
-            toolStripTextBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            toolStripTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            toolStripTextBox1.AutoCompleteCustomSource = namesCollection;
-           
-        }
-
-
-        private void toolStripTextBox1_Click(object sender, EventArgs e)
-        { 
-            
-       
-        string sselect;
-            string idke = Program.idkadar.ToString();
-            string idfirme = Program.idFirme.ToString();
-            sselect = "; WITH RekurzivnoStablo (ID_DokumentaStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS "
-                   + "(SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
-                   + " PrikazDetaljaDaNe as pd,PrikazPo as pp"
-                   + " FROM DokumentaStablo AS e WITH (NOLOCK) "
-                   + " where Naziv in (select g.naziv from Grupa as g,KadroviIOrganizacionaStrukturaStavkeView as ko Where (KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura "
-                   + " Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija=" + idke + " )"
-                   + "UNION ALL  SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level +1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
-                   + " PrikazDetaljaDaNe As pd, PrikazPo As pp  FROM DokumentaStablo  AS e WITH (NOLOCK) "
-                   + " INNER JOIN RekurzivnoStablo AS d  ON e.ID_DokumentaStablo = d.Vezan) "
-                   + " SELECT distinct NazivJavni FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0";
-
-
-
-           // DataTable ti = db.ReturnDataTable(sselect);
-
-           //// toolStripTextBox1.Text += ti.ToString();
-
-           // toolStripTextBox1.AutoCompleteMode = AutoCompleteMode.Suggest;
-           // toolStripTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
-           // AutoCompleteStringCollection col = new AutoCompleteStringCollection();
-           // col.Add(ti.ToString());
-           
-           // toolStripTextBox1.AutoCompleteCustomSource = col;
-
-            //toolStripTextBox1.Text = toolStripTextBox1.Text.Trim();
-            //toolStripTextBox1.Focus();
-            //if (toolStripTextBox1.Text == "Dokumenta ...") toolStripTextBox1.Text = "";
-            //if (toolStripTextBox1.Text.Trim() != "") return;
-            //toolStripTextBox1.Text = "";
-            //SendKeys.Send(" ");
-
-
-
-        }
-        //private void ToolStripTextBox1_DoubleClick(object sender, EventArgs e)
-        //{
-
-        //    ToolStripTextBox item = sender as ToolStripTextBox;
-        //    BrziPristup(item);
-
-        //}
-
-        //private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
-        //{
-
-        //    if (e.KeyCode != Keys.Enter)
-        //    {
-        //        return;
-        //    }
-        //    ToolStripTextBox item = sender as ToolStripTextBox;
-        //    BrziPristup(item);
-
-        //}
-        //private void toolStripTextBox1_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (Program.IntLogovanje == -1)
-        //    {
-        //        toolStripTextBox1.Text = "";
-        //        return;
-        //    }
-        //    if (toolStripTextBox1.Text.Length == 1)
-        //    {
-        //        string kon = toolStripTextBox1.Text;
-        //        if (kon.Trim() != "")
-        //        {
-        //            toolStripTextBox1.Text = " " + toolStripTextBox1.Text;
-        //            toolStripTextBox1.SelectionStart = toolStripTextBox1.Text.Length;
-        //        }
-        //    }
-        //}
+     
 
         private void CloseActive_Click(object sender, EventArgs e)
         {
@@ -1392,6 +1282,7 @@ namespace Bankom
         {
 
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
+            activeChild.BackColor = System.Drawing.Color.SeaShell;
             DialogResult res = MsgBox.ShowDialog("Tekst pretrage:", "Pretraga", ((Bankom.frmChield)activeChild).toolStripTextFind.Text,
             MsgBox.Icon.Question,
             MsgBox.Buttons.OkCancel,
@@ -1564,7 +1455,7 @@ namespace Bankom
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
-
+            activeChild.BackColor = System.Drawing.Color.SeaShell;
             DajVrednostPropertija(activeChild);
         }
 
@@ -1609,6 +1500,7 @@ namespace Bankom
             }
 
             Form activeChild = (frmChield)this.ActiveMdiChild;
+            activeChild.BackColor = System.Drawing.Color.SeaShell;
             if (activeChild != null)
             {
 
@@ -1642,6 +1534,7 @@ namespace Bankom
             }
 
             frmPrint fs = new frmPrint();
+            fs.BackColor = System.Drawing.Color.SeaShell;
 
             fs.MdiParent = this;
             fs.Text = "print - " + ime;
@@ -1686,6 +1579,7 @@ namespace Bankom
             }
 
             Form activeChild = (frmChield)this.ActiveMdiChild;
+            activeChild.BackColor = System.Drawing.Color.SeaShell;
             if (activeChild != null)
             {
                 imeDokumenta = ((Bankom.frmChield)activeChild).imedokumenta;
@@ -1723,6 +1617,7 @@ namespace Bankom
             }
 
             frmPrint fs = new frmPrint();
+            fs.BackColor = System.Drawing.Color.SeaShell;
 
             fs.MdiParent = this;
             fs.Text = "print - " + ime;
@@ -1754,6 +1649,8 @@ namespace Bankom
         {
 
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
+
+            activeChild.BackColor = System.Drawing.Color.SeaShell;
             string c = ((Bankom.frmChield)activeChild).toolStripTexIme.Text;
             string d = ((Bankom.frmChield)activeChild).toolStripTextBroj.Text;
             long f = ((Bankom.frmChield)activeChild).iddokumenta;
@@ -1952,6 +1849,7 @@ namespace Bankom
                 if (odgovor == false) //nije otvoren
                 {
                     frmPrint fs = new frmPrint();
+                   fs.BackColor = System.Drawing.Color.SeaShell;
                     fs.MdiParent = this;
                     fs.Text = naslov;
                     fs.intCurrentdok = Convert.ToInt32(iddok); //id
@@ -2266,9 +2164,11 @@ namespace Bankom
         private void CloseAllToolStripMenuItem_Click(object sender, EventArgs e)
 
         {
+            
 
             foreach (Form frm in this.MdiChildren)
             {
+                frm.BackColor = System.Drawing.Color.SeaShell;
 
                 if (!frm.Focused)
                 {
@@ -2439,7 +2339,7 @@ namespace Bankom
         {
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
 
-
+           activeChild.BackColor = System.Drawing.Color.SeaShell;
 
             DialogResult res = MsgBox.ShowDialog("Tekst pretrage:", "Pretraga", ((Bankom.frmChield)activeChild).toolStripTextFind.Text,
             MsgBox.Icon.Question,
@@ -2642,6 +2542,7 @@ namespace Bankom
             clsXmlPlacanja cxml = new clsXmlPlacanja();
             cxml.izborPlacanja(2, mg + svrsta);
             frmPrint fs = new frmPrint();
+            fs.BackColor = System.Drawing.Color.SeaShell;
 
             fs.MdiParent = this;
             fs.Text = "plate-" + mg;
@@ -2687,6 +2588,7 @@ namespace Bankom
             clsXmlPlacanja cxml = new clsXmlPlacanja();
             cxml.izborPlacanja(0, mg);
             frmPrint fs = new frmPrint();
+           fs.BackColor = System.Drawing.Color.SeaShell;
 
             fs.MdiParent = this;
             fs.Text = "prevoz-" + mg;
@@ -2732,6 +2634,7 @@ namespace Bankom
             clsXmlPlacanja cxml = new clsXmlPlacanja();
             cxml.izborPlacanja(1, mg);
             frmPrint fs = new frmPrint();
+           fs.BackColor = System.Drawing.Color.SeaShell;
             fs.kojiprint = "nag";
             fs.MdiParent = this;
             fs.Text = "nagrade-" + mg;
@@ -2985,6 +2888,7 @@ namespace Bankom
 
             char[] separators = { '#' };
             frmIzvod childForm = new frmIzvod();
+            childForm.BackColor = System.Drawing.Color.SeaShell;
             childForm.MdiParent = this;
             childForm.strPutanjaPlacanja = strPreuzimanjePlacanja.Split(separators)[0];
             childForm.mesecgodina = strPreuzimanjePlacanja.Split(separators)[1];
@@ -3046,6 +2950,7 @@ namespace Bankom
             else
             {
                 frmChield activeChild = (frmChield)this.ActiveMdiChild;
+                activeChild.BackColor = System.Drawing.Color.SeaShell;
                 string dokumentje = ((Bankom.frmChield)activeChild).DokumentJe;
                 string nazivklona = ((Bankom.frmChield)activeChild).imedokumenta;
                 DataGridView dg = activeChild.Controls.Find(Program.imegrida, true).FirstOrDefault() as DataGridView;
@@ -3068,6 +2973,7 @@ namespace Bankom
             else
             {
                 frmChield activeChild = (frmChield)this.ActiveMdiChild;
+                activeChild.BackColor = System.Drawing.Color.SeaShell;
                 string dokumentje = ((Bankom.frmChield)activeChild).DokumentJe;
                 string nazivklona = ((Bankom.frmChield)activeChild).imedokumenta;
                 DataGridView dg = activeChild.Controls.Find(Program.imegrida, true).FirstOrDefault() as DataGridView;
@@ -3085,6 +2991,7 @@ namespace Bankom
         {
             clsIzvestaji IZV = new clsIzvestaji();
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
+            activeChild.BackColor = System.Drawing.Color.SeaShell;
             string NazivKlona = ((Bankom.frmChield)activeChild).imedokumenta;
             string BrDok = ((Bankom.frmChield)activeChild).brdok;
             string KojiIzvestaj = "";
@@ -3115,6 +3022,7 @@ namespace Bankom
             clsIzvestaji IZV = new clsIzvestaji();
             DataBaseBroker db = new DataBaseBroker();
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
+            activeChild.BackColor = System.Drawing.Color.SeaShell;
             string NazivKlona = ((Bankom.frmChield)activeChild).imedokumenta;
             string BrDok = ((Bankom.frmChield)activeChild).brdok;
             string KojiIzvestaj = "";
@@ -3785,13 +3693,61 @@ namespace Bankom
                 button1.Location = new Point(159, 301);
             }
         }
+       
+        
 
-        private void toolStripTextBox1_KeyUp(object sender, KeyEventArgs e)
+
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
         {
-            loadData();
+             
+            DataBaseBroker db = new DataBaseBroker();
+            AutoCompleteStringCollection namesCollection = new AutoCompleteStringCollection();
+
+
+            string sselect;
+            string idke = Program.idkadar.ToString();
+            string idfirme = Program.idFirme.ToString();
+            sselect = "; WITH RekurzivnoStablo (ID_DokumentaStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS "
+                   + "(SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
+                   + " PrikazDetaljaDaNe as pd,PrikazPo as pp"
+                   + " FROM DokumentaStablo AS e WITH (NOLOCK) "
+                   + " where Naziv in (select g.naziv from Grupa as g,KadroviIOrganizacionaStrukturaStavkeView as ko Where (KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura "
+                   + " Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija=" + idke + " )"
+                   + "UNION ALL  SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level +1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
+                   + " PrikazDetaljaDaNe As pd, PrikazPo As pp  FROM DokumentaStablo  AS e WITH (NOLOCK) "
+                   + " INNER JOIN RekurzivnoStablo AS d  ON e.ID_DokumentaStablo = d.Vezan) "
+                   + " SELECT distinct NazivJavni FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0";
+
+            var dr = db.ReturnDataReader(sselect);
+
+
+
+            if (dr.HasRows == true)
+            {
+                while (dr.Read())
+                    namesCollection.Add(dr["NazivJavni"].ToString());
+            }
+
+
+
+
+            toolStripTextBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            toolStripTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            toolStripTextBox1.AutoCompleteCustomSource = namesCollection;
+
+            ToolStripTextBox item = sender as ToolStripTextBox;
+            BrziPristup(item);
+            toolStripTextBox1.Text = "";
+
         }
 
-       
+
+
+        //private void toolStripTextBox1_Enter(object sender, EventArgs e)
+        //{
+        //    ToolStripTextBox item = sender as ToolStripTextBox;
+        //    BrziPristup(item);
+        //}
     }
 
 } 

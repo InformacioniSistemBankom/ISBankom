@@ -167,6 +167,7 @@ namespace Bankom
             this.Oorgsema = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator33 = new System.Windows.Forms.ToolStripSeparator();
             this.Oorigin = new System.Windows.Forms.ToolStripButton();
+            this.PpredlogCena = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -883,7 +884,8 @@ namespace Bankom
             this.toolStripSeparator32,
             this.Oorgsema,
             this.toolStripSeparator33,
-            this.Oorigin});
+            this.Oorigin,
+            this.PpredlogCena});
             this.ToolBar.Location = new System.Drawing.Point(0, 0);
             this.ToolBar.Name = "ToolBar";
             this.ToolBar.Size = new System.Drawing.Size(1429, 43);
@@ -1012,12 +1014,10 @@ namespace Bankom
             this.toolStripTextBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.toolStripTextBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.toolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripTextBox1.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripTextBox1.Name = "toolStripTextBox1";
             this.toolStripTextBox1.Size = new System.Drawing.Size(200, 43);
-            this.toolStripTextBox1.Text = "Dokumenta ...";
-            this.toolStripTextBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox1_KeyUp);
-            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click_1);
+            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             // 
             // toolStripSeparator13
             // 
@@ -1354,11 +1354,20 @@ namespace Bankom
             this.Oorigin.ToolTipText = "Skenirani original ulaznih dokumenata";
             this.Oorigin.Visible = false;
             // 
+            // PpredlogCena
+            // 
+            this.PpredlogCena.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.PpredlogCena.Image = ((System.Drawing.Image)(resources.GetObject("PpredlogCena.Image")));
+            this.PpredlogCena.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.PpredlogCena.Name = "PpredlogCena";
+            this.PpredlogCena.Size = new System.Drawing.Size(23, 20);
+            this.PpredlogCena.Text = "Pregled cena";
+            // 
             // toolStrip1
             // 
-            this.toolStrip1.Location = new System.Drawing.Point(0, 124);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 43);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1712, 33);
+            this.toolStrip1.Size = new System.Drawing.Size(1429, 25);
             this.toolStrip1.TabIndex = 34;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.Visible = false;
@@ -1367,9 +1376,9 @@ namespace Bankom
             // 
             this.flowLayoutPanel1.Controls.Add(this.menuStrip1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 43);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 68);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 734);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 709);
             this.flowLayoutPanel1.TabIndex = 40;
             // 
             // menuStrip1
@@ -1607,6 +1616,7 @@ namespace Bankom
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator21;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripButton PpredlogCena;
     }
 }
 
