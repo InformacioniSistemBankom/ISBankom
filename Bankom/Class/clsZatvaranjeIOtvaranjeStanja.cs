@@ -40,6 +40,7 @@ namespace Bankom.Class
                     // Zatvaranje i otvaranje stanja
                     Zatvaranje(PoLotuDaNe);
                     Otvaranje(PoLotuDaNe);
+                    ObradiZahtev = true;
                 }
                 else
                 {
@@ -47,7 +48,7 @@ namespace Bankom.Class
                     return ObradiZahtev;
                 }
             }
-            ObradiZahtev = true;
+            
             return ObradiZahtev;
         }
 

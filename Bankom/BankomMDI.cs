@@ -3263,6 +3263,7 @@ namespace Bankom
         private DataTable GetDataSet()
         {
             //DataTable dt = new DataTable("Menu");
+            //ovde se koristi MenuStablo tabela i ona ne odgovara php-u vise
             String SQL = ";  WITH RekurzivnoStablo (ID_MenuStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS " +
                          "  (SELECT e.ID_MenuStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave,  PrikazDetaljaDaNe as pd,PrikazPo as pp " +
                          " FROM MenuStablo AS e WITH(NOLOCK)  where Naziv in (select g.naziv from Grupa as g, KadroviIOrganizacionaStrukturaStavkeView as ko Where(KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura " +
@@ -3288,12 +3289,13 @@ namespace Bankom
                 slovo = 'S';
             else if (s == "Izvestaji")
                 slovo = 'I';
+            else if (s == "KlasifikacijaOrganizacioneStrukture" || s == "KlasifikacijaArtikla" || s == "KlasifikacijaKomitenata" || s == "KlasifikacijaDokumenata"
+                || s == "KlasifikacijaIzvestaja" || s == "KlasifikacijaMenija" || s == "KlasifikacijaPomocnihSifarnika")
+                slovo = 'K';
             else
                 slovo = 'P';
-            //"OsnovniSifarnici":
             return slovo;
         }
-
         private bool IsOpen(string s)
         {
             bool pom = false;
@@ -3313,8 +3315,7 @@ namespace Bankom
             }
             return pom;
         }
-
-        private void MenuItemClickHandler(object sender, EventArgs e)
+private void MenuItemClickHandler(object sender, EventArgs e)
         {
             string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
             char slovo = UzmiSlovo(s);
@@ -3327,6 +3328,13 @@ namespace Bankom
                 case "PomocniSifarnici":
                 case "Artikli":
                 case "Komitenti":
+                case "KlasifikacijaOrganizacioneStrukture":
+                case "KlasifikacijaArtikla":
+                case "KlasifikacijaKomitenata":
+                case "KlasifikacijaDokumenata":
+                case "KlasifikacijaIzvestaja":
+                case "KlasifikacijaMenija":
+                case "KlasifikacijaPomocnihSifarnika":
                     postoji = IsOpen(s);
                     if (postoji == false)
                     {
@@ -3335,7 +3343,7 @@ namespace Bankom
                     }
                     break;
                 case "Dozvole":
-                    Program.Parent.ShowNewForm("", 1, "Dozvole", 1, "", "", "P", "", "");
+                    ShowNewForm("", 1, "Dozvole", 1, "", "", "P", "", "");
                     break;
                 case "PreuzimanjeKursneListe":
                     KursnaLista kl = new KursnaLista();
@@ -3573,15 +3581,6 @@ namespace Bankom
                 case "Razduzenjesirovinazaodabraniintervaldatuma":
                     Preuzimanja.RazduzenjeSirovinaZaOdabraniIntervalDatuma();
                     break;
-                case "ZatvaranjeStanjaPoLotu":
-
-                    break;
-                case "PocetakGodine":
-
-                    break;
-                case "UsaglasavanjeRobeIFinansija":
-
-                    break;
                 case "KursnaListaZaCeluGodinu":
                     string GodinaKursa = "";
                     string PocetniDatumKursa = "";
@@ -3696,7 +3695,7 @@ namespace Bankom
                         }
                     }
                     break;
-                case "ProcesirajeDnevnogiIzvestaja":
+                case "ProcesiranjeDnevnogiIzvestaja":
 
                     break;
                 case "ProcesiranjeBrutoBilansa":
@@ -3705,6 +3704,31 @@ namespace Bankom
                 case "SpisakDokumenata":
                     ShowNewForm(" ", 1, "SpisakDokumenata", 1, "", "", "I", "", ""); //SpisakDokumenata
                     break;
+                case "ZatvaranjeStanjaPoLotu":
+                    clsZatvaranjeIOtvaranjeStanja c = new clsZatvaranjeIOtvaranjeStanja();
+                    bool pom = c.ObradiZahtev("DA");
+                    if (pom)
+                        MessageBox.Show("Uspešno završeno!");
+                    else
+                        MessageBox.Show("Nije uspelo zatvaranje stanja po lot-u!");
+                    break;
+                case "PocetakGodine":
+                    clsZatvaranjeIOtvaranjeStanja c1 = new clsZatvaranjeIOtvaranjeStanja();
+                    bool pom1 = c1.ObradiZahtev("NE");
+                    if (pom1)
+                        MessageBox.Show("Uspešno završeno!");
+                    else
+                        MessageBox.Show("Neuspešno!");
+                    break;
+                case "UsaglasavanjeRobeIFinansija":
+                    clsKorekcija k = new clsKorekcija();
+                    bool pom2 = k.ObradiZahtev();
+                    if (pom2)
+                        MessageBox.Show("Uspešno završeno!");
+                    else
+                        MessageBox.Show("Nije uspelo usaglašavanje robe i finansija!");
+                    break;
+                
                 //case "Dozvole":
                 //    ShowNewForm(" ", 1, "Dozvole", 1, "", "", "P", "", "");
                 //    break;
