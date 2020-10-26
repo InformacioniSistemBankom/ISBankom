@@ -150,7 +150,6 @@ namespace Bankom
             this.Kknjzi = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
             this.Ppredlogcena = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator30 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator34 = new System.Windows.Forms.ToolStripSeparator();
             this.Kkalki = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator42 = new System.Windows.Forms.ToolStripSeparator();
@@ -186,6 +185,7 @@ namespace Bankom
             this.sdfgghToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -875,13 +875,13 @@ namespace Bankom
             this.Kknjzi,
             this.toolStripSeparator21,
             this.Ppredlogcena,
-            this.toolStripSeparator30,
             this.toolStripSeparator34,
             this.Kkalki,
             this.toolStripSeparator42,
             this.Kkalku,
             this.toolStripSeparator35,
             this.Ppotencijal,
+            this.toolStripSeparator15,
             this.Pppppd,
             this.toolStripSeparator36,
             this.Pposta,
@@ -902,7 +902,7 @@ namespace Bankom
             this.toolStripButton1});
             this.ToolBar.Location = new System.Drawing.Point(0, 0);
             this.ToolBar.Name = "ToolBar";
-            this.ToolBar.Size = new System.Drawing.Size(1636, 43);
+            this.ToolBar.Size = new System.Drawing.Size(1214, 43);
             this.ToolBar.TabIndex = 32;
             this.ToolBar.Text = "toolbar";
             this.ToolBar.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ToolBar_ItemClicked);
@@ -1182,12 +1182,6 @@ namespace Bankom
             this.Ppredlogcena.ToolTipText = "Pregled cena";
             this.Ppredlogcena.Visible = false;
             // 
-            // toolStripSeparator30
-            // 
-            this.toolStripSeparator30.Name = "toolStripSeparator30";
-            this.toolStripSeparator30.Size = new System.Drawing.Size(6, 43);
-            this.toolStripSeparator30.Visible = false;
-            // 
             // toolStripSeparator34
             // 
             this.toolStripSeparator34.Name = "toolStripSeparator34";
@@ -1425,7 +1419,7 @@ namespace Bankom
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 43);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 1018);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 672);
             this.flowLayoutPanel1.TabIndex = 40;
             // 
             // menuStrip1
@@ -1433,7 +1427,7 @@ namespace Bankom
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(30, 206);
+            this.menuStrip1.Size = new System.Drawing.Size(126, 25);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1485,12 +1479,17 @@ namespace Bankom
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // toolStripSeparator15
+            // 
+            this.toolStripSeparator15.Name = "toolStripSeparator15";
+            this.toolStripSeparator15.Size = new System.Drawing.Size(6, 43);
+            // 
             // BankomMDI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(1636, 1061);
+            this.ClientSize = new System.Drawing.Size(1214, 715);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.toolStrip1);
@@ -1502,7 +1501,6 @@ namespace Bankom
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BankomMDI";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = " ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.BankomMDI_Load);
@@ -1633,7 +1631,6 @@ namespace Bankom
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator20;
         private System.Windows.Forms.ToolStripButton Kkalku;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator29;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator30;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator31;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator32;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator33;
@@ -1672,6 +1669,7 @@ namespace Bankom
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator44;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator45;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator46;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
     }
 }
 

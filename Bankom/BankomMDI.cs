@@ -89,7 +89,7 @@ namespace Bankom
                 //childForm.Top = 300;
 
                 childForm.AutoScroll = false;
-                // childForm.Height = this.Height - this.toolStrip.Height - this.menuStrip1.Height - this.toolStrip.Height - 20;
+                // childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
               //  childForm.WindowState = FormWindowState.Maximized;
                 //childForm.Width = this.Width - 20;
                 childForm.Show();

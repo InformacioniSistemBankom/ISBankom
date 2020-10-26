@@ -50,6 +50,7 @@ namespace Bankom
         }
         private void frmChield_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.None;
             intStart = 0;                
             toolStripStatusPrazno.Text = new String(' ', 150);
             
