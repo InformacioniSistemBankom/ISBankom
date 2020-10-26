@@ -62,12 +62,12 @@ namespace Bankom
             {
 
                 frmChield childForm = new frmChield();
-               
+                childForm.FormBorderStyle = FormBorderStyle.None;
                 childForm.BackColor = System.Drawing.Color.SeaShell;
                 childForm.MdiParent = this;
                 childForm.BringToFront();
 
-                this.WindowState = FormWindowState.Normal;
+                this.WindowState = FormWindowState.Maximized;
 
                 if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
                 int sirina = (Width / 100) * 10;
@@ -574,7 +574,7 @@ namespace Bankom
                     {
                         if (childForm.Text.ToUpper() == b.ToUpper())
                         {
-               
+                            childForm.FormBorderStyle = FormBorderStyle.None;
                             childForm.BackColor = System.Drawing.Color.SeaShell;
                             childForm.Focus();
                             childForm.Activate();
@@ -599,7 +599,7 @@ namespace Bankom
             }
 
             Form childForm1 = ActiveMdiChild;
-    
+            childForm1.FormBorderStyle = FormBorderStyle.None;
             childForm1.BackColor = System.Drawing.Color.SeaShell;
             childForm1.Focus();
             childForm1.Visible = false;
@@ -643,7 +643,7 @@ namespace Bankom
             else
             {
                 Form childForm1 = ActiveMdiChild;
-            
+                childForm1.FormBorderStyle = FormBorderStyle.None;
                 childForm1.BackColor = System.Drawing.Color.SeaShell;
                 childForm1.Focus();
                 childForm1.Visible = false;
@@ -3344,10 +3344,12 @@ namespace Bankom
                     kl.Show();
                     //Djora 15.09.20
                     kl.WindowState = FormWindowState.Maximized;
+                    kl.FormBorderStyle = FormBorderStyle.None;
                     addFormTotoolstrip1(kl, "Preuzimanje Kursne Liste");
                     break;
                 case "Prenosi":
                     Form activeChild = this.ActiveMdiChild;
+                    activeChild.FormBorderStyle = FormBorderStyle.None;
                     if (activeChild != null)
                     {
                         // activeChild.Controls["OOperacija"].Text = "PRENOSI";
@@ -3378,6 +3380,7 @@ namespace Bankom
                     if (strPreuzimanjePlacanja == "") { return; }
                     char[] separators = { '#' };
                     frmIzvod childForm = new frmIzvod();
+                    childForm.FormBorderStyle = FormBorderStyle.None;
                     childForm.MdiParent = this;
                     childForm.strPutanjaPlacanja = strPreuzimanjePlacanja.Split(separators)[0];
                     childForm.mesecgodina = strPreuzimanjePlacanja.Split(separators)[1];
@@ -3430,6 +3433,7 @@ namespace Bankom
                     clsXmlPlacanja cxml = new clsXmlPlacanja();
                     cxml.izborPlacanja(2, mg + svrsta);
                     frmPrint fs = new frmPrint();
+                    fs.FormBorderStyle = FormBorderStyle.None;
 
                     fs.MdiParent = this;
                     fs.Text = "plate-" + mg;

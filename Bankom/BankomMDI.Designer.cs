@@ -1414,7 +1414,7 @@ namespace Bankom
             // 
             this.toolStrip1.Location = new System.Drawing.Point(0, 43);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1429, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1636, 25);
             this.toolStrip1.TabIndex = 34;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.Visible = false;
@@ -1497,13 +1497,14 @@ namespace Bankom
             this.Controls.Add(this.ToolBar);
             this.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BankomMDI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = " ";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.BankomMDI_Load);
             this.ToolBar.ResumeLayout(false);
             this.ToolBar.PerformLayout();
