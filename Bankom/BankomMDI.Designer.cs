@@ -175,7 +175,6 @@ namespace Bankom
             this.toolStripSeparator33 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator46 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.asdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -186,6 +185,7 @@ namespace Bankom
             this.sdfgghToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ToolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -1410,15 +1410,6 @@ namespace Bankom
             this.toolStripButton1.ToolTipText = "Skenirani original ulaznih dokumenata";
             this.toolStripButton1.Visible = false;
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Location = new System.Drawing.Point(0, 43);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1429, 25);
-            this.toolStrip1.TabIndex = 34;
-            this.toolStrip1.Text = "toolStrip1";
-            this.toolStrip1.Visible = false;
-            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.menuStrip1);
@@ -1485,25 +1476,35 @@ namespace Bankom
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Location = new System.Drawing.Point(162, 43);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1474, 25);
+            this.toolStrip1.TabIndex = 44;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
             // BankomMDI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.SeaShell;
             this.ClientSize = new System.Drawing.Size(1636, 1061);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.ToolBar);
             this.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BankomMDI";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = " ";
+            this.Text = " Bankom";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.BankomMDI_Load);
             this.ToolBar.ResumeLayout(false);
             this.ToolBar.PerformLayout();
@@ -1613,7 +1614,6 @@ namespace Bankom
         private System.Windows.Forms.ToolStripButton Oorigin;
         private System.Windows.Forms.ToolStripButton Ppredlogcena;
         public System.Windows.Forms.ToolStrip ToolBar;
-        private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripMenuItem unospb;
         internal System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         internal System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
@@ -1671,6 +1671,7 @@ namespace Bankom
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator44;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator45;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator46;
+        private System.Windows.Forms.ToolStrip toolStrip1;
     }
 }
 
