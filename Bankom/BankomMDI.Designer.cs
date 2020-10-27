@@ -1425,7 +1425,7 @@ namespace Bankom
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 43);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 1018);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 1014);
             this.flowLayoutPanel1.TabIndex = 40;
             // 
             // menuStrip1
@@ -1490,7 +1490,7 @@ namespace Bankom
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(1636, 1061);
+            this.ClientSize = new System.Drawing.Size(1636, 1057);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.toolStrip1);

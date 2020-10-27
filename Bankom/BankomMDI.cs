@@ -62,12 +62,11 @@ namespace Bankom
             {
 
                 frmChield childForm = new frmChield();
-               
                 childForm.BackColor = System.Drawing.Color.SeaShell;
                 childForm.MdiParent = this;
                 childForm.BringToFront();
 
-                this.WindowState = FormWindowState.Normal;
+                this.WindowState = FormWindowState.Maximized;
 
                 if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
                 int sirina = (Width / 100) * 10;
@@ -284,7 +283,6 @@ namespace Bankom
             Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
             // ivana 21.10.2020.
             CreateMenu();
-
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
@@ -3183,9 +3181,8 @@ namespace Bankom
             t.Width = 150;
             t.Height = 50;
             t.BackColor = Color.SeaShell;
-            t.Font= new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            t.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             t.ForeColor = System.Drawing.Color.MidnightBlue;
-            //
             menuStrip1.Items.Add(t);
             if (dt.Select("MenuParent='" + strMenu + "'").Length > 0)
             {
@@ -3197,6 +3194,7 @@ namespace Bankom
             else
                 t.Click += new EventHandler(MenuItemClickHandler);
         }
+    
 
         private string CreateMenuItems(ToolStripMenuItem t, string strMenu)
         {
@@ -3209,7 +3207,6 @@ namespace Bankom
                 t1.BackColor = Color.SeaShell;
                 t1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 t1.ForeColor = System.Drawing.Color.MidnightBlue;
-                //
                 t.DropDownItems.Add(t1);
                 foreach (DataRow r in dt.Select("MenuParent='" + strMenu + "'"))
                 {
@@ -3219,14 +3216,24 @@ namespace Bankom
             else
             {
                 ToolStripMenuItem t1 = new ToolStripMenuItem(GetMenuName(strMenu));
-                t1.Click += new EventHandler(MenuItemClickHandler);
-                t.DropDownItems.Add(t1);
-                //stil 21.10.2020.
                 t1.TextAlign = ContentAlignment.TopLeft;
                 t1.Height = 70;
                 t1.BackColor = Color.SeaShell;
                 t1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 t1.ForeColor = System.Drawing.Color.MidnightBlue;
+                //Dodavanje separatora 27.10.2020. Ivana
+                ToolStripSeparator s1 = new ToolStripSeparator();
+                Debug.WriteLine(strMenu);
+                if (strMenu == "91")
+                {
+                    t.DropDownItems.Add(s1);
+                }
+                else
+                {
+                    t1.Click += new EventHandler(MenuItemClickHandler);
+                    t.DropDownItems.Add(t1);
+                }
+                //stil 21.10.2020.
                 //
                 return strMenu;
             }
@@ -3296,6 +3303,12 @@ namespace Bankom
                 slovo = 'P';
             return slovo;
         }
+
+        private string SkiniKlasifikaciju(string s)
+        { 
+            return s.Substring(13);
+        }
+
         private bool IsOpen(string s)
         {
             bool pom = false;
@@ -3336,6 +3349,10 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 case "KlasifikacijaMenija":
                 case "KlasifikacijaPomocnihSifarnika":
                     postoji = IsOpen(s);
+                    if(s.Contains("Klasifikacija"))
+                    {
+                        s = SkiniKlasifikaciju(s);
+                    }
                     if (postoji == false)
                     {
                         clsObradaOsnovnihSifarnika co0 = new clsObradaOsnovnihSifarnika();
