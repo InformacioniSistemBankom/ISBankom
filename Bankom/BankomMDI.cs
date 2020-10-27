@@ -272,7 +272,17 @@ namespace Bankom
         }
 
         private void BankomMDI_Load(object sender, EventArgs e)
-        {
+        { // tamara 27.10.2020.
+            Program.Parent.ToolBar.Items["toolstripseparator15"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator20"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator21"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator34"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator35"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator36"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator37"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator42"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator43"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator44"].Visible = false;
             this.Text = Program.imeFirme + "-" + Program.imekorisnika;
             addKombo();
             clsSettingsButtons sb = new clsSettingsButtons();
@@ -3330,7 +3340,14 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                     postoji = IsOpen(s);
                     if (postoji == false)
                     {
+                        //tamara 27.10.2020.
 
+                       // Form activeChildd = this.ActiveMdiChild;
+                       //// activeChildd.FormBorderStyle = FormBorderStyle.None;
+                       // if (activeChildd != null)
+                       // {
+                       //     activeChildd.Hide();
+                       // }
                         clsObradaOsnovnihSifarnika co0 = new clsObradaOsnovnihSifarnika();
                         ShowNewForm(s, 1, s, 1, "", "", slovo.ToString(), "", "TreeView");
                     }
