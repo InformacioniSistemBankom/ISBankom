@@ -365,7 +365,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(1284, 470);
+            this.ClientSize = new System.Drawing.Size(1254, 1012);
             this.Controls.Add(this.limegrida);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lBrDok);

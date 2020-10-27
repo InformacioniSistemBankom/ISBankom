@@ -50,6 +50,9 @@ namespace Bankom
         }
         private void frmChield_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.BackColor = Color.SeaShell;
+           
             intStart = 0;                
             toolStripStatusPrazno.Text = new String(' ', 150);
             

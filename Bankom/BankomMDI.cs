@@ -62,8 +62,7 @@ namespace Bankom
             {
 
                 frmChield childForm = new frmChield();
-                childForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
+                childForm.FormBorderStyle = FormBorderStyle.None;
                 childForm.BackColor = System.Drawing.Color.SeaShell;
                 childForm.MdiParent = this;
                 childForm.BringToFront();
@@ -86,10 +85,11 @@ namespace Bankom
                 childForm.toolStripTextBroj.Text = Convert.ToString(idstablo);
                 childForm.Text = ss;
                 childForm.Name = ss;
-             
+                //childForm.Left = 380;
+                //childForm.Top = 300;
 
                 childForm.AutoScroll = false;
-                // childForm.Height = this.Height - this.toolStrip.Height - this.menuStrip1.Height - this.toolStrip.Height - 20;
+                // childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
               //  childForm.WindowState = FormWindowState.Maximized;
                 //childForm.Width = this.Width - 20;
                 childForm.Show();
@@ -574,7 +574,7 @@ namespace Bankom
                     {
                         if (childForm.Text.ToUpper() == b.ToUpper())
                         {
-               childForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                            childForm.FormBorderStyle = FormBorderStyle.None;
                             childForm.BackColor = System.Drawing.Color.SeaShell;
                             childForm.Focus();
                             childForm.Activate();
@@ -599,8 +599,7 @@ namespace Bankom
             }
 
             Form childForm1 = ActiveMdiChild;
-            childForm1.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
+            childForm1.FormBorderStyle = FormBorderStyle.None;
             childForm1.BackColor = System.Drawing.Color.SeaShell;
             childForm1.Focus();
             childForm1.Visible = false;
@@ -644,8 +643,7 @@ namespace Bankom
             else
             {
                 Form childForm1 = ActiveMdiChild;
-                childForm1.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
+                childForm1.FormBorderStyle = FormBorderStyle.None;
                 childForm1.BackColor = System.Drawing.Color.SeaShell;
                 childForm1.Focus();
                 childForm1.Visible = false;
@@ -1212,8 +1210,6 @@ namespace Bankom
         private void CloseActive_Click(object sender, EventArgs e)
         {
             Form childForm = ActiveMdiChild;
-            childForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
             string b = childForm.Text;
 
 
@@ -1321,8 +1317,6 @@ namespace Bankom
         {
 
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
             activeChild.BackColor = System.Drawing.Color.SeaShell;
             DialogResult res = MsgBox.ShowDialog("Tekst pretrage:", "Pretraga", ((Bankom.frmChield)activeChild).toolStripTextFind.Text,
             MsgBox.Icon.Question,
@@ -1382,11 +1376,7 @@ namespace Bankom
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             // tamara 26.10.2020.
-            Form activeChild = this.ActiveMdiChild;
-            if (activeChild != null)
-            {
-                activeChild.Left = 162;
-            }
+          
         }
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1501,8 +1491,6 @@ namespace Bankom
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
             activeChild.BackColor = System.Drawing.Color.SeaShell;
             DajVrednostPropertija(activeChild);
         }
@@ -1548,8 +1536,6 @@ namespace Bankom
             }
 
             Form activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
             activeChild.BackColor = System.Drawing.Color.SeaShell;
             if (activeChild != null)
             {
@@ -1667,8 +1653,6 @@ namespace Bankom
             }
 
             frmPrint fs = new frmPrint();
-            fs.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
             fs.BackColor = System.Drawing.Color.SeaShell;
 
             fs.MdiParent = this;
@@ -1701,8 +1685,6 @@ namespace Bankom
         {
 
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
 
             activeChild.BackColor = System.Drawing.Color.SeaShell;
             string c = ((Bankom.frmChield)activeChild).toolStripTexIme.Text;
@@ -1757,11 +1739,7 @@ namespace Bankom
         private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             // tamara 26.10.2020.
-            Form activeChild = this.ActiveMdiChild;
-            if (activeChild == null)
-            {
-                activeChild.Left = 162;
-            }
+            
 
         }
 
@@ -1792,8 +1770,6 @@ namespace Bankom
             Prenosi childForm = new Prenosi();
 
             childForm.MdiParent = this;
-            childForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
 
             // childForm.WindowState = FormWindowState.Maximized;
             childForm.Show();
@@ -1857,8 +1833,6 @@ namespace Bankom
             //Daj mi aktivnu child formu
             Form activeChild = this.ActiveMdiChild;
             //Popuni text u kontroli OOperacija sa "IZMENA" na aktivnoj child formi
-            activeChild.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
             if (activeChild != null)
             {
                 activeChild.Controls["OOperacija"].Text = "IZMENA";
@@ -1873,8 +1847,6 @@ namespace Bankom
         {
             //Daj mi aktivnu child formu
             Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
             //Popuni text u kontroli OOperacija sa "STORNO" na aktivnoj child formi
             if (activeChild == null)
             {
@@ -1950,8 +1922,6 @@ namespace Bankom
         private void Bbrisanje_Click(object sender, EventArgs e)
         {
             Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
             activeChild.Focus();
             //Popuni text u kontroli OOperacija sa "BRISANJE" na aktivnoj child formi
             if (activeChild == null)
@@ -2114,8 +2084,6 @@ namespace Bankom
         {
             foreach (Form childForm in this.MdiChildren)
             {
-                childForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
                 if (childForm == this.ActiveMdiChild)
                 {
                     itemB1_click(childForm.Text);
@@ -2183,8 +2151,6 @@ namespace Bankom
             {
                 foreach (Form childForm in this.MdiChildren)
                 {
-                    childForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
                     if (childForm == this.ActiveMdiChild)
                     {
                         b = childForm.Text;
@@ -2960,8 +2926,6 @@ namespace Bankom
 
             char[] separators = { '#' };
             frmIzvod childForm = new frmIzvod();
-      childForm.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
             childForm.BackColor = System.Drawing.Color.SeaShell;
             childForm.MdiParent = this;
             childForm.strPutanjaPlacanja = strPreuzimanjePlacanja.Split(separators)[0];
@@ -3291,6 +3255,7 @@ namespace Bankom
         private DataTable GetDataSet()
         {
             //DataTable dt = new DataTable("Menu");
+            //ovde se koristi MenuStablo tabela i ona ne odgovara php-u vise
             String SQL = ";  WITH RekurzivnoStablo (ID_MenuStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS " +
                          "  (SELECT e.ID_MenuStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave,  PrikazDetaljaDaNe as pd,PrikazPo as pp " +
                          " FROM MenuStablo AS e WITH(NOLOCK)  where Naziv in (select g.naziv from Grupa as g, KadroviIOrganizacionaStrukturaStavkeView as ko Where(KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura " +
@@ -3316,12 +3281,13 @@ namespace Bankom
                 slovo = 'S';
             else if (s == "Izvestaji")
                 slovo = 'I';
+            else if (s == "KlasifikacijaOrganizacioneStrukture" || s == "KlasifikacijaArtikla" || s == "KlasifikacijaKomitenata" || s == "KlasifikacijaDokumenata"
+                || s == "KlasifikacijaIzvestaja" || s == "KlasifikacijaMenija" || s == "KlasifikacijaPomocnihSifarnika")
+                slovo = 'K';
             else
                 slovo = 'P';
-            //"OsnovniSifarnici":
             return slovo;
         }
-
         private bool IsOpen(string s)
         {
             bool pom = false;
@@ -3341,8 +3307,7 @@ namespace Bankom
             }
             return pom;
         }
-
-        private void MenuItemClickHandler(object sender, EventArgs e)
+private void MenuItemClickHandler(object sender, EventArgs e)
         {
             string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
             char slovo = UzmiSlovo(s);
@@ -3355,34 +3320,40 @@ namespace Bankom
                 case "PomocniSifarnici":
                 case "Artikli":
                 case "Komitenti":
+                case "KlasifikacijaOrganizacioneStrukture":
+                case "KlasifikacijaArtikla":
+                case "KlasifikacijaKomitenata":
+                case "KlasifikacijaDokumenata":
+                case "KlasifikacijaIzvestaja":
+                case "KlasifikacijaMenija":
+                case "KlasifikacijaPomocnihSifarnika":
                     postoji = IsOpen(s);
                     if (postoji == false)
                     {
+
                         clsObradaOsnovnihSifarnika co0 = new clsObradaOsnovnihSifarnika();
                         ShowNewForm(s, 1, s, 1, "", "", slovo.ToString(), "", "TreeView");
                     }
                     break;
                 case "Dozvole":
-                    Program.Parent.ShowNewForm("", 1, "Dozvole", 1, "", "", "P", "", "");
+                    ShowNewForm("", 1, "Dozvole", 1, "", "", "P", "", "");
                     break;
                 case "PreuzimanjeKursneListe":
                     KursnaLista kl = new KursnaLista();
                     //Djora 15.09.20
                     kl.MdiParent = this;
-             
-
                     kl.Show();
                     //Djora 15.09.20
                     kl.WindowState = FormWindowState.Maximized;
+                    kl.FormBorderStyle = FormBorderStyle.None;
                     addFormTotoolstrip1(kl, "Preuzimanje Kursne Liste");
                     break;
                 case "Prenosi":
                     Form activeChild = this.ActiveMdiChild;
-              
-
+                    activeChild.FormBorderStyle = FormBorderStyle.None;
                     if (activeChild != null)
                     {
-                        // activeChild.Controls["OOperacija"].Text = "PRENOSI";
+                        activeChild.Hide();
                     }
                     break;
                 case "PreuzimanjeRateKredita":
@@ -3410,7 +3381,7 @@ namespace Bankom
                     if (strPreuzimanjePlacanja == "") { return; }
                     char[] separators = { '#' };
                     frmIzvod childForm = new frmIzvod();
-
+                    childForm.FormBorderStyle = FormBorderStyle.None;
                     childForm.MdiParent = this;
                     childForm.strPutanjaPlacanja = strPreuzimanjePlacanja.Split(separators)[0];
                     childForm.mesecgodina = strPreuzimanjePlacanja.Split(separators)[1];
@@ -3463,6 +3434,7 @@ namespace Bankom
                     clsXmlPlacanja cxml = new clsXmlPlacanja();
                     cxml.izborPlacanja(2, mg + svrsta);
                     frmPrint fs = new frmPrint();
+                    fs.FormBorderStyle = FormBorderStyle.None;
 
                     fs.MdiParent = this;
                     fs.Text = "plate-" + mg;
@@ -3586,8 +3558,6 @@ namespace Bankom
                     Prenosi childForm1 = new Prenosi();
 
                     childForm1.MdiParent = this;
-                  childForm1.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
 
                     // childForm.WindowState = FormWindowState.Maximized;
                     childForm1.Show();
@@ -3603,15 +3573,6 @@ namespace Bankom
                     break;
                 case "Razduzenjesirovinazaodabraniintervaldatuma":
                     Preuzimanja.RazduzenjeSirovinaZaOdabraniIntervalDatuma();
-                    break;
-                case "ZatvaranjeStanjaPoLotu":
-
-                    break;
-                case "PocetakGodine":
-
-                    break;
-                case "UsaglasavanjeRobeIFinansija":
-
                     break;
                 case "KursnaListaZaCeluGodinu":
                     string GodinaKursa = "";
@@ -3727,7 +3688,7 @@ namespace Bankom
                         }
                     }
                     break;
-                case "ProcesirajeDnevnogiIzvestaja":
+                case "ProcesiranjeDnevnogiIzvestaja":
 
                     break;
                 case "ProcesiranjeBrutoBilansa":
@@ -3736,6 +3697,31 @@ namespace Bankom
                 case "SpisakDokumenata":
                     ShowNewForm(" ", 1, "SpisakDokumenata", 1, "", "", "I", "", ""); //SpisakDokumenata
                     break;
+                case "ZatvaranjeStanjaPoLotu":
+                    clsZatvaranjeIOtvaranjeStanja c = new clsZatvaranjeIOtvaranjeStanja();
+                    bool pom = c.ObradiZahtev("DA");
+                    if (pom)
+                        MessageBox.Show("Uspešno završeno!");
+                    else
+                        MessageBox.Show("Nije uspelo zatvaranje stanja po lot-u!");
+                    break;
+                case "PocetakGodine":
+                    clsZatvaranjeIOtvaranjeStanja c1 = new clsZatvaranjeIOtvaranjeStanja();
+                    bool pom1 = c1.ObradiZahtev("NE");
+                    if (pom1)
+                        MessageBox.Show("Uspešno završeno!");
+                    else
+                        MessageBox.Show("Neuspešno!");
+                    break;
+                case "UsaglasavanjeRobeIFinansija":
+                    clsKorekcija k = new clsKorekcija();
+                    bool pom2 = k.ObradiZahtev();
+                    if (pom2)
+                        MessageBox.Show("Uspešno završeno!");
+                    else
+                        MessageBox.Show("Nije uspelo usaglašavanje robe i finansija!");
+                    break;
+                
                 //case "Dozvole":
                 //    ShowNewForm(" ", 1, "Dozvole", 1, "", "", "P", "", "");
                 //    break;
@@ -3821,11 +3807,13 @@ namespace Bankom
 
         }
 
-       
 
 
-
-
+        //private void toolStripTextBox1_Enter(object sender, EventArgs e)
+        //{
+        //    ToolStripTextBox item = sender as ToolStripTextBox;
+        //    BrziPristup(item);
+        //}
     }
 
 } 
