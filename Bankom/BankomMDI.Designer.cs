@@ -122,41 +122,28 @@ namespace Bankom
             this.ToolBar = new System.Windows.Forms.ToolStrip();
             this.Uunos = new System.Windows.Forms.ToolStripDropDownButton();
             this.unospb = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.Ppregled = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.Iizmena = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.Sstorno = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.Sstampa = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.Bbrisanje = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
-            this.Ggrupisi = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
-            this.Iimenik = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
-            this.Ppotvrda = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
-            this.Ccalc = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
-            this.Pprekid = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
-            this.Iizlaz = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
             this.Kknjzi = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
             this.Ppredlogcena = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator30 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator34 = new System.Windows.Forms.ToolStripSeparator();
             this.Kkalki = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator42 = new System.Windows.Forms.ToolStripSeparator();
             this.Kkalku = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator35 = new System.Windows.Forms.ToolStripSeparator();
             this.Ppotencijal = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.Pppppd = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator36 = new System.Windows.Forms.ToolStripSeparator();
             this.Pposta = new System.Windows.Forms.ToolStripButton();
@@ -166,15 +153,10 @@ namespace Bankom
             this.Oodobri = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator43 = new System.Windows.Forms.ToolStripSeparator();
             this.Pplati = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator31 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator44 = new System.Windows.Forms.ToolStripSeparator();
             this.Oorigin = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator32 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator45 = new System.Windows.Forms.ToolStripSeparator();
             this.Oorgsema = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator33 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator46 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -186,6 +168,20 @@ namespace Bankom
             this.sdfgghToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.toolStripSeparator33 = new System.Windows.Forms.ToolStripSeparator();
+            this.Iizlaz = new System.Windows.Forms.ToolStripButton();
+            this.Pprekid = new System.Windows.Forms.ToolStripButton();
+            this.Ccalc = new System.Windows.Forms.ToolStripButton();
+            this.Ppotvrda = new System.Windows.Forms.ToolStripButton();
+            this.Iimenik = new System.Windows.Forms.ToolStripButton();
+            this.Ggrupisi = new System.Windows.Forms.ToolStripButton();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.Bbrisanje = new System.Windows.Forms.ToolStripButton();
+            this.Sstampa = new System.Windows.Forms.ToolStripButton();
+            this.Sstorno = new System.Windows.Forms.ToolStripButton();
+            this.Iizmena = new System.Windows.Forms.ToolStripButton();
+            this.Ppregled = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -875,34 +871,30 @@ namespace Bankom
             this.Kknjzi,
             this.toolStripSeparator21,
             this.Ppredlogcena,
-            this.toolStripSeparator30,
             this.toolStripSeparator34,
             this.Kkalki,
             this.toolStripSeparator42,
             this.Kkalku,
             this.toolStripSeparator35,
             this.Ppotencijal,
+            this.toolStripSeparator15,
             this.Pppppd,
             this.toolStripSeparator36,
             this.Pposta,
-            this.Ffajlovi,
             this.toolStripSeparator29,
+            this.Ffajlovi,
             this.toolStripSeparator37,
             this.Oodobri,
             this.toolStripSeparator43,
             this.Pplati,
-            this.toolStripSeparator31,
             this.toolStripSeparator44,
             this.Oorigin,
-            this.toolStripSeparator32,
             this.toolStripSeparator45,
             this.Oorgsema,
-            this.toolStripSeparator33,
-            this.toolStripSeparator46,
-            this.toolStripButton1});
+            this.toolStripSeparator33});
             this.ToolBar.Location = new System.Drawing.Point(0, 0);
             this.ToolBar.Name = "ToolBar";
-            this.ToolBar.Size = new System.Drawing.Size(1636, 43);
+            this.ToolBar.Size = new System.Drawing.Size(1513, 43);
             this.ToolBar.TabIndex = 32;
             this.ToolBar.Text = "toolbar";
             this.ToolBar.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ToolBar_ItemClicked);
@@ -930,215 +922,60 @@ namespace Bankom
             this.unospb.ToolTipText = "Unos podbroja dokumenta";
             this.unospb.Click += new System.EventHandler(this.unospb_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 43);
-            // 
-            // Ppregled
-            // 
-            this.Ppregled.AutoSize = false;
-            this.Ppregled.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ppregled.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Ppregled.Image = ((System.Drawing.Image)(resources.GetObject("Ppregled.Image")));
-            this.Ppregled.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Ppregled.Name = "Ppregled";
-            this.Ppregled.Size = new System.Drawing.Size(80, 40);
-            this.Ppregled.Text = "Pregled";
-            this.Ppregled.Click += new System.EventHandler(this.Ppregled_Click);
-            // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(6, 43);
-            // 
-            // Iizmena
-            // 
-            this.Iizmena.AutoSize = false;
-            this.Iizmena.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Iizmena.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Iizmena.Image = ((System.Drawing.Image)(resources.GetObject("Iizmena.Image")));
-            this.Iizmena.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Iizmena.Name = "Iizmena";
-            this.Iizmena.Size = new System.Drawing.Size(75, 40);
-            this.Iizmena.Text = "Izmena";
-            this.Iizmena.ToolTipText = "Izmena podataka";
-            this.Iizmena.Click += new System.EventHandler(this.Iizmena_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
             this.toolStripSeparator9.Size = new System.Drawing.Size(6, 43);
             // 
-            // Sstorno
-            // 
-            this.Sstorno.AutoSize = false;
-            this.Sstorno.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Sstorno.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Sstorno.Image = ((System.Drawing.Image)(resources.GetObject("Sstorno.Image")));
-            this.Sstorno.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Sstorno.Name = "Sstorno";
-            this.Sstorno.Size = new System.Drawing.Size(70, 40);
-            this.Sstorno.Text = "Storno";
-            this.Sstorno.ToolTipText = "Storno dokumenta";
-            this.Sstorno.Click += new System.EventHandler(this.Sstorno_Click);
-            // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
             this.toolStripSeparator10.Size = new System.Drawing.Size(6, 43);
-            // 
-            // Sstampa
-            // 
-            this.Sstampa.AutoSize = false;
-            this.Sstampa.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Sstampa.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Sstampa.Image = ((System.Drawing.Image)(resources.GetObject("Sstampa.Image")));
-            this.Sstampa.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Sstampa.Name = "Sstampa";
-            this.Sstampa.Size = new System.Drawing.Size(75, 40);
-            this.Sstampa.Text = "Štampa";
-            this.Sstampa.ToolTipText = "Stampa dokumenta";
-            this.Sstampa.Click += new System.EventHandler(this.Sstampa_Click);
             // 
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
             this.toolStripSeparator12.Size = new System.Drawing.Size(6, 43);
             // 
-            // Bbrisanje
-            // 
-            this.Bbrisanje.AutoSize = false;
-            this.Bbrisanje.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Bbrisanje.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Bbrisanje.Image = ((System.Drawing.Image)(resources.GetObject("Bbrisanje.Image")));
-            this.Bbrisanje.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Bbrisanje.Name = "Bbrisanje";
-            this.Bbrisanje.Size = new System.Drawing.Size(80, 40);
-            this.Bbrisanje.Text = "Brisanje";
-            this.Bbrisanje.Click += new System.EventHandler(this.Bbrisanje_Click);
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 43);
-            // 
-            // toolStripTextBox1
-            // 
-            this.toolStripTextBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.toolStripTextBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.toolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.toolStripTextBox1.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(200, 43);
-            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             // 
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
             this.toolStripSeparator13.Size = new System.Drawing.Size(6, 43);
             // 
-            // Ggrupisi
-            // 
-            this.Ggrupisi.AutoSize = false;
-            this.Ggrupisi.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ggrupisi.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Ggrupisi.Image = ((System.Drawing.Image)(resources.GetObject("Ggrupisi.Image")));
-            this.Ggrupisi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Ggrupisi.Name = "Ggrupisi";
-            this.Ggrupisi.Size = new System.Drawing.Size(80, 40);
-            this.Ggrupisi.Text = "Grupiši";
-            this.Ggrupisi.ToolTipText = "Rad sa elementima stabla";
-            this.Ggrupisi.Click += new System.EventHandler(this.Ggrupisi_Click);
-            // 
             // toolStripSeparator14
             // 
             this.toolStripSeparator14.Name = "toolStripSeparator14";
             this.toolStripSeparator14.Size = new System.Drawing.Size(6, 43);
-            // 
-            // Iimenik
-            // 
-            this.Iimenik.AutoSize = false;
-            this.Iimenik.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Iimenik.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Iimenik.Image = ((System.Drawing.Image)(resources.GetObject("Iimenik.Image")));
-            this.Iimenik.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Iimenik.Name = "Iimenik";
-            this.Iimenik.Size = new System.Drawing.Size(75, 40);
-            this.Iimenik.Text = "Imenik";
-            this.Iimenik.ToolTipText = "Imenik";
-            this.Iimenik.Click += new System.EventHandler(this.Iimenik_Click);
             // 
             // toolStripSeparator16
             // 
             this.toolStripSeparator16.Name = "toolStripSeparator16";
             this.toolStripSeparator16.Size = new System.Drawing.Size(6, 43);
             // 
-            // Ppotvrda
-            // 
-            this.Ppotvrda.AutoSize = false;
-            this.Ppotvrda.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ppotvrda.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Ppotvrda.Image = ((System.Drawing.Image)(resources.GetObject("Ppotvrda.Image")));
-            this.Ppotvrda.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Ppotvrda.Name = "Ppotvrda";
-            this.Ppotvrda.Size = new System.Drawing.Size(50, 40);
-            this.Ppotvrda.Text = "Ok";
-            this.Ppotvrda.ToolTipText = "Potvrda zadate operacije";
-            this.Ppotvrda.Click += new System.EventHandler(this.Ppotvrda_Click);
-            // 
             // toolStripSeparator17
             // 
             this.toolStripSeparator17.Name = "toolStripSeparator17";
             this.toolStripSeparator17.Size = new System.Drawing.Size(6, 43);
-            // 
-            // Ccalc
-            // 
-            this.Ccalc.AutoSize = false;
-            this.Ccalc.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ccalc.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.Ccalc.Image = ((System.Drawing.Image)(resources.GetObject("Ccalc.Image")));
-            this.Ccalc.Name = "Ccalc";
-            this.Ccalc.Size = new System.Drawing.Size(95, 40);
-            this.Ccalc.Text = "Kalkulator";
-            this.Ccalc.ToolTipText = "Kalkulator";
-            this.Ccalc.Click += new System.EventHandler(this.Ccalc_Click);
             // 
             // toolStripSeparator18
             // 
             this.toolStripSeparator18.Name = "toolStripSeparator18";
             this.toolStripSeparator18.Size = new System.Drawing.Size(6, 43);
             // 
-            // Pprekid
-            // 
-            this.Pprekid.AutoSize = false;
-            this.Pprekid.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Pprekid.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Pprekid.Image = ((System.Drawing.Image)(resources.GetObject("Pprekid.Image")));
-            this.Pprekid.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Pprekid.Name = "Pprekid";
-            this.Pprekid.Size = new System.Drawing.Size(80, 40);
-            this.Pprekid.Text = "Prekid";
-            this.Pprekid.ToolTipText = "Prekid zadate operacije";
-            this.Pprekid.Click += new System.EventHandler(this.Pprekid_Click);
-            // 
             // toolStripSeparator19
             // 
             this.toolStripSeparator19.Name = "toolStripSeparator19";
             this.toolStripSeparator19.Size = new System.Drawing.Size(6, 43);
-            // 
-            // Iizlaz
-            // 
-            this.Iizlaz.AutoSize = false;
-            this.Iizlaz.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Iizlaz.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Iizlaz.Image = ((System.Drawing.Image)(resources.GetObject("Iizlaz.Image")));
-            this.Iizlaz.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Iizlaz.Name = "Iizlaz";
-            this.Iizlaz.Size = new System.Drawing.Size(70, 40);
-            this.Iizlaz.Text = "Izlaz";
-            this.Iizlaz.ToolTipText = "Zatvaranje aktivne forme";
-            this.Iizlaz.Click += new System.EventHandler(this.Iizlaz_Click);
             // 
             // toolStripSeparator20
             // 
@@ -1182,12 +1019,6 @@ namespace Bankom
             this.Ppredlogcena.ToolTipText = "Pregled cena";
             this.Ppredlogcena.Visible = false;
             // 
-            // toolStripSeparator30
-            // 
-            this.toolStripSeparator30.Name = "toolStripSeparator30";
-            this.toolStripSeparator30.Size = new System.Drawing.Size(6, 43);
-            this.toolStripSeparator30.Visible = false;
-            // 
             // toolStripSeparator34
             // 
             this.toolStripSeparator34.Name = "toolStripSeparator34";
@@ -1203,7 +1034,7 @@ namespace Bankom
             this.Kkalki.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Kkalki.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Kkalki.Name = "Kkalki";
-            this.Kkalki.Size = new System.Drawing.Size(100, 40);
+            this.Kkalki.Size = new System.Drawing.Size(110, 40);
             this.Kkalki.Text = "Kalk.izlaza";
             this.Kkalki.ToolTipText = "Kalkulacija izlaza";
             this.Kkalki.Visible = false;
@@ -1248,6 +1079,11 @@ namespace Bankom
             this.Ppotencijal.Text = "Potencijal";
             this.Ppotencijal.ToolTipText = "Potencijal";
             this.Ppotencijal.Visible = false;
+            // 
+            // toolStripSeparator15
+            // 
+            this.toolStripSeparator15.Name = "toolStripSeparator15";
+            this.toolStripSeparator15.Size = new System.Drawing.Size(6, 43);
             // 
             // Pppppd
             // 
@@ -1338,12 +1174,6 @@ namespace Bankom
             this.Pplati.ToolTipText = "Plati deviznu doznaku";
             this.Pplati.Visible = false;
             // 
-            // toolStripSeparator31
-            // 
-            this.toolStripSeparator31.Name = "toolStripSeparator31";
-            this.toolStripSeparator31.Size = new System.Drawing.Size(6, 43);
-            this.toolStripSeparator31.Visible = false;
-            // 
             // toolStripSeparator44
             // 
             this.toolStripSeparator44.Name = "toolStripSeparator44";
@@ -1363,12 +1193,6 @@ namespace Bankom
             this.Oorigin.ToolTipText = "Poreklo sirovina u proizvodu";
             this.Oorigin.Visible = false;
             // 
-            // toolStripSeparator32
-            // 
-            this.toolStripSeparator32.Name = "toolStripSeparator32";
-            this.toolStripSeparator32.Size = new System.Drawing.Size(6, 43);
-            this.toolStripSeparator32.Visible = false;
-            // 
             // toolStripSeparator45
             // 
             this.toolStripSeparator45.Name = "toolStripSeparator45";
@@ -1386,35 +1210,11 @@ namespace Bankom
             this.Oorgsema.Text = "Org.šema";
             this.Oorgsema.ToolTipText = "Organizaciona sema";
             // 
-            // toolStripSeparator33
-            // 
-            this.toolStripSeparator33.Name = "toolStripSeparator33";
-            this.toolStripSeparator33.Size = new System.Drawing.Size(6, 43);
-            // 
-            // toolStripSeparator46
-            // 
-            this.toolStripSeparator46.Name = "toolStripSeparator46";
-            this.toolStripSeparator46.Size = new System.Drawing.Size(6, 43);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.AutoSize = false;
-            this.toolStripButton1.Enabled = false;
-            this.toolStripButton1.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(85, 40);
-            this.toolStripButton1.Text = "Original";
-            this.toolStripButton1.ToolTipText = "Skenirani original ulaznih dokumenata";
-            this.toolStripButton1.Visible = false;
-            // 
             // toolStrip1
             // 
             this.toolStrip1.Location = new System.Drawing.Point(0, 43);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1429, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1636, 25);
             this.toolStrip1.TabIndex = 34;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.Visible = false;
@@ -1425,7 +1225,7 @@ namespace Bankom
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 43);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 1014);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 1018);
             this.flowLayoutPanel1.TabIndex = 40;
             // 
             // menuStrip1
@@ -1485,25 +1285,185 @@ namespace Bankom
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // toolStripSeparator33
+            // 
+            this.toolStripSeparator33.Name = "toolStripSeparator33";
+            this.toolStripSeparator33.Size = new System.Drawing.Size(6, 43);
+            // 
+            // Iizlaz
+            // 
+            this.Iizlaz.AutoSize = false;
+            this.Iizlaz.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Iizlaz.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Iizlaz.Image = ((System.Drawing.Image)(resources.GetObject("Iizlaz.Image")));
+            this.Iizlaz.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Iizlaz.Name = "Iizlaz";
+            this.Iizlaz.Size = new System.Drawing.Size(70, 40);
+            this.Iizlaz.Text = "Izlaz";
+            this.Iizlaz.ToolTipText = "Zatvaranje aktivne forme";
+            this.Iizlaz.Click += new System.EventHandler(this.Iizlaz_Click);
+            // 
+            // Pprekid
+            // 
+            this.Pprekid.AutoSize = false;
+            this.Pprekid.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Pprekid.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Pprekid.Image = ((System.Drawing.Image)(resources.GetObject("Pprekid.Image")));
+            this.Pprekid.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Pprekid.Name = "Pprekid";
+            this.Pprekid.Size = new System.Drawing.Size(80, 40);
+            this.Pprekid.Text = "Prekid";
+            this.Pprekid.ToolTipText = "Prekid zadate operacije";
+            this.Pprekid.Click += new System.EventHandler(this.Pprekid_Click);
+            // 
+            // Ccalc
+            // 
+            this.Ccalc.AutoSize = false;
+            this.Ccalc.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ccalc.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.Ccalc.Image = ((System.Drawing.Image)(resources.GetObject("Ccalc.Image")));
+            this.Ccalc.Name = "Ccalc";
+            this.Ccalc.Size = new System.Drawing.Size(100, 40);
+            this.Ccalc.Text = "Kalkulator";
+            this.Ccalc.ToolTipText = "Kalkulator";
+            this.Ccalc.Click += new System.EventHandler(this.Ccalc_Click);
+            // 
+            // Ppotvrda
+            // 
+            this.Ppotvrda.AutoSize = false;
+            this.Ppotvrda.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ppotvrda.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Ppotvrda.Image = ((System.Drawing.Image)(resources.GetObject("Ppotvrda.Image")));
+            this.Ppotvrda.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Ppotvrda.Name = "Ppotvrda";
+            this.Ppotvrda.Size = new System.Drawing.Size(60, 40);
+            this.Ppotvrda.Text = "Ok";
+            this.Ppotvrda.ToolTipText = "Potvrda zadate operacije";
+            this.Ppotvrda.Click += new System.EventHandler(this.Ppotvrda_Click);
+            // 
+            // Iimenik
+            // 
+            this.Iimenik.AutoSize = false;
+            this.Iimenik.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Iimenik.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Iimenik.Image = ((System.Drawing.Image)(resources.GetObject("Iimenik.Image")));
+            this.Iimenik.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Iimenik.Name = "Iimenik";
+            this.Iimenik.Size = new System.Drawing.Size(90, 40);
+            this.Iimenik.Text = "Imenik";
+            this.Iimenik.ToolTipText = "Imenik";
+            this.Iimenik.Click += new System.EventHandler(this.Iimenik_Click);
+            // 
+            // Ggrupisi
+            // 
+            this.Ggrupisi.AutoSize = false;
+            this.Ggrupisi.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ggrupisi.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Ggrupisi.Image = ((System.Drawing.Image)(resources.GetObject("Ggrupisi.Image")));
+            this.Ggrupisi.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Ggrupisi.Name = "Ggrupisi";
+            this.Ggrupisi.Size = new System.Drawing.Size(90, 40);
+            this.Ggrupisi.Text = "Grupiši";
+            this.Ggrupisi.ToolTipText = "Rad sa elementima stabla";
+            this.Ggrupisi.Click += new System.EventHandler(this.Ggrupisi_Click);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.toolStripTextBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.toolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.toolStripTextBox1.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(200, 43);
+            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
+            // 
+            // Bbrisanje
+            // 
+            this.Bbrisanje.AutoSize = false;
+            this.Bbrisanje.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bbrisanje.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Bbrisanje.Image = ((System.Drawing.Image)(resources.GetObject("Bbrisanje.Image")));
+            this.Bbrisanje.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Bbrisanje.Name = "Bbrisanje";
+            this.Bbrisanje.Size = new System.Drawing.Size(90, 40);
+            this.Bbrisanje.Text = "Brisanje";
+            this.Bbrisanje.Click += new System.EventHandler(this.Bbrisanje_Click);
+            // 
+            // Sstampa
+            // 
+            this.Sstampa.AutoSize = false;
+            this.Sstampa.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Sstampa.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Sstampa.Image = ((System.Drawing.Image)(resources.GetObject("Sstampa.Image")));
+            this.Sstampa.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Sstampa.Name = "Sstampa";
+            this.Sstampa.Size = new System.Drawing.Size(75, 40);
+            this.Sstampa.Text = "Štampa";
+            this.Sstampa.ToolTipText = "Stampa dokumenta";
+            this.Sstampa.Click += new System.EventHandler(this.Sstampa_Click);
+            // 
+            // Sstorno
+            // 
+            this.Sstorno.AutoSize = false;
+            this.Sstorno.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Sstorno.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Sstorno.Image = ((System.Drawing.Image)(resources.GetObject("Sstorno.Image")));
+            this.Sstorno.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Sstorno.Name = "Sstorno";
+            this.Sstorno.Size = new System.Drawing.Size(70, 40);
+            this.Sstorno.Text = "Storno";
+            this.Sstorno.ToolTipText = "Storno dokumenta";
+            this.Sstorno.Click += new System.EventHandler(this.Sstorno_Click);
+            // 
+            // Iizmena
+            // 
+            this.Iizmena.AutoSize = false;
+            this.Iizmena.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Iizmena.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Iizmena.Image = ((System.Drawing.Image)(resources.GetObject("Iizmena.Image")));
+            this.Iizmena.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Iizmena.Name = "Iizmena";
+            this.Iizmena.Size = new System.Drawing.Size(90, 40);
+            this.Iizmena.Text = "Izmena";
+            this.Iizmena.ToolTipText = "Izmena podataka";
+            this.Iizmena.Click += new System.EventHandler(this.Iizmena_Click);
+            // 
+            // Ppregled
+            // 
+            this.Ppregled.AutoSize = false;
+            this.Ppregled.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ppregled.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Ppregled.Image = ((System.Drawing.Image)(resources.GetObject("Ppregled.Image")));
+            this.Ppregled.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Ppregled.Name = "Ppregled";
+            this.Ppregled.Size = new System.Drawing.Size(80, 40);
+            this.Ppregled.Text = "Pregled";
+            this.Ppregled.Click += new System.EventHandler(this.Ppregled_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 43);
+            // 
             // BankomMDI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(1636, 1057);
+            this.ClientSize = new System.Drawing.Size(1513, 1061);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.ToolBar);
             this.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BankomMDI";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = " ";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.BankomMDI_Load);
             this.ToolBar.ResumeLayout(false);
             this.ToolBar.PerformLayout();
@@ -1591,17 +1551,6 @@ namespace Bankom
         internal System.Windows.Forms.ToolStripMenuItem SrpskiLatinica;
         internal System.Windows.Forms.ToolStripMenuItem English;
         internal System.Windows.Forms.ToolStripMenuItem Ruski;
-        private System.Windows.Forms.ToolStripButton Ppregled;
-        private System.Windows.Forms.ToolStripButton Iizmena;
-        private System.Windows.Forms.ToolStripButton Sstorno;
-        private System.Windows.Forms.ToolStripButton Sstampa;
-        private System.Windows.Forms.ToolStripButton Bbrisanje;
-        private System.Windows.Forms.ToolStripButton Ggrupisi;
-        private System.Windows.Forms.ToolStripButton Iimenik;
-        private System.Windows.Forms.ToolStripButton Ppotvrda;
-        private System.Windows.Forms.ToolStripButton Ccalc;
-        private System.Windows.Forms.ToolStripButton Pprekid;
-        private System.Windows.Forms.ToolStripButton Iizlaz;
         private System.Windows.Forms.ToolStripButton Kknjzi;
         private System.Windows.Forms.ToolStripButton Kkalki;
         private System.Windows.Forms.ToolStripButton Ppotencijal;
@@ -1618,7 +1567,6 @@ namespace Bankom
         internal System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         internal System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripLabel KrajRada;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
@@ -1632,10 +1580,6 @@ namespace Bankom
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator20;
         private System.Windows.Forms.ToolStripButton Kkalku;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator29;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator30;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator31;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator32;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator33;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator39;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator22;
         private System.Windows.Forms.ToolStripMenuItem Prevoz;
@@ -1660,8 +1604,6 @@ namespace Bankom
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator21;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator34;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator42;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator35;
@@ -1670,7 +1612,21 @@ namespace Bankom
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator43;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator44;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator45;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator46;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
+        private System.Windows.Forms.ToolStripButton Ppregled;
+        private System.Windows.Forms.ToolStripButton Iizmena;
+        private System.Windows.Forms.ToolStripButton Sstorno;
+        private System.Windows.Forms.ToolStripButton Sstampa;
+        private System.Windows.Forms.ToolStripButton Bbrisanje;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripButton Ggrupisi;
+        private System.Windows.Forms.ToolStripButton Iimenik;
+        private System.Windows.Forms.ToolStripButton Ppotvrda;
+        private System.Windows.Forms.ToolStripButton Ccalc;
+        private System.Windows.Forms.ToolStripButton Pprekid;
+        private System.Windows.Forms.ToolStripButton Iizlaz;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator33;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 

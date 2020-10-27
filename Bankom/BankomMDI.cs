@@ -62,6 +62,7 @@ namespace Bankom
             {
 
                 frmChield childForm = new frmChield();
+                childForm.FormBorderStyle = FormBorderStyle.None;
                 childForm.BackColor = System.Drawing.Color.SeaShell;
                 childForm.MdiParent = this;
                 childForm.BringToFront();
@@ -88,7 +89,7 @@ namespace Bankom
                 //childForm.Top = 300;
 
                 childForm.AutoScroll = false;
-                // childForm.Height = this.Height - this.toolStrip.Height - this.menuStrip1.Height - this.toolStrip.Height - 20;
+                // childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
               //  childForm.WindowState = FormWindowState.Maximized;
                 //childForm.Width = this.Width - 20;
                 childForm.Show();
@@ -271,7 +272,17 @@ namespace Bankom
         }
 
         private void BankomMDI_Load(object sender, EventArgs e)
-        {
+        { // tamara 27.10.2020.
+            Program.Parent.ToolBar.Items["toolstripseparator15"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator20"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator21"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator34"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator35"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator36"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator37"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator42"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator43"].Visible = false;
+            Program.Parent.ToolBar.Items["toolstripseparator44"].Visible = false;
             this.Text = Program.imeFirme + "-" + Program.imekorisnika;
             addKombo();
             clsSettingsButtons sb = new clsSettingsButtons();
@@ -283,6 +294,7 @@ namespace Bankom
             Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
             // ivana 21.10.2020.
             CreateMenu();
+
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
@@ -572,7 +584,7 @@ namespace Bankom
                     {
                         if (childForm.Text.ToUpper() == b.ToUpper())
                         {
-               
+                            childForm.FormBorderStyle = FormBorderStyle.None;
                             childForm.BackColor = System.Drawing.Color.SeaShell;
                             childForm.Focus();
                             childForm.Activate();
@@ -597,7 +609,7 @@ namespace Bankom
             }
 
             Form childForm1 = ActiveMdiChild;
-    
+            childForm1.FormBorderStyle = FormBorderStyle.None;
             childForm1.BackColor = System.Drawing.Color.SeaShell;
             childForm1.Focus();
             childForm1.Visible = false;
@@ -641,7 +653,7 @@ namespace Bankom
             else
             {
                 Form childForm1 = ActiveMdiChild;
-            
+                childForm1.FormBorderStyle = FormBorderStyle.None;
                 childForm1.BackColor = System.Drawing.Color.SeaShell;
                 childForm1.Focus();
                 childForm1.Visible = false;
@@ -1374,11 +1386,7 @@ namespace Bankom
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             // tamara 26.10.2020.
-            Form activeChild = this.ActiveMdiChild;
-            if (activeChild != null)
-            {
-                activeChild.Left = 162;
-            }
+          
         }
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1741,11 +1749,7 @@ namespace Bankom
         private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             // tamara 26.10.2020.
-            Form activeChild = this.ActiveMdiChild;
-            if (activeChild == null)
-            {
-                activeChild.Left = 162;
-            }
+            
 
         }
 
@@ -3181,8 +3185,9 @@ namespace Bankom
             t.Width = 150;
             t.Height = 50;
             t.BackColor = Color.SeaShell;
-            t.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            t.Font= new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             t.ForeColor = System.Drawing.Color.MidnightBlue;
+            //
             menuStrip1.Items.Add(t);
             if (dt.Select("MenuParent='" + strMenu + "'").Length > 0)
             {
@@ -3194,7 +3199,6 @@ namespace Bankom
             else
                 t.Click += new EventHandler(MenuItemClickHandler);
         }
-    
 
         private string CreateMenuItems(ToolStripMenuItem t, string strMenu)
         {
@@ -3207,6 +3211,7 @@ namespace Bankom
                 t1.BackColor = Color.SeaShell;
                 t1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 t1.ForeColor = System.Drawing.Color.MidnightBlue;
+                //
                 t.DropDownItems.Add(t1);
                 foreach (DataRow r in dt.Select("MenuParent='" + strMenu + "'"))
                 {
@@ -3216,24 +3221,14 @@ namespace Bankom
             else
             {
                 ToolStripMenuItem t1 = new ToolStripMenuItem(GetMenuName(strMenu));
+                t1.Click += new EventHandler(MenuItemClickHandler);
+                t.DropDownItems.Add(t1);
+                //stil 21.10.2020.
                 t1.TextAlign = ContentAlignment.TopLeft;
                 t1.Height = 70;
                 t1.BackColor = Color.SeaShell;
                 t1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 t1.ForeColor = System.Drawing.Color.MidnightBlue;
-                //Dodavanje separatora 27.10.2020. Ivana
-                ToolStripSeparator s1 = new ToolStripSeparator();
-                Debug.WriteLine(strMenu);
-                if (strMenu == "91")
-                {
-                    t.DropDownItems.Add(s1);
-                }
-                else
-                {
-                    t1.Click += new EventHandler(MenuItemClickHandler);
-                    t.DropDownItems.Add(t1);
-                }
-                //stil 21.10.2020.
                 //
                 return strMenu;
             }
@@ -3303,12 +3298,6 @@ namespace Bankom
                 slovo = 'P';
             return slovo;
         }
-
-        private string SkiniKlasifikaciju(string s)
-        { 
-            return s.Substring(13);
-        }
-
         private bool IsOpen(string s)
         {
             bool pom = false;
@@ -3349,12 +3338,16 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 case "KlasifikacijaMenija":
                 case "KlasifikacijaPomocnihSifarnika":
                     postoji = IsOpen(s);
-                    if(s.Contains("Klasifikacija"))
-                    {
-                        s = SkiniKlasifikaciju(s);
-                    }
                     if (postoji == false)
                     {
+                        //tamara 27.10.2020.
+
+                       // Form activeChildd = this.ActiveMdiChild;
+                       //// activeChildd.FormBorderStyle = FormBorderStyle.None;
+                       // if (activeChildd != null)
+                       // {
+                       //     activeChildd.Hide();
+                       // }
                         clsObradaOsnovnihSifarnika co0 = new clsObradaOsnovnihSifarnika();
                         ShowNewForm(s, 1, s, 1, "", "", slovo.ToString(), "", "TreeView");
                     }
@@ -3369,13 +3362,15 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                     kl.Show();
                     //Djora 15.09.20
                     kl.WindowState = FormWindowState.Maximized;
+                    kl.FormBorderStyle = FormBorderStyle.None;
                     addFormTotoolstrip1(kl, "Preuzimanje Kursne Liste");
                     break;
                 case "Prenosi":
                     Form activeChild = this.ActiveMdiChild;
+                    activeChild.FormBorderStyle = FormBorderStyle.None;
                     if (activeChild != null)
                     {
-                        // activeChild.Controls["OOperacija"].Text = "PRENOSI";
+                        activeChild.Hide();
                     }
                     break;
                 case "PreuzimanjeRateKredita":
@@ -3403,6 +3398,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                     if (strPreuzimanjePlacanja == "") { return; }
                     char[] separators = { '#' };
                     frmIzvod childForm = new frmIzvod();
+                    childForm.FormBorderStyle = FormBorderStyle.None;
                     childForm.MdiParent = this;
                     childForm.strPutanjaPlacanja = strPreuzimanjePlacanja.Split(separators)[0];
                     childForm.mesecgodina = strPreuzimanjePlacanja.Split(separators)[1];
@@ -3455,6 +3451,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                     clsXmlPlacanja cxml = new clsXmlPlacanja();
                     cxml.izborPlacanja(2, mg + svrsta);
                     frmPrint fs = new frmPrint();
+                    fs.FormBorderStyle = FormBorderStyle.None;
 
                     fs.MdiParent = this;
                     fs.Text = "plate-" + mg;
