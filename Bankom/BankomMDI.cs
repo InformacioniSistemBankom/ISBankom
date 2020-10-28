@@ -3911,7 +3911,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
 
             clsTreeProcessing tr = new clsTreeProcessing();
 
-            string ime = tr.tv_NodeMouseClick();
+            //string ime = tr.tv_NodeMouseClick();
             //MessageBox.Show(ime.ToString());
         }
         

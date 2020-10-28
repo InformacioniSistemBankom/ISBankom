@@ -255,15 +255,8 @@ namespace Bankom.Class
 
         public void tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            string VratiIme()
-            {
-                string ime2 = e.Node.Text;
-                return ime2;
-            }
-            
-                
-            
-             
+            MessageBox.Show(e.Node.Text);
+            //return e.Node.Text;
         }
 
     }
