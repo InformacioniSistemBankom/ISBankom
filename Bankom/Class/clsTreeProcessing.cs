@@ -22,6 +22,7 @@ namespace Bankom.Class
         public DataBaseBroker db = new DataBaseBroker();
         public string MojeStablo = "";
         public string mDokumentJe;
+        public string ime2;
         public void podaciOstablu(Form forma, string iddok, string KojeStablo)
         {
             Form form1 = new Form();
@@ -255,8 +256,19 @@ namespace Bankom.Class
 
         public void tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            MessageBox.Show(e.Node.Text);
-            //return e.Node.Text;
+            //string VratiIme()
+            {
+                //  ime2 = e.Node.Text;
+                Program.AktivnaSifraIzvestaja = tv.SelectedNode.Text.ToString();
+                //MessageBox.Show(tv.SelectedNode.Text.ToString());
+
+
+
+            }
+            
+                
+            
+             
         }
 
     }

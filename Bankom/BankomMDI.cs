@@ -2063,6 +2063,14 @@ namespace Bankom
                         case "S":
                             vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).idReda), ((Bankom.frmChield)forma).imestabla);
                             break;
+                        case "K":
+                           
+
+                            
+                            MessageBox.Show(Program.AktivnaSifraIzvestaja);
+                            // pozovete klasu koja ce da radi obradu klasifikacija
+
+                            break;
                         case "D":
                             vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
                             if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE") break;
@@ -3911,8 +3919,8 @@ private void MenuItemClickHandler(object sender, EventArgs e)
 
             clsTreeProcessing tr = new clsTreeProcessing();
 
-            //string ime = tr.tv_NodeMouseClick();
-            //MessageBox.Show(ime.ToString());
+            
+            MessageBox.Show(tr.ime2.ToString());
         }
         
 
