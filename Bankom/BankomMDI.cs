@@ -3321,7 +3321,7 @@ namespace Bankom
                 slovo = 'S';
             else if (s == "Izvestaji")
                 slovo = 'I';
-            else if (s == "KlasifikacijaOrganizacioneStrukture" || s == "KlasifikacijaArtikla" || s == "KlasifikacijaKomitenata" || s == "KlasifikacijaDokumenata"
+            else if (s == "KlasifikacijaOrgStrukture" || s == "KlasifikacijaArtikla" || s == "KlasifikacijaKomitenata" || s == "KlasifikacijaDokumenata"
                 || s == "KlasifikacijaIzvestaja" || s == "KlasifikacijaMenija" || s == "KlasifikacijaPomocnihSifarnika")
                 slovo = 'K';
             else
@@ -3332,7 +3332,7 @@ namespace Bankom
         //28.10.2020. Ivana
         private string SkiniKlasifikaciju(string s)
         {
-            if (s == "KlasifikacijaOrganizacioneStrukure")
+            if (s == "KlasifikacijaOrgStrukture")
                 return "OrganizacionaStruktura";
             else if (s == "KlasifikacijaDokumenata")
                 return "Dokumenta";
@@ -3398,7 +3398,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                     }
                     break;
                 //28.10.2020. Ivana
-                case "KlasifikacijaOrganizacioneStrukture":
+                case "KlasifikacijaOrgStrukture":
                 case "KlasifikacijaArtikla":
                 case "KlasifikacijaKomitenata":
                 case "KlasifikacijaDokumenata":
