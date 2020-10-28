@@ -3362,6 +3362,10 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                         ShowNewForm(s, 1, s, 1, "", "", slovo.ToString(), "", "TreeView");
                     }
                     break;
+                    //28.10.2020. Ivana
+                case "KadroviIOrganizacionaStruktura":                                                   //"DodeljivanjeUlogeKorisniku":
+                    ShowNewForm("", 1, "KadroviIOrganizacionaStruktura", 1, "", "", "P", "", "");
+                    break;
                 case "Dozvole":
                     ShowNewForm("", 1, "Dozvole", 1, "", "", "P", "", "");
                     break;
