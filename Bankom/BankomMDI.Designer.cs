@@ -180,6 +180,7 @@ namespace Bankom
             this.sdfgghToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.unosNovogČvoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -900,7 +901,8 @@ namespace Bankom
             this.Uunos.AutoSize = false;
             this.Uunos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Uunos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.unospb});
+            this.unospb,
+            this.unosNovogČvoraToolStripMenuItem});
             this.Uunos.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Uunos.ForeColor = System.Drawing.SystemColors.Window;
             this.Uunos.Image = ((System.Drawing.Image)(resources.GetObject("Uunos.Image")));
@@ -909,6 +911,8 @@ namespace Bankom
             this.Uunos.Size = new System.Drawing.Size(75, 40);
             this.Uunos.Text = "Unos";
             this.Uunos.ToolTipText = "Unos podataka";
+            this.Uunos.DropDownClosed += new System.EventHandler(this.Uunos_DropDownClosed);
+            this.Uunos.DropDownOpened += new System.EventHandler(this.Uunos_DropDownOpened);
             this.Uunos.Click += new System.EventHandler(this.Uunos_Click);
             // 
             // unospb
@@ -1425,6 +1429,13 @@ namespace Bankom
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // unosNovogČvoraToolStripMenuItem
+            // 
+            this.unosNovogČvoraToolStripMenuItem.Name = "unosNovogČvoraToolStripMenuItem";
+            this.unosNovogČvoraToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.unosNovogČvoraToolStripMenuItem.Text = "Unos novog čvora";
+            this.unosNovogČvoraToolStripMenuItem.Click += new System.EventHandler(this.unosNovogČvoraToolStripMenuItem_Click);
+            // 
             // BankomMDI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1606,6 +1617,7 @@ namespace Bankom
         private System.Windows.Forms.ToolStripButton Iizlaz;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator33;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem unosNovogČvoraToolStripMenuItem;
     }
 }
 

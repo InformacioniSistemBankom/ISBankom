@@ -32,8 +32,8 @@ namespace Bankom
       
         public static string filter = "";
         private AutoCompleteStringCollection DataCollectionSpisak = new AutoCompleteStringCollection();
-      
 
+        public static string imeDokumenta = "";
         public BankomMDI()
         {
             InitializeComponent();
@@ -42,10 +42,10 @@ namespace Bankom
 
         }
        
-
+        
         public void ShowNewForm(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
         {
-
+           
             DataBaseBroker db = new DataBaseBroker();
             string ss = "";
             if (dokumentje == "D")
@@ -89,9 +89,9 @@ namespace Bankom
                 //childForm.Top = 300;
                 
                 childForm.AutoScroll = false;
-                childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
-                //  childForm.WindowState = FormWindowState.Maximized;
-                childForm.Width = this.Width - 20;
+                //childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
+                ////  childForm.WindowState = FormWindowState.Maximized;
+                //childForm.Width = this.Width - 20;
 
                 addFormTotoolstrip1(childForm, imedokumenta);
 
@@ -271,6 +271,7 @@ namespace Bankom
             string odgovor = co.FormatirajRacun("190-1360-78");
 
             ShowNewForm("Dokumenta", 1, "Dokumenta", 1, "", "", "S", "", "TreeView");
+            ProveraUnosa("Dokumenta", 1, "Dokumenta", 1, "", "", "S", "", "TreeView");
         }
 
         private void BankomMDI_Load(object sender, EventArgs e)
@@ -285,6 +286,7 @@ namespace Bankom
             Program.Parent.ToolBar.Items["toolstripseparator42"].Visible = false;
             Program.Parent.ToolBar.Items["toolstripseparator43"].Visible = false;
             Program.Parent.ToolBar.Items["toolstripseparator44"].Visible = false;
+           
             this.Text = Program.imeFirme + "-" + Program.imekorisnika;
             addKombo();
             clsSettingsButtons sb = new clsSettingsButtons();
@@ -1231,6 +1233,7 @@ namespace Bankom
             }
 
             ShowNewForm("Dokumenta", idstablo, naziv, 1, "", "", "S", "", ""); // na dogadjaju form load otvara se nova forma  sa predatim parametrima 
+            ProveraUnosa("Dokumenta", idstablo, naziv, 1, "", "", "S", "", "");
         }
 
         //tamara 23.10.2020.
@@ -1445,6 +1448,7 @@ namespace Bankom
                     }
             }
             ShowNewForm("PomocniSifarnici", 1, "PomocniSifarnici", 1, "", "", "P", "", "TreeView");
+            ProveraUnosa("PomocniSifarnici", 1, "PomocniSifarnici", 1, "", "", "P", "", "TreeView");
         }
 
 
@@ -1463,6 +1467,7 @@ namespace Bankom
                     }
             }
             ShowNewForm("Artikli", 1, "Artikli", 1, "", "", "S", "", "TreeView");
+            ProveraUnosa("Artikli", 1, "Artikli", 1, "", "", "S", "", "TreeView");
         }
 
         private void IzvestajiIzStabla_Click(object sender, EventArgs e)
@@ -1479,6 +1484,7 @@ namespace Bankom
                     }
             }
             ShowNewForm("Izvestaji", 1, "Izvestaji", 1, "", "", "I", "", "TreeView");
+           ProveraUnosa("Izvestaji", 1, "Izvestaji", 1, "", "", "I", "", "TreeView");
         }
 
         private void OrgStr_Click(object sender, EventArgs e)
@@ -1496,6 +1502,7 @@ namespace Bankom
             }
 
             ShowNewForm("Organizacionastruktura", 1, "Organizacionastruktura", 1, "", "", "S", "", "TreeView");
+            ProveraUnosa("Organizacionastruktura", 1, "Organizacionastruktura", 1, "", "", "S", "", "TreeView");
         }
 
         private void Komitenti_Click(object sender, EventArgs e)
@@ -1512,6 +1519,7 @@ namespace Bankom
                     }
             }
             ShowNewForm("Komitenti", 1, "Komitenti", 1, "", "", "S", "", "TreeView");
+           ProveraUnosa("Komitenti", 1, "Komitenti", 1, "", "", "S", "", "TreeView");
         }
 
         private void editMenu_Click(object sender, EventArgs e)
@@ -1745,6 +1753,7 @@ namespace Bankom
         {
 
             Program.Parent.ShowNewForm("", 1, "Dozvole", 1, "", "", "P", "", "");
+            Program.Parent.ProveraUnosa("", 1, "Dozvole", 1, "", "", "P", "", "");
 
         }
 
@@ -1782,7 +1791,8 @@ namespace Bankom
 
         private void Uunos_Click(object sender, EventArgs e)
         {
-            Uunos.ForeColor = System.Drawing.Color.Black;
+
+        
             Form activeChild = this.ActiveMdiChild;
             if (activeChild != null)
             {
@@ -2388,7 +2398,8 @@ namespace Bankom
 
         private void Ddokum_Click(object sender, EventArgs e)
         {
-            ShowNewForm(" ", 1, "SpisakDokumenata", 1, "", "", "I", "", ""); //SpisakDokumenata
+            ShowNewForm(" ", 1, "SpisakDokumenata", 1, "", "", "I", "", "");
+           ProveraUnosa(" ", 1, "SpisakDokumenata", 1, "", "", "I", "", "");//SpisakDokumenata
         }
 
         private void Kalkulator_Click_1(object sender, EventArgs e)
@@ -3080,6 +3091,7 @@ namespace Bankom
             }
 
             Program.Parent.ShowNewForm("Izvestaji", 1, KojiIzvestaj, -1, "", "", "I", "", "");
+            Program.Parent.ProveraUnosa("Izvestaji", 1, KojiIzvestaj, -1, "", "", "I", "", "");
             novaforma = Program.Parent.ActiveMdiChild;
             Field kontrola = (Field)novaforma.Controls["BrDok"];
             if (kontrola != null)
@@ -3108,6 +3120,7 @@ namespace Bankom
                     {
                         KojiIzvestaj = "KalkulacijaUlazaSaTroskovima";
                         Program.Parent.ShowNewForm("Izvestaji", 1, KojiIzvestaj, -1, "", "", "I", "", "");
+                        Program.Parent.ProveraUnosa("Izvestaji", 1, KojiIzvestaj, -1, "", "", "I", "", "");
                         novaforma = Program.Parent.ActiveMdiChild;
                         pb = (Field)novaforma.Controls["BrDok"];
                         if (pb != null)
@@ -3869,9 +3882,77 @@ private void MenuItemClickHandler(object sender, EventArgs e)
             }
         }
 
+        private void unosNovogČvoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(imeDokumenta.ToString());
+        }
+        public void ProveraUnosa(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
+        {
+
+            DataBaseBroker db = new DataBaseBroker();
+            string ss = "";
+            if (dokumentje == "D")
+            {
+                ss = brojdokumenta;
+            }
+            else
+            {
+                ss = imedokumenta;
+            }
+            Boolean odgovor;
+            odgovor = DalijevecOtvoren(dokumentje, brojdokumenta, imedokumenta);            //string ss;    
+            if (odgovor == false) ///nije vec otvoren
+            {
+
+                frmChield childForm = new frmChield();
+                childForm.FormBorderStyle = FormBorderStyle.None;
+                childForm.BackColor = System.Drawing.Color.SeaShell;
+                childForm.MdiParent = this;
+                // childForm.BringToFront();
+
+                this.WindowState = FormWindowState.Maximized;
+
+                if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
+                int sirina = (Width / 100) * 10;
 
 
-        
+                childForm.imedokumenta = imedokumenta;
+                childForm.iddokumenta = iddokument;
+                childForm.idstablo = idstablo;
+                childForm.imestabla = imestabla;
+                childForm.VrstaPrikaza = vrstaprikaza;
+                childForm.brdok = brojdokumenta;
+                childForm.DokumentJe = dokumentje;
+                childForm.datum = datum;
+
+                childForm.toolStripTextBroj.Text = Convert.ToString(idstablo);
+                childForm.Text = ss;
+                childForm.Name = ss;
+                //childForm.Left = 380;
+                //childForm.Top = 300;
+
+                childForm.AutoScroll = false;
+                //childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
+                ////  childForm.WindowState = FormWindowState.Maximized;
+                //childForm.Width = this.Width - 20;
+
+                //addFormTotoolstrip1(childForm, imedokumenta);
+
+                //childForm.Show();
+
+
+            }
+        }
+
+        private void Uunos_DropDownClosed(object sender, EventArgs e)
+        {
+            Uunos.ForeColor = System.Drawing.Color.White;
+        }
+
+        private void Uunos_DropDownOpened(object sender, EventArgs e)
+        {
+             Uunos.ForeColor = System.Drawing.Color.Black;
+        }
     }
 
 } 
