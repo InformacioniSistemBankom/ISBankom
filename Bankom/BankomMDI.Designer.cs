@@ -131,7 +131,6 @@ namespace Bankom
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
             this.Kknjzi = new System.Windows.Forms.ToolStripButton();
@@ -170,7 +169,6 @@ namespace Bankom
             this.button1 = new System.Windows.Forms.Button();
             this.toolStripSeparator33 = new System.Windows.Forms.ToolStripSeparator();
             this.Iizlaz = new System.Windows.Forms.ToolStripButton();
-            this.Pprekid = new System.Windows.Forms.ToolStripButton();
             this.Ccalc = new System.Windows.Forms.ToolStripButton();
             this.Ppotvrda = new System.Windows.Forms.ToolStripButton();
             this.Iimenik = new System.Windows.Forms.ToolStripButton();
@@ -863,8 +861,6 @@ namespace Bankom
             this.Ppotvrda,
             this.toolStripSeparator17,
             this.Ccalc,
-            this.toolStripSeparator18,
-            this.Pprekid,
             this.toolStripSeparator19,
             this.Iizlaz,
             this.toolStripSeparator20,
@@ -966,11 +962,6 @@ namespace Bankom
             // 
             this.toolStripSeparator17.Name = "toolStripSeparator17";
             this.toolStripSeparator17.Size = new System.Drawing.Size(6, 43);
-            // 
-            // toolStripSeparator18
-            // 
-            this.toolStripSeparator18.Name = "toolStripSeparator18";
-            this.toolStripSeparator18.Size = new System.Drawing.Size(6, 43);
             // 
             // toolStripSeparator19
             // 
@@ -1303,19 +1294,6 @@ namespace Bankom
             this.Iizlaz.ToolTipText = "Zatvaranje aktivne forme";
             this.Iizlaz.Click += new System.EventHandler(this.Iizlaz_Click);
             // 
-            // Pprekid
-            // 
-            this.Pprekid.AutoSize = false;
-            this.Pprekid.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Pprekid.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Pprekid.Image = ((System.Drawing.Image)(resources.GetObject("Pprekid.Image")));
-            this.Pprekid.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Pprekid.Name = "Pprekid";
-            this.Pprekid.Size = new System.Drawing.Size(80, 40);
-            this.Pprekid.Text = "Prekid";
-            this.Pprekid.ToolTipText = "Prekid zadate operacije";
-            this.Pprekid.Click += new System.EventHandler(this.Pprekid_Click);
-            // 
             // Ccalc
             // 
             this.Ccalc.AutoSize = false;
@@ -1575,7 +1553,6 @@ namespace Bankom
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator18;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator19;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator20;
         private System.Windows.Forms.ToolStripButton Kkalku;
@@ -1623,7 +1600,6 @@ namespace Bankom
         private System.Windows.Forms.ToolStripButton Iimenik;
         private System.Windows.Forms.ToolStripButton Ppotvrda;
         private System.Windows.Forms.ToolStripButton Ccalc;
-        private System.Windows.Forms.ToolStripButton Pprekid;
         private System.Windows.Forms.ToolStripButton Iizlaz;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator33;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

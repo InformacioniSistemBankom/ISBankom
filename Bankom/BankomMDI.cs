@@ -65,7 +65,7 @@ namespace Bankom
                 childForm.FormBorderStyle = FormBorderStyle.None;
                 childForm.BackColor = System.Drawing.Color.SeaShell;
                 childForm.MdiParent = this;
-                childForm.BringToFront();
+               // childForm.BringToFront();
 
                 this.WindowState = FormWindowState.Maximized;
 
@@ -87,14 +87,16 @@ namespace Bankom
                 childForm.Name = ss;
                 //childForm.Left = 380;
                 //childForm.Top = 300;
-
+                
                 childForm.AutoScroll = false;
                 // childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
               //  childForm.WindowState = FormWindowState.Maximized;
                 //childForm.Width = this.Width - 20;
-                childForm.Show();
 
                 addFormTotoolstrip1(childForm, imedokumenta);
+
+                childForm.Show();
+
 
             }
         }
@@ -572,29 +574,48 @@ namespace Bankom
         private void itemn_click(object sender, EventArgs e) // aktiviranje forme klikom na tab
         {
             string b = sender.ToString();
-
-            //frmChield activeChild = (frmChield)this.ActiveMdiChild;
-            for (int x = 0; x < toolStrip1.Items.Count; x++)
+            frmChield active = new frmChield();
+            if (active == this.ActiveMdiChild)
             {
-                // toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Regular); // regular font za sve tabove
-                if (toolStrip1.Items[x].Name == b)
+                MessageBox.Show("Već je otvorena ova forma!");
+                active.Focus();
+            }
+
+            else
+            {
+                for (int x = 0; x < toolStrip1.Items.Count; x++)
                 {
-                    //toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Bold);
-                    foreach (Form childForm in MdiChildren)
+                    // toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Regular); // regular font za sve tabove
+                    if (toolStrip1.Items[x].Name == b)
                     {
-                        if (childForm.Text.ToUpper() == b.ToUpper())
+                        //toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Bold);
+                        foreach (Form childForm in MdiChildren)
                         {
-                            childForm.FormBorderStyle = FormBorderStyle.None;
-                            childForm.BackColor = System.Drawing.Color.SeaShell;
-                            childForm.Focus();
-                            childForm.Activate();
-                            childForm.LayoutMdi(MdiLayout.TileVertical);
-                            childForm.WindowState = FormWindowState.Maximized;
-                            break;
+                            if (childForm.Text.ToUpper() == b.ToUpper())
+                            {
+                                childForm.FormBorderStyle = FormBorderStyle.None;
+                                childForm.BackColor = System.Drawing.Color.SeaShell;
+                                childForm.Focus();
+                                childForm.Activate();
+                                //this.ActivateMdiChild(childForm);
+                                childForm.LayoutMdi(MdiLayout.TileVertical);
+                                childForm.WindowState = FormWindowState.Maximized;
+                                break;
+                            }
                         }
                     }
                 }
             }
+
+            //  frmChield activeChild = (frmChield)this.ActiveMdiChild;
+            // activeChild.Visible = false;
+
+
+
+
+
+
+
         }
 
         public void itemB1_click(string imetula)  // zahtev za zatvaranje  forme klikom na tipku izlaz

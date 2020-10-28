@@ -400,7 +400,7 @@ namespace Bankom
                 Console.WriteLine(this.ActiveControl.Left);
                 Console.WriteLine(this.ActiveControl.Width);
                 Console.WriteLine(this.ActiveControl.Height);
-
+                 
                 double delW = Program.RacioWith; //Program.RacioWith * 1.4;
                 double delH = Program.RacioHeight; // Program.RacioHeight * 1.4;
 
