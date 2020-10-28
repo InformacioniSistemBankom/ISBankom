@@ -16,24 +16,25 @@ namespace Bankom.Class
         string JavniNaziv;
         string Naziv;
         string IIdStablo;
-        public  Form form1 = new Form();
-        public  TreeView tv = new TreeView();
-       
+        public Form form1 = new Form();
+        public TreeView tv = new TreeView();
+
         public DataBaseBroker db = new DataBaseBroker();
         public string MojeStablo = "";
         public string mDokumentJe;
         public void podaciOstablu(Form forma, string iddok, string KojeStablo)
         {
-           Form form1 = new Form();            
+            Form form1 = new Form();
         }
-        public void ObradaStabla(Form forma, string iddok, string KojeStablo,string DokumentJe)
+        public void ObradaStabla(Form forma, string iddok, string KojeStablo, string DokumentJe)
         {
             form1 = forma;
             MojeStablo = KojeStablo;
             form1.Controls["limestabla"].Text = KojeStablo;
-            mDokumentJe=DokumentJe;
+            mDokumentJe = DokumentJe;
             //tv.AfterSelect += new TreeViewEventHandler(Tv_AfterSelect);
             tv.NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler(tv_NodeMouseDoubleClick);
+            tv.NodeMouseClick += new TreeNodeMouseClickEventHandler(tv_NodeMouseClick);
 
             int vveza;
             string sselect;
@@ -45,16 +46,16 @@ namespace Bankom.Class
             //'  If (DokumentJe = "S" And KojeStablo = "Dokumenta") Or KojeStablo = "Izvestaji" Or KojeStablo = "PomocniSifarnici" Then
             if (KojeStablo == "Dokumenta" || KojeStablo == "Izvestaji")  //samo na ova stabla primenjujemo dozvole
             {
-                sselect = "; WITH RekurzivnoStablo (ID_"+ KojeStablo + "Stablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS "
+                sselect = "; WITH RekurzivnoStablo (ID_" + KojeStablo + "Stablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS "
                     + "(SELECT e.ID_" + KojeStablo + "Stablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
-                    +" PrikazDetaljaDaNe as pd,PrikazPo as pp"
-                    +" FROM " + KojeStablo + "Stablo AS e WITH (NOLOCK) "
+                    + " PrikazDetaljaDaNe as pd,PrikazPo as pp"
+                    + " FROM " + KojeStablo + "Stablo AS e WITH (NOLOCK) "
                     + " where Naziv in (select g.naziv from Grupa as g,KadroviIOrganizacionaStrukturaStavkeView as ko Where (KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura "
-                    + " Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = "+idfirme+" and ko.id_kadrovskaevidencija="+idke+" )"
+                    + " Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija=" + idke + " )"
                     + "UNION ALL  SELECT e.ID_" + KojeStablo + "Stablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level +1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
-                    + " PrikazDetaljaDaNe As pd, PrikazPo As pp  FROM " + KojeStablo + "Stablo  AS e WITH (NOLOCK) " 
+                    + " PrikazDetaljaDaNe As pd, PrikazPo As pp  FROM " + KojeStablo + "Stablo  AS e WITH (NOLOCK) "
                     + " INNER JOIN RekurzivnoStablo AS d  ON e.ID_" + KojeStablo + "Stablo = d.Vezan) "
-                    + " SELECT distinct ID_" + KojeStablo + "Stablo as ID, NazivJavni,Naziv," 
+                    + " SELECT distinct ID_" + KojeStablo + "Stablo as ID, NazivJavni,Naziv,"
                     + "BrDok,Vezan,RedniBroj, slave,pd, pp FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0  order by RedniBroj";
             }
             else
@@ -73,9 +74,9 @@ namespace Bankom.Class
             }
 
             Console.WriteLine(sselect);
-			DataTable ti = db.ReturnDataTable(sselect);            
+            DataTable ti = db.ReturnDataTable(sselect);
             DataTable tj = ti;
-           
+
 
             //PUNIStablo:
 
@@ -94,7 +95,7 @@ namespace Bankom.Class
             tv.Nodes.Add(parent);
             tv.EndUpdate();
             tv.SelectedNode = parent;
-            
+
             int i = 0;
             int j = 0;
             do // po i 
@@ -114,7 +115,7 @@ namespace Bankom.Class
                                 TreeNode[] tns = tv.Nodes.Find(ffind, true);
                                 if (tns.Length > 0)
                                 {
-                                    tv.SelectedNode = tns[0];                                
+                                    tv.SelectedNode = tns[0];
                                     tv.Focus();
                                 }
                                 break;
@@ -139,23 +140,23 @@ namespace Bankom.Class
                 }
                 Naziv = ti.Rows[i]["Naziv"].ToString();
                 IIdStablo = ti.Rows[i]["ID"].ToString();
-               
+
                 if (vveza != 0)
                 {
-                    WriteChild(JavniNaziv, Naziv, IIdStablo );
+                    WriteChild(JavniNaziv, Naziv, IIdStablo);
                 }
                 i = i + 1;
 
             } while (i < ti.Rows.Count);  //kraj while po i
-            
+
             tv.Height = forma.Height;
             tv.Width = forma.Width;
             tv.Top = 20;
-            tv.Font = new Font("TimesRoman",16, FontStyle.Regular);
+            tv.Font = new Font("TimesRoman", 16, FontStyle.Regular);
             tv.Name = "tv";
             tv.BorderStyle = BorderStyle.None;
             form1.Controls.Add(tv);
-            
+
 
             tv.Visible = true;
             tv.HideSelection = true;
@@ -179,14 +180,13 @@ namespace Bankom.Class
                 tv.EndUpdate();
             }
         }
-
-        private void  tv_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void tv_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             //Djora 10.09.20
-            Program.AktivnaForma =  e.Node.Text.Substring(e.Node.Text.IndexOf("-")+1).Replace(" ", "");  
+            Program.AktivnaForma = e.Node.Text.Substring(e.Node.Text.IndexOf("-") + 1).Replace(" ", "");
 
             if (tv.SelectedNode != null)
-            {                
+            {
                 if (Convert.ToInt32(tv.SelectedNode.Tag) > 1)
                 {
                     if (MojeStablo == "Izvestaji")
@@ -194,21 +194,22 @@ namespace Bankom.Class
 
                         //string pravoime = tv.SelectedNode.Name.Substring(4);
                         string ime = tv.SelectedNode.Name;
-                       
+
                         string sql = " select s.ulazniizlazni as NazivDokumenta,NacinRegistracije as nr,"
                                   + " Knjizise,Izvor  from  SifarnikDokumenta as s"
                                   + "  Where s.naziv=@param0";
 
-                        DataTable  t = db.ParamsQueryDT(sql, ime);
-                        if(t.Rows.Count>0)
+                        DataTable t = db.ParamsQueryDT(sql, ime);
+                        if (t.Rows.Count > 0)
                         {
                             //Djora 10.09.20
                             int crta = tv.SelectedNode.Text.IndexOf("-");
                             if (crta > 0)
                             {
                                 //Program.AktivnaSifraIzvestaja = t.Rows["NazivDokumeta"] ;
-                                Program.AktivnaSifraIzvestaja = tv.SelectedNode.Text.Substring(0 , crta);
-                            } else { Program.AktivnaSifraIzvestaja = ""; }
+                                Program.AktivnaSifraIzvestaja = tv.SelectedNode.Text.Substring(0, crta);
+                            }
+                            else { Program.AktivnaSifraIzvestaja = ""; }
 
 
                             if (t.Rows[0]["nr"].ToString().ToUpper() == "B") // izvestaj je u bazi
@@ -244,12 +245,29 @@ namespace Bankom.Class
                         //Djora 10.09.20
                         Program.AktivnaSifraIzvestaja = "";
 
-                        Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "","", mDokumentJe, "", "");
+                        Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
                     }
                 }
             }
         }
+
+        //zajedno 28.10.2020.
+
+        public void tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            string VratiIme()
+            {
+                string ime2 = e.Node.Text;
+                return ime2;
+            }
+            
+                
+            
+             
+        }
+
     }
+    
 }
 
 
