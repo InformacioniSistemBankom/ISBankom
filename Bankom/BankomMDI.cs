@@ -3328,6 +3328,26 @@ namespace Bankom
                 slovo = 'P';
             return slovo;
         }
+
+        //28.10.2020. Ivana
+        private string SkiniKlasifikaciju(string s)
+        {
+            if (s == "KlasifikacijaOrganizacioneStrukure")
+                return "OrganizacionaStruktura";
+            else if (s == "KlasifikacijaDokumenata")
+                return "Dokumenta";
+            else if (s == "KlasifikacijaArtikla")
+                return "Artikli";
+            else if (s == "KlasifikacijaKomitenata")
+                return "Komitenti";
+            else if (s == "KlasifikacijaIzvestaja")
+                return "Izvestaji";
+            else if (s == "KlasifikacijaMenija")
+                return "Menu";
+            else
+                return "PomocniSifarnici";
+        }
+            
         private bool IsOpen(string s)
         {
             bool pom = false;
@@ -3361,13 +3381,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 case "Artikli":
                 case "Komitenti":
                 case "OrganizacionaStruktura":
-                case "KlasifikacijaOrganizacioneStrukture":
-                case "KlasifikacijaArtikla":
-                case "KlasifikacijaKomitenata":
-                case "KlasifikacijaDokumenata":
-                case "KlasifikacijaIzvestaja":
-                case "KlasifikacijaMenija":
-                case "KlasifikacijaPomocnihSifarnika":
+                
                     postoji = IsOpen(s);
                     if (postoji == false)
                     {
@@ -3383,7 +3397,21 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                         ShowNewForm(s, 1, s, 1, "", "", slovo.ToString(), "", "TreeView");
                     }
                     break;
-                    //28.10.2020. Ivana
+                //28.10.2020. Ivana
+                case "KlasifikacijaOrganizacioneStrukture":
+                case "KlasifikacijaArtikla":
+                case "KlasifikacijaKomitenata":
+                case "KlasifikacijaDokumenata":
+                case "KlasifikacijaIzvestaja":
+                case "KlasifikacijaMenija":
+                case "KlasifikacijaPomocnihSifarnika":
+                    postoji = IsOpen(s);
+                    if (postoji == false)
+                    {
+                        clsObradaOsnovnihSifarnika co0 = new clsObradaOsnovnihSifarnika();
+                        ShowNewForm(SkiniKlasifikaciju(s), 1, SkiniKlasifikaciju(s), 1, "", "", slovo.ToString(), "", "TreeView");
+                    }
+                    break;
                 case "KadroviIOrganizacionaStruktura":                                                   //"DodeljivanjeUlogeKorisniku":
                     ShowNewForm("", 1, "KadroviIOrganizacionaStruktura", 1, "", "", "P", "", "");
                     break;
