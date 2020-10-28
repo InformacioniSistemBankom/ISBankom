@@ -1781,7 +1781,7 @@ namespace Bankom.Class
         private static bool UnosMesecaIGodineZaKojiPlacamoKredit(out string pdat)
         {
             pdat = Prompt.ShowDialog(
-                DateTime.Now.ToShortDateString().Substring(3, 2) + DateTime.Now.ToShortDateString().Substring(6, 4),
+                DateTime.Now.ToShortDateString().Substring(3, 2) + DateTime.Now.ToShortDateString().Substring(6, 2),
                 "Placanje rate kredita", "Unesite mesec i godinu za koju placamo kredit");
             if (pdat == "")
             {
@@ -1789,7 +1789,7 @@ namespace Bankom.Class
                 return true;
             }
 
-            if (pdat.Length == 6) return false;
+            if (pdat.Length == 4) return false;
             MessageBox.Show("Niste unijeli mjesec i godinu u trazenom formatu!");
             return true;
         }

@@ -1645,6 +1645,7 @@ namespace Bankom
                 if (childForm != this.ActiveMdiChild) childForm.WindowState = FormWindowState.Minimized;
             }
 
+
             Form activeChild = (frmChield)this.ActiveMdiChild;
             activeChild.BackColor = System.Drawing.Color.SeaShell;
             if (activeChild != null)
@@ -3242,15 +3243,23 @@ namespace Bankom
             else
             {
                 ToolStripMenuItem t1 = new ToolStripMenuItem(GetMenuName(strMenu));
-                t1.Click += new EventHandler(MenuItemClickHandler);
-                t.DropDownItems.Add(t1);
                 //stil 21.10.2020.
                 t1.TextAlign = ContentAlignment.TopLeft;
                 t1.Height = 70;
                 t1.BackColor = Color.SeaShell;
                 t1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 t1.ForeColor = System.Drawing.Color.MidnightBlue;
-                //
+                // Dodat separator 27.10.2020. Ivana
+                ToolStripSeparator s1 = new ToolStripSeparator();
+                if(strMenu == "91")
+                {
+                    t.DropDownItems.Add(s1);
+                }
+                else
+                {
+                    t1.Click += new EventHandler(MenuItemClickHandler);
+                    t.DropDownItems.Add(t1);
+                }
                 return strMenu;
             }
             return strMenu;
@@ -3308,7 +3317,7 @@ namespace Bankom
         private char UzmiSlovo(string s)
         {
             char slovo;
-            if (s == "Dokumenta" || s == "Komitenti" || s == "OrganizacioneStrkture" || s == "Artikli")
+            if (s == "Dokumenta" || s == "Komitenti" || s == "OrganizacioneStrkture" || s == "Artikli" || s== "OrganizacionaStruktura")
                 slovo = 'S';
             else if (s == "Izvestaji")
                 slovo = 'I';
@@ -3351,6 +3360,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 case "PomocniSifarnici":
                 case "Artikli":
                 case "Komitenti":
+                case "OrganizacionaStruktura":
                 case "KlasifikacijaOrganizacioneStrukture":
                 case "KlasifikacijaArtikla":
                 case "KlasifikacijaKomitenata":
@@ -3373,6 +3383,10 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                         ShowNewForm(s, 1, s, 1, "", "", slovo.ToString(), "", "TreeView");
                     }
                     break;
+                    //28.10.2020. Ivana
+                case "KadroviIOrganizacionaStruktura":                                                   //"DodeljivanjeUlogeKorisniku":
+                    ShowNewForm("", 1, "KadroviIOrganizacionaStruktura", 1, "", "", "P", "", "");
+                    break;
                 case "Dozvole":
                     ShowNewForm("", 1, "Dozvole", 1, "", "", "P", "", "");
                     break;
@@ -3394,13 +3408,13 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                         activeChild.Hide();
                     }
                     break;
-                case "PreuzimanjeRateKredita":
+                case "PlacanjeRateKredita":                                           //"PreuzimanjeRateKredita"
                     Preuzimanja.PreuzimanjeRateKredita();
                     break;
                 case "PreuzimanjeManjkovaIViskova":
                     Preuzimanja.PreuzimanjeManjkovaIViskova();
                     break;
-                case "PreuzimanjeUplata":
+                case "PreuzimanjeUplata":                                             //"PreuzimanjeManjkovaIViskova"
                     Preuzimanja.PreuzimanjeUplataKupacaIzBanaka();
                     break;
                 case "PrenosNalogaZaPlacanje":
@@ -3413,7 +3427,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                     //string vrati = cp.PrepisiNaloge(DatOd.ToShortDateString(), TekuciRacun); //BORKA
                     MessageBox.Show("Zavrseno!!");
                     break;
-                case "PreuzimanjeNalogaIzBanaka":
+                case "PreuzimanjeIzvodaIzBanaka":
                     clsPreuzimanja cp = new clsPreuzimanja();
                     string strPreuzimanjePlacanja = cp.preuzimanjeIzvodaizBanaka();
                     if (strPreuzimanjePlacanja == "") { return; }
@@ -3453,7 +3467,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                     }
                     MessageBox.Show("Zavrseno!!");
                     break;
-                case "FormiranjePPPPDZaPlate":
+                case "FormiranjePPPPDzaPlate":
                     DateTime d = DateTime.Now;
                     string pDatum = d.ToString("dd.MM.yy");
                     string mg = Prompt.ShowDialog(pDatum.Substring(3, 2) + pDatum.Substring(6, 2), "Formiranje PPPPD za plate", "Unesite mesec i godinu za koji formiramo " + Environment.NewLine + " PPPPD za plate ");
@@ -3500,7 +3514,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                     toolStrip1.Items.Add(itemnsep);
                     LayoutMdi(MdiLayout.TileVertical);
                     break;
-                case "UvozPlataUPlacanja":
+                case "PreuzimanjePlata":                               //"UvozPlataUPlacanje"
                     clsXmlPlacanja cls = new clsXmlPlacanja();
                     cls.izborPlacanja(3, "");
                     break;
@@ -3588,7 +3602,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                     toolStrip1.Items.Add(itemnsep2);
                     LayoutMdi(MdiLayout.TileVertical);
                     break;
-                case "UvozPrevozaUPlacanja":
+                case "UvozPrevozaUPlacanje":
                     clsXmlPlacanja cls2 = new clsXmlPlacanja();
                     cls2.izborPlacanja(4, "");
                     break;
