@@ -89,9 +89,9 @@ namespace Bankom
                 //childForm.Top = 300;
                 
                 childForm.AutoScroll = false;
-                // childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
-              //  childForm.WindowState = FormWindowState.Maximized;
-                //childForm.Width = this.Width - 20;
+                childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
+                //  childForm.WindowState = FormWindowState.Maximized;
+                childForm.Width = this.Width - 20;
 
                 addFormTotoolstrip1(childForm, imedokumenta);
 
@@ -3845,13 +3845,19 @@ private void MenuItemClickHandler(object sender, EventArgs e)
 
         }
 
+        private void BankomMDI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            if (MessageBox.Show("Da li ste sigurni da želite da zatvorite program?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.No)
+            {
+                
+                e.Cancel = true;
+            }
+        }
 
 
-        //private void toolStripTextBox1_Enter(object sender, EventArgs e)
-        //{
-        //    ToolStripTextBox item = sender as ToolStripTextBox;
-        //    BrziPristup(item);
-        //}
+
+        
     }
 
 } 
