@@ -85,12 +85,13 @@ namespace Bankom
                 childForm.toolStripTextBroj.Text = Convert.ToString(idstablo);
                 childForm.Text = ss;
                 childForm.Name = ss;
+                childForm.Left = 0;
                 //childForm.Left = 380;
                 //childForm.Top = 300;
 
                 childForm.AutoScroll = false;
                 // childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
-              //  childForm.WindowState = FormWindowState.Maximized;
+               childForm.WindowState = FormWindowState.Maximized;
                 //childForm.Width = this.Width - 20;
                 childForm.Show();
 
