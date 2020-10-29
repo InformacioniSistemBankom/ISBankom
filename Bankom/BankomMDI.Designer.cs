@@ -135,6 +135,8 @@ namespace Bankom
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.Ggrupisi = new System.Windows.Forms.ToolStripDropDownButton();
+            this.Ggrupisinp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.Iimenik = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
@@ -179,8 +181,8 @@ namespace Bankom
             this.sdfgghToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
-            this.Ggrupisi = new System.Windows.Forms.ToolStripDropDownButton();
-            this.Ggrupisinp = new System.Windows.Forms.ToolStripMenuItem();
+            this.unosČvoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.premestiGrupuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -901,7 +903,8 @@ namespace Bankom
             this.Uunos.AutoSize = false;
             this.Uunos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Uunos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.unospb});
+            this.unospb,
+            this.unosČvoraToolStripMenuItem});
             this.Uunos.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Uunos.ForeColor = System.Drawing.SystemColors.Window;
             this.Uunos.Image = ((System.Drawing.Image)(resources.GetObject("Uunos.Image")));
@@ -1030,6 +1033,31 @@ namespace Bankom
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
             this.toolStripSeparator13.Size = new System.Drawing.Size(6, 43);
+            // 
+            // Ggrupisi
+            // 
+            this.Ggrupisi.AutoSize = false;
+            this.Ggrupisi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Ggrupisi.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Ggrupisinp,
+            this.premestiGrupuToolStripMenuItem});
+            this.Ggrupisi.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ggrupisi.ForeColor = System.Drawing.SystemColors.Window;
+            this.Ggrupisi.Image = ((System.Drawing.Image)(resources.GetObject("Ggrupisi.Image")));
+            this.Ggrupisi.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Ggrupisi.Name = "Ggrupisi";
+            this.Ggrupisi.Size = new System.Drawing.Size(85, 40);
+            this.Ggrupisi.Text = "Grupiši";
+            this.Ggrupisi.ToolTipText = "Grupiši";
+            this.Ggrupisi.DropDownClosed += new System.EventHandler(this.Ggrupisi_DropDownClosed);
+            this.Ggrupisi.DropDownOpened += new System.EventHandler(this.Ggrupisi_DropDownOpened);
+            // 
+            // Ggrupisinp
+            // 
+            this.Ggrupisinp.Name = "Ggrupisinp";
+            this.Ggrupisinp.Size = new System.Drawing.Size(208, 22);
+            this.Ggrupisinp.Text = "Nova pozicija grupe";
+            this.Ggrupisinp.ToolTipText = "Unos podbroja dokumenta";
             // 
             // toolStripSeparator14
             // 
@@ -1415,27 +1443,17 @@ namespace Bankom
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Ggrupisi
+            // unosČvoraToolStripMenuItem
             // 
-            this.Ggrupisi.AutoSize = false;
-            this.Ggrupisi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Ggrupisi.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Ggrupisinp});
-            this.Ggrupisi.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ggrupisi.ForeColor = System.Drawing.SystemColors.Window;
-            this.Ggrupisi.Image = ((System.Drawing.Image)(resources.GetObject("Ggrupisi.Image")));
-            this.Ggrupisi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Ggrupisi.Name = "Ggrupisi";
-            this.Ggrupisi.Size = new System.Drawing.Size(85, 40);
-            this.Ggrupisi.Text = "Grupiši";
-            this.Ggrupisi.ToolTipText = "Grupiši";
+            this.unosČvoraToolStripMenuItem.Name = "unosČvoraToolStripMenuItem";
+            this.unosČvoraToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.unosČvoraToolStripMenuItem.Text = "Unos čvora";
             // 
-            // Ggrupisinp
+            // premestiGrupuToolStripMenuItem
             // 
-            this.Ggrupisinp.Name = "Ggrupisinp";
-            this.Ggrupisinp.Size = new System.Drawing.Size(208, 22);
-            this.Ggrupisinp.Text = "Nova pozicija grupe";
-            this.Ggrupisinp.ToolTipText = "Unos podbroja dokumenta";
+            this.premestiGrupuToolStripMenuItem.Name = "premestiGrupuToolStripMenuItem";
+            this.premestiGrupuToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.premestiGrupuToolStripMenuItem.Text = "Premesti grupu";
             // 
             // BankomMDI
             // 
@@ -1556,7 +1574,6 @@ namespace Bankom
         private System.Windows.Forms.ToolStripButton Ppredlogcena;
         public System.Windows.Forms.ToolStrip ToolBar;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripMenuItem unospb;
         internal System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         internal System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripLabel KrajRada;
@@ -1606,10 +1623,8 @@ namespace Bankom
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator45;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
         private System.Windows.Forms.ToolStripButton Ppregled;
-        private System.Windows.Forms.ToolStripButton Iizmena;
         private System.Windows.Forms.ToolStripButton Sstorno;
         private System.Windows.Forms.ToolStripButton Sstampa;
-        private System.Windows.Forms.ToolStripButton Bbrisanje;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.ToolStripButton Iimenik;
         private System.Windows.Forms.ToolStripButton Ppotvrda;
@@ -1618,7 +1633,12 @@ namespace Bankom
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator33;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         public System.Windows.Forms.ToolStripDropDownButton Ggrupisi;
-        private System.Windows.Forms.ToolStripMenuItem Ggrupisinp;
+        public System.Windows.Forms.ToolStripButton Iizmena;
+        public System.Windows.Forms.ToolStripButton Bbrisanje;
+        public System.Windows.Forms.ToolStripMenuItem Ggrupisinp;
+        public System.Windows.Forms.ToolStripMenuItem unosČvoraToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem unospb;
+        public System.Windows.Forms.ToolStripMenuItem premestiGrupuToolStripMenuItem;
     }
 }
 

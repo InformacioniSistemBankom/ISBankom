@@ -3233,7 +3233,6 @@ namespace Bankom
             else
             {
                 t.Click += new EventHandler(MenuItemClickHandler);
-                t.Click += new EventHandler(UunosEnabled);
             }
             }
 
@@ -3273,7 +3272,6 @@ namespace Bankom
                 else
                 {
                     t1.Click += new EventHandler(MenuItemClickHandler);
-                    t1.Click += new EventHandler(UunosEnabled);
                     t.DropDownItems.Add(t1);
                 }
                 return strMenu;
@@ -3285,8 +3283,6 @@ namespace Bankom
         {
             return dt.Select("MenuID='" + strMenuID + "'")[0][1].ToString();
         }
-
-
 
         public DataTable ReturnDT(string str)
         {
@@ -3384,27 +3380,7 @@ namespace Bankom
             return pom;
         }
 
-        // 29.10.2020. Ivana
-        private void UunosEnabled(object sender, EventArgs e)
-        {
-            string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
-            switch(s)
-            {
-                case "KlasifikacijaOrgStrukture":
-                case "KlasifikacijaArtikla":
-                case "KlasifikacijaKomitenata":
-                case "KlasifikacijaDokumenata":
-                case "KlasifikacijaIzvestaja":
-                case "KlasifikacijaMenija":
-                case "KlasifikacijaPomocnihSifarnika":
-                    Uunos.Enabled = true;
-                    break;
-                default:
-                    Uunos.Enabled = false;
-                    break;
-            }
-            
-        }
+        
 private void MenuItemClickHandler(object sender, EventArgs e)
         {
             string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
@@ -3953,6 +3929,16 @@ private void MenuItemClickHandler(object sender, EventArgs e)
         {
              Uunos.ForeColor = System.Drawing.Color.Black;
         }
-    }
+        private void Ggrupisi_DropDownClosed(object sender, EventArgs e)
+        {
+            Ggrupisi.ForeColor = System.Drawing.Color.White;
+        }
+        private void Ggrupisi_DropDownOpened(object sender, EventArgs e)
+        {
+            Ggrupisi.ForeColor = System.Drawing.Color.Black;
+        }
 
+
+    }
+   
 } 
