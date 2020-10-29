@@ -397,18 +397,32 @@ namespace Bankom.Class
                         ////Ako dokument postoji u dozvolama
                         if (td.Rows.Count > 0)
                         {
+                            Program.Parent.Uunos.Enabled = true;
+                            Program.Parent.Iizmena.Enabled = true;
+                            Program.Parent.Bbrisanje.Enabled = true;
                             if (tk.Rows[0][0].ToString() == "1")
-                            {
-                                Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = false;
-                               // Program.Parent.ToolBar.Items["Ggrupisinp"].Enabled = true;
+                            {                               
+                                Program.Parent.Ggrupisinp.Enabled = true;
+                                //Program.Parent.premestiGrupuToolStripMenuItem.Enabled = false;
+                                Program.Parent.Ggrupisinp.Visible = true;
+                                Program.Parent.premestiGrupuToolStripMenuItem.Visible = false;
                             }
                             else
-                           {
-                                
-
-
+                            {
+                                //Program.Parent.Ggrupisinp.Enabled = false;
+                                Program.Parent.premestiGrupuToolStripMenuItem.Enabled = true;
+                                Program.Parent.Ggrupisinp.Visible = false;
+                                Program.Parent.premestiGrupuToolStripMenuItem.Visible = true;
                             }
                         }
+                    }
+                    // 29.10.2020. Ivana
+                    else
+                    {
+                        Program.Parent.Uunos.Enabled = false;
+                        Program.Parent.Ggrupisi.Enabled = false;
+                        Program.Parent.Iizmena.Enabled = false;
+                        Program.Parent.Bbrisanje.Enabled = false;
                     }
 
                 }     //KRAJ    DOKUMENTJE<>"D"

@@ -3231,8 +3231,10 @@ namespace Bankom
                 }
             }
             else
+            {
                 t.Click += new EventHandler(MenuItemClickHandler);
-        }
+            }
+            }
 
         private string CreateMenuItems(ToolStripMenuItem t, string strMenu)
         {
@@ -3281,8 +3283,6 @@ namespace Bankom
         {
             return dt.Select("MenuID='" + strMenuID + "'")[0][1].ToString();
         }
-
-
 
         public DataTable ReturnDT(string str)
         {
@@ -3379,6 +3379,8 @@ namespace Bankom
             }
             return pom;
         }
+
+        
 private void MenuItemClickHandler(object sender, EventArgs e)
         {
             string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
@@ -3393,7 +3395,6 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 case "Artikli":
                 case "Komitenti":
                 case "OrganizacionaStruktura":
-                
                     postoji = IsOpen(s);
                     if (postoji == false)
                     {
@@ -3913,10 +3914,9 @@ private void MenuItemClickHandler(object sender, EventArgs e)
         {
             //zajedno 28.10.2020.
 
-            clsTreeProcessing tr = new clsTreeProcessing();
-
-            
-            MessageBox.Show(tr.ime2.ToString());
+            //clsTreeProcessing tr = new clsTreeProcessing();
+            //MessageBox.Show(tr.ime2.ToString());
+            MessageBox.Show(Program.AktivnaSifraIzvestaja);
         }
         
 
@@ -3929,11 +3929,16 @@ private void MenuItemClickHandler(object sender, EventArgs e)
         {
              Uunos.ForeColor = System.Drawing.Color.Black;
         }
-
-        private void Ggrupisinp_Click(object sender, EventArgs e)
+        private void Ggrupisi_DropDownClosed(object sender, EventArgs e)
         {
-
+            Ggrupisi.ForeColor = System.Drawing.Color.White;
         }
-    }
+        private void Ggrupisi_DropDownOpened(object sender, EventArgs e)
+        {
+            Ggrupisi.ForeColor = System.Drawing.Color.Black;
+        }
 
+
+    }
+   
 } 
