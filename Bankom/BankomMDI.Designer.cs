@@ -1435,7 +1435,7 @@ namespace Bankom
             this.Ggrupisinp.Name = "Ggrupisinp";
             this.Ggrupisinp.Size = new System.Drawing.Size(208, 22);
             this.Ggrupisinp.Text = "Nova pozicija grupe";
-            this.Ggrupisinp.ToolTipText = "Unos podbroja dokumenta";
+            this.Ggrupisinp.Click += new System.EventHandler(this.Ggrupisinp_Click);
             // 
             // BankomMDI
             // 

@@ -3929,6 +3929,11 @@ private void MenuItemClickHandler(object sender, EventArgs e)
         {
              Uunos.ForeColor = System.Drawing.Color.Black;
         }
+
+        private void Ggrupisinp_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 } 
