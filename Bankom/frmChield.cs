@@ -126,17 +126,17 @@ namespace Bankom
         }
         private void frmChield_Activated(object sender, EventArgs e)
         {
-
-            if (VrstaPrikaza != "TreeView" )
-            {              
+            //jovana 29.10.20
+            //if (VrstaPrikaza != "TreeView" )
+            //{              
                 Boolean provera = true;
                 clsProveraDozvola provdoz = new clsProveraDozvola();
                 provera = provdoz.ProveriDozvole(imedokumenta,  idstablo.ToString(),Convert.ToString(iddokumenta) ,DokumentJe);
-            }
-            else
-            {
-              ////  
-            }
+            //}
+            //else
+            //{
+            //  ////  
+            //}
         }
         private void frmChield_Resize(object sender, EventArgs e)
         {
