@@ -1043,7 +1043,7 @@ namespace Bankom
             this.Ggrupisi.Size = new System.Drawing.Size(90, 40);
             this.Ggrupisi.Text = "Grupiši";
             this.Ggrupisi.ToolTipText = "Rad sa elementima stabla";
-            this.Ggrupisi.Click += new System.EventHandler(this.Ggrupisi_Click);
+           
             // 
             // toolStripSeparator14
             // 

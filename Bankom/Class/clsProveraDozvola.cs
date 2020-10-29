@@ -385,6 +385,31 @@ namespace Bankom.Class
 
 
                     }  //KRAJ DOKUMENTJE="S" && dokument == "Dokumenta"
+
+                    //jovana dodatak za klasifikacije 
+
+                    if (DokumentJe == "K")
+                    {
+                        DataTable tk = new DataTable(); // tabela Grupa  vezana za dozvole
+                        sel = "if not exists (Select * from " + dokument + "Stablo" + " where CCopy = 1) select 0 else select 1";
+                        tk = db.ReturnDataTable(sel);
+                        Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = true;
+                        ////Ako dokument postoji u dozvolama
+                        if (td.Rows.Count > 0)
+                        {
+                            if (tk.Rows[0][0].ToString() == "1")
+                            {
+                                Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = false;
+                                Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = true;
+                            }
+                            else
+                            {
+                                Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = true;
+                                Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = false;
+                            }
+                        }
+                    }
+
                 }     //KRAJ    DOKUMENTJE<>"D"
             }        // KRAJ POSTOJI U DOZVOLAMA
             else     ///ne postoji u dozvolama

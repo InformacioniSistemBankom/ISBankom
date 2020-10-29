@@ -2524,11 +2524,7 @@ namespace Bankom
             knjizi.ObradiNalogAutomatski();
         }
 
-        private void Ggrupisi_Click(object sender, EventArgs e)
-        {
-
-        }
-
+      
         private void Mmagacin_Click(object sender, EventArgs e)
         {
 
