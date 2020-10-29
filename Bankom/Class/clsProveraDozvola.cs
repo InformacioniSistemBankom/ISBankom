@@ -400,12 +400,12 @@ namespace Bankom.Class
                             if (tk.Rows[0][0].ToString() == "1")
                             {
                                 Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = false;
-                                Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = true;
+                                Program.Parent.ToolBar.Items["Ggrupisinp"].Enabled = true;
                             }
                             else
                             {
                                 Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = true;
-                                Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = false;
+                                Program.Parent.ToolBar.Items["Ggrupisinp"].Enabled = false;
                             }
                         }
                     }
