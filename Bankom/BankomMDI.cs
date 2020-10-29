@@ -3235,8 +3235,11 @@ namespace Bankom
                 }
             }
             else
+            {
                 t.Click += new EventHandler(MenuItemClickHandler);
-        }
+                t.Click += new EventHandler(UunosEnabled);
+            }
+            }
 
         private string CreateMenuItems(ToolStripMenuItem t, string strMenu)
         {
@@ -3274,6 +3277,7 @@ namespace Bankom
                 else
                 {
                     t1.Click += new EventHandler(MenuItemClickHandler);
+                    t1.Click += new EventHandler(UunosEnabled);
                     t.DropDownItems.Add(t1);
                 }
                 return strMenu;
@@ -3383,6 +3387,28 @@ namespace Bankom
             }
             return pom;
         }
+
+        // 29.10.2020. Ivana
+        private void UunosEnabled(object sender, EventArgs e)
+        {
+            string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
+            switch(s)
+            {
+                case "KlasifikacijaOrgStrukture":
+                case "KlasifikacijaArtikla":
+                case "KlasifikacijaKomitenata":
+                case "KlasifikacijaDokumenata":
+                case "KlasifikacijaIzvestaja":
+                case "KlasifikacijaMenija":
+                case "KlasifikacijaPomocnihSifarnika":
+                    Uunos.Enabled = true;
+                    break;
+                default:
+                    Uunos.Enabled = false;
+                    break;
+            }
+            
+        }
 private void MenuItemClickHandler(object sender, EventArgs e)
         {
             string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
@@ -3397,7 +3423,6 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 case "Artikli":
                 case "Komitenti":
                 case "OrganizacionaStruktura":
-                
                     postoji = IsOpen(s);
                     if (postoji == false)
                     {
@@ -3917,10 +3942,9 @@ private void MenuItemClickHandler(object sender, EventArgs e)
         {
             //zajedno 28.10.2020.
 
-            clsTreeProcessing tr = new clsTreeProcessing();
-
-            
-            MessageBox.Show(tr.ime2.ToString());
+            //clsTreeProcessing tr = new clsTreeProcessing();
+            //MessageBox.Show(tr.ime2.ToString());
+            MessageBox.Show(Program.AktivnaSifraIzvestaja);
         }
         
 
