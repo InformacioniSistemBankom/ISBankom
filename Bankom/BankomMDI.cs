@@ -3937,6 +3937,32 @@ private void MenuItemClickHandler(object sender, EventArgs e)
         {
             Ggrupisi.ForeColor = System.Drawing.Color.Black;
         }
+
+
+        //--------------------------------------------------------------------------------------------------------
+
+
+        //public DataTable ReturnDT(string str)
+        //{
+        //    SqlConnection con = new SqlConnection(connectionString);
+        //    try
+        //    {
+        //        if (con.State == ConnectionState.Closed) { con.Open(); }
+        //        using (SqlDataAdapter da = new SqlDataAdapter(str, con)) { da.Fill(dt); }
+        //        con.Close();
+        //        return dt;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //        if (con != null) { ((IDisposable)con).Dispose(); }
+
+        //        return null;
+        //    }
+        //}
+
+
+
         DataTable dt1= new DataTable();
         private string GetArtikliName(string strArtikliID)
         {

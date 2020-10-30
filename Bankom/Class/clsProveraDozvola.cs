@@ -403,13 +403,11 @@ namespace Bankom.Class
                             if (tk.Rows[0][0].ToString() == "1")
                             {                               
                                 Program.Parent.Ggrupisinp.Enabled = true;
-                                //Program.Parent.premestiGrupuToolStripMenuItem.Enabled = false;
                                 Program.Parent.Ggrupisinp.Visible = true;
                                 Program.Parent.premestiGrupuToolStripMenuItem.Visible = false;
                             }
                             else
                             {
-                                //Program.Parent.Ggrupisinp.Enabled = false;
                                 Program.Parent.premestiGrupuToolStripMenuItem.Enabled = true;
                                 Program.Parent.Ggrupisinp.Visible = false;
                                 Program.Parent.premestiGrupuToolStripMenuItem.Visible = true;
