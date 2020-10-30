@@ -254,25 +254,25 @@ namespace Bankom
 
 
 
-        private void Dokumenta_Click(object sender, EventArgs e)
-        {
-            string b = "Dokumenta";
+        //private void Dokumenta_Click(object sender, EventArgs e)
+        //{
+        //    string b = "Dokumenta";
 
-            for (int x = 0; x < toolStrip1.Items.Count; x++)
-            {
-                if (b == toolStrip1.Items[x].Name)
-                    if (b == toolStrip1.Items[x].Name)
-                    {
-                        MessageBox.Show("Vec postoji");
-                        return;
-                    }
-            }
-            clsObradaOsnovnihSifarnika co = new clsObradaOsnovnihSifarnika();
-            string odgovor = co.FormatirajRacun("190-1360-78");
+        //    for (int x = 0; x < toolStrip1.Items.Count; x++)
+        //    {
+        //        if (b == toolStrip1.Items[x].Name)
+        //            if (b == toolStrip1.Items[x].Name)
+        //            {
+        //                MessageBox.Show("Vec postoji");
+        //                return;
+        //            }
+        //    }
+        //    clsObradaOsnovnihSifarnika co = new clsObradaOsnovnihSifarnika();
+        //    string odgovor = co.FormatirajRacun("190-1360-78");
 
-            ShowNewForm("Dokumenta", 1, "Dokumenta", 1, "", "", "S", "", "TreeView");
+        //    ShowNewForm("Dokumenta", 1, "Dokumenta", 1, "", "", "S", "", "TreeView");
 
-        }
+        //}
 
         private void BankomMDI_Load(object sender, EventArgs e)
         { // tamara 27.10.2020.
@@ -1850,21 +1850,21 @@ namespace Bankom
         {
             //tamara 23.10.2020.
 
-            Application.Exit();
 
-            //Form activeChild = this.ActiveMdiChild;
 
-            //if (activeChild != null)
-            //{
-            //    if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
-            //    clsRefreshForm rf = new clsRefreshForm();
-            //    rf.refreshform();
-            //    activeChild.Controls["OOperacija"].Text = "";
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Nemate aktivnu formu");
-            //}
+            Form activeChild = this.ActiveMdiChild;
+
+            if (activeChild != null)
+            {
+                if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
+                clsRefreshForm rf = new clsRefreshForm();
+                rf.refreshform();
+                activeChild.Controls["OOperacija"].Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Nemate aktivnu formu");
+            }
 
         }
 
@@ -3941,10 +3941,12 @@ private void MenuItemClickHandler(object sender, EventArgs e)
         private string GetArtikliName(string strArtikliID)
         {
             // return dt1.Select("ID_ArtikliStablo ='" + strArtikliID + "'")[0][0].ToString();
+
+
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
            
-            string upit = "Select ID_ArtikliStablo from ArtikliStablo where  NazivJavni ='Hemikalije'";
+            string upit = "Select ID_ArtikliStablo from ArtikliStablo where  NazivJavni ='"+strArtikliID+"'";
             SqlCommand cmd = new SqlCommand(upit, conn);
             //db.Comanda(cmd);
             var rez = cmd.ExecuteScalar();
@@ -3972,15 +3974,27 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 SqlConnection conn = new SqlConnection(connectionString);
                 if (conn.State == ConnectionState.Closed) { conn.Open(); }
 
+                var param0 = nazivCvora;
+                var param1 = nazivCvora;
+                var param2 = nazivCvora;
 
-                string upit = "insert into ArtikliStablo (Naziv,NazivJavni,Vezan) values('" + nazivCvora + "', '" + nazivCvora + "'," + id + ")";
-                SqlCommand cmd = new SqlCommand(upit, conn);
-                cmd.ExecuteNonQuery();
 
-                frmChield akitv = new frmChield();
-                akitv.Close();
+                string upit = "insert into ArtikliStablo (Naziv,NazivJavni,Vezan) values(@param0, @param1, @param2)";
+                //SqlCommand cmd = new SqlCommand(upit, conn);
+                //cmd.ExecuteNonQuery();
+                //clsRefreshForm frm = new clsRefreshForm();
+                //frm.refreshform();
 
-                ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
+                db.ParamsQueryDT(upit, param0, param1, param2);
+
+                var IMESTABLA = "ArtikliStablo";
+
+                db.ExecuteStoreProcedure("SrediSifrarnik", "Stab:" + IMESTABLA);
+
+                //frmChield akitv = new frmChield();
+                //akitv.Close();
+
+                //ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
 
                 //string akti = "Bankom-sa - [Artikli]";
                 //bool pom = false;
