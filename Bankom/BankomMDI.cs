@@ -3937,8 +3937,56 @@ private void MenuItemClickHandler(object sender, EventArgs e)
         {
             Ggrupisi.ForeColor = System.Drawing.Color.Black;
         }
+        DataTable dt1= new DataTable();
+        private string GetArtikliName(string strArtikliID)
+        {
+            // return dt1.Select("ID_ArtikliStablo ='" + strArtikliID + "'")[0][0].ToString();
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+           
+            string upit = "Select ID_ArtikliStablo from ArtikliStablo where NazivJavni='Hemikalije'";
+            SqlCommand cmd = new SqlCommand(upit, conn);
+            //db.Comanda(cmd);
+            var rez = cmd.ExecuteNonQuery();
+            conn.Close();
+            string s = rez.ToString();
+            return s;
+
+        }
+
+        private void unosČvoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            
+            string s = Program.AktivnaSifraIzvestaja;
+            //MessageBox.Show("U tekstualno polje unesite naziv novog čvora.");
+            string nazivCvora = toolStripTextBox1.Text;
+
+            if (!String.IsNullOrEmpty(nazivCvora.ToString())&& !String.IsNullOrWhiteSpace(nazivCvora.ToString()))
+            {
+                //MessageBox.Show("Morate uneti naziv novog čvora u tekstualno polje!");
+                DataBaseBroker db = new DataBaseBroker();
+                int id = int.Parse(GetArtikliName(s));
+             
+
+                SqlConnection conn = new SqlConnection(connectionString);
+                if (conn.State == ConnectionState.Closed) { conn.Open(); }
 
 
+                string upit = "insert into ArtikliStablo (Naziv,NazivJavni,Vezan) values('" + nazivCvora + "', '" + nazivCvora + "'," + id + ")";
+                SqlCommand cmd = new SqlCommand(upit, conn);
+                cmd.ExecuteNonQuery();
+                //db.Comanda(cmd);
+            }
+            else
+            {
+                MessageBox.Show("Morate uneti naziv novog čvora u tekstualno polje!");
+
+            }
+
+
+
+        }
     }
    
 } 
