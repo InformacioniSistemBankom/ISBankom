@@ -3944,10 +3944,10 @@ private void MenuItemClickHandler(object sender, EventArgs e)
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
            
-            string upit = "Select ID_ArtikliStablo from ArtikliStablo where NazivJavni='Hemikalije'";
+            string upit = "Select ID_ArtikliStablo from ArtikliStablo where  NazivJavni ='Hemikalije'";
             SqlCommand cmd = new SqlCommand(upit, conn);
             //db.Comanda(cmd);
-            var rez = cmd.ExecuteNonQuery();
+            var rez = cmd.ExecuteScalar();
             conn.Close();
             string s = rez.ToString();
             return s;
@@ -3959,12 +3959,12 @@ private void MenuItemClickHandler(object sender, EventArgs e)
 
             
             string s = Program.AktivnaSifraIzvestaja;
-            //MessageBox.Show("U tekstualno polje unesite naziv novog čvora.");
+    
             string nazivCvora = toolStripTextBox1.Text;
 
             if (!String.IsNullOrEmpty(nazivCvora.ToString())&& !String.IsNullOrWhiteSpace(nazivCvora.ToString()))
             {
-                //MessageBox.Show("Morate uneti naziv novog čvora u tekstualno polje!");
+                
                 DataBaseBroker db = new DataBaseBroker();
                 int id = int.Parse(GetArtikliName(s));
              
@@ -3976,13 +3976,38 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 string upit = "insert into ArtikliStablo (Naziv,NazivJavni,Vezan) values('" + nazivCvora + "', '" + nazivCvora + "'," + id + ")";
                 SqlCommand cmd = new SqlCommand(upit, conn);
                 cmd.ExecuteNonQuery();
-                //db.Comanda(cmd);
+
+                frmChield akitv = new frmChield();
+                akitv.Close();
+
+                ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
+
+                //string akti = "Bankom-sa - [Artikli]";
+                //bool pom = false;
+                //foreach (Form f in Application.OpenForms)
+                //{
+                //    if (f.Text == akti)
+                //    {
+                //        pom = true;
+                //        //MessageBox.Show("Već je otvorena ova forma!");
+                //        f.Hide();
+                //        ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
+                //        break;
+                //    }
+                //    else ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
+                //}
+                ////else ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
+
+
+
             }
             else
             {
                 MessageBox.Show("Morate uneti naziv novog čvora u tekstualno polje!");
 
             }
+
+
 
 
 
