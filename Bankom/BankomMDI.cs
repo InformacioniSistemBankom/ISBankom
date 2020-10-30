@@ -3903,10 +3903,14 @@ private void MenuItemClickHandler(object sender, EventArgs e)
         private void BankomMDI_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-            if (MessageBox.Show("Da li ste sigurni da želite da zatvorite program?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.No)
+            if (MessageBox.Show("Da li ste sigurni da želite da zatvorite program?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Cancel)
             {
                 
                 e.Cancel = true;
+            }
+            else
+            {
+                e.Cancel = false;
             }
         }
 
