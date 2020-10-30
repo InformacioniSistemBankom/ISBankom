@@ -3974,20 +3974,28 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 SqlConnection conn = new SqlConnection(connectionString);
                 if (conn.State == ConnectionState.Closed) { conn.Open(); }
 
+
+                string upit1 = " SELECT MAX(RedniBroj) FROM ArtikliStablo";
+                SqlCommand cmd = new SqlCommand(upit1,conn);
+              int i = int.Parse(  cmd.ExecuteScalar().ToString())+1;
+
+
+
                 var param0 = nazivCvora;
                 var param1 = nazivCvora;
-                var param2 = nazivCvora;
+                var param2 = id;
+               var param3 = i;
+                
 
-
-                string upit = "insert into ArtikliStablo (Naziv,NazivJavni,Vezan) values(@param0, @param1, @param2)";
+                string upit = "insert into ArtikliStablo (Naziv,NazivJavni,Vezan,RedniBroj) values(@param0, @param1, @param2, @param3)";
                 //SqlCommand cmd = new SqlCommand(upit, conn);
                 //cmd.ExecuteNonQuery();
                 //clsRefreshForm frm = new clsRefreshForm();
                 //frm.refreshform();
 
-                db.ParamsQueryDT(upit, param0, param1, param2);
+                db.ParamsInsertScalar(upit, param0, param1, param2, param3);
 
-                var IMESTABLA = "ArtikliStablo";
+           var IMESTABLA = "Artikli";
 
                 db.ExecuteStoreProcedure("SrediSifrarnik", "Stab:" + IMESTABLA);
 
