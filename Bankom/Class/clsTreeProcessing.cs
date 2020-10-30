@@ -262,7 +262,7 @@ namespace Bankom.Class
                 Program.AktivnaSifraIzvestaja = tv.SelectedNode.Text.ToString();
                 //MessageBox.Show(tv.SelectedNode.Text.ToString());
 
-
+               Program.Parent.toolStripTextBox1.Clear();
 
             }
             

@@ -122,6 +122,7 @@ namespace Bankom
             this.ToolBar = new System.Windows.Forms.ToolStrip();
             this.Uunos = new System.Windows.Forms.ToolStripDropDownButton();
             this.unospb = new System.Windows.Forms.ToolStripMenuItem();
+            this.unosČvoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.Ppregled = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
@@ -137,6 +138,7 @@ namespace Bankom
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.Ggrupisi = new System.Windows.Forms.ToolStripDropDownButton();
             this.Ggrupisinp = new System.Windows.Forms.ToolStripMenuItem();
+            this.premestiGrupuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.Iimenik = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
@@ -181,8 +183,6 @@ namespace Bankom
             this.sdfgghToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
-            this.unosČvoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.premestiGrupuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -925,6 +925,13 @@ namespace Bankom
             this.unospb.ToolTipText = "Unos podbroja dokumenta";
             this.unospb.Click += new System.EventHandler(this.unospb_Click);
             // 
+            // unosČvoraToolStripMenuItem
+            // 
+            this.unosČvoraToolStripMenuItem.Name = "unosČvoraToolStripMenuItem";
+            this.unosČvoraToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
+            this.unosČvoraToolStripMenuItem.Text = "Unos čvora";
+            this.unosČvoraToolStripMenuItem.Click += new System.EventHandler(this.unosČvoraToolStripMenuItem_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -1058,6 +1065,12 @@ namespace Bankom
             this.Ggrupisinp.Size = new System.Drawing.Size(208, 22);
             this.Ggrupisinp.Text = "Nova pozicija grupe";
             this.Ggrupisinp.ToolTipText = "Unos podbroja dokumenta";
+            // 
+            // premestiGrupuToolStripMenuItem
+            // 
+            this.premestiGrupuToolStripMenuItem.Name = "premestiGrupuToolStripMenuItem";
+            this.premestiGrupuToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.premestiGrupuToolStripMenuItem.Text = "Premesti grupu";
             // 
             // toolStripSeparator14
             // 
@@ -1443,18 +1456,6 @@ namespace Bankom
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // unosČvoraToolStripMenuItem
-            // 
-            this.unosČvoraToolStripMenuItem.Name = "unosČvoraToolStripMenuItem";
-            this.unosČvoraToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
-            this.unosČvoraToolStripMenuItem.Text = "Unos čvora";
-            // 
-            // premestiGrupuToolStripMenuItem
-            // 
-            this.premestiGrupuToolStripMenuItem.Name = "premestiGrupuToolStripMenuItem";
-            this.premestiGrupuToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.premestiGrupuToolStripMenuItem.Text = "Premesti grupu";
-            // 
             // BankomMDI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1625,7 +1626,6 @@ namespace Bankom
         private System.Windows.Forms.ToolStripButton Ppregled;
         private System.Windows.Forms.ToolStripButton Sstorno;
         private System.Windows.Forms.ToolStripButton Sstampa;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.ToolStripButton Iimenik;
         private System.Windows.Forms.ToolStripButton Ppotvrda;
         private System.Windows.Forms.ToolStripButton Ccalc;
@@ -1639,6 +1639,7 @@ namespace Bankom
         public System.Windows.Forms.ToolStripMenuItem unosČvoraToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem unospb;
         public System.Windows.Forms.ToolStripMenuItem premestiGrupuToolStripMenuItem;
+        public System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
     }
 }
 
