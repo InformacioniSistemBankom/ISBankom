@@ -33,6 +33,10 @@ namespace Bankom.Class
 
             switch (dokje)
             {
+                case "K":
+                    clsTreeProcessing tw = new clsTreeProcessing();
+                    tw.ObradaStabla(forma, "1", imestabla, dokje);
+                    break;
                 case "S":
                     clsObradaStablaStipa procs = new clsObradaStablaStipa();
                     supit = procs.Proces(imestabla, ime, Convert.ToInt32(idstablo));

@@ -259,7 +259,7 @@ namespace Bankom.Class
             //string VratiIme()
             {
                 //  ime2 = e.Node.Text;
-                Program.AktivnaSifraIzvestaja = tv.SelectedNode.Text.ToString();
+                Program.AktivnaSifraIzvestaja = e.Node.Text.ToString();
                 //MessageBox.Show(tv.SelectedNode.Text.ToString());
 
                Program.Parent.toolStripTextBox1.Clear();
