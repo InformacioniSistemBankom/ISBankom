@@ -256,20 +256,23 @@ namespace Bankom.Class
 
         public void tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+            Program.Parent.ToolBar.Items["Uunos"].Visible = true;
+            Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
+
+            Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
+            Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
             //string VratiIme()
-            {
+            
                 //  ime2 = e.Node.Text;
                 Program.AktivnaSifraIzvestaja = e.Node.Text.ToString();
                 //MessageBox.Show(tv.SelectedNode.Text.ToString());
 
                Program.Parent.toolStripTextBox1.Clear();
 
-            }
-            
-                
-            
-             
+
+
         }
+
 
     }
     
