@@ -4034,18 +4034,19 @@ private void MenuItemClickHandler(object sender, EventArgs e)
         DataTable dt1= new DataTable();
         private string GetIdCvor(string strNazivJavni)
         {
-            
 
+            string param0;
             DataBaseBroker db = new DataBaseBroker();
-         
-            string param0 = strNazivJavni;
-          
-           
+            if (strNazivJavni == "Izvestaji")
+            {
+                param0 = strNazivJavni.Trim().Substring(4);
+            }
+            else
+            {
+                param0 = strNazivJavni;
+            }
             string upit = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni =@param0 " ;
-       
-           
             DataTable rez = db.ParamsQueryDT(upit, param0);
-         
             string s = rez.Rows[0][0].ToString();
             return s;
 
