@@ -3343,24 +3343,53 @@ namespace Bankom
                 slovo = 'P';
             return slovo;
         }
-
+        public string pomStablo;
+        public string pomId;
         //28.10.2020. Ivana
         private string SkiniKlasifikaciju(string s)
         {
             if (s == "KlasifikacijaOrgStrukture")
+            {
+                pomStablo = "OrganizacionaStrukturaStablo";
+                pomId = "ID_OrganizacionaStrukturaStablo";
                 return "OrganizacionaStruktura";
+            }
             else if (s == "KlasifikacijaDokumenata")
+            {
+                pomStablo = "DokumentaStablo";
+                pomId = "ID_DokumentaStablo";
                 return "Dokumenta";
+            }
             else if (s == "KlasifikacijaArtikla")
+            {
+                pomStablo = "ArtikliStablo";
+                pomId = "ID_ArtikliStablo";
                 return "Artikli";
+            }
             else if (s == "KlasifikacijaKomitenata")
+            {
+                pomStablo = "KomitentiStablo";
+                pomId = "ID_KomitentiStablo";
                 return "Komitenti";
+            }
             else if (s == "KlasifikacijaIzvestaja")
+            {
+                pomStablo = "IzvestajiStablo";
+                pomId = "ID_IzvestajiStablo";
                 return "Izvestaji";
+            }
             else if (s == "KlasifikacijaMenija")
+            {
+                pomStablo = "MenuStablo";
+                pomId = "ID_MenuStablo";
                 return "Menu";
+            }
             else
+            {
+                pomStablo = "PomocniSifarniciStablo";
+                pomId = "ID_PomocniSifarniciStablo";
                 return "PomocniSifarnici";
+            }
         }
             
         private bool IsOpen(string s)
@@ -3999,16 +4028,18 @@ private void MenuItemClickHandler(object sender, EventArgs e)
         {
             // return dt1.Select("ID_ArtikliStablo ='" + strArtikliID + "'")[0][0].ToString();
 
-
+            DataBaseBroker db = new DataBaseBroker();
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
+            string param0 = pomId;
+            string param1 = "";
+            param1 = pomStablo;
+            string upit = "Select @param0 from @param1 where  NazivJavni ='"+strArtikliID+"'";
+            //SqlCommand cmd = new SqlCommand(upit, conn);
            
-            string upit = "Select ID_ArtikliStablo from ArtikliStablo where  NazivJavni ='"+strArtikliID+"'";
-            SqlCommand cmd = new SqlCommand(upit, conn);
-            //db.Comanda(cmd);
-            var rez = cmd.ExecuteScalar();
+            DataTable rez = db.ParamsQueryDT(upit,param0, param1);
             conn.Close();
-            string s = rez.ToString();
+            string s = rez.Rows[0][0].ToString();
             return s;
 
         }
@@ -4031,10 +4062,11 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 SqlConnection conn = new SqlConnection(connectionString);
                 if (conn.State == ConnectionState.Closed) { conn.Open(); }
 
-
-                string upit1 = " SELECT MAX(RedniBroj) FROM ArtikliStablo";
-                SqlCommand cmd = new SqlCommand(upit1,conn);
-              int i = int.Parse(  cmd.ExecuteScalar().ToString())+1;
+                var param = pomStablo;
+                string upit1 = " SELECT MAX(RedniBroj) FROM @param";
+                DataTable rez = db.ParamsQueryDT(upit1, param);
+                //SqlCommand cmd = new SqlCommand(upit1,conn);
+              int i = int.Parse(rez.Rows[0][0].ToString())+1;
 
 
 
@@ -4043,13 +4075,13 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 var param2 = id;
                var param3 = i;
                 int param4 = 0;
-
-                string upit = "insert into ArtikliStablo (Naziv,NazivJavni,Vezan,RedniBroj,CCopy) values(@param0, @param1, @param2, @param3,@param4)";
+                var param5 = pomStablo;
+                string upit = "insert into @param5 (Naziv,NazivJavni,Vezan,RedniBroj,CCopy) values(@param0, @param1, @param2, @param3,@param4)";
                 //SqlCommand cmd = new SqlCommand(upit, conn);
                 //cmd.ExecuteNonQuery();
          
 
-                db.ParamsInsertScalar(upit, param0, param1, param2, param3, param4);
+                db.ParamsInsertScalar(upit, param5, param0, param1, param2, param3, param4);
 
                 clsRefreshForm frm = new clsRefreshForm();
                 frm.refreshform();
