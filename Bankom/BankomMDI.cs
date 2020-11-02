@@ -4034,10 +4034,11 @@ private void MenuItemClickHandler(object sender, EventArgs e)
             string param0 = pomId;
             string param1 = "";
             param1 = pomStablo;
-            string upit = "Select @param0 from @param1 where  NazivJavni ='"+strArtikliID+"'";
+            string param2 = strArtikliID;
+            string upit = "Select @param0 from @param1 where  NazivJavni = '@param2'";
             //SqlCommand cmd = new SqlCommand(upit, conn);
            
-            DataTable rez = db.ParamsQueryDT(upit,param0, param1);
+            DataTable rez = db.ParamsQueryDT(upit,param0, param1, param2);
             conn.Close();
             string s = rez.Rows[0][0].ToString();
             return s;
@@ -4066,14 +4067,14 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 string upit1 = " SELECT MAX(RedniBroj) FROM @param";
                 DataTable rez = db.ParamsQueryDT(upit1, param);
                 //SqlCommand cmd = new SqlCommand(upit1,conn);
-              int i = int.Parse(rez.Rows[0][0].ToString())+1;
+                int i = int.Parse(rez.Rows[0][0].ToString())+1;
 
 
 
                 var param0 = nazivCvora;
                 var param1 = nazivCvora;
                 var param2 = id;
-               var param3 = i;
+                var param3 = i;
                 int param4 = 0;
                 var param5 = pomStablo;
                 string upit = "insert into @param5 (Naziv,NazivJavni,Vezan,RedniBroj,CCopy) values(@param0, @param1, @param2, @param3,@param4)";
