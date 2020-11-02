@@ -4031,11 +4031,8 @@ private void MenuItemClickHandler(object sender, EventArgs e)
             DataBaseBroker db = new DataBaseBroker();
            // SqlConnection conn = new SqlConnection(connectionString);
            // conn.Open();
-            string param0 = pomId;
-            string param1 = "";
-            param1 = pomStablo;
-            string upit = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni =@param0 " ;
-            //SqlCommand cmd = new SqlCommand(upit, conn);
+            string param0;
+            string upit = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni = @param0 " ;
            
             DataTable rez = db.ParamsQueryDT(upit,  strArtikliID);
             //conn.Close();
