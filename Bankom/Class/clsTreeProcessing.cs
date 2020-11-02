@@ -199,7 +199,7 @@ namespace Bankom.Class
                         string sql = " select s.ulazniizlazni as NazivDokumenta,NacinRegistracije as nr,"
                                   + " Knjizise,Izvor  from  SifarnikDokumenta as s"
                                   + "  Where s.naziv=@param0";
-
+                        
                         DataTable t = db.ParamsQueryDT(sql, ime);
                         if (t.Rows.Count > 0)
                         {

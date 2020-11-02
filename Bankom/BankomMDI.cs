@@ -3345,6 +3345,7 @@ namespace Bankom
         }
         public string pomStablo;
         public string pomId;
+        public string pomIzv="";
         //28.10.2020. Ivana
         private string SkiniKlasifikaciju(string s)
         {
@@ -3376,6 +3377,7 @@ namespace Bankom
             {
                 pomStablo = "IzvestajiStablo";
                 pomId = "ID_IzvestajiStablo";
+                pomIzv = "Izvestaji";
                 return "Izvestaji";
             }
             else if (s == "KlasifikacijaMenija")
@@ -4032,18 +4034,21 @@ private void MenuItemClickHandler(object sender, EventArgs e)
             Ggrupisi.ForeColor = System.Drawing.Color.Black;
         }
         DataTable dt1= new DataTable();
+        public string param5="";
         private string GetIdCvor(string strNazivJavni)
         {
-
+        
             string param0;
             DataBaseBroker db = new DataBaseBroker();
-            if (strNazivJavni == "Izvestaji")
+            if (pomIzv == "Izvestaji")
             {
                 param0 = strNazivJavni.Trim().Substring(4);
+                param5= toolStripTextBox1.Text.Substring(0, 3);
             }
             else
             {
                 param0 = strNazivJavni;
+                
             }
             string upit = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni =@param0 " ;
             DataTable rez = db.ParamsQueryDT(upit, param0);
@@ -4078,18 +4083,19 @@ private void MenuItemClickHandler(object sender, EventArgs e)
 
 
 
-                var param0 = nazivCvora;
-                var param1 = nazivCvora;
+                var param0 = nazivCvora.Substring(4);
+                var param1 = nazivCvora.Substring(4);
                 var param2 = id;
                var param3 = i;
                 int param4 = 0;
+             
            
-                string upit = "insert into "+pomStablo+" (Naziv,NazivJavni,vezan,RedniBroj,CCopy) values(@param0, @param1, @param2, @param3,@param4)";
+                string upit = "insert into "+pomStablo+" (Naziv,NazivJavni,vezan,RedniBroj,CCopy,Brdok) values(@param0, @param1, @param2, @param3,@param4,@param5)";
                 //SqlCommand cmd = new SqlCommand(upit, conn);
                 //cmd.ExecuteNonQuery();
          
 
-                db.ParamsInsertScalar(upit, param0, param1, param2, param3, param4);
+                db.ParamsInsertScalar(upit, param0, param1, param2, param3, param4,param5);
 
                 clsRefreshForm frm = new clsRefreshForm();
                 frm.refreshform();
