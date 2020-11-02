@@ -3977,8 +3977,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
             //db.Comanda(cmd);
             var rez = cmd.ExecuteScalar();
             conn.Close();
-            string s = rez.ToString();
-            return s;
+            return rez.ToString();
 
         }
 
@@ -4002,7 +4001,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
 
                 var param0 = nazivCvora;
                 var param1 = nazivCvora;
-                var param2 = nazivCvora;
+                var param2 = id;
 
 
                 string upit = "insert into ArtikliStablo (Naziv,NazivJavni,Vezan) values(@param0, @param1, @param2)";
@@ -4013,7 +4012,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
 
                 db.ParamsQueryDT(upit, param0, param1, param2);
 
-                var IMESTABLA = "ArtikliStablo";
+                var IMESTABLA = "Artikli";
 
                 db.ExecuteStoreProcedure("SrediSifrarnik", "Stab:" + IMESTABLA);
 
