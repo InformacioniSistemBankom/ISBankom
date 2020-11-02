@@ -41,7 +41,7 @@ namespace Bankom.Class
             string sselect;
             string idke = Program.idkadar.ToString();
             string idfirme = Program.idFirme.ToString();
-
+            tv.Nodes.Clear();
             //string idfirme = "6";
 
             //'  If (DokumentJe = "S" And KojeStablo = "Dokumenta") Or KojeStablo = "Izvestaji" Or KojeStablo = "PomocniSifarnici" Then
