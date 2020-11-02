@@ -3989,19 +3989,21 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 var param1 = nazivCvora;
                 var param2 = id;
                var param3 = i;
-                
+                int param4 = 0;
 
-                string upit = "insert into ArtikliStablo (Naziv,NazivJavni,Vezan,RedniBroj) values(@param0, @param1, @param2, @param3)";
+                string upit = "insert into ArtikliStablo (Naziv,NazivJavni,Vezan,RedniBroj,CCopy) values(@param0, @param1, @param2, @param3,@param4)";
                 //SqlCommand cmd = new SqlCommand(upit, conn);
                 //cmd.ExecuteNonQuery();
-                //clsRefreshForm frm = new clsRefreshForm();
-                //frm.refreshform();
+         
 
-                db.ParamsInsertScalar(upit, param0, param1, param2, param3);
+                db.ParamsInsertScalar(upit, param0, param1, param2, param3, param4);
 
-           var IMESTABLA = "Artikli";
+                clsRefreshForm frm = new clsRefreshForm();
+                frm.refreshform();
 
-              //  db.ExecuteStoreProcedure("SrediSifrarnik", "Stab:" + IMESTABLA);
+                //var IMESTABLA = "Artikli";
+
+                //  db.ExecuteStoreProcedure("SrediSifrarnik", "Stab:" + IMESTABLA);
 
                 //frmChield akitv = new frmChield();
                 //akitv.Close();
