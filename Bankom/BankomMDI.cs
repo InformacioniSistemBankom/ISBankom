@@ -4029,15 +4029,14 @@ private void MenuItemClickHandler(object sender, EventArgs e)
             // return dt1.Select("ID_ArtikliStablo ='" + strArtikliID + "'")[0][0].ToString();
 
             DataBaseBroker db = new DataBaseBroker();
-            SqlConnection conn = new SqlConnection(connectionString);
-            conn.Open();
+         
             string param0 = pomId;
-            string param1 = "";
-            param1 = pomStablo;
+            string param1 = strArtikliID;
+           // param1 = pomStablo;
             string upit = "Select @param0 from " + pomStablo + " where  NazivJavni =@param1"  ;
             //SqlCommand cmd = new SqlCommand(upit, conn);
            
-            DataTable rez = db.ParamsQueryDT(upit,param0, strArtikliID);
+            DataTable rez = db.ParamsQueryDT(upit,param0, param1);
             //conn.Close();
             string s = rez.Rows[0][0].ToString();
             return s;
