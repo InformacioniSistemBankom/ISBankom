@@ -4083,7 +4083,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                var param3 = i;
                 int param4 = 0;
            
-                string upit = "insert into "+pomStablo+" (Naziv,NazivJavni,Vezan,RedniBroj,CCopy) values(@param0, @param1, @param2, @param3,@param4)";
+                string upit = "insert into "+pomStablo+" (Naziv,NazivJavni,vezan,RedniBroj,CCopy) values(@param0, @param1, @param2, @param3,@param4)";
                 //SqlCommand cmd = new SqlCommand(upit, conn);
                 //cmd.ExecuteNonQuery();
          
