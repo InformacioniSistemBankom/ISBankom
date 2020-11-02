@@ -4034,11 +4034,11 @@ private void MenuItemClickHandler(object sender, EventArgs e)
             string param0 = pomId;
             string param1 = "";
             param1 = pomStablo;
-            string upit = "Select @param0 from @param1 where  NazivJavni ='"+strArtikliID+"'";
+            string upit = "Select @param0 from " + pomStablo + " where  NazivJavni =@param1"  ;
             //SqlCommand cmd = new SqlCommand(upit, conn);
            
-            DataTable rez = db.ParamsQueryDT(upit,param0, param1);
-            conn.Close();
+            DataTable rez = db.ParamsQueryDT(upit,param0, strArtikliID);
+            //conn.Close();
             string s = rez.Rows[0][0].ToString();
             return s;
 
