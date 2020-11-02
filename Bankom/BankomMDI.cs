@@ -4032,12 +4032,11 @@ private void MenuItemClickHandler(object sender, EventArgs e)
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
             string param0 = pomId;
-            string param1 = "";
-            param1 = pomStablo;
+            string param1 = strArtikliID;
             string upit = "Select @param0 from " + pomStablo + " where  NazivJavni =@param1"  ;
             //SqlCommand cmd = new SqlCommand(upit, conn);
            
-            DataTable rez = db.ParamsQueryDT(upit,param0, strArtikliID);
+            DataTable rez = db.ParamsQueryDT(upit,param0, param1);
             //conn.Close();
             string s = rez.Rows[0][0].ToString();
             return s;
