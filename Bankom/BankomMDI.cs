@@ -4001,7 +4001,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
 
            var IMESTABLA = "Artikli";
 
-                db.ExecuteStoreProcedure("SrediSifrarnik", "Stab:" + IMESTABLA);
+              //  db.ExecuteStoreProcedure("SrediSifrarnik", "Stab:" + IMESTABLA);
 
                 //frmChield akitv = new frmChield();
                 //akitv.Close();
