@@ -3380,6 +3380,8 @@ namespace Bankom
             }
             else if (s == "KlasifikacijaMenija")
             {
+                Program.Parent.ToolBar.Items["Uunos"].Visible = true;
+                Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
                 pomStablo = "MenuStablo";
                 pomId = "ID_MenuStablo";
                 return "Menu";
@@ -3413,7 +3415,7 @@ namespace Bankom
         }
 
         // zajedno 02.11.2020.
-        private void SrediFormu()
+    public void SrediFormu()
         {
             flowLayoutPanel1.Width = 161;
           
@@ -3426,6 +3428,8 @@ namespace Bankom
         
 private void MenuItemClickHandler(object sender, EventArgs e)
         {
+            Program.Parent.ToolBar.Items["Uunos"].Visible = true;
+            Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
             string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
             char slovo = UzmiSlovo(s);
             bool postoji;
@@ -3439,6 +3443,8 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 case "Artikli":
                 case "Komitenti":
                 case "OrganizacionaStruktura":
+                    Program.Parent.ToolBar.Items["Uunos"].Visible = true;
+                    Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
                     postoji = IsOpen(s);
                     if (postoji == false)
                     {
@@ -3465,6 +3471,8 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 case "KlasifikacijaIzvestaja":
                 case "KlasifikacijaMenija":
                 case "KlasifikacijaPomocnihSifarnika":
+                    Program.Parent.ToolBar.Items["Uunos"].Visible = true;
+                    Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
                     postoji = IsOpen(s);
                     if (postoji == false)
                     {
@@ -4024,13 +4032,13 @@ private void MenuItemClickHandler(object sender, EventArgs e)
             Ggrupisi.ForeColor = System.Drawing.Color.Black;
         }
         DataTable dt1= new DataTable();
-        private string GetArtikliName(string strArtikliID)
+        private string GetIdCvor(string strNazivJavni)
         {
             
 
             DataBaseBroker db = new DataBaseBroker();
          
-            string param0 = strArtikliID;
+            string param0 = strNazivJavni;
           
            
             string upit = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni =@param0 " ;
@@ -4055,15 +4063,15 @@ private void MenuItemClickHandler(object sender, EventArgs e)
             {
                 
                 DataBaseBroker db = new DataBaseBroker();
-                int id = int.Parse(GetArtikliName(s));
+                int id = int.Parse(GetIdCvor(s));
              
 
                 SqlConnection conn = new SqlConnection(connectionString);
                 if (conn.State == ConnectionState.Closed) { conn.Open(); }
 
-                var param = pomStablo;
-                string upit1 = " SELECT MAX(RedniBroj) FROM @param";
-                DataTable rez = db.ParamsQueryDT(upit1, param);
+           
+                string upit1 = " SELECT MAX(RedniBroj) FROM "+ pomStablo ;
+                DataTable rez = db.ParamsQueryDT(upit1);
                 //SqlCommand cmd = new SqlCommand(upit1,conn);
               int i = int.Parse(rez.Rows[0][0].ToString())+1;
 
@@ -4074,13 +4082,13 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 var param2 = id;
                var param3 = i;
                 int param4 = 0;
-                var param5 = pomStablo;
-                string upit = "insert into @param5 (Naziv,NazivJavni,Vezan,RedniBroj,CCopy) values(@param0, @param1, @param2, @param3,@param4)";
+           
+                string upit = "insert into "+pomStablo+" (Naziv,NazivJavni,Vezan,RedniBroj,CCopy) values(@param0, @param1, @param2, @param3,@param4)";
                 //SqlCommand cmd = new SqlCommand(upit, conn);
                 //cmd.ExecuteNonQuery();
          
 
-                db.ParamsInsertScalar(upit, param5, param0, param1, param2, param3, param4);
+                db.ParamsInsertScalar(upit, param0, param1, param2, param3, param4);
 
                 clsRefreshForm frm = new clsRefreshForm();
                 frm.refreshform();
