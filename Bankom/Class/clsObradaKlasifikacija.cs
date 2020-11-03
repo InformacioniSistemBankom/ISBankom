@@ -11,44 +11,44 @@ namespace Bankom.Class
 {
     class clsObradaKlasifikacija
     {
-        BankomMDI instanca = new BankomMDI();
+       
         public string param5 = "";
         public string param1;
 
         DataBaseBroker db = new DataBaseBroker();
-        private string GetIdCvor(string strNazivJavni)
+        private string GetIdCvor(string strNazivJavni, string d, string pomIzv, string pomStablo)
         {
             
             string param0 = "";
-            if (instanca.pomIzv == "Izvestaji")
+            if (pomIzv == "Izvestaji")
             {
                 param0 = strNazivJavni.Trim().Substring(4);
-                param5 = instanca.toolStripTextBox1.Text.Substring(0, 3);
-                param1 = instanca.toolStripTextBox1.Text.Substring(4);
+                param5 = d.Substring(0, 3);
+                param1 = d.Substring(4);
             }
             else
             {
                 param0 = strNazivJavni;
-                param1 = instanca.toolStripTextBox1.Text;
+                param1 = d;
             }
-            string upit = "Select id_" + instanca.pomStablo + " from " + instanca.pomStablo + " where  NazivJavni =@param0 ";
+            string upit = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni = @param0";
             DataTable rez = db.ParamsQueryDT(upit, param0);
             string s = rez.Rows[0][0].ToString();
             return s;
-
+            
         }
 
-        public void Klasifikacija_Click(object sender, EventArgs e)
+        public void Klasifikacija_Click(string d, string pomIzv, string pomStablo)
         {
             string s = Program.AktivnaSifraIzvestaja;
 
-            string nazivCvora = instanca.toolStripTextBox1.Text;
+            string nazivCvora = d;
 
-            if (!String.IsNullOrEmpty(nazivCvora.ToString()) && !String.IsNullOrWhiteSpace(nazivCvora.ToString()))
+            if (!String.IsNullOrEmpty(nazivCvora.ToString()) || !String.IsNullOrWhiteSpace(nazivCvora.ToString()))
             {
-                int id = int.Parse(GetIdCvor(s));
+                int id = int.Parse(GetIdCvor(s, d,pomIzv,pomStablo));
 
-                string upit1 = " SELECT MAX(RedniBroj) FROM " + instanca.pomStablo;
+                string upit1 = " SELECT MAX(RedniBroj) FROM " + pomStablo;
                 DataTable rez = db.ParamsQueryDT(upit1);
                 int i = int.Parse(rez.Rows[0][0].ToString()) + 1;
                 var param0 = param1;
@@ -56,7 +56,7 @@ namespace Bankom.Class
                 var param3 = i;
                 int param4 = 0;
 
-                string upit = "insert into " + instanca.pomStablo + " (Naziv,NazivJavni,Vezan,RedniBroj,CCopy,Brdok) values(@param0, @param1, @param2, @param3,@param4,@param5)";
+                string upit = "insert into " + pomStablo + " (Naziv,NazivJavni,Vezan,RedniBroj,CCopy,Brdok) values(@param0, @param1, @param2, @param3,@param4,@param5)";
 
                 db.ParamsInsertScalar(upit, param0, param1, param2, param3, param4, param5);
 
