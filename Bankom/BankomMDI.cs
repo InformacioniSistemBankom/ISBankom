@@ -4034,11 +4034,12 @@ private void MenuItemClickHandler(object sender, EventArgs e)
             Ggrupisi.ForeColor = System.Drawing.Color.Black;
         }
         DataTable dt1= new DataTable();
+        public string param0 = "";
         public string param5="";
+
         private string GetIdCvor(string strNazivJavni)
         {
         
-            string param0;
             DataBaseBroker db = new DataBaseBroker();
             if (pomIzv == "Izvestaji")
             {
@@ -4083,16 +4084,15 @@ private void MenuItemClickHandler(object sender, EventArgs e)
 
 
 
-                var param0 = nazivCvora.Substring(4);
-                var param1 = nazivCvora.Substring(4);
+                
+                var param1 = param0;
                 var param2 = id;
                var param3 = i;
                 int param4 = 0;
              
            
                 string upit = "insert into "+pomStablo+" (Naziv,NazivJavni,vezan,RedniBroj,CCopy,Brdok) values(@param0, @param1, @param2, @param3,@param4,@param5)";
-                //SqlCommand cmd = new SqlCommand(upit, conn);
-                //cmd.ExecuteNonQuery();
+    
          
 
                 db.ParamsInsertScalar(upit, param0, param1, param2, param3, param4,param5);
@@ -4100,30 +4100,7 @@ private void MenuItemClickHandler(object sender, EventArgs e)
                 clsRefreshForm frm = new clsRefreshForm();
                 frm.refreshform();
 
-                //var IMESTABLA = "Artikli";
-
-                //  db.ExecuteStoreProcedure("SrediSifrarnik", "Stab:" + IMESTABLA);
-
-                //frmChield akitv = new frmChield();
-                //akitv.Close();
-
-                //ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
-
-                //string akti = "Bankom-sa - [Artikli]";
-                //bool pom = false;
-                //foreach (Form f in Application.OpenForms)
-                //{
-                //    if (f.Text == akti)
-                //    {
-                //        pom = true;
-                //        //MessageBox.Show("Već je otvorena ova forma!");
-                //        f.Hide();
-                //        ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
-                //        break;
-                //    }
-                //    else ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
-                //}
-                ////else ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
+               
 
 
 
