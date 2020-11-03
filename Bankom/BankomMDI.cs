@@ -3244,6 +3244,12 @@ namespace Bankom
             {
                 Program.Parent.ToolBar.Items["Uunos"].Visible = true;
                 Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
+                Program.Parent.ToolBar.Items["Bbrisanje"].Visible = true;
+                Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = true;
+                Program.Parent.ToolBar.Items["Iizmena"].Visible = true;
+                Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
+                Program.Parent.ToolBar.Items["Ggrupisi"].Visible = true;
+                Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = true;
                 pomStablo = "MenuStablo";
                 return "Menu";
             }
@@ -3964,11 +3970,27 @@ public void MenuItemClickHandler(object sender, EventArgs e)
                             vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).idReda), ((Bankom.frmChield)forma).imestabla);
                             break;
                         case "K":
-                            clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                            string d = toolStripTextBox1.Text;
-                            o.Klasifikacija_Click(d,pomIzv,pomStablo);
+                            if (forma.Controls["OOperacija"].Text.Trim() == "UNOS")
+                            {
+                                clsObradaKlasifikacija o = new clsObradaKlasifikacija();
+                                string d = toolStripTextBox1.Text;
+                                o.Klasifikacija_Click(d, pomIzv, pomStablo);
+                            }
+                            else if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE")
+                            {
+                                clsObradaKlasifikacija o = new clsObradaKlasifikacija();
+                                o.KlasifikacijaBrisanje(pomIzv, pomStablo);
+                            }
+                            else if (forma.Controls["OOperacija"].Text.Trim() == "IZMENA")
+                            {
+                                clsObradaKlasifikacija o = new clsObradaKlasifikacija();
+                                string d = toolStripTextBox1.Text;
+                                o.KlasifikacijaIzmena(d, pomIzv, pomStablo);
+                            }
 
-                            break;
+
+
+                                break;
                         case "D":
                             vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
                             if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE") break;
@@ -4029,96 +4051,6 @@ public void MenuItemClickHandler(object sender, EventArgs e)
       
 
 
-        //public string param5 = "";
-        //public string param1;
-        //private string GetIdCvor(string strNazivJavni)
-        //{
-        //    string param0 = "";
-        //    if (pomIzv == "Izvestaji")
-        //    {
-        //        param0 = strNazivJavni.Trim().Substring(4);
-        //        param5 = toolStripTextBox1.Text.Substring(0, 3);
-        //        param1 = toolStripTextBox1.Text.Substring(4);
-        //    }
-        //    else
-        //    {
-        //        param0 = strNazivJavni;
-        //        param1 = toolStripTextBox1.Text;
-        //    }
-        //    string upit = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni =@param0 ";
-        //    DataTable rez = db.ParamsQueryDT(upit, param0);
-        //    string s = rez.Rows[0][0].ToString();
-        //    return s;
-
-        //}
-
-        //private void unosČvoraToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    string s = Program.AktivnaSifraIzvestaja;
-
-        //    string nazivCvora = toolStripTextBox1.Text;
-
-        //    if (!String.IsNullOrEmpty(nazivCvora.ToString())&& !String.IsNullOrWhiteSpace(nazivCvora.ToString()))
-        //    {
-
-        //        DataBaseBroker db = new DataBaseBroker();
-        //        int id = int.Parse(GetIdCvor(s));
-
-        //        SqlConnection conn = new SqlConnection(connectionString);
-        //        if (conn.State == ConnectionState.Closed) { conn.Open(); }
-
-        //        string upit1 = " SELECT MAX(RedniBroj) FROM "+ pomStablo ;
-        //        DataTable rez = db.ParamsQueryDT(upit1);
-        //        int i = int.Parse(rez.Rows[0][0].ToString())+1;
-        //        var param0 = param1;
-        //        var param2 = id;
-        //        var param3 = i;
-        //        int param4 = 0;
-
-        //        string upit = "insert into "+pomStablo+" (Naziv,NazivJavni,Vezan,RedniBroj,CCopy,Brdok) values(@param0, @param1, @param2, @param3,@param4,@param5)";
-
-        //        db.ParamsInsertScalar(upit, param0, param1, param2, param3, param4, param5);
-
-        //        clsRefreshForm frm = new clsRefreshForm();
-        //        frm.refreshform();
-
-        //        //var IMESTABLA = "Artikli";
-
-        //        //  db.ExecuteStoreProcedure("SrediSifrarnik", "Stab:" + IMESTABLA);
-
-        //        //frmChield akitv = new frmChield();
-        //        //akitv.Close();
-
-        //        //ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
-
-        //        //string akti = "Bankom-sa - [Artikli]";
-        //        //bool pom = false;
-        //        //foreach (Form f in Application.OpenForms)
-        //        //{
-        //        //    if (f.Text == akti)
-        //        //    {
-        //        //        pom = true;
-        //        //        //MessageBox.Show("Već je otvorena ova forma!");
-        //        //        f.Hide();
-        //        //        ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
-        //        //        break;
-        //        //    }
-        //        //    else ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
-        //        //}
-        //        ////else ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
-
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Morate uneti naziv novog čvora u tekstualno polje!");
-
-        //    }
-
-
-
-
-
-        //}
     }
    
 } 

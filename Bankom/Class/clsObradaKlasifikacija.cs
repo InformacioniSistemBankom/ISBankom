@@ -47,7 +47,7 @@ namespace Bankom.Class
             if (!String.IsNullOrEmpty(nazivCvora.ToString()) || !String.IsNullOrWhiteSpace(nazivCvora.ToString()))
             {
                 int id = int.Parse(GetIdCvor(s, d,pomIzv,pomStablo));
-
+                
                 string upit1 = " SELECT MAX(RedniBroj) FROM " + pomStablo;
                 DataTable rez = db.ParamsQueryDT(upit1);
                 int i = int.Parse(rez.Rows[0][0].ToString()) + 1;
@@ -62,6 +62,7 @@ namespace Bankom.Class
 
                 clsRefreshForm frm = new clsRefreshForm();
                 frm.refreshform();
+                MessageBox.Show("Uspešno dodato.");
             }
             else
             {
@@ -70,9 +71,84 @@ namespace Bankom.Class
             }
 
 
-
-
-
         }
+
+        public void KlasifikacijaBrisanje(string pomIzv,string pomStablo)
+        {
+            string sa = Program.AktivnaSifraIzvestaja;
+            
+            if (!String.IsNullOrEmpty(sa.ToString()) || !String.IsNullOrWhiteSpace(sa.ToString()))
+            {
+                string param0;
+                if (pomIzv == "Izvestaji")
+                {
+                    param0 = sa.Substring(4);
+                }
+                else param0 = sa;
+
+                string upit1 = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni = @param0";
+                DataTable rez1 = db.ParamsQueryDT(upit1,param0);
+                param0 =rez1.Rows[0][0].ToString();
+
+                string upit = "Select Count (vezan) from " + pomStablo + " where  vezan = @param0";
+                DataTable rez = db.ParamsQueryDT(upit, param0);
+                int s = int.Parse(rez.Rows[0][0].ToString());
+
+                if (s > 0)
+                {
+                    MessageBox.Show("Ne možete obrisati ovaj čvor! Prvo obrišite sve čvorove koji se nalaze u njemu.");
+                }
+                else
+                {
+                     param0 = sa.Substring(4);
+                    string upit3 = "Delete from " + pomStablo + " where  NazivJavni = @param0";
+                    db.ParamsInsertScalar(upit3, param0);
+                }
+
+
+                MessageBox.Show("Uspešno obrisano.");
+
+
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati čvor koji želite da obrišete!");
+
+            }
+        }
+
+        public void KlasifikacijaIzmena(string d, string pomIzv, string pomStablo)
+        {
+            string sa = Program.AktivnaSifraIzvestaja;
+
+            if (!String.IsNullOrEmpty(sa.ToString()) || !String.IsNullOrWhiteSpace(sa.ToString()))
+            {
+                string param0;
+              
+                if (pomIzv == "Izvestaji")
+                {
+                    param0 = sa.Substring(4);
+                    d = d.Substring(4);
+                }
+                else param0 = sa;
+
+                string upit = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni = @param0";
+                DataTable rez1 = db.ParamsQueryDT(upit, param0);
+                string param1 = rez1.Rows[0][0].ToString();
+
+                param0 = d;
+                string upit1 = "Update " + pomStablo + " set NazivJavni = @param0 where id_" + pomStablo + "=@param1 ";
+                db.ParamsInsertScalar(upit1, param0,param1);
+
+                MessageBox.Show("Uspešno izmenjeno.");
+
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati čvor koji želite da izmenite!");
+
+            }
+        }
+
     }
 }

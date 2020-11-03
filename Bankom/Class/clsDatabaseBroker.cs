@@ -173,6 +173,8 @@ namespace Bankom.Class
             return "";
 
         }
+
+        
         
 
         public int ReturnInsertUpdate(string str, int izbor)
