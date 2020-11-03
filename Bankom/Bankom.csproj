@@ -122,6 +122,7 @@
     <Compile Include="Class\clsKorekcija.cs" />
     <Compile Include="Class\clsMenuProccessing.cs" />
     <Compile Include="Class\clsObradaKalkulacije.cs" />
+    <Compile Include="Class\clsObradaKlasifikacija.cs" />
     <Compile Include="Class\clsObradaKursnihRazlika.cs" />
     <Compile Include="Class\clsObradaOpisaTransakcije.cs" />
     <Compile Include="Class\clsObradaOsnovnihSifarnika.cs" />

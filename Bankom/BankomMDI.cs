@@ -3324,7 +3324,7 @@ namespace Bankom
 
         //Ivana  23.10.2020.
 
-        private string GetMenuNaziv(string strMenuID)
+        public string GetMenuNaziv(string strMenuID)
         {
             return dt.Select("MenuName='" + strMenuID + "'")[0][5].ToString();
         }
@@ -3344,38 +3344,35 @@ namespace Bankom
             return slovo;
         }
         public string pomStablo;
-        public string pomId;
+        public string pomIzv;
+
         //28.10.2020. Ivana
-        private string SkiniKlasifikaciju(string s)
+        public string SkiniKlasifikaciju(string s)
         {
             if (s == "KlasifikacijaOrgStrukture")
             {
                 pomStablo = "OrganizacionaStrukturaStablo";
-                pomId = "ID_OrganizacionaStrukturaStablo";
                 return "OrganizacionaStruktura";
             }
             else if (s == "KlasifikacijaDokumenata")
             {
                 pomStablo = "DokumentaStablo";
-                pomId = "ID_DokumentaStablo";
                 return "Dokumenta";
             }
             else if (s == "KlasifikacijaArtikla")
             {
                 pomStablo = "ArtikliStablo";
-                pomId = "ID_ArtikliStablo";
                 return "Artikli";
             }
             else if (s == "KlasifikacijaKomitenata")
             {
                 pomStablo = "KomitentiStablo";
-                pomId = "ID_KomitentiStablo";
                 return "Komitenti";
             }
             else if (s == "KlasifikacijaIzvestaja")
             {
                 pomStablo = "IzvestajiStablo";
-                pomId = "ID_IzvestajiStablo";
+                pomIzv = "Izvestaji";
                 return "Izvestaji";
             }
             else if (s == "KlasifikacijaMenija")
@@ -3383,13 +3380,11 @@ namespace Bankom
                 Program.Parent.ToolBar.Items["Uunos"].Visible = true;
                 Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
                 pomStablo = "MenuStablo";
-                pomId = "ID_MenuStablo";
                 return "Menu";
             }
             else
             {
                 pomStablo = "PomocniSifarniciStablo";
-                pomId = "ID_PomocniSifarniciStablo";
                 return "PomocniSifarnici";
             }
         }
@@ -3426,7 +3421,7 @@ namespace Bankom
 
         }
         
-private void MenuItemClickHandler(object sender, EventArgs e)
+public void MenuItemClickHandler(object sender, EventArgs e)
         {
             Program.Parent.ToolBar.Items["Uunos"].Visible = true;
             Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
@@ -4031,108 +4026,97 @@ private void MenuItemClickHandler(object sender, EventArgs e)
         {
             Ggrupisi.ForeColor = System.Drawing.Color.Black;
         }
-        DataTable dt1= new DataTable();
-        private string GetIdCvor(string strNazivJavni)
-        {
 
-            string param0;
-            DataBaseBroker db = new DataBaseBroker();
-            if (strNazivJavni == "Izvestaji")
-            {
-                param0 = strNazivJavni.Trim().Substring(4);
-            }
-            else
-            {
-                param0 = strNazivJavni;
-            }
-            string upit = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni =@param0 " ;
-            DataTable rez = db.ParamsQueryDT(upit, param0);
-            string s = rez.Rows[0][0].ToString();
-            return s;
+        //public string param5 = "";
+        //public string param1;
+        //private string GetIdCvor(string strNazivJavni)
+        //{
+        //    string param0 = "";
+        //    if (pomIzv == "Izvestaji")
+        //    {
+        //        param0 = strNazivJavni.Trim().Substring(4);
+        //        param5 = toolStripTextBox1.Text.Substring(0, 3);
+        //        param1 = toolStripTextBox1.Text.Substring(4);
+        //    }
+        //    else
+        //    {
+        //        param0 = strNazivJavni;
+        //        param1 = toolStripTextBox1.Text;
+        //    }
+        //    string upit = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni =@param0 ";
+        //    DataTable rez = db.ParamsQueryDT(upit, param0);
+        //    string s = rez.Rows[0][0].ToString();
+        //    return s;
 
-        }
+        //}
 
-        private void unosČvoraToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        //private void unosČvoraToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    string s = Program.AktivnaSifraIzvestaja;
 
-            
-            string s = Program.AktivnaSifraIzvestaja;
-    
-            string nazivCvora = toolStripTextBox1.Text;
+        //    string nazivCvora = toolStripTextBox1.Text;
 
-            if (!String.IsNullOrEmpty(nazivCvora.ToString())&& !String.IsNullOrWhiteSpace(nazivCvora.ToString()))
-            {
-                
-                DataBaseBroker db = new DataBaseBroker();
-                int id = int.Parse(GetIdCvor(s));
-             
+        //    if (!String.IsNullOrEmpty(nazivCvora.ToString())&& !String.IsNullOrWhiteSpace(nazivCvora.ToString()))
+        //    {
 
-                SqlConnection conn = new SqlConnection(connectionString);
-                if (conn.State == ConnectionState.Closed) { conn.Open(); }
+        //        DataBaseBroker db = new DataBaseBroker();
+        //        int id = int.Parse(GetIdCvor(s));
 
-           
-                string upit1 = " SELECT MAX(RedniBroj) FROM "+ pomStablo ;
-                DataTable rez = db.ParamsQueryDT(upit1);
-                //SqlCommand cmd = new SqlCommand(upit1,conn);
-              int i = int.Parse(rez.Rows[0][0].ToString())+1;
+        //        SqlConnection conn = new SqlConnection(connectionString);
+        //        if (conn.State == ConnectionState.Closed) { conn.Open(); }
 
+        //        string upit1 = " SELECT MAX(RedniBroj) FROM "+ pomStablo ;
+        //        DataTable rez = db.ParamsQueryDT(upit1);
+        //        int i = int.Parse(rez.Rows[0][0].ToString())+1;
+        //        var param0 = param1;
+        //        var param2 = id;
+        //        var param3 = i;
+        //        int param4 = 0;
 
+        //        string upit = "insert into "+pomStablo+" (Naziv,NazivJavni,Vezan,RedniBroj,CCopy,Brdok) values(@param0, @param1, @param2, @param3,@param4,@param5)";
 
-                var param0 = nazivCvora;
-                var param1 = nazivCvora;
-                var param2 = id;
-               var param3 = i;
-                int param4 = 0;
-           
-                string upit = "insert into "+pomStablo+" (Naziv,NazivJavni,Vezan,RedniBroj,CCopy) values(@param0, @param1, @param2, @param3,@param4)";
-                //SqlCommand cmd = new SqlCommand(upit, conn);
-                //cmd.ExecuteNonQuery();
-         
+        //        db.ParamsInsertScalar(upit, param0, param1, param2, param3, param4, param5);
 
-                db.ParamsInsertScalar(upit, param0, param1, param2, param3, param4);
+        //        clsRefreshForm frm = new clsRefreshForm();
+        //        frm.refreshform();
 
-                clsRefreshForm frm = new clsRefreshForm();
-                frm.refreshform();
+        //        //var IMESTABLA = "Artikli";
 
-                //var IMESTABLA = "Artikli";
+        //        //  db.ExecuteStoreProcedure("SrediSifrarnik", "Stab:" + IMESTABLA);
 
-                //  db.ExecuteStoreProcedure("SrediSifrarnik", "Stab:" + IMESTABLA);
+        //        //frmChield akitv = new frmChield();
+        //        //akitv.Close();
 
-                //frmChield akitv = new frmChield();
-                //akitv.Close();
+        //        //ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
 
-                //ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
+        //        //string akti = "Bankom-sa - [Artikli]";
+        //        //bool pom = false;
+        //        //foreach (Form f in Application.OpenForms)
+        //        //{
+        //        //    if (f.Text == akti)
+        //        //    {
+        //        //        pom = true;
+        //        //        //MessageBox.Show("Već je otvorena ova forma!");
+        //        //        f.Hide();
+        //        //        ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
+        //        //        break;
+        //        //    }
+        //        //    else ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
+        //        //}
+        //        ////else ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
 
-                //string akti = "Bankom-sa - [Artikli]";
-                //bool pom = false;
-                //foreach (Form f in Application.OpenForms)
-                //{
-                //    if (f.Text == akti)
-                //    {
-                //        pom = true;
-                //        //MessageBox.Show("Već je otvorena ova forma!");
-                //        f.Hide();
-                //        ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
-                //        break;
-                //    }
-                //    else ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
-                //}
-                ////else ShowNewForm(s, 1, s, 1, "", "", "S", "", "TreeView");
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Morate uneti naziv novog čvora u tekstualno polje!");
 
-
-
-            }
-            else
-            {
-                MessageBox.Show("Morate uneti naziv novog čvora u tekstualno polje!");
-
-            }
+        //    }
 
 
 
 
 
-        }
+        //}
     }
    
 } 
