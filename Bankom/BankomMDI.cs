@@ -37,9 +37,6 @@ namespace Bankom
         public BankomMDI()
         {
             InitializeComponent();
-       
-           
-
         }
        
         
@@ -3212,34 +3209,33 @@ namespace Bankom
         public string pomIzv;
 
         //28.10.2020. Ivana
-        public string pomMenu;
         public string SkiniKlasifikaciju(string s)
         {
             if (s == "KlasifikacijaOrgStrukture")
             {
                 pomStablo = "OrganizacionaStrukturaStablo";
-                pomMenu = "OrganizacionaStruktura";
+                return "OrganizacionaStruktura";
             }
             else if (s == "KlasifikacijaDokumenata")
             {
                 pomStablo = "DokumentaStablo";
-                pomMenu = "Dokumenta";
+                return "Dokumenta";
             }
             else if (s == "KlasifikacijaArtikla")
             {
                 pomStablo = "ArtikliStablo";
-                pomMenu = "Artikli";
+                return "Artikli";
             }
             else if (s == "KlasifikacijaKomitenata")
             {
                 pomStablo = "KomitentiStablo";
-                pomMenu = "Komitenti";
+                return "Komitenti";
             }
             else if (s == "KlasifikacijaIzvestaja")
             {
                 pomStablo = "IzvestajiStablo";
                 pomIzv = "Izvestaji";
-                pomMenu = "Izvestaji";
+                return "Izvestaji";
             }
             else if (s == "KlasifikacijaMenija")
             {
@@ -3252,14 +3248,13 @@ namespace Bankom
                 Program.Parent.ToolBar.Items["Ggrupisi"].Visible = true;
                 Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = true;
                 pomStablo = "MenuStablo";
-                pomMenu = "Menu";
+                return "Menu";
             }
             else
             {
                 pomStablo = "PomocniSifarniciStablo";
-                pomMenu = "PomocniSifarnici";
+                return "PomocniSifarnici";
             }
-            return pomMenu;
         }
             
         private bool IsOpen(string s)
@@ -4002,7 +3997,7 @@ public void MenuItemClickHandler(object sender, EventArgs e)
                             else if (forma.Controls["OOperacija"].Text.Trim() == "NALEPI")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                o.KlasifikacijaNovaPozicija(pomIzv, pomStablo, pomMenu);
+                                o.KlasifikacijaNovaPozicija(pomIzv, pomStablo);
                         
                             }
 

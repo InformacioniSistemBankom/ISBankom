@@ -261,28 +261,14 @@ namespace Bankom.Class
 
             Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
             Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
-            //string VratiIme()
-            
-                //  ime2 = e.Node.Text;
-                Program.AktivnaSifraIzvestaja = e.Node.Text.ToString();
+
+            Program.AktivnaSifraIzvestaja = e.Node.Text.ToString();
             Program.IdSelektovanogCvora = int.Parse(e.Node.Tag.ToString());
-           
-            if (Program.IdSelektovanogCvora > 0)
-            {
-                Program.IdParentaSelektovanogCvora =int.Parse( e.Node.Parent.Tag.ToString());
-             
-            }
-        
 
-
-               Program.Parent.toolStripTextBox1.Clear();
-
-
+            Program.Parent.toolStripTextBox1.Clear();
 
         }
         
-
-
     }
     
 }

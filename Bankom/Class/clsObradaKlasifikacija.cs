@@ -16,44 +16,21 @@ namespace Bankom.Class
         public string param1;
 
         DataBaseBroker db = new DataBaseBroker();
-        private string GetIdCvor(string strNazivJavni, string d, string pomIzv, string pomStablo)
-        {
-            
-            string param0 = "";
-            if (pomIzv == "Izvestaji")
-            {
-                param0 = strNazivJavni.Trim().Substring(4);
-                param5 = d.Substring(0, 3);
-                param1 = d.Substring(4);
-            }
-            else
-            {
-                param0 = strNazivJavni;
-                param1 = d;
-            }
-            string upit = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni = @param0";
-            DataTable rez = db.ParamsQueryDT(upit, param0);
-            string s = rez.Rows[0][0].ToString();
-            return s;
-            
-        }
 
         public void Klasifikacija_Click(string d, string pomIzv, string pomStablo)
         {
-            string s = Program.AktivnaSifraIzvestaja;
-
-            string nazivCvora = d;
-
-            if (!String.IsNullOrEmpty(nazivCvora.ToString()) || !String.IsNullOrWhiteSpace(nazivCvora.ToString()))
+            if (pomIzv == "Izvestaji")
             {
-                int id = int.Parse(GetIdCvor(s, d,pomIzv,pomStablo));
-                
+                param1 = d.Substring(4);
+            }
+            else param1 = d;
+            if (!String.IsNullOrEmpty(d.ToString()) || !String.IsNullOrWhiteSpace(d.ToString()))
+            {
+                int param2 = Program.IdSelektovanogCvora;
                 string upit1 = " SELECT MAX(RedniBroj) FROM " + pomStablo;
                 DataTable rez = db.ParamsQueryDT(upit1);
-                int i = int.Parse(rez.Rows[0][0].ToString()) + 1;
+                int param3 = int.Parse(rez.Rows[0][0].ToString()) + 1;
                 var param0 = param1;
-                var param2 = id;
-                var param3 = i;
                 int param4 = 0;
 
                 string upit = "insert into " + pomStablo + " (Naziv,NazivJavni,Vezan,RedniBroj,CCopy,Brdok) values(@param0, @param1, @param2, @param3,@param4,@param5)";
@@ -67,7 +44,6 @@ namespace Bankom.Class
             else
             {
                 MessageBox.Show("Morate uneti naziv novog čvora u tekstualno polje!");
-
             }
 
 
@@ -79,16 +55,7 @@ namespace Bankom.Class
             
             if (!String.IsNullOrEmpty(sa.ToString()) || !String.IsNullOrWhiteSpace(sa.ToString()))
             {
-                string param0;
-                if (pomIzv == "Izvestaji")
-                {
-                    param0 = sa.Substring(4);
-                }
-                else param0 = sa;
-
-                string upit1 = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni = @param0";
-                DataTable rez1 = db.ParamsQueryDT(upit1,param0);
-                param0 =rez1.Rows[0][0].ToString();
+               string param0 = Program.IdSelektovanogCvora.ToString();
 
                 string upit = "Select Count (vezan) from " + pomStablo + " where  vezan = @param0";
                 DataTable rez = db.ParamsQueryDT(upit, param0);
@@ -100,15 +67,16 @@ namespace Bankom.Class
                 }
                 else
                 {
-                     param0 = sa.Substring(4);
-                    string upit3 = "Delete from " + pomStablo + " where  NazivJavni = @param0";
-                    db.ParamsInsertScalar(upit3, param0);
+                    if (pomIzv == "Izvestaji")
+                    {
+                        param0 = sa.Substring(4);
+                    }
+                    else param0 = sa;
+
+                    string upit1 = "Delete from " + pomStablo + " where  NazivJavni = @param0";
+                    db.ParamsInsertScalar(upit1, param0);
                 }
-
-
                 MessageBox.Show("Uspešno obrisano.");
-
-
             }
             else
             {
@@ -119,24 +87,17 @@ namespace Bankom.Class
 
         public void KlasifikacijaIzmena(string d, string pomIzv, string pomStablo)
         {
-            string sa = Program.AktivnaSifraIzvestaja;
+       
 
-            if (!String.IsNullOrEmpty(sa.ToString()) || !String.IsNullOrWhiteSpace(sa.ToString()))
+            if (!String.IsNullOrEmpty(d.ToString()) || !String.IsNullOrWhiteSpace(d.ToString()))
             {
-                string param0;
-              
                 if (pomIzv == "Izvestaji")
                 {
-                    param0 = sa.Substring(4);
+                    
                     d = d.Substring(4);
                 }
-                else param0 = sa;
-
-                string upit = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni = @param0";
-                DataTable rez1 = db.ParamsQueryDT(upit, param0);
-                string param1 = rez1.Rows[0][0].ToString();
-
-                param0 = d;
+                string param1 = Program.IdSelektovanogCvora.ToString();
+                string param0 = d;
                 string upit1 = "Update " + pomStablo + " set NazivJavni = @param0 where id_" + pomStablo + "=@param1 ";
                 db.ParamsInsertScalar(upit1, param0,param1);
 
@@ -150,7 +111,7 @@ namespace Bankom.Class
             }
         }
 
-        public static string nazivCvora;
+        public static string nazivPremestenog;
         public void KlasifikacijaPremestiGrupu( string pomIzv, string pomStablo)
         {
             string sa = Program.AktivnaSifraIzvestaja;
@@ -164,13 +125,9 @@ namespace Bankom.Class
                 
                 }
                 else param0 = sa;
-                nazivCvora = param0;
-            
+                nazivPremestenog = param0;
                 string upit1 = "Update " + pomStablo + " set Ccopy = 1 where NazivJavni = @param0 ";
                 db.ParamsInsertScalar(upit1, param0);
-
-                
-
             }
             else
             {
@@ -178,43 +135,21 @@ namespace Bankom.Class
 
             }
         }
-        public void KlasifikacijaNovaPozicija(string pomIzv, string pomStablo, string pomMenu)
+        public void KlasifikacijaNovaPozicija(string pomIzv, string pomStablo)
         {
+
             string sa = Program.AktivnaSifraIzvestaja;
-            
             if (!String.IsNullOrEmpty(sa.ToString()) || !String.IsNullOrWhiteSpace(sa.ToString()))
             {
-                string param0;
-
+               
                 if (pomIzv == "Izvestaji")
                 {
-                    param0 = sa.Substring(4);
+                    param1 = nazivPremestenog.Substring(4);
                   
                 }
-                else param0 = sa;
-                 string connstring = Program.connectionString;
-                SqlConnection con = new SqlConnection(connstring);
-                con.Open();
-                string upit;
-                if (sa == pomMenu)
-                {
-                    pomStablo = "MenuStablo";
-                    upit = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni ='" + param0 + "'";
-                }
-                else
-                {
-                    upit = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni ='"+param0+"'";
-                }
-                SqlCommand cmd = new SqlCommand(upit,con);
-                var rez1 = cmd.ExecuteScalar();
+                else param1 = nazivPremestenog;
 
-
-         //var rez1 = db.ParamsInsertScalar(upit, param0);
-                string param1 = rez1.ToString();
-
-               
-                param0 = param1;
-                param1 = nazivCvora;
+               string param0 = Program.IdSelektovanogCvora.ToString();
 
                 string upit1 = "Update " + pomStablo + " set vezan = @param0, CCopy = 0 where NazivJavni=@param1";
                 db.ParamsInsertScalar(upit1, param0, param1);
