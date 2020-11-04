@@ -1060,12 +1060,14 @@ namespace Bankom
             this.Ggrupisinp.Size = new System.Drawing.Size(208, 22);
             this.Ggrupisinp.Text = "Nova pozicija grupe";
             this.Ggrupisinp.ToolTipText = "Unos podbroja dokumenta";
+            this.Ggrupisinp.Click += new System.EventHandler(this.Ggrupisinp_Click);
             // 
             // premestiGrupuToolStripMenuItem
             // 
             this.premestiGrupuToolStripMenuItem.Name = "premestiGrupuToolStripMenuItem";
             this.premestiGrupuToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.premestiGrupuToolStripMenuItem.Text = "Premesti grupu";
+            this.premestiGrupuToolStripMenuItem.Click += new System.EventHandler(this.premestiGrupuToolStripMenuItem_Click);
             // 
             // toolStripSeparator14
             // 

@@ -3212,33 +3212,34 @@ namespace Bankom
         public string pomIzv;
 
         //28.10.2020. Ivana
+        public string pomMenu;
         public string SkiniKlasifikaciju(string s)
         {
             if (s == "KlasifikacijaOrgStrukture")
             {
                 pomStablo = "OrganizacionaStrukturaStablo";
-                return "OrganizacionaStruktura";
+                pomMenu = "OrganizacionaStruktura";
             }
             else if (s == "KlasifikacijaDokumenata")
             {
                 pomStablo = "DokumentaStablo";
-                return "Dokumenta";
+                pomMenu = "Dokumenta";
             }
             else if (s == "KlasifikacijaArtikla")
             {
                 pomStablo = "ArtikliStablo";
-                return "Artikli";
+                pomMenu = "Artikli";
             }
             else if (s == "KlasifikacijaKomitenata")
             {
                 pomStablo = "KomitentiStablo";
-                return "Komitenti";
+                pomMenu = "Komitenti";
             }
             else if (s == "KlasifikacijaIzvestaja")
             {
                 pomStablo = "IzvestajiStablo";
                 pomIzv = "Izvestaji";
-                return "Izvestaji";
+                pomMenu = "Izvestaji";
             }
             else if (s == "KlasifikacijaMenija")
             {
@@ -3251,13 +3252,14 @@ namespace Bankom
                 Program.Parent.ToolBar.Items["Ggrupisi"].Visible = true;
                 Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = true;
                 pomStablo = "MenuStablo";
-                return "Menu";
+                pomMenu = "Menu";
             }
             else
             {
                 pomStablo = "PomocniSifarniciStablo";
-                return "PomocniSifarnici";
+                pomMenu = "PomocniSifarnici";
             }
+            return pomMenu;
         }
             
         private bool IsOpen(string s)
@@ -3900,7 +3902,9 @@ public void MenuItemClickHandler(object sender, EventArgs e)
 
         private void Ppotvrda_Click_1(object sender, EventArgs e)
         {
+          
             Form forma = this.ActiveMdiChild;
+ 
             Boolean vrati = new Boolean();
             if (forma == null)
             {
@@ -3987,10 +3991,24 @@ public void MenuItemClickHandler(object sender, EventArgs e)
                                 string d = toolStripTextBox1.Text;
                                 o.KlasifikacijaIzmena(d, pomIzv, pomStablo);
                             }
+                            else if (forma.Controls["OOperacija"].Text.Trim() == "KOPIRAJ")
+                            {
+                                clsObradaKlasifikacija o = new clsObradaKlasifikacija();
+                                o.KlasifikacijaPremestiGrupu(pomIzv, pomStablo);
+                        
+                           
+                                //ovde smo stigle
+                            }
+                            else if (forma.Controls["OOperacija"].Text.Trim() == "NALEPI")
+                            {
+                                clsObradaKlasifikacija o = new clsObradaKlasifikacija();
+                                o.KlasifikacijaNovaPozicija(pomIzv, pomStablo, pomMenu);
+                        
+                            }
 
 
 
-                                break;
+                            break;
                         case "D":
                             vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
                             if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE") break;
@@ -4048,9 +4066,27 @@ public void MenuItemClickHandler(object sender, EventArgs e)
             } // KRAJ else
         }
 
-      
+        private void Ggrupisinp_Click(object sender, EventArgs e)
+        {
+            Form forma = this.ActiveMdiChild;
+            forma.Controls["OOperacija"].Text = "NALEPI";
+            forma.Controls["OOperacija"].Visible = false;
+            Program.Parent.premestiGrupuToolStripMenuItem.Enabled = true;
+            Program.Parent.premestiGrupuToolStripMenuItem.Visible = true;
+            Program.Parent.Ggrupisinp.Enabled = false;
+            Program.Parent.Ggrupisinp.Visible = false;
+        }
 
-
+        private void premestiGrupuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form forma = this.ActiveMdiChild;
+            forma.Controls["OOperacija"].Text = "KOPIRAJ";
+            forma.Controls["OOperacija"].Visible = false;
+            Program.Parent.Ggrupisinp.Enabled = true;
+            Program.Parent.Ggrupisinp.Visible = true;
+            Program.Parent.premestiGrupuToolStripMenuItem.Enabled = false;
+            Program.Parent.premestiGrupuToolStripMenuItem.Visible = false;
+        }
     }
    
 } 

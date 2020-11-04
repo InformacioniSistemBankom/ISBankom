@@ -58,7 +58,9 @@ namespace Bankom
         //Djora 10.09.20
         public static string AktivnaForma { get; set; }
         public static string AktivnaSifraIzvestaja { get; set; }
-        
+        public static int IdSelektovanogCvora { get; set; }
+        public static int IdParentaSelektovanogCvora { get; set; }
+
 
         [STAThread]
 

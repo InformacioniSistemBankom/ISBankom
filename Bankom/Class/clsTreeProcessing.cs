@@ -253,9 +253,9 @@ namespace Bankom.Class
         }
 
         //zajedno 28.10.2020.
-
         public void tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+           
             Program.Parent.ToolBar.Items["Uunos"].Visible = true;
             Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
 
@@ -265,13 +265,22 @@ namespace Bankom.Class
             
                 //  ime2 = e.Node.Text;
                 Program.AktivnaSifraIzvestaja = e.Node.Text.ToString();
-                //MessageBox.Show(tv.SelectedNode.Text.ToString());
+            Program.IdSelektovanogCvora = int.Parse(e.Node.Tag.ToString());
+           
+            if (Program.IdSelektovanogCvora > 0)
+            {
+                Program.IdParentaSelektovanogCvora =int.Parse( e.Node.Parent.Tag.ToString());
+             
+            }
+        
+
 
                Program.Parent.toolStripTextBox1.Clear();
 
 
 
         }
+        
 
 
     }

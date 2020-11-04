@@ -150,5 +150,85 @@ namespace Bankom.Class
             }
         }
 
+        public static string nazivCvora;
+        public void KlasifikacijaPremestiGrupu( string pomIzv, string pomStablo)
+        {
+            string sa = Program.AktivnaSifraIzvestaja;
+            if (!String.IsNullOrEmpty(sa.ToString()) || !String.IsNullOrWhiteSpace(sa.ToString()))
+            {
+                string param0;
+
+                if (pomIzv == "Izvestaji")
+                {
+                    param0 = sa.Substring(4);
+                
+                }
+                else param0 = sa;
+                nazivCvora = param0;
+            
+                string upit1 = "Update " + pomStablo + " set Ccopy = 1 where NazivJavni = @param0 ";
+                db.ParamsInsertScalar(upit1, param0);
+
+                
+
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati čvor koji želite da premestite!");
+
+            }
+        }
+        public void KlasifikacijaNovaPozicija(string pomIzv, string pomStablo, string pomMenu)
+        {
+            string sa = Program.AktivnaSifraIzvestaja;
+            
+            if (!String.IsNullOrEmpty(sa.ToString()) || !String.IsNullOrWhiteSpace(sa.ToString()))
+            {
+                string param0;
+
+                if (pomIzv == "Izvestaji")
+                {
+                    param0 = sa.Substring(4);
+                  
+                }
+                else param0 = sa;
+                 string connstring = Program.connectionString;
+                SqlConnection con = new SqlConnection(connstring);
+                con.Open();
+                string upit;
+                if (sa == pomMenu)
+                {
+                    pomStablo = "MenuStablo";
+                    upit = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni ='" + param0 + "'";
+                }
+                else
+                {
+                    upit = "Select id_" + pomStablo + " from " + pomStablo + " where  NazivJavni ='"+param0+"'";
+                }
+                SqlCommand cmd = new SqlCommand(upit,con);
+                var rez1 = cmd.ExecuteScalar();
+
+
+         //var rez1 = db.ParamsInsertScalar(upit, param0);
+                string param1 = rez1.ToString();
+
+               
+                param0 = param1;
+                param1 = nazivCvora;
+
+                string upit1 = "Update " + pomStablo + " set vezan = @param0, CCopy = 0 where NazivJavni=@param1";
+                db.ParamsInsertScalar(upit1, param0, param1);
+
+                MessageBox.Show("Uspešno izmenjeno.");
+
+            }
+            else
+            {
+                MessageBox.Show("Morate izabrati mesto čvora!");
+
+            }
+
+        }
+
     }
 }
