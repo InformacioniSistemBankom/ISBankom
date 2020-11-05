@@ -32,6 +32,7 @@ namespace Bankom.Class
             form1 = forma;
             MojeStablo = KojeStablo;
             form1.Controls["limestabla"].Text = KojeStablo;
+            form1.Controls["limestabla"].Font = new Font("TimesRoman", 16, FontStyle.Regular); // ivana
             mDokumentJe = DokumentJe;
             //tv.AfterSelect += new TreeViewEventHandler(Tv_AfterSelect);
             tv.NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler(tv_NodeMouseDoubleClick);
@@ -41,7 +42,7 @@ namespace Bankom.Class
             string sselect;
             string idke = Program.idkadar.ToString();
             string idfirme = Program.idFirme.ToString();
-
+            tv.Nodes.Clear();
             //string idfirme = "6";
 
             //'  If (DokumentJe = "S" And KojeStablo = "Dokumenta") Or KojeStablo = "Izvestaji" Or KojeStablo = "PomocniSifarnici" Then
@@ -152,7 +153,8 @@ namespace Bankom.Class
 
             tv.Height = forma.Height;
             tv.Width = forma.Width;
-            tv.Top = 20;
+            tv.Top = 40;
+            tv.Left = 25;
             tv.Font = new Font("TimesRoman", 16, FontStyle.Regular);
             tv.Name = "tv";
             tv.BorderStyle = BorderStyle.None;
@@ -181,6 +183,16 @@ namespace Bankom.Class
                 tv.EndUpdate();
             }
         }
+        public void SrediFormu()
+        {
+          Program.Parent.flowLayoutPanel1.Width = 161;
+
+
+            Program.Parent.flowLayoutPanel1.Width = 162;
+            Program.Parent.flowLayoutPanel1.Width = 0;
+            Program.Parent.button1.Location = new Point(0, 301);
+
+        }
         private void tv_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             //Djora 10.09.20
@@ -199,7 +211,7 @@ namespace Bankom.Class
                         string sql = " select s.ulazniizlazni as NazivDokumenta,NacinRegistracije as nr,"
                                   + " Knjizise,Izvor  from  SifarnikDokumenta as s"
                                   + "  Where s.naziv=@param0";
-
+                        
                         DataTable t = db.ParamsQueryDT(sql, ime);
                         if (t.Rows.Count > 0)
                         {
@@ -240,6 +252,7 @@ namespace Bankom.Class
                                 }
                             }
                         }
+                        SrediFormu();
                     }
                     else
                     {
@@ -247,30 +260,29 @@ namespace Bankom.Class
                         Program.AktivnaSifraIzvestaja = "";
 
                         Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                        SrediFormu();
                     }
                 }
             }
         }
 
         //zajedno 28.10.2020.
-
         public void tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            //string VratiIme()
-            {
-                //  ime2 = e.Node.Text;
-                Program.AktivnaSifraIzvestaja = e.Node.Text.ToString();
-                //MessageBox.Show(tv.SelectedNode.Text.ToString());
+            SrediFormu();
+            Program.Parent.ToolBar.Items["Uunos"].Visible = true;
+            Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
 
-               Program.Parent.toolStripTextBox1.Clear();
+            Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
+            Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
 
-            }
-            
-                
-            
-             
+            Program.AktivnaSifraIzvestaja = e.Node.Text.ToString();
+            Program.IdSelektovanogCvora = int.Parse(e.Node.Tag.ToString());
+
+            Program.Parent.toolStripTextBox1.Clear();
+
         }
-
+        
     }
     
 }

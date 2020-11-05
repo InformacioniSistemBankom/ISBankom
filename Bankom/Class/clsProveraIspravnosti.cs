@@ -1186,6 +1186,7 @@ namespace Bankom.Class
                             {
                                 lot = pblp.Vrednost;
                             }
+                            // jovana 04.11.20 u lot treba da bude samo lot isecen , a ne sve treba pblp.text
                             // string lot = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "LotProizvoda").Vrednost;
                             Field pbrc = (Field)forma.Controls["Receptura"];
                             if (pbrc != null)
