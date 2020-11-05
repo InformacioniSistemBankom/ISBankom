@@ -273,7 +273,8 @@ namespace Bankom
         //}
 
         private void BankomMDI_Load(object sender, EventArgs e)
-        { // tamara 27.10.2020.
+        {
+            // tamara 27.10.2020.
             Program.Parent.ToolBar.Items["toolstripseparator15"].Visible = false;
             Program.Parent.ToolBar.Items["toolstripseparator20"].Visible = false;
             Program.Parent.ToolBar.Items["toolstripseparator21"].Visible = false;
