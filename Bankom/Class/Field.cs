@@ -1139,7 +1139,6 @@ namespace Bankom.Class
             DateTime mdatum = Convert.ToDateTime(System.DateTime.Now);
 
             control.ReadOnly = true;
-
             string mimedok = Me.Controls["limedok"].Text.Trim();
           //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
           //  mimedok = Program.AktivnaSifraIzvestaja.ToString();

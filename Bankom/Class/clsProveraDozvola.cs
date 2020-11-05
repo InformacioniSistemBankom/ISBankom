@@ -394,15 +394,12 @@ namespace Bankom.Class
                         sel = "if not exists (Select * from " + dokument + "Stablo" + " where CCopy = 1) select 0 else select 1";
                         tk = db.ReturnDataTable(sel);
                         Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = true;
-                     
+
                         ////Ako dokument postoji u dozvolama
                         if (td.Rows.Count > 0)
                         {
-                            Program.Parent.Uunos.Enabled = true;
-                            Program.Parent.Iizmena.Enabled = true;
-                            Program.Parent.Bbrisanje.Enabled = true;
                             if (tk.Rows[0][0].ToString() == "1")
-                            {                               
+                            {
                                 Program.Parent.Ggrupisinp.Enabled = true;
                                 Program.Parent.Ggrupisinp.Visible = true;
                                 Program.Parent.premestiGrupuToolStripMenuItem.Visible = false;
@@ -415,15 +412,6 @@ namespace Bankom.Class
                             }
                         }
                     }
-                    // 29.10.2020. Ivana
-                    else
-                    {
-                        Program.Parent.Uunos.Enabled = false;
-                        Program.Parent.Ggrupisi.Enabled = false;
-                        Program.Parent.Iizmena.Enabled = false;
-                        Program.Parent.Bbrisanje.Enabled = false;
-                    }
-
                 }     //KRAJ    DOKUMENTJE<>"D"
             }        // KRAJ POSTOJI U DOZVOLAMA
             else     ///ne postoji u dozvolama
