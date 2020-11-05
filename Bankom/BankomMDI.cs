@@ -3823,21 +3823,11 @@ private void MenuItemClickHandler(object sender, EventArgs e)
             }
         }
             //-------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
+                                                                             
 
 
             // tamara 21.10.2020.
-            private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             if (flowLayoutPanel1.Width == 162)
             {

@@ -20,7 +20,7 @@ namespace Bankom
     {
         public frmLogin()
         {
-            // inicijalizacija aaaaa
+            // inicijalizacija 
             InitializeComponent();
         }
 
@@ -53,10 +53,6 @@ namespace Bankom
         {
             newpassword.isPassword = true;
         }
-
-        
-
-
 
         private void password_Enter(object sender, EventArgs e)
         {

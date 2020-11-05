@@ -52,7 +52,8 @@ namespace Bankom
         {
             this.FormBorderStyle = FormBorderStyle.None;
             this.BackColor = Color.SeaShell;
-           
+            
+
             intStart = 0;                
             toolStripStatusPrazno.Text = new String(' ', 150);
             
