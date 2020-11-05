@@ -3194,7 +3194,7 @@ namespace Bankom
         private char UzmiSlovo(string s)
         {
             char slovo;
-            if (s == "Dokumenta" || s == "Komitenti" || s == "OrganizacioneStrkture" || s == "Artikli" || s== "OrganizacionaStruktura")
+            if (s == "Dokumenta" || s == "Komitenti"  || s == "Artikli" || s== "OrganizacionaStruktura")
                 slovo = 'S';
             else if (s == "Izvestaji")
                 slovo = 'I';
@@ -4086,6 +4086,8 @@ public void MenuItemClickHandler(object sender, EventArgs e)
             Program.Parent.premestiGrupuToolStripMenuItem.Enabled = false;
             Program.Parent.premestiGrupuToolStripMenuItem.Visible = false;
         }
+
+        
     }
    
 } 

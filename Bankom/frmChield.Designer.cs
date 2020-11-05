@@ -386,6 +386,7 @@
             this.Text = "frmChield";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.frmChield_Activated);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmChield_FormClosed);
             this.Load += new System.EventHandler(this.frmChield_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmChield_KeyDown);
             this.Resize += new System.EventHandler(this.frmChield_Resize);
