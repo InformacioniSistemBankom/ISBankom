@@ -51,9 +51,10 @@
             this.toolStripMenuItem1,
             this.toolStripSeparator12,
             this.toolStripSaveAs});
-            this.statusPrint.Location = new System.Drawing.Point(0, 564);
+            this.statusPrint.Location = new System.Drawing.Point(0, 599);
             this.statusPrint.Name = "statusPrint";
-            this.statusPrint.Size = new System.Drawing.Size(943, 23);
+            this.statusPrint.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.statusPrint.Size = new System.Drawing.Size(1155, 23);
             this.statusPrint.TabIndex = 2;
             this.statusPrint.Text = "statusStrip1";
             // 
@@ -82,28 +83,29 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.webBrowser1);
-            this.panel1.Location = new System.Drawing.Point(72, 36);
+            this.panel1.Location = new System.Drawing.Point(75, 71);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(728, 388);
+            this.panel1.Size = new System.Drawing.Size(849, 388);
             this.panel1.TabIndex = 3;
             // 
             // webBrowser1
             // 
             this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(23, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(728, 388);
+            this.webBrowser1.Size = new System.Drawing.Size(849, 388);
             this.webBrowser1.TabIndex = 1;
             // 
             // frmPrint
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(943, 587);
+            this.ClientSize = new System.Drawing.Size(1155, 622);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusPrint);
+            this.Font = new System.Drawing.Font("TimesRoman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPrint";
             this.Text = "frmPrint";

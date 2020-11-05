@@ -29,6 +29,7 @@ namespace Bankom.Class
         }
         public void ObradaStabla(Form forma, string iddok, string KojeStablo, string DokumentJe)
         {
+            SrediFormu();
             form1 = forma;
             MojeStablo = KojeStablo;
             form1.Controls["limestabla"].Text = KojeStablo;
@@ -152,13 +153,13 @@ namespace Bankom.Class
 
             tv.Height = forma.Height;
             tv.Width = forma.Width;
-            tv.Top = 20;
+            tv.Top = 60;
             tv.Font = new Font("TimesRoman", 16, FontStyle.Regular);
             tv.Name = "tv";
             tv.BorderStyle = BorderStyle.None;
             form1.Controls.Add(tv);
 
-
+            SrediFormu();
             tv.Visible = true;
             tv.HideSelection = true;
             //tv.SelectedNode = null;
@@ -181,11 +182,21 @@ namespace Bankom.Class
                 tv.EndUpdate();
             }
         }
+        public void SrediFormu()
+        {
+            Program.Parent.flowLayoutPanel1.Width = 161;
+
+
+            Program.Parent.flowLayoutPanel1.Width = 162;
+            Program.Parent.flowLayoutPanel1.Width = 0;
+            Program.Parent.button1.Location = new Point(0, 301);
+
+        }
         private void tv_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             //Djora 10.09.20
             Program.AktivnaForma = e.Node.Text.Substring(e.Node.Text.IndexOf("-") + 1).Replace(" ", "");
-
+            SrediFormu();
             if (tv.SelectedNode != null)
             {
                 if (Convert.ToInt32(tv.SelectedNode.Tag) > 1)
@@ -215,6 +226,7 @@ namespace Bankom.Class
 
                             if (t.Rows[0]["nr"].ToString().ToUpper() == "B") // izvestaj je u bazi
                             {
+                                SrediFormu();
                                 Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
                             }
                             else // izvestaj je excel
@@ -245,7 +257,7 @@ namespace Bankom.Class
                     {
                         //Djora 10.09.20
                         Program.AktivnaSifraIzvestaja = "";
-
+                        SrediFormu();
                         Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
                     }
                 }
@@ -255,7 +267,7 @@ namespace Bankom.Class
         //zajedno 28.10.2020.
         public void tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-           
+            SrediFormu();
             Program.Parent.ToolBar.Items["Uunos"].Visible = true;
             Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
 
@@ -266,6 +278,7 @@ namespace Bankom.Class
             Program.IdSelektovanogCvora = int.Parse(e.Node.Tag.ToString());
 
             Program.Parent.toolStripTextBox1.Clear();
+            SrediFormu();
 
         }
         

@@ -1617,7 +1617,6 @@ namespace Bankom
         private System.Windows.Forms.ToolStripMenuItem opadajuci;
         private EventHandler Ruski_Click;
         private System.Windows.Forms.ToolStripButton Oorgsema;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.ToolStripMenuItem asdToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asdfToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem asdfToolStripMenuItem2;
@@ -1626,7 +1625,6 @@ namespace Bankom
         private System.Windows.Forms.ToolStripMenuItem sdfgghToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem esfredstgrfdToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator21;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator34;
@@ -1656,6 +1654,8 @@ namespace Bankom
         public System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.ToolStripButton Ppotvrda;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator18;
+        public System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        public System.Windows.Forms.Button button1;
     }
 }
 

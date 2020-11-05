@@ -1117,11 +1117,22 @@ namespace Bankom.Class
             }
         }
 
+        public void SrediFormu()
+        {
+            Program.Parent.flowLayoutPanel1.Width = 161;
+
+
+            Program.Parent.flowLayoutPanel1.Width = 162;
+            Program.Parent.flowLayoutPanel1.Width = 0;
+            Program.Parent.button1.Location = new Point(0, 301);
+
+        }
+
         //Djora 14.05.20
         private void dv_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridView control = (DataGridView)sender;
-
+            SrediFormu();
             Form Me = Program.Parent.ActiveMdiChild;
             int middok = 0; /// Convert.ToInt32(Me.Controls["liddok"].Text);
             string mbrdok = "";
@@ -1160,9 +1171,11 @@ namespace Bankom.Class
                     clsDokumentaStablo ds = new clsDokumentaStablo();
                     if (ds.Obradi(middok, ref midstablo, ref mimedok, ref mbrdok) == false) return;
                     Program.Parent.ShowNewForm(mojestablo, midstablo, mimedok, middok, mbrdok, ddatum, "D", "", "");
+                    SrediFormu();
                 }
                 else
                     this.ObradiDupliKlik(control,mimedok,DokumentJe,"",e);
+                SrediFormu();
 
             }
             else
@@ -1174,6 +1187,7 @@ namespace Bankom.Class
         }
         private void ObradiDupliKlik(DataGridView control, string Dokument, string DokumentJe, string OperacijaDokumenta, DataGridViewCellMouseEventArgs e)
         {
+            SrediFormu();
             dv.BackgroundColor = Color.SeaShell;
             Form Me = Program.Parent.ActiveMdiChild;
             string[] separators = new[] { "," };
