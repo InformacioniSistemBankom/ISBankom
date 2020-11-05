@@ -253,27 +253,22 @@ namespace Bankom.Class
         }
 
         //zajedno 28.10.2020.
-
         public void tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+           
             Program.Parent.ToolBar.Items["Uunos"].Visible = true;
             Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
 
             Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
             Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
-            //string VratiIme()
-            
-                //  ime2 = e.Node.Text;
-                Program.AktivnaSifraIzvestaja = e.Node.Text.ToString();
-                //MessageBox.Show(tv.SelectedNode.Text.ToString());
 
-               Program.Parent.toolStripTextBox1.Clear();
+            Program.AktivnaSifraIzvestaja = e.Node.Text.ToString();
+            Program.IdSelektovanogCvora = int.Parse(e.Node.Tag.ToString());
 
-
+            Program.Parent.toolStripTextBox1.Clear();
 
         }
-
-
+        
     }
     
 }
