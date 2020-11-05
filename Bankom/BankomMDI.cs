@@ -4025,6 +4025,10 @@ public void MenuItemClickHandler(object sender, EventArgs e)
                                     clsKorekcija Vrednost = new clsKorekcija();
                                     vrati = Vrednost.VrednostNaDan();
                                     break;
+                                case "ZatvaranjeAvansa":
+                                    clsAvansi Avans = new clsAvansi();
+                                    vrati = Avans.ZatvaranjeAvansa(forma, forma.Controls["limedok"].Text, Convert.ToString(((Bankom.frmChield)forma).iddokumenta));
+                                    break;
                                 case "Kompenzacija":
                                     clsKompenzacija rez = new clsKompenzacija();
                                     rez.ObradiKomenzaciju();

@@ -468,5 +468,93 @@ namespace Bankom.Class
 
         return true;
         }
+        public bool ZatvaranjeAvansa(Form forma1, string KojiDok, string IdDokView)
+
+        {
+            double Iznos = 0.0;
+            string sql = "";
+            bool ZatvaranjeAvansa = false;
+
+            if (KojiDok == "ZatvaranjeAvansa" )
+            {
+                if (forma1.Controls["OOperacija"].Text == "UNOS" && forma1.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "Konto").Vrednost.Trim()== "")
+                {
+                    if (MessageBox.Show("Da li zatvarate avanse ? ", "Zatvaranje avansa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        if (MessageBox.Show("Za kupce - da, za dobavljace - ne ? ", "Zatvaranje avansa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            //kupci
+                            sql = "select id_dokumentaview from PocetnoStanjeKonta where id_dokumentaview= @param0";
+                            DataTable t = db.ParamsQueryDT(sql, IdDokView);
+                            if (t.Rows.Count == 0)
+                            {
+                                sql = " select NazivKomitenta, Avansi, Kupci,ZatvaranjeAvansaKupci.OznVal, a.ID_Kontni as ID_KontniA,k.ID_Kontni as ID_KontniK, ID_SifrarnikValuta "
+                                    + " from ZatvaranjeAvansaKupci, Kontni as A, Kontni as K ,SifrarnikValuta "
+                                    + " where kupci <> 0 And ZatvaranjeAvansaKupci.kontoA = a.konto and ZatvaranjeAvansaKupci.kontoK = k.konto and SifrarnikValuta.OznVal=ZatvaranjeAvansaKupci.OznVal";
+                                DataTable t1 = db.ParamsQueryDT(sql);
+                                if (t1.Rows.Count > 0)
+                                {
+                                    sql = "insert into PocetnoStanjeKonta (id_DokumentaView, UUser) values (@param0,@param1) ";
+                                    DataTable t2 = db.ParamsQueryDT(sql, IdDokView,Program.idkadar);
+                                    foreach (DataRow row in t1.Rows)
+                                    {
+                                        if (Convert.ToDouble(row["Avansi"])>= Convert.ToDouble(row["Kupci"] ))
+                                           Iznos = Convert.ToDouble(row["Kupci"]);
+                                       else
+                                           Iznos = Convert.ToDouble(row["Avansi"]);
+
+                                        sql = " insert into PocetnoStanjeKontaStavke(id_DokumentaView, ID_Kontni,ID_KomitentiView,ID_SifrarnikValuta,NazivAnalitike, Uplate, Isplate, UUser, NazivSubanalitike ) "
+                                           + " values(@param0,@param1,@param2,@param3,@param4,@param5,@param6,@param7,@param8) ";
+                                        DataTable t3 = db.ParamsQueryDT(sql, IdDokView, row["ID_KontniA"],1, row["ID_SifrarnikValuta"], row["NazivKomitenta"], Iznos,0,Program.idkadar,"");
+
+                                        DataTable t4 = db.ParamsQueryDT(sql, IdDokView, row["ID_KontniK"], 1, row["ID_SifrarnikValuta"], row["NazivKomitenta"],0, Iznos, Program.idkadar, "");
+                                    }
+
+                                    db.ExecuteStoreProcedure("TotaliZaDokument", "NazivDokumenta:"+ KojiDok.Trim(), "IdDokument:" + IdDokView);
+                                    ZatvaranjeAvansa=true;
+
+                                }
+                            }
+                        }
+                        else //dobavljaci
+                        {
+                            sql = "select id_dokumentaview from PocetnoStanjeKonta where id_dokumentaview= @param0";
+                            DataTable t = db.ParamsQueryDT(sql, IdDokView);
+                            if (t.Rows.Count == 0)
+                            {
+                                sql = " select NazivKomitenta, Avansi, Dobavljaci,ZatvaranjeAvansa.OznVal , a.ID_Kontni as ID_KontniA,d.ID_Kontni as ID_KontniD, ID_SifrarnikValuta "
+                                    + " from ZatvaranjeAvansa, Kontni as A, Kontni as d ,SifrarnikValuta  "
+                                    + " where Dobavljaci<> 0 and ZatvaranjeAvansa.kontoA = a.konto and ZatvaranjeAvansa.kontoD = d.konto and SifrarnikValuta.OznVal=ZatvaranjeAvansa.OznVal";
+                                DataTable t1 = db.ParamsQueryDT(sql);
+                                if (t1.Rows.Count > 0)
+                                {
+                                    sql = "insert into PocetnoStanjeKonta (id_DokumentaView, UUser) values (@param0,@param1) ";
+                                    DataTable t2 = db.ParamsQueryDT(sql, IdDokView, Program.idkadar);
+                                    foreach (DataRow row in t1.Rows)
+                                    {
+                                        if (Convert.ToDouble(row["Avansi"]) >= Convert.ToDouble(row["Dobavljaci"]))
+                                            Iznos = Convert.ToDouble(row["Dobavljaci"]);
+                                        else
+                                            Iznos = Convert.ToDouble(row["Avansi"]);
+
+                                        sql = " insert into PocetnoStanjeKontaStavke(id_DokumentaView, ID_Kontni,ID_KomitentiView,ID_SifrarnikValuta,NazivAnalitike, Uplate, Isplate, UUser, NazivSubanalitike ) "
+                                           + " values(@param0,@param1,@param2,@param3,@param4,@param5,@param6,@param7,@param8) ";
+                                        DataTable t3 = db.ParamsQueryDT(sql, IdDokView, row["ID_KontniA"], 1, row["ID_SifrarnikValuta"], row["NazivKomitenta"], Iznos, 0, Program.idkadar, "");
+
+                                        DataTable t4 = db.ParamsQueryDT(sql, IdDokView, row["ID_KontniD"], 1, row["ID_SifrarnikValuta"], row["NazivKomitenta"], 0, Iznos, Program.idkadar, "");
+                                    }
+
+                                    db.ExecuteStoreProcedure("TotaliZaDokument", "NazivDokumenta:" + KojiDok.Trim(), "IdDokument:" + IdDokView);
+                                    ZatvaranjeAvansa = true;
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+
+            }
+         return ZatvaranjeAvansa;
+        }
     }
 }

@@ -137,7 +137,7 @@ namespace Bankom.Class
                 string param1 = rez1.Rows[0][0].ToString();
 
                 param0 = d;
-                string upit1 = "Update " + pomStablo + " set NazivJavni = @param0 where id_" + pomStablo + "=@param1 ";
+                string upit1 = "Update " + pomStablo + " set NazivJavni = @param0 where id_" + pomStablo + " = @param1 ";
                 db.ParamsInsertScalar(upit1, param0,param1);
 
                 MessageBox.Show("Uspešno izmenjeno.");
