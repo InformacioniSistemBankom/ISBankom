@@ -11,7 +11,6 @@ namespace Bankom.Class
 {
     class clsObradaOsnovnihSifarnika
     {
-        
         string sql = "";
         string sss = "";
         Form forma = new Form();
