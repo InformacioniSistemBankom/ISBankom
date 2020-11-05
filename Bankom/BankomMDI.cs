@@ -81,7 +81,6 @@ namespace Bankom
                 childForm.toolStripTextBroj.Text = Convert.ToString(idstablo);
 
                 childForm.Text = ss;
-                childForm.Font = new Font("TimesRoman", 16, FontStyle.Regular);
                 childForm.Name = ss;
                 //childForm.Left = 380;
                 //childForm.Top = 300;
@@ -173,8 +172,9 @@ namespace Bankom
             toolStrip1.Items.Add(itemn);
             toolStrip1.Items.Add(itemB);
             toolStrip1.Items.Add(itemnsep);
-
-
+            //ivana 5.11.2020.
+            toolStrip1.Font = new Font("TimesRoman", 9, FontStyle.Regular);
+            
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
                 //toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Regular);
@@ -3194,7 +3194,7 @@ namespace Bankom
         private char UzmiSlovo(string s)
         {
             char slovo;
-            if (s == "Dokumenta" || s == "Komitenti" || s == "OrganizacioneStrkture" || s == "Artikli" || s == "OrganizacionaStruktura")
+            if (s == "Dokumenta" || s == "Komitenti" || s == "Artikli" || s == "OrganizacionaStruktura")
                 slovo = 'S';
             else if (s == "Izvestaji")
                 slovo = 'I';

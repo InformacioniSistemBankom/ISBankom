@@ -1398,9 +1398,10 @@ namespace Bankom
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Font = new System.Drawing.Font("TimesRoman", 9F);
             this.toolStrip1.Location = new System.Drawing.Point(0, 43);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1636, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1513, 25);
             this.toolStrip1.TabIndex = 34;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.Visible = false;
@@ -1409,9 +1410,9 @@ namespace Bankom
             // 
             this.flowLayoutPanel1.Controls.Add(this.menuStrip1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 43);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 68);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 1018);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 993);
             this.flowLayoutPanel1.TabIndex = 40;
             // 
             // menuStrip1
