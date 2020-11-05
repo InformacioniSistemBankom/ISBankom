@@ -32,6 +32,7 @@ namespace Bankom.Class
             form1 = forma;
             MojeStablo = KojeStablo;
             form1.Controls["limestabla"].Text = KojeStablo;
+            form1.Controls["limestabla"].Font = new Font("TimesRoman", 16, FontStyle.Regular); // ivana
             mDokumentJe = DokumentJe;
             //tv.AfterSelect += new TreeViewEventHandler(Tv_AfterSelect);
             tv.NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler(tv_NodeMouseDoubleClick);

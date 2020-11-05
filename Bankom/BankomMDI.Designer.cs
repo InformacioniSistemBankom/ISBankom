@@ -995,7 +995,7 @@ namespace Bankom
             this.Sstampa.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Sstampa.Name = "Sstampa";
             this.Sstampa.Size = new System.Drawing.Size(75, 40);
-            this.Sstampa.Text = "Štampa";
+            this.Sstampa.Text = "[tampa";
             this.Sstampa.ToolTipText = "Stampa dokumenta";
             this.Sstampa.Click += new System.EventHandler(this.Sstampa_Click);
             // 
@@ -1049,7 +1049,7 @@ namespace Bankom
             this.Ggrupisi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Ggrupisi.Name = "Ggrupisi";
             this.Ggrupisi.Size = new System.Drawing.Size(85, 40);
-            this.Ggrupisi.Text = "Grupiši";
+            this.Ggrupisi.Text = "Grupi{i";
             this.Ggrupisi.ToolTipText = "Grupiši";
             this.Ggrupisi.DropDownClosed += new System.EventHandler(this.Ggrupisi_DropDownClosed);
             this.Ggrupisi.DropDownOpened += new System.EventHandler(this.Ggrupisi_DropDownOpened);
@@ -1294,7 +1294,7 @@ namespace Bankom
             this.Pposta.Image = ((System.Drawing.Image)(resources.GetObject("Pposta.Image")));
             this.Pposta.Name = "Pposta";
             this.Pposta.Size = new System.Drawing.Size(80, 40);
-            this.Pposta.Text = "Pošta";
+            this.Pposta.Text = "Po{ta";
             this.Pposta.ToolTipText = "Knjga poste";
             this.Pposta.Visible = false;
             this.Pposta.Click += new System.EventHandler(this.Pposta_Click);
@@ -1389,7 +1389,7 @@ namespace Bankom
             this.Oorgsema.Name = "Oorgsema";
             this.Oorgsema.Size = new System.Drawing.Size(95, 40);
             this.Oorgsema.Text = "Org.šema";
-            this.Oorgsema.ToolTipText = "Organizaciona sema";
+            this.Oorgsema.ToolTipText = "Organizaciona {ema";
             // 
             // toolStripSeparator33
             // 
