@@ -1140,6 +1140,8 @@ namespace Bankom.Class
 
             control.ReadOnly = true;
             string mimedok = Me.Controls["limedok"].Text.Trim();
+          //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
+          //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
 
             FillControls(control, ref middok, ref mbrdok, ref mdatum, e);    // punjenje kontrola koje se odnose na stavku iz reda grida na koji smo kliknuli
 

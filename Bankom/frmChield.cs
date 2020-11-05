@@ -464,6 +464,24 @@ namespace Bankom
 
             }
         }
+
+        private void frmChield_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            BankomMDI mdi = new BankomMDI();
+            FormCollection fc = Application.OpenForms;
+            int brojFormi = fc.Count;
+            if (brojFormi == 1)
+            {
+                
+                foreach (ToolStripItem t in mdi.ToolBar.Items)
+                {
+                    Program.Parent.ToolBar.Items[t.Name].Enabled = false;
+                }
+                Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
+                
+              
+            }
+        }
     }
           
 }
