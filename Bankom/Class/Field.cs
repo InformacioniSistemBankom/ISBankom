@@ -1139,7 +1139,6 @@ namespace Bankom.Class
             DateTime mdatum = Convert.ToDateTime(System.DateTime.Now);
 
             control.ReadOnly = true;
-
             string mimedok = Me.Controls["limedok"].Text.Trim();
 
             FillControls(control, ref middok, ref mbrdok, ref mdatum, e);    // punjenje kontrola koje se odnose na stavku iz reda grida na koji smo kliknuli

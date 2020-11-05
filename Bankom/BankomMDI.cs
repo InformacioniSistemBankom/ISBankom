@@ -26,10 +26,10 @@ namespace Bankom
 {
     public partial class BankomMDI : Form
     {
-     DataBaseBroker db = new DataBaseBroker();
-        
+        DataBaseBroker db = new DataBaseBroker();
+
         public string connectionString = Program.connectionString;
-      
+
         public static string filter = "";
         private AutoCompleteStringCollection DataCollectionSpisak = new AutoCompleteStringCollection();
 
@@ -38,11 +38,11 @@ namespace Bankom
         {
             InitializeComponent();
         }
-       
-        
+
+
         public void ShowNewForm(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
         {
-           
+
             DataBaseBroker db = new DataBaseBroker();
             string ss = "";
             if (dokumentje == "D")
@@ -62,14 +62,13 @@ namespace Bankom
                 childForm.FormBorderStyle = FormBorderStyle.None;
                 childForm.BackColor = System.Drawing.Color.SeaShell;
                 childForm.MdiParent = this;
-               // childForm.BringToFront();
+                // childForm.BringToFront();
 
                 this.WindowState = FormWindowState.Maximized;
 
                 if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
                 int sirina = (Width / 100) * 10;
 
-             
                 childForm.imedokumenta = imedokumenta;
                 childForm.iddokumenta = iddokument;
                 childForm.idstablo = idstablo;
@@ -80,11 +79,13 @@ namespace Bankom
                 childForm.datum = datum;
 
                 childForm.toolStripTextBroj.Text = Convert.ToString(idstablo);
+
                 childForm.Text = ss;
+                childForm.Font = new Font("TimesRoman", 16, FontStyle.Regular);
                 childForm.Name = ss;
                 //childForm.Left = 380;
                 //childForm.Top = 300;
-                
+
                 childForm.AutoScroll = false;
                 //childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
                 ////  childForm.WindowState = FormWindowState.Maximized;
@@ -325,9 +326,9 @@ namespace Bankom
                 string[] novo1 = System.IO.File.ReadAllLines(Application.StartupPath + @"\XmlLat\" + "lista.txt");
                 //string[] novo = alphabet.ToArray();
 
-           
-                
-         
+
+
+
                 return;
             }
             else
@@ -352,8 +353,8 @@ namespace Bankom
             } while (x1 < dv.Count);
 
             string[] novo = alphabet.ToArray();
-         
-          
+
+
             System.IO.File.WriteAllLines(Application.StartupPath + @"\XmlLat\" + "lista.txt", alphabet);
 
         }
@@ -604,7 +605,7 @@ namespace Bankom
                                 //this.ActivateMdiChild(childForm);
                                 childForm.LayoutMdi(MdiLayout.TileVertical);
                                 childForm.WindowState = FormWindowState.Maximized;
-                              //  SrediFormu();
+                                //  SrediFormu();
                                 break;
                             }
                         }
@@ -1154,7 +1155,7 @@ namespace Bankom
         {
             DataBaseBroker db2 = new DataBaseBroker();
             ToolStripTextBox item = sender as ToolStripTextBox;
-           
+
 
             //foreach (Form childForm in MdiChildren)
             //{
@@ -1186,7 +1187,7 @@ namespace Bankom
             {
                 int x = windowsMenu.DropDownItems[n].ToString().IndexOf(" ");
                 if (x > -1) { aaa = windowsMenu.DropDownItems[n].ToString().Substring(x).Trim(); };
-                if (ss== aaa)
+                if (ss == aaa)
                 {
                     //MessageBox.Show("Vec postoji");
                     //toolStripTextBox1.Text = "";
@@ -1213,7 +1214,7 @@ namespace Bankom
             else
             {
                 MessageBox.Show("Dokumenat nije pronadjen");
-               // toolStripTextBox1.Text = "";
+                // toolStripTextBox1.Text = "";
                 return;
             }
 
@@ -1229,7 +1230,7 @@ namespace Bankom
                     {
                         MessageBox.Show("Dokumenat je vec otvoren");
                         this.Text = "";
-                       // toolStripTextBox1.Text = " ";
+                        // toolStripTextBox1.Text = " ";
 
                         return;
                     }
@@ -1242,7 +1243,7 @@ namespace Bankom
         //tamara 23.10.2020.
 
 
-     
+
 
         private void CloseActive_Click(object sender, EventArgs e)
         {
@@ -1413,7 +1414,7 @@ namespace Bankom
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             // tamara 26.10.2020.
-          
+
         }
 
         private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1778,7 +1779,7 @@ namespace Bankom
         private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             // tamara 26.10.2020.
-            
+
 
         }
 
@@ -1790,7 +1791,7 @@ namespace Bankom
         private void Uunos_Click(object sender, EventArgs e)
         {
 
-        
+
             Form activeChild = this.ActiveMdiChild;
             if (activeChild != null)
             {
@@ -1927,7 +1928,7 @@ namespace Bankom
                 if (odgovor == false) //nije otvoren
                 {
                     frmPrint fs = new frmPrint();
-                   fs.BackColor = System.Drawing.Color.SeaShell;
+                    fs.BackColor = System.Drawing.Color.SeaShell;
                     fs.MdiParent = this;
                     fs.Text = naslov;
                     fs.intCurrentdok = Convert.ToInt32(iddok); //id
@@ -1992,7 +1993,7 @@ namespace Bankom
              myProcess.Start();*/
         }
 
-        
+
         private void Iizlaz_Click(object sender, EventArgs e)
         {
             foreach (Form childForm in this.MdiChildren)
@@ -2109,13 +2110,13 @@ namespace Bankom
             {
                 childForm.Close();
             }
-           toolStripTextBox1.Text = "";
+            toolStripTextBox1.Text = "";
             if (toolStrip1.Items.Count == 0) { toolStrip1.Visible = false; }
         }
         private void CloseAllToolStripMenuItem_Click(object sender, EventArgs e)
 
         {
-            
+
 
             foreach (Form frm in this.MdiChildren)
             {
@@ -2130,7 +2131,7 @@ namespace Bankom
             }
             toolStrip1.Items.Clear();
 
-           toolStripTextBox1.Text = "";
+            toolStripTextBox1.Text = "";
             if (toolStrip1.Items.Count == 0) { toolStrip1.Visible = false; }
 
         }
@@ -2290,7 +2291,7 @@ namespace Bankom
         {
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
 
-           activeChild.BackColor = System.Drawing.Color.SeaShell;
+            activeChild.BackColor = System.Drawing.Color.SeaShell;
 
             DialogResult res = MsgBox.ShowDialog("Tekst pretrage:", "Pretraga", ((Bankom.frmChield)activeChild).toolStripTextFind.Text,
             MsgBox.Icon.Question,
@@ -2389,7 +2390,7 @@ namespace Bankom
             knjizi.ObradiNalogAutomatski();
         }
 
-      
+
         private void Mmagacin_Click(object sender, EventArgs e)
         {
 
@@ -2535,7 +2536,7 @@ namespace Bankom
             clsXmlPlacanja cxml = new clsXmlPlacanja();
             cxml.izborPlacanja(0, mg);
             frmPrint fs = new frmPrint();
-           fs.BackColor = System.Drawing.Color.SeaShell;
+            fs.BackColor = System.Drawing.Color.SeaShell;
 
             fs.MdiParent = this;
             fs.Text = "prevoz-" + mg;
@@ -2581,7 +2582,7 @@ namespace Bankom
             clsXmlPlacanja cxml = new clsXmlPlacanja();
             cxml.izborPlacanja(1, mg);
             frmPrint fs = new frmPrint();
-           fs.BackColor = System.Drawing.Color.SeaShell;
+            fs.BackColor = System.Drawing.Color.SeaShell;
             fs.kojiprint = "nag";
             fs.MdiParent = this;
             fs.Text = "nagrade-" + mg;
@@ -3049,8 +3050,8 @@ namespace Bankom
             Application.Exit();
         }
 
-      
-       
+
+
 
 
 
@@ -3084,7 +3085,7 @@ namespace Bankom
             t.Width = 150;
             t.Height = 50;
             t.BackColor = Color.SeaShell;
-            t.Font= new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            t.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             t.ForeColor = System.Drawing.Color.MidnightBlue;
             //
             menuStrip1.Items.Add(t);
@@ -3099,7 +3100,7 @@ namespace Bankom
             {
                 t.Click += new EventHandler(MenuItemClickHandler);
             }
-            }
+        }
 
         private string CreateMenuItems(ToolStripMenuItem t, string strMenu)
         {
@@ -3130,7 +3131,7 @@ namespace Bankom
                 t1.ForeColor = System.Drawing.Color.MidnightBlue;
                 // Dodat separator 27.10.2020. Ivana
                 ToolStripSeparator s1 = new ToolStripSeparator();
-                if(strMenu == "91")
+                if (strMenu == "91")
                 {
                     t.DropDownItems.Add(s1);
                 }
@@ -3190,11 +3191,10 @@ namespace Bankom
         {
             return dt.Select("MenuName='" + strMenuID + "'")[0][5].ToString();
         }
-
         private char UzmiSlovo(string s)
         {
             char slovo;
-            if (s == "Dokumenta" || s == "Komitenti" || s == "OrganizacioneStrkture" || s == "Artikli" || s== "OrganizacionaStruktura")
+            if (s == "Dokumenta" || s == "Komitenti" || s == "OrganizacioneStrkture" || s == "Artikli" || s == "OrganizacionaStruktura")
                 slovo = 'S';
             else if (s == "Izvestaji")
                 slovo = 'I';
@@ -3256,7 +3256,7 @@ namespace Bankom
                 return "PomocniSifarnici";
             }
         }
-            
+
         private bool IsOpen(string s)
         {
             bool pom = false;
@@ -3278,18 +3278,18 @@ namespace Bankom
         }
 
         // zajedno 02.11.2020.
-    public void SrediFormu()
+        public void SrediFormu()
         {
             flowLayoutPanel1.Width = 161;
-          
+
 
             flowLayoutPanel1.Width = 162;
             flowLayoutPanel1.Width = 0;
             button1.Location = new Point(0, 301);
 
         }
-        
-public void MenuItemClickHandler(object sender, EventArgs e)
+
+        public void MenuItemClickHandler(object sender, EventArgs e)
         {
             Program.Parent.ToolBar.Items["Uunos"].Visible = true;
             Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
@@ -3313,12 +3313,12 @@ public void MenuItemClickHandler(object sender, EventArgs e)
                     {
                         //tamara 27.10.2020.
 
-                       // Form activeChildd = this.ActiveMdiChild;
-                       //// activeChildd.FormBorderStyle = FormBorderStyle.None;
-                       // if (activeChildd != null)
-                       // {
-                       //     activeChildd.Hide();
-                       // }
+                        // Form activeChildd = this.ActiveMdiChild;
+                        //// activeChildd.FormBorderStyle = FormBorderStyle.None;
+                        // if (activeChildd != null)
+                        // {
+                        //     activeChildd.Hide();
+                        // }
                         clsObradaOsnovnihSifarnika co0 = new clsObradaOsnovnihSifarnika();
                         ShowNewForm(s, 1, s, 1, "", "", slovo.ToString(), "", "TreeView");
                     }
@@ -3340,7 +3340,7 @@ public void MenuItemClickHandler(object sender, EventArgs e)
                     if (postoji == false)
                     {
                         clsObradaOsnovnihSifarnika co0 = new clsObradaOsnovnihSifarnika();
-                        ShowNewForm(SkiniKlasifikaciju(s), 1, SkiniKlasifikaciju(s), 1, "", "", slovo.ToString(), "", "TreeView");                     
+                        ShowNewForm(SkiniKlasifikaciju(s), 1, SkiniKlasifikaciju(s), 1, "", "", slovo.ToString(), "", "TreeView");
                     }
                     SrediFormu();
                     break;
@@ -3604,7 +3604,7 @@ public void MenuItemClickHandler(object sender, EventArgs e)
                     SrediFormu();
                     break;
                 case "Razduzenjesirovinaminibar":
-                        Preuzimanja.RazduzenjeSirovinaMiniBar();
+                    Preuzimanja.RazduzenjeSirovinaMiniBar();
                     SrediFormu();
                     break;
                 case "Razduzenjesirovinazaodabraniintervaldatuma":
@@ -3767,15 +3767,15 @@ public void MenuItemClickHandler(object sender, EventArgs e)
 
                     SrediFormu();
                     break;
-                
-                //case "Dozvole":
-                //    ShowNewForm(" ", 1, "Dozvole", 1, "", "", "P", "", "");
-                //    break;
+
+                    //case "Dozvole":
+                    //    ShowNewForm(" ", 1, "Dozvole", 1, "", "", "P", "", "");
+                    //    break;
                     //default:
                     //    break;
             }
         }
-            //-------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -3789,29 +3789,29 @@ public void MenuItemClickHandler(object sender, EventArgs e)
 
 
 
-            // tamara 21.10.2020.
-            private void button1_Click(object sender, EventArgs e)
+        // tamara 21.10.2020.
+        private void button1_Click(object sender, EventArgs e)
         {
             if (flowLayoutPanel1.Width == 162)
             {
                 flowLayoutPanel1.Width = 0;
-               
-                button1.Location = new Point(0,301);
+
+                button1.Location = new Point(0, 301);
             }
             else
             {
                 flowLayoutPanel1.Width = 162;
-             
+
                 button1.Location = new Point(159, 301);
             }
         }
-       
-        
+
+
 
 
         private void toolStripTextBox1_Click(object sender, EventArgs e)
         {
-             
+
             DataBaseBroker db = new DataBaseBroker();
             AutoCompleteStringCollection namesCollection = new AutoCompleteStringCollection();
 
@@ -3849,7 +3849,7 @@ public void MenuItemClickHandler(object sender, EventArgs e)
 
             ToolStripTextBox item = sender as ToolStripTextBox;
             BrziPristup(item);
-           // toolStripTextBox1.Text = "";
+            // toolStripTextBox1.Text = "";
 
         }
 
@@ -3858,7 +3858,7 @@ public void MenuItemClickHandler(object sender, EventArgs e)
 
             if (MessageBox.Show("Da li ste sigurni da želite da zatvorite program?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Cancel)
             {
-                
+
                 e.Cancel = true;
             }
             else
@@ -3875,7 +3875,7 @@ public void MenuItemClickHandler(object sender, EventArgs e)
             //MessageBox.Show(tr.ime2.ToString());
             MessageBox.Show(Program.AktivnaSifraIzvestaja);
         }
-        
+
 
         private void Uunos_DropDownClosed(object sender, EventArgs e)
         {
@@ -3884,7 +3884,7 @@ public void MenuItemClickHandler(object sender, EventArgs e)
 
         private void Uunos_DropDownOpened(object sender, EventArgs e)
         {
-             Uunos.ForeColor = System.Drawing.Color.Black;
+            Uunos.ForeColor = System.Drawing.Color.Black;
         }
         private void Ggrupisi_DropDownClosed(object sender, EventArgs e)
         {
@@ -3897,9 +3897,9 @@ public void MenuItemClickHandler(object sender, EventArgs e)
 
         private void Ppotvrda_Click_1(object sender, EventArgs e)
         {
-          
+
             Form forma = this.ActiveMdiChild;
- 
+
             Boolean vrati = new Boolean();
             if (forma == null)
             {
@@ -3990,15 +3990,15 @@ public void MenuItemClickHandler(object sender, EventArgs e)
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
                                 o.KlasifikacijaPremestiGrupu(pomIzv, pomStablo);
-                        
-                           
+
+
                                 //ovde smo stigle
                             }
                             else if (forma.Controls["OOperacija"].Text.Trim() == "NALEPI")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
                                 o.KlasifikacijaNovaPozicija(pomIzv, pomStablo);
-                        
+
                             }
 
 
@@ -4087,5 +4087,5 @@ public void MenuItemClickHandler(object sender, EventArgs e)
             Program.Parent.premestiGrupuToolStripMenuItem.Visible = false;
         }
     }
-   
-} 
+
+}
