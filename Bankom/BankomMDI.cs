@@ -38,11 +38,9 @@ namespace Bankom
         {
             InitializeComponent();
         }
-       
-        
+
         public void ShowNewForm(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
         {
-           
             DataBaseBroker db = new DataBaseBroker();
             string ss = "";
             if (dokumentje == "D")
@@ -55,47 +53,46 @@ namespace Bankom
             }
             Boolean odgovor;
             odgovor = DalijevecOtvoren(dokumentje, brojdokumenta, imedokumenta);            //string ss;    
-            if (odgovor == false) ///nije vec otvoren
-            {
+                if (odgovor == false) ///nije vec otvoren
+                {
 
-                frmChield childForm = new frmChield();
-                childForm.FormBorderStyle = FormBorderStyle.None;
-                childForm.BackColor = System.Drawing.Color.SeaShell;
-                childForm.MdiParent = this;
-               // childForm.BringToFront();
+                    frmChield childForm = new frmChield();
+                    childForm.FormBorderStyle = FormBorderStyle.None;
+                    childForm.BackColor = System.Drawing.Color.SeaShell;
+                    childForm.MdiParent = this;
+                    // childForm.BringToFront();
 
-                this.WindowState = FormWindowState.Maximized;
+                    this.WindowState = FormWindowState.Maximized;
 
-                if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
-                int sirina = (Width / 100) * 10;
-
-             
-                childForm.imedokumenta = imedokumenta;
-                childForm.iddokumenta = iddokument;
-                childForm.idstablo = idstablo;
-                childForm.imestabla = imestabla;
-                childForm.VrstaPrikaza = vrstaprikaza;
-                childForm.brdok = brojdokumenta;
-                childForm.DokumentJe = dokumentje;
-                childForm.datum = datum;
-
-                childForm.toolStripTextBroj.Text = Convert.ToString(idstablo);
-                childForm.Text = ss;
-                childForm.Name = ss;
-                //childForm.Left = 380;
-                //childForm.Top = 300;
-                
-                childForm.AutoScroll = false;
-                //childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
-                ////  childForm.WindowState = FormWindowState.Maximized;
-                //childForm.Width = this.Width - 20;
-
-                addFormTotoolstrip1(childForm, imedokumenta);
-
-                childForm.Show();
+                    if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
+                    int sirina = (Width / 100) * 10;
 
 
-            }
+                    childForm.imedokumenta = imedokumenta;
+                    childForm.iddokumenta = iddokument;
+                    childForm.idstablo = idstablo;
+                    childForm.imestabla = imestabla;
+                    childForm.VrstaPrikaza = vrstaprikaza;
+                    childForm.brdok = brojdokumenta;
+                    childForm.DokumentJe = dokumentje;
+                    childForm.datum = datum;
+
+                    childForm.toolStripTextBroj.Text = Convert.ToString(idstablo);
+                    childForm.Text = ss;
+                    childForm.Name = ss;
+                    //childForm.Left = 380;
+                    //childForm.Top = 300;
+
+                    childForm.AutoScroll = false;
+                    //childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
+                    ////  childForm.WindowState = FormWindowState.Maximized;
+                    //childForm.Width = this.Width - 20;
+
+                    addFormTotoolstrip1(childForm, imedokumenta);
+
+                    childForm.Show();
+
+                }
         }
         public Boolean DalijevecOtvoren(string dokumentje, string brojdokumenta, string imedokumenta)
         {

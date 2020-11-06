@@ -214,13 +214,13 @@ namespace Bankom
         }
 
         private void ToolStripTextPos_DoubleClick(object sender, EventArgs e)
-        {  
-            pageno = Convert.ToInt32(ToolStripTextPos.Text);
-            if (intStart == (pageno - 1) * this.BrRedova) { return; }
-           
-            this.intStart = (pageno - 1) * this.BrRedova;       
-            
-            navigacija(pageno);
+        {
+                pageno = Convert.ToInt32(ToolStripTextPos.Text);
+                if (intStart == (pageno - 1) * this.BrRedova) { return; }
+
+                this.intStart = (pageno - 1) * this.BrRedova;
+
+                navigacija(pageno);
         }
         private void ToolStripTextPos_KeyDown(object sender, KeyEventArgs e)
         {
