@@ -126,7 +126,9 @@ namespace Bankom
                     {
                         MessageBox.Show("Ova forma je već otvorena.");
                         f.Focus();
+                      
                         vrednost = true;
+                        break;
                     }
                     else
                     {
@@ -134,6 +136,7 @@ namespace Bankom
                     }
                 }
             }
+
 
             return vrednost;
         }
