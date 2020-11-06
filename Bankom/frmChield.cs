@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Globalization;
 using System.Drawing;
-
+using System.Data.Sql;
 using Bankom.Class;
 
 
@@ -104,7 +104,7 @@ namespace Bankom
                             cononf.addFormControls(this, imedokumenta, iddokumenta.ToString(), OOperacija.Text);
                             string sel = "Select TUD From Upiti Where NazivDokumenta='" + imedokumenta + "' and ime like'GGrr%' AND TUD>0 Order by TUD";
                             Console.WriteLine(sel);
-                            DataTable ti = db.ReturnDataTable(sel);
+                            System.Data.DataTable ti = db.ReturnDataTable(sel);
                             clsObradaStablaItipa proci = new clsObradaStablaItipa();
                             for (int j = 0; j < ti.Rows.Count; j++)
                             {
@@ -214,13 +214,13 @@ namespace Bankom
         }
 
         private void ToolStripTextPos_DoubleClick(object sender, EventArgs e)
-        {  
-            pageno = Convert.ToInt32(ToolStripTextPos.Text);
-            if (intStart == (pageno - 1) * this.BrRedova) { return; }
-           
-            this.intStart = (pageno - 1) * this.BrRedova;       
-            
-            navigacija(pageno);
+        {
+                pageno = Convert.ToInt32(ToolStripTextPos.Text);
+                if (intStart == (pageno - 1) * this.BrRedova) { return; }
+
+                this.intStart = (pageno - 1) * this.BrRedova;
+
+                navigacija(pageno);
         }
         private void ToolStripTextPos_KeyDown(object sender, KeyEventArgs e)
         {

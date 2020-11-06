@@ -1220,6 +1220,7 @@ namespace Bankom.Class
                     string konto = "";
                     string opiskonta = "";
                     switch (Dokument)
+
                     {
                         case "SpisakDokumenata":
                             foreach (DataGridViewColumn column in control.Columns)
