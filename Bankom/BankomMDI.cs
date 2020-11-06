@@ -39,33 +39,7 @@ namespace Bankom
             InitializeComponent();
         }
 
-        //private bool IsOpen2(long s, string imeStabala)
-        //{
-        //    bool pom = false;
-        //    foreach (Form f in Application.OpenForms)
-        //    {
-        //        string param0 = f.Text;
-
-        //        string upit = "select ID" + imeStabala + "from" + imeStabala + "where Naziv=@param0";
-        //        var rez = db.ParamsInsertScalar(upit, param0);
-
-
-
-
-        //        if (rez==s)
-        //        {
-        //            pom = true;
-        //            MessageBox.Show("Već je otvorena ova forma!");
-        //            f.Focus();
-        //            break;
-        //        }
-        //    }
-        //    if (pom == false)
-        //    {
-        //        return pom;
-        //    }
-        //    return pom;
-        //}
+        
         public void ShowNewForm(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
         {
                 DataBaseBroker db = new DataBaseBroker();
@@ -130,11 +104,11 @@ namespace Bankom
 
             bool vrednost = true;
 
-            
 
-                if (dokumentje == "D")
-                {
-                    foreach (Form f in Application.OpenForms)
+
+            if (dokumentje == "D")
+            {
+                foreach (Form f in Application.OpenForms)
                 {
                     ss = brojdokumenta;
                     if (f.Text == ss)
@@ -147,7 +121,7 @@ namespace Bankom
                     else
                     {
                         vrednost = false;
-                        
+
                     }
 
 
@@ -163,7 +137,7 @@ namespace Bankom
                     {
                         MessageBox.Show("Ova forma je već otovrena.");
                         f.Focus();
-                      
+
                         vrednost = true;
                         break;
                     }
@@ -180,7 +154,7 @@ namespace Bankom
 
 
             return vrednost;
-       
+
         }
 
 
