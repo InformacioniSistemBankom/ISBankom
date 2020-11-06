@@ -38,89 +38,139 @@ namespace Bankom
         {
             InitializeComponent();
         }
-       
-        
+
+        //private bool IsOpen2(long s, string imeStabala)
+        //{
+        //    bool pom = false;
+        //    foreach (Form f in Application.OpenForms)
+        //    {
+        //        string param0 = f.Text;
+
+        //        string upit = "select ID" + imeStabala + "from" + imeStabala + "where Naziv=@param0";
+        //        var rez = db.ParamsInsertScalar(upit, param0);
+
+
+
+
+        //        if (rez==s)
+        //        {
+        //            pom = true;
+        //            MessageBox.Show("Već je otvorena ova forma!");
+        //            f.Focus();
+        //            break;
+        //        }
+        //    }
+        //    if (pom == false)
+        //    {
+        //        return pom;
+        //    }
+        //    return pom;
+        //}
         public void ShowNewForm(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
         {
+
            
-            DataBaseBroker db = new DataBaseBroker();
-            string ss = "";
-            if (dokumentje == "D")
-            {
-                ss = brojdokumenta;
-            }
-            else
-            {
-                ss = imedokumenta;
-            }
-            Boolean odgovor;
-            odgovor = DalijevecOtvoren(dokumentje, brojdokumenta, imedokumenta);            //string ss;    
-            if (odgovor == false) ///nije vec otvoren
-            {
-
-                frmChield childForm = new frmChield();
-                childForm.FormBorderStyle = FormBorderStyle.None;
-                childForm.BackColor = System.Drawing.Color.SeaShell;
-                childForm.MdiParent = this;
-               // childForm.BringToFront();
-
-                this.WindowState = FormWindowState.Maximized;
-
-                if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
-                int sirina = (Width / 100) * 10;
-
-             
-                childForm.imedokumenta = imedokumenta;
-                childForm.iddokumenta = iddokument;
-                childForm.idstablo = idstablo;
-                childForm.imestabla = imestabla;
-                childForm.VrstaPrikaza = vrstaprikaza;
-                childForm.brdok = brojdokumenta;
-                childForm.DokumentJe = dokumentje;
-                childForm.datum = datum;
-
-                childForm.toolStripTextBroj.Text = Convert.ToString(idstablo);
-                childForm.Text = ss;
-                childForm.Name = ss;
-                //childForm.Left = 380;
-                //childForm.Top = 300;
-                
-                childForm.AutoScroll = false;
-                //childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
-                ////  childForm.WindowState = FormWindowState.Maximized;
-                //childForm.Width = this.Width - 20;
-
-                addFormTotoolstrip1(childForm, imedokumenta);
-
-                childForm.Show();
 
 
-            }
+
+                DataBaseBroker db = new DataBaseBroker();
+                string ss = "";
+                if (dokumentje == "D")
+                {
+                    ss = brojdokumenta;
+                }
+                else
+                {
+                    ss = imedokumenta;
+                }
+                Boolean odgovor;
+                odgovor = DalijevecOtvoren(dokumentje, brojdokumenta, imedokumenta);            //string ss;    
+                if (odgovor == false) ///nije vec otvoren
+                {
+
+                    frmChield childForm = new frmChield();
+                    childForm.FormBorderStyle = FormBorderStyle.None;
+                    childForm.BackColor = System.Drawing.Color.SeaShell;
+                    childForm.MdiParent = this;
+                    // childForm.BringToFront();
+
+                    this.WindowState = FormWindowState.Maximized;
+
+                    if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
+                    int sirina = (Width / 100) * 10;
+
+
+                    childForm.imedokumenta = imedokumenta;
+                    childForm.iddokumenta = iddokument;
+                    childForm.idstablo = idstablo;
+                    childForm.imestabla = imestabla;
+                    childForm.VrstaPrikaza = vrstaprikaza;
+                    childForm.brdok = brojdokumenta;
+                    childForm.DokumentJe = dokumentje;
+                    childForm.datum = datum;
+
+                    childForm.toolStripTextBroj.Text = Convert.ToString(idstablo);
+                    childForm.Text = ss;
+                    childForm.Name = ss;
+                    //childForm.Left = 380;
+                    //childForm.Top = 300;
+
+                    childForm.AutoScroll = false;
+                    //childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
+                    ////  childForm.WindowState = FormWindowState.Maximized;
+                    //childForm.Width = this.Width - 20;
+
+                    addFormTotoolstrip1(childForm, imedokumenta);
+
+                    childForm.Show();
+                }
+
+            
+
         }
-        public Boolean DalijevecOtvoren(string dokumentje, string brojdokumenta, string imedokumenta)
+        public bool DalijevecOtvoren(string dokumentje, string brojdokumenta, string imedokumenta)
         {
             string ss;
-            if (dokumentje == "D")
+
+            bool vrednost = true;
+
+            foreach(Form f in Application.OpenForms)
             {
-                ss = brojdokumenta;
-            }
-            else
-            {
-                ss = imedokumenta;
+                if (dokumentje == "D")
+                {
+                    ss = brojdokumenta;
+                    if (f.Text == ss)
+                    {
+                        MessageBox.Show("Ova forma je već otovrena.");
+                        f.Focus();
+                        vrednost= true;
+                    }
+                    else
+                    {
+                        vrednost = false;
+                    }
+
+                }
+                else
+                {
+                    ss = imedokumenta;
+                    if (f.Text == ss)
+                    {
+                        MessageBox.Show("Ova forma je već otovrena.");
+                        f.Focus();
+                        vrednost = true;
+                    }
+                    else
+                    {
+                        vrednost = false;
+                    }
+                }
+
+                
             }
 
-            string aaa = "";
-            for (int n = 6; n < windowsMenu.DropDownItems.Count; n++)
-            {
-                int x = windowsMenu.DropDownItems[n].ToString().IndexOf(" ");
-                if (x > -1) { aaa = windowsMenu.DropDownItems[n].ToString().Substring(x).Trim(); };
-                if (ss == aaa)
-                {
-                    MessageBox.Show("Vec postoji");
-                    return true;
-                }
-            }
-            return false;
+            return vrednost;
+       
         }
 
 
@@ -272,7 +322,8 @@ namespace Bankom
         //}
 
         private void BankomMDI_Load(object sender, EventArgs e)
-        { // tamara 27.10.2020.
+        {
+            // tamara 27.10.2020.
             Program.Parent.ToolBar.Items["toolstripseparator15"].Visible = false;
             Program.Parent.ToolBar.Items["toolstripseparator20"].Visible = false;
             Program.Parent.ToolBar.Items["toolstripseparator21"].Visible = false;
@@ -288,7 +339,7 @@ namespace Bankom
             Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
 
 
-            this.Text = Program.imeFirme + "-" + Program.imekorisnika;
+            this.Text ="IS Bankom";
             addKombo();
             clsSettingsButtons sb = new clsSettingsButtons();
             sb.ToolBarItemsEnDis();
