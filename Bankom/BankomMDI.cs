@@ -90,7 +90,11 @@ namespace Bankom
                     addFormTotoolstrip1(childForm, imedokumenta);
 
                     childForm.Show();
-                }
+                SrediFormu();
+            }
+
+            
+
         }
         public bool DalijevecOtvoren(string dokumentje, string brojdokumenta, string imedokumenta)
         {
@@ -123,7 +127,6 @@ namespace Bankom
                         MessageBox.Show("Ova forma je već otvorena.");
                         f.Focus();
                         vrednost = true;
-                        break;
                     }
                     else
                     {
@@ -587,15 +590,18 @@ namespace Bankom
         {
             string b = sender.ToString();
             frmChield active = new frmChield();
-            if (active == this.ActiveMdiChild)
-            {
-                MessageBox.Show("Već je otvorena ova forma!");
-                active.Focus();
-                SrediFormu();
-            }
+            active.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            SrediFormu();
+            //if (active == this.ActiveMdiChild)
+            //{
+            //    MessageBox.Show("Već je otvorena ova forma!");
+            //    active.Focus();
+            //    active.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            //    SrediFormu();
+            //}
 
-            else
-            {
+            //else
+            //{
                 for (int x = 0; x < toolStrip1.Items.Count; x++)
                 {
                     // toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Regular); // regular font za sve tabove
@@ -620,7 +626,7 @@ namespace Bankom
                     }
                 }
                 SrediFormu();
-            }
+            //}
 
             //  frmChield activeChild = (frmChield)this.ActiveMdiChild;
             // activeChild.Visible = false;
@@ -1238,7 +1244,7 @@ namespace Bankom
                     }
                 }
             }
-
+            SrediFormu();
             ShowNewForm("Dokumenta", idstablo, naziv, 1, "", "", "S", "", ""); // na dogadjaju form load otvara se nova forma  sa predatim parametrima 
         }
 
@@ -3849,7 +3855,7 @@ public void MenuItemClickHandler(object sender, EventArgs e)
             toolStripTextBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             toolStripTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
             toolStripTextBox1.AutoCompleteCustomSource = namesCollection;
-
+            SrediFormu();
             ToolStripTextBox item = sender as ToolStripTextBox;
             BrziPristup(item);
            // toolStripTextBox1.Text = "";
