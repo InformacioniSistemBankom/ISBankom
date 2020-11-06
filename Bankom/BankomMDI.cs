@@ -68,11 +68,6 @@ namespace Bankom
         //}
         public void ShowNewForm(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
         {
-
-           
-
-
-
                 DataBaseBroker db = new DataBaseBroker();
                 string ss = "";
                 if (dokumentje == "D")
@@ -123,7 +118,8 @@ namespace Bankom
                     addFormTotoolstrip1(childForm, imedokumenta);
 
                     childForm.Show();
-                }
+                SrediFormu();
+            }
 
             
 
@@ -134,40 +130,54 @@ namespace Bankom
 
             bool vrednost = true;
 
-            foreach(Form f in Application.OpenForms)
-            {
+            
+
                 if (dokumentje == "D")
+                {
+                    foreach (Form f in Application.OpenForms)
                 {
                     ss = brojdokumenta;
                     if (f.Text == ss)
                     {
                         MessageBox.Show("Ova forma je već otovrena.");
                         f.Focus();
-                        vrednost= true;
+                        vrednost = true;
+                        break;
                     }
                     else
                     {
                         vrednost = false;
+                        
                     }
 
+
                 }
-                else
+
+            }
+            else
+            {
+                foreach (Form f in Application.OpenForms)
                 {
                     ss = imedokumenta;
                     if (f.Text == ss)
                     {
                         MessageBox.Show("Ova forma je već otovrena.");
                         f.Focus();
+                      
                         vrednost = true;
+                        break;
                     }
                     else
                     {
                         vrednost = false;
                     }
+
                 }
 
-                
             }
+
+
+
 
             return vrednost;
        
@@ -629,15 +639,18 @@ namespace Bankom
         {
             string b = sender.ToString();
             frmChield active = new frmChield();
-            if (active == this.ActiveMdiChild)
-            {
-                MessageBox.Show("Već je otvorena ova forma!");
-                active.Focus();
-                SrediFormu();
-            }
+            active.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            SrediFormu();
+            //if (active == this.ActiveMdiChild)
+            //{
+            //    MessageBox.Show("Već je otvorena ova forma!");
+            //    active.Focus();
+            //    active.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            //    SrediFormu();
+            //}
 
-            else
-            {
+            //else
+            //{
                 for (int x = 0; x < toolStrip1.Items.Count; x++)
                 {
                     // toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Regular); // regular font za sve tabove
@@ -662,7 +675,7 @@ namespace Bankom
                     }
                 }
                 SrediFormu();
-            }
+            //}
 
             //  frmChield activeChild = (frmChield)this.ActiveMdiChild;
             // activeChild.Visible = false;
@@ -1286,7 +1299,7 @@ namespace Bankom
                     }
                 }
             }
-
+            SrediFormu();
             ShowNewForm("Dokumenta", idstablo, naziv, 1, "", "", "S", "", ""); // na dogadjaju form load otvara se nova forma  sa predatim parametrima 
         }
 
@@ -3897,7 +3910,7 @@ public void MenuItemClickHandler(object sender, EventArgs e)
             toolStripTextBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             toolStripTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
             toolStripTextBox1.AutoCompleteCustomSource = namesCollection;
-
+            SrediFormu();
             ToolStripTextBox item = sender as ToolStripTextBox;
             BrziPristup(item);
            // toolStripTextBox1.Text = "";
