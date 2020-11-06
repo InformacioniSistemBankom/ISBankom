@@ -38,41 +38,8 @@ namespace Bankom
         {
             InitializeComponent();
         }
-
-        //private bool IsOpen2(long s, string imeStabala)
-        //{
-        //    bool pom = false;
-        //    foreach (Form f in Application.OpenForms)
-        //    {
-        //        string param0 = f.Text;
-
-        //        string upit = "select ID" + imeStabala + "from" + imeStabala + "where Naziv=@param0";
-        //        var rez = db.ParamsInsertScalar(upit, param0);
-
-
-
-
-        //        if (rez==s)
-        //        {
-        //            pom = true;
-        //            MessageBox.Show("Već je otvorena ova forma!");
-        //            f.Focus();
-        //            break;
-        //        }
-        //    }
-        //    if (pom == false)
-        //    {
-        //        return pom;
-        //    }
-        //    return pom;
-        //}
         public void ShowNewForm(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
         {
-
-           
-
-
-
                 DataBaseBroker db = new DataBaseBroker();
                 string ss = "";
                 if (dokumentje == "D")
@@ -124,9 +91,6 @@ namespace Bankom
 
                     childForm.Show();
                 }
-
-            
-
         }
         public bool DalijevecOtvoren(string dokumentje, string brojdokumenta, string imedokumenta)
         {
@@ -141,36 +105,34 @@ namespace Bankom
                     ss = brojdokumenta;
                     if (f.Text == ss)
                     {
-                        MessageBox.Show("Ova forma je već otovrena.");
+                        MessageBox.Show("Ova forma je već otvorena.");
                         f.Focus();
                         vrednost= true;
+                        break;
                     }
                     else
                     {
                         vrednost = false;
                     }
-
                 }
                 else
                 {
                     ss = imedokumenta;
                     if (f.Text == ss)
                     {
-                        MessageBox.Show("Ova forma je već otovrena.");
+                        MessageBox.Show("Ova forma je već otvorena.");
                         f.Focus();
                         vrednost = true;
+                        break;
                     }
                     else
                     {
                         vrednost = false;
                     }
                 }
-
-                
             }
 
             return vrednost;
-       
         }
 
 
@@ -375,10 +337,6 @@ namespace Bankom
 
                 string[] novo1 = System.IO.File.ReadAllLines(Application.StartupPath + @"\XmlLat\" + "lista.txt");
                 //string[] novo = alphabet.ToArray();
-
-           
-                
-         
                 return;
             }
             else
@@ -666,12 +624,6 @@ namespace Bankom
 
             //  frmChield activeChild = (frmChield)this.ActiveMdiChild;
             // activeChild.Visible = false;
-
-
-
-
-
-
 
         }
 
