@@ -38,8 +38,6 @@ namespace Bankom
         {
             InitializeComponent();
         }
-
-        
         public void ShowNewForm(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
         {
                 DataBaseBroker db = new DataBaseBroker();
@@ -104,57 +102,40 @@ namespace Bankom
 
             bool vrednost = true;
 
-
-
-            if (dokumentje == "D")
+            foreach(Form f in Application.OpenForms)
             {
-                foreach (Form f in Application.OpenForms)
+                if (dokumentje == "D")
                 {
                     ss = brojdokumenta;
                     if (f.Text == ss)
                     {
-                        MessageBox.Show("Ova forma je već otovrena.");
+                        MessageBox.Show("Ova forma je već otvorena.");
                         f.Focus();
-                        vrednost = true;
+                        vrednost= true;
                         break;
                     }
                     else
                     {
                         vrednost = false;
-
                     }
-
-
                 }
-
-            }
-            else
-            {
-                foreach (Form f in Application.OpenForms)
+                else
                 {
                     ss = imedokumenta;
                     if (f.Text == ss)
                     {
-                        MessageBox.Show("Ova forma je već otovrena.");
+                        MessageBox.Show("Ova forma je već otvorena.");
                         f.Focus();
-
                         vrednost = true;
-                        break;
                     }
                     else
                     {
                         vrednost = false;
                     }
-
                 }
-
             }
 
-
-
-
             return vrednost;
-
         }
 
 
@@ -359,10 +340,6 @@ namespace Bankom
 
                 string[] novo1 = System.IO.File.ReadAllLines(Application.StartupPath + @"\XmlLat\" + "lista.txt");
                 //string[] novo = alphabet.ToArray();
-
-           
-                
-         
                 return;
             }
             else
@@ -653,12 +630,6 @@ namespace Bankom
 
             //  frmChield activeChild = (frmChield)this.ActiveMdiChild;
             // activeChild.Visible = false;
-
-
-
-
-
-
 
         }
 
