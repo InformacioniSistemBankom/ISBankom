@@ -1410,9 +1410,9 @@ namespace Bankom
             // 
             this.flowLayoutPanel1.Controls.Add(this.menuStrip1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 68);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 43);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 993);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 1018);
             this.flowLayoutPanel1.TabIndex = 40;
             // 
             // menuStrip1
@@ -1484,12 +1484,11 @@ namespace Bankom
             this.Controls.Add(this.ToolBar);
             this.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BankomMDI";
-            this.Text = " ";
+            this.Text = "IS Bankom";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.BankomMDI_FormClosing);
             this.Load += new System.EventHandler(this.BankomMDI_Load);

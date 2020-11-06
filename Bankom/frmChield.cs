@@ -52,7 +52,7 @@ namespace Bankom
         {
             this.FormBorderStyle = FormBorderStyle.None;
             this.BackColor = Color.SeaShell;
-            
+          
 
             intStart = 0;                
             toolStripStatusPrazno.Text = new String(' ', 150);
@@ -478,8 +478,8 @@ namespace Bankom
                     Program.Parent.ToolBar.Items[t.Name].Enabled = false;
                 }
                 Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
-                
-              
+               
+
             }
         }
     }

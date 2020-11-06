@@ -81,6 +81,7 @@ namespace Bankom
             Application.EnableVisualStyles();
 
             Application.Run(new LoginForm());
+          
         
 
             if (IntLogovanje == 1)
