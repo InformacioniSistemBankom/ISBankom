@@ -40,60 +40,74 @@ namespace Bankom
         }
         public void ShowNewForm(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
         {
-                DataBaseBroker db = new DataBaseBroker();
-                string ss = "";
-                if (dokumentje == "D")
-                {
-                    ss = brojdokumenta;
-                }
-                else
-                {
-                    ss = imedokumenta;
-                }
-                Boolean odgovor;
-                odgovor = DalijevecOtvoren(dokumentje, brojdokumenta, imedokumenta);            //string ss;    
-                if (odgovor == false) ///nije vec otvoren
-                {
 
-                    frmChield childForm = new frmChield();
-                    childForm.FormBorderStyle = FormBorderStyle.None;
-                    childForm.BackColor = System.Drawing.Color.SeaShell;
-                    childForm.MdiParent = this;
-                    // childForm.BringToFront();
+            DataBaseBroker db = new DataBaseBroker();
+            string ss = "";
+            if (dokumentje == "D")
+            {
+                ss = brojdokumenta;
+            }
+            else
+            {
+                ss = imedokumenta;
+            }
+            Boolean odgovor;
+            odgovor = DalijevecOtvoren(dokumentje, brojdokumenta, imedokumenta);            //string ss;    
+            if (odgovor == false) ///nije vec otvoren
+            {
 
-                    this.WindowState = FormWindowState.Maximized;
-
-                    if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
-                    int sirina = (Width / 100) * 10;
+                frmChield childForm = new frmChield();
 
 
-                    childForm.imedokumenta = imedokumenta;
-                    childForm.iddokumenta = iddokument;
-                    childForm.idstablo = idstablo;
-                    childForm.imestabla = imestabla;
-                    childForm.VrstaPrikaza = vrstaprikaza;
-                    childForm.brdok = brojdokumenta;
-                    childForm.DokumentJe = dokumentje;
-                    childForm.datum = datum;
+                childForm.FormBorderStyle = FormBorderStyle.None;
+                childForm.BackColor = System.Drawing.Color.SeaShell;
+                childForm.MdiParent = this;
+                // childForm.BringToFront();
 
-                    childForm.toolStripTextBroj.Text = Convert.ToString(idstablo);
-                    childForm.Text = ss;
-                    childForm.Name = ss;
-                    //childForm.Left = 380;
-                    //childForm.Top = 300;
+                this.WindowState = FormWindowState.Maximized;
 
-                    childForm.AutoScroll = false;
-                    //childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
-                    ////  childForm.WindowState = FormWindowState.Maximized;
-                    //childForm.Width = this.Width - 20;
+                if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
+                int sirina = (Width / 100) * 10;
 
-                    addFormTotoolstrip1(childForm, imedokumenta);
 
-                    childForm.Show();
+                childForm.imedokumenta = imedokumenta;
+                childForm.iddokumenta = iddokument;
+                childForm.idstablo = idstablo;
+                childForm.imestabla = imestabla;
+                childForm.VrstaPrikaza = vrstaprikaza;
+                childForm.brdok = brojdokumenta;
+                childForm.DokumentJe = dokumentje;
+                childForm.datum = datum;
+
+                childForm.toolStripTextBroj.Text = Convert.ToString(idstablo);
+                childForm.Text = ss;
+                childForm.Name = ss;
+                //childForm.Left = 380;
+                //childForm.Top = 300;
+
+                childForm.AutoScroll = false;
+                //childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
+                ////  childForm.WindowState = FormWindowState.Maximized;
+                //childForm.Width = this.Width - 20;
+
+                addFormTotoolstrip1(childForm, imedokumenta);
+
+                childForm.Show();
+
                 SrediFormu();
             }
-
+            int a = toolStrip1.Items.Count;
             
+            for (int i = 0; i < a; i++)
+            {
+                toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                if (toolStrip1.Items[i].Text == imedokumenta)
+                {
+                    toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                }
+            }
+
+
 
         }
         public bool DalijevecOtvoren(string dokumentje, string brojdokumenta, string imedokumenta)
@@ -593,18 +607,18 @@ namespace Bankom
         {
             string b = sender.ToString();
             frmChield active = new frmChield();
-            active.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            int a = toolStrip1.Items.Count;
+            for (int i =0;i<a;i++)
+            {
+                toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                if (toolStrip1.Items[i].Text == b)
+                {
+                    toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                }
+            }
+            
             SrediFormu();
-            //if (active == this.ActiveMdiChild)
-            //{
-            //    MessageBox.Show("Već je otvorena ova forma!");
-            //    active.Focus();
-            //    active.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //    SrediFormu();
-            //}
-
-            //else
-            //{
+          
                 for (int x = 0; x < toolStrip1.Items.Count; x++)
                 {
                     // toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Regular); // regular font za sve tabove
@@ -638,6 +652,7 @@ namespace Bankom
 
         public void itemB1_click(string imetula)  // zahtev za zatvaranje  forme klikom na tipku izlaz
         {
+          
             for (int j = 0; j < toolStrip1.Items.Count; j++)
             {
                 if (this.MdiChildren[j].Text == imetula)
@@ -673,7 +688,7 @@ namespace Bankom
         {
             ToolStripButton tb = sender as ToolStripButton;
             string b = tb.Name;
-
+           
             if (b.Contains("print") == false)
             {
 
@@ -3308,7 +3323,7 @@ public void MenuItemClickHandler(object sender, EventArgs e)
             string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
             char slovo = UzmiSlovo(s);
             bool postoji;
-
+           
             switch (s)
             {
                 case "Dokumenta":
