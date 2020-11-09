@@ -191,7 +191,7 @@ namespace Bankom
             this.Width = Width - 20;
             ToolStripLabel itemn = new ToolStripLabel();
             ToolStripButton itemB = new ToolStripButton();
-            ToolStripSeparator itemnsep = new ToolStripSeparator();
+            ToolStripSeparator itemnsep = new ToolStripSeparator();            
             itemn.Text = forma.Text;
             itemn.ToolTipText = imedokumenta;
             itemn.Name = forma.Text;
@@ -587,8 +587,8 @@ namespace Bankom
                 ToolStripLabel itemn = new ToolStripLabel();
                 ToolStripButton itemB = new ToolStripButton();
                 ToolStripSeparator itemnsep = new ToolStripSeparator();
-                itemn.Text = item.Name;
 
+                itemn.Text = item.Name;
                 itemn.Name = item.Name;
                 itemB.Image = global::Bankom.Properties.Resources.del12;
                 itemnsep.Name = "sep" + item.Name;
@@ -700,16 +700,14 @@ namespace Bankom
                         break;
                     }
 
-
-
                 }
             }
             else
             {
                 Form childForm1 = ActiveMdiChild;
                 childForm1.FormBorderStyle = FormBorderStyle.None;
-                childForm1.BackColor = System.Drawing.Color.SeaShell;
-                childForm1.Focus();
+                childForm1.BackColor = System.Drawing.Color.SeaShell;               
+                childForm1.Focus();                
                 childForm1.Visible = false;
                 childForm1.Dispose();
                 string ime = b;
