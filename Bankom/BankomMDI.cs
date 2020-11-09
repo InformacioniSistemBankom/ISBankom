@@ -655,11 +655,13 @@ namespace Bankom
                 if (this.MdiChildren[j].Text == imetula)
                 {
                     this.ActivateMdiChild(this.MdiChildren[j]);
+                  
                     break;
                 }
             }
 
             Form childForm1 = ActiveMdiChild;
+            childForm1.Font= new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             childForm1.FormBorderStyle = FormBorderStyle.None;
             childForm1.BackColor = System.Drawing.Color.SeaShell;
             childForm1.Focus();
@@ -672,13 +674,25 @@ namespace Bankom
                 {
                     toolStrip1.Items.Remove(toolStrip1.Items[x]); // button
                     toolStrip1.Items.Remove(toolStrip1.Items[x]); // label
-                    toolStrip1.Items.Remove(toolStrip1.Items[x]); //image                    
+                    toolStrip1.Items.Remove(toolStrip1.Items[x]); //image   
+                
+
                     break;
                 }
             }
             if (toolStrip1.Items.Count == 0)
             {
                 toolStrip1.Visible = false;
+            }
+
+            int a = toolStrip1.Items.Count;
+            for (int i = 0; i < a; i++)
+            {
+                toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                if (toolStrip1.Items[i].Text == imetula)
+                {
+                    toolStrip1.Items[i - 1].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                }
             }
         }
         protected void itemB_click(object sender, EventArgs e)  // zahtev za zatvaranje forme klikom na tab
@@ -2559,7 +2573,7 @@ namespace Bankom
             clsXmlPlacanja cxml = new clsXmlPlacanja();
             cxml.izborPlacanja(0, mg);
             frmPrint fs = new frmPrint();
-           fs.BackColor = System.Drawing.Color.SeaShell;
+            fs.BackColor = System.Drawing.Color.SeaShell;
 
             fs.MdiParent = this;
             fs.Text = "prevoz-" + mg;
@@ -2605,7 +2619,7 @@ namespace Bankom
             clsXmlPlacanja cxml = new clsXmlPlacanja();
             cxml.izborPlacanja(1, mg);
             frmPrint fs = new frmPrint();
-           fs.BackColor = System.Drawing.Color.SeaShell;
+            fs.BackColor = System.Drawing.Color.SeaShell;
             fs.kojiprint = "nag";
             fs.MdiParent = this;
             fs.Text = "nagrade-" + mg;
@@ -4111,7 +4125,7 @@ public void MenuItemClickHandler(object sender, EventArgs e)
             Program.Parent.premestiGrupuToolStripMenuItem.Visible = false;
         }
 
-        
+       
     }
    
 } 
