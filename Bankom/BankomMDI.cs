@@ -621,11 +621,11 @@ namespace Bankom
           
                 for (int x = 0; x < toolStrip1.Items.Count; x++)
                 {
-                    // toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Regular); // regular font za sve tabove
-                    if (toolStrip1.Items[x].Name == b)
+                // toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Regular); // regular font za sve tabove
+                if (toolStrip1.Items[x].Name == b)
                     {
-                        //toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Bold);
-                        foreach (Form childForm in MdiChildren)
+                    //toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Bold);
+                    foreach (Form childForm in MdiChildren)
                         {
                             if (childForm.Text.ToUpper() == b.ToUpper())
                             {
