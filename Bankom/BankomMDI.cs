@@ -605,6 +605,7 @@ namespace Bankom
 
         private void itemn_click(object sender, EventArgs e) // aktiviranje forme klikom na tab
         {
+            toolStripTextBox1.Text = "";
             string b = sender.ToString();
             frmChield active = new frmChield();
             int a = toolStrip1.Items.Count;
@@ -652,7 +653,7 @@ namespace Bankom
 
         public void itemB1_click(string imetula)  // zahtev za zatvaranje  forme klikom na tipku izlaz
         {
-
+           toolStripTextBox1.Text = "";
             for (int j = 0; j < toolStrip1.Items.Count; j++)
             {
                 if (this.MdiChildren[j].Text == imetula)
@@ -686,6 +687,7 @@ namespace Bankom
         }
         protected void itemB_click(object sender, EventArgs e)  // zahtev za zatvaranje forme klikom na tab
         {
+            toolStripTextBox1.Text = "";
             ToolStripButton tb = sender as ToolStripButton;
             string b = tb.Name;
 
@@ -3321,7 +3323,7 @@ namespace Bankom
             string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
             char slovo = UzmiSlovo(s);
             bool postoji;
-
+            Program.KlasifikacijaSlovo = "";
             switch (s)
             {
                 case "Dokumenta":
@@ -3361,6 +3363,7 @@ namespace Bankom
                 case "KlasifikacijaPomocnihSifarnika":
                     Program.Parent.ToolBar.Items["Uunos"].Visible = true;
                     Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
+                    Program.KlasifikacijaSlovo = "K";
                     postoji = IsOpen(s);
                     if (postoji == false)
                     {
@@ -3837,44 +3840,54 @@ namespace Bankom
         private void toolStripTextBox1_Click(object sender, EventArgs e)
         {
 
-            DataBaseBroker db = new DataBaseBroker();
-            AutoCompleteStringCollection namesCollection = new AutoCompleteStringCollection();
-
-
-            string sselect;
-            string idke = Program.idkadar.ToString();
-            string idfirme = Program.idFirme.ToString();
-            sselect = "; WITH RekurzivnoStablo (ID_DokumentaStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS "
-                   + "(SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
-                   + " PrikazDetaljaDaNe as pd,PrikazPo as pp"
-                   + " FROM DokumentaStablo AS e WITH (NOLOCK) "
-                   + " where Naziv in (select g.naziv from Grupa as g,KadroviIOrganizacionaStrukturaStavkeView as ko Where (KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura "
-                   + " Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija=" + idke + " )"
-                   + "UNION ALL  SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level +1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
-                   + " PrikazDetaljaDaNe As pd, PrikazPo As pp  FROM DokumentaStablo  AS e WITH (NOLOCK) "
-                   + " INNER JOIN RekurzivnoStablo AS d  ON e.ID_DokumentaStablo = d.Vezan) "
-                   + " SELECT distinct NazivJavni FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0";
-
-            var dr = db.ReturnDataReader(sselect);
-
-
-
-            if (dr.HasRows == true)
+            if (Program.KlasifikacijaSlovo == "K" || Program.KlasifikacijaSlovo == "k")
             {
-                while (dr.Read())
-                    namesCollection.Add(dr["NazivJavni"].ToString());
+                
+                toolStripTextBox1.AutoCompleteCustomSource =null;
             }
+            else
+            {
+                DataBaseBroker db = new DataBaseBroker();
+                AutoCompleteStringCollection namesCollection = new AutoCompleteStringCollection();
+
+
+                string sselect;
+                string idke = Program.idkadar.ToString();
+                string idfirme = Program.idFirme.ToString();
+                sselect = "; WITH RekurzivnoStablo (ID_DokumentaStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS "
+                       + "(SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
+                       + " PrikazDetaljaDaNe as pd,PrikazPo as pp"
+                       + " FROM DokumentaStablo AS e WITH (NOLOCK) "
+                       + " where Naziv in (select g.naziv from Grupa as g,KadroviIOrganizacionaStrukturaStavkeView as ko Where (KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura "
+                       + " Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija=" + idke + " )"
+                       + "UNION ALL  SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level +1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
+                       + " PrikazDetaljaDaNe As pd, PrikazPo As pp  FROM DokumentaStablo  AS e WITH (NOLOCK) "
+                       + " INNER JOIN RekurzivnoStablo AS d  ON e.ID_DokumentaStablo = d.Vezan) "
+                       + " SELECT distinct NazivJavni FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0";
+
+                var dr = db.ReturnDataReader(sselect);
+
+
+
+                if (dr.HasRows == true)
+                {
+                    while (dr.Read())
+                        namesCollection.Add(dr["NazivJavni"].ToString());
+                }
 
 
 
 
-            toolStripTextBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            toolStripTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            toolStripTextBox1.AutoCompleteCustomSource = namesCollection;
-            SrediFormu();
-            ToolStripTextBox item = sender as ToolStripTextBox;
-            BrziPristup(item);
-            // toolStripTextBox1.Text = "";
+                toolStripTextBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                toolStripTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                toolStripTextBox1.AutoCompleteCustomSource = namesCollection;
+                SrediFormu();
+                ToolStripTextBox item = sender as ToolStripTextBox;
+                BrziPristup(item);
+               
+
+
+            }
 
         }
 
@@ -3922,7 +3935,8 @@ namespace Bankom
 
         private void Ppotvrda_Click_1(object sender, EventArgs e)
         {
-
+            
+           
             Form forma = this.ActiveMdiChild;
 
             Boolean vrati = new Boolean();
@@ -4112,7 +4126,7 @@ namespace Bankom
             Program.Parent.premestiGrupuToolStripMenuItem.Visible = false;
         }
 
-
+       
     }
 
 }

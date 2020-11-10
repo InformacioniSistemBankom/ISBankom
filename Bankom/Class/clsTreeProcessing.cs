@@ -280,10 +280,11 @@ namespace Bankom.Class
             Program.AktivnaSifraIzvestaja = e.Node.Text.ToString();
             Program.IdSelektovanogCvora = int.Parse(e.Node.Tag.ToString());
 
-            Program.Parent.toolStripTextBox1.Clear();
+
+            
 
         }
-        
+      
     }
     
 }

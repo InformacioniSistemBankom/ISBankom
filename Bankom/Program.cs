@@ -60,7 +60,7 @@ namespace Bankom
         public static string AktivnaSifraIzvestaja { get; set; }
         public static int IdSelektovanogCvora { get; set; }
         public static int IdParentaSelektovanogCvora { get; set; }
-
+        public static string KlasifikacijaSlovo { get; set; }
 
         [STAThread]
 
