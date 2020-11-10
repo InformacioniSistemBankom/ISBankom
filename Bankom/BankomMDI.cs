@@ -653,6 +653,7 @@ namespace Bankom
 
         public void itemB1_click(string imetula)  // zahtev za zatvaranje  forme klikom na tipku izlaz
         {
+            cf = imetula;
            toolStripTextBox1.Text = "";
             for (int j = 0; j < toolStrip1.Items.Count; j++)
             {
@@ -2019,13 +2020,14 @@ namespace Bankom
              myProcess.Start();*/
         }
 
-
+        public static string cf;
         private void Iizlaz_Click(object sender, EventArgs e)
         {
             foreach (Form childForm in this.MdiChildren)
             {
                 if (childForm == this.ActiveMdiChild)
                 {
+                   
                     itemB1_click(childForm.Text);
                     childForm.Close();
 
@@ -4101,7 +4103,10 @@ namespace Bankom
                     }
                 }
                 forma.Controls["OOperacija"].Text = "";
-            } // KRAJ else
+            }
+
+            // KRAJ else 
+
         }
 
         private void Ggrupisinp_Click(object sender, EventArgs e)

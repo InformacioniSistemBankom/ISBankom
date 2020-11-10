@@ -60,7 +60,7 @@ namespace Bankom.Class
                         dr.refreshDokumentGrid(forma, ime, idstablo.ToString(), supit, ti.Rows[j]["TUD"].ToString(), dokje);
                     }                   
                     break;
-
+                    //
                 default:
                     dr.refreshDokumentBody(forma, ime, ident, dokje);
                     dr.refreshDokumentGrid(forma, ime, ident, ""," ", dokje);
