@@ -3328,6 +3328,21 @@ namespace Bankom
             Program.KlasifikacijaSlovo = "";
             switch (s)
             {
+                case "Lotovi":
+                    Lotovi lotovi = new Lotovi
+                    {
+                        FormBorderStyle = FormBorderStyle.None,
+                        //lotovi.BackColor = System.Drawing.Color.SeaShell;
+                        MdiParent = this
+                    };
+
+                    this.WindowState = FormWindowState.Maximized;
+                   if (IzborJezika.Text == "Српски-Ћирилица") { lotovi.Text = VratiCirlilicu("Lotovi"); }
+                    int sirina = (Width / 100) * 10;
+                    addFormTotoolstrip1(lotovi, "Lotovi");
+                    lotovi.Show();
+                    SrediFormu();
+                    break;
                 case "Dokumenta":
                 case "Izvestaji":
                 case "OsnovniSifarnici":

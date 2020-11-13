@@ -82,6 +82,9 @@
       <HintPath>..\packages\MicrosoftOfficeCore.15.0.0\lib\net35\Office.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="SimpleDataGridViewPaging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleDataGridViewPaging.1.0.0\lib\net40\SimpleDataGridViewPaging.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.EnterpriseServices" />
@@ -196,6 +199,18 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lotovi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lotovi.Designer.cs">
+      <DependentUpon>Lotovi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NoviLot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NoviLot.designer.cs">
+      <DependentUpon>NoviLot.cs</DependentUpon>
+    </Compile>
     <Compile Include="Prenosi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,6 +253,12 @@
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lotovi.resx">
+      <DependentUpon>Lotovi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NoviLot.resx">
+      <DependentUpon>NoviLot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Prenosi.resx">
       <DependentUpon>Prenosi.cs</DependentUpon>
