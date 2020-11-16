@@ -102,9 +102,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaShell;
             this.ClientSize = new System.Drawing.Size(943, 587);
+            this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusPrint);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmPrint";
             this.Text = "frmPrint";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

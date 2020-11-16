@@ -376,6 +376,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.SeaShell;
             this.ClientSize = new System.Drawing.Size(1254, 1012);
+            this.ControlBox = false;
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.limegrida);
             this.Controls.Add(this.panel1);
@@ -390,7 +391,9 @@
             this.Controls.Add(this.statusStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.Location = new System.Drawing.Point(30, 10);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmChield";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
