@@ -193,7 +193,7 @@ namespace Bankom.Class
             Program.Parent.button1.Location = new Point(0, 301);
 
         }
-   
+
         private void tv_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
                 //Djora 10.09.20
@@ -280,10 +280,11 @@ namespace Bankom.Class
             Program.AktivnaSifraIzvestaja = e.Node.Text.ToString();
             Program.IdSelektovanogCvora = int.Parse(e.Node.Tag.ToString());
 
-            Program.Parent.toolStripTextBox1.Clear();
+
+            
 
         }
-        
+      
     }
     
 }
