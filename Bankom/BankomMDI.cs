@@ -692,37 +692,33 @@ namespace Bankom
             ToolStripButton tb = sender as ToolStripButton;
             string b = tb.Name;
 
-            if (b.Contains("print") == false)
+
+            cf = b;
+            toolStripTextBox1.Text = "";
+            for (int j = 0; j < toolStrip1.Items.Count; j++)
             {
-
-                for (int j = 0; j < toolStrip1.Items.Count; j++)
+                if (this.MdiChildren[j].Text == b)
                 {
-                    if (this.MdiChildren[j].Text == b)
-                    {
-                        MdiChildren[j].Close();
-                        break;
-                    }
-
+                    this.ActivateMdiChild(this.MdiChildren[j]);
+                    break;
                 }
             }
-            else
+
+            Form childForm1 = ActiveMdiChild;
+            childForm1.FormBorderStyle = FormBorderStyle.None;
+            childForm1.BackColor = System.Drawing.Color.SeaShell;
+            childForm1.Focus();
+            childForm1.Visible = false;
+            childForm1.Dispose();
+            string ime = b;
+            for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
-                Form childForm1 = ActiveMdiChild;
-                childForm1.FormBorderStyle = FormBorderStyle.None;
-                childForm1.BackColor = System.Drawing.Color.SeaShell;
-                childForm1.Focus();
-                childForm1.Visible = false;
-                childForm1.Dispose();
-                string ime = b;
-                for (int x = 0; x < toolStrip1.Items.Count; x++)
+                if (b == toolStrip1.Items[x].Name)
                 {
-                    if (b == toolStrip1.Items[x].Name)
-                    {
-                        toolStrip1.Items.Remove(toolStrip1.Items[x]); // button
-                        toolStrip1.Items.Remove(toolStrip1.Items[x]); // label
-                        toolStrip1.Items.Remove(toolStrip1.Items[x]); //image                    
-                        break;
-                    }
+                    toolStrip1.Items.Remove(toolStrip1.Items[x]); // button
+                    toolStrip1.Items.Remove(toolStrip1.Items[x]); // label
+                    toolStrip1.Items.Remove(toolStrip1.Items[x]); //image                    
+                    break;
                 }
             }
             if (toolStrip1.Items.Count == 0)
@@ -3332,6 +3328,7 @@ namespace Bankom
                     Lotovi lotovi = new Lotovi
                     {
                         FormBorderStyle = FormBorderStyle.None,
+                        Text ="Lotovi",
                         //lotovi.BackColor = System.Drawing.Color.SeaShell;
                         MdiParent = this
                     };

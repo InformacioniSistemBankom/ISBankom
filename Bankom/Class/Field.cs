@@ -1140,6 +1140,7 @@ namespace Bankom.Class
 
             control.ReadOnly = true;
             string mimedok = Me.Controls["limedok"].Text.Trim();
+
           //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
           //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
 
@@ -1190,6 +1191,7 @@ namespace Bankom.Class
         {
             dv.BackgroundColor = Color.SeaShell;
             Form Me = Program.Parent.ActiveMdiChild;
+            
             string[] separators = new[] { "," };
             string d1, d2;
             Form novaforma = new Form();

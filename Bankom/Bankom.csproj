@@ -160,6 +160,7 @@
     <Compile Include="Class\msg.cs" />
     <Compile Include="Class\clsTreeProcessing.cs" />
     <Compile Include="Class\clsElementiForme.cs" />
+    <Compile Include="Class\ObradaWordExcelPdf.cs" />
     <Compile Include="Class\Preuzimanja.cs" />
     <Compile Include="Class\Prompt.cs" />
     <Compile Include="Class\clsProveraIspravnosti.cs" />
