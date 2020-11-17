@@ -98,6 +98,7 @@ namespace Bankom
             try
             {
                 string str = connectionString;
+                
                 con = new SqlConnection(str);
                 con.Open();
                 return con;

@@ -608,6 +608,7 @@ namespace Bankom
             toolStripTextBox1.Text = "";
             string b = sender.ToString();
             frmChield active = new frmChield();
+            active.FormBorderStyle= FormBorderStyle.None;
             int a = toolStrip1.Items.Count;
             for (int i = 0; i < a; i++)
             {
@@ -692,37 +693,33 @@ namespace Bankom
             ToolStripButton tb = sender as ToolStripButton;
             string b = tb.Name;
 
-            if (b.Contains("print") == false)
+
+            cf = b;
+            toolStripTextBox1.Text = "";
+            for (int j = 0; j < toolStrip1.Items.Count; j++)
             {
-
-                for (int j = 0; j < toolStrip1.Items.Count; j++)
+                if (this.MdiChildren[j].Text == b)
                 {
-                    if (this.MdiChildren[j].Text == b)
-                    {
-                        MdiChildren[j].Close();
-                        break;
-                    }
-
+                    this.ActivateMdiChild(this.MdiChildren[j]);
+                    break;
                 }
             }
-            else
+
+            Form childForm1 = ActiveMdiChild;
+            childForm1.FormBorderStyle = FormBorderStyle.None;
+            childForm1.BackColor = System.Drawing.Color.SeaShell;
+            childForm1.Focus();
+            childForm1.Visible = false;
+            childForm1.Dispose();
+            string ime = b;
+            for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
-                Form childForm1 = ActiveMdiChild;
-                childForm1.FormBorderStyle = FormBorderStyle.None;
-                childForm1.BackColor = System.Drawing.Color.SeaShell;
-                childForm1.Focus();
-                childForm1.Visible = false;
-                childForm1.Dispose();
-                string ime = b;
-                for (int x = 0; x < toolStrip1.Items.Count; x++)
+                if (b == toolStrip1.Items[x].Name)
                 {
-                    if (b == toolStrip1.Items[x].Name)
-                    {
-                        toolStrip1.Items.Remove(toolStrip1.Items[x]); // button
-                        toolStrip1.Items.Remove(toolStrip1.Items[x]); // label
-                        toolStrip1.Items.Remove(toolStrip1.Items[x]); //image                    
-                        break;
-                    }
+                    toolStrip1.Items.Remove(toolStrip1.Items[x]); // button
+                    toolStrip1.Items.Remove(toolStrip1.Items[x]); // label
+                    toolStrip1.Items.Remove(toolStrip1.Items[x]); //image                    
+                    break;
                 }
             }
             if (toolStrip1.Items.Count == 0)
@@ -1382,6 +1379,7 @@ namespace Bankom
         {
 
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
+            activeChild.FormBorderStyle= FormBorderStyle.None;
             activeChild.BackColor = System.Drawing.Color.SeaShell;
             DialogResult res = MsgBox.ShowDialog("Tekst pretrage:", "Pretraga", ((Bankom.frmChield)activeChild).toolStripTextFind.Text,
             MsgBox.Icon.Question,
@@ -1557,6 +1555,7 @@ namespace Bankom
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
+            activeChild.FormBorderStyle= FormBorderStyle.None;
             activeChild.BackColor = System.Drawing.Color.SeaShell;
             DajVrednostPropertija(activeChild);
         }
@@ -1602,6 +1601,7 @@ namespace Bankom
             }
 
             Form activeChild = (frmChield)this.ActiveMdiChild;
+            activeChild.FormBorderStyle= FormBorderStyle.None;
             activeChild.BackColor = System.Drawing.Color.SeaShell;
             if (activeChild != null)
             {
@@ -1637,7 +1637,7 @@ namespace Bankom
 
             frmPrint fs = new frmPrint();
             fs.BackColor = System.Drawing.Color.SeaShell;
-
+            fs.FormBorderStyle= FormBorderStyle.None;
             fs.MdiParent = this;
             fs.Text = "print - " + ime;
             fs.intCurrentdok = Convert.ToInt32(t);
@@ -1682,6 +1682,7 @@ namespace Bankom
 
 
             Form activeChild = (frmChield)this.ActiveMdiChild;
+            activeChild.FormBorderStyle= FormBorderStyle.None;
             activeChild.BackColor = System.Drawing.Color.SeaShell;
             if (activeChild != null)
             {
@@ -1721,7 +1722,7 @@ namespace Bankom
 
             frmPrint fs = new frmPrint();
             fs.BackColor = System.Drawing.Color.SeaShell;
-
+            fs.FormBorderStyle= FormBorderStyle.None;
             fs.MdiParent = this;
             fs.Text = "print - " + ime;
             fs.LayoutMdi(MdiLayout.TileVertical);
@@ -1752,7 +1753,7 @@ namespace Bankom
         {
 
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
-
+            activeChild.FormBorderStyle= FormBorderStyle.None;
             activeChild.BackColor = System.Drawing.Color.SeaShell;
             string c = ((Bankom.frmChield)activeChild).toolStripTexIme.Text;
             string d = ((Bankom.frmChield)activeChild).toolStripTextBroj.Text;
@@ -1820,6 +1821,7 @@ namespace Bankom
 
 
             Form activeChild = this.ActiveMdiChild;
+            activeChild.FormBorderStyle= FormBorderStyle.None;
             if (activeChild != null)
             {
                 activeChild.Controls["OOperacija"].Text = "UNOS";
@@ -1857,6 +1859,7 @@ namespace Bankom
         {
             //Daj mi aktivnu child formu
             Form activeChild = this.ActiveMdiChild;
+            activeChild.FormBorderStyle = FormBorderStyle.None;
             //Popuni text u kontroli OOperacija sa "PREGLED" na aktivnoj child formi
             if (activeChild != null)
             {
@@ -1881,7 +1884,7 @@ namespace Bankom
 
 
             Form activeChild = this.ActiveMdiChild;
-
+            activeChild.FormBorderStyle = FormBorderStyle.None;
             if (activeChild != null)
             {
                 if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
@@ -1900,6 +1903,7 @@ namespace Bankom
         {
             //Daj mi aktivnu child formu
             Form activeChild = this.ActiveMdiChild;
+            activeChild.FormBorderStyle = FormBorderStyle.None;
             //Popuni text u kontroli OOperacija sa "IZMENA" na aktivnoj child formi
             if (activeChild != null)
             {
@@ -1915,6 +1919,7 @@ namespace Bankom
         {
             //Daj mi aktivnu child formu
             Form activeChild = this.ActiveMdiChild;
+            activeChild.FormBorderStyle = FormBorderStyle.None;
             //Popuni text u kontroli OOperacija sa "STORNO" na aktivnoj child formi
             if (activeChild == null)
             {
@@ -1935,6 +1940,7 @@ namespace Bankom
         private void Sstampa_Click(object sender, EventArgs e)
         {
             Form Me = this.ActiveMdiChild;
+            Me.FormBorderStyle = FormBorderStyle.None;
             Me.Focus();
             if (Me == null)
             {
@@ -1955,6 +1961,7 @@ namespace Bankom
                 if (odgovor == false) //nije otvoren
                 {
                     frmPrint fs = new frmPrint();
+                    fs.FormBorderStyle = FormBorderStyle.None;
                     fs.BackColor = System.Drawing.Color.SeaShell;
                     fs.MdiParent = this;
                     fs.Text = naslov;
@@ -2148,6 +2155,7 @@ namespace Bankom
 
             foreach (Form frm in this.MdiChildren)
             {
+                frm.FormBorderStyle = FormBorderStyle.None;
                 frm.BackColor = System.Drawing.Color.SeaShell;
 
                 if (!frm.Focused)
@@ -2318,7 +2326,7 @@ namespace Bankom
         private void pretragaToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
-
+            activeChild.FormBorderStyle = FormBorderStyle.None;
             activeChild.BackColor = System.Drawing.Color.SeaShell;
 
             DialogResult res = MsgBox.ShowDialog("Tekst pretrage:", "Pretraga", ((Bankom.frmChield)activeChild).toolStripTextFind.Text,
@@ -3332,6 +3340,7 @@ namespace Bankom
                     Lotovi lotovi = new Lotovi
                     {
                         FormBorderStyle = FormBorderStyle.None,
+                        Text ="Lotovi",
                         //lotovi.BackColor = System.Drawing.Color.SeaShell;
                         MdiParent = this
                     };
