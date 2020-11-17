@@ -46,7 +46,7 @@ namespace Bankom.Class
             //string idfirme = "6";
 
             //'  If (DokumentJe = "S" And KojeStablo = "Dokumenta") Or KojeStablo = "Izvestaji" Or KojeStablo = "PomocniSifarnici" Then
-            if (KojeStablo == "Dokumenta" || KojeStablo == "Izvestaji")  //samo na ova stabla primenjujemo dozvole
+            if (KojeStablo == "Dokumenta" || KojeStablo == "Izvestaj")  //samo na ova stabla primenjujemo dozvole
             {
                 sselect = "; WITH RekurzivnoStablo (ID_" + KojeStablo + "Stablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS "
                     + "(SELECT e.ID_" + KojeStablo + "Stablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
@@ -132,7 +132,7 @@ namespace Bankom.Class
                     }
                 }
 
-                if (KojeStablo == "Izvestaji")
+                if (KojeStablo == "Izvestaj")
                 {
                     JavniNaziv = ti.Rows[i]["BrDok"].ToString() + "-" + ti.Rows[i]["NazivJavni"].ToString();
                 }
@@ -203,7 +203,7 @@ namespace Bankom.Class
                 {
                     if (Convert.ToInt32(tv.SelectedNode.Tag) > 1)
                     {
-                        if (MojeStablo == "Izvestaji")
+                        if (MojeStablo == "Izvestaj")
                         {
 
                             //string pravoime = tv.SelectedNode.Name.Substring(4);

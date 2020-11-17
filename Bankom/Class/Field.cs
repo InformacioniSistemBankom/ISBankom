@@ -1210,7 +1210,7 @@ namespace Bankom.Class
             {
                 case "I":             // mogucnost da se  klikom na grid izvestaja prikaze dokument
                     string ssi = "SELECT distinct Polje,uslov,uslovoperacija,izborno,PoljeSaDok,NazivDokumenta ";
-                    ssi += "FROM Izvestaji WHERE (Uslov=1 or Uslov=2 or Uslov=4) AND Izvestaj =@param0 ";
+                    ssi += "FROM Izvestaj WHERE (Uslov=1 or Uslov=2 or Uslov=4) AND Izvestaj =@param0 ";
                     ssi += "order by NazivDokumenta,uslov ";
                     Console.WriteLine(ssi);
                     t = db.ParamsQueryDT(ssi, Dokument);

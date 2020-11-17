@@ -19,7 +19,7 @@ namespace Bankom.Class
 
         public void Klasifikacija_Click(string d, string pomIzv, string pomStablo)
         {
-            if (pomIzv == "Izvestaji")
+            if (pomIzv == "Izvestaj")
             {
                 param1 = d.Substring(4);
             }
@@ -67,7 +67,7 @@ namespace Bankom.Class
                 }
                 else
                 {
-                    if (pomIzv == "Izvestaji")
+                    if (pomIzv == "Izvestaj")
                     {
                         param0 = sa.Substring(4);
                     }
@@ -91,7 +91,7 @@ namespace Bankom.Class
 
             if (!String.IsNullOrEmpty(d.ToString()) || !String.IsNullOrWhiteSpace(d.ToString()))
             {
-                if (pomIzv == "Izvestaji")
+                if (pomIzv == "Izvestaj")
                 {
                     
                     d = d.Substring(4);
@@ -119,7 +119,7 @@ namespace Bankom.Class
             {
                 string param0;
 
-                if (pomIzv == "Izvestaji")
+                if (pomIzv == "Izvestaj")
                 {
                     param0 = sa.Substring(4);
                 
@@ -142,7 +142,7 @@ namespace Bankom.Class
             if (!String.IsNullOrEmpty(sa.ToString()) || !String.IsNullOrWhiteSpace(sa.ToString()))
             {
                
-                if (pomIzv == "Izvestaji")
+                if (pomIzv == "Izvestaj")
                 {
                     param1 = nazivPremestenog.Substring(4);
                   

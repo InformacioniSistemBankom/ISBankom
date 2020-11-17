@@ -1502,7 +1502,7 @@ namespace Bankom
 
         private void IzvestajiIzStabla_Click(object sender, EventArgs e)
         {
-            string b = "Izvestaji";
+            string b = "Izvestaj";
 
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
@@ -1513,7 +1513,7 @@ namespace Bankom
                         return;
                     }
             }
-            ShowNewForm("Izvestaji", 1, "Izvestaji", 1, "", "", "I", "", "TreeView");
+            ShowNewForm("Izvestaj", 1, "Izvestaj", 1, "", "", "I", "", "TreeView");
         }
 
         private void OrgStr_Click(object sender, EventArgs e)
@@ -2985,7 +2985,7 @@ namespace Bankom
                     KojiIzvestaj = "KalkulacijaIzlaza";
             }
 
-            Program.Parent.ShowNewForm("Izvestaji", 1, KojiIzvestaj, -1, "", "", "I", "", "");
+            Program.Parent.ShowNewForm("Izvestaj", 1, KojiIzvestaj, -1, "", "", "I", "", "");
             novaforma = Program.Parent.ActiveMdiChild;
             Field kontrola = (Field)novaforma.Controls["BrDok"];
             if (kontrola != null)
@@ -3202,13 +3202,13 @@ namespace Bankom
         {
             //DataTable dt = new DataTable("Menu");
             //ovde se koristi MenuStablo tabela i ona ne odgovara php-u vise
-            String SQL = ";  WITH RekurzivnoStablo (ID_MenuStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS " +
-                         "  (SELECT e.ID_MenuStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave,  PrikazDetaljaDaNe as pd,PrikazPo as pp " +
-                         " FROM MenuStablo AS e WITH(NOLOCK)  where Naziv in (select g.naziv from Grupa as g, KadroviIOrganizacionaStrukturaStavkeView as ko Where(KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura " +
+            String SQL = ";  WITH RekurzivnoStablo (ID_MeniStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS " +
+                         "  (SELECT e.ID_MeniStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave,  PrikazDetaljaDaNe as pd,PrikazPo as pp " +
+                         " FROM MeniStablo AS e WITH(NOLOCK)  where Naziv in (select g.naziv from Grupa as g, KadroviIOrganizacionaStrukturaStavkeView as ko Where(KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura " +
                          "  Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija=" + idke + ")UNION ALL " +
-                         " SELECT e.ID_MenuStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level + 1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave,  PrikazDetaljaDaNe As pd, PrikazPo As pp " +
-                         "   FROM MenuStablo AS e WITH(NOLOCK)  INNER JOIN RekurzivnoStablo AS d ON e.ID_MenuStablo = d.Vezan) " +
-                         "   SELECT distinct ID_MenuStablo as MenuID, NazivJavni AS  MenuName,Vezan AS MenuParent,'Y' AS MenuEnable,'DEMO' AS USERID,Naziv, RedniBroj FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0 and vezan<> 0  order by RedniBroj ";
+                         " SELECT e.ID_MeniStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level + 1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave,  PrikazDetaljaDaNe As pd, PrikazPo As pp " +
+                         "   FROM MeniStablo AS e WITH(NOLOCK)  INNER JOIN RekurzivnoStablo AS d ON e.ID_MeniStablo = d.Vezan) " +
+                         "   SELECT distinct ID_MeniStablo as MenuID, NazivJavni AS  MenuName,Vezan AS MenuParent,'Y' AS MenuEnable,'DEMO' AS USERID,Naziv, RedniBroj FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0 and vezan<> 0  order by RedniBroj ";
             dt = ReturnDT(SQL);
             return dt;
         }
@@ -3225,7 +3225,7 @@ namespace Bankom
             char slovo;
             if (s == "Dokumenta" || s == "Komitenti" || s == "Artikli" || s == "OrganizacionaStruktura")
                 slovo = 'S';
-            else if (s == "Izvestaji")
+            else if (s == "Izvestaj")
                 slovo = 'I';
             else if (s == "KlasifikacijaOrgStrukture" || s == "KlasifikacijaArtikla" || s == "KlasifikacijaKomitenata" || s == "KlasifikacijaDokumenata"
                 || s == "KlasifikacijaIzvestaja" || s == "KlasifikacijaMenija" || s == "KlasifikacijaPomocnihSifarnika")
@@ -3262,9 +3262,9 @@ namespace Bankom
             }
             else if (s == "KlasifikacijaIzvestaja")
             {
-                pomStablo = "IzvestajiStablo";
-                pomIzv = "Izvestaji";
-                return "Izvestaji";
+                pomStablo = "IzvestajStablo";
+                pomIzv = "Izvestaj";
+                return "Izvestaj";
             }
             else if (s == "KlasifikacijaMenija")
             {
@@ -3276,8 +3276,8 @@ namespace Bankom
                 Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
                 Program.Parent.ToolBar.Items["Ggrupisi"].Visible = true;
                 Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = true;
-                pomStablo = "MenuStablo";
-                return "Menu";
+                pomStablo = "MeniStablo";
+                return "Meni";
             }
             else
             {
@@ -3344,7 +3344,7 @@ namespace Bankom
                     SrediFormu();
                     break;
                 case "Dokumenta":
-                case "Izvestaji":
+                case "Izvestaj":
                 case "OsnovniSifarnici":
                 case "PomocniSifarnici":
                 case "Artikli":
