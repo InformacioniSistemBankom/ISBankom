@@ -203,7 +203,7 @@ namespace Bankom.Class
                 {
                     if (Convert.ToInt32(tv.SelectedNode.Tag) > 1)
                     {
-                        if (MojeStablo == "Izvestaj")
+                        if (MojeStablo == "Izvestaji")
                         {
 
                             //string pravoime = tv.SelectedNode.Name.Substring(4);
