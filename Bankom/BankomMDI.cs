@@ -3233,7 +3233,7 @@ namespace Bankom
             char slovo;
             if (s == "Dokumenta" || s == "Komitenti" || s == "Artikli" || s == "OrganizacionaStruktura")
                 slovo = 'S';
-            else if (s == "Izvestaj")
+            else if (s == "Izvestaji")
                 slovo = 'I';
             else if (s == "KlasifikacijaOrgStrukture" || s == "KlasifikacijaArtikla" || s == "KlasifikacijaKomitenata" || s == "KlasifikacijaDokumenata"
                 || s == "KlasifikacijaIzvestaja" || s == "KlasifikacijaMenija" || s == "KlasifikacijaPomocnihSifarnika")
@@ -3271,8 +3271,8 @@ namespace Bankom
             else if (s == "KlasifikacijaIzvestaja")
             {
                 pomStablo = "IzvestajStablo";
-                pomIzv = "Izvestaj";
-                return "Izvestaj";
+                pomIzv = "Izvestaji";
+                return "Izvestaji";
             }
             else if (s == "KlasifikacijaMenija")
             {
@@ -3353,7 +3353,7 @@ namespace Bankom
                     SrediFormu();
                     break;
                 case "Dokumenta":
-                case "Izvestaj":
+                case "Izvestaji":
                 case "OsnovniSifarnici":
                 case "PomocniSifarnici":
                 case "Artikli":
