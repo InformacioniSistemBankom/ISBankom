@@ -842,7 +842,7 @@ namespace Bankom
             // ToolBar
             // 
             this.ToolBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ToolBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ToolBar.Font = new System.Drawing.Font("TimesRoman", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ToolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Uunos,
@@ -908,7 +908,7 @@ namespace Bankom
             this.Uunos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Uunos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.unospb});
-            this.Uunos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Uunos.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Uunos.ForeColor = System.Drawing.SystemColors.Window;
             this.Uunos.Image = ((System.Drawing.Image)(resources.GetObject("Uunos.Image")));
             this.Uunos.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -936,7 +936,7 @@ namespace Bankom
             // Ppregled
             // 
             this.Ppregled.AutoSize = false;
-            this.Ppregled.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ppregled.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Ppregled.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Ppregled.Image = ((System.Drawing.Image)(resources.GetObject("Ppregled.Image")));
             this.Ppregled.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -954,7 +954,7 @@ namespace Bankom
             // 
             this.Iizmena.AutoSize = false;
             this.Iizmena.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Iizmena.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Iizmena.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Iizmena.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Iizmena.Image = ((System.Drawing.Image)(resources.GetObject("Iizmena.Image")));
             this.Iizmena.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -972,7 +972,7 @@ namespace Bankom
             // Sstorno
             // 
             this.Sstorno.AutoSize = false;
-            this.Sstorno.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Sstorno.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Sstorno.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Sstorno.Image = ((System.Drawing.Image)(resources.GetObject("Sstorno.Image")));
             this.Sstorno.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -990,7 +990,7 @@ namespace Bankom
             // Sstampa
             // 
             this.Sstampa.AutoSize = false;
-            this.Sstampa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Sstampa.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Sstampa.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Sstampa.Image = ((System.Drawing.Image)(resources.GetObject("Sstampa.Image")));
             this.Sstampa.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1008,7 +1008,7 @@ namespace Bankom
             // Bbrisanje
             // 
             this.Bbrisanje.AutoSize = false;
-            this.Bbrisanje.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bbrisanje.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bbrisanje.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Bbrisanje.Image = ((System.Drawing.Image)(resources.GetObject("Bbrisanje.Image")));
             this.Bbrisanje.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1027,7 +1027,7 @@ namespace Bankom
             this.toolStripTextBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.toolStripTextBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.toolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.toolStripTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripTextBox1.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripTextBox1.Name = "toolStripTextBox1";
             this.toolStripTextBox1.Size = new System.Drawing.Size(200, 43);
             this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
@@ -1044,7 +1044,7 @@ namespace Bankom
             this.Ggrupisi.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Ggrupisinp,
             this.premestiGrupuToolStripMenuItem});
-            this.Ggrupisi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ggrupisi.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Ggrupisi.ForeColor = System.Drawing.SystemColors.Window;
             this.Ggrupisi.Image = ((System.Drawing.Image)(resources.GetObject("Ggrupisi.Image")));
             this.Ggrupisi.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1078,7 +1078,7 @@ namespace Bankom
             // Iimenik
             // 
             this.Iimenik.AutoSize = false;
-            this.Iimenik.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Iimenik.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Iimenik.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Iimenik.Image = ((System.Drawing.Image)(resources.GetObject("Iimenik.Image")));
             this.Iimenik.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1096,7 +1096,7 @@ namespace Bankom
             // Ppotvrda
             // 
             this.Ppotvrda.AutoSize = false;
-            this.Ppotvrda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ppotvrda.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Ppotvrda.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Ppotvrda.Image = ((System.Drawing.Image)(resources.GetObject("Ppotvrda.Image")));
             this.Ppotvrda.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1114,7 +1114,7 @@ namespace Bankom
             // Pprekid
             // 
             this.Pprekid.AutoSize = false;
-            this.Pprekid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Pprekid.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Pprekid.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Pprekid.Image = ((System.Drawing.Image)(resources.GetObject("Pprekid.Image")));
             this.Pprekid.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1132,7 +1132,7 @@ namespace Bankom
             // Ccalc
             // 
             this.Ccalc.AutoSize = false;
-            this.Ccalc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ccalc.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Ccalc.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.Ccalc.Image = ((System.Drawing.Image)(resources.GetObject("Ccalc.Image")));
             this.Ccalc.Name = "Ccalc";
@@ -1149,7 +1149,7 @@ namespace Bankom
             // Iizlaz
             // 
             this.Iizlaz.AutoSize = false;
-            this.Iizlaz.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Iizlaz.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Iizlaz.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Iizlaz.Image = ((System.Drawing.Image)(resources.GetObject("Iizlaz.Image")));
             this.Iizlaz.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1169,7 +1169,7 @@ namespace Bankom
             this.Kknjzi.AutoSize = false;
             this.Kknjzi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Kknjzi.Enabled = false;
-            this.Kknjzi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Kknjzi.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Kknjzi.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Kknjzi.Image = ((System.Drawing.Image)(resources.GetObject("Kknjzi.Image")));
             this.Kknjzi.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1190,7 +1190,7 @@ namespace Bankom
             // 
             this.Ppredlogcena.AutoSize = false;
             this.Ppredlogcena.Enabled = false;
-            this.Ppredlogcena.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ppredlogcena.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Ppredlogcena.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Ppredlogcena.Image = ((System.Drawing.Image)(resources.GetObject("Ppredlogcena.Image")));
             this.Ppredlogcena.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1210,7 +1210,7 @@ namespace Bankom
             // 
             this.Kkalki.AutoSize = false;
             this.Kkalki.Enabled = false;
-            this.Kkalki.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Kkalki.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Kkalki.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Kkalki.Image = ((System.Drawing.Image)(resources.GetObject("Kkalki.Image")));
             this.Kkalki.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1231,7 +1231,7 @@ namespace Bankom
             // 
             this.Kkalku.AutoSize = false;
             this.Kkalku.Enabled = false;
-            this.Kkalku.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Kkalku.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Kkalku.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Kkalku.Image = ((System.Drawing.Image)(resources.GetObject("Kkalku.Image")));
             this.Kkalku.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1252,7 +1252,7 @@ namespace Bankom
             // 
             this.Ppotencijal.AutoSize = false;
             this.Ppotencijal.Enabled = false;
-            this.Ppotencijal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ppotencijal.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Ppotencijal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Ppotencijal.Image = ((System.Drawing.Image)(resources.GetObject("Ppotencijal.Image")));
             this.Ppotencijal.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1271,7 +1271,7 @@ namespace Bankom
             // 
             this.Pppppd.AutoSize = false;
             this.Pppppd.Enabled = false;
-            this.Pppppd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Pppppd.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Pppppd.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Pppppd.Image = ((System.Drawing.Image)(resources.GetObject("Pppppd.Image")));
             this.Pppppd.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1290,7 +1290,7 @@ namespace Bankom
             // 
             this.Pposta.AutoSize = false;
             this.Pposta.Enabled = false;
-            this.Pposta.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Pposta.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Pposta.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Pposta.Image = ((System.Drawing.Image)(resources.GetObject("Pposta.Image")));
             this.Pposta.Name = "Pposta";
@@ -1308,7 +1308,7 @@ namespace Bankom
             // Ffajlovi
             // 
             this.Ffajlovi.AutoSize = false;
-            this.Ffajlovi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ffajlovi.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Ffajlovi.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Ffajlovi.Image = ((System.Drawing.Image)(resources.GetObject("Ffajlovi.Image")));
             this.Ffajlovi.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1326,7 +1326,7 @@ namespace Bankom
             // 
             this.Oodobri.AutoSize = false;
             this.Oodobri.Enabled = false;
-            this.Oodobri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Oodobri.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Oodobri.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Oodobri.Image = ((System.Drawing.Image)(resources.GetObject("Oodobri.Image")));
             this.Oodobri.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1346,7 +1346,7 @@ namespace Bankom
             this.Pplati.AutoSize = false;
             this.Pplati.AutoToolTip = false;
             this.Pplati.Enabled = false;
-            this.Pplati.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Pplati.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Pplati.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Pplati.Image = ((System.Drawing.Image)(resources.GetObject("Pplati.Image")));
             this.Pplati.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1365,7 +1365,7 @@ namespace Bankom
             // 
             this.Oorigin.AutoSize = false;
             this.Oorigin.Enabled = false;
-            this.Oorigin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Oorigin.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Oorigin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Oorigin.Image = ((System.Drawing.Image)(resources.GetObject("Oorigin.Image")));
             this.Oorigin.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1383,7 +1383,7 @@ namespace Bankom
             // Oorgsema
             // 
             this.Oorgsema.AutoSize = false;
-            this.Oorgsema.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Oorgsema.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Oorgsema.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Oorgsema.Image = ((System.Drawing.Image)(resources.GetObject("Oorgsema.Image")));
             this.Oorgsema.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -1399,7 +1399,7 @@ namespace Bankom
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.toolStrip1.Font = new System.Drawing.Font("TimesRoman", 9F);
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Location = new System.Drawing.Point(0, 43);
             this.toolStrip1.Name = "toolStrip1";
@@ -1485,7 +1485,7 @@ namespace Bankom
             this.Controls.Add(this.button1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.ToolBar);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

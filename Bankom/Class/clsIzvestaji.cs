@@ -48,7 +48,7 @@ namespace Bankom.Class
         private void DodajOrder(string TUD)
         {
             string ssel = "SELECT distinct PoljeSaDok,Polje,OOrderBy ";
-            ssel += "FROM Izvestaj WHERE OOrderBy>0 AND Izvestaj =@param0 and TabelaVView=@param1 And TUD=@param2  and len(PoljeSaDok)>2";
+            ssel += "FROM Izvestaji WHERE OOrderBy>0 AND Izvestaj =@param0 and TabelaVView=@param1 And TUD=@param2  and len(PoljeSaDok)>2";
             Console.WriteLine(ssel);
             ssel += " order by OOrderBy ";
             t = db.ParamsQueryDT(ssel,Dokument,KojiView,TUD);
@@ -91,7 +91,7 @@ namespace Bankom.Class
             string Delovi = "";
             string mVred = "";
             string ssi = "SELECT distinct Polje,uslov,uslovoperacija,izborno,PoljeSaDok ";
-            ssi += "FROM Izvestaj WHERE TabIndex >= 0 and (Uslov=1 or Uslov=2 or Uslov=4) AND Izvestaj =@param0 ";
+            ssi += "FROM Izvestaji WHERE TabIndex >= 0 and (Uslov=1 or Uslov=2 or Uslov=4) AND Izvestaj =@param0 ";
             ssi += "order by uslov ";
             Console.WriteLine(ssi);
             t = db.ParamsQueryDT(ssi, Dokument);//formiramo delove zadatih uslova za izvestaj       
