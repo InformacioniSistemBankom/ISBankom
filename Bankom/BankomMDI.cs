@@ -3337,14 +3337,12 @@ namespace Bankom
             switch (s)
             {
                 case "Lotovi":
-                    Lotovi lotovi = new Lotovi
-                    {
-                        FormBorderStyle = FormBorderStyle.None,
-                        Text ="Lotovi",
-                        //lotovi.BackColor = System.Drawing.Color.SeaShell;
-                        MdiParent = this
-                    };
-
+                    Lotovi lotovi = new Lotovi();
+                    lotovi.FormBorderStyle = FormBorderStyle.None;
+                    lotovi.Text = "Lotovi";
+                    lotovi.MdiParent = this;
+                   
+                  
                     this.WindowState = FormWindowState.Maximized;
                    if (IzborJezika.Text == "Српски-Ћирилица") { lotovi.Text = VratiCirlilicu("Lotovi"); }
                     int sirina = (Width / 100) * 10;
