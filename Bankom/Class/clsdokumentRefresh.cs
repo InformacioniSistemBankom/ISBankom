@@ -385,9 +385,8 @@ namespace Bankom.Class
                     //Djora 26.09.20
                     //double ofset = Program.RacioWith * 1.3333333333333333;
                     double ofset = Program.RacioWith;
-
+               
                     int sirina = (int)Convert.ToDouble(Convert.ToDouble(t2.Rows[i]["WidthKolone"].ToString()) * ofset);
-                
                     if (sirina == 0)
                         dv.Columns[i].Visible = false;
                     else
@@ -395,6 +394,8 @@ namespace Bankom.Class
 
                     dv.Columns[i].Width = sirina;
         
+              
+                    
                 dv.Columns[i].SortMode = DataGridViewColumnSortMode.Automatic;
                 dv.BackgroundColor = Color.SeaShell;
                 if (t2.Rows[i]["Format"].ToString() != "@" && t2.Rows[i]["Format"].ToString() != "0" && t2.Rows[i]["Format"].ToString().Trim() != "")

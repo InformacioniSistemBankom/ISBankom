@@ -1030,7 +1030,16 @@ namespace Bankom.Class
             sql = ssel;
             return sql;
         }
-       
+        public void SrediFormu()
+        {
+            Program.Parent.flowLayoutPanel1.Width = 161;
+
+
+            Program.Parent.flowLayoutPanel1.Width = 162;
+            Program.Parent.flowLayoutPanel1.Width = 0;
+            Program.Parent.button1.Location = new Point(0, 301);
+
+        }
 
         private void dv_CellContenClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
@@ -1041,6 +1050,7 @@ namespace Bankom.Class
             Program.colname = dv.Columns[e.ColumnIndex].Name;
             Program.activecontrol = control;
             dv.BackgroundColor = Color.SeaShell;
+            SrediFormu();
         }
         private void FillControls(DataGridView control, ref int iid, ref string brdok, ref DateTime datum, DataGridViewCellMouseEventArgs e)
         {
@@ -1122,15 +1132,17 @@ namespace Bankom.Class
         private void dv_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridView control = (DataGridView)sender;
-
+       
             Form Me = Program.Parent.ActiveMdiChild;
             int middok = 0; /// Convert.ToInt32(Me.Controls["liddok"].Text);
             string mbrdok = "";
             DateTime mdatum = Convert.ToDateTime(System.DateTime.Now);
 
             control.ReadOnly = true;
-
             string mimedok = Me.Controls["limedok"].Text.Trim();
+
+          //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
+          //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
 
             FillControls(control, ref middok, ref mbrdok, ref mdatum, e);    // punjenje kontrola koje se odnose na stavku iz reda grida na koji smo kliknuli
 
@@ -1161,6 +1173,7 @@ namespace Bankom.Class
                     clsDokumentaStablo ds = new clsDokumentaStablo();
                     if (ds.Obradi(middok, ref midstablo, ref mimedok, ref mbrdok) == false) return;
                     Program.Parent.ShowNewForm(mojestablo, midstablo, mimedok, middok, mbrdok, ddatum, "D", "", "");
+                    SrediFormu();
                 }
                 else
                     this.ObradiDupliKlik(control,mimedok,DokumentJe,"",e);
@@ -1172,11 +1185,13 @@ namespace Bankom.Class
                 //((Bankom.frmChield)Me).idReda = middok;
             }
             control.ReadOnly = false;
+            SrediFormu();
         }
         private void ObradiDupliKlik(DataGridView control, string Dokument, string DokumentJe, string OperacijaDokumenta, DataGridViewCellMouseEventArgs e)
         {
             dv.BackgroundColor = Color.SeaShell;
             Form Me = Program.Parent.ActiveMdiChild;
+            
             string[] separators = new[] { "," };
             string d1, d2;
             Form novaforma = new Form();
@@ -1197,7 +1212,7 @@ namespace Bankom.Class
             {
                 case "I":             // mogucnost da se  klikom na grid izvestaja prikaze dokument
                     string ssi = "SELECT distinct Polje,uslov,uslovoperacija,izborno,PoljeSaDok,NazivDokumenta ";
-                    ssi += "FROM Izvestaji WHERE (Uslov=1 or Uslov=2 or Uslov=4) AND Izvestaj =@param0 ";
+                    ssi += "FROM Izvestaj WHERE (Uslov=1 or Uslov=2 or Uslov=4) AND Izvestaj =@param0 ";
                     ssi += "order by NazivDokumenta,uslov ";
                     Console.WriteLine(ssi);
                     t = db.ParamsQueryDT(ssi, Dokument);
@@ -1207,6 +1222,7 @@ namespace Bankom.Class
                     string konto = "";
                     string opiskonta = "";
                     switch (Dokument)
+
                     {
                         case "SpisakDokumenata":
                             foreach (DataGridViewColumn column in control.Columns)
@@ -1483,6 +1499,7 @@ namespace Bankom.Class
                     }
                     break;
             }
+            SrediFormu();
         }
         public void PrikaziDokument(string Broj)
         {

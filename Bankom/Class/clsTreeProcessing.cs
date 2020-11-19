@@ -16,8 +16,8 @@ namespace Bankom.Class
         string JavniNaziv;
         string Naziv;
         string IIdStablo;
-        private Form form1 = new Form();
-        private TreeView tv=new TreeView () ;
+        public Form form1 = new Form();
+        public TreeView tv = new TreeView();
 
         public DataBaseBroker db = new DataBaseBroker();
         public string MojeStablo = "";
@@ -27,12 +27,12 @@ namespace Bankom.Class
         {
             Form form1 = new Form();
         }
-        public void ObradaStabla( Form forma, string iddok, string KojeStablo, string DokumentJe)
+        public void ObradaStabla(Form forma, string iddok, string KojeStablo, string DokumentJe)
         {
-           
-            //form1 = forma;
+            form1 = forma;
             MojeStablo = KojeStablo;
-            forma.Controls["limestabla"].Text = KojeStablo;
+            form1.Controls["limestabla"].Text = KojeStablo;
+            form1.Controls["limestabla"].Font = new Font("TimesRoman", 16, FontStyle.Regular); // ivana
             mDokumentJe = DokumentJe;
             //tv.AfterSelect += new TreeViewEventHandler(Tv_AfterSelect);
             tv.NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler(tv_NodeMouseDoubleClick);
@@ -43,13 +43,10 @@ namespace Bankom.Class
             string idke = Program.idkadar.ToString();
             string idfirme = Program.idFirme.ToString();
             tv.Nodes.Clear();
-            forma.Controls.Remove(tv);
-          
-            tv.Nodes.Clear();
             //string idfirme = "6";
 
             //'  If (DokumentJe = "S" And KojeStablo = "Dokumenta") Or KojeStablo = "Izvestaji" Or KojeStablo = "PomocniSifarnici" Then
-            if (KojeStablo == "Dokumenta" || KojeStablo == "Izvestaji")  //samo na ova stabla primenjujemo dozvole
+            if (KojeStablo == "Dokumenta" || KojeStablo == "Izvestaj")  //samo na ova stabla primenjujemo dozvole
             {
                 sselect = "; WITH RekurzivnoStablo (ID_" + KojeStablo + "Stablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS "
                     + "(SELECT e.ID_" + KojeStablo + "Stablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
@@ -84,7 +81,7 @@ namespace Bankom.Class
 
 
             //PUNIStablo:
-            
+
             vveza = 0;
 
             tv.HideSelection = false;
@@ -135,7 +132,7 @@ namespace Bankom.Class
                     }
                 }
 
-                if (KojeStablo == "Izvestaji")
+                if (KojeStablo == "Izvestaj")
                 {
                     JavniNaziv = ti.Rows[i]["BrDok"].ToString() + "-" + ti.Rows[i]["NazivJavni"].ToString();
                 }
@@ -156,19 +153,18 @@ namespace Bankom.Class
 
             tv.Height = forma.Height;
             tv.Width = forma.Width;
-            tv.Top = 20;
+            tv.Top = 40;
+            tv.Left = 25;
             tv.Font = new Font("TimesRoman", 16, FontStyle.Regular);
             tv.Name = "tv";
             tv.BorderStyle = BorderStyle.None;
-            forma.Controls.Add(tv);
-            
+            form1.Controls.Add(tv);
 
-            
+
             tv.Visible = true;
             tv.HideSelection = true;
             //tv.SelectedNode = null;
             tv.CollapseAll();
-            tv.Refresh();
             tv.Sort();
         } // kraj obradastablaNew.
         private void WriteChild(string JavniNaziv, string Naziv, string IIdStablo)
@@ -187,81 +183,94 @@ namespace Bankom.Class
                 tv.EndUpdate();
             }
         }
+        public void SrediFormu()
+        {
+          Program.Parent.flowLayoutPanel1.Width = 161;
+
+
+            Program.Parent.flowLayoutPanel1.Width = 162;
+            Program.Parent.flowLayoutPanel1.Width = 0;
+            Program.Parent.button1.Location = new Point(0, 301);
+
+        }
+
         private void tv_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            //Djora 10.09.20
-            Program.AktivnaForma = e.Node.Text.Substring(e.Node.Text.IndexOf("-") + 1).Replace(" ", "");
+                //Djora 10.09.20
+                Program.AktivnaForma = e.Node.Text.Substring(e.Node.Text.IndexOf("-") + 1).Replace(" ", "");
 
-            if (tv.SelectedNode != null)
-            {
-                if (Convert.ToInt32(tv.SelectedNode.Tag) > 1)
+                if (tv.SelectedNode != null)
                 {
-                    if (MojeStablo == "Izvestaji")
+                    if (Convert.ToInt32(tv.SelectedNode.Tag) > 1)
                     {
-
-                        //string pravoime = tv.SelectedNode.Name.Substring(4);
-                        string ime = tv.SelectedNode.Name;
-
-                        string sql = " select s.ulazniizlazni as NazivDokumenta,NacinRegistracije as nr,"
-                                  + " Knjizise,Izvor  from  SifarnikDokumenta as s"
-                                  + "  Where s.naziv=@param0";
-                        
-                        DataTable t = db.ParamsQueryDT(sql, ime);
-                        if (t.Rows.Count > 0)
+                        if (MojeStablo == "Izvestaj")
                         {
-                            //Djora 10.09.20
-                            int crta = tv.SelectedNode.Text.IndexOf("-");
-                            if (crta > 0)
-                            {
-                                //Program.AktivnaSifraIzvestaja = t.Rows["NazivDokumeta"] ;
-                                Program.AktivnaSifraIzvestaja = tv.SelectedNode.Text.Substring(0, crta);
-                            }
-                            else { Program.AktivnaSifraIzvestaja = ""; }
 
+                            //string pravoime = tv.SelectedNode.Name.Substring(4);
+                            string ime = tv.SelectedNode.Name;
 
-                            if (t.Rows[0]["nr"].ToString().ToUpper() == "B") // izvestaj je u bazi
+                            string sql = " select s.ulazniizlazni as NazivDokumenta,NacinRegistracije as nr,"
+                                      + " Knjizise,Izvor  from  SifarnikDokumenta as s"
+                                      + "  Where s.naziv=@param0";
+
+                            DataTable t = db.ParamsQueryDT(sql, ime);
+                            if (t.Rows.Count > 0)
                             {
-                                Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-                            }
-                            else // izvestaj je excel
-                            {
-                                string iddok = (tv.SelectedNode.Tag).ToString();
-                                string naslov = "print - " + ime;
-                                Boolean odgovor = false;
-                                odgovor = Program.Parent.DalijevecOtvoren("I", naslov, ime);
-                                if (odgovor == false)
+                                //Djora 10.09.20
+                                int crta = tv.SelectedNode.Text.IndexOf("-");
+                                if (crta > 0)
                                 {
-                                    frmPrint fs = new frmPrint();
-                                    fs.BackColor = Color.SeaShell;
-                                    fs.MdiParent = Program.Parent;
-                                    fs.Text = ime;
-                                    fs.intCurrentdok = Convert.ToInt32(iddok); //id
-                                    fs.LayoutMdi(MdiLayout.TileVertical);
-                                    fs.imefajla = ime;  //ime  InoRacun
-                                    fs.kojiprint = "rpt";
-                                    fs.kojinacin = "E";
-                                    fs.izvor = t.Rows[0]["Izvor"].ToString();
-                                    fs.Show();
-                                    Program.Parent.addFormTotoolstrip1(fs, naslov);
+                                    //Program.AktivnaSifraIzvestaja = t.Rows["NazivDokumeta"] ;
+                                    Program.AktivnaSifraIzvestaja = tv.SelectedNode.Text.Substring(0, crta);
+                                }
+                                else { Program.AktivnaSifraIzvestaja = ""; }
+
+
+                                if (t.Rows[0]["nr"].ToString().ToUpper() == "B") // izvestaj je u bazi
+                                {
+                                    Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                                }
+                                else // izvestaj je excel
+                                {
+                                    string iddok = (tv.SelectedNode.Tag).ToString();
+                                    string naslov = "print - " + ime;
+                                    Boolean odgovor = false;
+                                    odgovor = Program.Parent.DalijevecOtvoren("I", naslov, ime);
+                                    if (odgovor == false)
+                                    {
+                                        frmPrint fs = new frmPrint();
+                                        fs.BackColor = Color.SeaShell;
+                                        fs.MdiParent = Program.Parent;
+                                        fs.Text = ime;
+                                        fs.intCurrentdok = Convert.ToInt32(iddok); //id
+                                        fs.LayoutMdi(MdiLayout.TileVertical);
+                                        fs.imefajla = ime;  //ime  InoRacun
+                                        fs.kojiprint = "rpt";
+                                        fs.kojinacin = "E";
+                                        fs.izvor = t.Rows[0]["Izvor"].ToString();
+                                        fs.Show();
+                                        Program.Parent.addFormTotoolstrip1(fs, naslov);
+                                    }
                                 }
                             }
+                            SrediFormu();
                         }
-                    }
-                    else
-                    {
-                        //Djora 10.09.20
-                        Program.AktivnaSifraIzvestaja = "";
+                        else
+                        {
+                            //Djora 10.09.20
+                            Program.AktivnaSifraIzvestaja = "";
 
-                        Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                            Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                            SrediFormu();
+                        }
                     }
                 }
             }
-        }
 
         //zajedno 28.10.2020.
         public void tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-           
+            SrediFormu();
             Program.Parent.ToolBar.Items["Uunos"].Visible = true;
             Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
 
@@ -271,12 +280,12 @@ namespace Bankom.Class
             Program.AktivnaSifraIzvestaja = e.Node.Text.ToString();
             Program.IdSelektovanogCvora = int.Parse(e.Node.Tag.ToString());
 
-            Program.Parent.toolStripTextBox1.Clear();
+
+            
 
         }
-        public void RefreshStabla(Form forma, string iddok, string KojeStablo, string DokumentJe)
-        { }
-        }
+      
+    }
     
 }
 

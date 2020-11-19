@@ -59,6 +59,7 @@
             this.btnPred = new System.Windows.Forms.Button();
             this.btnPrvi = new System.Windows.Forms.Button();
             this.limegrida = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -359,6 +360,15 @@
             this.limegrida.Text = "label1";
             this.limegrida.Visible = false;
             // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(269, 178);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(175, 24);
+            this.textBox1.TabIndex = 18;
+            this.textBox1.Visible = false;
+            // 
             // frmChield
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -366,6 +376,8 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.SeaShell;
             this.ClientSize = new System.Drawing.Size(1254, 1012);
+            this.ControlBox = false;
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.limegrida);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lBrDok);
@@ -379,13 +391,16 @@
             this.Controls.Add(this.statusStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.Location = new System.Drawing.Point(30, 10);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmChield";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmChield";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.frmChield_Activated);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmChield_FormClosed);
             this.Load += new System.EventHandler(this.frmChield_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmChield_KeyDown);
             this.Resize += new System.EventHandler(this.frmChield_Resize);
@@ -430,5 +445,6 @@
         private System.Windows.Forms.Button btnPred;
         private System.Windows.Forms.Button btnPrvi;
         private System.Windows.Forms.Label limegrida;
+        public System.Windows.Forms.TextBox textBox1;
     }
 }

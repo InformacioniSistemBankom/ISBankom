@@ -28,6 +28,7 @@ namespace Bankom.Class
         private string TrebaProvera = "0";
         private string DokumentJe = "";
         private string Naslov = "";
+        private string PutanjaDokumenta = "";
         //int ret = 0;
         DataBaseBroker db = new DataBaseBroker();
 
@@ -47,7 +48,7 @@ namespace Bankom.Class
                 ID_Prethodni = dt.Rows[0]["ID_Predhodni"].ToString();
             }
 
-            sql = "select UlazniIzlazni  as NazivKlona,NacinRegistracije,prikaz,vrsta,OdakleSePreuzima from SifarnikDokumenta where Naziv=@param0";
+            sql = "select UlazniIzlazni  as NazivKlona,NacinRegistracije,PutanjaZaCuvanje,prikaz,vrsta,OdakleSePreuzima from SifarnikDokumenta where Naziv=@param0";
             DataTable dt1 = db.ParamsQueryDT(sql, Dokument);
             if (dt1.Rows.Count != 0)
             {
@@ -56,6 +57,7 @@ namespace Bankom.Class
                 prikaz = dt1.Rows[0]["prikaz"].ToString().Trim();
                 DokumentJe = dt1.Rows[0]["vrsta"].ToString().Trim();
                 OdakleSePreuzima = dt1.Rows[0]["OdakleSePreuzima"].ToString().Trim();
+                PutanjaDokumenta = dt1.Rows[0]["PutanjaZaCuvanje"].ToString().Trim();
             }
 
             sql = "select oorderby as TrebaProvera from recnikpodataka where dokument=@param0 and oorderby>0 and oorderby<5";
@@ -87,6 +89,12 @@ namespace Bankom.Class
                     if (NazivKlona != "PrometUplata")
                         return true;
                 }
+            }
+            if (NacinRegistracije == "W" || NacinRegistracije == "E" || NacinRegistracije == "P")
+            {
+              
+                ObradaWordExcelPdf.OtvoriDokument(NacinRegistracije,PutanjaDokumenta,BrDok);
+                return false;
             }
 
             if (NacinRegistracije == "B" && OdakleSePreuzima.Trim() != "")

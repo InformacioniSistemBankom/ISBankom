@@ -60,7 +60,7 @@ namespace Bankom
         public static string AktivnaSifraIzvestaja { get; set; }
         public static int IdSelektovanogCvora { get; set; }
         public static int IdParentaSelektovanogCvora { get; set; }
-
+        public static string KlasifikacijaSlovo { get; set; }
 
         [STAThread]
 
@@ -81,6 +81,7 @@ namespace Bankom
             Application.EnableVisualStyles();
 
             Application.Run(new LoginForm());
+          
         
 
             if (IntLogovanje == 1)
@@ -97,6 +98,7 @@ namespace Bankom
             try
             {
                 string str = connectionString;
+                
                 con = new SqlConnection(str);
                 con.Open();
                 return con;
