@@ -386,7 +386,7 @@ namespace Bankom.Class
 
                     }  //KRAJ DOKUMENTJE="S" && dokument == "Dokumenta"
 
-                    //jovana dodatak za klasifikacije 
+                    //Ivana dodatak za klasifikacije 
 
                     if (DokumentJe == "K")
                     {
@@ -398,9 +398,9 @@ namespace Bankom.Class
                         ////Ako dokument postoji u dozvolama
                         if (td.Rows.Count > 0)
                         {
-                            Program.Parent.Uunos.Enabled = true;
-                            Program.Parent.Iizmena.Enabled = true;
-                            Program.Parent.Bbrisanje.Enabled = true;
+                            //Program.Parent.Uunos.Enabled = true;
+                            //Program.Parent.Iizmena.Enabled = true;
+                            //Program.Parent.Bbrisanje.Enabled = true;
                             if (tk.Rows[0][0].ToString() == "1")
                             {                               
                                 Program.Parent.Ggrupisinp.Enabled = true;
@@ -416,13 +416,13 @@ namespace Bankom.Class
                         }
                     }
                     // 29.10.2020. Ivana
-                    else
-                    {
-                        Program.Parent.Uunos.Enabled = false;
-                        Program.Parent.Ggrupisi.Enabled = false;
-                        Program.Parent.Iizmena.Enabled = false;
-                        Program.Parent.Bbrisanje.Enabled = false;
-                    }
+                    //else
+                    //{
+                    //    Program.Parent.Uunos.Enabled = false;
+                    //    Program.Parent.Ggrupisi.Enabled = false;
+                    //    Program.Parent.Iizmena.Enabled = false;
+                    //    Program.Parent.Bbrisanje.Enabled = false;
+                    //}
 
                 }     //KRAJ    DOKUMENTJE<>"D"
             }        // KRAJ POSTOJI U DOZVOLAMA

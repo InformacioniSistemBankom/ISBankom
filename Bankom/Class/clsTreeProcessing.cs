@@ -16,8 +16,8 @@ namespace Bankom.Class
         string JavniNaziv;
         string Naziv;
         string IIdStablo;
-        public Form form1 = new Form();
-        public TreeView tv = new TreeView();
+        private Form form1 = new Form();
+        private TreeView tv=new TreeView () ;
 
         public DataBaseBroker db = new DataBaseBroker();
         public string MojeStablo = "";
@@ -27,11 +27,12 @@ namespace Bankom.Class
         {
             Form form1 = new Form();
         }
-        public void ObradaStabla(Form forma, string iddok, string KojeStablo, string DokumentJe)
+        public void ObradaStabla( Form forma, string iddok, string KojeStablo, string DokumentJe)
         {
-            form1 = forma;
+           
+            //form1 = forma;
             MojeStablo = KojeStablo;
-            form1.Controls["limestabla"].Text = KojeStablo;
+            forma.Controls["limestabla"].Text = KojeStablo;
             mDokumentJe = DokumentJe;
             //tv.AfterSelect += new TreeViewEventHandler(Tv_AfterSelect);
             tv.NodeMouseDoubleClick += new TreeNodeMouseClickEventHandler(tv_NodeMouseDoubleClick);
@@ -41,6 +42,9 @@ namespace Bankom.Class
             string sselect;
             string idke = Program.idkadar.ToString();
             string idfirme = Program.idFirme.ToString();
+            tv.Nodes.Clear();
+            forma.Controls.Remove(tv);
+          
             tv.Nodes.Clear();
             //string idfirme = "6";
 
@@ -80,7 +84,7 @@ namespace Bankom.Class
 
 
             //PUNIStablo:
-
+            
             vveza = 0;
 
             tv.HideSelection = false;
@@ -156,13 +160,15 @@ namespace Bankom.Class
             tv.Font = new Font("TimesRoman", 16, FontStyle.Regular);
             tv.Name = "tv";
             tv.BorderStyle = BorderStyle.None;
-            form1.Controls.Add(tv);
+            forma.Controls.Add(tv);
+            
 
-
+            
             tv.Visible = true;
             tv.HideSelection = true;
             //tv.SelectedNode = null;
             tv.CollapseAll();
+            tv.Refresh();
             tv.Sort();
         } // kraj obradastablaNew.
         private void WriteChild(string JavniNaziv, string Naziv, string IIdStablo)
@@ -268,8 +274,9 @@ namespace Bankom.Class
             Program.Parent.toolStripTextBox1.Clear();
 
         }
-        
-    }
+        public void RefreshStabla(Form forma, string iddok, string KojeStablo, string DokumentJe)
+        { }
+        }
     
 }
 
