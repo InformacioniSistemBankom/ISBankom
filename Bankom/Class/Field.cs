@@ -1120,7 +1120,7 @@ namespace Bankom.Class
                     {
                         
                         iid = Convert.ToInt32(control.Rows[e.RowIndex].Cells[i].Value.ToString());
-                        // jovana grid tag napuni sa idreda
+                        // jovana 04.11. grid tag napuni sa idreda
                         control.Tag = control.Rows[e.RowIndex].Cells[i].Value.ToString();
                     }
                 }

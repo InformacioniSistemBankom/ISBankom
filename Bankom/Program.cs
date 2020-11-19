@@ -51,7 +51,7 @@ namespace Bankom
         //public static string connectionString = "Data Source=BANKOM10; Initial Catalog = dbbbTestNew2003Bankom; User Id=sa;password=password; ";
         //public static string connectionString = "Data Source=Sql2016;Initial Catalog=dbbbTestNew2003Bankom;User ID=sa;password=password;";
 
-        public static string connectionString = "Data Source=bankomw;Initial Catalog=BankomNovi;User ID=sa;password=password;";
+        public static string connectionString = "Data Source=bankomw;Initial Catalog=BankomVeza;User ID=sa;password=password;";
         public static string NazivRacunara = System.Environment.MachineName;
         public static string UserDomainName = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName;
 

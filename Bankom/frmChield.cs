@@ -75,7 +75,7 @@ namespace Bankom
             {
                 case "TreeView":
                     clsTreeProcessing tw = new clsTreeProcessing();
-                    tw.ObradaStabla(this, "1", imedokumenta, DokumentJe);              
+                    tw.ObradaStabla(  this, "1", imedokumenta, DokumentJe);              
                     break;              
                 default:
                     string supit = "";
