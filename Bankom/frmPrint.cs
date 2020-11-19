@@ -31,6 +31,7 @@ namespace Bankom
 
         private void frmPrint_Load(object sender, EventArgs e)
         {
+            this.FormBorderStyle = FormBorderStyle.None;
             statusPrint.Visible = false;
             string[] separators = new[] { "," };
             string putanja = "";                

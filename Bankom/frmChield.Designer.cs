@@ -68,7 +68,7 @@
             // 
             this.OOperacija.AutoSize = true;
             this.OOperacija.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OOperacija.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OOperacija.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OOperacija.ForeColor = System.Drawing.Color.IndianRed;
             this.OOperacija.Location = new System.Drawing.Point(12, 10);
             this.OOperacija.Name = "OOperacija";
@@ -290,7 +290,7 @@
             // 
             this.btnZad.FlatAppearance.BorderSize = 0;
             this.btnZad.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnZad.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnZad.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZad.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnZad.Location = new System.Drawing.Point(133, 3);
             this.btnZad.Name = "btnZad";
@@ -304,7 +304,7 @@
             // 
             this.btnSled.FlatAppearance.BorderSize = 0;
             this.btnSled.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSled.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSled.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSled.Location = new System.Drawing.Point(107, 3);
             this.btnSled.Name = "btnSled";
             this.btnSled.Size = new System.Drawing.Size(33, 23);
@@ -326,7 +326,7 @@
             // 
             this.btnPred.FlatAppearance.BorderSize = 0;
             this.btnPred.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPred.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPred.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPred.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnPred.Location = new System.Drawing.Point(49, 3);
             this.btnPred.Name = "btnPred";
@@ -340,7 +340,7 @@
             // 
             this.btnPrvi.FlatAppearance.BorderSize = 0;
             this.btnPrvi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrvi.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrvi.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrvi.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnPrvi.Location = new System.Drawing.Point(21, 3);
             this.btnPrvi.Name = "btnPrvi";
@@ -389,7 +389,7 @@
             this.Controls.Add(this.limedok);
             this.Controls.Add(this.OOperacija);
             this.Controls.Add(this.statusStrip1);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;

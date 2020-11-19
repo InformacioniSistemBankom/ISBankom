@@ -223,7 +223,7 @@
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.MidnightBlue;
             this.button1.FlatAppearance.BorderSize = 3;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("TimesRoman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.button1.Location = new System.Drawing.Point(33, 417);
             this.button1.Name = "button1";
@@ -239,7 +239,7 @@
             this.izmena.FlatAppearance.BorderColor = System.Drawing.Color.MidnightBlue;
             this.izmena.FlatAppearance.BorderSize = 3;
             this.izmena.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.izmena.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.izmena.Font = new System.Drawing.Font("TimesRoman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.izmena.ForeColor = System.Drawing.Color.MidnightBlue;
             this.izmena.Location = new System.Drawing.Point(189, 417);
             this.izmena.Name = "izmena";
@@ -255,7 +255,7 @@
             this.rucnilot.FlatAppearance.BorderColor = System.Drawing.Color.MidnightBlue;
             this.rucnilot.FlatAppearance.BorderSize = 3;
             this.rucnilot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rucnilot.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rucnilot.Font = new System.Drawing.Font("TimesRoman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rucnilot.ForeColor = System.Drawing.Color.MidnightBlue;
             this.rucnilot.Location = new System.Drawing.Point(339, 417);
             this.rucnilot.Name = "rucnilot";
@@ -270,7 +270,7 @@
             this.prekid.FlatAppearance.BorderColor = System.Drawing.Color.MidnightBlue;
             this.prekid.FlatAppearance.BorderSize = 3;
             this.prekid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.prekid.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prekid.Font = new System.Drawing.Font("TimesRoman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.prekid.ForeColor = System.Drawing.Color.MidnightBlue;
             this.prekid.Location = new System.Drawing.Point(514, 417);
             this.prekid.Name = "prekid";

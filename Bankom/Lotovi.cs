@@ -68,6 +68,7 @@ namespace Bankom
         private void Lotovi_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.None;
 
 
         }
@@ -75,6 +76,7 @@ namespace Bankom
         private void button1_Click(object sender, EventArgs e)
         {
             NoviLot noviLot = new NoviLot();
+            noviLot.FormBorderStyle = FormBorderStyle.None;
 
             noviLot.Show();
 
@@ -144,6 +146,7 @@ namespace Bankom
             {
                 string cellValue = dataGridViewPaging1.DataGridView.Rows[dataGridViewPaging1.DataGridView.CurrentCell.RowIndex].Cells[0].Value.ToString();
                 NoviLot nl = new NoviLot(dataGridViewPaging1.DataGridView.Rows[dataGridViewPaging1.DataGridView.CurrentCell.RowIndex]);
+                nl.FormBorderStyle = FormBorderStyle.None;
                 nl.Show();
             }
 
