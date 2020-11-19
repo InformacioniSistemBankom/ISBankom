@@ -1500,7 +1500,7 @@ namespace Bankom
 
         private void IzvestajiIzStabla_Click(object sender, EventArgs e)
         {
-            string b = "Izvestaj";
+            string b = "Izvestaji";
 
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
@@ -3021,7 +3021,7 @@ namespace Bankom
                     if (Program.imeFirme == "Bankom" || Program.imeFirme == "Feedmix")
                     {
                         KojiIzvestaj = "KalkulacijaUlazaSaTroskovima";
-                        Program.Parent.ShowNewForm("Izvestaji", 1, KojiIzvestaj, -1, "", "", "I", "", "");
+                        Program.Parent.ShowNewForm("Izvestaj", 1, KojiIzvestaj, -1, "", "", "I", "", "");
                         novaforma = Program.Parent.ActiveMdiChild;
                         pb = (Field)novaforma.Controls["BrDok"];
                         if (pb != null)
@@ -3233,7 +3233,7 @@ namespace Bankom
             char slovo;
             if (s == "Dokumenta" || s == "Komitenti" || s == "Artikli" || s == "OrganizacionaStruktura")
                 slovo = 'S';
-            else if (s == "Izvestaji")
+            else if (s == "Izvestaj")
                 slovo = 'I';
             else if (s == "KlasifikacijaOrgStrukture" || s == "KlasifikacijaArtikla" || s == "KlasifikacijaKomitenata" || s == "KlasifikacijaDokumenata"
                 || s == "KlasifikacijaIzvestaja" || s == "KlasifikacijaMenija" || s == "KlasifikacijaPomocnihSifarnika")
@@ -3271,8 +3271,8 @@ namespace Bankom
             else if (s == "KlasifikacijaIzvestaja")
             {
                 pomStablo = "IzvestajStablo";
-                pomIzv = "Izvestaji";
-                return "Izvestaji";
+                pomIzv = "Izvestaj";
+                return "Izvestaj";
             }
             else if (s == "KlasifikacijaMenija")
             {
@@ -3353,7 +3353,7 @@ namespace Bankom
                     SrediFormu();
                     break;
                 case "Dokumenta":
-                case "Izvestaji":
+                case "Izvestaj":
                 case "OsnovniSifarnici":
                 case "PomocniSifarnici":
                 case "Artikli":

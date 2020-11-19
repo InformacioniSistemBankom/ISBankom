@@ -132,7 +132,7 @@ namespace Bankom.Class
                     }
                 }
 
-                if (KojeStablo == "Izvestaji")
+                if (KojeStablo == "Izvestaj")
                 {
                     JavniNaziv = ti.Rows[i]["BrDok"].ToString() + "-" + ti.Rows[i]["NazivJavni"].ToString();
                 }
@@ -203,7 +203,7 @@ namespace Bankom.Class
                 {
                     if (Convert.ToInt32(tv.SelectedNode.Tag) > 1)
                     {
-                        if (MojeStablo == "Izvestaji")
+                        if (MojeStablo == "Izvestaj")
                         {
 
                             //string pravoime = tv.SelectedNode.Name.Substring(4);
