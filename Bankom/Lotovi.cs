@@ -22,6 +22,10 @@ namespace Bankom
             dataGridViewPaging1.RequestQueryData += DataGridViewPaging_RequestQueryData;
             dataGridViewPaging1.Initialize(count());
             innerReference = this;
+            innerReference.FormBorderStyle = FormBorderStyle.None;
+            
+            
+            
 
 
         }
@@ -67,7 +71,7 @@ namespace Bankom
 
         private void Lotovi_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
+            //this.WindowState = FormWindowState.Maximized;
             this.FormBorderStyle = FormBorderStyle.None;
 
 
@@ -99,7 +103,43 @@ namespace Bankom
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            if (dataGridViewPaging1.DataGridView.CurrentCell.RowIndex > -1)
+            {
+                int idLot;
+                using (SqlConnection sqlConnection = new SqlConnection(Program.connectionString))
+                {
+                    sqlConnection.Open();
+                    using (var command = sqlConnection.CreateCommand())
+                    {
 
+                        command.CommandText = "SELECT id_Lot FROM Lot where barkod ='" + dataGridViewPaging1.DataGridView.Rows[dataGridViewPaging1.DataGridView.CurrentCell.RowIndex].Cells[0].Value.ToString() + "'";
+                        var reader = command.ExecuteScalar();
+                        idLot = Convert.ToInt32(reader);
+
+                    }
+
+                }
+
+
+
+                       string ime = "Lot";
+                       string naslov = "print - " + ime;
+                    
+                        frmPrint fs = new frmPrint();
+                        fs.FormBorderStyle = FormBorderStyle.None;
+                        fs.BackColor = System.Drawing.Color.SeaShell;
+                        fs.MdiParent = this.MdiParent;
+                        fs.Text = naslov;
+                        fs.LayoutMdi(MdiLayout.TileVertical);
+                        fs.imefajla = ime;
+                        fs.intCurrentdok = idLot;
+                        fs.kojiprint = "lot";
+                        fs.Show();
+                        BankomMDI pom = (BankomMDI)this.MdiParent;
+                        pom.addFormTotoolstrip1(fs,naslov);
+
+                  
+            }
         }
 
         private void label1_Click_1(object sender, EventArgs e)
@@ -149,6 +189,11 @@ namespace Bankom
                 nl.FormBorderStyle = FormBorderStyle.None;
                 nl.Show();
             }
+
+        }
+
+        private void Lotovi_FormClosed(object sender, FormClosedEventArgs e)
+        {
 
         }
     }

@@ -44,8 +44,8 @@ namespace Bankom
                 baza = "";
             else
                 baza = Program.NazivBaze;
-           if (kojiprint == "rpt")
-           {
+            if (kojiprint == "rpt")
+            {
                 if (kojinacin == "")
                 {
                     if (string.IsNullOrEmpty(Program.param)) { }
@@ -61,7 +61,8 @@ namespace Bankom
                     }
                 }
             }
-           else
+           
+            else
             {
                 ParamZaStampu += "&id=" + mid;
             }
@@ -79,6 +80,9 @@ namespace Bankom
                //     putanja = "http://BankomW/ReportServer/Pages/ReportViewer.aspx?/Izvestaji/rpt" + imefajla + "&rs:Command=Render";
                     //putanja = "http://bankomw/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprnKonacniRacun&rs:Command=Render";
                //     putanja = "http://bankomw/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2frpt" + imefajla + "&rs:Command=Render" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + "&id=" + intCurrentdok;
+                    break;
+                case "lot":
+                    putanja = "http://192.168.1.4/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprnLot" + "&rs:Command=Render" + "&id_lot=" + intCurrentdok;
                     break;
                 case "sif":
                     putanja = "http://192.168.1.4/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fsif" + imefajla + "&rs:Command=Render";
