@@ -215,6 +215,7 @@ namespace Bankom.Class
                     pom = true;
                     MessageBox.Show("Već je otvorena ova forma!");
                     f.Focus();
+                    mdi.updateToolStrip(s);
                     break;
                 }
             }
@@ -248,18 +249,23 @@ namespace Bankom.Class
             switch (s)
             {
                 case "Lotovi":
-                    Lotovi lotovi = new Lotovi();
-                    lotovi.FormBorderStyle = FormBorderStyle.None;
-                    lotovi.Text = "Lotovi";
-                    lotovi.MdiParent = mdi;
+                    if (!IsOpen(s))
+                    {
+                        Lotovi lotovi = new Lotovi();
+                        lotovi.FormBorderStyle = FormBorderStyle.None;
+                        lotovi.Text = "Lotovi";
+                        lotovi.MdiParent = mdi;
+                        lotovi.Dock = DockStyle.Fill;
 
+                        // mdi.WindowState = FormWindowState.Maximized;
+                        if (mdi.IzborJezika.Text == "Српски-Ћирилица") { lotovi.Text = mdi.VratiCirlilicu("Lotovi"); }
+                        int sirina = (mdi.Width / 100) * 10;
+                        mdi.addFormTotoolstrip1(lotovi, "Lotovi");
+                        mdi.updateToolStrip(s);
+                        lotovi.Show();
+                        mdi.SrediFormu();
 
-                mdi.WindowState = FormWindowState.Maximized;
-                    if (mdi.IzborJezika.Text == "Српски-Ћирилица") { lotovi.Text = mdi.VratiCirlilicu("Lotovi"); }
-                    int sirina = (mdi.Width / 100) * 10;
-                    mdi.addFormTotoolstrip1(lotovi, "Lotovi");
-                    lotovi.Show();
-                  
+                    }
                     break;
                 case "Dokumenta":
                 case "Izvestaj":
