@@ -259,7 +259,7 @@ namespace Bankom.Class
                     int sirina = (mdi.Width / 100) * 10;
                     mdi.addFormTotoolstrip1(lotovi, "Lotovi");
                     lotovi.Show();
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "Dokumenta":
                 case "Izvestaj":
@@ -285,7 +285,7 @@ namespace Bankom.Class
                         mdi.ShowNewForm(s, 1, s, 1, "", "", slovo.ToString(), "", "TreeView");
                     }
 
-                 //mdi.SrediFormu();
+                  
 
                     break;
                 //28.10.2020. Ivana
@@ -305,15 +305,15 @@ namespace Bankom.Class
                         clsObradaOsnovnihSifarnika co0 = new clsObradaOsnovnihSifarnika();
                         mdi.ShowNewForm(SkiniKlasifikaciju(s), 1, SkiniKlasifikaciju(s), 1, "", "", slovo.ToString(), "", "TreeView");
                     }
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "KadroviIOrganizacionaStruktura":                                                   //"DodeljivanjeUlogeKorisniku":
                     mdi.ShowNewForm("", 1, "KadroviIOrganizacionaStruktura", 1, "", "", "P", "", "");
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "Dozvole":
                     mdi.ShowNewForm("", 1, "Dozvole", 1, "", "", "P", "", "");
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "PreuzimanjeKursneListe":
                     KursnaLista kl = new KursnaLista();
@@ -325,7 +325,7 @@ namespace Bankom.Class
                     kl.FormBorderStyle = FormBorderStyle.None;
                     mdi.addFormTotoolstrip1(kl, "Preuzimanje Kursne Liste");
 
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "Prenosi":
                     Form activeChild = mdi.ActiveMdiChild;
@@ -334,19 +334,19 @@ namespace Bankom.Class
                     {
                         activeChild.Hide();
                     }
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "PlacanjeRateKredita":                                           //"PreuzimanjeRateKredita"
                     Preuzimanja.PreuzimanjeRateKredita();
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "PreuzimanjeManjkovaIViskova":
                     Preuzimanja.PreuzimanjeManjkovaIViskova();
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "PreuzimanjeUplata":                                             //"PreuzimanjeManjkovaIViskova"
                     Preuzimanja.PreuzimanjeUplataKupacaIzBanaka();
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "PrenosNalogaZaPlacanje":
                     //clsPreuzimanja cp = new clsPreuzimanja();//BORKA
@@ -357,7 +357,7 @@ namespace Bankom.Class
 
                     //string vrati = cp.PrepisiNaloge(DatOd.ToShortDateString(), TekuciRacun); //BORKA
                     MessageBox.Show("Zavrseno!!");
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "PreuzimanjeIzvodaIzBanaka":
                     clsPreuzimanja cp = new clsPreuzimanja();
@@ -372,7 +372,7 @@ namespace Bankom.Class
                     childForm.IdDokView = Convert.ToInt32(strPreuzimanjePlacanja.Split(separators)[2]);
                     childForm.KojiPrepis = strPreuzimanjePlacanja.Split(separators)[3];
                     childForm.Show();
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "PrepisPlacanjaIUplataUIzvod":    /// stari je bio ovaj naziv -> "PrepisNaplataIPlacanjaUIzvod" Ivana
                     clsOperacije co = new clsOperacije();
@@ -400,7 +400,7 @@ namespace Bankom.Class
                     }
                     MessageBox.Show("Zavrseno!!");
 
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "FormiranjePPPPDzaPlate":
                     DateTime d = DateTime.Now;
@@ -448,13 +448,13 @@ namespace Bankom.Class
                     mdi.toolStrip1.Items.Add(itemB);
                     mdi.toolStrip1.Items.Add(itemnsep);
                     mdi.LayoutMdi(MdiLayout.TileVertical);
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "PreuzimanjePlata":                               //"UvozPlataUPlacanje"
                     clsXmlPlacanja cls = new clsXmlPlacanja();
                     cls.izborPlacanja(3, "");
 
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "Prevoz":
                     DateTime d1 = DateTime.Now;
@@ -498,7 +498,7 @@ namespace Bankom.Class
                     mdi.toolStrip1.Items.Add(itemnsep1);
                     mdi.LayoutMdi(MdiLayout.TileVertical);
 
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "Nagrade":
                     DateTime d2 = DateTime.Now;
@@ -542,12 +542,12 @@ namespace Bankom.Class
                     mdi.toolStrip1.Items.Add(itemnsep2);
                     mdi.LayoutMdi(MdiLayout.TileVertical);
 
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "UvozPrevozaUPlacanje":
                     clsXmlPlacanja cls2 = new clsXmlPlacanja();
                     cls2.izborPlacanja(4, "");
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "PrenosiZaProdajnaMesta":
                     Prenosi childForm1 = new Prenosi();
@@ -556,23 +556,23 @@ namespace Bankom.Class
 
                     // childForm.WindowState = FormWindowState.Maximized;
                     childForm1.Show();
-                   ////mdi.SrediFormu();
+                   // 
                     break;
                 case "FaktureRecepcijeZaOdabraneDatume":
                     Preuzimanja.FaktureRecepcijeZaOdabraneDatume();
-                   ////mdi.SrediFormu();
+                   // 
                     break;
                 case "FaktureRestoranaZaOdabraneDatume":
                     Preuzimanja.FaktureRestoranaZaOdabraneDatume();
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "Razduzenjesirovinaminibar":
                     Preuzimanja.RazduzenjeSirovinaMiniBar();
-                   ////mdi.SrediFormu();
+                   // 
                     break;
                 case "Razduzenjesirovinazaodabraniintervaldatuma":
                     Preuzimanja.RazduzenjeSirovinaZaOdabraniIntervalDatuma();
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "KursnaListaZaCeluGodinu":
                     string GodinaKursa = "";
@@ -659,7 +659,7 @@ namespace Bankom.Class
 
 
                     }
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "PopunjavanjeTabeleDatuma":
                     string GodinaDatuma = "";
@@ -688,19 +688,19 @@ namespace Bankom.Class
                             else MessageBox.Show("Vec je unesena godina!!!");
                         }
                     }
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "ProcesiranjeDnevnogiIzvestaja":
 
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "ProcesiranjeBrutoBilansa":
 
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "SpisakDokumenata":
                     mdi.ShowNewForm(" ", 1, "SpisakDokumenata", 1, "", "", "I", "", ""); //SpisakDokumenata
-                   ////mdi.SrediFormu();
+                   // 
                     break;
                 case "ZatvaranjeStanjaPoLotu":
                     clsZatvaranjeIOtvaranjeStanja c = new clsZatvaranjeIOtvaranjeStanja();
@@ -709,7 +709,7 @@ namespace Bankom.Class
                         MessageBox.Show("Uspešno završeno!");
                     else
                         MessageBox.Show("Nije uspelo zatvaranje stanja po lot-u!");
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "PocetakGodine":
                     clsZatvaranjeIOtvaranjeStanja c1 = new clsZatvaranjeIOtvaranjeStanja();
@@ -718,7 +718,7 @@ namespace Bankom.Class
                         MessageBox.Show("Uspešno završeno!");
                     else
                         MessageBox.Show("Neuspešno!");
-                 //mdi.SrediFormu();
+                  
                     break;
                 case "UsaglasavanjeRobeIFinansija":
                     clsKorekcija k = new clsKorekcija();
@@ -728,7 +728,7 @@ namespace Bankom.Class
                     else
                         MessageBox.Show("Nije uspelo usaglašavanje robe i finansija!");
 
-                   ////mdi.SrediFormu();
+                   // 
                     break;
 
                     //case "Dozvole":
