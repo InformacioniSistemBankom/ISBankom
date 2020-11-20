@@ -96,6 +96,13 @@ namespace Bankom
 
                 SrediFormu();
             }
+            updateToolStrip(imedokumenta);
+        
+
+
+        }
+        public void updateToolStrip(string imedokumenta)
+        {
             int a = toolStrip1.Items.Count;
 
             for (int i = 0; i < a; i++)
@@ -106,9 +113,6 @@ namespace Bankom
                     toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
             }
-
-
-
         }
         public bool DalijevecOtvoren(string dokumentje, string brojdokumenta, string imedokumenta)
         {
@@ -3341,12 +3345,13 @@ namespace Bankom
                     lotovi.FormBorderStyle = FormBorderStyle.None;
                     lotovi.Text = "Lotovi";
                     lotovi.MdiParent = this;
-                   
-                  
-                    this.WindowState = FormWindowState.Maximized;
+                
+                    lotovi.Dock = DockStyle.Fill;
+                    
                    if (IzborJezika.Text == "Српски-Ћирилица") { lotovi.Text = VratiCirlilicu("Lotovi"); }
                     int sirina = (Width / 100) * 10;
                     addFormTotoolstrip1(lotovi, "Lotovi");
+                    updateToolStrip("Lotovi");
                     lotovi.Show();
                     SrediFormu();
                     break;
