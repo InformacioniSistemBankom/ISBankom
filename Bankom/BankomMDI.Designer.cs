@@ -598,7 +598,6 @@ namespace Bankom
             // 
             // printToolStripMenuItem
             // 
-            this.printToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripMenuItem.Image")));
             this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
             this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
@@ -923,7 +922,7 @@ namespace Bankom
             // unospb
             // 
             this.unospb.Name = "unospb";
-            this.unospb.Size = new System.Drawing.Size(259, 22);
+            this.unospb.Size = new System.Drawing.Size(248, 22);
             this.unospb.Text = "Unos podbroja dokumenta";
             this.unospb.ToolTipText = "Unos podbroja dokumenta";
             this.unospb.Click += new System.EventHandler(this.unospb_Click);
@@ -1030,7 +1029,7 @@ namespace Bankom
             this.toolStripTextBox1.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripTextBox1.Name = "toolStripTextBox1";
             this.toolStripTextBox1.Size = new System.Drawing.Size(200, 43);
-            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
+            //this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             // 
             // toolStripSeparator13
             // 
@@ -1593,7 +1592,6 @@ namespace Bankom
         private System.Windows.Forms.ToolStripButton Oorigin;
         private System.Windows.Forms.ToolStripButton Ppredlogcena;
         public System.Windows.Forms.ToolStrip ToolBar;
-        private System.Windows.Forms.ToolStrip toolStrip1;
         internal System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         internal System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripLabel KrajRada;
@@ -1628,7 +1626,6 @@ namespace Bankom
         private System.Windows.Forms.ToolStripMenuItem asdefgToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sdfgghToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem esfredstgrfdToolStripMenuItem;
-        private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator21;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator34;
@@ -1660,6 +1657,8 @@ namespace Bankom
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator18;
         public System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.ToolStrip toolStrip1;
+        public System.Windows.Forms.MenuStrip menuStrip1;
     }
 }
 
