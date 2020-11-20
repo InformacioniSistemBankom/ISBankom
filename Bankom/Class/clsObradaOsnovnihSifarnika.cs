@@ -273,7 +273,7 @@ namespace Bankom.Class
 
             control.DataSource = docref.ShowPage(forma, 1, tg);
 
-            sss = "Select DISTINCT TUD from Recnikpodataka WHERE  Dokument = @param0  And TabelaVview='" + Program.imegrida.Substring(4) + "'";
+            sss = "Select DISTINCT TUD from RecnikPodataka WHERE  Dokument = @param0  And TabelaVview='" + Program.imegrida.Substring(4) + "'";
             Console.WriteLine(sss);
             DataTable t1 = db.ParamsQueryDT(sss, NazivKlona);
             string TUD = t1.Rows[0]["TUD"].ToString();

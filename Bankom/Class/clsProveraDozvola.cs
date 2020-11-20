@@ -32,6 +32,7 @@ namespace Bankom.Class
             Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
         
 
+
             if (pdokument.Trim() == "")
             {
                 return false;
@@ -130,14 +131,16 @@ namespace Bankom.Class
                             Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
                             Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
 
-
+                            Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
+                            Program.Parent.ToolBar.Items["Ssort"].Visible = true;
                         }
                         else
                         {
                             Program.Parent.ToolBar.Items["Sstorno"].Enabled = false;
                             Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
                             Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
-
+                            Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
+                            Program.Parent.ToolBar.Items["Ssort"].Visible = true;
                         }
                     }
                 }       
@@ -147,6 +150,8 @@ namespace Bankom.Class
                     Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
                     Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
                     Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
+                    Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
+                    Program.Parent.ToolBar.Items["Ssort"].Visible = true;
 
                 }
                 else
@@ -154,6 +159,8 @@ namespace Bankom.Class
                     Program.Parent.ToolBar.Items["Iizmena"].Enabled = false;
                     Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
                     Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
+                    Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
+                    Program.Parent.ToolBar.Items["Ssort"].Visible = true;
 
                 }
 
@@ -204,6 +211,8 @@ namespace Bankom.Class
                         Program.Parent.ToolBar.Items["Kknjzi"].Visible = true;
                         Program.Parent.ToolBar.Items["Kknjzi"].Enabled = true;
                         Program.Parent.ToolBar.Items["toolstripseparator20"].Visible = true;
+                        Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
+                        Program.Parent.ToolBar.Items["Ssort"].Visible = true;
 
 
                     }
@@ -213,6 +222,8 @@ namespace Bankom.Class
                        // Program.Parent.ToolBar.Items["toolstripseparator9"].Visible = false;
                         Program.Parent.ToolBar.Items["OOdobri"].Enabled = false;
                         Program.Parent.ToolBar.Items["toolstripseparator37"].Visible = false;
+                        Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
+                        Program.Parent.ToolBar.Items["Ssort"].Visible = true;
 
                     }
                     else                                      ///KORISNIK IMA PRAVO DA MENJA STATUS DOKUMENTA OMOGUCAVAMO BUTTON ZA PROMENU STATUSA
@@ -220,6 +231,8 @@ namespace Bankom.Class
                         Program.Parent.ToolBar.Items["Oodobri"].Visible = true;
                         Program.Parent.ToolBar.Items["OOdobri"].Enabled = true;
                         Program.Parent.ToolBar.Items["toolstripseparator37"].Visible = true;
+                        Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
+                        Program.Parent.ToolBar.Items["Ssort"].Visible = true;
 
                     }
 
@@ -239,7 +252,9 @@ namespace Bankom.Class
                                  Program.Parent.ToolBar.Items["Iizmena"].Enabled = false;
                                  Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = false;
                                  Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
-                               ///// promenjeno na True da bi se mogao izabrati UNOS iako je podignut proknjizen dokument
+                                Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
+                                Program.Parent.ToolBar.Items["Ssort"].Visible = true;
+                                ///// promenjeno na True da bi se mogao izabrati UNOS iako je podignut proknjizen dokument
                                 if (form1.Controls["Ooperacija"].Text == "Unos")
                                  {
                                     pStatus = "1";                             ///// vracamo status da nije proknjizen
@@ -250,7 +265,9 @@ namespace Bankom.Class
                                  Program.Parent.ToolBar.Items["Iizmena"].Enabled = false;
                                  Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = false;
                                  Program.Parent.ToolBar.Items["Uunos"].Enabled = false;
-                            
+                                Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
+                                Program.Parent.ToolBar.Items["Ssort"].Visible = true;
+
                             }
                     }
                 }
@@ -265,6 +282,8 @@ namespace Bankom.Class
                                 Program.Parent.ToolBar.Items["Pplati"].Visible = true;
                                 Program.Parent.ToolBar.Items["Pplati"].Enabled = true;
                                 Program.Parent.ToolBar.Items["toolstripseparator43"].Visible = true;
+                                Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
+                                Program.Parent.ToolBar.Items["Ssort"].Visible = true;
 
                             }
 
@@ -274,6 +293,8 @@ namespace Bankom.Class
                                // Program.Parent.ToolBar.Items["toolstripseparator9"].Visible = false;
                                 Program.Parent.ToolBar.Items["Pplati"].Enabled = false;
                                 Program.Parent.ToolBar.Items["toolstripseparator43"].Visible = false;
+                                Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
+                                Program.Parent.ToolBar.Items["Ssort"].Visible = true;
 
                             }
                             break;
@@ -356,6 +377,8 @@ namespace Bankom.Class
                 }
                 else   //// DOKUMENTJE<>"D"
                 {
+                    Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
+                    Program.Parent.ToolBar.Items["Ssort"].Visible = true;
                     if (DokumentJe == "S" && dokument == "Dokumenta")
                     {
                         if (idstablo == "32" || idstablo == "38" || idstablo == "300")

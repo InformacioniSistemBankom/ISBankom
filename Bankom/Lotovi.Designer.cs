@@ -44,7 +44,7 @@
             this.Insert.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Insert.ForeColor = System.Drawing.Color.MidnightBlue;
             this.Insert.Location = new System.Drawing.Point(76, 27);
-            this.Insert.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Insert.Margin = new System.Windows.Forms.Padding(2);
             this.Insert.Name = "Insert";
             this.Insert.Size = new System.Drawing.Size(90, 33);
             this.Insert.TabIndex = 1;
@@ -59,7 +59,7 @@
             this.button2.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.MidnightBlue;
             this.button2.Location = new System.Drawing.Point(170, 27);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(90, 33);
             this.button2.TabIndex = 2;
@@ -74,7 +74,7 @@
             this.button3.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.MidnightBlue;
             this.button3.Location = new System.Drawing.Point(264, 27);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(102, 33);
             this.button3.TabIndex = 3;
@@ -88,7 +88,7 @@
             this.button1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.button1.Location = new System.Drawing.Point(370, 27);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(99, 33);
             this.button1.TabIndex = 4;
@@ -98,10 +98,11 @@
             // 
             // pretraga
             // 
+            this.pretraga.BackColor = System.Drawing.Color.AliceBlue;
             this.pretraga.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pretraga.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.pretraga.ForeColor = System.Drawing.Color.Black;
             this.pretraga.Location = new System.Drawing.Point(763, 31);
-            this.pretraga.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pretraga.Margin = new System.Windows.Forms.Padding(2);
             this.pretraga.Name = "pretraga";
             this.pretraga.Size = new System.Drawing.Size(251, 24);
             this.pretraga.TabIndex = 5;
@@ -116,6 +117,7 @@
             this.dataGridViewPaging1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridViewPaging1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.dataGridViewPaging1.Location = new System.Drawing.Point(74, 74);
+            this.dataGridViewPaging1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridViewPaging1.MaxRecords = 27;
             this.dataGridViewPaging1.Name = "dataGridViewPaging1";
             this.dataGridViewPaging1.Size = new System.Drawing.Size(940, 496);
@@ -138,7 +140,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SeaShell;
+            this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(1045, 657);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewPaging1);
@@ -148,7 +150,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.Insert);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Lotovi";
             this.Text = "Lotovi";
             this.Load += new System.EventHandler(this.Lotovi_Load);

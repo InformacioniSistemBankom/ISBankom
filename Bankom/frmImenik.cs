@@ -19,20 +19,28 @@ namespace Bankom
         }
         public string connectionString = Program.connectionString;
 
+        DataBaseBroker db = new DataBaseBroker();
 
+        DataTable dt = new DataTable();
 
-        private void frmImenik_Load(object sender, EventArgs e)
+        private void PuniCmb()
         {
+            string query = "select distinct NazivZemlje from Zemlja where CCopy = 0";
 
+            
+            var dt = db.ReturnDataReader(query);
+            while (dt.Read())
+            {
+                tbDrzava.Items.Add(dt[0]);
 
+            }
+          
 
         }
 
         private void PuniDgrid()
         {
-            SqlConnection cnn = new SqlConnection(connectionString);
-
-            cnn.Open();
+            
 
             string pom = textBox1.Text;
 
@@ -40,11 +48,9 @@ namespace Bankom
             string query = "Select CeloIme, Firma, Posao, E_mail,Napomene, Pejdzer, Adresa, Mesto, Drzava from [Imenik] where [CeloIme] like @param0 or [Firma] like @param0  or [Posao] like @param0 or [E_mail] like @param0 or [Napomene] like @param0 or [Pejdzer] like @param0 or [Drzava] like @param0 or [Mesto] like @param0 or [Adresa] like @param0 ";
 
 
-            DataBaseBroker db = new DataBaseBroker();
-
-            DataTable dt = new DataTable();
+           
             dt = db.ParamsQueryDT(query, "%" + pom + "%");
-            Console.WriteLine(dt.Rows.Count);
+       
 
             dataGridView1.DataSource = dt;
 
@@ -72,9 +78,6 @@ namespace Bankom
             }
 
 
-
-
-            cnn.Close();
 
 
         }
@@ -84,9 +87,7 @@ namespace Bankom
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection cnn = new SqlConnection(connectionString);
-
-            cnn.Open();
+           
 
             string pom = textBox1.Text;
 
@@ -94,11 +95,9 @@ namespace Bankom
             string query = "Select CeloIme, Firma, Posao, E_mail,Napomene, Pejdzer, Adresa, Mesto, Drzava from [Imenik] where [CeloIme] like @param0 or [Firma] like @param0  or [Posao] like @param0 or [E_mail] like @param0 or [Napomene] like @param0 or [Pejdzer] like @param0 or [Drzava] like @param0 or [Mesto] like @param0 or [Adresa] like @param0 ";
 
 
-            DataBaseBroker db = new DataBaseBroker();
-
-            DataTable dt = new DataTable();
+            
             dt = db.ParamsQueryDT(query, "%" + pom + "%");
-            Console.WriteLine(dt.Rows.Count);
+        
 
             dataGridView1.DataSource = dt;
 
@@ -125,10 +124,6 @@ namespace Bankom
 
             }
 
-
-
-
-            cnn.Close();
 
 
         }
@@ -140,9 +135,7 @@ namespace Bankom
                 if (MessageBox.Show("Da li sigurno želite da obrišete podatke? ", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
 
-                    SqlConnection cnn = new SqlConnection(connectionString);
-
-                    cnn.Open();
+                    
 
                     string ime = tbIme.Text;
                     string firma = tbFirma.Text;
@@ -150,18 +143,11 @@ namespace Bankom
 
                     string query = "delete from [Imenik] where [CeloIme]=@param0 or [Firma]=@param1";
 
-                    DataBaseBroker db = new DataBaseBroker();
-
-                    DataTable dt = new DataTable();
                     dt = db.ParamsQueryDT(query, ime, firma);
-                    Console.WriteLine(dt.Rows.Count);
+                  
 
                     dataGridView1.DataSource = dt;
 
-
-                
-                    
-                    cnn.Close();
 
                 
                     tbIme.Text = "";
@@ -193,13 +179,7 @@ namespace Bankom
                 {
 
 
-
-
-                    SqlConnection cnn = new SqlConnection(connectionString);
-
-                    cnn.Open();
-
-
+                   
                     string ime = tbIme.Text;
                     string firma = tbFirma.Text;
                     string broj = tbBroj.Text;
@@ -214,16 +194,12 @@ namespace Bankom
 
                     string query = "UPDATE [Imenik] SET  [Firma]=@param0, [Posao]=@param1, [E_mail]=@param2, [Napomene]=@param3, [Pejdzer]=@param4, [Adresa]=@param5, [Mesto]=@param6, [Drzava]= @param7 WHERE [CeloIme] =@param8; ";
 
-                    DataBaseBroker db = new DataBaseBroker();
-
-                    DataTable dt = new DataTable();
+                  
                     dt = db.ParamsQueryDT(query, firma, broj, enail, nap1, nap2, adr, grad, drz, ime);
-                    Console.WriteLine(dt.Rows.Count);
+             
 
                     dataGridView1.DataSource = dt;
-
-               
-                    cnn.Close();
+                    
 
                  
                     tbIme.Text = "";
@@ -278,10 +254,7 @@ namespace Bankom
             }
             else
             {
-                SqlConnection cnn = new SqlConnection(connectionString);
-
-                cnn.Open();
-
+                
 
                 string ime = tbIme.Text;
                 string firma = tbFirma.Text;
@@ -297,17 +270,13 @@ namespace Bankom
                 string query = "INSERT INTO [Imenik] ([CeloIme], [Firma], [Posao], [E_mail], [Napomene], [Pejdzer], [Adresa], [Mesto], [Drzava])" +
                     "VALUES(@param0, @param1, @param2, @param3, @param4, @param5, @param6, @param7, @param8); ";
 
-                DataBaseBroker db = new DataBaseBroker();
-
-                DataTable dt = new DataTable();
+          
                 dt = db.ParamsQueryDT(query, ime, firma, broj, enail, nap1, nap2, adr, grad, drz);
-                Console.WriteLine(dt.Rows.Count);
+             
 
                 dataGridView1.DataSource = dt;
 
-               
-                cnn.Close();
-
+          
               
                 tbIme.Text = "";
                 tbFirma.Text = "";
@@ -324,6 +293,9 @@ namespace Bankom
             PuniDgrid();
         }
 
-
+        private void frmImenik_Load(object sender, EventArgs e)
+        {
+            PuniCmb();
+        }
     }
 }

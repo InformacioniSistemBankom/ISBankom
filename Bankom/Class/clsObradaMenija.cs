@@ -27,7 +27,7 @@ namespace Bankom.Class
             //stil 21.10.2020.
 
       
-         mdi.menuStrip1.BackColor = System.Drawing.Color.SeaShell;
+         mdi.menuStrip1.BackColor = System.Drawing.Color.Snow;
            mdi.menuStrip1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             mdi.menuStrip1.ForeColor = System.Drawing.Color.MidnightBlue;
 
@@ -48,7 +48,7 @@ namespace Bankom.Class
             t.AutoSize = false;
             t.Width = 150;
             t.Height = 50;
-            t.BackColor = Color.SeaShell;
+            t.BackColor = Color.Snow;
             t.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             t.ForeColor = System.Drawing.Color.MidnightBlue;
             //
@@ -74,7 +74,7 @@ namespace Bankom.Class
                 //stil 21.10.2020.
                 t1.TextAlign = ContentAlignment.TopLeft;
                 t1.Height = 70;
-                t1.BackColor = Color.SeaShell;
+                t1.BackColor = Color.Snow;
                 t1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 t1.ForeColor = System.Drawing.Color.MidnightBlue;
                 //
@@ -90,7 +90,7 @@ namespace Bankom.Class
                 //stil 21.10.2020.
                 t1.TextAlign = ContentAlignment.TopLeft;
                 t1.Height = 70;
-                t1.BackColor = Color.SeaShell;
+                t1.BackColor = Color.Snow;
                 t1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 t1.ForeColor = System.Drawing.Color.MidnightBlue;
                 // Dodat separator 27.10.2020. Ivana
@@ -241,6 +241,7 @@ namespace Bankom.Class
         {
             Program.Parent.ToolBar.Items["Uunos"].Visible = true;
             Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
+ 
             string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
             char slovo = UzmiSlovo(s);
             bool postoji;
@@ -270,6 +271,7 @@ namespace Bankom.Class
                 case "OrganizacionaStruktura":
                     Program.Parent.ToolBar.Items["Uunos"].Visible = true;
                     Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
+                  
                     postoji = IsOpen(s);
                     if (postoji == false)
                     {

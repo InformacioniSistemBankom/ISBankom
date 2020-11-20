@@ -141,6 +141,8 @@ namespace Bankom
             this.premestiGrupuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.Iimenik = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
+            this.Ssort = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.Ppotvrda = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
@@ -556,7 +558,7 @@ namespace Bankom
             // 
             // newToolStripMenuItem
             // 
-            this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.MidnightBlue;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
@@ -565,7 +567,7 @@ namespace Bankom
             // 
             // openToolStripMenuItem
             // 
-            this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.MidnightBlue;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
@@ -579,7 +581,7 @@ namespace Bankom
             // 
             // saveToolStripMenuItem
             // 
-            this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.MidnightBlue;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
@@ -598,7 +600,7 @@ namespace Bankom
             // 
             // printToolStripMenuItem
             // 
-            this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.MidnightBlue;
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
             this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
             this.printToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
@@ -607,7 +609,7 @@ namespace Bankom
             // printPreviewToolStripMenuItem
             // 
             this.printPreviewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printPreviewToolStripMenuItem.Image")));
-            this.printPreviewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.printPreviewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.MidnightBlue;
             this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
             this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.printPreviewToolStripMenuItem.Text = "Print Pre&view";
@@ -840,7 +842,7 @@ namespace Bankom
             // 
             // ToolBar
             // 
-            this.ToolBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ToolBar.BackColor = System.Drawing.Color.MidnightBlue;
             this.ToolBar.Font = new System.Drawing.Font("TimesRoman", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolBar.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ToolBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -861,6 +863,8 @@ namespace Bankom
             this.Ggrupisi,
             this.toolStripSeparator14,
             this.Iimenik,
+            this.toolStripSeparator25,
+            this.Ssort,
             this.toolStripSeparator16,
             this.Ppotvrda,
             this.toolStripSeparator18,
@@ -904,7 +908,7 @@ namespace Bankom
             // Uunos
             // 
             this.Uunos.AutoSize = false;
-            this.Uunos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Uunos.BackColor = System.Drawing.Color.MidnightBlue;
             this.Uunos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.unospb});
             this.Uunos.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -952,7 +956,7 @@ namespace Bankom
             // Iizmena
             // 
             this.Iizmena.AutoSize = false;
-            this.Iizmena.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Iizmena.BackColor = System.Drawing.Color.MidnightBlue;
             this.Iizmena.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Iizmena.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Iizmena.Image = ((System.Drawing.Image)(resources.GetObject("Iizmena.Image")));
@@ -1039,7 +1043,7 @@ namespace Bankom
             // Ggrupisi
             // 
             this.Ggrupisi.AutoSize = false;
-            this.Ggrupisi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Ggrupisi.BackColor = System.Drawing.Color.MidnightBlue;
             this.Ggrupisi.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Ggrupisinp,
             this.premestiGrupuToolStripMenuItem});
@@ -1086,6 +1090,25 @@ namespace Bankom
             this.Iimenik.Text = "Imenik";
             this.Iimenik.ToolTipText = "Imenik";
             this.Iimenik.Click += new System.EventHandler(this.Iimenik_Click);
+            // 
+            // toolStripSeparator25
+            // 
+            this.toolStripSeparator25.Name = "toolStripSeparator25";
+            this.toolStripSeparator25.Size = new System.Drawing.Size(6, 43);
+            // 
+            // Ssort
+            // 
+            this.Ssort.AutoSize = false;
+            this.Ssort.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ssort.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Ssort.Image = ((System.Drawing.Image)(resources.GetObject("Ssort.Image")));
+            this.Ssort.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Ssort.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Ssort.Name = "Ssort";
+            this.Ssort.Size = new System.Drawing.Size(60, 40);
+            this.Ssort.Text = "Sort";
+            this.Ssort.ToolTipText = "Sortiraj";
+            this.Ssort.Click += new System.EventHandler(this.Ssort_Click);
             // 
             // toolStripSeparator16
             // 
@@ -1478,7 +1501,8 @@ namespace Bankom
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.SeaShell;
+            this.BackColor = System.Drawing.Color.Snow;
+         
             this.ClientSize = new System.Drawing.Size(1513, 1055);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.button1);
@@ -1659,6 +1683,8 @@ namespace Bankom
         public System.Windows.Forms.Button button1;
         public System.Windows.Forms.ToolStrip toolStrip1;
         public System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator25;
+        private System.Windows.Forms.ToolStripButton Ssort;
     }
 }
 

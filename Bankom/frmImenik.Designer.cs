@@ -46,7 +46,6 @@
             this.btnBrisanje = new System.Windows.Forms.Button();
             this.btnUnos = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.tbDrzava = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -63,6 +62,7 @@
             this.tbEmail = new System.Windows.Forms.TextBox();
             this.tbNapomena1 = new System.Windows.Forms.TextBox();
             this.tbNapomena2 = new System.Windows.Forms.TextBox();
+            this.tbDrzava = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -150,7 +150,9 @@
             // 
             // textBox1
             // 
+            this.textBox1.BackColor = System.Drawing.Color.AliceBlue;
             this.textBox1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.textBox1.Location = new System.Drawing.Point(358, 41);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(311, 24);
@@ -205,14 +207,6 @@
             this.label10.Size = new System.Drawing.Size(63, 18);
             this.label10.TabIndex = 100;
             this.label10.Text = "Dr`ava";
-            // 
-            // tbDrzava
-            // 
-            this.tbDrzava.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDrzava.Location = new System.Drawing.Point(686, 244);
-            this.tbDrzava.Name = "tbDrzava";
-            this.tbDrzava.Size = new System.Drawing.Size(311, 24);
-            this.tbDrzava.TabIndex = 99;
             // 
             // label9
             // 
@@ -304,7 +298,9 @@
             // 
             // tbMesto
             // 
+            this.tbMesto.BackColor = System.Drawing.Color.AliceBlue;
             this.tbMesto.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbMesto.ForeColor = System.Drawing.Color.MidnightBlue;
             this.tbMesto.Location = new System.Drawing.Point(686, 204);
             this.tbMesto.Name = "tbMesto";
             this.tbMesto.Size = new System.Drawing.Size(311, 24);
@@ -312,7 +308,9 @@
             // 
             // tbAdresa
             // 
+            this.tbAdresa.BackColor = System.Drawing.Color.AliceBlue;
             this.tbAdresa.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbAdresa.ForeColor = System.Drawing.Color.MidnightBlue;
             this.tbAdresa.Location = new System.Drawing.Point(686, 160);
             this.tbAdresa.Name = "tbAdresa";
             this.tbAdresa.Size = new System.Drawing.Size(311, 24);
@@ -320,7 +318,9 @@
             // 
             // tbIme
             // 
+            this.tbIme.BackColor = System.Drawing.Color.AliceBlue;
             this.tbIme.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbIme.ForeColor = System.Drawing.Color.MidnightBlue;
             this.tbIme.Location = new System.Drawing.Point(167, 112);
             this.tbIme.Name = "tbIme";
             this.tbIme.Size = new System.Drawing.Size(311, 24);
@@ -328,7 +328,9 @@
             // 
             // tbFirma
             // 
+            this.tbFirma.BackColor = System.Drawing.Color.AliceBlue;
             this.tbFirma.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbFirma.ForeColor = System.Drawing.Color.MidnightBlue;
             this.tbFirma.Location = new System.Drawing.Point(167, 163);
             this.tbFirma.Name = "tbFirma";
             this.tbFirma.Size = new System.Drawing.Size(311, 24);
@@ -336,7 +338,9 @@
             // 
             // tbBroj
             // 
+            this.tbBroj.BackColor = System.Drawing.Color.AliceBlue;
             this.tbBroj.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbBroj.ForeColor = System.Drawing.Color.MidnightBlue;
             this.tbBroj.Location = new System.Drawing.Point(167, 211);
             this.tbBroj.Name = "tbBroj";
             this.tbBroj.Size = new System.Drawing.Size(311, 24);
@@ -344,7 +348,9 @@
             // 
             // tbEmail
             // 
+            this.tbEmail.BackColor = System.Drawing.Color.AliceBlue;
             this.tbEmail.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbEmail.ForeColor = System.Drawing.Color.MidnightBlue;
             this.tbEmail.Location = new System.Drawing.Point(167, 254);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(311, 25);
@@ -352,7 +358,9 @@
             // 
             // tbNapomena1
             // 
+            this.tbNapomena1.BackColor = System.Drawing.Color.AliceBlue;
             this.tbNapomena1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNapomena1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.tbNapomena1.Location = new System.Drawing.Point(167, 300);
             this.tbNapomena1.Name = "tbNapomena1";
             this.tbNapomena1.Size = new System.Drawing.Size(311, 24);
@@ -360,24 +368,38 @@
             // 
             // tbNapomena2
             // 
+            this.tbNapomena2.BackColor = System.Drawing.Color.AliceBlue;
             this.tbNapomena2.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNapomena2.ForeColor = System.Drawing.Color.MidnightBlue;
             this.tbNapomena2.Location = new System.Drawing.Point(686, 112);
             this.tbNapomena2.Name = "tbNapomena2";
             this.tbNapomena2.Size = new System.Drawing.Size(311, 24);
             this.tbNapomena2.TabIndex = 83;
+            // 
+            // tbDrzava
+            // 
+            this.tbDrzava.BackColor = System.Drawing.Color.AliceBlue;
+            this.tbDrzava.CausesValidation = false;
+            this.tbDrzava.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDrzava.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.tbDrzava.FormattingEnabled = true;
+            this.tbDrzava.Location = new System.Drawing.Point(686, 250);
+            this.tbDrzava.Name = "tbDrzava";
+            this.tbDrzava.Size = new System.Drawing.Size(311, 26);
+            this.tbDrzava.TabIndex = 104;
             // 
             // frmImenik
             // 
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SeaShell;
+            this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(1133, 887);
+            this.Controls.Add(this.tbDrzava);
             this.Controls.Add(this.btnIzmena);
             this.Controls.Add(this.btnBrisanje);
             this.Controls.Add(this.btnUnos);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.tbDrzava);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -400,6 +422,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("TimesRoman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.MidnightBlue;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
@@ -430,7 +453,6 @@
         private System.Windows.Forms.Button btnBrisanje;
         private System.Windows.Forms.Button btnUnos;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox tbDrzava;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -447,5 +469,6 @@
         private System.Windows.Forms.TextBox tbEmail;
         private System.Windows.Forms.TextBox tbNapomena1;
         private System.Windows.Forms.TextBox tbNapomena2;
+        private System.Windows.Forms.ComboBox tbDrzava;
     }
 }

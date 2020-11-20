@@ -60,7 +60,7 @@ namespace Bankom
 
 
                 childForm.FormBorderStyle = FormBorderStyle.None;
-                childForm.BackColor = System.Drawing.Color.SeaShell;
+                childForm.BackColor = System.Drawing.Color.Snow;
                 childForm.MdiParent = this;
                 // childForm.BringToFront();
 
@@ -186,7 +186,7 @@ namespace Bankom
 
         public void addFormTotoolstrip1(Form forma, string imedokumenta)
         {
-            this.BackColor = System.Drawing.Color.SeaShell;
+            this.BackColor = System.Drawing.Color.Snow;
             toolStrip1.Visible = true;
             this.Width = Width - 20;
             ToolStripLabel itemn = new ToolStripLabel();
@@ -319,7 +319,7 @@ namespace Bankom
 
             Program.Parent.ToolBar.Items["Uunos"].Visible = true;
             Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
-
+         
 
             this.Text = "IS Bankom";
             addKombo();
@@ -634,7 +634,7 @@ namespace Bankom
                         if (childForm.Text.ToUpper() == b.ToUpper())
                         {
                             childForm.FormBorderStyle = FormBorderStyle.None;
-                            childForm.BackColor = System.Drawing.Color.SeaShell;
+                            childForm.BackColor = System.Drawing.Color.Snow;
                             childForm.Focus();
                             childForm.Activate();
                             //this.ActivateMdiChild(childForm);
@@ -669,7 +669,7 @@ namespace Bankom
 
             Form childForm1 = ActiveMdiChild;
             childForm1.FormBorderStyle = FormBorderStyle.None;
-            childForm1.BackColor = System.Drawing.Color.SeaShell;
+            childForm1.BackColor = System.Drawing.Color.Snow;
             childForm1.Focus();
             childForm1.Visible = false;
             childForm1.Dispose();
@@ -709,7 +709,7 @@ namespace Bankom
 
             Form childForm1 = ActiveMdiChild;
             childForm1.FormBorderStyle = FormBorderStyle.None;
-            childForm1.BackColor = System.Drawing.Color.SeaShell;
+            childForm1.BackColor = System.Drawing.Color.Snow;
             childForm1.Focus();
             childForm1.Visible = false;
             childForm1.Dispose();
@@ -1382,7 +1382,7 @@ namespace Bankom
 
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
             activeChild.FormBorderStyle= FormBorderStyle.None;
-            activeChild.BackColor = System.Drawing.Color.SeaShell;
+            activeChild.BackColor = System.Drawing.Color.Snow;
             DialogResult res = MsgBox.ShowDialog("Tekst pretrage:", "Pretraga", ((Bankom.frmChield)activeChild).toolStripTextFind.Text,
             MsgBox.Icon.Question,
             MsgBox.Buttons.OkCancel,
@@ -1558,7 +1558,7 @@ namespace Bankom
         {
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
             activeChild.FormBorderStyle= FormBorderStyle.None;
-            activeChild.BackColor = System.Drawing.Color.SeaShell;
+            activeChild.BackColor = System.Drawing.Color.Snow;
             DajVrednostPropertija(activeChild);
         }
 
@@ -1604,7 +1604,7 @@ namespace Bankom
 
             Form activeChild = (frmChield)this.ActiveMdiChild;
             activeChild.FormBorderStyle= FormBorderStyle.None;
-            activeChild.BackColor = System.Drawing.Color.SeaShell;
+            activeChild.BackColor = System.Drawing.Color.Snow;
             if (activeChild != null)
             {
 
@@ -1638,7 +1638,7 @@ namespace Bankom
             }
 
             frmPrint fs = new frmPrint();
-            fs.BackColor = System.Drawing.Color.SeaShell;
+            fs.BackColor = System.Drawing.Color.Snow;
             fs.FormBorderStyle= FormBorderStyle.None;
             fs.MdiParent = this;
             fs.Text = "print - " + ime;
@@ -1685,7 +1685,7 @@ namespace Bankom
 
             Form activeChild = (frmChield)this.ActiveMdiChild;
             activeChild.FormBorderStyle= FormBorderStyle.None;
-            activeChild.BackColor = System.Drawing.Color.SeaShell;
+            activeChild.BackColor = System.Drawing.Color.Snow;
             if (activeChild != null)
             {
                 imeDokumenta = ((Bankom.frmChield)activeChild).imedokumenta;
@@ -1723,7 +1723,7 @@ namespace Bankom
             }
 
             frmPrint fs = new frmPrint();
-            fs.BackColor = System.Drawing.Color.SeaShell;
+            fs.BackColor = System.Drawing.Color.Snow;
             fs.FormBorderStyle= FormBorderStyle.None;
             fs.MdiParent = this;
             fs.Text = "print - " + ime;
@@ -1756,7 +1756,7 @@ namespace Bankom
 
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
             activeChild.FormBorderStyle= FormBorderStyle.None;
-            activeChild.BackColor = System.Drawing.Color.SeaShell;
+            activeChild.BackColor = System.Drawing.Color.Snow;
             string c = ((Bankom.frmChield)activeChild).toolStripTexIme.Text;
             string d = ((Bankom.frmChield)activeChild).toolStripTextBroj.Text;
             long f = ((Bankom.frmChield)activeChild).iddokumenta;
@@ -1964,7 +1964,7 @@ namespace Bankom
                 {
                     frmPrint fs = new frmPrint();
                     fs.FormBorderStyle = FormBorderStyle.None;
-                    fs.BackColor = System.Drawing.Color.SeaShell;
+                    fs.BackColor = System.Drawing.Color.Snow;
                     fs.MdiParent = this;
                     fs.Text = naslov;
                     fs.intCurrentdok = Convert.ToInt32(iddok); //id
@@ -2158,7 +2158,7 @@ namespace Bankom
             foreach (Form frm in this.MdiChildren)
             {
                 frm.FormBorderStyle = FormBorderStyle.None;
-                frm.BackColor = System.Drawing.Color.SeaShell;
+                frm.BackColor = System.Drawing.Color.Snow;
 
                 if (!frm.Focused)
                 {
@@ -2329,7 +2329,7 @@ namespace Bankom
         {
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
             activeChild.FormBorderStyle = FormBorderStyle.None;
-            activeChild.BackColor = System.Drawing.Color.SeaShell;
+            activeChild.BackColor = System.Drawing.Color.Snow;
 
             DialogResult res = MsgBox.ShowDialog("Tekst pretrage:", "Pretraga", ((Bankom.frmChield)activeChild).toolStripTextFind.Text,
             MsgBox.Icon.Question,
@@ -2528,7 +2528,7 @@ namespace Bankom
             clsXmlPlacanja cxml = new clsXmlPlacanja();
             cxml.izborPlacanja(2, mg + svrsta);
             frmPrint fs = new frmPrint();
-            fs.BackColor = System.Drawing.Color.SeaShell;
+            fs.BackColor = System.Drawing.Color.Snow;
 
             fs.MdiParent = this;
             fs.Text = "plate-" + mg;
@@ -2574,7 +2574,7 @@ namespace Bankom
             clsXmlPlacanja cxml = new clsXmlPlacanja();
             cxml.izborPlacanja(0, mg);
             frmPrint fs = new frmPrint();
-            fs.BackColor = System.Drawing.Color.SeaShell;
+            fs.BackColor = System.Drawing.Color.Snow;
 
             fs.MdiParent = this;
             fs.Text = "prevoz-" + mg;
@@ -2620,7 +2620,7 @@ namespace Bankom
             clsXmlPlacanja cxml = new clsXmlPlacanja();
             cxml.izborPlacanja(1, mg);
             frmPrint fs = new frmPrint();
-            fs.BackColor = System.Drawing.Color.SeaShell;
+            fs.BackColor = System.Drawing.Color.Snow;
             fs.kojiprint = "nag";
             fs.MdiParent = this;
             fs.Text = "nagrade-" + mg;
@@ -2874,7 +2874,7 @@ namespace Bankom
 
             char[] separators = { '#' };
             frmIzvod childForm = new frmIzvod();
-            childForm.BackColor = System.Drawing.Color.SeaShell;
+            childForm.BackColor = System.Drawing.Color.Snow;
             childForm.MdiParent = this;
             childForm.strPutanjaPlacanja = strPreuzimanjePlacanja.Split(separators)[0];
             childForm.mesecgodina = strPreuzimanjePlacanja.Split(separators)[1];
@@ -2936,7 +2936,7 @@ namespace Bankom
             else
             {
                 frmChield activeChild = (frmChield)this.ActiveMdiChild;
-                activeChild.BackColor = System.Drawing.Color.SeaShell;
+                activeChild.BackColor = System.Drawing.Color.Snow;
                 string dokumentje = ((Bankom.frmChield)activeChild).DokumentJe;
                 string nazivklona = ((Bankom.frmChield)activeChild).imedokumenta;
                 DataGridView dg = activeChild.Controls.Find(Program.imegrida, true).FirstOrDefault() as DataGridView;
@@ -2959,7 +2959,7 @@ namespace Bankom
             else
             {
                 frmChield activeChild = (frmChield)this.ActiveMdiChild;
-                activeChild.BackColor = System.Drawing.Color.SeaShell;
+                activeChild.BackColor = System.Drawing.Color.Snow;
                 string dokumentje = ((Bankom.frmChield)activeChild).DokumentJe;
                 string nazivklona = ((Bankom.frmChield)activeChild).imedokumenta;
                 DataGridView dg = activeChild.Controls.Find(Program.imegrida, true).FirstOrDefault() as DataGridView;
@@ -2977,7 +2977,7 @@ namespace Bankom
         {
             clsIzvestaji IZV = new clsIzvestaji();
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.BackColor = System.Drawing.Color.SeaShell;
+            activeChild.BackColor = System.Drawing.Color.Snow;
             string NazivKlona = ((Bankom.frmChield)activeChild).imedokumenta;
             string BrDok = ((Bankom.frmChield)activeChild).brdok;
             string KojiIzvestaj = "";
@@ -3008,7 +3008,7 @@ namespace Bankom
             clsIzvestaji IZV = new clsIzvestaji();
             DataBaseBroker db = new DataBaseBroker();
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.BackColor = System.Drawing.Color.SeaShell;
+            activeChild.BackColor = System.Drawing.Color.Snow;
             string NazivKlona = ((Bankom.frmChield)activeChild).imedokumenta;
             string BrDok = ((Bankom.frmChield)activeChild).brdok;
             string KojiIzvestaj = "";
@@ -3101,7 +3101,7 @@ namespace Bankom
         //{
         //    //stil 21.10.2020.
 
-        //    menuStrip1.BackColor = Color.SeaShell;
+        //    menuStrip1.BackColor = Color.Snow;
         //    menuStrip1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         //    menuStrip1.ForeColor = System.Drawing.Color.MidnightBlue;
 
@@ -3122,7 +3122,7 @@ namespace Bankom
         //    t.AutoSize = false;
         //    t.Width = 150;
         //    t.Height = 50;
-        //    t.BackColor = Color.SeaShell;
+        //    t.BackColor = Color.Snow;
         //    t.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         //    t.ForeColor = System.Drawing.Color.MidnightBlue;
         //    //
@@ -3148,7 +3148,7 @@ namespace Bankom
         //        //stil 21.10.2020.
         //        t1.TextAlign = ContentAlignment.TopLeft;
         //        t1.Height = 70;
-        //        t1.BackColor = Color.SeaShell;
+        //        t1.BackColor = Color.Snow;
         //        t1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         //        t1.ForeColor = System.Drawing.Color.MidnightBlue;
         //        //
@@ -3164,7 +3164,7 @@ namespace Bankom
         //        //stil 21.10.2020.
         //        t1.TextAlign = ContentAlignment.TopLeft;
         //        t1.Height = 70;
-        //        t1.BackColor = Color.SeaShell;
+        //        t1.BackColor = Color.Snow;
         //        t1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         //        t1.ForeColor = System.Drawing.Color.MidnightBlue;
         //        // Dodat separator 27.10.2020. Ivana
@@ -3943,7 +3943,7 @@ namespace Bankom
 
         private void Uunos_DropDownClosed(object sender, EventArgs e)
         {
-            Uunos.ForeColor = System.Drawing.Color.White;
+            Uunos.ForeColor = System.Drawing.Color.Snow;
         }
 
         private void Uunos_DropDownOpened(object sender, EventArgs e)
@@ -3952,7 +3952,7 @@ namespace Bankom
         }
         private void Ggrupisi_DropDownClosed(object sender, EventArgs e)
         {
-            Ggrupisi.ForeColor = System.Drawing.Color.White;
+            Ggrupisi.ForeColor = System.Drawing.Color.Snow;
         }
         private void Ggrupisi_DropDownOpened(object sender, EventArgs e)
         {
@@ -4154,8 +4154,46 @@ namespace Bankom
             Program.Parent.premestiGrupuToolStripMenuItem.Enabled = false;
             Program.Parent.premestiGrupuToolStripMenuItem.Visible = false;
         }
+        public static int i = 0;
+        private void Ssort_Click(object sender, EventArgs e)
+        {
+            i++;
+            frmChield activeChild = (frmChield)this.ActiveMdiChild;
+            string n = activeChild.Name.ToString();
+            if (string.IsNullOrEmpty(Program.colname))
+            {
+                MessageBox.Show("Odaberite kolonu za sortiranje");
+            }
+            else
+            {
 
-       
+                
+
+                //frmChield activeChild = (frmChield)this.ActiveMdiChild;
+                string dokumentje = ((Bankom.frmChield)activeChild).DokumentJe;
+                string nazivklona = ((Bankom.frmChield)activeChild).imedokumenta;
+                DataGridView dg = activeChild.Controls.Find(Program.imegrida, true).FirstOrDefault() as DataGridView;
+                if (dg != null)
+                {
+                    if (true)
+                    {
+                        Program.smer = " ASC ";
+                        clsObradaOsnovnihSifarnika obs = new clsObradaOsnovnihSifarnika();
+                        obs.SortirajGrid(ref dg, nazivklona, dokumentje);
+                    }
+                    else
+                    {
+                        Program.smer = " DESC ";
+                        clsObradaOsnovnihSifarnika obs = new clsObradaOsnovnihSifarnika();
+                        obs.SortirajGrid(ref dg, nazivklona, dokumentje);
+                    }
+
+                }
+                Program.colname = "";
+            }
+        
+
+        }
+    }
     }
 
-}
