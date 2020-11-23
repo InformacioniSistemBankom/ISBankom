@@ -134,9 +134,12 @@ namespace Bankom
                         fs.imefajla = ime;
                         fs.intCurrentdok = idLot;
                         fs.kojiprint = "lot";
-                        fs.Show();
+                        fs.Dock = DockStyle.Fill;
                         BankomMDI pom = (BankomMDI)this.MdiParent;
-                        pom.addFormTotoolstrip1(fs,naslov);
+                        pom.addFormTotoolstrip1(fs, naslov);
+                        pom.updateToolStrip(naslov);
+                        fs.Show();
+                      
 
                   
             }

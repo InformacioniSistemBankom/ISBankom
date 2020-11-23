@@ -45,7 +45,7 @@ namespace Bankom
             string ss = "";
             if (dokumentje == "D")
             {
-                ss = brojdokumenta;
+                ss = brojdokumenta; 
             }
             else
             {

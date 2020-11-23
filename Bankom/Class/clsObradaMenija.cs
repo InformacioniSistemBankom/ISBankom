@@ -262,8 +262,9 @@ namespace Bankom.Class
                         int sirina = (mdi.Width / 100) * 10;
                         mdi.addFormTotoolstrip1(lotovi, "Lotovi");
                         mdi.updateToolStrip(s);
-                        lotovi.Show();
                         mdi.SrediFormu();
+                        lotovi.Show();
+                        
 
                     }
                     break;
