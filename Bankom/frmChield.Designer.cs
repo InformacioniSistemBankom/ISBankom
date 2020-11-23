@@ -60,6 +60,7 @@
             this.btnPrvi = new System.Windows.Forms.Button();
             this.limegrida = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -280,6 +281,7 @@
             this.panel1.Controls.Add(this.lblBroj);
             this.panel1.Controls.Add(this.btnPred);
             this.panel1.Controls.Add(this.btnPrvi);
+            this.panel1.Controls.Add(this.menuStrip1);
             this.panel1.Location = new System.Drawing.Point(511, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(182, 29);
@@ -355,7 +357,7 @@
             this.limegrida.AutoSize = true;
             this.limegrida.Location = new System.Drawing.Point(0, 0);
             this.limegrida.Name = "limegrida";
-            this.limegrida.Size = new System.Drawing.Size(46, 18);
+            this.limegrida.Size = new System.Drawing.Size(48, 18);
             this.limegrida.TabIndex = 17;
             this.limegrida.Text = "label1";
             this.limegrida.Visible = false;
@@ -369,13 +371,21 @@
             this.textBox1.TabIndex = 18;
             this.textBox1.Visible = false;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(182, 24);
+            this.menuStrip1.TabIndex = 5;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
             // frmChield
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(1254, 1012);
+            this.ClientSize = new System.Drawing.Size(1254, 804);
             this.ControlBox = false;
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.limegrida);
@@ -394,6 +404,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(30, 10);
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmChield";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -446,5 +457,6 @@
         private System.Windows.Forms.Button btnPrvi;
         private System.Windows.Forms.Label limegrida;
         public System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
     }
 }
