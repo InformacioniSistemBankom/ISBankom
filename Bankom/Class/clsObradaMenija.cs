@@ -242,7 +242,7 @@ namespace Bankom.Class
         {
             Program.Parent.ToolBar.Items["Uunos"].Visible = true;
             Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
- 
+
             string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
             char slovo = UzmiSlovo(s);
             bool postoji;
@@ -257,7 +257,7 @@ namespace Bankom.Class
                         lotovi.Text = "Lotovi";
                         lotovi.MdiParent = mdi;
                         lotovi.Dock = DockStyle.Fill;
-
+                        
                         // mdi.WindowState = FormWindowState.Maximized;
                         if (mdi.IzborJezika.Text == "Српски-Ћирилица") { lotovi.Text = mdi.VratiCirlilicu("Lotovi"); }
                         int sirina = (mdi.Width / 100) * 10;
