@@ -907,7 +907,6 @@ namespace Bankom
             this.ToolBar.Size = new System.Drawing.Size(1924, 43);
             this.ToolBar.TabIndex = 32;
             this.ToolBar.Text = "toolbar";
-            
             // 
             // Uunos
             // 

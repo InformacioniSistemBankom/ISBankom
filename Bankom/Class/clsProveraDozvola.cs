@@ -381,6 +381,8 @@ namespace Bankom.Class
                 {
                     Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
                     Program.Parent.ToolBar.Items["Ssort"].Visible = true;
+                    //Program.Parent.ToolBar.Items["Bbrisanje"].Visible = true;
+                    //Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = true;
                     if (DokumentJe == "S" && dokument == "Dokumenta")
                     {
                         if (idstablo == "32" || idstablo == "38" || idstablo == "300")
