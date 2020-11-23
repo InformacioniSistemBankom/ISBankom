@@ -157,8 +157,8 @@ namespace Bankom
 
         private void NoviLot_Load(object sender, EventArgs e)
         {
-            
 
+            this.FormBorderStyle = FormBorderStyle.None;
         }
 
         // 
@@ -447,6 +447,26 @@ namespace Bankom
             var greska = proveraLota();
             if (!String.IsNullOrEmpty(greska)) MessageBox.Show(greska);
             else updateLot(currentLot, Convert.ToInt32(zempro.SelectedValue), datumIsteka.Value, Convert.ToInt32(proizvodjaci.SelectedValue), lotproizvodjaca.Text);
+        }
+
+        private void skladista_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void proizvodjaci_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void zempro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lotproizvodjaca_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

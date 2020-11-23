@@ -51,7 +51,7 @@ namespace Bankom
         private void frmChield_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.None;
-            this.BackColor = Color.SeaShell;
+            this.BackColor = Color.Snow;
           
 
             intStart = 0;                

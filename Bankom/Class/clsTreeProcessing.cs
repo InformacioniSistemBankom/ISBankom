@@ -239,7 +239,8 @@ namespace Bankom.Class
                                     if (odgovor == false)
                                     {
                                         frmPrint fs = new frmPrint();
-                                        fs.BackColor = Color.SeaShell;
+                                        fs.BackColor = Color.Snow;
+                                    fs.FormBorderStyle = FormBorderStyle.None;
                                         fs.MdiParent = Program.Parent;
                                         fs.Text = ime;
                                         fs.intCurrentdok = Convert.ToInt32(iddok); //id

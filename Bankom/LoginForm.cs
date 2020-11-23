@@ -478,15 +478,17 @@ namespace Bankom
                     Program.ID_MojaZemlja = Convert.ToInt32(dv[0]["ID_Zemlja"]);
                 }
 
-                var upit =
-              "SELECT ID_Radnik FROM KadrovskaEvidencija WHERE Suser = @param0";
+                var upit = "SELECT ID_Radnik FROM KadrovskaEvidencija WHERE Suser = @param0";
+                var param0 = UsernameTextBox.Text;
+                var prDok = DB.ParamsQueryDT(upit, param0);
 
-                var prDok = DB.ParamsQueryDT(upit, UsernameTextBox.Text);
-                int ID_Radnik;
+             
                 if (prDok.Rows.Count != 0 && prDok.Rows[0]["ID_Radnik"] != System.DBNull.Value)
                 {
-                    ID_Radnik = Convert.ToInt32(prDok.Rows[0]["ID_Radnik"]);
+                    
+                   int ID_Radnik = Convert.ToInt32(prDok.Rows[0]["ID_Radnik"]);
                     upit = "SELECT ID_Firma,mbr FROM Radnik where ID = @param0";
+                    
                     prDok = DB.ParamsQueryDT(upit, ID_Radnik);
                     if (prDok.Rows.Count != 0)
                     {
@@ -1373,6 +1375,11 @@ namespace Bankom
         {
             
             toolTip1.SetToolTip(this.pictureBox6, "RUS");
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

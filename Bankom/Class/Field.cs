@@ -80,6 +80,7 @@ namespace Bankom.Class
         public Field(Form form1, string iddok, string dokument, string label_text, string polje, string Ime, Color boja, double levo, double vrh, double visina, double sirina,
                      string PozicijaLabele, int Tip, string izborno, string idNaziviNaFormi, string tud, string EnDis, string FormatStringa, string Tabela, string AlijasTabele, string TabelaVView, string FormatPolja, string Segment, string Restrikcije, int ImaNaslov, string FormulaForme) : base()
         {
+            boja = Color.AliceBlue;
             forma = form1;
             FormatVrednosti = FormatStringa;
             IME = Ime;
@@ -168,7 +169,7 @@ namespace Bankom.Class
                     {
                         CustomFormat = "dd.MM.yy",
                         Format = DateTimePickerFormat.Custom,
-                        BackColor = Color.Yellow,
+                        BackColor = Color.AliceBlue,
                         Tag = Tip,
                         Name = Ime,
                         //AllowDrop = true
@@ -275,7 +276,7 @@ namespace Bankom.Class
                             //Height = (int)visina,
                             Name = Ime,
                             Tag = Tip,
-                            BackColor = Color.WhiteSmoke,
+                            BackColor = Color.AliceBlue,
                             FlatStyle = FlatStyle.Standard
                             //FlatStyle = FlatStyle.Flat
 
@@ -336,7 +337,7 @@ namespace Bankom.Class
                         VrstaKontrole = "tekst";
                         textBox = new TextBox()
                         {
-                            BackColor = boja,
+                            BackColor = Color.AliceBlue,
                             Tag = Tip,  //Tip polja: broj, datum, combobox, ....                            
                             Name = Ime,
                             Text = "",
@@ -468,10 +469,10 @@ namespace Bankom.Class
                     dv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                     dv.AllowUserToResizeRows = false;
                     dv.BorderStyle = BorderStyle.Fixed3D;
-                    dv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+                    dv.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
              
-                    //dv.DefaultCellStyle.SelectionForeColor = Color.SeaShell;
-                    dv.BackgroundColor = Color.SeaShell;
+                    //dv.DefaultCellStyle.SelectionForeColor = Color.Snow;
+                    dv.BackgroundColor = Color.Snow;
 
                     dv.EnableHeadersVisualStyles = false;
                     dv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
@@ -502,7 +503,7 @@ namespace Bankom.Class
                     dv.RowHeadersVisible = false;
                     //dv.SelectionMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 
-                    dv.BackgroundColor = Color.SeaShell;
+                    dv.BackgroundColor = Color.Snow;
 
 
                     //Da duge reci vide cele u koloni (WRAP)
@@ -521,8 +522,8 @@ namespace Bankom.Class
                             dv.ColumnHeadersVisible = false;
                             //dv.ColumnHeadersHeight = 18; //Convert.ToInt32(cheight);
                             dv.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 5, FontStyle.Regular);
-                            dv.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
-                            dv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                            dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
+                            dv.ColumnHeadersDefaultCellStyle.ForeColor = Color.Snow;
                             break;
                         case 1:
                             dv.ColumnHeadersVisible = true;
@@ -817,7 +818,7 @@ namespace Bankom.Class
                                 control.Text = aaa;
                                 control.Refresh();
 
-                                control.ForeColor = Color.Black;
+                                control.ForeColor = Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));;
                                 FillOtherControls(control, ID);
                             }
                             else
@@ -1049,12 +1050,12 @@ namespace Bankom.Class
             Program.imegrida = control.Name;
             Program.colname = dv.Columns[e.ColumnIndex].Name;
             Program.activecontrol = control;
-            dv.BackgroundColor = Color.SeaShell;
+            dv.BackgroundColor = Color.AliceBlue;
             SrediFormu();
         }
         private void FillControls(DataGridView control, ref int iid, ref string brdok, ref DateTime datum, DataGridViewCellMouseEventArgs e)
         {
-            dv.BackgroundColor = Color.SeaShell;
+            dv.BackgroundColor = Color.AliceBlue;
             string mimegrida = control.Name;
             mimegrida = mimegrida.Substring(4);
             string sel = "";
@@ -1189,7 +1190,7 @@ namespace Bankom.Class
         }
         private void ObradiDupliKlik(DataGridView control, string Dokument, string DokumentJe, string OperacijaDokumenta, DataGridViewCellMouseEventArgs e)
         {
-            dv.BackgroundColor = Color.SeaShell;
+            dv.BackgroundColor = Color.AliceBlue;
             Form Me = Program.Parent.ActiveMdiChild;
             
             string[] separators = new[] { "," };

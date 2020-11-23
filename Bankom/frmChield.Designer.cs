@@ -139,7 +139,7 @@
             // ToolStripLblPos
             // 
             this.ToolStripLblPos.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ToolStripLblPos.ForeColor = System.Drawing.Color.Black;
+            this.ToolStripLblPos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.ToolStripLblPos.Name = "ToolStripLblPos";
             this.ToolStripLblPos.Size = new System.Drawing.Size(35, 20);
             this.ToolStripLblPos.Text = "of {0}";
@@ -374,7 +374,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.SeaShell;
+            this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(1254, 1012);
             this.ControlBox = false;
             this.Controls.Add(this.textBox1);
