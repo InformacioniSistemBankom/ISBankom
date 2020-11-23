@@ -53,7 +53,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.label1.Location = new System.Drawing.Point(29, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 18);
@@ -64,7 +64,7 @@
             // 
             this.idArtikal.BackColor = System.Drawing.Color.AliceBlue;
             this.idArtikal.Font = new System.Drawing.Font("TimesRoman", 11F);
-            this.idArtikal.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.idArtikal.ForeColor = System.Drawing.Color.Black;
             this.idArtikal.Location = new System.Drawing.Point(27, 44);
             this.idArtikal.Name = "idArtikal";
             this.idArtikal.Size = new System.Drawing.Size(124, 24);
@@ -77,7 +77,7 @@
             // 
             this.artikli.BackColor = System.Drawing.Color.AliceBlue;
             this.artikli.Font = new System.Drawing.Font("TimesRoman", 11F);
-            this.artikli.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.artikli.ForeColor = System.Drawing.Color.Black;
             this.artikli.FormattingEnabled = true;
             this.artikli.Location = new System.Drawing.Point(157, 44);
             this.artikli.Name = "artikli";
@@ -91,7 +91,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.label2.Location = new System.Drawing.Point(24, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(209, 18);
@@ -102,7 +102,7 @@
             // 
             this.skladista.BackColor = System.Drawing.Color.AliceBlue;
             this.skladista.Font = new System.Drawing.Font("TimesRoman", 11F);
-            this.skladista.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.skladista.ForeColor = System.Drawing.Color.Black;
             this.skladista.FormattingEnabled = true;
             this.skladista.Location = new System.Drawing.Point(30, 102);
             this.skladista.Name = "skladista";
@@ -114,7 +114,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.label3.Location = new System.Drawing.Point(24, 134);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(151, 18);
@@ -125,7 +125,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.label4.Location = new System.Drawing.Point(344, 134);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(108, 18);
@@ -134,11 +134,11 @@
             // 
             // datumProizvodnje
             // 
-            this.datumProizvodnje.CalendarForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.datumProizvodnje.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.datumProizvodnje.CalendarMonthBackground = System.Drawing.Color.Snow;
-            this.datumProizvodnje.CalendarTitleBackColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.datumProizvodnje.CalendarTitleForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.datumProizvodnje.CalendarTrailingForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.datumProizvodnje.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.datumProizvodnje.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.datumProizvodnje.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.datumProizvodnje.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold);
             this.datumProizvodnje.Location = new System.Drawing.Point(31, 161);
             this.datumProizvodnje.Name = "datumProizvodnje";
@@ -147,10 +147,10 @@
             // 
             // datumIsteka
             // 
-            this.datumIsteka.CalendarForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.datumIsteka.CalendarForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.datumIsteka.CalendarMonthBackground = System.Drawing.Color.Snow;
-            this.datumIsteka.CalendarTitleForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.datumIsteka.CalendarTrailingForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.datumIsteka.CalendarTitleForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.datumIsteka.CalendarTrailingForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.datumIsteka.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold);
             this.datumIsteka.Location = new System.Drawing.Point(350, 161);
             this.datumIsteka.Name = "datumIsteka";
@@ -161,7 +161,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.label5.Location = new System.Drawing.Point(29, 188);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(96, 18);
@@ -172,7 +172,7 @@
             // 
             this.proizvodjaci.BackColor = System.Drawing.Color.AliceBlue;
             this.proizvodjaci.Font = new System.Drawing.Font("TimesRoman", 11F);
-            this.proizvodjaci.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.proizvodjaci.ForeColor = System.Drawing.Color.Black;
             this.proizvodjaci.FormattingEnabled = true;
             this.proizvodjaci.Location = new System.Drawing.Point(30, 215);
             this.proizvodjaci.Name = "proizvodjaci";
@@ -186,7 +186,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.label6.Location = new System.Drawing.Point(29, 244);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(162, 18);
@@ -197,7 +197,7 @@
             // 
             this.zempro.BackColor = System.Drawing.Color.AliceBlue;
             this.zempro.Font = new System.Drawing.Font("TimesRoman", 11F);
-            this.zempro.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.zempro.ForeColor = System.Drawing.Color.Black;
             this.zempro.FormattingEnabled = true;
             this.zempro.Location = new System.Drawing.Point(30, 269);
             this.zempro.Name = "zempro";
@@ -209,7 +209,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold);
-            this.label7.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.label7.Location = new System.Drawing.Point(29, 300);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(135, 18);
@@ -220,7 +220,7 @@
             // 
             this.lotproizvodjaca.BackColor = System.Drawing.Color.AliceBlue;
             this.lotproizvodjaca.Font = new System.Drawing.Font("TimesRoman", 11F);
-            this.lotproizvodjaca.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.lotproizvodjaca.ForeColor = System.Drawing.Color.Black;
             this.lotproizvodjaca.Location = new System.Drawing.Point(33, 325);
             this.lotproizvodjaca.Name = "lotproizvodjaca";
             this.lotproizvodjaca.Size = new System.Drawing.Size(680, 24);
@@ -230,11 +230,11 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Snow;
-            this.button1.FlatAppearance.BorderColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.button1.FlatAppearance.BorderSize = 3;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("TimesRoman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.button1.Location = new System.Drawing.Point(33, 417);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(114, 33);
@@ -246,11 +246,11 @@
             // izmena
             // 
             this.izmena.BackColor = System.Drawing.Color.Snow;
-            this.izmena.FlatAppearance.BorderColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.izmena.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.izmena.FlatAppearance.BorderSize = 3;
             this.izmena.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.izmena.Font = new System.Drawing.Font("TimesRoman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.izmena.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.izmena.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.izmena.Location = new System.Drawing.Point(189, 417);
             this.izmena.Name = "izmena";
             this.izmena.Size = new System.Drawing.Size(114, 33);
@@ -262,11 +262,11 @@
             // rucnilot
             // 
             this.rucnilot.BackColor = System.Drawing.Color.Snow;
-            this.rucnilot.FlatAppearance.BorderColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.rucnilot.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.rucnilot.FlatAppearance.BorderSize = 3;
             this.rucnilot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rucnilot.Font = new System.Drawing.Font("TimesRoman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rucnilot.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.rucnilot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.rucnilot.Location = new System.Drawing.Point(339, 417);
             this.rucnilot.Name = "rucnilot";
             this.rucnilot.Size = new System.Drawing.Size(129, 33);
@@ -277,11 +277,11 @@
             // prekid
             // 
             this.prekid.BackColor = System.Drawing.Color.Snow;
-            this.prekid.FlatAppearance.BorderColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.prekid.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.prekid.FlatAppearance.BorderSize = 3;
             this.prekid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.prekid.Font = new System.Drawing.Font("TimesRoman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.prekid.ForeColor =System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.prekid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.prekid.Location = new System.Drawing.Point(514, 417);
             this.prekid.Name = "prekid";
             this.prekid.Size = new System.Drawing.Size(114, 33);
@@ -316,6 +316,7 @@
             this.Controls.Add(this.idArtikal);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold);
+            this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "NoviLot";
             this.Text = "NoviLot";

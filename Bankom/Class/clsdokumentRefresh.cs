@@ -381,7 +381,7 @@ namespace Bankom.Class
             Console.WriteLine(sel);
             DataTable t2 = db.ParamsQueryDT(sel,tud,dokument);            
             for (int i = 0; i < dv.ColumnCount; i++)
-            {
+            {                
                     //Djora 26.09.20
                     //double ofset = Program.RacioWith * 1.3333333333333333;
                     double ofset = Program.RacioWith;

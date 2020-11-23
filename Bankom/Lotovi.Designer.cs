@@ -98,8 +98,8 @@
             // 
             // pretraga
             // 
-            this.pretraga.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pretraga.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.pretraga.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pretraga.ForeColor = System.Drawing.Color.Black;
             this.pretraga.Location = new System.Drawing.Point(763, 31);
             this.pretraga.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pretraga.Name = "pretraga";
@@ -112,14 +112,15 @@
             // 
             this.dataGridViewPaging1.AutoHideNavigator = false;
             this.dataGridViewPaging1.AutoSize = true;
+            this.dataGridViewPaging1.BackColor = System.Drawing.Color.Snow;
             this.dataGridViewPaging1.DataSource = null;
             this.dataGridViewPaging1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridViewPaging1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.dataGridViewPaging1.ForeColor = System.Drawing.Color.Black;
             this.dataGridViewPaging1.Location = new System.Drawing.Point(74, 74);
             this.dataGridViewPaging1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.dataGridViewPaging1.MaxRecords = 27;
             this.dataGridViewPaging1.Name = "dataGridViewPaging1";
-            this.dataGridViewPaging1.Size = new System.Drawing.Size(940, 496);
+            this.dataGridViewPaging1.Size = new System.Drawing.Size(940, 502);
             this.dataGridViewPaging1.TabIndex = 6;
             this.dataGridViewPaging1.Load += new System.EventHandler(this.dataGridViewPaging1_Load);
             // 
@@ -139,7 +140,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SeaShell;
+            this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(1096, 657);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewPaging1);
