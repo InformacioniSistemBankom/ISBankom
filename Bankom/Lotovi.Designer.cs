@@ -42,7 +42,7 @@
             this.Insert.FlatAppearance.BorderSize = 3;
             this.Insert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Insert.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Insert.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.Insert.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.Insert.Location = new System.Drawing.Point(101, 33);
             this.Insert.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Insert.Name = "Insert";
@@ -57,7 +57,7 @@
             this.button2.FlatAppearance.BorderSize = 3;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.button2.Location = new System.Drawing.Point(227, 33);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
@@ -72,7 +72,7 @@
             this.button3.FlatAppearance.BorderSize = 3;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.button3.Location = new System.Drawing.Point(352, 33);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
@@ -86,7 +86,7 @@
             this.button1.FlatAppearance.BorderSize = 3;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.button1.Location = new System.Drawing.Point(493, 33);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
@@ -99,7 +99,7 @@
             // pretraga
             // 
             this.pretraga.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pretraga.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.pretraga.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.pretraga.Location = new System.Drawing.Point(1017, 38);
             this.pretraga.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pretraga.Name = "pretraga";
@@ -114,7 +114,7 @@
             this.dataGridViewPaging1.AutoSize = true;
             this.dataGridViewPaging1.DataSource = null;
             this.dataGridViewPaging1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridViewPaging1.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.dataGridViewPaging1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.dataGridViewPaging1.Location = new System.Drawing.Point(99, 91);
             this.dataGridViewPaging1.Margin = new System.Windows.Forms.Padding(7);
             this.dataGridViewPaging1.MaxRecords = 27;
@@ -127,7 +127,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.label1.Location = new System.Drawing.Point(907, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(94, 24);
