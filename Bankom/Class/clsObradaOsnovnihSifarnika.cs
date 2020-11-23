@@ -255,36 +255,39 @@ namespace Bankom.Class
             dtOut = tg.DefaultView.ToTable();
             Console.WriteLine(dtOut.Rows.Count);
             tg = dtOut;
-           
-            sql = "Select AlijasPolja as Polje,FormulaForme from Recnikpodataka WHERE  Dokument = @param0 AND(FormulaForme IS NOT NULL AND FormulaForme <> N'')";
-            sql += " And TabelaVview='" + Program.imegrida.Substring(4) + "'";
-            Console.WriteLine(sql);
-            t = db.ParamsQueryDT(sql, NazivKlona);
-            for (int i = 0; i < t.Rows.Count; i++)
+            // Jovana 23.11.20 dodala da samo za Izvestaje ide u osvezavanje salda
+            if (DokumentJe == "I")
             {
-                this.OsveziSalda(ref tg, t.Rows[i]["Polje"].ToString(), t.Rows[i]["formulaforme"].ToString());
+                sql = "Select AlijasPolja as Polje,FormulaForme from Recnikpodataka WHERE  Dokument = @param0 AND(FormulaForme IS NOT NULL AND FormulaForme <> N'')";
+                sql += " And TabelaVview='" + Program.imegrida.Substring(4) + "'";
+                Console.WriteLine(sql);
+                t = db.ParamsQueryDT(sql, NazivKlona);
+                for (int i = 0; i < t.Rows.Count; i++)
+                {
+                    this.OsveziSalda(ref tg, t.Rows[i]["Polje"].ToString(), t.Rows[i]["formulaforme"].ToString());
+                }
+                //if (((Bankom.frmChield)forma).statusStrip1.Visible == false)
+                //    this.DodajRedniBroj(ref tg, KojiSegment, DokumentJe);
+                //for( int i=0;i<10;i++)
+                //{
+                //    Console.WriteLine(tg.Rows[i][Program.colname].ToString());
+                //}
+
+                control.DataSource = docref.ShowPage(forma, 1, tg);
+
+                sss = "Select DISTINCT TUD from RecnikPodataka WHERE  Dokument = @param0  And TabelaVview='" + Program.imegrida.Substring(4) + "'";
+                Console.WriteLine(sss);
+                DataTable t1 = db.ParamsQueryDT(sss, NazivKlona);
+                string TUD = t1.Rows[0]["TUD"].ToString();
+
+                docref.setingWidthOfColumns(NazivKlona, control, TUD);
+
+
+                if (NazivKlona == "LotStanjeRobeM")
+                    docref.colorofrows(control);
             }
-            //if (((Bankom.frmChield)forma).statusStrip1.Visible == false)
-            //    this.DodajRedniBroj(ref tg, KojiSegment, DokumentJe);
-            //for( int i=0;i<10;i++)
-            //{
-            //    Console.WriteLine(tg.Rows[i][Program.colname].ToString());
-            //}
-
-            control.DataSource = docref.ShowPage(forma, 1, tg);
-
-            sss = "Select DISTINCT TUD from Recnikpodataka WHERE  Dokument = @param0  And TabelaVview='" + Program.imegrida.Substring(4) + "'";
-            Console.WriteLine(sss);
-            DataTable t1 = db.ParamsQueryDT(sss, NazivKlona);
-            string TUD = t1.Rows[0]["TUD"].ToString();
-
-            docref.setingWidthOfColumns(NazivKlona, control, TUD);
-
-
-            if (NazivKlona == "LotStanjeRobeM")
-                docref.colorofrows(control);
-
-            //control.DataSource = tg;
+                control.DataSource = tg;
+            
             control.Refresh();
         }    
         public void DodajRedniBroj(ref DataTable tg, string KojiSegment,string DokumentJe)

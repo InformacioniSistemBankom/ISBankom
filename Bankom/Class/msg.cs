@@ -73,7 +73,7 @@ namespace Bankom.Class
                 Name = "panels",
                 Location = new System.Drawing.Point(0, 20),
                 Size = new System.Drawing.Size(340, 105),
-                BackColor = System.Drawing.Color.White,
+                BackColor = System.Drawing.Color.Snow,
                 Font = new Font("Arial", 11, FontStyle.Regular)
             };
             frm.Controls.Add(panel);
@@ -137,7 +137,7 @@ namespace Bankom.Class
             //Add ComboBox or TextBox to the form
             Control ctrl = Cntrl(type, ListItems);
             ctrl.Font = new Font("Arial", 11, FontStyle.Bold);
-            ctrl.BackColor = System.Drawing.Color.White;
+            ctrl.BackColor = System.Drawing.Color.Snow;
             
             // ctrl.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             panel.Controls.Add(ctrl);
