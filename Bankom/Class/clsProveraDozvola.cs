@@ -24,7 +24,6 @@ namespace Bankom.Class
         Boolean ZakljucenaGodina = false;
         string pStatus = "1";           //nije proknjizen
 
-       
 
         public Boolean ProveriDozvole(String pdokument, string pidstablo, string pIDDok, string pDokumentJe)
         {
@@ -381,8 +380,6 @@ namespace Bankom.Class
                 {
                     Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
                     Program.Parent.ToolBar.Items["Ssort"].Visible = true;
-                    //Program.Parent.ToolBar.Items["Bbrisanje"].Visible = true;
-                    //Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = true;
                     if (DokumentJe == "S" && dokument == "Dokumenta")
                     {
                         if (idstablo == "32" || idstablo == "38" || idstablo == "300")
@@ -417,7 +414,9 @@ namespace Bankom.Class
 
                     if (DokumentJe == "K")
                     {
-                     
+                        Program.Parent.ToolBar.Items["Bbrisanje"].Visible = true;
+                        Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = true;
+
                         DataTable tk = new DataTable(); // tabela Grupa  vezana za dozvole
                         sel = "if not exists (Select * from " + dokument + "Stablo" + " where CCopy = 1) select 0 else select 1";
                         tk = db.ReturnDataTable(sel);

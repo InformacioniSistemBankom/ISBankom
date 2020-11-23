@@ -15,10 +15,11 @@ namespace Bankom.Class
         DataTable dt = new DataTable();
 
         public BankomMDI mdi;
-
+       
         public clsObradaMenija (BankomMDI mdi)
         {
             this.mdi = mdi;
+          
         }
        
 
@@ -153,46 +154,45 @@ namespace Bankom.Class
                 slovo = 'P';
             return slovo;
         }
-        public string pomStablo;
-        public string pomIzv;
+      
 
         //28.10.2020. Ivana
         public string SkiniKlasifikaciju(string s)
         {
             if (s == "KlasifikacijaOrgStrukture")
             {
-                pomStablo = "OrganizacionaStrukturaStablo";
+                Program.pomStablo = "OrganizacionaStrukturaStablo";
                 return "OrganizacionaStruktura";
             }
             else if (s == "KlasifikacijaDokumenata")
             {
-                pomStablo = "DokumentaStablo";
+                Program.pomStablo = "DokumentaStablo";
                 return "Dokumenta";
             }
             else if (s == "KlasifikacijaArtikla")
             {
-                pomStablo = "ArtikliStablo";
+                Program.pomStablo = "ArtikliStablo";
                 return "Artikli";
             }
             else if (s == "KlasifikacijaKomitenata")
             {
-                pomStablo = "KomitentiStablo";
+                Program.pomStablo = "KomitentiStablo";
                 return "Komitenti";
             }
             else if (s == "KlasifikacijaIzvestaja")
             {
-                pomStablo = "IzvestajStablo";
-                pomIzv = "Izvestaj";
+                Program.pomStablo = "IzvestajStablo";
+                Program.pomIzv = "Izvestaj";
                 return "Izvestaj";
             }
             else if (s == "KlasifikacijaMenija")
             {
-                pomStablo = "MeniStablo";
+                Program.pomStablo = "MeniStablo";
                 return "Meni";
             }
             else
             {
-                pomStablo = "PomocniSifarniciStablo";
+                Program.pomStablo = "PomocniSifarniciStablo";
                 return "PomocniSifarnici";
             }
         }
@@ -222,9 +222,6 @@ namespace Bankom.Class
 
         public void MenuItemClickHandler(object sender, EventArgs e)
         {
-            Program.Parent.ToolBar.Items["Uunos"].Visible = true;
-            Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
- 
             string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
             char slovo = UzmiSlovo(s);
             bool postoji;
@@ -272,6 +269,7 @@ namespace Bankom.Class
                   
 
                     break;
+
                 //28.10.2020. Ivana
                 case "KlasifikacijaOrgStrukture":
                 case "KlasifikacijaArtikla":

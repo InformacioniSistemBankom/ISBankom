@@ -1019,7 +1019,7 @@ namespace Bankom
             this.Bbrisanje.Image = ((System.Drawing.Image)(resources.GetObject("Bbrisanje.Image")));
             this.Bbrisanje.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Bbrisanje.Name = "Bbrisanje";
-            this.Bbrisanje.Size = new System.Drawing.Size(90, 40);
+            this.Bbrisanje.Size = new System.Drawing.Size(100, 40);
             this.Bbrisanje.Text = "Brisanje";
             this.Bbrisanje.Click += new System.EventHandler(this.Bbrisanje_Click);
             // 

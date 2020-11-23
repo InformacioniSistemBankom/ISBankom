@@ -3097,10 +3097,9 @@ namespace Bankom
             Application.Exit();
         }
 
-        public string pomStablo;
-        public string pomIzv;
+   
 
-       
+
         public void SrediFormu()
         {
             flowLayoutPanel1.Width = 161;
@@ -3308,23 +3307,23 @@ namespace Bankom
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
                                 string d = toolStripTextBox1.Text;
-                                o.Klasifikacija_Click(d, pomIzv, pomStablo);
+                                o.Klasifikacija_Click(d, Program.pomIzv, Program.pomStablo);
                             }
                             else if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                o.KlasifikacijaBrisanje(pomIzv, pomStablo);
+                                o.KlasifikacijaBrisanje(Program.pomIzv, Program.pomStablo);
                             }
                             else if (forma.Controls["OOperacija"].Text.Trim() == "IZMENA")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
                                 string d = toolStripTextBox1.Text;
-                                o.KlasifikacijaIzmena(d, pomIzv, pomStablo);
+                                o.KlasifikacijaIzmena(d, Program.pomIzv, Program.pomStablo);
                             }
                             else if (forma.Controls["OOperacija"].Text.Trim() == "KOPIRAJ")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                o.KlasifikacijaPremestiGrupu(pomIzv, pomStablo);
+                                o.KlasifikacijaPremestiGrupu(Program.pomIzv, Program.pomStablo);
 
 
                                 //ovde smo stigle
@@ -3332,7 +3331,7 @@ namespace Bankom
                             else if (forma.Controls["OOperacija"].Text.Trim() == "NALEPI")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                o.KlasifikacijaNovaPozicija(pomIzv, pomStablo);
+                                o.KlasifikacijaNovaPozicija(Program.pomIzv, Program.pomStablo);
 
                             }
                        
