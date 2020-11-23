@@ -62,11 +62,12 @@
             // 
             // idArtikal
             // 
+            this.idArtikal.BackColor = System.Drawing.Color.AliceBlue;
             this.idArtikal.Font = new System.Drawing.Font("TimesRoman", 11F);
             this.idArtikal.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.idArtikal.Location = new System.Drawing.Point(31, 46);
+            this.idArtikal.Location = new System.Drawing.Point(27, 44);
             this.idArtikal.Name = "idArtikal";
-            this.idArtikal.Size = new System.Drawing.Size(117, 24);
+            this.idArtikal.Size = new System.Drawing.Size(124, 24);
             this.idArtikal.TabIndex = 6;
             this.idArtikal.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.idArtikal.Leave += new System.EventHandler(this.idArtikal_Leave);
@@ -74,12 +75,13 @@
             // 
             // artikli
             // 
+            this.artikli.BackColor = System.Drawing.Color.AliceBlue;
             this.artikli.Font = new System.Drawing.Font("TimesRoman", 11F);
             this.artikli.ForeColor = System.Drawing.Color.MidnightBlue;
             this.artikli.FormattingEnabled = true;
             this.artikli.Location = new System.Drawing.Point(157, 44);
             this.artikli.Name = "artikli";
-            this.artikli.Size = new System.Drawing.Size(473, 26);
+            this.artikli.Size = new System.Drawing.Size(555, 26);
             this.artikli.TabIndex = 21;
             this.artikli.DropDown += new System.EventHandler(this.artikli_DropDown);
             this.artikli.SelectedIndexChanged += new System.EventHandler(this.artikli_SelectedIndexChanged);
@@ -98,13 +100,15 @@
             // 
             // skladista
             // 
+            this.skladista.BackColor = System.Drawing.Color.AliceBlue;
             this.skladista.Font = new System.Drawing.Font("TimesRoman", 11F);
             this.skladista.ForeColor = System.Drawing.Color.MidnightBlue;
             this.skladista.FormattingEnabled = true;
             this.skladista.Location = new System.Drawing.Point(30, 102);
             this.skladista.Name = "skladista";
-            this.skladista.Size = new System.Drawing.Size(598, 26);
+            this.skladista.Size = new System.Drawing.Size(680, 26);
             this.skladista.TabIndex = 23;
+            this.skladista.SelectedIndexChanged += new System.EventHandler(this.skladista_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -131,7 +135,7 @@
             // datumProizvodnje
             // 
             this.datumProizvodnje.CalendarForeColor = System.Drawing.Color.MidnightBlue;
-            this.datumProizvodnje.CalendarMonthBackground = System.Drawing.Color.SeaShell;
+            this.datumProizvodnje.CalendarMonthBackground = System.Drawing.Color.Snow;
             this.datumProizvodnje.CalendarTitleBackColor = System.Drawing.Color.MidnightBlue;
             this.datumProizvodnje.CalendarTitleForeColor = System.Drawing.Color.MidnightBlue;
             this.datumProizvodnje.CalendarTrailingForeColor = System.Drawing.Color.MidnightBlue;
@@ -144,7 +148,7 @@
             // datumIsteka
             // 
             this.datumIsteka.CalendarForeColor = System.Drawing.Color.MidnightBlue;
-            this.datumIsteka.CalendarMonthBackground = System.Drawing.Color.SeaShell;
+            this.datumIsteka.CalendarMonthBackground = System.Drawing.Color.Snow;
             this.datumIsteka.CalendarTitleForeColor = System.Drawing.Color.MidnightBlue;
             this.datumIsteka.CalendarTrailingForeColor = System.Drawing.Color.MidnightBlue;
             this.datumIsteka.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold);
@@ -166,14 +170,16 @@
             // 
             // proizvodjaci
             // 
+            this.proizvodjaci.BackColor = System.Drawing.Color.AliceBlue;
             this.proizvodjaci.Font = new System.Drawing.Font("TimesRoman", 11F);
             this.proizvodjaci.ForeColor = System.Drawing.Color.MidnightBlue;
             this.proizvodjaci.FormattingEnabled = true;
             this.proizvodjaci.Location = new System.Drawing.Point(30, 215);
             this.proizvodjaci.Name = "proizvodjaci";
-            this.proizvodjaci.Size = new System.Drawing.Size(598, 26);
+            this.proizvodjaci.Size = new System.Drawing.Size(680, 26);
             this.proizvodjaci.TabIndex = 30;
             this.proizvodjaci.DropDown += new System.EventHandler(this.proizvodjaci_DropDown);
+            this.proizvodjaci.SelectedIndexChanged += new System.EventHandler(this.proizvodjaci_SelectedIndexChanged);
             this.proizvodjaci.TextUpdate += new System.EventHandler(this.proizvodjaci_TextUpdate);
             // 
             // label6
@@ -189,13 +195,15 @@
             // 
             // zempro
             // 
+            this.zempro.BackColor = System.Drawing.Color.AliceBlue;
             this.zempro.Font = new System.Drawing.Font("TimesRoman", 11F);
             this.zempro.ForeColor = System.Drawing.Color.MidnightBlue;
             this.zempro.FormattingEnabled = true;
             this.zempro.Location = new System.Drawing.Point(30, 269);
             this.zempro.Name = "zempro";
-            this.zempro.Size = new System.Drawing.Size(598, 26);
+            this.zempro.Size = new System.Drawing.Size(680, 26);
             this.zempro.TabIndex = 32;
+            this.zempro.SelectedIndexChanged += new System.EventHandler(this.zempro_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -210,16 +218,18 @@
             // 
             // lotproizvodjaca
             // 
+            this.lotproizvodjaca.BackColor = System.Drawing.Color.AliceBlue;
             this.lotproizvodjaca.Font = new System.Drawing.Font("TimesRoman", 11F);
             this.lotproizvodjaca.ForeColor = System.Drawing.Color.MidnightBlue;
             this.lotproizvodjaca.Location = new System.Drawing.Point(33, 325);
             this.lotproizvodjaca.Name = "lotproizvodjaca";
-            this.lotproizvodjaca.Size = new System.Drawing.Size(598, 24);
+            this.lotproizvodjaca.Size = new System.Drawing.Size(680, 24);
             this.lotproizvodjaca.TabIndex = 34;
+            this.lotproizvodjaca.TextChanged += new System.EventHandler(this.lotproizvodjaca_TextChanged);
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.SeaShell;
+            this.button1.BackColor = System.Drawing.Color.Snow;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.MidnightBlue;
             this.button1.FlatAppearance.BorderSize = 3;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -235,7 +245,7 @@
             // 
             // izmena
             // 
-            this.izmena.BackColor = System.Drawing.Color.SeaShell;
+            this.izmena.BackColor = System.Drawing.Color.Snow;
             this.izmena.FlatAppearance.BorderColor = System.Drawing.Color.MidnightBlue;
             this.izmena.FlatAppearance.BorderSize = 3;
             this.izmena.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -251,7 +261,7 @@
             // 
             // rucnilot
             // 
-            this.rucnilot.BackColor = System.Drawing.Color.SeaShell;
+            this.rucnilot.BackColor = System.Drawing.Color.Snow;
             this.rucnilot.FlatAppearance.BorderColor = System.Drawing.Color.MidnightBlue;
             this.rucnilot.FlatAppearance.BorderSize = 3;
             this.rucnilot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -266,7 +276,7 @@
             // 
             // prekid
             // 
-            this.prekid.BackColor = System.Drawing.Color.SeaShell;
+            this.prekid.BackColor = System.Drawing.Color.Snow;
             this.prekid.FlatAppearance.BorderColor = System.Drawing.Color.MidnightBlue;
             this.prekid.FlatAppearance.BorderSize = 3;
             this.prekid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -284,8 +294,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(661, 471);
+            this.BackColor = System.Drawing.Color.Snow;
+            this.ClientSize = new System.Drawing.Size(743, 471);
             this.Controls.Add(this.prekid);
             this.Controls.Add(this.rucnilot);
             this.Controls.Add(this.izmena);
