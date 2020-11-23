@@ -286,7 +286,9 @@ namespace Bankom.Class
                             Program.Parent.ToolBar.Items["Kkalki"].Visible = true;
                             Program.Parent.ToolBar.Items["Kkalki"].Enabled = true;
                             Program.Parent.ToolBar.Items["toolstripseparator34"].Visible = true;
-
+                            // jovaba 23.11.20
+                            Program.Parent.ToolBar.Items["Pporeklo"].Visible = true;
+                            Program.Parent.ToolBar.Items["Pporeklo"].Enabled = true;
                             if (dokument == "InoRacun" || dokument == "LotOtpremnica")
                             {
                                 Program.Parent.ToolBar.Items["Pporeklo"].Visible = true;

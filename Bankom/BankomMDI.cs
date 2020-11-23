@@ -1811,10 +1811,7 @@ namespace Bankom
 
         }
 
-        private void ToolBar_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
+     
 
         private void Uunos_Click(object sender, EventArgs e)
         {

@@ -900,7 +900,7 @@ namespace Bankom
             this.ToolBar.Size = new System.Drawing.Size(1513, 43);
             this.ToolBar.TabIndex = 32;
             this.ToolBar.Text = "toolbar";
-            this.ToolBar.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ToolBar_ItemClicked);
+            
             // 
             // Uunos
             // 
