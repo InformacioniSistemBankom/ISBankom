@@ -29,7 +29,7 @@ namespace Bankom.Class
       
          mdi.menuStrip1.BackColor = System.Drawing.Color.Snow;
            mdi.menuStrip1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            mdi.menuStrip1.ForeColor = System.Drawing.Color.MidnightBlue;
+            mdi.menuStrip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
 
             dt = GetDataSet();
 
@@ -50,7 +50,7 @@ namespace Bankom.Class
             t.Height = 50;
             t.BackColor = Color.Snow;
             t.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            t.ForeColor = System.Drawing.Color.MidnightBlue;
+            t.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             //
             mdi.menuStrip1.Items.Add(t);
             if (dt.Select("MenuParent='" + strMenu + "'").Length > 0)
@@ -76,7 +76,7 @@ namespace Bankom.Class
                 t1.Height = 70;
                 t1.BackColor = Color.Snow;
                 t1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                t1.ForeColor = System.Drawing.Color.MidnightBlue;
+                t1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
                 //
                 t.DropDownItems.Add(t1);
                 foreach (DataRow r in dt.Select("MenuParent='" + strMenu + "'"))
@@ -92,7 +92,7 @@ namespace Bankom.Class
                 t1.Height = 70;
                 t1.BackColor = Color.Snow;
                 t1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                t1.ForeColor = System.Drawing.Color.MidnightBlue;
+                t1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
                 // Dodat separator 27.10.2020. Ivana
                 ToolStripSeparator s1 = new ToolStripSeparator();
                 if (strMenu == "91")
@@ -187,14 +187,6 @@ namespace Bankom.Class
             }
             else if (s == "KlasifikacijaMenija")
             {
-                Program.Parent.ToolBar.Items["Uunos"].Visible = true;
-                Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
-                Program.Parent.ToolBar.Items["Bbrisanje"].Visible = true;
-                Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = true;
-                Program.Parent.ToolBar.Items["Iizmena"].Visible = true;
-                Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
-                Program.Parent.ToolBar.Items["Ggrupisi"].Visible = true;
-                Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = true;
                 pomStablo = "MeniStablo";
                 return "Meni";
             }
@@ -226,22 +218,19 @@ namespace Bankom.Class
             return pom;
         }
 
-        // zajedno 02.11.2020.
-        //public void SrediFormu()
-        //{
-        //    mdi.flowLayoutPanel1.Width = 161;
-
-
-        //    mdi.flowLayoutPanel1.Width = 162;
-        //    mdi.flowLayoutPanel1.Width = 0;
-        //    mdi.button1.Location = new Point(0, 301);
-
-        //}
+     
 
         public void MenuItemClickHandler(object sender, EventArgs e)
         {
             Program.Parent.ToolBar.Items["Uunos"].Visible = true;
             Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
+            Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = true;
+            Program.Parent.ToolBar.Items["Bbrisanje"].Visible = true;
+            Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
+            Program.Parent.ToolBar.Items["Iizmena"].Visible = true;
+            Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = true;
+            Program.Parent.ToolBar.Items["Ggrupisi"].Visible = true;
+      
 
             string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
             char slovo = UzmiSlovo(s);
@@ -257,7 +246,7 @@ namespace Bankom.Class
                         lotovi.Text = "Lotovi";
                         lotovi.MdiParent = mdi;
                         lotovi.Dock = DockStyle.Fill;
-                        
+
                         // mdi.WindowState = FormWindowState.Maximized;
                         if (mdi.IzborJezika.Text == "Српски-Ћирилица") { lotovi.Text = mdi.VratiCirlilicu("Lotovi"); }
                         int sirina = (mdi.Width / 100) * 10;
@@ -282,14 +271,7 @@ namespace Bankom.Class
                     postoji = IsOpen(s);
                     if (postoji == false)
                     {
-                        //tamara 27.10.2020.
-
-                        // Form activeChildd = this.ActiveMdiChild;
-                        //// activeChildd.FormBorderStyle = FormBorderStyle.None;
-                        // if (activeChildd != null)
-                        // {
-                        //     activeChildd.Hide();
-                        // }
+                       
                         clsObradaOsnovnihSifarnika co0 = new clsObradaOsnovnihSifarnika();
                         mdi.ShowNewForm(s, 1, s, 1, "", "", slovo.ToString(), "", "TreeView");
                     }

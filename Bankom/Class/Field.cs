@@ -818,7 +818,7 @@ namespace Bankom.Class
                                 control.Text = aaa;
                                 control.Refresh();
 
-                                control.ForeColor = Color.MidnightBlue;
+                                control.ForeColor = Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));;
                                 FillOtherControls(control, ID);
                             }
                             else

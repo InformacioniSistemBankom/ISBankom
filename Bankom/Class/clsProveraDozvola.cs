@@ -307,12 +307,14 @@ namespace Bankom.Class
                             Program.Parent.ToolBar.Items["Kkalki"].Visible = true;
                             Program.Parent.ToolBar.Items["Kkalki"].Enabled = true;
                             Program.Parent.ToolBar.Items["toolstripseparator34"].Visible = true;
-
+                            // jovaba 23.11.20
+                            Program.Parent.ToolBar.Items["Pporeklo"].Visible = true;
+                            Program.Parent.ToolBar.Items["Pporeklo"].Enabled = true;
                             if (dokument == "InoRacun" || dokument == "LotOtpremnica")
                             {
                                 Program.Parent.ToolBar.Items["Pporeklo"].Visible = true;
                                 Program.Parent.ToolBar.Items["Pporeklo"].Enabled = true;
-                                Program.Parent.ToolBar.Items["toolstripseparator44"].Visible = true;
+                                Program.Parent.ToolBar.Items["toolstripseparator35"].Visible = true;
 
                             }
                             if (dokument == "PDVPredracun")
@@ -413,6 +415,7 @@ namespace Bankom.Class
 
                     if (DokumentJe == "K")
                     {
+                     
                         DataTable tk = new DataTable(); // tabela Grupa  vezana za dozvole
                         sel = "if not exists (Select * from " + dokument + "Stablo" + " where CCopy = 1) select 0 else select 1";
                         tk = db.ReturnDataTable(sel);
@@ -426,6 +429,7 @@ namespace Bankom.Class
                                 Program.Parent.Ggrupisinp.Enabled = true;
                                 Program.Parent.Ggrupisinp.Visible = true;
                                 Program.Parent.premestiGrupuToolStripMenuItem.Visible = false;
+                            
                             }
                             else
                             {
