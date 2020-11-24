@@ -1244,7 +1244,7 @@ namespace Bankom
             ShowNewForm("Dokumenta", idstablo, naziv, 1, "", "", "S", "", ""); // na dogadjaju form load otvara se nova forma  sa predatim parametrima 
         }
 
-        //tamara 23.10.2020.
+        //tamara 10.2020.
 
 
 
