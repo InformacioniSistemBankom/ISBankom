@@ -202,8 +202,9 @@ namespace Bankom.Class
 
                     if (td.Rows[0]["Knjizenje"].ToString() == "0")   // NIJE DOZVOLJENO KNJIZENJE ONEMOGUCAVAMO BUTTON ZA KNJIZENJE
                     {
-                        //Program.Parent.ToolBar.Items["Kknjzi"].Visible = false;
-                        //Program.Parent.ToolBar.Items["Kknjzi"].Enabled = false;
+                        //Jovana 23.11.20 ozivela
+                        Program.Parent.ToolBar.Items["Kknjzi"].Visible = false;
+                        Program.Parent.ToolBar.Items["Kknjzi"].Enabled = false;
                     }
                     else                                      //KORISNIK IMA PRAVO DA KNJIZI OMOGUCAVAMO BUTTON ZA KNJIZENJE
                     {
