@@ -56,7 +56,7 @@ namespace Bankom.Class
             {
                string param0 = Program.IdSelektovanogCvora.ToString();
 
-                string upit = "Select Count (vezan) from " + pomStablo + " where  vezan = @param0";
+                string upit = "Select Count (vezan) from " + pomStablo + " where  vezan = @param0 and ccopy=0";
                 DataTable rez = db.ParamsQueryDT(upit, param0);
                 int s = int.Parse(rez.Rows[0][0].ToString());
 
@@ -72,10 +72,10 @@ namespace Bankom.Class
                     }
                     else param0 = sa;
 
-                    string upit1 = "Delete from " + pomStablo + " where  NazivJavni = @param0";
+                    string upit1 = "Update " + pomStablo + " set Ccopy = 1 where NazivJavni = @param0 ";
                     db.ParamsInsertScalar(upit1, param0);
-                }
-                MessageBox.Show("Uspešno obrisano.");
+                    MessageBox.Show("Uspešno obrisano.");
+                }   
             }
             else
             {
