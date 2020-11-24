@@ -282,7 +282,7 @@
             this.panel1.Controls.Add(this.btnPrvi);
             this.panel1.Location = new System.Drawing.Point(511, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(174, 29);
+            this.panel1.Size = new System.Drawing.Size(172, 29);
             this.panel1.TabIndex = 16;
             this.panel1.Visible = false;
             // 
@@ -295,7 +295,7 @@
             this.btnZad.Image = ((System.Drawing.Image)(resources.GetObject("btnZad.Image")));
             this.btnZad.Location = new System.Drawing.Point(138, 2);
             this.btnZad.Name = "btnZad";
-            this.btnZad.Size = new System.Drawing.Size(33, 23);
+            this.btnZad.Size = new System.Drawing.Size(30, 23);
             this.btnZad.TabIndex = 4;
             this.btnZad.UseVisualStyleBackColor = true;
             this.btnZad.Click += new System.EventHandler(this.btnZad_Click);

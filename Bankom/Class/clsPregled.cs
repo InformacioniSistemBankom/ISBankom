@@ -258,7 +258,7 @@ namespace Bankom.Class
                                 if (pb.cIzborno != "" && Convert.ToInt32(pb.ID) > 1)
                                 {
                                     if (pb.cIzborno == pb.cTabela)
-                                        sql = "select alijaspolja from recnikpodataka where dokument = '" + NazivKlona + "'" + " and PPolje = 'ID_" + pb.cAlijasTabele + "'";
+                                        sql = "select alijaspolja from recnikpodataka where dokument = '" + NazivKlona + "'" + " and Polje = 'ID_" + pb.cAlijasTabele + "'";
                                     else
                                         sql = "select alijaspolja from recnikpodataka where dokument ='" + NazivKlona + "'" + " and alijaspolja =  'ID_" + pb.cIzborno + "'";
 

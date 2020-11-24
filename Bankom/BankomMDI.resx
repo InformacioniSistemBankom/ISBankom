@@ -321,11 +321,10 @@
   </data>
   <data name="Pppppd.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACNSURBVDhPrY4BDoAgDMR4Ok/jZ5oaazacRo1NLoNjO9Z2
-        lo/aWK64esPvvR8hHpJsBJqR4KeAGbwxxhEwg38KYMCqZ3UDt8AvNzAE75cN4s+VUgBgAl4MrOopIDZE
-        z7C5lhvwADZBHPIO/2+AoWyCOOQdUkAliMNzTQEaiLPDdzUFAA+GPJUB4OWlWlsBw8dtkXI4feQAAAAA
-        SUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAAA0AAAAOCAYAAAD0f5bSAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABYSURBVChTpYyJCcBADMMyR/ffs49JQee6XB+BESHY9Zn1
+        BV35Udq1zJJKgx3+BY5j8bQnl2iHf4FDi21PLtEO/wKHFtueXKId/gUOLbY919JTuiLS8k2qNgjnL1yQ
+        JRk/AAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="Pposta.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -405,7 +404,7 @@
 </value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>242</value>
+    <value>115</value>
   </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
