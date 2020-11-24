@@ -55,7 +55,7 @@ namespace Bankom.Class
             {
                 if (DokumentJe == "D")
                 {
-                    ssel = "Select  OgraniceneGodine From dokumentaStablo WHERE ID_DokumentaStablo = " + (idstablo).ToString();
+                    ssel = "Select OgraniceneGodine From dokumentaStablo WHERE ID_DokumentaStablo = " + (idstablo).ToString();
                 }
                 else
                 {
@@ -202,15 +202,14 @@ namespace Bankom.Class
 
                     if (td.Rows[0]["Knjizenje"].ToString() == "0")   // NIJE DOZVOLJENO KNJIZENJE ONEMOGUCAVAMO BUTTON ZA KNJIZENJE
                     {
-                        //Program.Parent.ToolBar.Items["Kknjzi"].Visible = false;
-                        //Program.Parent.ToolBar.Items["Kknjzi"].Enabled = false;
+                        Program.Parent.ToolBar.Items["Kknjzi"].Visible = false;
+                        Program.Parent.ToolBar.Items["Kknjzi"].Enabled = false;
                     }
                     else                                      //KORISNIK IMA PRAVO DA KNJIZI OMOGUCAVAMO BUTTON ZA KNJIZENJE
                     {
 
-                        Program.Parent.ToolBar.Items["Kknjzi"].Visible = true;
-                        Program.Parent.ToolBar.Items["Kknjzi"].Enabled = true;
-                        Program.Parent.ToolBar.Items["toolstripseparator20"].Visible = true;
+                        Program.Parent.ToolBar.Items["Kknjzi"].Visible = false;
+                        Program.Parent.ToolBar.Items["Kknjzi"].Enabled = false;
                         Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
                         Program.Parent.ToolBar.Items["Ssort"].Visible = true;
 
@@ -219,9 +218,7 @@ namespace Bankom.Class
                     if (td.Rows[0]["potpis"].ToString() == "0")   // NIJE DOZVOLJENA IZMENA STATUSA ONEMOGUCAVAMO BUTTON ZA PROMENU STATUSA
                     {
                         Program.Parent.ToolBar.Items["Oodobri"].Visible = false;
-                       // Program.Parent.ToolBar.Items["toolstripseparator9"].Visible = false;
                         Program.Parent.ToolBar.Items["OOdobri"].Enabled = false;
-                        Program.Parent.ToolBar.Items["toolstripseparator37"].Visible = false;
                         Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
                         Program.Parent.ToolBar.Items["Ssort"].Visible = true;
 
@@ -230,7 +227,6 @@ namespace Bankom.Class
                     {
                         Program.Parent.ToolBar.Items["Oodobri"].Visible = true;
                         Program.Parent.ToolBar.Items["OOdobri"].Enabled = true;
-                        Program.Parent.ToolBar.Items["toolstripseparator37"].Visible = true;
                         Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
                         Program.Parent.ToolBar.Items["Ssort"].Visible = true;
 
@@ -281,7 +277,6 @@ namespace Bankom.Class
                             {
                                 Program.Parent.ToolBar.Items["Pplati"].Visible = true;
                                 Program.Parent.ToolBar.Items["Pplati"].Enabled = true;
-                                Program.Parent.ToolBar.Items["toolstripseparator43"].Visible = true;
                                 Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
                                 Program.Parent.ToolBar.Items["Ssort"].Visible = true;
 
@@ -290,9 +285,7 @@ namespace Bankom.Class
                             else
                             {
                                 Program.Parent.ToolBar.Items["Pplati"].Visible = false;
-                               // Program.Parent.ToolBar.Items["toolstripseparator9"].Visible = false;
                                 Program.Parent.ToolBar.Items["Pplati"].Enabled = false;
-                                Program.Parent.ToolBar.Items["toolstripseparator43"].Visible = false;
                                 Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
                                 Program.Parent.ToolBar.Items["Ssort"].Visible = true;
 
@@ -306,7 +299,6 @@ namespace Bankom.Class
                         case "LotOtpremnica":
                             Program.Parent.ToolBar.Items["Kkalki"].Visible = true;
                             Program.Parent.ToolBar.Items["Kkalki"].Enabled = true;
-                            Program.Parent.ToolBar.Items["toolstripseparator34"].Visible = true;
                             // jovaba 23.11.20
                             Program.Parent.ToolBar.Items["Pporeklo"].Visible = true;
                             Program.Parent.ToolBar.Items["Pporeklo"].Enabled = true;
@@ -314,29 +306,24 @@ namespace Bankom.Class
                             {
                                 Program.Parent.ToolBar.Items["Pporeklo"].Visible = true;
                                 Program.Parent.ToolBar.Items["Pporeklo"].Enabled = true;
-                                Program.Parent.ToolBar.Items["toolstripseparator35"].Visible = true;
 
                             }
                             if (dokument == "PDVPredracun")
                             {
                                 Program.Parent.ToolBar.Items["PpredlogCena"].Enabled = true;
                                 Program.Parent.ToolBar.Items["PpredlogCena"].Visible = true;
-                                Program.Parent.ToolBar.Items["toolstripseparator21"].Visible = true;
 
                                 if (td.Rows[0]["potpis"].ToString() == "1")
                                 {
 
                                     Program.Parent.ToolBar.Items["Oodobri"].Visible = true;
                                     Program.Parent.ToolBar.Items["Oodobri"].Enabled = true;
-                                    Program.Parent.ToolBar.Items["toolstripseparator37"].Visible = true;
 
                                 }
                                 else
                                 {
                                     Program.Parent.ToolBar.Items["Oodobri"].Visible = false;
-                                    // Program.Parent.ToolBar.Items["toolstripseparator9"].Visible = false;
                                     Program.Parent.ToolBar.Items["Oodobri"].Enabled = false;
-                                    Program.Parent.ToolBar.Items["toolstripseparator37"].Visible = false;
 
                                 }
                             }
@@ -344,20 +331,17 @@ namespace Bankom.Class
                         case "Dobit":
                             Program.Parent.ToolBar.Items["Pppppd"].Visible = true;
                             Program.Parent.ToolBar.Items["Pppppd"].Enabled = true;
-                            Program.Parent.ToolBar.Items["toolstripseparator15"].Visible = true;
 
                             break;
                         case "PotencijalKupca":
                         case "PotencijalKupcaFsh":
                             Program.Parent.ToolBar.Items["Ppotencijal"].Visible = true;
                             Program.Parent.ToolBar.Items["Ppotencijal"].Enabled = true;
-                            Program.Parent.ToolBar.Items["toolstripseparator35"].Visible = true;
 
                             break;
                         case "KonacniUlazniRacun":
                             Program.Parent.ToolBar.Items["Kkalku"].Visible = true;
                             Program.Parent.ToolBar.Items["Kkalku"].Enabled = true;
-                            Program.Parent.ToolBar.Items["toolstripseparator42"].Visible = true;
                             Program.Parent.ToolBar.Items["Oorigin"].Visible = true;
                             Program.Parent.ToolBar.Items["Oorigin"].Enabled = true;
                     
@@ -389,14 +373,12 @@ namespace Bankom.Class
                             {
                                 Program.Parent.ToolBar.Items["Oodobri"].Visible = true;
                                 Program.Parent.ToolBar.Items["Oodobri"].Enabled = true;
-                                Program.Parent.ToolBar.Items["toolstripseparator37"].Visible = true;
 
                             }
                             else
                             {
                                 Program.Parent.ToolBar.Items["Oodobri"].Visible = false;
                                 Program.Parent.ToolBar.Items["Oodobri"].Enabled = false;
-                                Program.Parent.ToolBar.Items["toolstripseparator37"].Visible = false;
 
                             }
                         }
@@ -404,7 +386,6 @@ namespace Bankom.Class
                         {
                             Program.Parent.ToolBar.Items["Oodobri"].Visible = false;
                             Program.Parent.ToolBar.Items["Oodobri"].Enabled = false;
-                            Program.Parent.ToolBar.Items["toolstripseparator37"].Visible = false;
 
                         }
 
