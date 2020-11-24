@@ -1870,10 +1870,11 @@ namespace Bankom
         {
             //Daj mi aktivnu child formu
             Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+          
             //Popuni text u kontroli OOperacija sa "PREGLED" na aktivnoj child formi
             if (activeChild != null)
             {
+                activeChild.FormBorderStyle = FormBorderStyle.None;
                 if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
                 activeChild.Controls["OOperacija"].Text = "PREGLED";
                 filter = "S";
@@ -1893,11 +1894,11 @@ namespace Bankom
             //tamara 23.10.2020.
 
 
-
             Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+            
             if (activeChild != null)
             {
+                activeChild.FormBorderStyle = FormBorderStyle.None; // BORKA 23.11.20
                 if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
                 clsRefreshForm rf = new clsRefreshForm();
                 rf.refreshform();
@@ -1930,7 +1931,7 @@ namespace Bankom
         {
             //Daj mi aktivnu child formu
             Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+           
             //Popuni text u kontroli OOperacija sa "STORNO" na aktivnoj child formi
             if (activeChild == null)
             {
@@ -1938,6 +1939,7 @@ namespace Bankom
             }
             else
             {
+                activeChild.FormBorderStyle = FormBorderStyle.None;
                 activeChild.Controls["OOperacija"].Text = "STORNO";
             }
 
@@ -3230,177 +3232,172 @@ namespace Bankom
         }
 
         private void Ppotvrda_Click_1(object sender, EventArgs e)
-        {
-            
-           
+        {         
             Form forma = this.ActiveMdiChild;
 
             Boolean vrati = new Boolean();
             if (forma == null)
             {
                 MessageBox.Show("Nemate aktivnu formu!");
-            }
-
-            if (forma.Controls["OOperacija"].Text.Trim() == "" && ((Bankom.frmChield)forma).DokumentJe != "I")
-            {
-                MessageBox.Show("Niste odabrali operaciju!");
-            }
+            }            
             else
             {
-                if (forma.Controls["OOperacija"].Text.Trim() == "PREGLED")
+                if (forma.Controls["OOperacija"].Text.Trim() == "" && ((Bankom.frmChield)forma).DokumentJe != "I") // BORKA  23.11.20
                 {
-                    clsPregled clp = new clsPregled();
-                    long Koliko = clp.Pregledaj("S");
-                    if (Koliko < 1)
-                    {
-                        MessageBox.Show("Ne postoje podaci za zadate uslove!");
-                    }
+                    MessageBox.Show("Niste odabrali operaciju!");
+                    vrati = false;
                 }
-                else
+                else //BORKA 23.11.20
                 {
-                    // POZIV KLASE CRUD ZA IZVRSENJE ZADATE OPERACIJE
-                    CRUD ccrud = new CRUD();
-
-                    switch (((Bankom.frmChield)forma).DokumentJe)
+                    if (forma.Controls["OOperacija"].Text.Trim() == "PREGLED")
                     {
-                        case "I":
-                            switch (((Bankom.frmChield)forma).imedokumenta)
-                            {
-                                case "AnalizaNabavke":
-                                    //RasporedTroskova 0, fform.Controls("ctDatumOd").Vrednost, fform.Controls("ctDatumDo").Vrednost, fform.Controls("ctNazivSkl").Vrednost
-                                    break;
-                                //case "SpisakDokumenata":
-                                //    //frmMain.Toolbar2.Buttons("cmdodabrani").Visible = True
-                                //    //frmMain.Toolbar2.Buttons("cmdodabrani").Enabled = True
-                                //    break;
-                                case "DnevniBilansUspeha":
-                                    clsBilansi OBB = new clsBilansi();
-                                    OBB.ObradiBilans();
-                                    break;
-                                case "POPPdv":
-                                    clsPOPPdv POP = new clsPOPPdv();
-                                    POP.ObradiPOPPdv();
-                                    break; ///'''Exit Function
-                                case "IOS":
-                                    clsObradaOsnovnihSifarnika obos = new clsObradaOsnovnihSifarnika();
-                                    //fform("DatumDo").Vrednost, fform("konto").Vrednost, fform("NazivKom").ID
-                                    var pb = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "DatumDo".ToString().Trim());
-                                    string DatumDo = pb.Vrednost;
-                                    pb = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "konto".ToString().Trim());
-                                    string konto = pb.Vrednost;
-                                    pb = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivKom".ToString().Trim());
-                                    int nazivkom = Convert.ToInt32(pb.ID);
-                                    if (obos.Iosi(DatumDo, konto, nazivkom) == true)
-                                    { break; }
-                                    else
+                        clsPregled clp = new clsPregled();
+                        long Koliko = clp.Pregledaj("S");
+                        if (Koliko < 1)
+                        {
+                            MessageBox.Show("Ne postoje podaci za zadate uslove!");
+                        }
+                    }
+                    else
+                    {
+                        // POZIV KLASE CRUD ZA IZVRSENJE ZADATE OPERACIJE
+                        CRUD ccrud = new CRUD();
+
+                        switch (((Bankom.frmChield)forma).DokumentJe)
+                        {
+                            case "I":
+                                switch (((Bankom.frmChield)forma).imedokumenta)
+                                {
+                                    case "AnalizaNabavke":
+                                        //RasporedTroskova 0, fform.Controls("ctDatumOd").Vrednost, fform.Controls("ctDatumDo").Vrednost, fform.Controls("ctNazivSkl").Vrednost
                                         break;
-                                default:
-                                    clsIzvestaji IZV = new clsIzvestaji();
-                                    IZV.PrikazIzvestaja(((Bankom.frmChield)forma).imedokumenta);
-                                    break;
-                            }
-                            break;
-                        case "S":
-                            vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).idReda), ((Bankom.frmChield)forma).imestabla);
-                            break;
-                        case "K":
-                            if (forma.Controls["OOperacija"].Text.Trim() == "UNOS")
-                            {
-                                clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                string d = toolStripTextBox1.Text;
-                                o.Klasifikacija_Click(d, pomIzv, pomStablo);
-                            }
-                            else if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE")
-                            {
-                                clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                o.KlasifikacijaBrisanje(pomIzv, pomStablo);
-                            }
-                            else if (forma.Controls["OOperacija"].Text.Trim() == "IZMENA")
-                            {
-                                clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                string d = toolStripTextBox1.Text;
-                                o.KlasifikacijaIzmena(d, pomIzv, pomStablo);
-                            }
-                            else if (forma.Controls["OOperacija"].Text.Trim() == "KOPIRAJ")
-                            {
-                                clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                o.KlasifikacijaPremestiGrupu(pomIzv, pomStablo);
+                                    //case "SpisakDokumenata":
+                                    //    //frmMain.Toolbar2.Buttons("cmdodabrani").Visible = True
+                                    //    //frmMain.Toolbar2.Buttons("cmdodabrani").Enabled = True
+                                    //    break;
+                                    case "DnevniBilansUspeha":
+                                        clsBilansi OBB = new clsBilansi();
+                                        OBB.ObradiBilans();
+                                        break;
+                                    case "POPPdv":
+                                        clsPOPPdv POP = new clsPOPPdv();
+                                        POP.ObradiPOPPdv();
+                                        break; ///'''Exit Function
+                                    case "IOS":
+                                        clsObradaOsnovnihSifarnika obos = new clsObradaOsnovnihSifarnika();
+                                        //fform("DatumDo").Vrednost, fform("konto").Vrednost, fform("NazivKom").ID
+                                        var pb = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "DatumDo".ToString().Trim());
+                                        string DatumDo = pb.Vrednost;
+                                        pb = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "konto".ToString().Trim());
+                                        string konto = pb.Vrednost;
+                                        pb = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivKom".ToString().Trim());
+                                        int nazivkom = Convert.ToInt32(pb.ID);
+                                        if (obos.Iosi(DatumDo, konto, nazivkom) == true)
+                                        { break; }
+                                        else
+                                            break;
+                                    default:
+                                        clsIzvestaji IZV = new clsIzvestaji();
+                                        IZV.PrikazIzvestaja(((Bankom.frmChield)forma).imedokumenta);
+                                        break;
+                                }
+                                break;
+                            case "S":
+                                vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).idReda), ((Bankom.frmChield)forma).imestabla);
+                                break;
+                            case "K":
+                                if (forma.Controls["OOperacija"].Text.Trim() == "UNOS")
+                                {
+                                    clsObradaKlasifikacija o = new clsObradaKlasifikacija();
+                                    string d = toolStripTextBox1.Text;
+                                    o.Klasifikacija_Click(d, pomIzv, pomStablo);
+                                }
+                                else if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE")
+                                {
+                                    clsObradaKlasifikacija o = new clsObradaKlasifikacija();
+                                    o.KlasifikacijaBrisanje(pomIzv, pomStablo);
+                                }
+                                else if (forma.Controls["OOperacija"].Text.Trim() == "IZMENA")
+                                {
+                                    clsObradaKlasifikacija o = new clsObradaKlasifikacija();
+                                    string d = toolStripTextBox1.Text;
+                                    o.KlasifikacijaIzmena(d, pomIzv, pomStablo);
+                                }
+                                else if (forma.Controls["OOperacija"].Text.Trim() == "KOPIRAJ")
+                                {
+                                    clsObradaKlasifikacija o = new clsObradaKlasifikacija();
+                                    o.KlasifikacijaPremestiGrupu(pomIzv, pomStablo);
 
 
-                                //ovde smo stigle
-                            }
-                            else if (forma.Controls["OOperacija"].Text.Trim() == "NALEPI")
-                            {
-                                clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                o.KlasifikacijaNovaPozicija(pomIzv, pomStablo);
+                                    //ovde smo stigle
+                                }
+                                else if (forma.Controls["OOperacija"].Text.Trim() == "NALEPI")
+                                {
+                                    clsObradaKlasifikacija o = new clsObradaKlasifikacija();
+                                    o.KlasifikacijaNovaPozicija(pomIzv, pomStablo);
 
-                            }
-                       
+                                }
+                                break;
+                            case "D":
+                                vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
+                                if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE") break;
+                                if (vrati == false) break;// ovde se vraca tok 
 
-
-                            break;
-                        case "D":
-                            vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
-                            if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE") break;
-                            if (vrati == false) break;// ovde se vraca tok 
-
-                            switch (forma.Controls["limedok"].Text)
-                            {
-                                case "NalogGlavneKnjige":
-                                    clsKnjizenje knj = new clsKnjizenje();
-                                    knj.ObradiNalogGlavneKnjige();
-                                    break;
-                                case "NalogGlavneKnjigeSimulacija":
-                                    clsKnjizenje knjs = new clsKnjizenje();
-                                    knjs.ObradiSimulaciju();
-                                    break;
-                                case "KursneRazlike":
-                                    clsObradaKursnihRazlika kr = new clsObradaKursnihRazlika();
-                                    vrati = kr.ObradiRazlike();
-                                    break;
-                                case "BilansStanja":
-                                case "BilansUspeha":
-                                case "BilansPrihodiIRashodi":
-                                case "Pokazateljlikvidnosti":
-                                    clsBilansi OBBilans = new clsBilansi();
-                                    OBBilans.ObradiBilans();
-                                    break;
-                                case "PocetnoStanjeZaRobu":
-                                    clsZatvaranjeIOtvaranjeStanja ZiO = new clsZatvaranjeIOtvaranjeStanja();
-                                    vrati = ZiO.ObradiIspravku();
-                                    break;
-                                case "ObracunVrednostiZaliha":
-                                    clsKorekcija Vrednost = new clsKorekcija();
-                                    vrati = Vrednost.VrednostNaDan();
-                                    break;
-                                case "ZatvaranjeAvansa":
-                                    clsAvansi Avans = new clsAvansi();
-                                    vrati = Avans.ZatvaranjeAvansa(forma, forma.Controls["limedok"].Text, Convert.ToString(((Bankom.frmChield)forma).iddokumenta));
-                                    break;
-                                case "Kompenzacija":
-                                    clsKompenzacija rez = new clsKompenzacija();
-                                    rez.ObradiKomenzaciju();
-                                    break;
-                                default:
-                                    break;
-                            }
-                            break;
-                        default:
-                            vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
-                            break;
+                                switch (forma.Controls["limedok"].Text)
+                                {
+                                    case "NalogGlavneKnjige":
+                                        clsKnjizenje knj = new clsKnjizenje();
+                                        knj.ObradiNalogGlavneKnjige();
+                                        break;
+                                    case "NalogGlavneKnjigeSimulacija":
+                                        clsKnjizenje knjs = new clsKnjizenje();
+                                        knjs.ObradiSimulaciju();
+                                        break;
+                                    case "KursneRazlike":
+                                        clsObradaKursnihRazlika kr = new clsObradaKursnihRazlika();
+                                        vrati = kr.ObradiRazlike();
+                                        break;
+                                    case "BilansStanja":
+                                    case "BilansUspeha":
+                                    case "BilansPrihodiIRashodi":
+                                    case "Pokazateljlikvidnosti":
+                                        clsBilansi OBBilans = new clsBilansi();
+                                        OBBilans.ObradiBilans();
+                                        break;
+                                    case "PocetnoStanjeZaRobu":
+                                        clsZatvaranjeIOtvaranjeStanja ZiO = new clsZatvaranjeIOtvaranjeStanja();
+                                        vrati = ZiO.ObradiIspravku();
+                                        break;
+                                    case "ObracunVrednostiZaliha":
+                                        clsKorekcija Vrednost = new clsKorekcija();
+                                        vrati = Vrednost.VrednostNaDan();
+                                        break;
+                                    case "ZatvaranjeAvansa":
+                                        clsAvansi Avans = new clsAvansi();
+                                        vrati = Avans.ZatvaranjeAvansa(forma, forma.Controls["limedok"].Text, Convert.ToString(((Bankom.frmChield)forma).iddokumenta));
+                                        break;
+                                    case "Kompenzacija":
+                                        clsKompenzacija rez = new clsKompenzacija();
+                                        rez.ObradiKomenzaciju();
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                break;
+                            default:
+                                vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
+                                break;
+                        }
                     }
-                    // OSVEZAVANJE FORME NAKON IZVRSENE OPERACIJE
-                    if (vrati == true) //jovana
-                    {
-                        clsRefreshForm rf = new clsRefreshForm();
-                        rf.refreshform();
-                    }
+                } // KRAJ else 
+             // OSVEZAVANJE FORME NAKON IZVRSENE OPERACIJE
+                if (vrati == true) //jovana
+                {
+                    clsRefreshForm rf = new clsRefreshForm();
+                    rf.refreshform();
                 }
-                forma.Controls["OOperacija"].Text = "";
+                forma.Controls["OOperacija"].Text = "";               
             }
-
-            // KRAJ else 
-
         }
 
         private void Ggrupisinp_Click(object sender, EventArgs e)
