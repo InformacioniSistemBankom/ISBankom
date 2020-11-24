@@ -152,7 +152,7 @@
             // 
             this.textBox1.BackColor = System.Drawing.Color.AliceBlue;
             this.textBox1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.textBox1.ForeColor = System.Drawing.Color.Black;
             this.textBox1.Location = new System.Drawing.Point(358, 41);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(311, 24);
@@ -300,7 +300,7 @@
             // 
             this.tbMesto.BackColor = System.Drawing.Color.AliceBlue;
             this.tbMesto.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbMesto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.tbMesto.ForeColor = System.Drawing.Color.Black;
             this.tbMesto.Location = new System.Drawing.Point(686, 204);
             this.tbMesto.Name = "tbMesto";
             this.tbMesto.Size = new System.Drawing.Size(311, 24);
@@ -310,7 +310,7 @@
             // 
             this.tbAdresa.BackColor = System.Drawing.Color.AliceBlue;
             this.tbAdresa.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbAdresa.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.tbAdresa.ForeColor = System.Drawing.Color.Black;
             this.tbAdresa.Location = new System.Drawing.Point(686, 160);
             this.tbAdresa.Name = "tbAdresa";
             this.tbAdresa.Size = new System.Drawing.Size(311, 24);
@@ -320,7 +320,7 @@
             // 
             this.tbIme.BackColor = System.Drawing.Color.AliceBlue;
             this.tbIme.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbIme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.tbIme.ForeColor = System.Drawing.Color.Black;
             this.tbIme.Location = new System.Drawing.Point(167, 112);
             this.tbIme.Name = "tbIme";
             this.tbIme.Size = new System.Drawing.Size(311, 24);
@@ -330,7 +330,7 @@
             // 
             this.tbFirma.BackColor = System.Drawing.Color.AliceBlue;
             this.tbFirma.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbFirma.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.tbFirma.ForeColor = System.Drawing.Color.Black;
             this.tbFirma.Location = new System.Drawing.Point(167, 163);
             this.tbFirma.Name = "tbFirma";
             this.tbFirma.Size = new System.Drawing.Size(311, 24);
@@ -340,7 +340,7 @@
             // 
             this.tbBroj.BackColor = System.Drawing.Color.AliceBlue;
             this.tbBroj.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbBroj.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.tbBroj.ForeColor = System.Drawing.Color.Black;
             this.tbBroj.Location = new System.Drawing.Point(167, 211);
             this.tbBroj.Name = "tbBroj";
             this.tbBroj.Size = new System.Drawing.Size(311, 24);
@@ -350,7 +350,7 @@
             // 
             this.tbEmail.BackColor = System.Drawing.Color.AliceBlue;
             this.tbEmail.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.tbEmail.ForeColor = System.Drawing.Color.Black;
             this.tbEmail.Location = new System.Drawing.Point(167, 254);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(311, 25);
@@ -360,7 +360,7 @@
             // 
             this.tbNapomena1.BackColor = System.Drawing.Color.AliceBlue;
             this.tbNapomena1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbNapomena1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.tbNapomena1.ForeColor = System.Drawing.Color.Black;
             this.tbNapomena1.Location = new System.Drawing.Point(167, 300);
             this.tbNapomena1.Name = "tbNapomena1";
             this.tbNapomena1.Size = new System.Drawing.Size(311, 24);
@@ -370,7 +370,7 @@
             // 
             this.tbNapomena2.BackColor = System.Drawing.Color.AliceBlue;
             this.tbNapomena2.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbNapomena2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.tbNapomena2.ForeColor = System.Drawing.Color.Black;
             this.tbNapomena2.Location = new System.Drawing.Point(686, 112);
             this.tbNapomena2.Name = "tbNapomena2";
             this.tbNapomena2.Size = new System.Drawing.Size(311, 24);
@@ -381,7 +381,7 @@
             this.tbDrzava.BackColor = System.Drawing.Color.AliceBlue;
             this.tbDrzava.CausesValidation = false;
             this.tbDrzava.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDrzava.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.tbDrzava.ForeColor = System.Drawing.Color.Black;
             this.tbDrzava.FormattingEnabled = true;
             this.tbDrzava.Location = new System.Drawing.Point(686, 250);
             this.tbDrzava.Name = "tbDrzava";
@@ -422,7 +422,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("TimesRoman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);

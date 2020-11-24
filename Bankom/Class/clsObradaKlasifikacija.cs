@@ -16,7 +16,6 @@ namespace Bankom.Class
         public string param1;
 
         DataBaseBroker db = new DataBaseBroker();
-
         public void Klasifikacija_Click(string d, string pomIzv, string pomStablo)
         {
             if (pomIzv == "Izvestaj")

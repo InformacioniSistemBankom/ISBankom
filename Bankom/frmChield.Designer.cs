@@ -59,7 +59,6 @@
             this.btnPred = new System.Windows.Forms.Button();
             this.btnPrvi = new System.Windows.Forms.Button();
             this.limegrida = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -275,6 +274,7 @@
             // panel1
             // 
             this.panel1.AutoSize = true;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.panel1.Controls.Add(this.btnZad);
             this.panel1.Controls.Add(this.btnSled);
             this.panel1.Controls.Add(this.lblBroj);
@@ -282,71 +282,75 @@
             this.panel1.Controls.Add(this.btnPrvi);
             this.panel1.Location = new System.Drawing.Point(511, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(182, 29);
+            this.panel1.Size = new System.Drawing.Size(172, 29);
             this.panel1.TabIndex = 16;
             this.panel1.Visible = false;
             // 
             // btnZad
             // 
             this.btnZad.FlatAppearance.BorderSize = 0;
-            this.btnZad.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnZad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZad.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZad.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnZad.Location = new System.Drawing.Point(133, 3);
+            this.btnZad.Image = ((System.Drawing.Image)(resources.GetObject("btnZad.Image")));
+            this.btnZad.Location = new System.Drawing.Point(138, 2);
             this.btnZad.Name = "btnZad";
-            this.btnZad.Size = new System.Drawing.Size(33, 23);
+            this.btnZad.Size = new System.Drawing.Size(30, 23);
             this.btnZad.TabIndex = 4;
-            this.btnZad.Text = ">|";
             this.btnZad.UseVisualStyleBackColor = true;
             this.btnZad.Click += new System.EventHandler(this.btnZad_Click);
             // 
             // btnSled
             // 
             this.btnSled.FlatAppearance.BorderSize = 0;
-            this.btnSled.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSled.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSled.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSled.Location = new System.Drawing.Point(107, 3);
+            this.btnSled.Image = ((System.Drawing.Image)(resources.GetObject("btnSled.Image")));
+            this.btnSled.Location = new System.Drawing.Point(102, 2);
             this.btnSled.Name = "btnSled";
             this.btnSled.Size = new System.Drawing.Size(33, 23);
             this.btnSled.TabIndex = 3;
-            this.btnSled.Text = ">";
             this.btnSled.UseVisualStyleBackColor = true;
             this.btnSled.Click += new System.EventHandler(this.btnSled_Click);
             // 
             // lblBroj
             // 
             this.lblBroj.AutoSize = true;
-            this.lblBroj.Location = new System.Drawing.Point(88, 8);
+            this.lblBroj.Font = new System.Drawing.Font("TimesRoman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBroj.ForeColor = System.Drawing.Color.Snow;
+            this.lblBroj.Location = new System.Drawing.Point(77, 4);
             this.lblBroj.Name = "lblBroj";
-            this.lblBroj.Size = new System.Drawing.Size(16, 18);
+            this.lblBroj.Size = new System.Drawing.Size(21, 22);
             this.lblBroj.TabIndex = 2;
             this.lblBroj.Text = "1";
             // 
             // btnPred
             // 
             this.btnPred.FlatAppearance.BorderSize = 0;
-            this.btnPred.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPred.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPred.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPred.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPred.Location = new System.Drawing.Point(49, 3);
+            this.btnPred.Image = ((System.Drawing.Image)(resources.GetObject("btnPred.Image")));
+            this.btnPred.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPred.Location = new System.Drawing.Point(38, 2);
             this.btnPred.Name = "btnPred";
             this.btnPred.Size = new System.Drawing.Size(33, 23);
             this.btnPred.TabIndex = 1;
-            this.btnPred.Text = "<";
             this.btnPred.UseVisualStyleBackColor = true;
             this.btnPred.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnPrvi
             // 
             this.btnPrvi.FlatAppearance.BorderSize = 0;
-            this.btnPrvi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPrvi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrvi.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrvi.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPrvi.Location = new System.Drawing.Point(21, 3);
+            this.btnPrvi.Image = ((System.Drawing.Image)(resources.GetObject("btnPrvi.Image")));
+            this.btnPrvi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrvi.Location = new System.Drawing.Point(3, 3);
             this.btnPrvi.Name = "btnPrvi";
-            this.btnPrvi.Size = new System.Drawing.Size(36, 23);
+            this.btnPrvi.Size = new System.Drawing.Size(29, 23);
             this.btnPrvi.TabIndex = 0;
-            this.btnPrvi.Text = "|<";
             this.btnPrvi.UseVisualStyleBackColor = true;
             this.btnPrvi.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -355,19 +359,10 @@
             this.limegrida.AutoSize = true;
             this.limegrida.Location = new System.Drawing.Point(0, 0);
             this.limegrida.Name = "limegrida";
-            this.limegrida.Size = new System.Drawing.Size(46, 18);
+            this.limegrida.Size = new System.Drawing.Size(48, 18);
             this.limegrida.TabIndex = 17;
             this.limegrida.Text = "label1";
             this.limegrida.Visible = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(269, 178);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(175, 24);
-            this.textBox1.TabIndex = 18;
-            this.textBox1.Visible = false;
             // 
             // frmChield
             // 
@@ -377,7 +372,6 @@
             this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(1254, 1012);
             this.ControlBox = false;
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.limegrida);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lBrDok);
@@ -445,6 +439,5 @@
         private System.Windows.Forms.Button btnPred;
         private System.Windows.Forms.Button btnPrvi;
         private System.Windows.Forms.Label limegrida;
-        public System.Windows.Forms.TextBox textBox1;
     }
 }

@@ -318,16 +318,7 @@ namespace Bankom
         private void BankomMDI_Load(object sender, EventArgs e)
         {
             // tamara 27.10.2020.
-            Program.Parent.ToolBar.Items["toolstripseparator15"].Visible = false;
-            Program.Parent.ToolBar.Items["toolstripseparator20"].Visible = false;
-            Program.Parent.ToolBar.Items["toolstripseparator21"].Visible = false;
-            Program.Parent.ToolBar.Items["toolstripseparator34"].Visible = false;
-            Program.Parent.ToolBar.Items["toolstripseparator35"].Visible = false;
-            Program.Parent.ToolBar.Items["toolstripseparator36"].Visible = false;
-            Program.Parent.ToolBar.Items["toolstripseparator37"].Visible = false;
-            Program.Parent.ToolBar.Items["toolstripseparator42"].Visible = false;
-            Program.Parent.ToolBar.Items["toolstripseparator43"].Visible = false;
-            Program.Parent.ToolBar.Items["toolstripseparator44"].Visible = false;
+     
 
             Program.Parent.ToolBar.Items["Uunos"].Visible = true;
             Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
@@ -844,12 +835,9 @@ namespace Bankom
             MenuStrip menuStrip,
             ToolStrip toolStrip,
             StatusStrip statusStrip,
-            ToolStripSeparator toolStripSeparator3,
-            ToolStripSeparator toolStripSeparator4,
-            ToolStripSeparator toolStripSeparator5,
-            ToolStripSeparator toolStripSeparator6,
+  
             ToolStripMenuItem printSetupToolStripMenuItem,
-            ToolStripSeparator toolStripSeparator7,
+         
             ToolStripStatusLabel toolStripStatusLabel,
             ToolStripMenuItem tileHorizontalToolStripMenuItem,
             ToolStripMenuItem fileMenu,
@@ -891,7 +879,7 @@ namespace Bankom
             ToolStripMenuItem finansijskaKartica,
             ToolStripMenuItem dnevniBilansUspeha,
             ToolStripMenuItem troskoviZaposlenih,
-            ToolStripSeparator toolStripSeparator9,
+       
             ToolStripMenuItem maloprodaja,
             ToolStripMenuItem stampaCenovnikaRecepcije,
             ToolStripMenuItem stampaCenovnika,
@@ -900,20 +888,20 @@ namespace Bankom
             ToolStripMenuItem prometRecepcijePoNacinuPlacanja,
             ToolStripMenuItem prometrecepcijepovrstamausluga,
             ToolStripMenuItem nabavkaZaKuhinjuNevski,
-            ToolStripSeparator toolStripSeparator10,
+      
             ToolStripMenuItem pregledRazduzenjaPoVrednosti,
             ToolStripMenuItem pregledRazduzenjaPoProizvodima,
-            ToolStripSeparator toolStripSeparator11,
+          
             ToolStripMenuItem zaRobuIUsluge,
             ToolStripMenuItem realizacijaUgovoraOKupoprodajiToolStripMenuItem,
             ToolStripMenuItem realizacijaOtkupaToolStripMenuItem,
             ToolStripMenuItem pregledInternihNalogaToolStripMenuItem,
             ToolStripMenuItem zavisniTroskoviNabavkeToolStripMenuItem,
-            ToolStripSeparator toolStripSeparator12,
+     
             ToolStripMenuItem razlikaUCeniPoArtiklimaToolStripMenuItem,
             ToolStripMenuItem razlikaUCeniPoArtiklimaanalitikaToolStripMenuItem,
             ToolStripMenuItem razlikaUCeniPoArtiklimaIKupcimaToolStripMenuItem,
-            ToolStripSeparator toolStripSeparator13,
+          
             ToolStripMenuItem zaKupceIDobavljace,
             ToolStripMenuItem spisakNakogaZaPrijemIUtovar,
             ToolStripMenuItem rekapitulacijaNarudzbenicaKupaca,
@@ -930,13 +918,13 @@ namespace Bankom
             ToolStripMenuItem razlikaUCeniPoKupcimaanalitika,
             ToolStripMenuItem analizaRazlikeUCeniPoKupcima,
             ToolStripMenuItem mesecniPotencijalKupaca,
-            ToolStripSeparator toolStripSeparator14,
+  
             ToolStripMenuItem ukupnaNabavkaPoDobavljacima,
             ToolStripMenuItem analizaPrometaPoDobavljacu,
             ToolStripMenuItem ucesceUUkupnojNabavci,
             ToolStripMenuItem analitikaNabavkePoDobavljacima,
             ToolStripMenuItem razlikeUCeniSaAnalitikama,
-            ToolStripSeparator toolStripSeparator15,
+        
             ToolStripMenuItem knjigovodstvo,
             ToolStripMenuItem obracunPoreza,
             ToolStripMenuItem stanjeSkladista,
@@ -955,21 +943,21 @@ namespace Bankom
             ToolStripMenuItem portfolioKomitenta,
             ToolStripMenuItem brutoBilansMenuItem1,
             ToolStripMenuItem brutoBilansWeb,
-            ToolStripSeparator toolStripSeparator16,
+      
             ToolStripMenuItem nestimajuciNalozi,
             ToolStripMenuItem nestimajiciNaloziAnaliticki,
             ToolStripMenuItem finansijskaKarticaToolStripMenuItem1,
             ToolStripMenuItem finansijskaKarticaUDinarimaToolStripMenuItem,
             ToolStripMenuItem razlikaUCeniSaAnalitikamaToolStripMenuItem,
-            ToolStripSeparator toolStripSeparator17,
+
             ToolStripMenuItem popisnaListaToolStripMenuItem,
-            ToolStripSeparator toolStripSeparator18,
+
             ToolStripMenuItem finansije, ToolStripMenuItem zurnalKnjizenja,
             ToolStripMenuItem zurnalKnjizenjaTroskova,
             ToolStripMenuItem spisakPromenaZaKomitentaIOdabraniIntervalVremena,
             ToolStripMenuItem dnevniIzvestaj,
             ToolStripMenuItem stanjeGotovineIVisokoLikvidnihSredstava,
-            ToolStripSeparator toolStripSeparator19,
+    
             ToolStripMenuItem dospecaObavezaIPotrazivanjaMenuItem1,
             ToolStripMenuItem dugovanjaIAvansi,
             ToolStripMenuItem potrazivanjaIAvansi,
@@ -979,8 +967,7 @@ namespace Bankom
             ToolStripMenuItem dnevniBilansUspehaMenuItem2,
             ToolStripMenuItem zastarelaPotrazivanja,
             ToolStripMenuItem prometGKKursiranUEure,
-            ToolStripSeparator toolStripSeparator20,
-            ToolStripSeparator toolStripSeparator21,
+      
             ToolStripMenuItem spoljnaTrgovina,
             ToolStripMenuItem kontrolnikUvoza,
             ToolStripMenuItem kontrolnikIzvoza,
@@ -988,24 +975,21 @@ namespace Bankom
             ToolStripMenuItem izjavaUzNalog,
             ToolStripMenuItem prodajaNaInoTrzistu,
             ToolStripMenuItem nabavkaNaInoTrzistu,
-            ToolStripSeparator toolStripSeparator22,
             ToolStripMenuItem komercijala,
             ToolStripMenuItem kartonKupca,
             ToolStripMenuItem planProdaje,
             ToolStripMenuItem realizacijaProdaje,
-            ToolStripSeparator toolStripSeparator23,
             ToolStripMenuItem proizvodnja,
             ToolStripMenuItem prometProizvodnje,
             ToolStripMenuItem prodajaFSHProizvodaPoKupcima,
             ToolStripMenuItem rUCOdProdajeVlastitihProizvoda,
             ToolStripMenuItem proizvodi,
             ToolStripMenuItem sirovineZaProizvodnju,
-            ToolStripSeparator toolStripSeparator24,
+     
             ToolStripMenuItem osnovnaSredstva,
             ToolStripMenuItem karticaOsnovnihSredstavaIOpreme,
             ToolStripMenuItem stanjeOsnovnihSredstavaIOpreme,
             ToolStripMenuItem pregledUlaganja,
-            ToolStripSeparator toolStripSeparator25,
             ToolStripMenuItem pomocniSifarnici,
             ToolStripMenuItem dozvoleToolStripMenuItem,
             ToolStripMenuItem raznoMemuItem,
@@ -1014,18 +998,17 @@ namespace Bankom
             ToolStripMenuItem preuzimanjeManjkovaIViskova,
             ToolStripMenuItem preuzimanjeUplataKupacaIzBanaka,
             ToolStripMenuItem prenosNalogaNaPlacanje,
-            ToolStripSeparator toolStripSeparator26,
             ToolStripMenuItem preuzimanjeIzvodaIzBanaka,
             ToolStripMenuItem prepisNaplataIPlacanjaUIzvod,
             ToolStripMenuItem formiranjePPPPDZaPlate,
             ToolStripMenuItem uvozPlataUPlacanja,
             ToolStripMenuItem formiranjePPPPDZaPrevoz,
             ToolStripMenuItem uvozPrevozaUPlacanja,
-            ToolStripSeparator toolStripSeparator27,
+           
             ToolStripMenuItem prenosiZaProdajnaMjesta,
             ToolStripMenuItem faktureRecepcijeZaOdabraneDatume,
             ToolStripMenuItem faktureRestoranaZaOdabraneDatume,
-            ToolStripSeparator toolStripSeparator28,
+         
             ToolStripMenuItem razduzenjesirovinaminibar,
             ToolStripMenuItem razduzenjesirovinazaodabraniintervaldatuma,
             ToolStripMenuItem godisnjeObradeToolStripMenuItem,
@@ -1038,7 +1021,7 @@ namespace Bankom
             ToolStripMenuItem procesirajeDnevnogiIzvestaja,
             ToolStripMenuItem procesiranjeBrutoBilansa,
             ToolStripMenuItem izvestajiIzStabla,
-            ToolStripSeparator toolStripSeparator2,
+        
             ToolStripLabel toolStripLogin,
             ToolStripLabel KrajRada,
             ToolStripMenuItem izborJezika,
@@ -1056,29 +1039,18 @@ namespace Bankom
             ToolStripMenuItem pregled,
             ToolStripMenuItem unos,
             ToolStripMenuItem prekid,
-            ToolStripSeparator toolStripSeparator29,
-            ToolStripSeparator toolStripSeparator32,
-            ToolStripSeparator toolStripSeparator33,
-            ToolStripSeparator toolStripSeparator34,
-            ToolStripSeparator toolStripSeparator35,
-            ToolStripSeparator toolStripSeparator36,
-            ToolStripSeparator toolStripSeparator37,
-            ToolStripSeparator toolStripSeparator41,
-            ToolStripSeparator toolStripSeparator40,
-            ToolStripSeparator toolStripSeparator42,
-            ToolStripSeparator toolStripSeparator8,
+     
             ToolStripMenuItem closeActive,
             ToolStripComboBox toolStripComboBox1,
             ToolStripTextBox toolStripTextBox2,
             ToolStripTextBox toolStripTextBox3,
             ToolStripMenuItem kalkulator,
-            ToolStripSeparator toolStripSeparator1,
+      
             ToolStripButton printToolStripButton,
-            ToolStripSeparator toolStripSeparator39,
             ToolStripMenuItem toolStripMenuItem1,
             ToolStripMenuItem f1ToolStripMenuItem,
             ToolStripMenuItem spaceToolStripMenuItem,
-            ToolStripSeparator toolStripSeparator38,
+       
             ToolStrip toolStrip1,
             ToolStrip toolStrip2,
             ToolStripTextBox toolStripPrazno,
@@ -1097,10 +1069,7 @@ namespace Bankom
             this.components = components;
             //this.toolStrip = toolStrip;
 
-            this.toolStripSeparator3 = toolStripSeparator3;
-            this.toolStripSeparator4 = toolStripSeparator4;
-            this.toolStripSeparator5 = toolStripSeparator5;
-
+         
             this.tileHorizontalToolStripMenuItem = tileHorizontalToolStripMenuItem;
             this.fileMenu = fileMenu;
             this.newToolStripMenuItem = newToolStripMenuItem;
@@ -1132,18 +1101,18 @@ namespace Bankom
             PreuzimanjeManjkovaIViskova = preuzimanjeManjkovaIViskova;
             PreuzimanjeUplataKupacaIzBanaka = preuzimanjeUplataKupacaIzBanaka;
             PrenosNalogaNaPlacanje = prenosNalogaNaPlacanje;
-            ToolStripSeparator26 = toolStripSeparator26;
+  
             PreuzimanjeIzvodaIzBanaka = preuzimanjeIzvodaIzBanaka;
             PrepisNaplataIPlacanjaUIzvod = prepisNaplataIPlacanjaUIzvod;
             FormiranjePPPPDZaPlate = formiranjePPPPDZaPlate;
             UvozPlataUPlacanja = uvozPlataUPlacanja;
             FormiranjePPPPDZaPrevoz = formiranjePPPPDZaPrevoz;
             UvozPrevozaUPlacanja = uvozPrevozaUPlacanja;
-            ToolStripSeparator27 = toolStripSeparator27;
+           
             PrenosiZaProdajnaMjesta = prenosiZaProdajnaMjesta;
             FaktureRecepcijeZaOdabraneDatume = faktureRecepcijeZaOdabraneDatume;
             FaktureRestoranaZaOdabraneDatume = faktureRestoranaZaOdabraneDatume;
-            ToolStripSeparator28 = toolStripSeparator28;
+        
             Razduzenjesirovinaminibar = razduzenjesirovinaminibar;
             Razduzenjesirovinazaodabraniintervaldatuma = razduzenjesirovinazaodabraniintervaldatuma;
             GodisnjeObradeToolStripMenuItem = godisnjeObradeToolStripMenuItem;
@@ -1164,21 +1133,18 @@ namespace Bankom
             SrpskiLatinica = srpskiLatinica;
             English = english;
             Ruski = ruski;
-            this.toolStripSeparator41 = toolStripSeparator41;
-            this.toolStripSeparator40 = toolStripSeparator40;
-            //this.toolStripSeparator42 = toolStripSeparator42;
-            this.toolStripSeparator8 = toolStripSeparator8;
+  
             CloseActive = closeActive;
             // this.tstbPretraga = tstbPretraga;
 
             //this.toolStripTextBox3 = toolStripTextBox3;
 
 
-            this.toolStripSeparator39 = toolStripSeparator39;
+      
             this.toolStripMenuItem1 = toolStripMenuItem1;
             this.f1ToolStripMenuItem = f1ToolStripMenuItem;
             this.spaceToolStripMenuItem = spaceToolStripMenuItem;
-            this.toolStripSeparator38 = toolStripSeparator38;
+        
             this.toolStrip1 = toolStrip1;
 
         }
@@ -3097,10 +3063,9 @@ namespace Bankom
             Application.Exit();
         }
 
-        public string pomStablo;
-        public string pomIzv;
+   
 
-       
+
         public void SrediFormu()
         {
             flowLayoutPanel1.Width = 161;
@@ -3308,23 +3273,23 @@ namespace Bankom
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
                                 string d = toolStripTextBox1.Text;
-                                o.Klasifikacija_Click(d, pomIzv, pomStablo);
+                                o.Klasifikacija_Click(d, Program.pomIzv, Program.pomStablo);
                             }
                             else if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                o.KlasifikacijaBrisanje(pomIzv, pomStablo);
+                                o.KlasifikacijaBrisanje(Program.pomIzv, Program.pomStablo);
                             }
                             else if (forma.Controls["OOperacija"].Text.Trim() == "IZMENA")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
                                 string d = toolStripTextBox1.Text;
-                                o.KlasifikacijaIzmena(d, pomIzv, pomStablo);
+                                o.KlasifikacijaIzmena(d, Program.pomIzv, Program.pomStablo);
                             }
                             else if (forma.Controls["OOperacija"].Text.Trim() == "KOPIRAJ")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                o.KlasifikacijaPremestiGrupu(pomIzv, pomStablo);
+                                o.KlasifikacijaPremestiGrupu(Program.pomIzv, Program.pomStablo);
 
 
                                 //ovde smo stigle
@@ -3332,7 +3297,7 @@ namespace Bankom
                             else if (forma.Controls["OOperacija"].Text.Trim() == "NALEPI")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                o.KlasifikacijaNovaPozicija(pomIzv, pomStablo);
+                                o.KlasifikacijaNovaPozicija(Program.pomIzv, Program.pomStablo);
 
                             }
                        

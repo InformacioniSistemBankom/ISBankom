@@ -61,6 +61,9 @@ namespace Bankom
         public static int IdSelektovanogCvora { get; set; }
         public static int IdParentaSelektovanogCvora { get; set; }
         public static string KlasifikacijaSlovo { get; set; }
+        public static string pomStablo { get; set; }
+        public static string pomIzv{ get; set; }
+
 
         [STAThread]
 

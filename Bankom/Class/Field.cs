@@ -170,6 +170,7 @@ namespace Bankom.Class
                         CustomFormat = "dd.MM.yy",
                         Format = DateTimePickerFormat.Custom,
                         BackColor = Color.AliceBlue,
+
                         Tag = Tip,
                         Name = Ime,
                         //AllowDrop = true
@@ -277,6 +278,7 @@ namespace Bankom.Class
                             Name = Ime,
                             Tag = Tip,
                             BackColor = Color.AliceBlue,
+                            ForeColor=Color.Black,
                             FlatStyle = FlatStyle.Standard
                             //FlatStyle = FlatStyle.Flat
 
@@ -338,6 +340,7 @@ namespace Bankom.Class
                         textBox = new TextBox()
                         {
                             BackColor = Color.AliceBlue,
+                            ForeColor = Color.Black,
                             Tag = Tip,  //Tip polja: broj, datum, combobox, ....                            
                             Name = Ime,
                             Text = "",
@@ -818,7 +821,7 @@ namespace Bankom.Class
                                 control.Text = aaa;
                                 control.Refresh();
 
-                                control.ForeColor = Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));;
+                                control.ForeColor = Color.Black;
                                 FillOtherControls(control, ID);
                             }
                             else
