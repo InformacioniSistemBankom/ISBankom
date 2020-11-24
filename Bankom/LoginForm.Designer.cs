@@ -253,7 +253,7 @@
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBox1.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.groupBox1.Location = new System.Drawing.Point(476, 12);
+            this.groupBox1.Location = new System.Drawing.Point(467, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(149, 94);
             this.groupBox1.TabIndex = 29;
