@@ -2007,33 +2007,49 @@ namespace Bankom
         public static string cf;
         private void Iizlaz_Click(object sender, EventArgs e)
         {
-            foreach (Form childForm in this.MdiChildren)
-            {
-                if (childForm == this.ActiveMdiChild)
-                {
-                   
-                    itemB1_click(childForm.Text);
-                    childForm.Close();
+            // ivana 24.11.2020.
+            Form childForm = this.ActiveMdiChild;
+            itemB1_click(childForm.Text);
+            childForm.Close();
 
-                    if (toolStrip1.Items.Count == 0)
-                    {
-                        toolStrip1.Visible = false;
-                        if (MessageBox.Show("Izlaz iz programa ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            toolStrip1.Visible = false;
-                            Application.Exit();
-                        }
-                    }
-                }
-            }
             if (toolStrip1.Items.Count == 0)
             {
                 toolStrip1.Visible = false;
-                if (MessageBox.Show("Izlaz iz programa ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Izlaz iz programa?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    toolStrip1.Visible = false;
                     Application.Exit();
                 }
             }
+
+            ////staro
+            
+            //foreach (Form childForm in this.MdiChildren)
+            //{
+            //    if (childForm == this.ActiveMdiChild)
+            //    {
+            //        itemB1_click(childForm.Text);
+            //        childForm.Close();
+
+            //        if (toolStrip1.Items.Count == 0)
+            //        {
+            //            toolStrip1.Visible = false;
+            //            if (MessageBox.Show("Izlaz iz programa ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            //            {
+            //                toolStrip1.Visible = false;
+            //                Application.Exit();
+            //            }
+            //        }
+            //    }
+            //}
+            //if (toolStrip1.Items.Count == 0)
+            //{
+            //    toolStrip1.Visible = false;
+            //    if (MessageBox.Show("Izlaz iz programa ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            //    {
+            //        Application.Exit();
+            //    }
+            //}
         }
         private void unospb_Click(object sender, EventArgs e)
         {
