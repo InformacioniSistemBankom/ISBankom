@@ -217,18 +217,15 @@ namespace Bankom
             this.PreuzimanjeManjkovaIViskova,
             this.PreuzimanjeUplataKupacaIzBanaka,
             this.PrenosNalogaNaPlacanje,
-      
             this.PreuzimanjeIzvodaIzBanaka,
             this.PrepisNaplataIPlacanjaUIzvod,
             this.FormiranjePPPPDZaPlate,
             this.UvozPlataUPlacanja,
             this.FormiranjePPPPDZaPrevoz,
             this.UvozPrevozaUPlacanja,
-     
             this.PrenosiZaProdajnaMjesta,
             this.FaktureRecepcijeZaOdabraneDatume,
             this.FaktureRestoranaZaOdabraneDatume,
-    
             this.Razduzenjesirovinaminibar,
             this.Razduzenjesirovinazaodabraniintervaldatuma});
             this.PeeisiToolStripMenuItem.Name = "PeeisiToolStripMenuItem";
@@ -270,7 +267,6 @@ namespace Bankom
             this.PrenosNalogaNaPlacanje.Size = new System.Drawing.Size(327, 22);
             this.PrenosNalogaNaPlacanje.Text = "Prenos naloga na placanje";
             this.PrenosNalogaNaPlacanje.Click += new System.EventHandler(this.PrenosNalogaNaPlacanje_Click);
-       
             // 
             // PreuzimanjeIzvodaIzBanaka
             // 
@@ -303,15 +299,12 @@ namespace Bankom
             // FormiranjePPPPDZaPrevoz
             // 
             this.FormiranjePPPPDZaPrevoz.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            
             this.Prevoz,
-       
             this.Nagrade});
             this.FormiranjePPPPDZaPrevoz.Name = "FormiranjePPPPDZaPrevoz";
             this.FormiranjePPPPDZaPrevoz.Size = new System.Drawing.Size(327, 22);
             this.FormiranjePPPPDZaPrevoz.Text = "Formiranje PPPPD za prevoz";
             this.FormiranjePPPPDZaPrevoz.Click += new System.EventHandler(this.FormiranjePPPPDZaPrevoz_Click);
-       
             // 
             // Prevoz
             // 
@@ -320,7 +313,6 @@ namespace Bankom
             this.Prevoz.Text = "Prevoz";
             this.Prevoz.Click += new System.EventHandler(this.Prevoz_Click);
             // 
-           
             // Nagrade
             // 
             this.Nagrade.Name = "Nagrade";
@@ -336,7 +328,6 @@ namespace Bankom
             this.UvozPrevozaUPlacanja.Text = "Uvoz prevoza u placanja";
             this.UvozPrevozaUPlacanja.Click += new System.EventHandler(this.UvozPrevozaUPlacanja_Click);
             // 
-            
             // PrenosiZaProdajnaMjesta
             // 
             this.PrenosiZaProdajnaMjesta.Name = "PrenosiZaProdajnaMjesta";
@@ -358,7 +349,6 @@ namespace Bankom
             this.FaktureRestoranaZaOdabraneDatume.Text = "Fakture restorana za odabrane datume";
             this.FaktureRestoranaZaOdabraneDatume.Click += new System.EventHandler(this.FaktureRestoranaZaOdabraneDatume_Click);
             // 
-            
             // Razduzenjesirovinaminibar
             // 
             this.Razduzenjesirovinaminibar.Name = "Razduzenjesirovinaminibar";
@@ -372,8 +362,6 @@ namespace Bankom
             this.Razduzenjesirovinazaodabraniintervaldatuma.Size = new System.Drawing.Size(327, 22);
             this.Razduzenjesirovinazaodabraniintervaldatuma.Text = "Razduzenje sirovina za odabrani interval datuma";
             this.Razduzenjesirovinazaodabraniintervaldatuma.Click += new System.EventHandler(this.Razduzenjesirovinazaodabraniintervaldatuma_Click);
-            // 
-            
             // 
             // GodisnjeObradeToolStripMenuItem
             // 
@@ -465,21 +453,17 @@ namespace Bankom
             this.opadajuci.Size = new System.Drawing.Size(126, 22);
             this.opadajuci.Text = "opadajuci";
             this.opadajuci.Click += new System.EventHandler(this.opadajuci_Click);
-          
             // 
             // fileMenu
             // 
             this.fileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
             this.openToolStripMenuItem,
-         
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
-   
             this.printToolStripMenuItem,
             this.printPreviewToolStripMenuItem,
             this.printSetupToolStripMenuItem,
-       
             this.exitToolStripMenuItem});
             this.fileMenu.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.fileMenu.Name = "fileMenu";
@@ -505,7 +489,6 @@ namespace Bankom
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
-           
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
@@ -520,7 +503,6 @@ namespace Bankom
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             // 
-           
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
@@ -543,14 +525,12 @@ namespace Bankom
             this.printSetupToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.printSetupToolStripMenuItem.Text = "Print Setup";
             // 
-            
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             // 
-            
             // viewMenu
             // 
             this.viewMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -569,7 +549,6 @@ namespace Bankom
             this.statusBarToolStripMenuItem.Text = "&Status Bar";
             this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click_1);
             // 
-           
             // toolsMenu
             // 
             this.toolsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -592,6 +571,7 @@ namespace Bankom
             this.toolStripMenuRefresh.Size = new System.Drawing.Size(159, 22);
             this.toolStripMenuRefresh.Text = "Refresh";
             this.toolStripMenuRefresh.Click += new System.EventHandler(this.toolStripMenuRefresh_Click_1);
+            // 
             // windowsMenu
             // 
             this.windowsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -648,7 +628,6 @@ namespace Bankom
             this.arrangeIconsToolStripMenuItem.Text = "&Arrange Icons";
             this.arrangeIconsToolStripMenuItem.Click += new System.EventHandler(this.arrangeIconsToolStripMenuItem_Click_1);
             // 
-            
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -677,7 +656,6 @@ namespace Bankom
             this.spaceToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
             this.spaceToolStripMenuItem.Text = "Space - prikaz liste iz označenog textboxa";
             // 
-            
             // IzborJezika
             // 
             this.IzborJezika.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -723,7 +701,6 @@ namespace Bankom
             this.Ruski.Text = "Русский";
             this.Ruski.Click += new System.EventHandler(this.Ruski_Click_1);
             // 
-             
             // KrajRada
             // 
             this.KrajRada.BackColor = System.Drawing.SystemColors.Control;
@@ -762,13 +739,9 @@ namespace Bankom
             this.Pppppd,
             this.Pposta,
             this.Ffajlovi,
-           
             this.Oodobri,
-         
             this.Pplati,
-          
             this.Oorigin,
-          
             this.Oorgsema});
             this.ToolBar.Location = new System.Drawing.Point(0, 0);
             this.ToolBar.Name = "ToolBar";
@@ -1061,7 +1034,7 @@ namespace Bankom
             this.Pporeklo.Image = ((System.Drawing.Image)(resources.GetObject("Pporeklo.Image")));
             this.Pporeklo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Pporeklo.Name = "Pporeklo";
-            this.Pporeklo.Size = new System.Drawing.Size(80, 40);
+            this.Pporeklo.Size = new System.Drawing.Size(90, 40);
             this.Pporeklo.Text = "Poreklo";
             this.Pporeklo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Pporeklo.ToolTipText = "Poreklo robe";
@@ -1075,7 +1048,7 @@ namespace Bankom
             this.Ppotencijal.Image = ((System.Drawing.Image)(resources.GetObject("Ppotencijal.Image")));
             this.Ppotencijal.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Ppotencijal.Name = "Ppotencijal";
-            this.Ppotencijal.Size = new System.Drawing.Size(90, 40);
+            this.Ppotencijal.Size = new System.Drawing.Size(110, 40);
             this.Ppotencijal.Text = "Potencijal";
             this.Ppotencijal.ToolTipText = "Potencijal";
             this.Ppotencijal.Visible = false;
@@ -1123,7 +1096,6 @@ namespace Bankom
             this.Ffajlovi.Text = "Fajlovi";
             this.Ffajlovi.ToolTipText = "Rad safajlovima";
             // 
-            
             // Oodobri
             // 
             this.Oodobri.AutoSize = false;
@@ -1139,7 +1111,6 @@ namespace Bankom
             this.Oodobri.ToolTipText = "Odobrenje deviznog placanja";
             this.Oodobri.Visible = false;
             // 
-            
             // Pplati
             // 
             this.Pplati.AutoSize = false;
@@ -1156,7 +1127,6 @@ namespace Bankom
             this.Pplati.ToolTipText = "Plati deviznu doznaku";
             this.Pplati.Visible = false;
             // 
-           
             // Oorigin
             // 
             this.Oorigin.AutoSize = false;
@@ -1173,7 +1143,6 @@ namespace Bankom
             this.Oorigin.Visible = false;
             this.Oorigin.Click += new System.EventHandler(this.Oorigin_Click);
             // 
-            
             // Oorgsema
             // 
             this.Oorgsema.AutoSize = false;
@@ -1187,7 +1156,6 @@ namespace Bankom
             this.Oorgsema.Text = "Org.šema";
             this.Oorgsema.ToolTipText = "Organizaciona {ema";
             // 
-            
             // toolStrip1
             // 
             this.toolStrip1.Font = new System.Drawing.Font("TimesRoman", 9F);
