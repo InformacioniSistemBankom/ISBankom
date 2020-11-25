@@ -207,7 +207,7 @@ namespace Bankom.Class
                     pom = true;
                     MessageBox.Show("Već je otvorena ova forma!");
                     f.Focus();
-                    mdi.updateToolStrip(s);
+                   // mdi.updateToolStrip(s);
                     break;
                 }
             }
@@ -241,7 +241,7 @@ namespace Bankom.Class
                         if (mdi.IzborJezika.Text == "Српски-Ћирилица") { lotovi.Text = mdi.VratiCirlilicu("Lotovi"); }
                         int sirina = (mdi.Width / 100) * 10;
                         mdi.addFormTotoolstrip1(lotovi, "Lotovi");
-                        mdi.updateToolStrip(s);
+                      //  mdi.updateToolStrip(s);
                         mdi.SrediFormu();
                         lotovi.Show();
                         

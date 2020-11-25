@@ -106,17 +106,17 @@ namespace Bankom
             }
 
 
-            updateToolStrip(imedokumenta);
+            updateToolStrip(imedokumenta, brojdokumenta);
 
         }
-        public void updateToolStrip(string imedokumenta)
+        public void updateToolStrip(string imedokumenta, string brdok)
         {
             int a = toolStrip1.Items.Count;
 
             for (int i = 0; i < a; i++)
             {
                 toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                if (toolStrip1.Items[i].Text == imedokumenta)
+                if (toolStrip1.Items[i].Text == imedokumenta || toolStrip1.Items[i].Text == brdok )
                 {
                     toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
@@ -615,14 +615,7 @@ namespace Bankom
             frmChield active = new frmChield();
             active.FormBorderStyle= FormBorderStyle.None;
             int a = toolStrip1.Items.Count;
-            for (int i = 0; i < a; i++)
-            {
-                toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                if (toolStrip1.Items[i].Text == b)
-                {
-                    toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                }
-            }
+            
 
           SrediFormu();
 
@@ -654,6 +647,14 @@ namespace Bankom
 
             //  frmChield activeChild = (frmChield)this.ActiveMdiChild;
             // activeChild.Visible = false;
+            for (int i = 0; i < a; i++)
+            {
+                toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                if (toolStrip1.Items[i].Text == b)
+                {
+                    toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                }
+            }
 
         }
 
