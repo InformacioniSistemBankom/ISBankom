@@ -480,7 +480,7 @@ namespace Bankom.Class
                     dv.EnableHeadersVisualStyles = false;
                     dv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
 
-
+                    dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
                     //Djora 26.09.20
                     PromenaFonta(dv);
                     //Djora 26.09.20
@@ -524,13 +524,14 @@ namespace Bankom.Class
                         case 0:
                             dv.ColumnHeadersVisible = false;
                             //dv.ColumnHeadersHeight = 18; //Convert.ToInt32(cheight);
-                            dv.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 5, FontStyle.Regular);
+                            dv.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("TimesRoman", 5, FontStyle.Regular);
                             dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
-                            dv.ColumnHeadersDefaultCellStyle.ForeColor = Color.Snow;
+                            //dv.ColumnHeadersDefaultCellStyle.ForeColor = Color.Snow;
+                           
                             break;
                         case 1:
                             dv.ColumnHeadersVisible = true;
-
+                            dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
                             //dv.Columnheaderscaption=
                             break;
                     }
@@ -541,7 +542,7 @@ namespace Bankom.Class
                     dv.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
                     dv.Visible = true;
                     //dv.ColumnHeader.Font = new Font("TimesRoman", 5, FontStyle.Regular);
-
+                    dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
                     //Djora 26.09.20
                     //dv.Font = new Font("TimesRoman", 13, FontStyle.Regular);
 
@@ -1054,6 +1055,7 @@ namespace Bankom.Class
             Program.colname = dv.Columns[e.ColumnIndex].Name;
             Program.activecontrol = control;
             dv.BackgroundColor = Color.AliceBlue;
+            dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
             SrediFormu();
         }
         private void FillControls(DataGridView control, ref int iid, ref string brdok, ref DateTime datum, DataGridViewCellMouseEventArgs e)
