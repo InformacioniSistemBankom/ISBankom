@@ -731,7 +731,7 @@ namespace Bankom
         //Djora 07.07.20
         private void frmLogin_Load(object sender, EventArgs e)
         {
-
+            this.HorizontalScroll.Enabled = true;
             int standardHeight = 1080;  //900
             int standardWidth = 1920;  //1440
             int presentHeight = Screen.PrimaryScreen.Bounds.Height;//.Bounds.Height;
@@ -744,7 +744,7 @@ namespace Bankom
 
         }
 
-
+       
         
         private void BtnPrekid_Click(object sender, EventArgs e)
         {

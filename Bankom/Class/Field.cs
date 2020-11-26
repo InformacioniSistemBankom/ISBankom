@@ -480,6 +480,7 @@ namespace Bankom.Class
                     dv.EnableHeadersVisualStyles = false;
                     dv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
 
+                    //tamara 26.11.2020.
                     dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
                     dv.ScrollBars = ScrollBars.Both;
                     dv.RowHeadersDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
@@ -551,7 +552,7 @@ namespace Bankom.Class
                     dv.Visible = true;
                     //dv.ColumnHeader.Font = new Font("TimesRoman", 5, FontStyle.Regular);
                     dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
-
+                    //tamara 26.11.2020.
                     dv.ScrollBars = ScrollBars.Both;
                     dv.RowHeadersDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
 
