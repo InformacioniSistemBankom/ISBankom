@@ -10,6 +10,7 @@ namespace BankomTest
         public void TestMethod1()
         {
 
+
         }
     }
 }
