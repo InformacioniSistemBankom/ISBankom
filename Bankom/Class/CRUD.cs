@@ -23,7 +23,7 @@ namespace Bankom.Class
         private string IndUpisan;
         private string IdDokumentaStablo;
         private string DokumentJe = "";
-        private string dokument="";
+        private string dokument = "";
         private Form forma;
         bool isDoIt = true;
         private string NazivKlona = "";
@@ -48,6 +48,7 @@ namespace Bankom.Class
             operacija = forma.Controls["OOperacija"].Text;
             iddokument = Convert.ToString(((Bankom.frmChield)forma).iddokumenta);
             clsOperacije op = new clsOperacije();
+            clsProveraIspravnosti pi = new clsProveraIspravnosti();
             // POCETAK OBRADE SLOGOVA IZABRANOM OPERACIJOM
             string sql = "";
             DataTable t = new DataTable();
@@ -72,10 +73,10 @@ namespace Bankom.Class
             {
                 isDoIt = false;
                 MessageBox.Show("Greska");
-                return (isDoIt); 
+                return (isDoIt);
             }
             for (int r = 0; r < t.Rows.Count; r++)
-            { 
+            {
                 if (isDoIt == false) { break; }
                 string tabela = t.Rows[r]["Tabela"].ToString();
                 ime = t.Rows[r]["Ime"].ToString();    //// upiti.GetValue(upiti.GetOrdinal("Ime")).ToString();
@@ -84,28 +85,37 @@ namespace Bankom.Class
                 string Poruka = "";
                 IndUpisan = "0";
                 isDoIt = true;
-                if (isDoIt == false) return (isDoIt);
-                if (r == 0 && operacija == "BRISANJE")
-                {
-                    if (MessageBox.Show("Da li stvarno zelite brisanje ?", "Brisanje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                    {
-                        return (isDoIt);
-                    }
-                }
+                //if (isDoIt == false) return (isDoIt); //BORKA 26.11.20  NELOGICNO!
+                //BORKA 26.11 20 PREMESTENI UMRTVLJENI REDOVI NIZE U KODU 
+                //if (r == 0 && operacija == "BRISANJE")
+                //{
+                //if (MessageBox.Show("Da li stvarno zelite brisanje ?", "Brisanje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                //{
+                //    return (isDoIt);
+                //}
+                //}
                 switch (operacija)
-                {                 
+                {
                     case "BRISANJE":
-                          PoljeGdeSeUpisujeIId = "ID_" + t.Rows[r]["Tabela"].ToString().Trim();
-                          if (dokument == "Dokumenta")
-                                iddokument = Convert.ToString(((Bankom.frmChield)forma).iddokumenta);
+                        isDoIt = pi.ProveraOperacija(dokument);//BORKA 24.11.20
+                        if (isDoIt == false)
+                            return isDoIt;
+                        if (MessageBox.Show("Da li stvarno zelite brisanje ?", "Brisanje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                            return (isDoIt);
+                        PoljeGdeSeUpisujeIId = "ID_" + t.Rows[r]["Tabela"].ToString().Trim();
+                        if (dokument == "Dokumenta")
+                            iddokument = Convert.ToString(((Bankom.frmChield)forma).iddokumenta);
 
-                          if (Convert.ToInt32(t.Rows[r]["TUD"]) > 0 && ((Bankom.frmChield)forma).idReda >0)   /// BORKA 27.07.20
-                          {
-                                isDoIt = Erase(tabela, Convert.ToString(((Bankom.frmChield)forma).idReda));
-                                break;
-                          }
+                        if (Convert.ToInt32(t.Rows[r]["TUD"]) > 0 && ((Bankom.frmChield)forma).idReda > 0)   /// BORKA 27.07.20
+                        {
+                            isDoIt = Erase(tabela, Convert.ToString(((Bankom.frmChield)forma).idReda));
+                            break;
+                        }
                         break;
                     case "STORNO":
+                        isDoIt = pi.ProveraOperacija(dokument);//BORKA 24.11.20
+                        if (isDoIt == false)
+                            return isDoIt;
                         isDoIt = StornirajDokument();
                         if (isDoIt == false)
                             return isDoIt;
@@ -116,10 +126,10 @@ namespace Bankom.Class
                         if (r == 0)
                         {
                             // PROVERE ISPRAVNOSTI PODATAKA POCETAK
-                            clsProveraIspravnosti pi = new clsProveraIspravnosti();
+
                             isDoIt = pi.ProveraOperacija(NazivKlona);
                             if ((DokumentJe == "S" && dokument == "Dokumenta" && IdDokumentaStablo != "61") || (DokumentJe == "D" && IdDokumentaStablo != "29" || (DokumentJe == "D" && IdDokumentaStablo != "290")))
-                            {                               
+                            {
                                 isDoIt = pi.ProveraKursa(dokument, ref Poruka);
                                 if (isDoIt == false)
                                 {
@@ -175,7 +185,7 @@ namespace Bankom.Class
                             }
                         }
                         //if (forma.Controls["OOperacija"].Text.Contains("IZMENA") == true)
-                        if(operacija=="IZMENA")
+                        if (operacija == "IZMENA")
                         {
                             if (iid != "0" && iid != null && iid != "-1")
                             {
@@ -191,9 +201,9 @@ namespace Bankom.Class
                         break;
                     default:
                         Console.WriteLine("Default case");
-                        break;                  
+                        break;
                 }// KRAJ swich za OPERACIJU     
-              //Sledeci:
+                 //Sledeci:
             }    // KRAJ OBRADE SLOGOVA ODABRANOM OPERACIJOM
             if (isDoIt == false) return (isDoIt);// DODALA RED  BORKA 12.08.20 
             string imaTotale = "1";
@@ -207,13 +217,13 @@ namespace Bankom.Class
             {
                 if (DokumentJe == "S")
                 {
-                    if( operacija=="UNOS") 
+                    if (operacija == "UNOS")
                         sql = "EXECUTE TotaliZaDokument " + NazivKlona + "," + "'tttt'";
                     else
-                        sql = "Execute TotaliZaDokument'" +NazivKlona + "'," + iddok.ToString();
+                        sql = "Execute TotaliZaDokument'" + NazivKlona + "'," + iddok.ToString();
                 }
                 else
-                    sql = "Execute TotaliZaDokument '" + NazivKlona + "', " + iddok.ToString();                
+                    sql = "Execute TotaliZaDokument '" + NazivKlona + "', " + iddok.ToString();
                 lista.Add(new string[] { sql, "", "", "", "" });
                 lista.ToArray();
             }
@@ -226,7 +236,7 @@ namespace Bankom.Class
                 dtt = db.ParamsQueryDT(sql, NazivKlona, "NazivSkl");
                 if (dtt.Rows.Count > 0)
                 {
-                     sql = "Execute CeneArtikalaPoSkladistimaIStanje " + iddok.ToString();
+                    sql = "Execute CeneArtikalaPoSkladistimaIStanje " + iddok.ToString();
                     lista.Add(new string[] { sql, "", "", "", "" });
                     lista.ToArray();
 
@@ -252,7 +262,7 @@ namespace Bankom.Class
 
                 string rezultat = db.ReturnSqlTransactionParamsFull(lista);
                 Console.WriteLine(rezultat);
-                if (rezultat != "" )  /////??????????????????? BORKA NE VALJA ZA INSERT TEBA VIDETI KAKO TO RESITI
+                if (rezultat != "")  /////??????????????????? BORKA NE VALJA ZA INSERT TEBA VIDETI KAKO TO RESITI
                 {
                     if (op.IsNumeric(rezultat) == true)
                     {
@@ -269,11 +279,11 @@ namespace Bankom.Class
                             isDoIt = false;
                             return isDoIt;
                         }
-                    }                    
+                    }
                 }
             }
             if (isDoIt == false) { return (isDoIt); }
-            
+
             CreateLog(forma, iddok, Convert.ToString(((Bankom.frmChield)forma).idReda), dokument, operacija, ime);
             clsAzuriranja az = new clsAzuriranja();
             az.DodatnaAzuriranja(dokument1, iddok);
@@ -287,10 +297,10 @@ namespace Bankom.Class
                     {
                         clsObradaKalkulacije okal = new clsObradaKalkulacije();
                         okal.RasporedTroskova(Convert.ToInt64(iddok), " ", " ", " ", "");
-                       
+
                     }
                 }
-            }      
+            }
 
 
             if ((operacija.Contains("UNOS") == true || operacija == "IZMENA") && DokumentJe == "D")
@@ -301,7 +311,7 @@ namespace Bankom.Class
                     isDoIt = cOT.UpisOpisaTransakcijeUTransakcije(forma, iddokument, iid);
                 }
             }
-            if (isDoIt ==false) return (isDoIt);
+            if (isDoIt == false) return (isDoIt);
             ((Bankom.frmChield)forma).idReda = -1;
             return isDoIt;
         } // KRAJ za Doit
@@ -381,10 +391,10 @@ namespace Bankom.Class
                             }
                             else
                             {
-                                if (pb.IME == "DatumIstupa" && string.IsNullOrEmpty(pb.Vrednost.Trim())) 
+                                if (pb.IME == "DatumIstupa" && string.IsNullOrEmpty(pb.Vrednost.Trim()))
                                 { goto sledeci; }
                                 IInsert = IInsert + field + ";";
-                                SSelectZaInsert = SSelectZaInsert +  PrevediPolje(pb.Vrednost, pb.TipKontrole.ToString()) + ";";
+                                SSelectZaInsert = SSelectZaInsert + PrevediPolje(pb.Vrednost, pb.TipKontrole.ToString()) + ";";
                                 goto sledeci;
                             }
                         }
@@ -509,25 +519,25 @@ namespace Bankom.Class
             lista.ToArray();
             return isDoIt;
         }
-        
-       
+
+
         public bool Update(string upit, string ime, string tabela)
         {
             isDoIt = true;
-            string sselect;            
+            string sselect;
             string ffrom;
             string UVView;
-            string field;    
+            string field;
             int k = 0;
             string naredba = "";
             string param = "";
             string paramvred = "";
-            string[] separators = new[] { "," };           
+            string[] separators = new[] { "," };
 
             sselect = upit.Substring(upit.IndexOf("SELECT") + 6, upit.IndexOf("FROM") - 6).Trim() + ",";
             string[] filds = sselect.Split(separators, StringSplitOptions.RemoveEmptyEntries);
 
-            ffrom = upit.Substring(upit.IndexOf("FROM") + 4);           
+            ffrom = upit.Substring(upit.IndexOf("FROM") + 4);
             naredba = "UPDATE " + ffrom + " SET  ";
             UVView = ime.Substring(3, ime.Length - 3);
             string uslov = "";
@@ -542,10 +552,10 @@ namespace Bankom.Class
                 if (field.Contains("ID_") == true)   // jeste ID-polje
                 {
                     if (field == "ID_DokumentaView")
-                    {  
+                    {
                         param = "@param" + Convert.ToString(k).Trim();
                         naredba += "[" + field + "]=" + param + ",";
-                        paramvred += param + "=" + iddokument + "`";                       
+                        paramvred += param + "=" + iddokument + "`";
 
                         goto SledecePolje;
                     }
@@ -566,9 +576,9 @@ namespace Bankom.Class
                                     || (pb.cIzborno.ToUpper() == fpolje.ToUpper() && pb.cIzborno != pb.cTabela)
                                     || (fpolje == pb.cAlijasTabele && pb.cIzborno == pb.cTabela))
                                 {
-                                     param = "@param" + Convert.ToString(k).Trim();
-                                     paramvred += param + "=" + pb.ID + "`";
-                                     naredba += "[" + field + "]=" + param +",";                                     
+                                    param = "@param" + Convert.ToString(k).Trim();
+                                    paramvred += param + "=" + pb.ID + "`";
+                                    naredba += "[" + field + "]=" + param + ",";
 
                                     goto SledecePolje;
                                 }
@@ -578,14 +588,14 @@ namespace Bankom.Class
                                 if (fpolje == pb.cAlijasTabele && pb.cDokument == "Dokumenta")
                                 {
                                     param = "@param" + Convert.ToString(k).Trim();
-                                    naredba += "[" + field + "]=" + param +",";
-                                    paramvred +=param+"=" + pb.ID + "`";
+                                    naredba += "[" + field + "]=" + param + ",";
+                                    paramvred += param + "=" + pb.ID + "`";
                                     goto SledecePolje;
                                 }
                             }
                         } // kraj pb.cTabelaVView == UVView
                     }//kraj foreach pb                  
-            } //kraj  polje sadrzi ID
+                } //kraj  polje sadrzi ID
 
                 else  // nije ID polje
                 {
@@ -594,10 +604,10 @@ namespace Bankom.Class
                         if ((field == pb.cPolje && pb.cTabela == tabela && pb.cTabelaVView == UVView) || field == pb.IME && pb.cTabelaVView == UVView)
                         {
                             // if (string.IsNullOrEmpty(mg)) { return; }
-                            if (pb.IME=="DatumIstupa" && string.IsNullOrEmpty(pb.Vrednost.Trim()))  { goto SledecePolje;}
+                            if (pb.IME == "DatumIstupa" && string.IsNullOrEmpty(pb.Vrednost.Trim())) { goto SledecePolje; }
                             param = "@param" + Convert.ToString(k).Trim();
-                            naredba += "[" + field + "]=" + param +",";
-                            paramvred +=param+"=" + PrevediPolje(pb.Vrednost, pb.TipKontrole.ToString()) + "`";
+                            naredba += "[" + field + "]=" + param + ",";
+                            paramvred += param + "=" + PrevediPolje(pb.Vrednost, pb.TipKontrole.ToString()) + "`";
 
                             goto SledecePolje;
                         }
@@ -618,12 +628,12 @@ namespace Bankom.Class
                         case "Artikli":
                         case "Komitenti":
                             Field kontrola = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "Grupa");
-                            if (kontrola.ID != "1")                            
-                                IdDokumentaStablo = kontrola.ID;                              
-                            k++;                             
+                            if (kontrola.ID != "1")
+                                IdDokumentaStablo = kontrola.ID;
+                            k++;
                             param = "@param" + Convert.ToString(k).Trim();
-                            naredba += "[ID_"+ dokument + "Stablo]=" + param + ",";
-                            paramvred += param + "=" + IdDokumentaStablo + "`";                               
+                            naredba += "[ID_" + dokument + "Stablo]=" + param + ",";
+                            paramvred += param + "=" + IdDokumentaStablo + "`";
 
                             break;
                     }
@@ -635,21 +645,21 @@ namespace Bankom.Class
                 k++;
                 param = "@param" + Convert.ToString(k).Trim();
                 naredba += "[" + "Uuser" + "]=" + param + ",";
-                paramvred += param + "="+ Program.idkadar.ToString() + "`";
+                paramvred += param + "=" + Program.idkadar.ToString() + "`";
                 k++;
                 param = "@param" + Convert.ToString(k).Trim();
                 naredba += "[" + "Ttime" + "]=" + param;
-                paramvred += param + "=" + DateTime.Now + "`";                
+                paramvred += param + "=" + DateTime.Now + "`";
             }
             else
             {
                 naredba = naredba.Substring(0, naredba.Length - 1);
             }
             uslov = " WHERE " + PoljeGdeSeUpisujeIId + " = " + iid;
-                  
-            
+
+
             //List<string[]> lista = new List<string[]>();          
-         
+
             naredba += uslov;
             Console.WriteLine(naredba);
             Console.WriteLine(paramvred);
@@ -662,7 +672,7 @@ namespace Bankom.Class
         {
             DataTable tt = new DataTable();
             DataTable t = new DataTable();
-            string strParams = "";            
+            string strParams = "";
             string strTabela = "";
             string dokType = "";
             string sql = "";
@@ -677,144 +687,144 @@ namespace Bankom.Class
             string NazivDokumenta = "";
 
             // brisemo red iz tabele
-            iid =idreda;
+            iid = idreda;
             strTabela = tabela;
             strParams = "@param1=" + idreda.ToString() + "`";
             str = "DELETE from " + tabela + " where [ID_" + tabela + "] = @param1";
             lista.Add(new string[] { str, strParams, strTabela, dokType, idreda });
-            lista.ToArray();           
+            lista.ToArray();
 
             switch (dokument)
             {
-                    case "Dokumenta":
-                        //brisemo slogove iz pripadajucih tabela to su tabele koje pripadaju dokumentu
-                        sql = "Select s.UlazniIzlazni as Naziv from dokumentaStablo as d,SifarnikDokumenta as s where d.naziv=s.Naziv and id_dokumentastablo= @param0";
-                        tt = db.ParamsQueryDT(sql,IdStablo);
-                        NazivDokumenta = tt.Rows[0]["Naziv"].ToString();
-                        sql = "select Distinct Tabela from upiti where ime like '%Uuu%' and NazivDokumenta=@param0";                      
-                        tt = db.ParamsQueryDT(sql, NazivDokumenta);
-                        if (tt.Rows.Count > 0)
+                case "Dokumenta":
+                    //brisemo slogove iz pripadajucih tabela to su tabele koje pripadaju dokumentu
+                    sql = "Select s.UlazniIzlazni as Naziv from dokumentaStablo as d,SifarnikDokumenta as s where d.naziv=s.Naziv and id_dokumentastablo= @param0";
+                    tt = db.ParamsQueryDT(sql, IdStablo);
+                    NazivDokumenta = tt.Rows[0]["Naziv"].ToString();
+                    sql = "select Distinct Tabela from upiti where ime like '%Uuu%' and NazivDokumenta=@param0";
+                    tt = db.ParamsQueryDT(sql, NazivDokumenta);
+                    if (tt.Rows.Count > 0)
+                    {
+                        for (int i = 0; i < tt.Rows.Count; i++)
                         {
-                            for (int i=0;i<tt.Rows.Count; i++)
-                            {
-                                dokType = "";
-                                strTabela = tt.Rows[0]["Tabela"].ToString();
-                                strParams = "@param1=" + idDokument + "`";
-                                strTabela = tt.Rows[i]["Tabela"].ToString();
-                                str = "DELETE from " + strTabela + " Where [ID_DokumentaView]= @param1";
-                                lista.Add(new string[] { str, strParams, strTabela, dokType, idreda });
-                                lista.ToArray();            
-                            } 
+                            dokType = "";
+                            strTabela = tt.Rows[0]["Tabela"].ToString();
+                            strParams = "@param1=" + idDokument + "`";
+                            strTabela = tt.Rows[i]["Tabela"].ToString();
+                            str = "DELETE from " + strTabela + " Where [ID_DokumentaView]= @param1";
+                            lista.Add(new string[] { str, strParams, strTabela, dokType, idreda });
+                            lista.ToArray();
+                        }
 
-                            imaTotale = "1";
-                // da li postoje totali  0=ne postoji slog ,1=da postoje totali
-                            SqlDataReader ImaTotale = db.ReturnDataReader("if not exists (select TotaliDaNe from RefreshGrida where Dokument= '" + NazivDokumenta + "' AND TotaliDaNe ='DA') select 0 else select  1");
-                            ImaTotale.Read();
-                            imaTotale = ImaTotale[0].ToString();
-                            ImaTotale.Close();
-                            ImaTotale.Dispose();
-                //Izvrsenje totala za NazivKlona 
-                            if (imaTotale == "1")
+                        imaTotale = "1";
+                        // da li postoje totali  0=ne postoji slog ,1=da postoje totali
+                        SqlDataReader ImaTotale = db.ReturnDataReader("if not exists (select TotaliDaNe from RefreshGrida where Dokument= '" + NazivDokumenta + "' AND TotaliDaNe ='DA') select 0 else select  1");
+                        ImaTotale.Read();
+                        imaTotale = ImaTotale[0].ToString();
+                        ImaTotale.Close();
+                        ImaTotale.Dispose();
+                        //Izvrsenje totala za NazivKlona 
+                        if (imaTotale == "1")
+                        {
+                            strParams = "@param0=" + idDokument.ToString() + "`";
+                            strTabela = "";
+                            str = "Execute TotaliZaDokument '" + NazivDokumenta + "'," + idDokument;
+                            lista.Add(new string[] { str, strParams, strTabela, dokType, "" });
+                            lista.ToArray();
+                        }
+                    }
+                    break;
+
+                case "NalogGlavneKnjige": // dovrsavanje operacije posle brisanja stavke iz naloga glavne knjige
+                                          //koji je dokument  klnjizen u nalogglavneknjige u stavci koju brisemo
+                    sql = " Select KS.ID_DokumentZaKnj as IDDK  "
+                        + " from NalogGlavneKnjigeStavke as KS  "
+                        + " where  KS.ID_NalogGlavneKnjigeStavke=@param0"; ////+ idreda;
+                    tt = db.ParamsQueryDT(sql, idreda);
+                    if (tt.Rows.Count > 0)
+                        iddk = tt.Rows[0]["IDDK"].ToString();
+
+                    //vracanje statusa dokumentu koji smo obrisali iz nalogaglavne knjige
+                    dokType = "";
+                    strTabela = "Dokumenta";
+                    strParams = "@param1=" + "NijeProknjizeno" + "`";
+                    strParams += "@param2=" + iddk + "`";
+                    str = "update Dokumenta set [proknjizeno]=@param1  where [ID_Dokumenta] = @param2";
+                    lista.Add(new string[] { str, strParams, strTabela, dokType, iddk });
+                    lista.ToArray();
+
+                    //totali za dokument kome je promenjen status   
+                    dokType = "";
+                    strParams = "";
+                    strTabela = "Dokumenta";
+                    str = "Execute TotaliZaDokument'" + strTabela + "'," + iddk;
+                    lista.Add(new string[] { str, strParams, strTabela, dokType, iddk });
+                    lista.ToArray();
+
+                    // brisanje slogova iz tabele glavnaknjiga koji se odnose na dokument koji smo izbrisali iz dokumenta nalogglavneknjige
+                    dokType = "";
+                    strTabela = "GlavnaKnjiga";
+                    strParams = "@param1 =" + iddk + "`";
+                    str = "DELETE from " + strTabela + " Where [ID_DokumentaView]= @param1";
+                    lista.Add(new string[] { str, strParams, strTabela, dokType, iddk });
+                    lista.ToArray();
+                    break;
+            }
+
+            // dodatak za brisanje zaglavlja dokumenta ako su stavke prazne
+            if (DokumentJe == "D")
+            {
+                sql = "select Distinct Tabela from upiti where ime like '%Uuu%' and NazivDokumenta=@param0"; //+ NazivDokumenta + " '";                       
+                tt = db.ParamsQueryDT(sql, NazivKlona);
+                if (tt.Rows.Count > 0) // postoji uuu u upitima
+                {
+                    if (tt.Rows[0]["Tabela"].ToString().Contains("Stavke") == true) // uuu se odnosi na stavke
+                    {
+                        // koliko ima stavki 
+                        sql = "Select Count(*) as br from " + tt.Rows[0]["Tabela"].ToString() + " where ID_DokumentaView=@param0";
+                        t = db.ParamsQueryDT(sql, idDokument);
+                        if (t.Rows.Count > 0)
+                        {
+                            if (Convert.ToInt32(t.Rows[0]["br"]) > 0) { }
+                            else
                             {
-                                strParams = "@param0=" + idDokument.ToString() + "`";
-                                strTabela = "";
-                                str = "Execute TotaliZaDokument '" + NazivDokumenta + "'," + idDokument;
-                                lista.Add(new string[] { str, strParams, strTabela, dokType, "" });
+                                sql = " DELETE from " + tt.Rows[1]["Tabela"].ToString() + " Where ID_DokumentaView =@param0";
+                                strTabela = tt.Rows[1]["Tabela"].ToString();
+                                strParams = "@param0 =" + idDokument + "`";
+                                str = "DELETE from " + strTabela + " Where [ID_DokumentaView]= @param1";
+                                lista.Add(new string[] { str, strParams, strTabela, dokType, iddk });
                                 lista.ToArray();
                             }
                         }
-                        break;
-
-                    case "NalogGlavneKnjige": // dovrsavanje operacije posle brisanja stavke iz naloga glavne knjige
-                 //koji je dokument  klnjizen u nalogglavneknjige u stavci koju brisemo
-                        sql = " Select KS.ID_DokumentZaKnj as IDDK  "
-                            + " from NalogGlavneKnjigeStavke as KS  "
-                            + " where  KS.ID_NalogGlavneKnjigeStavke=@param0"; ////+ idreda;
-                        tt = db.ParamsQueryDT(sql, idreda);
-                        if (tt.Rows.Count > 0)
-                            iddk = tt.Rows[0]["IDDK"].ToString();
-
-                //vracanje statusa dokumentu koji smo obrisali iz nalogaglavne knjige
-                        dokType = "";
-                        strTabela = "Dokumenta";
-                        strParams = "@param1=" + "NijeProknjizeno" + "`";
-                        strParams += "@param2=" + iddk + "`";
-                        str = "update Dokumenta set [proknjizeno]=@param1  where [ID_Dokumenta] = @param2";
-                        lista.Add(new string[] { str, strParams, strTabela, dokType, iddk });
-                        lista.ToArray();
-
-                 //totali za dokument kome je promenjen status   
-                        dokType = "";
-                        strParams = "";
-                        strTabela = "Dokumenta";
-                        str = "Execute TotaliZaDokument'" + strTabela + "'," + iddk;
-                        lista.Add(new string[] { str, strParams, strTabela, dokType, iddk });
-                        lista.ToArray();
-
-                // brisanje slogova iz tabele glavnaknjiga koji se odnose na dokument koji smo izbrisali iz dokumenta nalogglavneknjige
-                        dokType = "";
-                        strTabela = "GlavnaKnjiga";
-                        strParams = "@param1 =" + iddk + "`";
-                        str = "DELETE from " + strTabela + " Where [ID_DokumentaView]= @param1";
-                        lista.Add(new string[] { str, strParams, strTabela, dokType, iddk });
-                        lista.ToArray();
-                        break;
-            }
-
-                // dodatak za brisanje zaglavlja dokumenta ako su stavke prazne
-            if( DokumentJe=="D")
-            {
-                    sql = "select Distinct Tabela from upiti where ime like '%Uuu%' and NazivDokumenta=@param0"; //+ NazivDokumenta + " '";                       
-                    tt = db.ParamsQueryDT(sql, NazivKlona);
-                    if (tt.Rows.Count > 0) // postoji uuu u upitima
+                    }
+                    else
                     {
-                        if (tt.Rows[0]["Tabela"].ToString().Contains("Stavke") == true) // uuu se odnosi na stavke
+                        sql = "Select Count(*) as br from " + tt.Rows[1]["Tabela"].ToString() + " where ID_DokumentaView=@param0";
+                        t = db.ParamsQueryDT(sql, idDokument);
+                        if (t.Rows.Count > 0)
                         {
-                    // koliko ima stavki 
-                            sql = "Select Count(*) as br from " + tt.Rows[0]["Tabela"].ToString() + " where ID_DokumentaView=@param0";
-                            t = db.ParamsQueryDT(sql, idDokument);
-                            if (t.Rows.Count > 0)
+                            if (Convert.ToInt32(t.Rows[0]["br"]) > 0) { }
+                            else
                             {
-                                if (Convert.ToInt32(t.Rows[0]["br"]) > 0) { }
-                                else
-                                {
-                                    sql = " DELETE from " + tt.Rows[1]["Tabela"].ToString() + " Where ID_DokumentaView =@param0";
-                                    strTabela = tt.Rows[1]["Tabela"].ToString();
-                                    strParams = "@param0 =" + idDokument + "`";
-                                    str = "DELETE from " + strTabela + " Where [ID_DokumentaView]= @param1";
-                                    lista.Add(new string[] { str, strParams, strTabela, dokType, iddk });
-                                    lista.ToArray();
-                                }
-                            }
-                        }
-                        else
-                        {
-                            sql = "Select Count(*) as br from " + tt.Rows[1]["Tabela"].ToString() + " where ID_DokumentaView=@param0";
-                            t = db.ParamsQueryDT(sql, idDokument);
-                            if (t.Rows.Count > 0)
-                            {
-                                if (Convert.ToInt32(t.Rows[0]["br"]) > 0) { }
-                                else
-                                {
-                                    sql = " DELETE from " + tt.Rows[0]["Tabela"].ToString() + " Where ID_DokumentaView =@param0";
-                                    //t = db.ParamsQueryDT(sql, idDokument);
-                                    strTabela = tt.Rows[0]["Tabela"].ToString();
-                                    strParams = "@param0 =" + idDokument + "`";
-                                    str = "DELETE from " + strTabela + " Where [ID_DokumentaView]= @param1";
-                                    lista.Add(new string[] { str, strParams, strTabela, dokType, iddk });
-                                    lista.ToArray();
-                                }
+                                sql = " DELETE from " + tt.Rows[0]["Tabela"].ToString() + " Where ID_DokumentaView =@param0";
+                                //t = db.ParamsQueryDT(sql, idDokument);
+                                strTabela = tt.Rows[0]["Tabela"].ToString();
+                                strParams = "@param0 =" + idDokument + "`";
+                                str = "DELETE from " + strTabela + " Where [ID_DokumentaView]= @param1";
+                                lista.Add(new string[] { str, strParams, strTabela, dokType, iddk });
+                                lista.ToArray();
                             }
                         }
                     }
-            }                          
+                }
+            }
             return (Erase);
         } //KRAJ erasa
 
         public void Check()
         {
         }
-        private string CreateExecWithParams(String polja,string value,string naredba,string tabela,ref string parametri )
+        private string CreateExecWithParams(String polja, string value, string naredba, string tabela, ref string parametri)
         {
             string str = "";
             string svekolone = "";
@@ -833,11 +843,11 @@ namespace Bankom.Class
                     svekolone += "[" + kolona.Trim() + "]";
                 if (kolona == "Datum") j = i;
                 i++;
-            }   
+            }
 
             i = 0;
             zaValue = "";
-            
+
             foreach (var vrednost in vrednosti)
             {
                 if (i == j) Console.WriteLine(vrednost);
@@ -848,15 +858,15 @@ namespace Bankom.Class
                 }
                 else
                 {
-                     zaValue = zaValue += "@param" + i.ToString().Trim();
+                    zaValue = zaValue += "@param" + i.ToString().Trim();
                 }
                 i++;
             }
 
-            str = naredba+" " + tabela +"("+ svekolone + ")  values(" + zaValue + ")";
-           Console.WriteLine(str);
-            
-             return str;
+            str = naredba + " " + tabela + "(" + svekolone + ")  values(" + zaValue + ")";
+            Console.WriteLine(str);
+
+            return str;
         }
         private Boolean dovrsiobradu()
         {
@@ -866,7 +876,7 @@ namespace Bankom.Class
 
             return vrati;
         }
-        private  string PrevediPolje(string PPolje, string TTip) // moguce wrednosti su in za insert i up za update
+        private string PrevediPolje(string PPolje, string TTip) // moguce wrednosti su in za insert i up za update
         {
             string Polje;
             string Tip;
@@ -898,25 +908,25 @@ namespace Bankom.Class
                 case "24":  //number  pb.Vrednost = pb.Vrednost.Replace(".", "").Replace(",", ".");
                     if (Polje == "")
                         Polje = 0.ToString();
-                    if (Polje.Contains(",")==true)
+                    if (Polje.Contains(",") == true)
                     {
                         //if( operacija=="IZMENA")
                         //   Polje = Polje.Replace(".", "");  //.Replace(",", "."); // borka 25.02.20
                         //else
-                            Polje = Polje.Replace(".", "");////.Replace(",", "."); // borka 25.02.20
+                        Polje = Polje.Replace(".", "");////.Replace(",", "."); // borka 25.02.20
                     }
                     Prevedi = " " + Polje + " ";
                     break;
                 case "8":
                 case "9":
                 case "23":
-                     Prevedi = "" + Polje.Trim() + ""; //jovana 27.04.20
+                    Prevedi = "" + Polje.Trim() + ""; //jovana 27.04.20
                     break;
                 case "10":
                 case "14":
                 case "15":
                 case "16":   //text
-                     Prevedi = "" + Polje.Trim() + ""; //jovana 27.04.20
+                    Prevedi = "" + Polje.Trim() + ""; //jovana 27.04.20
                     break;
             }
             return Prevedi;
@@ -945,10 +955,10 @@ namespace Bankom.Class
             }
         }
         public Boolean StornirajDokument()
-        {            
+        {
             Boolean Vrati = true;
             //Form Me = Program.Parent.ActiveMdiChild;
-                  
+
             string str = "";
             string strParams = "";
             List<string[]> lista = new List<string[]>();
@@ -957,24 +967,24 @@ namespace Bankom.Class
             string sBrojDokumenta = "";
             string rezultat = "";
             string IdDokument = "";
-            
+
             DataTable ts = new DataTable();
-            
+
             //con.BeginTrans
-            string  BrojDokumenta = ((Bankom.frmChield)Me).brdok;
-          
-            long IdPred =  ((Bankom.frmChield)Me).iddokumenta;
+            string BrojDokumenta = ((Bankom.frmChield)Me).brdok;
+
+            long IdPred = ((Bankom.frmChield)Me).iddokumenta;
             int IdDokumentaStablo = ((Bankom.frmChield)Me).idstablo;
             string sql = "Select s.KnjiziSe,s.UlazniIzlazni as Naziv from SifarnikDokumenta as s,DokumentaStablo as d  where d.ID_DokumentaStablo=@param0";
             sql += " AND s.naziv =d.Naziv";
             DataTable t = new DataTable();
             t = db.ParamsQueryDT(sql, IdDokumentaStablo);
-            if (t.Rows.Count > 0)           
+            if (t.Rows.Count > 0)
                 NazivKlona = t.Rows[0]["Naziv"].ToString();
 
             string dokType = "";
             DataTable tss = new DataTable();
-            sql = " Select * from Dokumenta where ID_Dokumenta=@param0"; 
+            sql = " Select * from Dokumenta where ID_Dokumenta=@param0";
             tss = db.ParamsQueryDT(sql, IdPred);
 
             if (tss.Rows.Count == 0)
@@ -1012,15 +1022,15 @@ namespace Bankom.Class
                     }
                     if (str.Trim() != "")
                     {
-                        lista.Add(new string[] { str, strParams, strTabela,dokType,iddok.ToString() });
+                        lista.Add(new string[] { str, strParams, strTabela, dokType, iddok.ToString() });
                         lista.ToArray();
-                    
-                        str = "Execute TotaliZaDokument 'Dokumenta',"+iddok.ToString();
-                        lista.Add(new string[] { str, strParams, strTabela,dokType ,iddok.ToString()});
+
+                        str = "Execute TotaliZaDokument 'Dokumenta'," + iddok.ToString();
+                        lista.Add(new string[] { str, strParams, strTabela, dokType, iddok.ToString() });
                         lista.ToArray();
-                        
-                        str="Execute TotaliZaDokument '" + NazivKlona + "', " + iddok.ToString();
-                        lista.Add(new string[] { str, strParams, strTabela, dokType,iddok.ToString() });
+
+                        str = "Execute TotaliZaDokument '" + NazivKlona + "', " + iddok.ToString();
+                        lista.Add(new string[] { str, strParams, strTabela, dokType, iddok.ToString() });
                         lista.ToArray();
                     }
                     i = i + 1;
@@ -1031,22 +1041,22 @@ namespace Bankom.Class
             //menjamo broj odabranog dokumenta koji zalimo da storniramo
             dokType = "";
             strTabela = "Dokumenta";
-            strParams = "";            
-            strParams = "@param1="+ BrojDokumenta+"/S" + "`"; 
+            strParams = "";
+            strParams = "@param1=" + BrojDokumenta + "/S" + "`";
             strParams += "@param2=" + IdPred.ToString() + "`";
-            str = "update Dokumenta set [BrojDokumenta]=@param1  where [ID_Dokumenta] = @param2" ;
-            lista.Add(new string[] { str, strParams, strTabela,dokType,"" });
+            str = "update Dokumenta set [BrojDokumenta]=@param1  where [ID_Dokumenta] = @param2";
+            lista.Add(new string[] { str, strParams, strTabela, dokType, "" });
             lista.ToArray();
-//0.
+            //0.
             strParams = "";
             str = "Execute TotaliZaDokument 'Dokumenta'," + IdPred.ToString();
-            lista.Add(new string[] { str, strParams, strTabela, dokType,"" });
+            lista.Add(new string[] { str, strParams, strTabela, dokType, "" });
             lista.ToArray();
-//1.
-            str = "Execute TotaliZaDokument '"+ NazivKlona +"'," + IdPred.ToString();
+            //1.
+            str = "Execute TotaliZaDokument '" + NazivKlona + "'," + IdPred.ToString();
             lista.Add(new string[] { str, strParams, strTabela, dokType, IdDokument });
             lista.ToArray();
-//2.
+            //2.
             // Kraj izmenili smo brojdokumenta u dokumentu koji storniramo pozvali totale za dokumeta i totale za dokument koji storniramo
 
             // 1.upisujemo dokument koji cemo popuniti negativnim vrednostima = STORNO  DOKUMENT
@@ -1058,7 +1068,7 @@ namespace Bankom.Class
             strParams = "@param1=" + tss.Rows[0]["RedniBroj"].ToString() + "`";
             strParams += "@param2=" + Program.idkadar.ToString() + "`";
             strParams += "@param3=" + IdDokumentaStablo.ToString() + "`";
-            strParams += "@param4=" + sBrojDokumenta  + "`";
+            strParams += "@param4=" + sBrojDokumenta + "`";
             strParams += "@param5=" + tss.Rows[0]["Datum"].ToString() + "`";
             strParams += "@param6=" + tss.Rows[0]["Opis"].ToString() + "`";
             strParams += "@param7=" + Program.idOrgDeo + "`";
@@ -1069,26 +1079,26 @@ namespace Bankom.Class
             str += " [ID_DokumentaStablo], [BrojDokumenta], [Datum], [Opis],";
             str += " [ID_OrganizacionaStrukturaView],[Proknjizeno],[MesecPoreza])";
             str += " values(@param1,@param2,@param3,@param4,@param5,@param6,@param7,@param8,@param9)";
-           
-            lista.Add(new string[] { str, strParams, strTabela,dokType, IdDokument });
+
+            lista.Add(new string[] { str, strParams, strTabela, dokType, IdDokument });
             lista.ToArray();
-//3.
+            //3.
             dokType = "";
             strParams = "";
             // 2. UPISUJEMO STORNO DOKUMENT U PRIPADAJUCE TABELE POZIVOM STOREDPROCEDURE
             str = "Execute dbo.StornoDokumenta '" + NazivKlona + "', " + IdPred.ToString() + ", 'ssss'"; /// + IdSled.ToString();
-            lista.Add(new string[] { str, strParams, strTabela, dokType,"" });
+            lista.Add(new string[] { str, strParams, strTabela, dokType, "" });
             lista.ToArray();
-//4.
+            //4.
 
             str = "Execute TotaliZaDokument 'Dokumenta'," + "'ssss'";  ////idSled.ToString();
-            lista.Add(new string[] { str, strParams, strTabela, dokType,"" });
+            lista.Add(new string[] { str, strParams, strTabela, dokType, "" });
             lista.ToArray();
-//5.
-            str = "Execute TotaliZaDokument '"+ NazivKlona + "',"+ "'ssss'";  ////idSled.ToString();
+            //5.
+            str = "Execute TotaliZaDokument '" + NazivKlona + "'," + "'ssss'";  ////idSled.ToString();
             lista.Add(new string[] { str, strParams, strTabela, dokType, IdDokument });
             lista.ToArray();
-//6
+            //6
             // 3. UPISUJEMO PRAZAN DOKUMENT U DOKUMENTA  DOKUMENT CEMO POPUNITI ISPRAVNIM PODACIMO UMESTO STORNIRANOG DOKUMENTA
             dokType = "P";
             strParams = "";
@@ -1107,14 +1117,14 @@ namespace Bankom.Class
             str += " [ID_OrganizacionaStrukturaView],[Proknjizeno],[MesecPoreza])";
             str += " values(@param1,@param2,@param3,@param4,@param5,@param6,@param7,@param8,@param9)";
 
-            lista.Add(new string[] { str, strParams, strTabela, dokType,"" });
+            lista.Add(new string[] { str, strParams, strTabela, dokType, "" });
             lista.ToArray();
-//7
+            //7
             strParams = "";
             str = "Execute TotaliZaDokument 'Dokumenta'," + "'pppp'";  ////idSled.ToString();
             lista.Add(new string[] { str, strParams, strTabela, dokType, "" });
             lista.ToArray();
-//8
+            //8
             //'ZAVRSAVANJE OPERACIJE STORNO DOKUMENTA
             //dokType = "";
             //strParams = "";
@@ -1126,28 +1136,28 @@ namespace Bankom.Class
             //lista.ToArray();
             //9.
             str = "Execute TotaliZaDokument 'Dokumenta'," + "'ssss'";  ////idSled.ToString();
-            lista.Add(new string[] { str, strParams, strTabela, dokType,"" });
+            lista.Add(new string[] { str, strParams, strTabela, dokType, "" });
             lista.ToArray();
-//9.
+            //9.
             // poziv potrebnih storedprocedura
 
             IdDokument = IdPred.ToString();
             str = "Execute CeneArtikalaPoSkladistimaIStanje " + IdPred.ToString();
-            lista.Add(new string[] { str, strParams, strTabela, dokType, ""});
+            lista.Add(new string[] { str, strParams, strTabela, dokType, "" });
             lista.ToArray();
-//10.
-            str ="Execute StanjeRobePoLotu " + IdPred.ToString();
-            lista.Add(new string[] { str, strParams, strTabela, dokType, ""});
+            //10.
+            str = "Execute StanjeRobePoLotu " + IdPred.ToString();
+            lista.Add(new string[] { str, strParams, strTabela, dokType, "" });
             lista.ToArray();
-//11.
+            //11.
             str = "Execute CeneArtikalaPoSkladistimaIStanje 'ssss'";  /// + IdSled.ToString();
-            lista.Add(new string[] { str, strParams, strTabela, dokType,"" });
+            lista.Add(new string[] { str, strParams, strTabela, dokType, "" });
             lista.ToArray();
             str = "Execute StanjeRobePoLotu 'ssss'"; /// + IdSled.ToString();
             lista.Add(new string[] { str, strParams, strTabela, dokType, "" });
             lista.ToArray();
 
-//12.Stanje:
+            //12.Stanje:
 
             ////9.PROVERA STANJA NAKON STORNO DOKUMENTA POCETAK
             string trebaprovera = "0";
@@ -1168,7 +1178,7 @@ namespace Bankom.Class
             rezultat = db.ReturnSqlTransactionParamsFull(lista);
             if (rezultat != "") { lista.Clear(); MessageBox.Show(rezultat); return false; }
             lista.Clear();
-            return Vrati;           
+            return Vrati;
         }
     }
 }
