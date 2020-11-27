@@ -52,7 +52,7 @@ namespace Bankom.Class
 
             if (DokumentJe == "P") return (Vrati);
             
-                sql = " select s.ulazniizlazni as NazivDokumenta,d.BrDok,NacinRegistracije as nr,"
+            sql = " select s.ulazniizlazni as NazivDokumenta,d.BrDok,NacinRegistracije as nr,"
                             + " d.Proknjizeno as p ,Knjizise,d.Datum,d.ttime "
                             + " from DokumentaTotali as d , DokumentaStablo as ds , SifarnikDokumenta as s "
                             + " where s.naziv=ds.Naziv and "
@@ -60,9 +60,9 @@ namespace Bankom.Class
                             + " and d.ID_DokumentaTotali=@param0";// -+ IdDokView
 
                 ///zapamtimo podatke sa odabranog dokumenta dokument
-                t = db.ParamsQueryDT(sql, IdDokView);
-                if (t.Rows.Count > 0)
-                {
+             t = db.ParamsQueryDT(sql, IdDokView);
+             if (t.Rows.Count > 0)
+             {
                     Nacinreg = t.Rows[0]["nr"].ToString();
                     NazivDokumenta = t.Rows[0]["NazivDokumenta"].ToString();
                     DaLiSeKnjizi = t.Rows[0]["Knjizise"].ToString();
@@ -70,9 +70,9 @@ namespace Bankom.Class
                     DatumDokumenta = Convert.ToDateTime(t.Rows[0]["Datum"].ToString());
                     DatumUnosaDokumenta = Convert.ToDateTime(t.Rows[0]["ttime"].ToString());
                     proknjizen = t.Rows[0]["p"].ToString();
-                }
+             }
            
-            else NazivDokumenta = Dokument;
+            else NazivDokumenta = Dokument; // BORKA 26.11.20 ZAR NE TREBA OVO DA BUDE GRESKA?????????
             switch (Operacija)
             {
                 case "IZMENA":

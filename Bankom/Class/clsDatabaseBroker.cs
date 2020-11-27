@@ -66,23 +66,17 @@ namespace Bankom.Class
             Console.WriteLine(sql);
             try
             {
-
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
             }
             catch (Exception e)
             {
-
                 MessageBox.Show(e.Message);
-                //conn.Close();
-                //   conn.Dispose();
             }
             finally
             {
-
                 conn.Close();
-                // conn.Dispose();
             }
             return dt;
         }
