@@ -2918,6 +2918,7 @@ namespace Bankom
         {
             KursnaLista kl = new KursnaLista();
             kl.Show();
+            kl.FormBorderStyle = FormBorderStyle.None;
         }
 
         private void rastuci_Click(object sender, EventArgs e)

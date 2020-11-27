@@ -21,6 +21,7 @@ namespace Bankom
         {
             InitializeComponent();
             dateTimePicker1.Value = DateTime.Now;
+            this.FormBorderStyle = FormBorderStyle.None;
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
