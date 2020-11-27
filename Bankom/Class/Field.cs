@@ -480,7 +480,10 @@ namespace Bankom.Class
                     dv.EnableHeadersVisualStyles = false;
                     dv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
 
-
+                    //tamara 26.11.2020.
+                    dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
+                    dv.ScrollBars = ScrollBars.Both;
+                    dv.RowHeadersDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
                     //Djora 26.09.20
                     PromenaFonta(dv);
                     //Djora 26.09.20
@@ -524,12 +527,19 @@ namespace Bankom.Class
                         case 0:
                             dv.ColumnHeadersVisible = false;
                             //dv.ColumnHeadersHeight = 18; //Convert.ToInt32(cheight);
-                            dv.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 5, FontStyle.Regular);
+                            dv.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("TimesRoman", 5, FontStyle.Regular);
                             dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
+                             
+                            dv.RowHeadersDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
+
                             dv.ColumnHeadersDefaultCellStyle.ForeColor = Color.Snow;
+
                             break;
                         case 1:
                             dv.ColumnHeadersVisible = true;
+                            dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
+                             
+                            dv.RowHeadersDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
 
                             //dv.Columnheaderscaption=
                             break;
@@ -541,6 +551,10 @@ namespace Bankom.Class
                     dv.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
                     dv.Visible = true;
                     //dv.ColumnHeader.Font = new Font("TimesRoman", 5, FontStyle.Regular);
+                    dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
+                    //tamara 26.11.2020.
+                    dv.ScrollBars = ScrollBars.Both;
+                    dv.RowHeadersDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
 
                     //Djora 26.09.20
                     //dv.Font = new Font("TimesRoman", 13, FontStyle.Regular);
@@ -1049,11 +1063,17 @@ namespace Bankom.Class
         {
             Program.colname = "";
             DataGridView control = (DataGridView)sender;
+            
+
             DataTable myt = (DataTable)control.DataSource;
             Program.imegrida = control.Name;
             Program.colname = dv.Columns[e.ColumnIndex].Name;
             Program.activecontrol = control;
             dv.BackgroundColor = Color.AliceBlue;
+            dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
+        
+            dv.RowHeadersDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
+
             SrediFormu();
         }
         private void FillControls(DataGridView control, ref int iid, ref string brdok, ref DateTime datum, DataGridViewCellMouseEventArgs e)
@@ -1136,7 +1156,8 @@ namespace Bankom.Class
         private void dv_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridView control = (DataGridView)sender;
-       
+            
+
             Form Me = Program.Parent.ActiveMdiChild;
             int middok = 0; /// Convert.ToInt32(Me.Controls["liddok"].Text);
             string mbrdok = "";
