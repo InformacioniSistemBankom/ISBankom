@@ -70,7 +70,7 @@ namespace Bankom
                 childForm.FormBorderStyle = FormBorderStyle.None;
                 childForm.BackColor = System.Drawing.Color.Snow;
                 childForm.MdiParent = this;
-                // childForm.BringToFront();
+                childForm.AutoScroll = true;
 
                 this.WindowState = FormWindowState.Maximized;
 
@@ -92,8 +92,8 @@ namespace Bankom
                 childForm.Name = ss;
                 //childForm.Left = 380;
                 //childForm.Top = 300;
-
-                childForm.AutoScroll = false;
+                 //tamara 27.11.2020.
+                //childForm.AutoScroll = false;
                 //childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
                 ////  childForm.WindowState = FormWindowState.Maximized;
                 //childForm.Width = this.Width - 20;
@@ -1617,6 +1617,7 @@ namespace Bankom
             }
 
             frmPrint fs = new frmPrint();
+     
             fs.BackColor = System.Drawing.Color.Snow;
             fs.FormBorderStyle= FormBorderStyle.None;
             fs.MdiParent = this;
