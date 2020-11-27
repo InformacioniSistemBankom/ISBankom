@@ -29,7 +29,7 @@ namespace Bankom.Class
 
       
          mdi.menuStrip1.BackColor = System.Drawing.Color.Snow;
-           mdi.menuStrip1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+           mdi.menuStrip1.Font = new System.Drawing.Font("TimesRoman", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             mdi.menuStrip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
 
             dt = GetDataSet();
@@ -255,8 +255,8 @@ namespace Bankom.Class
                 case "Artikli":
                 case "Komitenti":
                 case "OrganizacionaStruktura":
-                    Program.Parent.ToolBar.Items["Uunos"].Visible = true;
-                    Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
+                    //Program.Parent.ToolBar.Items["Uunos"].Visible = true;
+                    //Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
                   
                     postoji = IsOpen(s);
                     if (postoji == false)

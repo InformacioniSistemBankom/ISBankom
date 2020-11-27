@@ -40,20 +40,20 @@ namespace Bankom
         }
         public void ShowNewForm(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
         {
-            Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = true;
-            Program.Parent.ToolBar.Items["Bbrisanje"].Visible = true;
-            Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
-            Program.Parent.ToolBar.Items["Iizmena"].Visible = true;
-            Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = true;
-            Program.Parent.ToolBar.Items["Ggrupisi"].Visible = true;
-            Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
-            Program.Parent.ToolBar.Items["Uunos"].Visible = true;
+            //Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = true;
+            //Program.Parent.ToolBar.Items["Bbrisanje"].Visible = true;
+            //Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
+            //Program.Parent.ToolBar.Items["Iizmena"].Visible = true;
+            //Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = true;
+            //Program.Parent.ToolBar.Items["Ggrupisi"].Visible = true;
+            //Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
+            //Program.Parent.ToolBar.Items["Uunos"].Visible = true;
 
             DataBaseBroker db = new DataBaseBroker();
             string ss = "";
             if (dokumentje == "D")
             {
-                ss = brojdokumenta; 
+                ss = brojdokumenta;
             }
             else
             {
@@ -102,7 +102,7 @@ namespace Bankom
 
                 childForm.Show();
 
-               SrediFormu();
+                SrediFormu();
             }
 
 
@@ -314,15 +314,15 @@ namespace Bankom
         //    ShowNewForm("Dokumenta", 1, "Dokumenta", 1, "", "", "S", "", "TreeView");
 
         //}
-      
+
         private void BankomMDI_Load(object sender, EventArgs e)
         {
             // tamara 27.10.2020.
-     
+
 
             Program.Parent.ToolBar.Items["Uunos"].Visible = true;
             Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
-         
+
 
             this.Text = "IS Bankom";
             addKombo();
@@ -336,8 +336,6 @@ namespace Bankom
             // ivana 21.10.2020.
             clsObradaMenija obradaMenija = new clsObradaMenija(this);
             obradaMenija.CreateMenu();
-            
-
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
@@ -392,7 +390,7 @@ namespace Bankom
 
         }
 
-       public string VratiCirlilicu(string inputLatinica)
+        public string VratiCirlilicu(string inputLatinica)
         {
             string str;
             str = inputLatinica;
@@ -613,11 +611,11 @@ namespace Bankom
             toolStripTextBox1.Text = "";
             string b = sender.ToString();
             frmChield active = new frmChield();
-            active.FormBorderStyle= FormBorderStyle.None;
+            active.FormBorderStyle = FormBorderStyle.None;
             int a = toolStrip1.Items.Count;
             
 
-          SrediFormu();
+            SrediFormu();
 
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
@@ -661,7 +659,7 @@ namespace Bankom
         public void itemB1_click(string imetula)  // zahtev za zatvaranje  forme klikom na tipku izlaz
         {
             cf = imetula;
-           toolStripTextBox1.Text = "";
+            toolStripTextBox1.Text = "";
             for (int j = 0; j < toolStrip1.Items.Count; j++)
             {
                 if (this.MdiChildren[j].Text == imetula)
@@ -836,9 +834,9 @@ namespace Bankom
             MenuStrip menuStrip,
             ToolStrip toolStrip,
             StatusStrip statusStrip,
-  
+
             ToolStripMenuItem printSetupToolStripMenuItem,
-         
+
             ToolStripStatusLabel toolStripStatusLabel,
             ToolStripMenuItem tileHorizontalToolStripMenuItem,
             ToolStripMenuItem fileMenu,
@@ -880,7 +878,7 @@ namespace Bankom
             ToolStripMenuItem finansijskaKartica,
             ToolStripMenuItem dnevniBilansUspeha,
             ToolStripMenuItem troskoviZaposlenih,
-       
+
             ToolStripMenuItem maloprodaja,
             ToolStripMenuItem stampaCenovnikaRecepcije,
             ToolStripMenuItem stampaCenovnika,
@@ -889,20 +887,20 @@ namespace Bankom
             ToolStripMenuItem prometRecepcijePoNacinuPlacanja,
             ToolStripMenuItem prometrecepcijepovrstamausluga,
             ToolStripMenuItem nabavkaZaKuhinjuNevski,
-      
+
             ToolStripMenuItem pregledRazduzenjaPoVrednosti,
             ToolStripMenuItem pregledRazduzenjaPoProizvodima,
-          
+
             ToolStripMenuItem zaRobuIUsluge,
             ToolStripMenuItem realizacijaUgovoraOKupoprodajiToolStripMenuItem,
             ToolStripMenuItem realizacijaOtkupaToolStripMenuItem,
             ToolStripMenuItem pregledInternihNalogaToolStripMenuItem,
             ToolStripMenuItem zavisniTroskoviNabavkeToolStripMenuItem,
-     
+
             ToolStripMenuItem razlikaUCeniPoArtiklimaToolStripMenuItem,
             ToolStripMenuItem razlikaUCeniPoArtiklimaanalitikaToolStripMenuItem,
             ToolStripMenuItem razlikaUCeniPoArtiklimaIKupcimaToolStripMenuItem,
-          
+
             ToolStripMenuItem zaKupceIDobavljace,
             ToolStripMenuItem spisakNakogaZaPrijemIUtovar,
             ToolStripMenuItem rekapitulacijaNarudzbenicaKupaca,
@@ -919,13 +917,13 @@ namespace Bankom
             ToolStripMenuItem razlikaUCeniPoKupcimaanalitika,
             ToolStripMenuItem analizaRazlikeUCeniPoKupcima,
             ToolStripMenuItem mesecniPotencijalKupaca,
-  
+
             ToolStripMenuItem ukupnaNabavkaPoDobavljacima,
             ToolStripMenuItem analizaPrometaPoDobavljacu,
             ToolStripMenuItem ucesceUUkupnojNabavci,
             ToolStripMenuItem analitikaNabavkePoDobavljacima,
             ToolStripMenuItem razlikeUCeniSaAnalitikama,
-        
+
             ToolStripMenuItem knjigovodstvo,
             ToolStripMenuItem obracunPoreza,
             ToolStripMenuItem stanjeSkladista,
@@ -944,7 +942,7 @@ namespace Bankom
             ToolStripMenuItem portfolioKomitenta,
             ToolStripMenuItem brutoBilansMenuItem1,
             ToolStripMenuItem brutoBilansWeb,
-      
+
             ToolStripMenuItem nestimajuciNalozi,
             ToolStripMenuItem nestimajiciNaloziAnaliticki,
             ToolStripMenuItem finansijskaKarticaToolStripMenuItem1,
@@ -958,7 +956,7 @@ namespace Bankom
             ToolStripMenuItem spisakPromenaZaKomitentaIOdabraniIntervalVremena,
             ToolStripMenuItem dnevniIzvestaj,
             ToolStripMenuItem stanjeGotovineIVisokoLikvidnihSredstava,
-    
+
             ToolStripMenuItem dospecaObavezaIPotrazivanjaMenuItem1,
             ToolStripMenuItem dugovanjaIAvansi,
             ToolStripMenuItem potrazivanjaIAvansi,
@@ -968,7 +966,7 @@ namespace Bankom
             ToolStripMenuItem dnevniBilansUspehaMenuItem2,
             ToolStripMenuItem zastarelaPotrazivanja,
             ToolStripMenuItem prometGKKursiranUEure,
-      
+
             ToolStripMenuItem spoljnaTrgovina,
             ToolStripMenuItem kontrolnikUvoza,
             ToolStripMenuItem kontrolnikIzvoza,
@@ -986,7 +984,7 @@ namespace Bankom
             ToolStripMenuItem rUCOdProdajeVlastitihProizvoda,
             ToolStripMenuItem proizvodi,
             ToolStripMenuItem sirovineZaProizvodnju,
-     
+
             ToolStripMenuItem osnovnaSredstva,
             ToolStripMenuItem karticaOsnovnihSredstavaIOpreme,
             ToolStripMenuItem stanjeOsnovnihSredstavaIOpreme,
@@ -1005,11 +1003,11 @@ namespace Bankom
             ToolStripMenuItem uvozPlataUPlacanja,
             ToolStripMenuItem formiranjePPPPDZaPrevoz,
             ToolStripMenuItem uvozPrevozaUPlacanja,
-           
+
             ToolStripMenuItem prenosiZaProdajnaMjesta,
             ToolStripMenuItem faktureRecepcijeZaOdabraneDatume,
             ToolStripMenuItem faktureRestoranaZaOdabraneDatume,
-         
+
             ToolStripMenuItem razduzenjesirovinaminibar,
             ToolStripMenuItem razduzenjesirovinazaodabraniintervaldatuma,
             ToolStripMenuItem godisnjeObradeToolStripMenuItem,
@@ -1022,7 +1020,7 @@ namespace Bankom
             ToolStripMenuItem procesirajeDnevnogiIzvestaja,
             ToolStripMenuItem procesiranjeBrutoBilansa,
             ToolStripMenuItem izvestajiIzStabla,
-        
+
             ToolStripLabel toolStripLogin,
             ToolStripLabel KrajRada,
             ToolStripMenuItem izborJezika,
@@ -1040,18 +1038,18 @@ namespace Bankom
             ToolStripMenuItem pregled,
             ToolStripMenuItem unos,
             ToolStripMenuItem prekid,
-     
+
             ToolStripMenuItem closeActive,
             ToolStripComboBox toolStripComboBox1,
             ToolStripTextBox toolStripTextBox2,
             ToolStripTextBox toolStripTextBox3,
             ToolStripMenuItem kalkulator,
-      
+
             ToolStripButton printToolStripButton,
             ToolStripMenuItem toolStripMenuItem1,
             ToolStripMenuItem f1ToolStripMenuItem,
             ToolStripMenuItem spaceToolStripMenuItem,
-       
+
             ToolStrip toolStrip1,
             ToolStrip toolStrip2,
             ToolStripTextBox toolStripPrazno,
@@ -1070,7 +1068,7 @@ namespace Bankom
             this.components = components;
             //this.toolStrip = toolStrip;
 
-         
+
             this.tileHorizontalToolStripMenuItem = tileHorizontalToolStripMenuItem;
             this.fileMenu = fileMenu;
             this.newToolStripMenuItem = newToolStripMenuItem;
@@ -1102,18 +1100,18 @@ namespace Bankom
             PreuzimanjeManjkovaIViskova = preuzimanjeManjkovaIViskova;
             PreuzimanjeUplataKupacaIzBanaka = preuzimanjeUplataKupacaIzBanaka;
             PrenosNalogaNaPlacanje = prenosNalogaNaPlacanje;
-  
+
             PreuzimanjeIzvodaIzBanaka = preuzimanjeIzvodaIzBanaka;
             PrepisNaplataIPlacanjaUIzvod = prepisNaplataIPlacanjaUIzvod;
             FormiranjePPPPDZaPlate = formiranjePPPPDZaPlate;
             UvozPlataUPlacanja = uvozPlataUPlacanja;
             FormiranjePPPPDZaPrevoz = formiranjePPPPDZaPrevoz;
             UvozPrevozaUPlacanja = uvozPrevozaUPlacanja;
-           
+
             PrenosiZaProdajnaMjesta = prenosiZaProdajnaMjesta;
             FaktureRecepcijeZaOdabraneDatume = faktureRecepcijeZaOdabraneDatume;
             FaktureRestoranaZaOdabraneDatume = faktureRestoranaZaOdabraneDatume;
-        
+
             Razduzenjesirovinaminibar = razduzenjesirovinaminibar;
             Razduzenjesirovinazaodabraniintervaldatuma = razduzenjesirovinazaodabraniintervaldatuma;
             GodisnjeObradeToolStripMenuItem = godisnjeObradeToolStripMenuItem;
@@ -1134,18 +1132,18 @@ namespace Bankom
             SrpskiLatinica = srpskiLatinica;
             English = english;
             Ruski = ruski;
-  
+
             CloseActive = closeActive;
             // this.tstbPretraga = tstbPretraga;
 
             //this.toolStripTextBox3 = toolStripTextBox3;
 
 
-      
+
             this.toolStripMenuItem1 = toolStripMenuItem1;
             this.f1ToolStripMenuItem = f1ToolStripMenuItem;
             this.spaceToolStripMenuItem = spaceToolStripMenuItem;
-        
+
             this.toolStrip1 = toolStrip1;
 
         }
@@ -1356,12 +1354,13 @@ namespace Bankom
         }
 
         private void pretragaToolStripMenuItem_Click(object sender, EventArgs e)
-
         {
-
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.FormBorderStyle= FormBorderStyle.None;
-            activeChild.BackColor = System.Drawing.Color.Snow;
+            if (activeChild != null) // BORKA 24.11.20
+            {
+                activeChild.FormBorderStyle = FormBorderStyle.None;
+                activeChild.BackColor = System.Drawing.Color.Snow;
+            }
             DialogResult res = MsgBox.ShowDialog("Tekst pretrage:", "Pretraga", ((Bankom.frmChield)activeChild).toolStripTextFind.Text,
             MsgBox.Icon.Question,
             MsgBox.Buttons.OkCancel,
@@ -1536,8 +1535,11 @@ namespace Bankom
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.FormBorderStyle= FormBorderStyle.None;
-            activeChild.BackColor = System.Drawing.Color.Snow;
+            if (activeChild != null)
+            {
+                activeChild.FormBorderStyle = FormBorderStyle.None;
+                activeChild.BackColor = System.Drawing.Color.Snow;
+            }
             DajVrednostPropertija(activeChild);
         }
 
@@ -1582,11 +1584,11 @@ namespace Bankom
             }
 
             Form activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.FormBorderStyle= FormBorderStyle.None;
-            activeChild.BackColor = System.Drawing.Color.Snow;
+           
             if (activeChild != null)
             {
-
+                activeChild.FormBorderStyle = FormBorderStyle.None;//BORKA 24.11.20
+                activeChild.BackColor = System.Drawing.Color.Snow;
                 t = ((Bankom.frmChield)activeChild).iddokumenta;
 
                 activeChild.Select();
@@ -1619,7 +1621,7 @@ namespace Bankom
             frmPrint fs = new frmPrint();
      
             fs.BackColor = System.Drawing.Color.Snow;
-            fs.FormBorderStyle= FormBorderStyle.None;
+            fs.FormBorderStyle = FormBorderStyle.None;
             fs.MdiParent = this;
             fs.Text = "print - " + ime;
             fs.intCurrentdok = Convert.ToInt32(t);
@@ -1664,10 +1666,11 @@ namespace Bankom
 
 
             Form activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.FormBorderStyle= FormBorderStyle.None;
-            activeChild.BackColor = System.Drawing.Color.Snow;
+            
             if (activeChild != null)
             {
+                activeChild.FormBorderStyle = FormBorderStyle.None;//BORKA 24.11.20
+                activeChild.BackColor = System.Drawing.Color.Snow;
                 imeDokumenta = ((Bankom.frmChield)activeChild).imedokumenta;
                 activeChild.Select();
                 ime = activeChild.Text;
@@ -1704,7 +1707,7 @@ namespace Bankom
 
             frmPrint fs = new frmPrint();
             fs.BackColor = System.Drawing.Color.Snow;
-            fs.FormBorderStyle= FormBorderStyle.None;
+            fs.FormBorderStyle = FormBorderStyle.None;
             fs.MdiParent = this;
             fs.Text = "print - " + ime;
             fs.LayoutMdi(MdiLayout.TileVertical);
@@ -1735,7 +1738,8 @@ namespace Bankom
         {
 
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.FormBorderStyle= FormBorderStyle.None;
+
+            activeChild.FormBorderStyle = FormBorderStyle.None;
             activeChild.BackColor = System.Drawing.Color.Snow;
             string c = ((Bankom.frmChield)activeChild).toolStripTexIme.Text;
             string d = ((Bankom.frmChield)activeChild).toolStripTextBroj.Text;
@@ -1793,19 +1797,17 @@ namespace Bankom
 
         }
 
-     
+
 
         private void Uunos_Click(object sender, EventArgs e)
         {
-
-
             Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle= FormBorderStyle.None;
+            
             if (activeChild != null)
             {
+                activeChild.FormBorderStyle = FormBorderStyle.None;//BORKA 24.11.20
                 activeChild.Controls["OOperacija"].Text = "UNOS";
             }
-
         }
         private void OsnovniSifarnici_Click(object sender, EventArgs e)
         {
@@ -1837,11 +1839,11 @@ namespace Bankom
         private void Ppregled_Click(object sender, EventArgs e)
         {
             //Daj mi aktivnu child formu
-            Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+            Form activeChild = this.ActiveMdiChild;         
             //Popuni text u kontroli OOperacija sa "PREGLED" na aktivnoj child formi
             if (activeChild != null)
             {
+                activeChild.FormBorderStyle = FormBorderStyle.None;
                 if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
                 activeChild.Controls["OOperacija"].Text = "PREGLED";
                 filter = "S";
@@ -1860,15 +1862,17 @@ namespace Bankom
         {
             //tamara 23.10.2020.
 
-
-
             Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+           
             if (activeChild != null)
             {
-                if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
-                clsRefreshForm rf = new clsRefreshForm();
-                rf.refreshform();
+                activeChild.FormBorderStyle = FormBorderStyle.None; // BORKA 24.11.20
+                if ((((Bankom.frmChield)activeChild).VrstaPrikaza != "TreeView")) //BORKA 24.11.20
+                {                    
+                    if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
+                    clsRefreshForm rf = new clsRefreshForm();
+                    rf.refreshform();
+                }
                 activeChild.Controls["OOperacija"].Text = "";
             }
             else
@@ -1882,10 +1886,11 @@ namespace Bankom
         {
             //Daj mi aktivnu child formu
             Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+            
             //Popuni text u kontroli OOperacija sa "IZMENA" na aktivnoj child formi
             if (activeChild != null)
             {
+                activeChild.FormBorderStyle = FormBorderStyle.None; //BORKA 24.11.20
                 activeChild.Controls["OOperacija"].Text = "IZMENA";
             }
             else
@@ -1898,7 +1903,7 @@ namespace Bankom
         {
             //Daj mi aktivnu child formu
             Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+           
             //Popuni text u kontroli OOperacija sa "STORNO" na aktivnoj child formi
             if (activeChild == null)
             {
@@ -1906,6 +1911,7 @@ namespace Bankom
             }
             else
             {
+                activeChild.FormBorderStyle = FormBorderStyle.None;//BORKA 24.11.20
                 activeChild.Controls["OOperacija"].Text = "STORNO";
             }
 
@@ -2025,7 +2031,7 @@ namespace Bankom
             }
 
             ////staro
-            
+
             //foreach (Form childForm in this.MdiChildren)
             //{
             //    if (childForm == this.ActiveMdiChild)
@@ -2359,11 +2365,6 @@ namespace Bankom
                 strfind = strfind.Replace("Ref.", "Predhodni");
                 strfind = strfind.Replace("Porez", "MesecPoreza");
                 strfind = strfind.Replace("Status", "Proknjizeno");
-
-
-
-
-
 
                 ((Bankom.frmChield)activeChild).toolStripTextFind.Text = strfind;
                 string c = ((Bankom.frmChield)activeChild).toolStripTexIme.Text;
@@ -3082,7 +3083,7 @@ namespace Bankom
             Application.Exit();
         }
 
-   
+
 
 
         public void SrediFormu()
@@ -3215,177 +3216,170 @@ namespace Bankom
 
         private void Ppotvrda_Click_1(object sender, EventArgs e)
         {
-            
-           
+
+
             Form forma = this.ActiveMdiChild;
 
             Boolean vrati = new Boolean();
-            if (forma == null)
+            if (forma != null)
             {
-                MessageBox.Show("Nemate aktivnu formu!");
-            }
-
-            if (forma.Controls["OOperacija"].Text.Trim() == "" && ((Bankom.frmChield)forma).DokumentJe != "I")
-            {
-                MessageBox.Show("Niste odabrali operaciju!");
-            }
-            else
-            {
-                if (forma.Controls["OOperacija"].Text.Trim() == "PREGLED")
+                if (forma.Controls["OOperacija"].Text.Trim() == "" && ((Bankom.frmChield)forma).DokumentJe != "I")
                 {
-                    clsPregled clp = new clsPregled();
-                    long Koliko = clp.Pregledaj("S");
-                    if (Koliko < 1)
-                    {
-                        MessageBox.Show("Ne postoje podaci za zadate uslove!");
-                    }
+                    MessageBox.Show("Niste odabrali operaciju!");
                 }
                 else
                 {
-                    // POZIV KLASE CRUD ZA IZVRSENJE ZADATE OPERACIJE
-                    CRUD ccrud = new CRUD();
-
-                    switch (((Bankom.frmChield)forma).DokumentJe)
+                    if (forma.Controls["OOperacija"].Text.Trim() == "" && ((Bankom.frmChield)forma).DokumentJe != "I") // BORKA  23.11.20)
                     {
-                        case "I":
-                            switch (((Bankom.frmChield)forma).imedokumenta)
-                            {
-                                case "AnalizaNabavke":
-                                    //RasporedTroskova 0, fform.Controls("ctDatumOd").Vrednost, fform.Controls("ctDatumDo").Vrednost, fform.Controls("ctNazivSkl").Vrednost
-                                    break;
-                                //case "SpisakDokumenata":
-                                //    //frmMain.Toolbar2.Buttons("cmdodabrani").Visible = True
-                                //    //frmMain.Toolbar2.Buttons("cmdodabrani").Enabled = True
-                                //    break;
-                                case "DnevniBilansUspeha":
-                                    clsBilansi OBB = new clsBilansi();
-                                    OBB.ObradiBilans();
-                                    break;
-                                case "POPPdv":
-                                    clsPOPPdv POP = new clsPOPPdv();
-                                    POP.ObradiPOPPdv();
-                                    break; ///'''Exit Function
-                                case "IOS":
-                                    clsObradaOsnovnihSifarnika obos = new clsObradaOsnovnihSifarnika();
-                                    //fform("DatumDo").Vrednost, fform("konto").Vrednost, fform("NazivKom").ID
-                                    var pb = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "DatumDo".ToString().Trim());
-                                    string DatumDo = pb.Vrednost;
-                                    pb = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "konto".ToString().Trim());
-                                    string konto = pb.Vrednost;
-                                    pb = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivKom".ToString().Trim());
-                                    int nazivkom = Convert.ToInt32(pb.ID);
-                                    if (obos.Iosi(DatumDo, konto, nazivkom) == true)
-                                    { break; }
-                                    else
-                                        break;
-                                default:
-                                    clsIzvestaji IZV = new clsIzvestaji();
-                                    IZV.PrikazIzvestaja(((Bankom.frmChield)forma).imedokumenta);
-                                    break;
-                            }
-                            break;
-                        case "S":
-                            vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).idReda), ((Bankom.frmChield)forma).imestabla);
-                            break;
-                        case "K":
-                            if (forma.Controls["OOperacija"].Text.Trim() == "UNOS")
-                            {
-                                clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                string d = toolStripTextBox1.Text;
-                                o.Klasifikacija_Click(d, Program.pomIzv, Program.pomStablo);
-                            }
-                            else if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE")
-                            {
-                                clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                o.KlasifikacijaBrisanje(Program.pomIzv, Program.pomStablo);
-                            }
-                            else if (forma.Controls["OOperacija"].Text.Trim() == "IZMENA")
-                            {
-                                clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                string d = toolStripTextBox1.Text;
-                                o.KlasifikacijaIzmena(d, Program.pomIzv, Program.pomStablo);
-                            }
-                            else if (forma.Controls["OOperacija"].Text.Trim() == "KOPIRAJ")
-                            {
-                                clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                o.KlasifikacijaPremestiGrupu(Program.pomIzv, Program.pomStablo);
-
-
-                                //ovde smo stigle
-                            }
-                            else if (forma.Controls["OOperacija"].Text.Trim() == "NALEPI")
-                            {
-                                clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                o.KlasifikacijaNovaPozicija(Program.pomIzv, Program.pomStablo);
-
-                            }
-                       
-
-
-                            break;
-                        case "D":
-                            vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
-                            if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE") break;
-                            if (vrati == false) break;// ovde se vraca tok 
-
-                            switch (forma.Controls["limedok"].Text)
-                            {
-                                case "NalogGlavneKnjige":
-                                    clsKnjizenje knj = new clsKnjizenje();
-                                    knj.ObradiNalogGlavneKnjige();
-                                    break;
-                                case "NalogGlavneKnjigeSimulacija":
-                                    clsKnjizenje knjs = new clsKnjizenje();
-                                    knjs.ObradiSimulaciju();
-                                    break;
-                                case "KursneRazlike":
-                                    clsObradaKursnihRazlika kr = new clsObradaKursnihRazlika();
-                                    vrati = kr.ObradiRazlike();
-                                    break;
-                                case "BilansStanja":
-                                case "BilansUspeha":
-                                case "BilansPrihodiIRashodi":
-                                case "Pokazateljlikvidnosti":
-                                    clsBilansi OBBilans = new clsBilansi();
-                                    OBBilans.ObradiBilans();
-                                    break;
-                                case "PocetnoStanjeZaRobu":
-                                    clsZatvaranjeIOtvaranjeStanja ZiO = new clsZatvaranjeIOtvaranjeStanja();
-                                    vrati = ZiO.ObradiIspravku();
-                                    break;
-                                case "ObracunVrednostiZaliha":
-                                    clsKorekcija Vrednost = new clsKorekcija();
-                                    vrati = Vrednost.VrednostNaDan();
-                                    break;
-                                case "ZatvaranjeAvansa":
-                                    clsAvansi Avans = new clsAvansi();
-                                    vrati = Avans.ZatvaranjeAvansa(forma, forma.Controls["limedok"].Text, Convert.ToString(((Bankom.frmChield)forma).iddokumenta));
-                                    break;
-                                case "Kompenzacija":
-                                    clsKompenzacija rez = new clsKompenzacija();
-                                    rez.ObradiKomenzaciju();
-                                    break;
-                                default:
-                                    break;
-                            }
-                            break;
-                        default:
-                            vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
-                            break;
+                        clsPregled clp = new clsPregled();
+                        long Koliko = clp.Pregledaj("S");
+                        if (Koliko < 1)
+                        {
+                            MessageBox.Show("Ne postoje podaci za zadate uslove!");
+                        }
+                        MessageBox.Show("Niste odabrali operaciju!");
+                        vrati = false;
                     }
-                    // OSVEZAVANJE FORME NAKON IZVRSENE OPERACIJE
-                    if (vrati == true) //jovana
+                    //else //BORKA 23.11.20
+                    else
                     {
-                        clsRefreshForm rf = new clsRefreshForm();
-                        rf.refreshform();
+                        // POZIV KLASE CRUD ZA IZVRSENJE ZADATE OPERACIJE
+                        CRUD ccrud = new CRUD();
+
+                        switch (((Bankom.frmChield)forma).DokumentJe)
+                        {
+                            case "I":
+                                switch (((Bankom.frmChield)forma).imedokumenta)
+                                {
+                                    case "AnalizaNabavke":
+                                        //RasporedTroskova 0, fform.Controls("ctDatumOd").Vrednost, fform.Controls("ctDatumDo").Vrednost, fform.Controls("ctNazivSkl").Vrednost
+                                        break;
+                                    //case "SpisakDokumenata":
+                                    //    //frmMain.Toolbar2.Buttons("cmdodabrani").Visible = True
+                                    //    //frmMain.Toolbar2.Buttons("cmdodabrani").Enabled = True
+                                    //    break;
+                                    case "DnevniBilansUspeha":
+                                        clsBilansi OBB = new clsBilansi();
+                                        OBB.ObradiBilans();
+                                        break;
+                                    case "POPPdv":
+                                        clsPOPPdv POP = new clsPOPPdv();
+                                        POP.ObradiPOPPdv();
+                                        break; ///'''Exit Function
+                                    case "IOS":
+                                        clsObradaOsnovnihSifarnika obos = new clsObradaOsnovnihSifarnika();
+                                        //fform("DatumDo").Vrednost, fform("konto").Vrednost, fform("NazivKom").ID
+                                        var pb = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "DatumDo".ToString().Trim());
+                                        string DatumDo = pb.Vrednost;
+                                        pb = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "konto".ToString().Trim());
+                                        string konto = pb.Vrednost;
+                                        pb = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivKom".ToString().Trim());
+                                        int nazivkom = Convert.ToInt32(pb.ID);
+                                        if (obos.Iosi(DatumDo, konto, nazivkom) == true)
+                                        { break; }
+                                        else
+                                            break;
+                                    default:
+                                        clsIzvestaji IZV = new clsIzvestaji();
+                                        IZV.PrikazIzvestaja(((Bankom.frmChield)forma).imedokumenta);
+                                        break;
+                                }
+                                break;
+                            case "S":
+                                vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).idReda), ((Bankom.frmChield)forma).imestabla);
+                                break;
+                            case "K":
+                                if (forma.Controls["OOperacija"].Text.Trim() == "UNOS")
+                                {
+                                    clsObradaKlasifikacija o = new clsObradaKlasifikacija();
+                                    string d = toolStripTextBox1.Text;
+                                    o.Klasifikacija_Click(d, Program.pomIzv, Program.pomStablo);
+                                }
+                                else if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE")
+                                {
+                                    clsObradaKlasifikacija o = new clsObradaKlasifikacija();
+                                    o.KlasifikacijaBrisanje(Program.pomIzv, Program.pomStablo);
+                                }
+                                else if (forma.Controls["OOperacija"].Text.Trim() == "IZMENA")
+                                {
+                                    clsObradaKlasifikacija o = new clsObradaKlasifikacija();
+                                    string d = toolStripTextBox1.Text;
+                                    o.KlasifikacijaIzmena(d, Program.pomIzv, Program.pomStablo);
+                                }
+                                else if (forma.Controls["OOperacija"].Text.Trim() == "KOPIRAJ")
+                                {
+                                    clsObradaKlasifikacija o = new clsObradaKlasifikacija();
+                                    o.KlasifikacijaPremestiGrupu(Program.pomIzv, Program.pomStablo);
+                                    //ovde smo stigle
+                                }
+                                else if (forma.Controls["OOperacija"].Text.Trim() == "NALEPI")
+                                {
+                                    clsObradaKlasifikacija o = new clsObradaKlasifikacija();
+                                    o.KlasifikacijaNovaPozicija(Program.pomIzv, Program.pomStablo);
+
+                                }
+                                break;
+                            case "D":
+                                vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
+                                if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE") break;
+                                if (vrati == false) break;// ovde se vraca tok 
+
+                                switch (forma.Controls["limedok"].Text)
+                                {
+                                    case "NalogGlavneKnjige":
+                                        clsKnjizenje knj = new clsKnjizenje();
+                                        knj.ObradiNalogGlavneKnjige();
+                                        break;
+                                    case "NalogGlavneKnjigeSimulacija":
+                                        clsKnjizenje knjs = new clsKnjizenje();
+                                        knjs.ObradiSimulaciju();
+                                        break;
+                                    case "KursneRazlike":
+                                        clsObradaKursnihRazlika kr = new clsObradaKursnihRazlika();
+                                        vrati = kr.ObradiRazlike();
+                                        break;
+                                    case "BilansStanja":
+                                    case "BilansUspeha":
+                                    case "BilansPrihodiIRashodi":
+                                    case "Pokazateljlikvidnosti":
+                                        clsBilansi OBBilans = new clsBilansi();
+                                        OBBilans.ObradiBilans();
+                                        break;
+                                    case "PocetnoStanjeZaRobu":
+                                        clsZatvaranjeIOtvaranjeStanja ZiO = new clsZatvaranjeIOtvaranjeStanja();
+                                        vrati = ZiO.ObradiIspravku();
+                                        break;
+                                    case "ObracunVrednostiZaliha":
+                                        clsKorekcija Vrednost = new clsKorekcija();
+                                        vrati = Vrednost.VrednostNaDan();
+                                        break;
+                                    case "ZatvaranjeAvansa":
+                                        clsAvansi Avans = new clsAvansi();
+                                        vrati = Avans.ZatvaranjeAvansa(forma, forma.Controls["limedok"].Text, Convert.ToString(((Bankom.frmChield)forma).iddokumenta));
+                                        break;
+                                    case "Kompenzacija":
+                                        clsKompenzacija rez = new clsKompenzacija();
+                                        rez.ObradiKomenzaciju();
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                break;
+                            default:
+                                vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
+                                break;
+                        }
                     }
                 }
-                forma.Controls["OOperacija"].Text = "";
+                // OSVEZAVANJE FORME NAKON IZVRSENE OPERACIJE
+                if (vrati == true) //jovana
+                {
+                    clsRefreshForm rf = new clsRefreshForm();
+                    rf.refreshform();
+                }
             }
-
-            // KRAJ else 
-
-        }
+            forma.Controls["OOperacija"].Text = "";
+        }    
 
         private void Ggrupisinp_Click(object sender, EventArgs e)
         {

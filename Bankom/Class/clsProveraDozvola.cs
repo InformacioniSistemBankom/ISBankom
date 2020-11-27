@@ -28,10 +28,8 @@ namespace Bankom.Class
         public Boolean ProveriDozvole(String pdokument, string pidstablo, string pIDDok, string pDokumentJe)
         {
             Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
-            Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
-        
-
-
+            Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;       
+            
             if (pdokument.Trim() == "")
             {
                 return false;
