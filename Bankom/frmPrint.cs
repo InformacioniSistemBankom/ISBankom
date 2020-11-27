@@ -126,10 +126,7 @@ namespace Bankom
       
     
 
-        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-
-        }
+       
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -142,7 +139,7 @@ namespace Bankom
             webBrowser1.ShowSaveAsDialog();
         }
 
-      
+        
     }
 
 }

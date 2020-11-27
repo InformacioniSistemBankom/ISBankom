@@ -731,7 +731,7 @@ namespace Bankom
         //Djora 07.07.20
         private void frmLogin_Load(object sender, EventArgs e)
         {
-
+            this.HorizontalScroll.Enabled = true;
             int standardHeight = 1080;  //900
             int standardWidth = 1920;  //1440
             int presentHeight = Screen.PrimaryScreen.Bounds.Height;//.Bounds.Height;
@@ -744,7 +744,7 @@ namespace Bankom
 
         }
 
-
+       
         
         private void BtnPrekid_Click(object sender, EventArgs e)
         {
@@ -777,48 +777,44 @@ namespace Bankom
 
         private void button1_Click(object sender, EventArgs e)
         {
-            lblBaza.Visible = false;
-            cmbBaze.Visible = false;
-            lblGrupa.Visible = false;
-            CmbOrg.Visible = false;
-            tbNovaLozinka.Visible = true;
-            lbNovaLozinka.Visible = true;
 
-            var param0 = UsernameTextBox.Text.Trim();
-
-                string upit = " select Pass, suser from KadrovskaEvidencija WITH (NOLOCK) where SUSER = @param0 and id_kadrovskaevidencija <> 1 	";
-                DataTable rez = DB.ParamsQueryDT(upit, param0);
-
-                if (rez.Rows[0][0].ToString() == PasswordTextBox.Text.Trim())
-                {
-                    
-
-                    var param1 = param0;
-                    param0 = tbNovaLozinka.Text.Trim();
-
-                    string upit1 = "update KadrovskaEvidencija set Pass=@param0 where SUSER = @param1 and id_kadrovskaevidencija <> 1 	";
-                    DataTable rez1 = DB.ParamsQueryDT(upit1,param0,param1);
-
-
-                    MessageBox.Show("Lozinka uspešno promenjena!");
-                }
-                else
-                {
-                    MessageBox.Show("Pogrešno korisničko ime ili lozinka,izmena nije moguća!");
-                }
-
-            PasswordTextBox.Text = "";
-
-            UsernameTextBox.Visible = false;
-
-            lblBaza.Visible = true;
-            cmbBaze.Visible = true;
-            lblGrupa.Visible = true;
-            CmbOrg.Visible = true;
-
+            var param0 = tbNovaLozinka.Text.Trim();
+            var param1 = UsernameTextBox.Text.Trim();
+            try
+            {
+                string upit1 = "update KadrovskaEvidencija set Pass=@param0 where SUSER = @param1 and id_kadrovskaevidencija <> 1 	";
+                DataTable rez1 = DB.ParamsQueryDT(upit1, param0, param1);
+                MessageBox.Show("Lozinka uspešno promenjena!");
+            }
+           catch 
+            {
+                MessageBox.Show("Promena lozinke neuspešna.");
+            }
+            PasswordTextBox.Text = param0;
+           
+            tbNovaLozinka.Visible = false;
+            lbNovaLozinka.Visible = false;
+            button1.Visible = false;
 
         }
-             
-        
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var param0 = UsernameTextBox.Text.Trim();
+
+            string upit = " select Pass, suser from KadrovskaEvidencija WITH (NOLOCK) where SUSER = @param0 and id_kadrovskaevidencija <> 1 	";
+            DataTable rez = DB.ParamsQueryDT(upit, param0);
+
+            if (rez.Rows[0][0].ToString() == PasswordTextBox.Text.Trim() && rez.Rows[0][1].ToString() == UsernameTextBox.Text.Trim())
+            {
+                tbNovaLozinka.Visible = true;
+                lbNovaLozinka.Visible = true;
+                button1.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Pogrešno korisničko ime ili lozinka. Izmena nije moguća!");
+            }
+        }
     }
 }

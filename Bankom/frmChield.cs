@@ -121,23 +121,14 @@ namespace Bankom
                             break;
                     }
                     break;                   
-            }
-            
-            panel1.Top = 0;
+            }            
+            panel1.Top = this.Top;
         }
         private void frmChield_Activated(object sender, EventArgs e)
-        {
-            //jovana 29.10.20
-            //if (VrstaPrikaza != "TreeView" )
-            //{              
+        {             
                 Boolean provera = true;
                 clsProveraDozvola provdoz = new clsProveraDozvola();
                 provera = provdoz.ProveriDozvole(imedokumenta,  idstablo.ToString(),Convert.ToString(iddokumenta) ,DokumentJe);
-            //}
-            //else
-            //{
-            //  ////  
-            //}
         }
         private void frmChield_Resize(object sender, EventArgs e)
         {
