@@ -299,19 +299,15 @@ namespace Bankom.Class
                     break;
                 case "PreuzimanjeKursneListe":
                     KursnaLista kl = new KursnaLista();
-
-                    kl.FormBorderStyle = FormBorderStyle.None;
-                    kl.Text = "Preuzimanje Kursne Liste";
+                    //Djora 15.09.20
                     kl.MdiParent = mdi;
-                    kl.Dock = DockStyle.Fill;
-                    kl.AutoScroll = true;
-                    if (mdi.IzborJezika.Text == "Српски-Ћирилица") { kl.Text = mdi.VratiCirlilicu("Lotovi"); }
-                    int sirina1 = (mdi.Width / 100) * 10;
+                    kl.Show();
+                    //Djora 15.09.20
+                    kl.WindowState = FormWindowState.Maximized;
+                    kl.FormBorderStyle = FormBorderStyle.None;
                     mdi.addFormTotoolstrip1(kl, "Preuzimanje Kursne Liste");
 
-                    mdi.SrediFormu();
-                    kl.Show();
-
+                  
                     break;
                 case "Prenosi":
                     Form activeChild = mdi.ActiveMdiChild;
