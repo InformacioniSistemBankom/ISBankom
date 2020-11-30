@@ -70,6 +70,7 @@ namespace Bankom
                 childForm.FormBorderStyle = FormBorderStyle.None;
                 childForm.BackColor = System.Drawing.Color.Snow;
                 childForm.MdiParent = this;
+                childForm.AutoScroll = true;
                 // childForm.BringToFront();
 
                 this.WindowState = FormWindowState.Maximized;
