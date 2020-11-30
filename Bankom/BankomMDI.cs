@@ -614,6 +614,7 @@ namespace Bankom
             toolStripTextBox1.Text = "";
             string b = sender.ToString();
             frmChield active = new frmChield();
+            active.AutoScroll = true;
             active.FormBorderStyle= FormBorderStyle.None;
             int a = toolStrip1.Items.Count;
             for (int i = 0; i < a; i++)
@@ -2916,6 +2917,7 @@ namespace Bankom
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             KursnaLista kl = new KursnaLista();
+            kl.FormBorderStyle = FormBorderStyle.None;
             kl.Show();
         }
 

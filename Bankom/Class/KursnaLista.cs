@@ -226,5 +226,9 @@ namespace Bankom
         Kraj:;
         }
 
+        private void KursnaLista_Load(object sender, EventArgs e)
+        {
+            this.FormBorderStyle = FormBorderStyle.None;
+        }
     }
 }

@@ -299,7 +299,7 @@ namespace Bankom.Class
                     break;
                 case "PreuzimanjeKursneListe":
                     KursnaLista kl = new KursnaLista();
-
+            
                     kl.FormBorderStyle = FormBorderStyle.None;
                     kl.Text = "Preuzimanje Kursne Liste";
                     kl.MdiParent = mdi;
