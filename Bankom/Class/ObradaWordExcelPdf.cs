@@ -7,6 +7,7 @@ using  Microsoft.Office.Interop.Word;
 using Microsoft.Office.Interop.Excel;
 using System.IO;
 
+
 namespace Bankom.Class
 {
     class ObradaWordExcelPdf
@@ -71,5 +72,34 @@ namespace Bankom.Class
             if (File.Exists(putanja)) File.Delete(putanja);
 
         }
+
+        public static void ObradiDokument(string brojDok,string vrstaDokumenta,string nazivDokumenta)
+        {
+            var db = new DataBaseBroker();
+            string putanja = "";
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(Program.connectionString);
+            var imeServera = builder.DataSource;
+            putanja = imeServera.ToUpper() == Program.NazivRacunara.ToUpper() ? @"C:" : @"\\" + imeServera;
+            var parametri = db.ReturnDataTable("SELECT * FROM Parametri WHERE ImeRacunara ='" + Program.NazivRacunara + "'");
+            if (parametri.Rows.Count == 0)
+            {
+                MsgBox.ShowDialog("Nepoznati parametri o Wordu,Excelu, obratiti se administratoru!");
+                return;
+            }
+            switch (vrstaDokumenta)
+            {
+                case "p":
+                case "P":
+                    var brDok = brojDok.Replace('/', '-');
+                    putanja = putanja + @"\ISdokumenta\" + $"{Program.imeFirme.Trim()}" + @"\Pdf\" + nazivDokumenta + @"\" + brDok.Trim() + ".pdf";
+                    System.Diagnostics.Process.Start(putanja);
+                    return;
+                    break;
+
+
+            }
+
+        }
+       
     }
 }
