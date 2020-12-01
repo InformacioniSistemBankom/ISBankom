@@ -125,7 +125,7 @@ namespace Bankom.Class
                 cmd.Dispose();
 
 
-                if (VrstaRacuna.Contains("Usluge") == true)
+                if (VrstaRacuna.Contains("Usluge") == false)
                 {
                     str = "Update " + VrstaRacuna + " set ID_Avansi = 1 WHERE ID_dokumentaView =" + RacunID.ToString();
                 }
@@ -208,15 +208,10 @@ namespace Bankom.Class
                         rsUkupnoOstatak = db.ReturnDataTable(str);
                         if (rsUkupnoOstatak.Rows.Count > 0)
                         {
-                            switch (rsUkupnoOstatak.Rows[0]["SumaiznosAvansa"])
+                           if (string.IsNullOrEmpty(rsUkupnoOstatak.Rows[0]["SumaiznosAvansa"].ToString()) ==false)
                             {
-                                case null:
-                                    break;
-                                default:
                                     Ostatak = Ostatak - Convert.ToDouble(rsUkupnoOstatak.Rows[0]["SumaiznosAvansa"]);
-                                    break;
                             }
-
                         }
 
                          m_oEnum = null;
@@ -229,7 +224,7 @@ namespace Bankom.Class
                             break;
                         }
                         if (sbroj == "") { sbroj = "0"; };
-                        if (Ostatak > Convert.ToDouble(sbroj))
+                        if (Ostatak > Convert.ToDouble(sbroj) && Convert.ToDouble(sbroj)!=0.0)
                         {
                             Ostatak = Convert.ToDouble(sbroj);
                         }
@@ -301,13 +296,14 @@ namespace Bankom.Class
                             str += " from RacunStavke where id_RacunStavke= " + red["id_RacunStavke"];
                             str += " and (RacunStavke.Kolicina*RacunStavke.ProdajnaCena*(100-RacunStavke.ProcenatRabata)/100)+RacunStavke.PDV >= " + Ostatak.ToString();
                             string rezultet = db.ReturnString(str, 0);
+                                Console.WriteLine(str);
 
                                 str = "UPDATE RacunStavke set IznosAvansa =(RacunStavke.Kolicina*RacunStavke.ProdajnaCena*(100-RacunStavke.ProcenatRabata)/100)+RacunStavke.PDV";
                                 str += " where id_RacunStavke= " + red["id_RacunStavke"];
                                 str += " and (RacunStavke.Kolicina*RacunStavke.ProdajnaCena*(100-RacunStavke.ProcenatRabata)/100)+RacunStavke.PDV < " + Ostatak.ToString();
                                  rezultet = db.ReturnString(str, 0);
+                                Console.WriteLine(str);
 
-                                
                                 if (Convert.ToInt32(red["Kolicina"]) * Convert.ToInt32(red["ProdajnaCena"]) * ( 100 - Convert.ToInt32(red["ProcenatRabata"]) / 100) + Convert.ToInt32(red["PDV"]) >= Ostatak ) 
                                     { Ostatak = 0; }
                                 else

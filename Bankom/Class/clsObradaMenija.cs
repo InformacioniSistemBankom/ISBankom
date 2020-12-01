@@ -29,7 +29,7 @@ namespace Bankom.Class
 
       
          mdi.menuStrip1.BackColor = System.Drawing.Color.Snow;
-           mdi.menuStrip1.Font = new System.Drawing.Font("TimesRoman", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+           mdi.menuStrip1.Font = new System.Drawing.Font("TimesRoman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             mdi.menuStrip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
 
             dt = GetDataSet();
@@ -207,7 +207,7 @@ namespace Bankom.Class
                     pom = true;
                     MessageBox.Show("Već je otvorena ova forma!");
                     f.Focus();
-                   // mdi.updateToolStrip(s);
+                    mdi.updateToolStrip(s);
                     break;
                 }
             }
@@ -241,7 +241,7 @@ namespace Bankom.Class
                         if (mdi.IzborJezika.Text == "Српски-Ћирилица") { lotovi.Text = mdi.VratiCirlilicu("Lotovi"); }
                         int sirina = (mdi.Width / 100) * 10;
                         mdi.addFormTotoolstrip1(lotovi, "Lotovi");
-                      //  mdi.updateToolStrip(s);
+                        mdi.updateToolStrip(s);
                         mdi.SrediFormu();
                         lotovi.Show();
                         
@@ -255,8 +255,8 @@ namespace Bankom.Class
                 case "Artikli":
                 case "Komitenti":
                 case "OrganizacionaStruktura":
-                    //Program.Parent.ToolBar.Items["Uunos"].Visible = true;
-                    //Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
+                    Program.Parent.ToolBar.Items["Uunos"].Visible = true;
+                    Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
                   
                     postoji = IsOpen(s);
                     if (postoji == false)
@@ -299,15 +299,19 @@ namespace Bankom.Class
                     break;
                 case "PreuzimanjeKursneListe":
                     KursnaLista kl = new KursnaLista();
-                    //Djora 15.09.20
-                    kl.MdiParent = mdi;
-                    kl.Show();
-                    //Djora 15.09.20
-                    kl.WindowState = FormWindowState.Maximized;
+            
                     kl.FormBorderStyle = FormBorderStyle.None;
+                    kl.Text = "Preuzimanje Kursne Liste";
+                    kl.MdiParent = mdi;
+                    kl.Dock = DockStyle.Fill;
+                    kl.AutoScroll = true;
+                    if (mdi.IzborJezika.Text == "Српски-Ћирилица") { kl.Text = mdi.VratiCirlilicu("Lotovi"); }
+                    int sirina1 = (mdi.Width / 100) * 10;
                     mdi.addFormTotoolstrip1(kl, "Preuzimanje Kursne Liste");
 
-                  
+                    mdi.SrediFormu();
+                    kl.Show();
+
                     break;
                 case "Prenosi":
                     Form activeChild = mdi.ActiveMdiChild;

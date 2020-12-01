@@ -34,7 +34,7 @@ namespace Bankom.Class
         {
             forma = Program.Parent.ActiveMdiChild;
             Dokument = dokument;
-           
+
             vrati = PripremiParametre();
             if (vrati == true)
             {
@@ -42,51 +42,52 @@ namespace Bankom.Class
                 dokr.CalculatedField(forma, Dokument, "0");
             }
             else
-                MessageBox.Show(Poruka);      
+                MessageBox.Show(Poruka);
         }
-       
+
         private void DodajOrder(string TUD)
         {
             string ssel = "SELECT distinct PoljeSaDok,Polje,OOrderBy ";
             ssel += "FROM Izvestaji WHERE OOrderBy>0 AND Izvestaj =@param0 and TabelaVView=@param1 And TUD=@param2  and len(PoljeSaDok)>2";
             Console.WriteLine(ssel);
             ssel += " order by OOrderBy ";
-            t = db.ParamsQueryDT(ssel,Dokument,KojiView,TUD);
-            if( t.Rows.Count>0)
-               OrderBy = " ORDER BY ";
-            for (int j = 0;j < t.Rows.Count; j++)
-            { 
-                OrderBy += t.Rows[j]["Polje"].ToString() +",";                
+            t = db.ParamsQueryDT(ssel, Dokument, KojiView, TUD);
+            if (t.Rows.Count > 0)
+                OrderBy = " ORDER BY ";
+            for (int j = 0; j < t.Rows.Count; j++)
+            {
+                OrderBy += t.Rows[j]["Polje"].ToString() + ",";
             }
             if (OrderBy.Trim() != "")
                 OrderBy = OrderBy.Substring(0, OrderBy.Length - 1);
         }
         private void PrikaziZbirove(int mTUD)
-        {          
-                clsFormInitialisation fi = new clsFormInitialisation();
-                string ssel = " SElect AlijasPolja from RecnikPodataka Where TotalVSubtotal='S'  and Dokument =@param0" + " AND Width>0";
-                t = db.ParamsQueryDT(ssel, Dokument);
-                for(int k=0;k<t.Rows.Count;k++)
-                {       
-                    var pb = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == t.Rows[k]["AlijasPolja"].ToString());
-                    string ssel1 = "Select sum(" + t.Rows[k]["AlijasPolja"].ToString() + ") as zbir from Unija" + Dokument + " " + WWhere;
-                     Console.WriteLine(ssel1);
-                    tt = db.ReturnDataTable(ssel1);
-                       if (tt.Rows.Count > 0)                 
-                       {
-                           Console.WriteLine(tt.Rows[0]["zbir"].ToString());
-                           if (string.IsNullOrEmpty(tt.Rows[0]["zbir"].ToString()))
-                              pb.Vrednost = "0";  
-                           else
-                               pb.Vrednost = tt.Rows[0]["zbir"].ToString();  
-                        pb.textBox.Text = fi.FormatirajPolje(pb.Vrednost,pb.cTip);   
-                        //pb.textBox.Text=string.Format("{0:###,##0.00}", tt.Rows[0]["zbir"]);
+        {
+            clsFormInitialisation fi = new clsFormInitialisation();
+            string ssel = " SElect AlijasPolja from RecnikPodataka Where TotalVSubtotal='S'  and Dokument =@param0" + " AND Width>0";
+            t = db.ParamsQueryDT(ssel, Dokument);
+            for (int k = 0; k < t.Rows.Count; k++)
+            {
+                var pb = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == t.Rows[k]["AlijasPolja"].ToString());
+                string ssel1 = "Select sum(" + t.Rows[k]["AlijasPolja"].ToString() + ") as zbir from Unija" + Dokument + " " + WWhere;
+                Console.WriteLine(ssel1);
+                tt = db.ReturnDataTable(ssel1);
+                if (tt.Rows.Count > 0)
+                {
+                    Console.WriteLine(tt.Rows[0]["zbir"].ToString());
+                    if (string.IsNullOrEmpty(tt.Rows[0]["zbir"].ToString()))
+                        pb.Vrednost = "0";
+                    else
+                        pb.Vrednost = tt.Rows[0]["zbir"].ToString();
+                    pb.textBox.Text = fi.FormatirajPolje(pb.Vrednost, pb.cTip);
+                    //pb.textBox.Text=string.Format("{0:###,##0.00}", tt.Rows[0]["zbir"]);
 
-                      }
-                }                           
+                }
+            }
         }
         private Boolean PripremiParametre()
         {
+            // BORKA U SSI PISALO FROM IZVESTAJ UMESTO IZVESTAJI 29.11.20
             vrati = true;
             string Delovi = "";
             string mVred = "";
@@ -98,21 +99,21 @@ namespace Bankom.Class
             if (t.Rows.Count > 0)
             {
                 //string pNazivDokumenta = t.Rows[j]["NazivDokumenta"].ToString().Trim();   
-                for(int j=0; j<t.Rows.Count;j++)
+                for (int j = 0; j < t.Rows.Count; j++)
                 {
                     //var pb = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == t.Rows[j]["Polje"].ToString().Trim());
                     Field pb = (Field)forma.Controls[t.Rows[j]["Polje"].ToString()]; //  uzimamo kontrolu na formi                                  
                     if (pb == null) { break; }
 
-                        if (t.Rows[j]["PoljeSaDok"].ToString() != "NazivOrg")
-                        {
+                    if (t.Rows[j]["PoljeSaDok"].ToString() != "NazivOrg")
+                    {
                         parametri += t.Rows[j]["Polje"].ToString() + ",";
-                        vrednostiparametara += pb.Vrednost + ",";                    
-                        }
+                        vrednostiparametara += pb.Vrednost + ",";
+                    }
                     switch (Dokument)
                     {
                         case "KontrolnikIzvestaj":
-                        case  "KontrolnikIzvestaj2":
+                        case "KontrolnikIzvestaj2":
                             if (t.Rows[j]["uslov"].ToString() == "1" || t.Rows[j]["uslov"].ToString() == "2")
                             {
                                 if (pb.Vrednost == "")
@@ -128,11 +129,11 @@ namespace Bankom.Class
                                         else // nije ni null ni prazno    //fform.Controls("ct" + mRS!Polje).ID <> 1 Or 
                                         {
                                             if (pb.ID != "1" || pb.cPolje == "OznVal" || pb.cPolje == "NazivVlasnika")
-                                               Delovi += " id_" + pb.cIzborno + t.Rows[j]["UslovOperacija"].ToString() + pb.ID + " AND ";
+                                                Delovi += " id_" + pb.cIzborno + t.Rows[j]["UslovOperacija"].ToString() + pb.ID + " AND ";
                                         }
                                     }
                                     else //Jeste uslov=LIKE
-                                         Delovi += t.Rows[j]["PoljeSaDokumenta"].ToString() + " like '" + pb.Vrednost + "%' and ";
+                                        Delovi += t.Rows[j]["PoljeSaDokumenta"].ToString() + " like '" + pb.Vrednost + "%' and ";
                                     if (t.Rows[j]["UslovOperacija"].ToString().Trim().ToUpper() == "LIKE_%")
                                         Delovi += pb.cPolje + " like '%" + pb.Vrednost + "' and ";
                                     if (t.Rows[j]["UslovOperacija"].ToString().Trim().ToUpper() == "LIKE%_%")
@@ -161,7 +162,7 @@ namespace Bankom.Class
                                             Delovi += t.Rows[j]["PoljeSaDok"] + " " + t.Rows[j]["UslovOperacija"].ToString() + " '" + Program.imeFirme + "' and ";
                                         else
                                             Delovi += t.Rows[j]["PoljeSaDok"] + " " + t.Rows[j]["UslovOperacija"].ToString() + " '" + t.Rows[j]["Izborno"] + "' and ";
-                                    }                                    
+                                    }
                                 }
                             }
                             break;
@@ -182,12 +183,12 @@ namespace Bankom.Class
                                             else
                                                 Delovi += t.Rows[j]["PoljeSaDok"].ToString().Trim() + " " + t.Rows[j]["UslovOperacija"].ToString().Trim() + " '" + pb.Vrednost + "' and ";
                                         }
-                                    }                                   
+                                    }
                                     else // sadrzi LIKE
                                     {
                                         // ovde sam htela da uzmem pb.comboBox.Text odnosi se na magacinsku karticu
                                         Console.WriteLine(pb.comboBox.Text);
-                                        if (pb.cTip == 25 && pb.Vrednost.Trim()!="" && pb.Vrednost.Contains(",")==true)
+                                        if (pb.cTip == 25 && pb.Vrednost.Trim() != "" && pb.Vrednost.Contains(",") == true)
                                             mVred = pb.Vrednost.Substring(0, pb.Vrednost.IndexOf(","));
                                         else
                                             mVred = pb.Vrednost;
@@ -220,7 +221,7 @@ namespace Bankom.Class
                                             Delovi += t.Rows[j]["PoljeSaDok"].ToString() + " " + t.Rows[j]["UslovOperacija"].ToString().Trim() + " '" + Program.imeFirme + "' and ";
                                     }
                                 }
-                                
+
                             } // KRAJ vrednost ima sadrzaj
                             break;
                     }
@@ -232,8 +233,8 @@ namespace Bankom.Class
                     Console.WriteLine(Delovi);
                     vrednostiparametara = vrednostiparametara.Substring(0, vrednostiparametara.Length - 1);
                     // sacuvamo podatke za stampu izvestaja
-                    Program.param = parametri; 
-                    Program.vred = vrednostiparametara;                 
+                    Program.param = parametri;
+                    Program.vred = vrednostiparametara;
                 }
             }
             if (forma.Text == "Finansijska kartica bez zatvaranja - online")
@@ -242,7 +243,7 @@ namespace Bankom.Class
                     WWhere = " Where " + Delovi + " AND Opisknj Not Like 'Zatvaranje%'";
                 else
                       if (Delovi.Trim() != "")
-                         WWhere = " Where " + Delovi;
+                    WWhere = " Where " + Delovi;
             }
             else
             {
@@ -259,12 +260,12 @@ namespace Bankom.Class
             vrati = true;
             string mUpit = "";
             string uUpit = "";
-            string mGroup = "";      
+            string mGroup = "";
             string mTUD = "";
             string mIme = "";
             string iddok = "0";
             string rss = "";
-            clsdokumentRefresh dokr = new clsdokumentRefresh();    
+            clsdokumentRefresh dokr = new clsdokumentRefresh();
 
             string rsu = "Select * From Upiti Where  nazivdokumenta=@param0 And ime  like '%ggrr%' ORDER BY TUD";
             Console.WriteLine(rsu);
@@ -300,12 +301,12 @@ namespace Bankom.Class
                     {
                         if (res.Trim() != "")
                             res = " WHERE " + res;
-                    }                   
-                        DodajOrder(mTUD);
-                        mUpit += WWhere + res + mGroup + OrderBy;
+                    }
+                    DodajOrder(mTUD);
+                    mUpit += WWhere + res + mGroup + OrderBy;
                     Console.WriteLine(mUpit);
-                        DataTable t = new DataTable();
-                        t = db.ReturnDataTable(mUpit);
+                    DataTable t = new DataTable();
+                    t = db.ReturnDataTable(mUpit);
                     if (t.Rows.Count == 0)
                     {
                         MessageBox.Show("Ne postoje podaci za zadate parametre!!!");
@@ -313,13 +314,13 @@ namespace Bankom.Class
                         return vrati;
                     }
                     dokr.refreshDokumentGrid(forma, Dokument, "1", mUpit, mTUD, "I");
-                  
+
                 }
                 else
-                {                    
+                {
                     Console.WriteLine(mUpit);
-                    dokr.refreshDokumentBody(forma, Dokument, iddok, "I");
-                   
+                    dokr.refreshDokumentBody(forma, Dokument, iddok, "I");//BORKA DA LI NAM OVO TREBA 29.11.20
+
                 }
             }
             PrikaziZbirove(0);
@@ -327,4 +328,3 @@ namespace Bankom.Class
         }
     }
 }
-

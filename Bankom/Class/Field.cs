@@ -73,7 +73,7 @@ namespace Bankom.Class
         Form forma = new Form();
         //private int izmena;
         private string aaa = "";
-        private string sadrzaj="";
+        private string sadrzaj = "";
         //public event EventHandler ValueChanged;
         //public Field(Form form1, string iddok, string dokument, string label_text, string polje, string Ime, Color boja, double levo, double vrh, double visina, double sirina,
         //string PozicijaLabele, int Tip, string izborno, string idNaziviNaFormi, string tud, string EnDis, string FormatStringa, string Tabela, string AlijasTabele, string TabelaVView, int TabIndex, string FormatPolja, string Segment, string Restrikcije, int ImaNaslov, string FormulaForme) : base()
@@ -124,44 +124,44 @@ namespace Bankom.Class
             //Djora 06.07.20
             ////if (idNaziviNaFormi != "20")
             ////{
-                Console.WriteLine(IME);
-                
-                if (PozicijaLabele != "2")        //   2- labela ne postoji ; 1 = ispred, 0= iznad
-                {                                // label postoji
-                    label = new Label();
-                    label.Text = ctekst;//label_text;
-                    label.Anchor = AnchorStyles.Left;
-                    label.TextAlign = ContentAlignment.MiddleCenter;    //MiddleLeft;
-                    //Djora 26.09.20
-                    //label.Height = (int)(visina * 1.2);
-                    label.Font = new Font("TimesRoman", 13, FontStyle.Regular);
-                    //label.Font = new Font("TimesRoman", 10.8F, FontStyle.Bold);
+            Console.WriteLine(IME);
 
-                    //Djora 26.09.20
-                    PromenaFonta(label);
-                    //Djora 26.09.20
-                    label.Margin = new Padding(0, 0, 0, 0);
+            if (PozicijaLabele != "2")        //   2- labela ne postoji ; 1 = ispred, 0= iznad
+            {                                // label postoji
+                label = new Label();
+                label.Text = ctekst;//label_text;
+                label.Anchor = AnchorStyles.Left;
+                label.TextAlign = ContentAlignment.MiddleCenter;    //MiddleLeft;
+                                                                    //Djora 26.09.20
+                                                                    //label.Height = (int)(visina * 1.2);
+                label.Font = new Font("TimesRoman", 13, FontStyle.Regular);
+                //label.Font = new Font("TimesRoman", 10.8F, FontStyle.Bold);
 
-                    Controls.Add(label);
-                }
-                if (PozicijaLabele == "0")// labela je iznad
-                {
-                        label.Width = (int)Convert.ToDouble(sirina * ofset);
-                        FlowDirection = FlowDirection.TopDown;
-                }
+                //Djora 26.09.20
+                PromenaFonta(label);
+                //Djora 26.09.20
+                label.Margin = new Padding(0, 0, 0, 0);
 
-                if (PozicijaLabele == "1") // labela je ispred
-                {
-                        //Djora 09.07.20   
-                        //label.Width = (int)sirina;
-                        label.Width = (int)Convert.ToDouble((sirina * ofset) / 2);
-                        label.TextAlign = ContentAlignment.MiddleLeft;
-                        FlowDirection = FlowDirection.LeftToRight;
-                        //label.Margin = new Padding(0, 0, 0, 0);
-                }
+                Controls.Add(label);
+            }
+            if (PozicijaLabele == "0")// labela je iznad
+            {
+                label.Width = (int)Convert.ToDouble(sirina * ofset);
+                FlowDirection = FlowDirection.TopDown;
+            }
+
+            if (PozicijaLabele == "1") // labela je ispred
+            {
+                //Djora 09.07.20   
+                //label.Width = (int)sirina;
+                label.Width = (int)Convert.ToDouble((sirina * ofset) / 2);
+                label.TextAlign = ContentAlignment.MiddleLeft;
+                FlowDirection = FlowDirection.LeftToRight;
+                //label.Margin = new Padding(0, 0, 0, 0);
+            }
             //}
-                switch (Tip)
-                {
+            switch (Tip)
+            {
                 case 8:
                 case 9:
                     VrstaKontrole = "datum";
@@ -229,7 +229,7 @@ namespace Bankom.Class
                     else // tip 9
                     {
                         string mgodina = System.DateTime.Now.ToString().Substring(6, 2);
-//string mgodina = System.DateTime.Now.ToString().Substring(6, 4);
+                        //string mgodina = System.DateTime.Now.ToString().Substring(6, 4);
                         string mdatum = "01.01." + mgodina;
                         dtp.Value = Convert.ToDateTime(mdatum);
                     }
@@ -239,7 +239,7 @@ namespace Bankom.Class
                     dtp.ValueChanged += new EventHandler(dtp_ValueChanged);
                     dtp.TextChanged += new EventHandler(dtp_TextChanged);
 
-                        break;
+                    break;
                 case 24:
                     VrstaKontrole = "cek";
 
@@ -278,7 +278,7 @@ namespace Bankom.Class
                             Name = Ime,
                             Tag = Tip,
                             BackColor = Color.AliceBlue,
-                            ForeColor=Color.Black,
+                            ForeColor = Color.Black,
                             FlatStyle = FlatStyle.Standard
                             //FlatStyle = FlatStyle.Flat
 
@@ -308,7 +308,7 @@ namespace Bankom.Class
                         //Djora 26.09.20
                         //comboBox.Font = new Font("TimesRoman", 13, FontStyle.Regular);
                         PromenaFonta(comboBox);
-                        
+
                         comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
                         comboBox.MaxDropDownItems = 10;
                         comboBox.Enabled = true;
@@ -324,14 +324,14 @@ namespace Bankom.Class
                         comboBox.Parent.Name = Ime;
 
                         // obrada dogadjaja za comboBox             
-                        //comboBox.TextChanged += new EventHandler(comboBox_TextChanged);
-                        //comboBox.MouseClick += new MouseEventHandler(comboBox_MouseClick);
+                        comboBox.GotFocus += new EventHandler(comboBox_GotFocus);
+                        comboBox.MouseClick += new MouseEventHandler(comboBox_MouseClick);
 
                         //comboBox.SelectedIndexChanged += new EventHandler(ComboBox_SelectedIndexChanged);
-                        //comboBox.Leave += new EventHandler(Leave);
                         comboBox.DropDown += new EventHandler(comboBox_DropDown);
                         comboBox.DropDownClosed += new EventHandler(comboBox_DropDownClosed);
-                        comboBox.Leave += new EventHandler(Leave);
+                        //comboBox.Leave += new EventHandler(Leave);
+                        comboBox.Validating += comboBox_Validating;
 
                     }
                     else // nema izborno 
@@ -380,7 +380,7 @@ namespace Bankom.Class
 
                             //Djora 31.08.20
                             textBox.Text = "0";
-                            
+
                             clsFormInitialisation fi = new clsFormInitialisation();
                             textBox.Text = fi.FormatirajPolje(textBox.Text, Tip);
                         }
@@ -391,44 +391,44 @@ namespace Bankom.Class
                         }
 
 
-                            if (EnDis == "D")
-                            {
-                                textBox.ReadOnly = true;
-                            }
-                            textBox.MouseDown += new MouseEventHandler(textBox_MouseDown);
-                            textBox.KeyPress += new KeyPressEventHandler(textBox_KeyPress);
-                            textBox.TextChanged += new EventHandler(textBox_TextChange);
-                            textBox.LostFocus += new EventHandler(textBox_LostFocus);
-
-                            //Djora 28.08.20                       
-                            textBox.Enter += new EventHandler(textBox_Enter);
-
-                            Vrednost = textBox.Text;
-                            ID = "1";
-
-                            //Djora 26.09.20
-                            //textBox.Font = new Font("TimesRoman", 13, FontStyle.Regular);
-                            PromenaFonta(textBox);
-
-                            if (textBox.Tag == null)
-                            {
-                                //MessageBox.Show(Ime);
-                            }
-
-                            //Djora 26.09.20
-                            textBox.Margin = new Padding(0, 0, 0, 0);
-
-                            Controls.Add(textBox);
-
-                            //Djora 08.07.20
-                            textBox.Parent.Name = Ime;
+                        if (EnDis == "D")
+                        {
+                            textBox.ReadOnly = true;
                         }
-                        break;
-                }
+                        textBox.MouseDown += new MouseEventHandler(textBox_MouseDown);
+                        textBox.KeyPress += new KeyPressEventHandler(textBox_KeyPress);
+                        textBox.TextChanged += new EventHandler(textBox_TextChange);
+                        textBox.LostFocus += new EventHandler(textBox_LostFocus);
+
+                        //Djora 28.08.20                       
+                        textBox.Enter += new EventHandler(textBox_Enter);
+
+                        Vrednost = textBox.Text;
+                        ID = "1";
+
+                        //Djora 26.09.20
+                        //textBox.Font = new Font("TimesRoman", 13, FontStyle.Regular);
+                        PromenaFonta(textBox);
+
+                        if (textBox.Tag == null)
+                        {
+                            //MessageBox.Show(Ime);
+                        }
+
+                        //Djora 26.09.20
+                        textBox.Margin = new Padding(0, 0, 0, 0);
+
+                        Controls.Add(textBox);
+
+                        //Djora 08.07.20
+                        textBox.Parent.Name = Ime;
+                    }
+                    break;
+            }
             //}// kraj za idNaziviNaFormi<>20
 
             //Uzima iz upita upite za datagrigove  TUD <> 0 i dogradjuje ih sa npr. where  id_KonacniRacunTotali =
-            if (idNaziviNaFormi == "20"  && tud != "0")
+            if (idNaziviNaFormi == "20" && tud != "0")
             {
                 string tIme = Ime.Replace("ID_", "GgRr");
                 //26.09.20
@@ -462,7 +462,7 @@ namespace Bankom.Class
                     //Djora 09.07.20
                     //var brredova = Convert.ToDouble(t.Rows[0]["MaxHeight"].ToString());
                     var brredova = Convert.ToDouble(t.Rows[0]["MaxHeight"].ToString()); //* ofsety;
-                   
+
                     //Djora 26.09.20 14.10.20
                     //var theight = (Convert.ToDouble(t.Rows[0]["height"].ToString())) * ofsety * brredova;
                     var theight = (Convert.ToDouble(t.Rows[0]["height"].ToString())) * ofsety * 1.33333333 * 1.8;
@@ -473,17 +473,14 @@ namespace Bankom.Class
                     dv.AllowUserToResizeRows = false;
                     dv.BorderStyle = BorderStyle.Fixed3D;
                     dv.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
-             
+
                     //dv.DefaultCellStyle.SelectionForeColor = Color.Snow;
                     dv.BackgroundColor = Color.Snow;
 
                     dv.EnableHeadersVisualStyles = false;
                     dv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
 
-                    //tamara 26.11.2020.
-                    dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
-                    dv.ScrollBars = ScrollBars.Both;
-                    dv.RowHeadersDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
+
                     //Djora 26.09.20
                     PromenaFonta(dv);
                     //Djora 26.09.20
@@ -491,7 +488,7 @@ namespace Bankom.Class
 
                     dv.Width = (int)(tWidth);
                     dv.Top = (int)tVrh;
-                    
+
                     //Djora 26.09.20
                     //dv.Height = (int)(theight);
                     dv.Height = (int)(theight * brredova);
@@ -527,19 +524,12 @@ namespace Bankom.Class
                         case 0:
                             dv.ColumnHeadersVisible = false;
                             //dv.ColumnHeadersHeight = 18; //Convert.ToInt32(cheight);
-                            dv.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("TimesRoman", 5, FontStyle.Regular);
+                            dv.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 5, FontStyle.Regular);
                             dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
-                             
-                            dv.RowHeadersDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
-
                             dv.ColumnHeadersDefaultCellStyle.ForeColor = Color.Snow;
-
                             break;
                         case 1:
                             dv.ColumnHeadersVisible = true;
-                            dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
-                             
-                            dv.RowHeadersDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
 
                             //dv.Columnheaderscaption=
                             break;
@@ -551,10 +541,6 @@ namespace Bankom.Class
                     dv.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
                     dv.Visible = true;
                     //dv.ColumnHeader.Font = new Font("TimesRoman", 5, FontStyle.Regular);
-                    dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
-                    //tamara 26.11.2020.
-                    dv.ScrollBars = ScrollBars.Both;
-                    dv.RowHeadersDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
 
                     //Djora 26.09.20
                     //dv.Font = new Font("TimesRoman", 13, FontStyle.Regular);
@@ -609,7 +595,7 @@ namespace Bankom.Class
 
         void textBox_TextChange(object sender, EventArgs e)
         {
-            ID = "1";           
+            ID = "1";
             Vrednost = textBox.Text;
         }
 
@@ -659,7 +645,7 @@ namespace Bankom.Class
             //        break;
             //}
             string sadrzaj = textBox.Text;
-            textBox.Text = FI.FormatirajPolje(sadrzaj,Tip);
+            textBox.Text = FI.FormatirajPolje(sadrzaj, Tip);
             Vrednost = textBox.Text;
             ID = "1";
         }
@@ -695,7 +681,7 @@ namespace Bankom.Class
 
                     if (!char.IsControl(e.KeyChar)
                         && !char.IsDigit(e.KeyChar)
-                        && e.KeyChar != ',' 
+                        && e.KeyChar != ','
                         && e.KeyChar != '-')
                     {
                         e.Handled = true;
@@ -720,25 +706,29 @@ namespace Bankom.Class
             }
 
         }
-        private void ComboBox_SelectedIndexChanged(object sender,System.EventArgs e)
+        private void ComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             //ComboBox control = (ComboBox)sender;
             //control.Text = sadrzaj;
         }
 
         private void comboBox_GotFocus(object sender, EventArgs e)
-        { }
+        {
+
+        }
         private void comboBox_MouseClick(object sender, EventArgs e)
-        { }      
+        {
+            //  comboBox.DroppedDown = true;
+        }
         private void comboBox_DropDownClosed(object sender, EventArgs e)
         {
-            //comboBox.Text = sadrzaj;
             SendKeys.Send("{tab}");
         }
         private void comboBox_DropDown(object sender, EventArgs e)
         {
-            ComboBox control = (ComboBox)sender;                        
+            ComboBox control = (ComboBox)sender;
             string sql = FillList(control, cTip);
+
             Console.WriteLine(sql);
             control.SelectedIndex = -1;
             DataTable dt = new DataTable();
@@ -756,44 +746,59 @@ namespace Bankom.Class
                         maxWidth = temp;
                     }
                 }
-                control.DropDownWidth = maxWidth+10;
+                control.DropDownWidth = maxWidth + 10;
 
                 control.DataSource = dt;
                 control.ValueMember = "iid";
-                control.DisplayMember = "polje";                
+                control.DisplayMember = "polje";
 
-                ID = Convert.ToString(control.SelectedValue);           
-                Vrednost= dt.Rows[0]["polje"].ToString().Trim();              
+                ID = Convert.ToString(control.SelectedValue);
+                Vrednost = dt.Rows[0]["polje"].ToString().Trim();
 
-                //if (cTip == 25)           
-                //    sadrzaj = dt.Rows[0]["polje"].ToString().Substring(0, dt.Rows[0]["polje"].ToString().IndexOf(","));
-                //else
-                //    sadrzaj= dt.Rows[0]["polje"].ToString().Trim();
-
-                //control.Text = sadrzaj;
 
                 control.SelectedIndex = -1;
 
                 //Console.WriteLine(control.Text);    
-                if(control.SelectedIndex>0)
+                if (control.SelectedIndex > 0)
                     FillOtherControls(control, ID);
             }
             else //.Rows.Count = 0
             {
                 control.DataSource = null;
-                control.Text = "";
-                control = null;
+                //control.Text = "";
+                //control = null;
 
-                ID = "1";
-                Vrednost = "";
-            }            
+                //ID = "1";
+                //Vrednost = "";
+            }
         }
-        public new void Leave(object sender, EventArgs e)
+        private void comboBox_Validating(object sender, CancelEventArgs e)
         {
-            ComboBox control = (ComboBox)sender;
+            //    //NOTE: comboBox1 has a DropDownStyle set to "DropDown".
+            //    string userInput = this.comboBox.Text;
+            ComboBox combo = (ComboBox)sender;
+
+            if (!FoundText(combo))
+            {
+                //MessageBox.Show("This is not a valid ");
+                //this.ClearDisplay();
+                combo.ForeColor = Color.Red;
+                e.Cancel = true;
+            }
+            else
+            {
+                combo.ForeColor = Color.Black;
+            }
+        }
+
+        //public new void Leave(object sender, EventArgs e)
+        public Boolean FoundText(ComboBox control)
+        {
+            Boolean isfound = true;
+            //ComboBox control = (ComboBox)sender;
             Form Me = Program.Parent.ActiveMdiChild;
             string uuPIT = "";
-            string Restrikcija = "";           
+            string Restrikcija = "";
             if (control.Text.Trim() != "")
             {
                 Field pb = (Field)Me.Controls[control.Name]; //  uzimamo kontrolu na formi  
@@ -816,7 +821,7 @@ namespace Bankom.Class
                             ID = "1";
                         }
                         else  // nisu kknjupiti
-                        {              
+                        {
                             if (pb.cTip == 25)
                                 uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + " Like N'%" + control.Text + "%'" + Restrikcija;
                             else
@@ -826,7 +831,7 @@ namespace Bankom.Class
                             if (tt.Rows.Count > 0)
                             {
                                 ID = tt.Rows[0]["idt"].ToString();
-                                Vrednost= tt.Rows[0]["polje"].ToString();
+                                Vrednost = tt.Rows[0]["polje"].ToString();
                                 if (pb.cTip == 25)
                                     aaa = tt.Rows[0]["polje"].ToString().Substring(0, tt.Rows[0]["polje"].ToString().IndexOf(","));
                                 else
@@ -842,22 +847,22 @@ namespace Bankom.Class
                             {
                                 ID = "1";
                                 Vrednost = "";
-                                control.ForeColor = Color.Red;
+                                //control.ForeColor = Color.Red;
+                                isfound = false;
                             }
                         }
                     }
-                    //    Console.WriteLine(Vrednost);
-                    //    Console.WriteLine(control.Text);
                 }
             }
+            return isfound;
         }
         public void dtp_TextChanged(Object sender, EventArgs e)
         {
             //Sluzi da se automatski pomeri na sledece polje u datetimepickeru da dana, na mesec, pa na godinu, dok kucam rucno.
-            if (dtp.Focused==true)
+            if (dtp.Focused == true)
                 SendKeys.Send(".");
         }
-            public void dtp_ValueChanged(Object sender, EventArgs e)
+        public void dtp_ValueChanged(Object sender, EventArgs e)
         {
             dtp.CustomFormat = "dd.MM.yyyy"; //jovana
             dtp.Format = DateTimePickerFormat.Custom;
@@ -873,96 +878,90 @@ namespace Bankom.Class
         private void FillOtherControls(ComboBox control, string IdSloga)
         {
             string cQuery = "";
-            string aaa = "";
-           
+
             cQuery = "Select * from " + cIzborno + " WHERE ID_" + cIzborno.Trim() + "=" + IdSloga;
             Console.WriteLine(cQuery);
             DataTable dt2 = db.ReturnDataTable(cQuery);
             foreach (var pb in this.Parent.Controls.OfType<Field>().Where(g => String.Equals(g.cAlijasTabele, cAlijasTabele)))
             {
-                    if (pb.IME != control.Name) // ovde ulaza samo kontrole razlicite od kontrole koju smo upravo napustili a imaju isti alijastabele
+                if (pb.IME != control.Name) // ovde ulaza samo kontrole razlicite od kontrole koju smo upravo napustili a imaju isti alijastabele
+                {
+                    pb.ID = "1";
+                    if (dt2.Rows.Count == 0)
                     {
-                         if (dt2.Rows.Count == 0)
-                         {
-                             pb.ID = "1";
-                             pb.Vrednost = "";
-                         }
-                         else
-                         {
-                            if (pb.cIzborno == cIzborno)
+                        pb.Vrednost = "";
+                    }
+                    else
+                    {
+                        if (pb.cIzborno == cIzborno)
+                        {
+                            if (pb.cTip != 25)
                             {
-                                if (pb.cTip != 25)
+                                try
                                 {
-                                    //pb.Vrednost = IIf(IsNull(rs.Fields(forma(j).PPolje).Value), "", Trim(rs.Fields(forma(j).PPolje).Value))
-                                    if (string.IsNullOrEmpty(dt2.Rows[0][pb.cPolje].ToString()))
+                                    pb.ID = IdSloga;
+                                    pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
+                                }
+                                catch (Exception ex)
+                                {
+                                    pb.Vrednost = "";
+                                }
+                            }
+                            else ///pb.cTip=25
+                            {
+                                pb.Vrednost = "";
+                            }
+                        }
+                        else //nije pb.cizbormo=cizborno
+                        {
+                            if (pb.cIzborno.Trim() != "")
+                            {
+                                if (pb.cTip != 25)//nije lot
+                                {
+                                    try
+                                    {
+                                        pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
+                                    }
+                                    catch (Exception ex)
                                     {
                                         pb.Vrednost = "";
-                                        pb.ID = "1";
-                                    }
-                                    else
-                                    {
-                                        pb.ID = IdSloga;
-                                        pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
-                                        aaa= dt2.Rows[0][pb.cPolje].ToString();
                                     }
                                 }
-                                else
+                                else // jeste lot 
                                 {
-                                    aaa = "";
+                                    pb.Vrednost = "";
                                 }
-                            } 
-                            else //nije pb.izbormo=cizborno
+                            }
+                            else //izborno jeste prazno
                             {
-                                if (pb.cIzborno.Trim() != "")
+                                try
                                 {
-                                    string cQuery1 = "Select * from " + pb.cIzborno + " WHERE ID_" + pb.cIzborno + "=" + dt2.Rows[0]["ID_"+pb.cIzborno] .ToString();
-                                    Console.WriteLine(cQuery1);
-                                    DataTable dt1 = db.ReturnDataTable(cQuery1);
-                                    if (dt1.Rows.Count > 0)
-                                    {
-                                        if (pb.cTip != 25)//nije lot
-                                        {
-                                                  //pb.Vrednost = IIf(IsNull(rs.Fields(forma(j).PPolje).Value), "", Trim(rs.Fields(forma(j).PPolje).Value))
-                                            if (string.IsNullOrEmpty(dt2.Rows[0][pb.cPolje].ToString()))
-                                            {
-                                                pb.Vrednost = "";
-                                                pb.ID = "1";
-                                            }
-                                            else
-                                            {
-                                                pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
-                                                pb.ID = dt1.Rows[0]["ID_" + pb.cIzborno].ToString(); //IdSloga;
-                                            }
-                                            aaa = dt1.Rows[0][pb.cPolje].ToString();
-                                        }
-                                        else // jeste lot
-                                        {
-                                            aaa = ""; 
-                                        }
-                                    }
+                                    pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
                                 }
-                                else
+                                catch (Exception ex)
                                 {
-                                   aaa = dt2.Rows[0][pb.cPolje].ToString();
+                                    pb.Vrednost = "";
                                 }
-                            }   
-                            switch (pb.VrstaKontrole)
-                            {
-                                    case "tekst":
-                                        pb.textBox.Text = aaa;
-                                        break;
-                                    case "combo":
-                                        pb.comboBox.Text = aaa;
-                                        break;
-                                    case "datum":
-                                        pb.dtp.Value = Convert.ToDateTime(aaa);
-                                        break;
-                            }                       
-                         }
-                    } // KRAJ NIJE POLJE KOJE SMO UPRAVO NAPUSTILI
+                            }
+                        }   // NIJE cIzborno=izborno KRAJ                     
+
+                        switch (pb.VrstaKontrole)
+                        {
+                            case "tekst":
+                                pb.textBox.Text = pb.Vrednost;
+                                break;
+                            case "combo":
+                                pb.comboBox.Text = pb.Vrednost;
+                                break;
+                            case "datum":
+                                pb.dtp.Value = Convert.ToDateTime(pb.Vrednost);
+                                break;
+                        }
+                    }
+                } // NIJE POLJE KOJE SMO UPRAVO NAPUSTILI KRAJ
             } //polja koja pripadaju istom Alijasu Tabele KRAJ
         }
-        
+
         /// <summary>
         private string FillList(ComboBox control, int Tip)
         {
@@ -1005,7 +1004,7 @@ namespace Bankom.Class
                             Console.WriteLine(ssel);
                         }
                         else// control.text ne sadrzi brdok 
-                        {                            
+                        {
                             ssel = "SELECT DISTINCT ID_" + cIzborno + " as iid, " + cPolje + " as polje FROM " + cIzborno;
                             ssel += " WHERE " + cPolje + " like'%" + control.Text.Trim() + "%'  AND  (" + Restrikcija.Trim() + ")  ORDER BY polje";
                         }
@@ -1019,9 +1018,9 @@ namespace Bankom.Class
                         ssel += " WHERE " + cPolje + " like'%" + control.Text.Trim() + "%'  ORDER BY polje ";
                     }
                     else
-                    {                       
-                            ssel = "SELECT DISTINCT  ID_" + cIzborno + " as iid, " + cPolje + " as polje FROM " + cIzborno;
-                            ssel += " WHERE " + cPolje + " like'%" + control.Text.Trim() + "%'  ORDER BY polje ";
+                    {
+                        ssel = "SELECT DISTINCT  ID_" + cIzborno + " as iid, " + cPolje + " as polje FROM " + cIzborno;
+                        ssel += " WHERE " + cPolje + " like'%" + control.Text.Trim() + "%'  ORDER BY polje ";
                     }
                 }
             }
@@ -1063,17 +1062,11 @@ namespace Bankom.Class
         {
             Program.colname = "";
             DataGridView control = (DataGridView)sender;
-            
-
             DataTable myt = (DataTable)control.DataSource;
             Program.imegrida = control.Name;
             Program.colname = dv.Columns[e.ColumnIndex].Name;
             Program.activecontrol = control;
             dv.BackgroundColor = Color.AliceBlue;
-            dv.ColumnHeadersDefaultCellStyle.BackColor = Color.AliceBlue;
-        
-            dv.RowHeadersDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
-
             SrediFormu();
         }
         private void FillControls(DataGridView control, ref int iid, ref string brdok, ref DateTime datum, DataGridViewCellMouseEventArgs e)
@@ -1091,7 +1084,7 @@ namespace Bankom.Class
                 {
                     if (pb.IME == column.Name)
                     {
-                        if(pb.cTip==25)
+                        if (pb.cTip == 25)
                         {
                             if (control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString().Trim() != "")
                             {
@@ -1111,7 +1104,7 @@ namespace Bankom.Class
                                 pb.textBox.Text = control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString();
                                 pb.Vrednost = pb.textBox.Text;///  pb.Vrednost.Replace(".", "").Replace(",", "."); ///borka 01.09.20
                                 if (pb.IME == "BrDok")
-                                {  
+                                {
                                     brdok = pb.textBox.Text;
                                 }
 
@@ -1123,13 +1116,13 @@ namespace Bankom.Class
 
                                 if (pb.cIzborno == pb.cTabela)
                                     if (myt.Columns.Contains("ID_" + pb.cAlijasTabele))
-                                        pb.ID = myt.Rows[e.RowIndex]["ID_" + pb.cAlijasTabele].ToString();                                  
-                                else
-                                {                                                           
-                                    if (pb.cIzborno.Trim() != "" && myt.Columns.Contains("ID_" + pb.cIzborno))
-                                        pb.ID = myt.Rows[e.RowIndex]["ID_" + pb.cIzborno].ToString();                    
-                                }
-                              
+                                        pb.ID = myt.Rows[e.RowIndex]["ID_" + pb.cAlijasTabele].ToString();
+                                    else
+                                    {
+                                        if (pb.cIzborno.Trim() != "" && myt.Columns.Contains("ID_" + pb.cIzborno))
+                                            pb.ID = myt.Rows[e.RowIndex]["ID_" + pb.cIzborno].ToString();
+                                    }
+
                                 break;
                             case "datum":
                                 pb.dtp.Value = Convert.ToDateTime(control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString());
@@ -1142,7 +1135,7 @@ namespace Bankom.Class
                     }
                     if (column.Name.ToUpper().Contains("IID"))
                     {
-                        
+
                         iid = Convert.ToInt32(control.Rows[e.RowIndex].Cells[i].Value.ToString());
                         // jovana 04.11. grid tag napuni sa idreda
                         control.Tag = control.Rows[e.RowIndex].Cells[i].Value.ToString();
@@ -1156,7 +1149,6 @@ namespace Bankom.Class
         private void dv_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             DataGridView control = (DataGridView)sender;
-            
 
             Form Me = Program.Parent.ActiveMdiChild;
             int middok = 0; /// Convert.ToInt32(Me.Controls["liddok"].Text);
@@ -1166,8 +1158,8 @@ namespace Bankom.Class
             control.ReadOnly = true;
             string mimedok = Me.Controls["limedok"].Text.Trim();
 
-          //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
-          //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
+            //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
+            //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
 
             FillControls(control, ref middok, ref mbrdok, ref mdatum, e);    // punjenje kontrola koje se odnose na stavku iz reda grida na koji smo kliknuli
 
@@ -1175,7 +1167,7 @@ namespace Bankom.Class
             int midstablo = Convert.ToInt32(Me.Controls["lidstablo"].Text);
 
             ((Bankom.frmChield)Me).imegrida = control.Name; // borka 25.02.20 Substring(4, mGrid.Length - 4)
-            ((Bankom.frmChield)Me).idReda = middok;         
+            ((Bankom.frmChield)Me).idReda = middok;
             ((Bankom.frmChield)Me).brdok = mbrdok;
 
             string ddatum = mdatum.ToString("dd.MM.yy");
@@ -1201,7 +1193,7 @@ namespace Bankom.Class
                     SrediFormu();
                 }
                 else
-                    this.ObradiDupliKlik(control,mimedok,DokumentJe,"",e);
+                    this.ObradiDupliKlik(control, mimedok, DokumentJe, "", e);
 
             }
             else
@@ -1216,7 +1208,7 @@ namespace Bankom.Class
         {
             dv.BackgroundColor = Color.AliceBlue;
             Form Me = Program.Parent.ActiveMdiChild;
-            
+
             string[] separators = new[] { "," };
             string d1, d2;
             Form novaforma = new Form();
@@ -1237,11 +1229,11 @@ namespace Bankom.Class
             {
                 case "I":             // mogucnost da se  klikom na grid izvestaja prikaze dokument
                     string ssi = "SELECT distinct Polje,uslov,uslovoperacija,izborno,PoljeSaDok,NazivDokumenta ";
-                    ssi += "FROM Izvestaj WHERE (Uslov=1 or Uslov=2 or Uslov=4) AND Izvestaj =@param0 ";
+                    ssi += "FROM Izvestaji WHERE (Uslov=1 or Uslov=2 or Uslov=4) AND Izvestaj =@param0 ";
                     ssi += "order by NazivDokumenta,uslov ";
                     Console.WriteLine(ssi);
                     t = db.ParamsQueryDT(ssi, Dokument);
-                     
+
                     int i = 0;
                     brojdok = "";
                     string konto = "";
@@ -1252,7 +1244,7 @@ namespace Bankom.Class
                         case "SpisakDokumenata":
                             foreach (DataGridViewColumn column in control.Columns)
                             {
-                                if ( column.Name==("BrojDokumenta"))
+                                if (column.Name == ("BrojDokumenta"))
                                 {
                                     brojdok = control.Rows[k].Cells[i].Value.ToString();
                                     //brojdok = kolona.Substring(kolona.IndexOf(":") + 1, kolona.IndexOf(",") - kolona.IndexOf(":") - 1);
@@ -1288,7 +1280,7 @@ namespace Bankom.Class
                                 {
                                     Console.WriteLine(t.Rows[ii]["Polje"].ToString());
                                     Field kontrola = (Field)Me.Controls[t.Rows[ii]["Polje"].ToString()]; //  uzimamo kontrolu na formi                                  
-                                    if (kontrola == null)                                   
+                                    if (kontrola == null)
                                     {
                                         i = 0;
                                         foreach (DataGridViewColumn column in control.Columns)
@@ -1298,8 +1290,8 @@ namespace Bankom.Class
                                                 if (column.Name == "KontoSaOpisom")
                                                 {
                                                     konto = control.Rows[k].Cells[i].Value.ToString().Substring(0, control.Rows[k].Cells[i].Value.ToString().IndexOf("-"));
-                                                    opiskonta = control.Rows[k].Cells[i].Value.ToString().Substring(control.Rows[k].Cells[i].Value.ToString().IndexOf("-")+1);
-                                                    parametri += "Konto" + ",";                                                    
+                                                    opiskonta = control.Rows[k].Cells[i].Value.ToString().Substring(control.Rows[k].Cells[i].Value.ToString().IndexOf("-") + 1);
+                                                    parametri += "Konto" + ",";
                                                     vrednostiparametara += konto + ",";
                                                     parametri += "OpisKonta" + ",";
                                                     vrednostiparametara += opiskonta + ",";
@@ -1317,9 +1309,9 @@ namespace Bankom.Class
                                     {
                                         parametri += kontrola.IME + ",";
                                         vrednostiparametara += kontrola.Vrednost + ",";
-                                    }                                   
+                                    }
                                 }
-                               
+
                             }
                             KojiDokument = "KarticaFinansijska";
                             break;
@@ -1329,7 +1321,7 @@ namespace Bankom.Class
                             i = 0;
                             foreach (DataGridViewColumn column in control.Columns)
                             {
-                                if (column.Name == "NazivArt" || column.Name == "StaraSifra" )
+                                if (column.Name == "NazivArt" || column.Name == "StaraSifra")
                                 {
                                     parametri += column.Name + ",";
                                     vrednostiparametara += control.Rows[k].Cells[i].Value.ToString() + ",";
@@ -1352,8 +1344,8 @@ namespace Bankom.Class
                                         vrednostiparametara += kontrola.Vrednost.ToString() + ",";
                                     }
                                 }
-                            }   
-                            
+                            }
+
                             KojiDokument = "RobnaKartica";
                             break;
                         case "RobnaKartica":
@@ -1397,13 +1389,13 @@ namespace Bankom.Class
                             vrednostiparametara = "";
                             foreach (DataGridViewColumn column in control.Columns)
                             {
-                                if (column.Name == "NazivArt" || column.Name == "StaraSifra" ||column.Name == "Lot")
+                                if (column.Name == "NazivArt" || column.Name == "StaraSifra" || column.Name == "Lot")
                                 {
                                     parametri += column.Name + ",";
                                     vrednostiparametara += control.Rows[k].Cells[i].Value.ToString() + ",";
-                                }                               
+                                }
                                 i++;
-                            }                         
+                            }
                             for (int ii = 0; ii < t.Rows.Count; ii++)
                             {
                                 if (t.Rows[ii]["Uslov"].ToString() == "4")
@@ -1451,7 +1443,7 @@ namespace Bankom.Class
                             {
                                 Field kontrola = (Field)novaforma.Controls[mparam[i].ToString()];
                                 if (kontrola != null)
-                                { 
+                                {
                                     Console.WriteLine(mparam[i]);
                                     kontrola.Vrednost = mvred[i];
                                     if (kontrola.cIzborno.Trim() != "")
@@ -1471,7 +1463,7 @@ namespace Bankom.Class
                                 brojdok = brojdok.Substring(0, brojdok.IndexOf(",") - 1);
                             this.PrikaziDokument(brojdok);
                         }
-                    }                    
+                    }
                     break;     //kraj dokumentje="I"                   
                 case "D":
                     if (Dokument == "Izvod")
@@ -1481,7 +1473,7 @@ namespace Bankom.Class
                             brojdok = t.Rows[k]["PozivNaBroj"].ToString();
                         if (brojdok.Trim() != "")
                         {
-                            this.PrikaziDokument(brojdok);                           
+                            this.PrikaziDokument(brojdok);
                         }
                     }
                     //jovana 09.09.20
@@ -1496,7 +1488,7 @@ namespace Bankom.Class
                             DataTable tt = db.ParamsQueryDT(sel, brojdok);
                             if (tt.Rows.Count != 0)
                             {
-                                brojdok= tt.Rows[k]["BrojDokumenta"].ToString();
+                                brojdok = tt.Rows[k]["BrojDokumenta"].ToString();
                                 if (brojdok.Trim() != "")
                                 {
                                     this.PrikaziDokument(brojdok);
@@ -1516,10 +1508,10 @@ namespace Bankom.Class
                         }
 
                         if (brojdok.Trim() != "")
-                        {                            
-                           if (brojdok.Contains(",") == true)
-                               brojdok = brojdok.Substring(0, brojdok.IndexOf(","));
-                           this.PrikaziDokument(brojdok);
+                        {
+                            if (brojdok.Contains(",") == true)
+                                brojdok = brojdok.Substring(0, brojdok.IndexOf(","));
+                            this.PrikaziDokument(brojdok);
                         }
                     }
                     break;
@@ -1579,7 +1571,7 @@ namespace Bankom.Class
                     //'                RunAJob ImeServera, "Dnevni" + Firma
                     break;
                 case "SpecifikacijaPoreklaRobe":
-                    string sselect="";
+                    string sselect = "";
                     sselect = " alter view SpecPorekla  as ";
                     //sselect += "SELECT * from SpecPorekla1 WHERE Brdok= '" + BrojOtpremnice + "'";
                     //sselect += " UNION ";
@@ -1592,7 +1584,7 @@ namespace Bankom.Class
                     //sselect += "SELECT * from SpecPorekla5 WHERE Brdok= '" + BrojOtpremnice + "'";
                     //sselect += " UNION ";
                     //sselect += "SELECT * from SpecPorekla6 WHERE Brdok= '" + BrojOtpremnice + "'";
-    
+
                     //           cnn1.Execute sselect
                     break;
             }
@@ -1601,8 +1593,8 @@ namespace Bankom.Class
             ssel = " Select * from sifarnikDokumenta where naziv=@param0";
             DataTable ts = new DataTable();
             ts = db.ParamsQueryDT(ssel, mdokument);
-            
-            if(ts.Rows.Count>0)
+
+            if (ts.Rows.Count > 0)
             {
                 string OperacijaDokumenta = "";
                 string Dokument = mdokument;
@@ -1651,7 +1643,7 @@ namespace Bankom.Class
                 //    On Error GoTo 0
             }
 
-                //KRAJ:
+            //KRAJ:
         }
 
         //Djora 26.09.20
@@ -1676,5 +1668,7 @@ namespace Bankom.Class
         }
     }
 }
+
+
 
 

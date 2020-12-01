@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms; 
+using System.Windows.Forms;
 //Djora 25.09.19 28.11.19
 namespace Bankom.Class
 {
@@ -244,7 +244,7 @@ namespace Bankom.Class
             else
             {
                 mUpit = ((Bankom.frmChield)forma).tUpit;
-                Console.WriteLine(mUpit);              
+                Console.WriteLine(mUpit);
                 tg = db.ReturnDataTable(mUpit);    ///((Bankom.frmChield)forma).tgg;//// (DataTable)control.DataSource;
                 int brrec = tg.Rows.Count;
             }
@@ -283,14 +283,15 @@ namespace Bankom.Class
                 docref.setingWidthOfColumns(NazivKlona, control, TUD);
 
 
-                if (NazivKlona == "LotStanjeRobeM")
-                    docref.colorofrows(control);
+                //if (NazivKlona == "LotStanjeRobeM")
+                //    docref.colorofrows(control);
             }
-                control.DataSource = tg;
-            
+            control.DataSource = tg;
+            if (NazivKlona == "LotStanjeRobeM")
+                docref.colorofrows(control);
             control.Refresh();
-        }    
-        public void DodajRedniBroj(ref DataTable tg, string KojiSegment,string DokumentJe)
+        }
+        public void DodajRedniBroj(ref DataTable tg, string KojiSegment, string DokumentJe)
         {
             // AKO U RECNIKU POSTOJI POLJE SA ID_NaziviNaFormi=20 KOJE IMA SIRINU VECU OD 0 TO POLJE JE NAMENJENO DA SE U NJEGA PROGRAMSKI UPISE REDNI BROJ STAVKE.TO RADI KOD KOJI SLEDI
             string RbPolje = "";
@@ -325,19 +326,19 @@ namespace Bankom.Class
             }
         }
         public void OsveziSalda(ref DataTable tg, string KojePolje, string KojaFormula)
-        {         
-            decimal  KojaVrednost = 0;
+        {
+            decimal KojaVrednost = 0;
             string prviclan = "";
             string drugiclan = "";
             DataBaseBroker db = new DataBaseBroker();
             //DataTable t = new DataTable();
-            clsOperacije co = new clsOperacije();          
+            clsOperacije co = new clsOperacije();
             //t = tg;
             for (int i = 0; i < tg.Rows.Count; i++)
             {
                 if (KojaFormula.Contains("-") == true)
                 {
-                    prviclan = KojaFormula.Substring(0, KojaFormula.IndexOf("-") );
+                    prviclan = KojaFormula.Substring(0, KojaFormula.IndexOf("-"));
                     drugiclan = KojaFormula.Substring(KojaFormula.IndexOf("-") + 1);
                     KojaVrednost += Convert.ToDecimal(tg.Rows[i][prviclan].ToString()) - Convert.ToDecimal(tg.Rows[i][drugiclan].ToString());
                 }
@@ -351,23 +352,23 @@ namespace Bankom.Class
                             KojaVrednost += Convert.ToDecimal(tg.Rows[i][prviclan].ToString()) / Convert.ToDecimal(tg.Rows[i][drugiclan].ToString());
                     }
                     else
-                    { 
-                         if (KojaFormula.Contains("+") == true) 
-                         {
-                              prviclan = KojaFormula.Substring(0, KojaFormula.IndexOf("+"));
-                              drugiclan = KojaFormula.Substring(KojaFormula.IndexOf("+") + 1);
+                    {
+                        if (KojaFormula.Contains("+") == true)
+                        {
+                            prviclan = KojaFormula.Substring(0, KojaFormula.IndexOf("+"));
+                            drugiclan = KojaFormula.Substring(KojaFormula.IndexOf("+") + 1);
                             if (co.IsNumeric(drugiclan.Trim()) == true)
                                 KojaVrednost += Convert.ToDecimal(tg.Rows[i][prviclan].ToString()) + Convert.ToDecimal(drugiclan);
                             else
-                              KojaVrednost += Convert.ToDecimal(tg.Rows[i][prviclan].ToString()) + Convert.ToDecimal(tg.Rows[i][drugiclan].ToString());
-                         }
+                                KojaVrednost += Convert.ToDecimal(tg.Rows[i][prviclan].ToString()) + Convert.ToDecimal(tg.Rows[i][drugiclan].ToString());
+                        }
                         else
                             KojaVrednost = 0;
                     }
                     //else
                     //    KojaVrednost += KojaVrednost + Convert.ToDecimal(t.Rows[i][KojaFormula].ToString());
                 }
-                tg.Rows[i][KojePolje]=Convert.ToString(KojaVrednost);
+                tg.Rows[i][KojePolje] = Convert.ToString(KojaVrednost);
             }
             //tg = t; 
         }
@@ -407,7 +408,7 @@ namespace Bankom.Class
             if (message != "")
                 MessageBox.Show(message);
 
-           
+
             sselect = "";
             if (Konto.Substring(0, 1) == "2" || Konto.Substring(0, 1) == "1" || Konto.Substring(0, 1) == "0")
                 sselect = " SELECT  SUM(duguje - potrazuje) AS saldo From Iosi ";
@@ -481,20 +482,18 @@ namespace Bankom.Class
             //    cnn1.Execute "delete from Iosi where ( duguje<0.1)" '  and AvPZnak='D'"
 
 
-                //    rsKumulativ.Open "select * from Iosi ", cnn1
-                //    If rsKumulativ.EOF Then Iosi = False
+            //    rsKumulativ.Open "select * from Iosi ", cnn1
+            //    If rsKumulativ.EOF Then Iosi = False
 
 
-                //    rsKumulativ.Close
-                //    Set rsKumulativ = Nothing
-                //    Set cmd.ActiveConnection = Nothing
-               
-            
+            //    rsKumulativ.Close
+            //    Set rsKumulativ = Nothing
+            //    Set cmd.ActiveConnection = Nothing
+
+
             //Iosi_Error:
             //            MsgBox "Greska"
             return vrati;
         }
     }
 }
-
-

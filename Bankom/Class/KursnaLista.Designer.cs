@@ -84,6 +84,7 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Name = "KursnaLista";
             this.Text = "KursnaLista";
+            this.Load += new System.EventHandler(this.KursnaLista_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

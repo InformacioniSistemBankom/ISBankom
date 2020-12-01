@@ -42,6 +42,7 @@ namespace Bankom
         {
             InitializeComponent();
             this.Activated += new EventHandler(frmChield_Activated);
+            this.AutoScroll = true;
         }
         protected override void OnClosed(EventArgs e)
         {           
@@ -52,7 +53,7 @@ namespace Bankom
         {
             this.FormBorderStyle = FormBorderStyle.None;
             this.BackColor = Color.Snow;
-          
+           this.AutoScroll = true;
 
             intStart = 0;                
             toolStripStatusPrazno.Text = new String(' ', 150);
