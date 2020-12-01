@@ -2918,6 +2918,7 @@ namespace Bankom
         {
             KursnaLista kl = new KursnaLista();
             kl.FormBorderStyle = FormBorderStyle.None;
+            
             kl.Show();
         }
 
