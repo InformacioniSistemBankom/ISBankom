@@ -335,139 +335,173 @@ namespace Bankom
         //Djora 19.10.20
         private void frmChield_KeyDown(object sender, KeyEventArgs e)
         {
-            //Povecanje visine redova
-            if (e.KeyCode == Keys.F12)
+            //Da si ulogovan kao SA i da u tekstboxu u meniju gore pise 123
+            if (Program.imekorisnika == "sa" & Program.Parent.ToolBar.Items["toolStripTextBox1"].Text == "123")
             {
-
-                //int brojkolona = (int)(control.Height / control.RowTemplate.Height);
-                //MessageBox.Show(brojkolona.ToString());
-
-                DataGridView dgv = ActiveControl as DataGridView;
-                dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-                //dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-                //dgv.RowTemplate.Height = 80;
-                foreach (DataGridViewRow row in dgv.Rows)
+                //Povecanje visine redova
+                if (e.KeyCode == Keys.F12)
                 {
-                    row.Height = 80;
+
+                    //int brojkolona = (int)(control.Height / control.RowTemplate.Height);
+                    //MessageBox.Show(brojkolona.ToString());
+
+                    DataGridView dgv = ActiveControl as DataGridView;
+                    dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+                    //dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                    //dgv.RowTemplate.Height = 80;
+                    foreach (DataGridViewRow row in dgv.Rows)
+                    {
+                        row.Height = 80;
+                    }
+
+                    //dgv.Refresh();
                 }
 
-                //dgv.Refresh();
-            }
-
-            //Levo +
-            if (e.KeyCode == Keys.Right)
-            {
-                //Console.WriteLine(this.ActiveControl.Name);
-                this.ActiveControl.Parent.Left = this.ActiveControl.Parent.Left + kaunter;
-            }
-            //Levo -
-            if (e.KeyCode == Keys.Left)
-            {
-                this.ActiveControl.Parent.Left = this.ActiveControl.Parent.Left - kaunter;
-            }
-            //Visina +
-            if (e.KeyCode == Keys.Up)
-            {
-                this.ActiveControl.Parent.Top = this.ActiveControl.Parent.Top - kaunter;
-            }
-            //Visina -
-            if (e.KeyCode == Keys.Down)
-            {
-                this.ActiveControl.Parent.Top = this.ActiveControl.Parent.Top + kaunter;
-            }
-            //Sirina +
-            if (e.KeyCode == Keys.NumPad3 && e.Modifiers == Keys.Control)
-            {
-                this.ActiveControl.Width = this.ActiveControl.Width + kaunter;
-            }
-            //Sirina -
-            if (e.KeyCode == Keys.NumPad2 && e.Modifiers == Keys.Control)
-            {
-                this.ActiveControl.Width = this.ActiveControl.Width - kaunter;
-            }
-            //Stavi kaunter na 1
-            if (e.KeyCode == Keys.NumPad1 && e.Modifiers == Keys.Control)
-            {
-                kaunter = 1;
-            }
-            //Stavi kaunter na 50
-            if (e.KeyCode == Keys.NumPad0 && e.Modifiers == Keys.Control)
-            {
-                kaunter = 50;
-            }
-            // Snimi kordinate i dimenzije u RecnikPodataka u Bazi
-            if (e.KeyCode == Keys.F10)
-            {
-                string imeKontrole;
-
-                DataBaseBroker db = new DataBaseBroker();
-                Console.WriteLine(this.ActiveControl.Name);
-                Console.WriteLine("==========================");
-                Console.WriteLine(this.ActiveControl.Top);
-                Console.WriteLine(this.ActiveControl.Left);
-                Console.WriteLine(this.ActiveControl.Width);
-                Console.WriteLine(this.ActiveControl.Height);
-                 
-                double delW = Program.RacioWith; //Program.RacioWith * 1.4;
-                double delH = Program.RacioHeight; // Program.RacioHeight * 1.4;
-
-
-                Console.WriteLine(Math.Round(this.ActiveControl.Top / delH, 0));
-                Console.WriteLine(Math.Round(this.ActiveControl.Left / delW, 0));
-                Console.WriteLine(Math.Round(this.ActiveControl.Width / delW, 0));
-                Console.WriteLine(Math.Round(this.ActiveControl.Height / delH, 0));
-
-                double pT = Math.Round(this.ActiveControl.Parent.Top / delH, 0);
-                double pL = Math.Round(this.ActiveControl.Parent.Left / delW, 0);
-                double pW = Math.Round(this.ActiveControl.Parent.Width / delW, 0);
-                double pH = Math.Round(this.ActiveControl.Parent.Height / delH, 0);
-
-
-                //double pT =this.ActiveControl.Parent.Top;
-                //double pL = this.ActiveControl.Parent.Left;
-                //double pW = this.ActiveControl.Parent.Width;
-                //double pH = this.ActiveControl.Parent.Height;
-
-
-                Field ctrls = (Field)this.ActiveControl.Parent;
-
-                //Console.WriteLine(ctrls.cIdNaziviNaFormi);
-
-                if (ctrls.cIdNaziviNaFormi == "20")
+                //Levo +
+                if (e.KeyCode == Keys.Right)
                 {
-                    imeKontrole = ctrls.IME;
-                    string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL
-                                 + " WHERE(dbo.RecnikPodataka.Dokument = N'" + imestabla + "') "
-                                 + " AND RecnikPodataka.AlijasPolja = N'" + imeKontrole + "'";
-
-                    SqlCommand cmd1 = new SqlCommand(query);
-                    db.Comanda(cmd1);
-
-                    query = " UPDATE dbo.Upiti SET cWidth=" + pW
-                           + " WHERE Ime = 'GgRr" + ctrls.cTabelaVView + "' "
-                          + " AND NazivDokumenta = '" + ctrls.cDokument + "'";
-
-                    cmd1 = new SqlCommand(query);
-                    db.Comanda(cmd1);
+                    //Console.WriteLine(this.ActiveControl.Name);
+                    this.ActiveControl.Parent.Left = this.ActiveControl.Parent.Left + kaunter;
                 }
-                else
+                //Levo -
+                if (e.KeyCode == Keys.Left)
                 {
-                    imeKontrole = this.ActiveControl.Name;
-
-                    //string dokument = tt.Rows[0]["NazivDokumenta"].ToString();
-                    //string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL + ", "
-                    //             + " width=" + pW + ", height=" + pH + ", WidthKolone=" + pW
-                    //             + " FROM dbo.RecnikPodataka "
-                    //             + " WHERE(RecnikPodataka.Dokument = N'" + imestabla + "') "
-                    //             + " AND RecnikPodataka.AlijasPolja = N'" + this.ActiveControl.Name + "'";
-                    string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL + ", cwidth=" + pW + ", cWidthKolone=" + pW
-                                 + " WHERE(RecnikPodataka.Dokument = N'" + imestabla + "') "
-                                 + " AND RecnikPodataka.AlijasPolja = N'" + imeKontrole + "'";
-
-                    SqlCommand cmd1 = new SqlCommand(query);
-                    db.Comanda(cmd1);
+                    this.ActiveControl.Parent.Left = this.ActiveControl.Parent.Left - kaunter;
                 }
+                //Visina +
+                if (e.KeyCode == Keys.Up)
+                {
+                    this.ActiveControl.Parent.Top = this.ActiveControl.Parent.Top - kaunter;
+                }
+                //Visina -
+                if (e.KeyCode == Keys.Down)
+                {
+                    this.ActiveControl.Parent.Top = this.ActiveControl.Parent.Top + kaunter;
+                }
+                //Sirina +
+                if (e.KeyCode == Keys.NumPad3 && e.Modifiers == Keys.Control)
+                {
+                    this.ActiveControl.Width = this.ActiveControl.Width + kaunter;
+                }
+                //Sirina -
+                if (e.KeyCode == Keys.NumPad2 && e.Modifiers == Keys.Control)
+                {
+                    this.ActiveControl.Width = this.ActiveControl.Width - kaunter;
+                }
+                //Stavi kaunter na 1
+                if (e.KeyCode == Keys.NumPad1 && e.Modifiers == Keys.Control)
+                {
+                    kaunter = 1;
+                }
+                //Stavi kaunter na 50
+                if (e.KeyCode == Keys.NumPad0 && e.Modifiers == Keys.Control)
+                {
+                    kaunter = 50;
+                }
+                // Snimi kordinate i dimenzije u RecnikPodataka u Bazi
+                if (e.KeyCode == Keys.F10)
+                {
+                    //Djora 10.11.20
+                    string isd = "";
 
+                    //Djora 10.11.20
+                    switch (DokumentJe)
+                    {
+                        case "D":
+                        case "P":
+                        case "I":
+                            isd = imedokumenta;
+                            break;
+                        case "S":
+                            isd = imestabla;
+                            break;
+                    }
+
+                    string imeKontrole;
+
+                    Console.WriteLine(imestabla);
+
+                    DataBaseBroker db = new DataBaseBroker();
+                    Console.WriteLine(this.ActiveControl.Parent.Name);
+                    Console.WriteLine("==========================");
+                    Console.WriteLine(this.ActiveControl.Parent.Top);
+                    Console.WriteLine(this.ActiveControl.Parent.Left);
+                    Console.WriteLine(this.ActiveControl.Parent.Width);
+                    Console.WriteLine(this.ActiveControl.Parent.Height);
+
+                    double delW = Program.RacioWith; //Program.RacioWith * 1.4;
+                    double delH = Program.RacioHeight; // Program.RacioHeight * 1.4;
+
+
+                    Console.WriteLine(Math.Round(this.ActiveControl.Top / delH, 0));
+                    Console.WriteLine(Math.Round(this.ActiveControl.Left / delW, 0));
+                    Console.WriteLine(Math.Round(this.ActiveControl.Width / delW, 0));
+                    Console.WriteLine(Math.Round(this.ActiveControl.Height / delH, 0));
+
+                    double pT = Math.Round(this.ActiveControl.Parent.Top / delH, 0);
+                    double pL = Math.Round(this.ActiveControl.Parent.Left / delW, 0);
+                    double pW = Math.Round(this.ActiveControl.Parent.Width / delW, 0);
+                    double pH = Math.Round(this.ActiveControl.Parent.Height / delH, 0);
+
+
+                    //double pT =this.ActiveControl.Parent.Top;
+                    //double pL = this.ActiveControl.Parent.Left;
+                    //double pW = this.ActiveControl.Parent.Width;
+                    //double pH = this.ActiveControl.Parent.Height;
+
+
+                    Field ctrls = (Field)this.ActiveControl.Parent;
+
+                    //Console.WriteLine(ctrls.cIdNaziviNaFormi);
+
+                    if (ctrls.cIdNaziviNaFormi == "20")
+                    {
+                        imeKontrole = ctrls.IME;
+                        //Djora 10.11.20
+                        //string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL
+                        //             + " WHERE(dbo.RecnikPodataka.Dokument = N'" + imestabla + "') "
+                        //             + " AND RecnikPodataka.AlijasPolja = N'" + imeKontrole + "'";
+
+                        string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL
+                                     + " WHERE(dbo.RecnikPodataka.Dokument = N'" + isd + "') "
+                                    + " AND RecnikPodataka.AlijasPolja = N'" + imeKontrole + "'";
+
+
+                        SqlCommand cmd1 = new SqlCommand(query);
+                        db.Comanda(cmd1);
+
+                        query = " UPDATE dbo.Upiti SET cWidth=" + pW
+                               + " WHERE Ime = 'GgRr" + ctrls.cTabelaVView + "' "
+                              + " AND NazivDokumenta = '" + ctrls.cDokument + "'";
+
+                        cmd1 = new SqlCommand(query);
+                        db.Comanda(cmd1);
+                    }
+                    else
+                    {
+                        imeKontrole = this.ActiveControl.Name;
+
+                        //string dokument = tt.Rows[0]["NazivDokumenta"].ToString();
+                        //string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL + ", "
+                        //             + " width=" + pW + ", height=" + pH + ", WidthKolone=" + pW
+                        //             + " FROM dbo.RecnikPodataka "
+                        //             + " WHERE(RecnikPodataka.Dokument = N'" + imestabla + "') "
+                        //             + " AND RecnikPodataka.AlijasPolja = N'" + this.ActiveControl.Name + "'";
+
+                        //Djora 10.11.20
+                        //string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL + ", cwidth=" + pW + ", cWidthKolone=" + pW
+                        //             + " WHERE(RecnikPodataka.Dokument = N'" + imestabla + "') "
+                        //             + " AND RecnikPodataka.AlijasPolja = N'" + imeKontrole + "'";
+                        string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL + ", cwidth=" + pW + ", cWidthKolone=" + pW
+                                     + " WHERE(RecnikPodataka.Dokument = N'" + isd + "') "
+                                     + " AND RecnikPodataka.AlijasPolja = N'" + imeKontrole + "'";
+
+
+                        SqlCommand cmd1 = new SqlCommand(query);
+                        db.Comanda(cmd1);
+                    }
+
+                }
             }
         }
 
