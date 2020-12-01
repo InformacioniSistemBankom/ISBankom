@@ -301,6 +301,11 @@ namespace Bankom.Class
                     isDoIt = cOT.UpisOpisaTransakcijeUTransakcije(forma, iddokument, iid);
                 }
             }
+
+            //jovana 25.11.20
+            db.ExecuteStoreProcedure("TotaliZaDokument", "NazivDokumenta:" + NazivKlona, "IdDokument:" + iddok);
+            db.ExecuteStoreProcedure("CeneArtikalaPoSkladistimaIStanje", "IdDokView:" + iddok);
+            db.ExecuteStoreProcedure("StanjeRobePoLotu", "IdDokView:" + iddok);
             if (isDoIt ==false) return (isDoIt);
             ((Bankom.frmChield)forma).idReda = -1;
             return isDoIt;

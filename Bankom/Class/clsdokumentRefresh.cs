@@ -666,6 +666,7 @@ namespace Bankom.Class
                                 mvrednost = Convert.ToDouble(ct.Vrednost) * 100;
                                 if (mvrednost != 0)
                                 {
+                                    Console.WriteLine(mvrednost);
                                     pb.textBox.Text = cv.Slovima(mvrednost, KojaValuta);
                                 }
                             }
@@ -674,6 +675,7 @@ namespace Bankom.Class
                 }
             }
             return mvrednost;
+            //neki komentar 01.12.2020.
         }
     }
 }

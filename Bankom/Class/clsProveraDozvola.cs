@@ -207,8 +207,8 @@ namespace Bankom.Class
                     else                                      //KORISNIK IMA PRAVO DA KNJIZI OMOGUCAVAMO BUTTON ZA KNJIZENJE
                     {
 
-                        Program.Parent.ToolBar.Items["Kknjzi"].Visible = false;
-                        Program.Parent.ToolBar.Items["Kknjzi"].Enabled = false;
+                        Program.Parent.ToolBar.Items["Kknjzi"].Visible = true;
+                        Program.Parent.ToolBar.Items["Kknjzi"].Enabled = true;
                         Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
                         Program.Parent.ToolBar.Items["Ssort"].Visible = true;
 

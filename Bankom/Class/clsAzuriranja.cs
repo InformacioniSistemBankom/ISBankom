@@ -1232,7 +1232,8 @@ namespace Bankom.Class
                 {
                     if (dt6.Rows[0]["Proknjizeno"].ToString() != "Proknjizen")
                     {
-                        // PovlacenjeAvansa (Dokument, IdDokView);
+                        clsAvansi avans = new clsAvansi();
+                        avans.PovlacenjeAvansa (forma,Dokument, Convert.ToInt32(IdDokView));
                     }
                 }
             }
