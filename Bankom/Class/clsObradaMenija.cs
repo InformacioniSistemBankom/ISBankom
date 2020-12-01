@@ -202,7 +202,7 @@ namespace Bankom.Class
             bool pom = false;
             foreach (Form f in Application.OpenForms)
             {
-                if (f.Text == s)
+                if (f.Text.Trim() == s)
                 {
                     pom = true;
                     MessageBox.Show("Već je otvorena ova forma!");
@@ -308,7 +308,7 @@ namespace Bankom.Class
                         KursnaLista kl = new KursnaLista();
 
                         kl.FormBorderStyle = FormBorderStyle.None;
-                        kl.Text = "Preuzimanje Kursne Liste";
+                        kl.Text = "PreuzimanjeKursneListe";
 
                         //if (kl.MdiParent != null)
                         //{
@@ -326,9 +326,9 @@ namespace Bankom.Class
 
                         if (mdi.IzborJezika.Text == "Српски-Ћирилица") { kl.Text = mdi.VratiCirlilicu("Lotovi"); }
                         int sirina1 = (mdi.Width / 100) * 10;
-                        mdi.addFormTotoolstrip1(kl, "Preuzimanje Kursne Liste");
+                        mdi.addFormTotoolstrip1(kl, "PreuzimanjeKursneListe");
 
-                        mdi.updateToolStrip(s);
+                        //mdi.updateToolStrip(s);
                         mdi.SrediFormu();
 
                         kl.Show();

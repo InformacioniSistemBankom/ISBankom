@@ -605,9 +605,10 @@ namespace Bankom
                 ds = DB.ReturnDS(strOrgDeo);
                 DataView dv = ds.Tables[0].DefaultView;
 
+                Program.imeFirme = dv[0]["Naziv"].ToString();
                 Program.idOrgDeo = Convert.ToInt32(dv[0]["ID_OrganizacionaStruktura"]);
                 Program.idFirme = Convert.ToInt32(dv[0]["ID_OrganizacionaStrukturaStablo"]);
-                Program.imeFirme = dv[0]["Naziv"].ToString();
+               
 
 
 
@@ -691,7 +692,7 @@ namespace Bankom
                 if (aliasDatabase[cmbBaze.SelectedItem.ToString()] == Convert.ToString(dv[x][0]))
                 {
                     strimebaze = Convert.ToString(dv[x][0]); Program.NazivBaze = strimebaze; break;
-                }
+              }
             }
 
             if (strimebaze == "")
@@ -705,6 +706,7 @@ namespace Bankom
             {
 
                 changeDatabase(cmbBaze.SelectedItem.ToString());
+
                 CmbOrg.Items.Clear();
                 var query = "SELECT Naziv FROM OrganizacionaStruktura ";
                 var databaseBroker = new DataBaseBroker();
@@ -714,12 +716,13 @@ namespace Bankom
 
                     if (dataTable.Rows[i][0].ToString() == strOrgDefaultText)
                         indexOrgDefault = i;
-                    if (dataTable.Rows[i][0].ToString() != "")
-                        CmbOrg.Items.Add(dataTable.Rows[i][0].ToString());
+                 if (dataTable.Rows[i][0].ToString() != "")
+                       CmbOrg.Items.Add(dataTable.Rows[i][0].ToString());
 
-                }
+               }
 
                 if (cmbBaze.SelectedItem.ToString() == strCurrentbaza) CmbOrg.SelectedIndex = indexOrgDefault;
+                else CmbOrg.SelectedIndex = 0;
 
             }
 
@@ -818,7 +821,10 @@ namespace Bankom
 
 
         }
-             
-        
+
+        private void CmbOrg_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
