@@ -134,6 +134,11 @@ namespace Bankom
                 Boolean provera = true;
                 clsProveraDozvola provdoz = new clsProveraDozvola();
                 provera = provdoz.ProveriDozvole(imedokumenta,  idstablo.ToString(),Convert.ToString(iddokumenta) ,DokumentJe);
+            // BORKA 01.12.20 DODATA 4 REDA
+            if (provera==false)
+            {
+                MessageBox.Show("greska provere");
+            }
             //}
             //else
             //{

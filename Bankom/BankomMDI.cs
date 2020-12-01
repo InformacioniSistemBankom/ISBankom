@@ -713,11 +713,14 @@ namespace Bankom
             }
 
             Form childForm1 = ActiveMdiChild;
-            childForm1.FormBorderStyle = FormBorderStyle.None;
-            childForm1.BackColor = System.Drawing.Color.Snow;
-            childForm1.Focus();
-            childForm1.Visible = false;
+            // BORKA 01.12.20 UMRTVLJENI REDOVI
+            //childForm1.FormBorderStyle = FormBorderStyle.None;
+            //childForm1.BackColor = System.Drawing.Color.Snow;
+            //childForm1.Focus();
+
             childForm1.Dispose();
+            //childForm1.Visible = false;
+            
             string ime = b;
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
@@ -3456,6 +3459,16 @@ namespace Bankom
         }
 
         private void Pporeklo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Ppredlogcena_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolTip_Popup(object sender, PopupEventArgs e)
         {
 
         }
