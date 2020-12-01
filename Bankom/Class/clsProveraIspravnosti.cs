@@ -452,7 +452,7 @@ namespace Bankom.Class
                                 sql = "select distinct NazivKom from UlazniAvansniRacunTotali where id_UlazniAvansniRacunTotali = " + idavansnogdokumenta.ToString();
                                 sql += "union select distinct NazivKom from PDVUlazniPredracunZaUslugeTotali where id_PDVUlazniPredracunZaUslugeTotali = " + idavansnogdokumenta.ToString();
                                 t = db.ReturnDataTable(sql);
-                                if (t.Rows.Count > 1)
+                                if (t.Rows.Count > 0)
                                 {
                                     if (forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivKom").Vrednost.Trim() != t.Rows[0]["NazivKom"].ToString())
                                     {
@@ -785,7 +785,7 @@ namespace Bankom.Class
                             //sql = "select distinct NazivKom from UlazniAvansniRacunTotali where id_UlazniAvansniRacunTotali = " + idavansnogdokumenta.ToString();
                             //sql += "union select distinct NazivKom from PDVUlazniPredracunZaUslugeTotali where id_PDVUlazniPredracunZaUslugeTotali = " + idavansnogdokumenta.ToString();
                             t = db.ReturnDataTable(sql);
-                            if (t.Rows.Count > 1)
+                            if (t.Rows.Count > 0)
                             {
                                 if (forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivKom").Vrednost.Trim() != t.Rows[0]["NazivKom"].ToString())
                                 {
