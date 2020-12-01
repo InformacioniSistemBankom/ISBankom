@@ -240,7 +240,6 @@ namespace Bankom.Class
 
                     if (TrebaProvera != "0")
                     {
-                        //lista.Add(new string[] { str, strParams, strTabela, dokType, idreda });
                         sql = "Execute stanje";
                         lista.Add(new string[] { sql, "", NazivKlona,"" , iddok.ToString() });
                         lista.ToArray();
