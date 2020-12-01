@@ -86,7 +86,7 @@
             this.CmbOrg.Size = new System.Drawing.Size(294, 23);
             this.CmbOrg.TabIndex = 17;
             this.CmbOrg.Visible = false;
-            this.CmbOrg.SelectedIndexChanged += new System.EventHandler(this.CmbBaze_SelectedIndexChanged);
+            this.CmbOrg.SelectedIndexChanged += new System.EventHandler(this.CmbOrg_SelectedIndexChanged);
             // 
             // PasswordTextBox
             // 

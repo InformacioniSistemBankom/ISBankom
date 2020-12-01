@@ -90,7 +90,7 @@ namespace Bankom.Class
         {
             // vraca dataset
             DataSet ds = new DataSet();
-            SqlConnection con = new SqlConnection(connstring);
+            SqlConnection con = new SqlConnection(Program.connectionString);
 
             try
             {
