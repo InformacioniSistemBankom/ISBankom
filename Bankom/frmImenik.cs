@@ -141,7 +141,7 @@ namespace Bankom
                     string firma = tbFirma.Text;
 
 
-                    string query = "delete from [Imenik] where [CeloIme]=@param0 or [Firma]=@param1";
+                    string query = "delete from [Imenik] where [CeloIme]=@param0 and [Firma]=@param1";
 
                     dt = db.ParamsQueryDT(query, ime, firma);
                   

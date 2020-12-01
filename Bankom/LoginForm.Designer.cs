@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
-            this.LogoPictureBox = new System.Windows.Forms.PictureBox();
             this.cmbBaze = new System.Windows.Forms.ComboBox();
             this.CmbOrg = new System.Windows.Forms.ComboBox();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
@@ -43,7 +42,6 @@
             this.lblGrupa = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
@@ -54,44 +52,36 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lbNovaLozinka = new System.Windows.Forms.Label();
+            this.tbNovaLozinka = new System.Windows.Forms.TextBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
-            // 
-            // LogoPictureBox
-            // 
-            this.LogoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("LogoPictureBox.Image")));
-            this.LogoPictureBox.InitialImage = null;
-            this.LogoPictureBox.Location = new System.Drawing.Point(-2, -6);
-            this.LogoPictureBox.Name = "LogoPictureBox";
-            this.LogoPictureBox.Size = new System.Drawing.Size(395, 493);
-            this.LogoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.LogoPictureBox.TabIndex = 10;
-            this.LogoPictureBox.TabStop = false;
             // 
             // cmbBaze
             // 
             this.cmbBaze.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBaze.FormattingEnabled = true;
-            this.cmbBaze.Location = new System.Drawing.Point(399, 278);
+            this.cmbBaze.Location = new System.Drawing.Point(399, 310);
             this.cmbBaze.Name = "cmbBaze";
             this.cmbBaze.Size = new System.Drawing.Size(294, 23);
             this.cmbBaze.TabIndex = 18;
             this.cmbBaze.Visible = false;
             this.cmbBaze.SelectedIndexChanged += new System.EventHandler(this.CmbBaze_SelectedIndexChanged);
-            this.cmbBaze.TextChanged += new System.EventHandler(this.cmbBaze_TextChanged);
             // 
             // CmbOrg
             // 
             this.CmbOrg.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CmbOrg.FormattingEnabled = true;
-            this.CmbOrg.Location = new System.Drawing.Point(399, 325);
+            this.CmbOrg.Location = new System.Drawing.Point(399, 356);
             this.CmbOrg.Name = "CmbOrg";
             this.CmbOrg.Size = new System.Drawing.Size(294, 23);
             this.CmbOrg.TabIndex = 17;
@@ -101,7 +91,7 @@
             // PasswordTextBox
             // 
             this.PasswordTextBox.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordTextBox.Location = new System.Drawing.Point(402, 216);
+            this.PasswordTextBox.Location = new System.Drawing.Point(399, 179);
             this.PasswordTextBox.Name = "PasswordTextBox";
             this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(294, 23);
@@ -111,7 +101,7 @@
             // UsernameTextBox
             // 
             this.UsernameTextBox.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameTextBox.Location = new System.Drawing.Point(402, 167);
+            this.UsernameTextBox.Location = new System.Drawing.Point(399, 130);
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.Size = new System.Drawing.Size(294, 23);
             this.UsernameTextBox.TabIndex = 12;
@@ -120,7 +110,7 @@
             // PasswordLabel
             // 
             this.PasswordLabel.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PasswordLabel.Location = new System.Drawing.Point(399, 190);
+            this.PasswordLabel.Location = new System.Drawing.Point(396, 153);
             this.PasswordLabel.Name = "PasswordLabel";
             this.PasswordLabel.Size = new System.Drawing.Size(220, 23);
             this.PasswordLabel.TabIndex = 13;
@@ -130,7 +120,7 @@
             // UsernameLabel
             // 
             this.UsernameLabel.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameLabel.Location = new System.Drawing.Point(399, 141);
+            this.UsernameLabel.Location = new System.Drawing.Point(396, 103);
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(220, 23);
             this.UsernameLabel.TabIndex = 11;
@@ -142,7 +132,7 @@
             this.BtnPrekid.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.BtnPrekid.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnPrekid.ForeColor = System.Drawing.Color.Black;
-            this.BtnPrekid.Location = new System.Drawing.Point(552, 384);
+            this.BtnPrekid.Location = new System.Drawing.Point(549, 390);
             this.BtnPrekid.Name = "BtnPrekid";
             this.BtnPrekid.Size = new System.Drawing.Size(94, 23);
             this.BtnPrekid.TabIndex = 20;
@@ -153,7 +143,7 @@
             // 
             this.OK.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OK.ForeColor = System.Drawing.Color.Black;
-            this.OK.Location = new System.Drawing.Point(452, 384);
+            this.OK.Location = new System.Drawing.Point(449, 390);
             this.OK.Name = "OK";
             this.OK.Size = new System.Drawing.Size(94, 23);
             this.OK.TabIndex = 19;
@@ -164,7 +154,7 @@
             // 
             this.lblBaza.AutoSize = true;
             this.lblBaza.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBaza.Location = new System.Drawing.Point(399, 260);
+            this.lblBaza.Location = new System.Drawing.Point(399, 290);
             this.lblBaza.Name = "lblBaza";
             this.lblBaza.Size = new System.Drawing.Size(40, 15);
             this.lblBaza.TabIndex = 22;
@@ -175,7 +165,7 @@
             // 
             this.lblGrupa.AutoSize = true;
             this.lblGrupa.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGrupa.Location = new System.Drawing.Point(399, 306);
+            this.lblGrupa.Location = new System.Drawing.Point(399, 336);
             this.lblGrupa.Name = "lblGrupa";
             this.lblGrupa.Size = new System.Drawing.Size(49, 15);
             this.lblGrupa.TabIndex = 23;
@@ -194,26 +184,13 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(57, 9);
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.pictureBox1.Location = new System.Drawing.Point(101, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(110, 107);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 27;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(41, 253);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(274, 107);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 28;
-            this.pictureBox2.TabStop = false;
             // 
             // radioButton1
             // 
@@ -224,6 +201,7 @@
             this.radioButton1.Size = new System.Drawing.Size(14, 13);
             this.radioButton1.TabIndex = 0;
             this.radioButton1.TabStop = true;
+            this.radioButton1.Tag = "4";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // radioButton2
@@ -234,6 +212,7 @@
             this.radioButton2.Size = new System.Drawing.Size(14, 13);
             this.radioButton2.TabIndex = 1;
             this.radioButton2.TabStop = true;
+            this.radioButton2.Tag = "5";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton3
@@ -245,6 +224,7 @@
             this.radioButton3.Size = new System.Drawing.Size(14, 13);
             this.radioButton3.TabIndex = 2;
             this.radioButton3.TabStop = true;
+            this.radioButton3.Tag = "3";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // radioButton4
@@ -255,6 +235,7 @@
             this.radioButton4.Size = new System.Drawing.Size(14, 13);
             this.radioButton4.TabIndex = 3;
             this.radioButton4.TabStop = true;
+            this.radioButton4.Tag = "6";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
             // groupBox1
@@ -267,9 +248,9 @@
             this.groupBox1.Controls.Add(this.radioButton3);
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.groupBox1.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.groupBox1.Location = new System.Drawing.Point(470, 38);
+            this.groupBox1.Location = new System.Drawing.Point(467, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(149, 94);
             this.groupBox1.TabIndex = 29;
@@ -324,19 +305,78 @@
             this.pictureBox3.TabStop = false;
             this.pictureBox3.MouseHover += new System.EventHandler(this.pictureBox3_MouseHover);
             // 
+            // button2
+            // 
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.Location = new System.Drawing.Point(655, -6);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(58, 55);
+            this.button2.TabIndex = 33;
+            this.toolTip1.SetToolTip(this.button2, "Promena lozinke");
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Location = new System.Drawing.Point(476, 263);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(121, 23);
+            this.button1.TabIndex = 30;
+            this.button1.Text = "Nova lozinka";
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lbNovaLozinka
+            // 
+            this.lbNovaLozinka.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNovaLozinka.Location = new System.Drawing.Point(396, 205);
+            this.lbNovaLozinka.Name = "lbNovaLozinka";
+            this.lbNovaLozinka.Size = new System.Drawing.Size(220, 23);
+            this.lbNovaLozinka.TabIndex = 31;
+            this.lbNovaLozinka.Text = "Nova lozinka";
+            this.lbNovaLozinka.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbNovaLozinka.Visible = false;
+            // 
+            // tbNovaLozinka
+            // 
+            this.tbNovaLozinka.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNovaLozinka.Location = new System.Drawing.Point(399, 231);
+            this.tbNovaLozinka.Name = "tbNovaLozinka";
+            this.tbNovaLozinka.PasswordChar = '*';
+            this.tbNovaLozinka.Size = new System.Drawing.Size(294, 23);
+            this.tbNovaLozinka.TabIndex = 32;
+            this.tbNovaLozinka.Visible = false;
+            this.tbNovaLozinka.WordWrap = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(-44, -73);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(446, 567);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 36;
+            this.pictureBox7.TabStop = false;
+            // 
             // LoginForm
             // 
             this.AcceptButton = this.OK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BackColor = System.Drawing.Color.Snow;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(711, 422);
+            this.ClientSize = new System.Drawing.Size(722, 429);
             this.ControlBox = false;
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.tbNovaLozinka);
+            this.Controls.Add(this.lbNovaLozinka);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblGrupa);
             this.Controls.Add(this.lblBaza);
             this.Controls.Add(this.BtnPrekid);
@@ -347,7 +387,7 @@
             this.Controls.Add(this.UsernameTextBox);
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.UsernameLabel);
-            this.Controls.Add(this.LogoPictureBox);
+            this.Controls.Add(this.pictureBox7);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -355,23 +395,20 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Prijava";
-            ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        internal System.Windows.Forms.PictureBox LogoPictureBox;
         internal System.Windows.Forms.ComboBox cmbBaze;
         internal System.Windows.Forms.ComboBox CmbOrg;
         internal System.Windows.Forms.TextBox PasswordTextBox;
@@ -384,7 +421,6 @@
         private System.Windows.Forms.Label lblGrupa;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton3;
@@ -395,5 +431,10 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.ToolTip toolTip1;
+        internal System.Windows.Forms.Button button1;
+        internal System.Windows.Forms.Label lbNovaLozinka;
+        internal System.Windows.Forms.TextBox tbNovaLozinka;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.PictureBox pictureBox7;
     }
 }

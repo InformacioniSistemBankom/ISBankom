@@ -772,7 +772,7 @@ namespace Bankom
             this.Oorgsema});
             this.ToolBar.Location = new System.Drawing.Point(0, 0);
             this.ToolBar.Name = "ToolBar";
-            this.ToolBar.Size = new System.Drawing.Size(1924, 43);
+            this.ToolBar.Size = new System.Drawing.Size(1284, 43);
             this.ToolBar.TabIndex = 32;
             this.ToolBar.Text = "toolbar";
             // 
@@ -818,6 +818,7 @@ namespace Bankom
             // 
             this.Iizmena.AutoSize = false;
             this.Iizmena.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.Iizmena.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.Iizmena.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Iizmena.ForeColor = System.Drawing.Color.Snow;
             this.Iizmena.Image = ((System.Drawing.Image)(resources.GetObject("Iizmena.Image")));
@@ -884,6 +885,7 @@ namespace Bankom
             this.Ggrupisi.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Ggrupisinp,
             this.premestiGrupuToolStripMenuItem});
+            this.Ggrupisi.Enabled = false;
             this.Ggrupisi.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Ggrupisi.ForeColor = System.Drawing.Color.Snow;
             this.Ggrupisi.Image = ((System.Drawing.Image)(resources.GetObject("Ggrupisi.Image")));
@@ -1204,7 +1206,7 @@ namespace Bankom
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 43);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 1012);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 738);
             this.flowLayoutPanel1.TabIndex = 40;
             // 
             // menuStrip1
@@ -1270,7 +1272,7 @@ namespace Bankom
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Snow;
-            this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.ClientSize = new System.Drawing.Size(1284, 781);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.toolStrip1);

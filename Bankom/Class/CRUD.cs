@@ -72,7 +72,7 @@ namespace Bankom.Class
             {
                 isDoIt = false;
                 MessageBox.Show("Greska");
-                return (isDoIt);
+                return (isDoIt); 
             }
             for (int r = 0; r < t.Rows.Count; r++)
             { 

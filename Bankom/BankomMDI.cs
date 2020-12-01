@@ -70,6 +70,7 @@ namespace Bankom
                 childForm.FormBorderStyle = FormBorderStyle.None;
                 childForm.BackColor = System.Drawing.Color.Snow;
                 childForm.MdiParent = this;
+                childForm.AutoScroll = true;
                 // childForm.BringToFront();
 
                 this.WindowState = FormWindowState.Maximized;
@@ -613,6 +614,7 @@ namespace Bankom
             toolStripTextBox1.Text = "";
             string b = sender.ToString();
             frmChield active = new frmChield();
+            active.AutoScroll = true;
             active.FormBorderStyle= FormBorderStyle.None;
             int a = toolStrip1.Items.Count;
             for (int i = 0; i < a; i++)
@@ -2007,33 +2009,49 @@ namespace Bankom
         public static string cf;
         private void Iizlaz_Click(object sender, EventArgs e)
         {
-            foreach (Form childForm in this.MdiChildren)
-            {
-                if (childForm == this.ActiveMdiChild)
-                {
-                   
-                    itemB1_click(childForm.Text);
-                    childForm.Close();
+            // ivana 24.11.2020.
+            Form childForm = this.ActiveMdiChild;
+            itemB1_click(childForm.Text);
+            childForm.Close();
 
-                    if (toolStrip1.Items.Count == 0)
-                    {
-                        toolStrip1.Visible = false;
-                        if (MessageBox.Show("Izlaz iz programa ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        {
-                            toolStrip1.Visible = false;
-                            Application.Exit();
-                        }
-                    }
-                }
-            }
             if (toolStrip1.Items.Count == 0)
             {
                 toolStrip1.Visible = false;
-                if (MessageBox.Show("Izlaz iz programa ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Izlaz iz programa?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    toolStrip1.Visible = false;
                     Application.Exit();
                 }
             }
+
+            ////staro
+            
+            //foreach (Form childForm in this.MdiChildren)
+            //{
+            //    if (childForm == this.ActiveMdiChild)
+            //    {
+            //        itemB1_click(childForm.Text);
+            //        childForm.Close();
+
+            //        if (toolStrip1.Items.Count == 0)
+            //        {
+            //            toolStrip1.Visible = false;
+            //            if (MessageBox.Show("Izlaz iz programa ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            //            {
+            //                toolStrip1.Visible = false;
+            //                Application.Exit();
+            //            }
+            //        }
+            //    }
+            //}
+            //if (toolStrip1.Items.Count == 0)
+            //{
+            //    toolStrip1.Visible = false;
+            //    if (MessageBox.Show("Izlaz iz programa ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            //    {
+            //        Application.Exit();
+            //    }
+            //}
         }
         private void unospb_Click(object sender, EventArgs e)
         {
@@ -2899,6 +2917,7 @@ namespace Bankom
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
             KursnaLista kl = new KursnaLista();
+            kl.FormBorderStyle = FormBorderStyle.None;
             kl.Show();
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using System.Globalization ;
+using System.Globalization;
 using System.Drawing;
 
 namespace Bankom.Class
@@ -16,13 +16,13 @@ namespace Bankom.Class
         Form form1 = new Form();
         static DataBaseBroker db = new DataBaseBroker();
         DataTable tg = new DataTable();
-       
-        public void refreshDokument(Form forma, string KojiSegment, string iddok, string dokument,string TUD,string DokumentJe)
+
+        public void refreshDokument(Form forma, string KojiSegment, string iddok, string dokument, string TUD, string DokumentJe)
         {
             form1 = forma;
             if (KojiSegment.Contains("Stavke") == true)
             {
-                refreshDokumentGrid(form1, dokument, iddok, "", TUD,"");
+                refreshDokumentGrid(form1, dokument, iddok, "", TUD, "");
             }
             else
             {
@@ -107,20 +107,20 @@ namespace Bankom.Class
                     KojiUpit = KojiUpit + " WHERE " + UUslov;
             }
             else //  USLOV JE PRAZAN
-               {
+            {
                 KrajUpita = KojiUpit.Substring(KojiUpit.IndexOf("WHERE") + 5);
                 PocetakUpita = KojiUpit.Substring(0, KojiUpit.IndexOf("WHERE") + 5);
                 Console.WriteLine(PocetakUpita);
                 Console.WriteLine(KrajUpita);
-                KojiUpit = PocetakUpita + UUslov  + KrajUpita;
+                KojiUpit = PocetakUpita + UUslov + KrajUpita;
                 Console.WriteLine(KojiUpit);
             }
-           Console.WriteLine(KojiUpit);
+            Console.WriteLine(KojiUpit);
             return KojiUpit;
         }
 
-        public void refreshDokumentGrid(Form forma, string dokument, string iddok, string mUpit, string TUD,string DokumentJe)
-        {         
+        public void refreshDokumentGrid(Form forma, string dokument, string iddok, string mUpit, string TUD, string DokumentJe)
+        {
             Console.WriteLine(mUpit);
             form1 = forma;
             string tUpit = "";
@@ -129,24 +129,24 @@ namespace Bankom.Class
             string KojiSegment = "";
             string ss = "";
             int brredova = 0;
-            DataTable tt = new DataTable();        
+            DataTable tt = new DataTable();
 
             string sql = "Select Naziv,UlazniIzlazni as NazivDokumenta from SifarnikDokumenta  where naziv=@param0";
             tt = db.ParamsQueryDT(sql, dokument);
             if (tt.Rows.Count > 0) { dokument = tt.Rows[0]["NazivDokumenta"].ToString(); } // naziv iz sifarnika dokumenata
             if (TUD.Trim() == "")
             {
-                 ss = " SELECT TUD, MaxHeight, Levo, Vrh, Width, height, Upit, Ime "
-                    + " FROM dbo.Upiti "
-                    + " WHERE(NazivDokumenta = @param0 AND Ime Like'GgRr%') "
-                    + " AND TUD>0  ORDER BY TUD";
+                ss = " SELECT TUD, MaxHeight, Levo, Vrh, Width, height, Upit, Ime "
+                   + " FROM dbo.Upiti "
+                   + " WHERE(NazivDokumenta = @param0 AND Ime Like'GgRr%') "
+                   + " AND TUD>0  ORDER BY TUD";
             }
             else
             {
-                 ss = " SELECT TUD, MaxHeight, Levo, Vrh, Width, height, Upit, Ime "
-                         + " FROM dbo.Upiti "
-                         + " WHERE(NazivDokumenta = @param0 AND Ime Like'GgRr%') "
-                         + " AND TUD =" + TUD;
+                ss = " SELECT TUD, MaxHeight, Levo, Vrh, Width, height, Upit, Ime "
+                        + " FROM dbo.Upiti "
+                        + " WHERE(NazivDokumenta = @param0 AND Ime Like'GgRr%') "
+                        + " AND TUD =" + TUD;
             }
             Console.WriteLine(ss);
 
@@ -156,7 +156,7 @@ namespace Bankom.Class
             {
                 tIme = t.Rows[i]["Ime"].ToString();
                 KojiSegment = tIme.Substring(4, tIme.Length - 4);
-                tud =  t.Rows[i]["TUD"].ToString();
+                tud = t.Rows[i]["TUD"].ToString();
                 tUpit = t.Rows[i]["Upit"].ToString();
                 brredova = Convert.ToInt32(t.Rows[i]["MaxHeight"]);
 
@@ -167,8 +167,8 @@ namespace Bankom.Class
                 if (mUpit.Trim() == "")
                     tUpit = CreateQuery(tUpit, KojiSegment, iddok, dokument, DokumentJe);
                 else
-                {                     
-                   tUpit = mUpit;
+                {
+                    tUpit = mUpit;
                 }
                  ((Bankom.frmChield)form1).tUpit = tUpit; // sacuvana tabela za grid pocetni upit
                 Console.WriteLine(tUpit);
@@ -190,19 +190,19 @@ namespace Bankom.Class
 
                     PripremiPodatkeZaGrid(form1, dv, dokument, tUpit, Convert.ToInt32(tud), iddok, tIme, DokumentJe);
 
-                    dv.DataSource = tg;                    
+                    dv.DataSource = tg;
                     if (dv.Columns.Count > 0)
                     {
                         setingWidthOfColumns(dokument, dv, tud.ToString());
                         if (dv.ColumnHeadersVisible == true)
-                            AddColumnsText(dv, tud.ToString());           
+                            AddColumnsText(dv, tud.ToString());
                         if (dokument == "LotStanjeRobeM")
                             colorofrows(dv);
                     }
                 }
             }
         }
-        private void PripremiPodatkeZaGrid(Form form1, DataGridView dv,string dokument, string tUpit, int tud, string iddok, string tIme, string DokumentJe)
+        private void PripremiPodatkeZaGrid(Form form1, DataGridView dv, string dokument, string tUpit, int tud, string iddok, string tIme, string DokumentJe)
         {
             dv.BackgroundColor = Color.Snow;
             string KojiSegment = tIme.Substring(4);
@@ -225,9 +225,9 @@ namespace Bankom.Class
             // AKO U RECNIKU POSTOJI POLJE SA ID_NaziviNaFormi=20 KOJE IMA SIRINU VECU OD 0 TO POLJE JE NAMENJENO DA SE U NJEGA PROGRAMSKI UPISE REDNI BROJ STAVKE.TO RADI KOD KOJI SLEDI
             os.DodajRedniBroj(ref tg, KojiSegment, DokumentJe);
 
-   
-// AKO U RECNIKU POSTOJE POLJA SA Podacima u koloni formulaforme izvrsicemo azuriranje tih polja prema zadatoj formuli
-           
+
+            // AKO U RECNIKU POSTOJE POLJA SA Podacima u koloni formulaforme izvrsicemo azuriranje tih polja prema zadatoj formuli
+
             string sss = " Select FormulaForme ,AlijasPolja From RecnikPodataka where Dokument ='" + dokument + "' and  FormulaForme IS NOT NULL     and ltrim(rtrim(FormulaForme)) <>'' and tabelavview=@param0";
             DataTable dt = db.ParamsQueryDT(sss, KojiSegment);
             for (int ii = 0; ii < dt.Rows.Count; ii++)
@@ -246,16 +246,16 @@ namespace Bankom.Class
             {
                 if (intOrder > -1)// UPIT SADRZI ORDER BY
                 {
-// broj slogova u upitu
+                    // broj slogova u upitu
                     ((Bankom.frmChield)form1).intUkupno = db.ReturnInt(" select count(*) from " + tUpit.Substring(intfrom + 5, intOrder - intfrom - 5), 0);
                 }
                 else
                     ((Bankom.frmChield)form1).intUkupno = db.ReturnInt(" select count(*) from " + tUpit.Substring(intfrom + 5), 0);
             }
-            ((Bankom.frmChield)form1).toolStripTextBroj.Text = iddok;                   
-            ((Bankom.frmChield)form1).statusStrip1.Visible = true;  
+            ((Bankom.frmChield)form1).toolStripTextBroj.Text = iddok;
+            ((Bankom.frmChield)form1).statusStrip1.Visible = true;
             string strstart = "";
-            int pageno = 0; 
+            int pageno = 0;
             if (((Bankom.frmChield)form1).intUkupno > 0)
             {
                 if (((Bankom.frmChield)form1).BrRedova > 0)
@@ -263,7 +263,7 @@ namespace Bankom.Class
             }
             if (pageno * ((Bankom.frmChield)form1).BrRedova < ((Bankom.frmChield)form1).intUkupno) pageno = pageno + 1;
             string strFind = "";
-            strFind = ((Bankom.frmChield)form1).toolStripTextFind.Text; 
+            strFind = ((Bankom.frmChield)form1).toolStripTextFind.Text;
             ((Bankom.frmChield)form1).ToolStripLblPos.Text = Convert.ToString(pageno);
             ((Bankom.frmChield)form1).toolStripTexIme.Text = ((Bankom.frmChield)form1).Controls["limedok"].Text;
             if (((Bankom.frmChield)form1).intUkupno > 0 && ((Bankom.frmChield)form1).intStart >= ((Bankom.frmChield)form1).intUkupno)
@@ -337,10 +337,10 @@ namespace Bankom.Class
                 }
             }
         }
-       
+
         public DataTable ShowPage(Form form1, int pageNumber, DataTable tg)
         {
-            DataTable dt = new DataTable();           
+            DataTable dt = new DataTable();
 
             int PageSize = ((Bankom.frmChield)form1).BrRedova;
             int startIndex = PageSize * (pageNumber - 1);
@@ -351,18 +351,18 @@ namespace Bankom.Class
                 dt.Columns.Add(colunm.ColumnName);
             }
 
-            if (((Bankom.frmChield)form1).statusStrip1.Visible == true)          
-                endindex = startIndex + PageSize;             
-            else 
-                endindex =(( Bankom.frmChield)form1).intUkupno;
+            if (((Bankom.frmChield)form1).statusStrip1.Visible == true)
+                endindex = startIndex + PageSize;
+            else
+                endindex = ((Bankom.frmChield)form1).intUkupno;
 
-            var  result1 = tg.AsEnumerable().Where((s, k) => (k >= startIndex && k <= endindex));
+            var result1 = tg.AsEnumerable().Where((s, k) => (k >= startIndex && k <= endindex));
             foreach (var item in result1)
             {
-                    dt.ImportRow(item);
-            }      
+                dt.ImportRow(item);
+            }
             return dt;
-        }       
+        }
         public void setingWidthOfColumns(string dokument, DataGridView dv, string tud)
         {
             dv.BackgroundColor = Color.Snow;
@@ -372,6 +372,7 @@ namespace Bankom.Class
             //sel += " TUD = @param0 AND Dokument = @param1  AND ";
             //sel += "(width>0 OR ID_NaziviNaFormi = 20 OR ID_NaziviNaFormi = 25 OR AlijasPolja LIKE 'IId%' OR ";
             //sel += "LTRIM(RTRIM(AlijasPolja)) = 'ID_' + LTRIM(RTRIM(AlijasTabele))   or (Izborno <> '' and alijaspolja like 'ID_'+ Izborno)) ORDER BY TabIndex ";
+
             string sel = "SELECT  AlijasPolja, T.Tip,cWidthKolone as WidthKolone, width,T.Format,T.CSharp,T.Alajment  FROM dbo.RecnikPodataka AS R1,TipoviPodataka AS T ";
             sel += " WHERE  R1.ID_TipoviPodataka=T.ID_TipoviPodataka  AND ";
             sel += " TUD = @param0 AND Dokument = @param1  AND ";
@@ -379,48 +380,48 @@ namespace Bankom.Class
             sel += "LTRIM(RTRIM(AlijasPolja)) = 'ID_' + LTRIM(RTRIM(AlijasTabele))   or (Izborno <> '' and alijaspolja like 'ID_'+ Izborno)) ORDER BY TabIndex ";
 
             Console.WriteLine(sel);
-            DataTable t2 = db.ParamsQueryDT(sel,tud,dokument);            
+            DataTable t2 = db.ParamsQueryDT(sel, tud, dokument);
             for (int i = 0; i < dv.ColumnCount; i++)
-            {                
-                    //Djora 26.09.20
-                    //double ofset = Program.RacioWith * 1.3333333333333333;
-                    double ofset = Program.RacioWith;
+            {
+                //Djora 26.09.20
+                //double ofset = Program.RacioWith * 1.3333333333333333;
+                double ofset = Program.RacioWith;
                 Console.WriteLine(sel);
                 Console.WriteLine(t2.Rows[i]["AlijasPolja"].ToString());
-                    int sirina = (int)Convert.ToDouble(Convert.ToDouble(t2.Rows[i]["WidthKolone"].ToString()) * ofset);
-                    if (sirina == 0)
-                        dv.Columns[i].Visible = false;
-                    else
-                        dv.Columns[i].Visible = true;
+                int sirina = (int)Convert.ToDouble(Convert.ToDouble(t2.Rows[i]["WidthKolone"].ToString()) * ofset);
+                if (sirina == 0)
+                    dv.Columns[i].Visible = false;
+                else
+                    dv.Columns[i].Visible = true;
 
-                    dv.Columns[i].Width = sirina;
-        
-              
-                    
+                dv.Columns[i].Width = sirina;
+
+
+
                 dv.Columns[i].SortMode = DataGridViewColumnSortMode.Automatic;
                 dv.BackgroundColor = Color.Snow;
                 if (t2.Rows[i]["Format"].ToString() != "@" && t2.Rows[i]["Format"].ToString() != "0" && t2.Rows[i]["Format"].ToString().Trim() != "")
-                        dv.Columns[i].DefaultCellStyle.Format = t2.Rows[i]["Format"].ToString();
+                    dv.Columns[i].DefaultCellStyle.Format = t2.Rows[i]["Format"].ToString();
 
-                    switch (t2.Rows[i]["Alajment"].ToString())
-                    {
-                        case "0":
-                            dv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                switch (t2.Rows[i]["Alajment"].ToString())
+                {
+                    case "0":
+                        dv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
                         dv.BackgroundColor = Color.Snow;
                         break;
-                        case "1":
-                            dv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    case "1":
+                        dv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                         dv.BackgroundColor = Color.Snow;
                         break;
-                        case "2":
-                            dv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                    case "2":
+                        dv.Columns[i].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                         dv.BackgroundColor = Color.Snow;
                         break;
-                    }
-            }            
+                }
+            }
             dv.Visible = true;
         }
-        private void AddColumnsText(DataGridView dg,string tud)
+        private void AddColumnsText(DataGridView dg, string tud)
         {
             string tabelavview = dg.Name.Substring(4);
             DataTable myt = (DataTable)dg.DataSource;
@@ -452,13 +453,22 @@ namespace Bankom.Class
         public void colorofrows(DataGridView dg)
         {
             dg.BackgroundColor = Color.Snow;
-            DataTable myt = (DataTable)dg.DataSource;            
+            DataTable myt = (DataTable)dg.DataSource;
             for (int i = 0; i < dg.Rows.Count; i++)
             {
-                if (myt.Rows[i]["color"].ToString() == "1,0")                 
-                   dg.Rows[i].DefaultCellStyle.BackColor = Color.Red;
-                if (myt.Rows[i]["color"].ToString() == "2,0")
-                   dg.Rows[i].DefaultCellStyle.BackColor = Color.Orange;
+                Console.WriteLine(myt.Rows[i]["color"].ToString());
+                switch (myt.Rows[i]["color"].ToString().Trim())
+                {
+                    case "1,0":
+                        dg.Rows[i].DefaultCellStyle.BackColor = Color.Orange;
+                        break;
+                    case "2,0":
+                        dg.Rows[i].DefaultCellStyle.BackColor = Color.DimGray;
+                        break;
+                    case "3,0":
+                        dg.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                        break;
+                }
             }
         }
         public void refreshDokumentBody(Form forma, string dokument, string iddok, string DokumentJe)
@@ -474,14 +484,14 @@ namespace Bankom.Class
         }
         private void writeFrom(Form forma, string dokument, string iddok, string DokumentJe)
         {
-            string Uslov="";
+            string Uslov = "";
             string tUpit = "";
             string[] separators = new[] { "," };
 
-           
+
             string selu = " SELECT Upit,ime  FROM dbo.Upiti  WHERE(NazivDokumenta = @param0" + ")";
-                   selu += " AND Ime LIKE N'ggrr%'  AND (TUD = 0)";
-           DataTable tt = db.ParamsQueryDT(selu,dokument);
+            selu += " AND Ime LIKE N'ggrr%'  AND (TUD = 0)";
+            DataTable tt = db.ParamsQueryDT(selu, dokument);
 
             for (int i = 0; i < tt.Rows.Count; i++)
             {
@@ -493,11 +503,11 @@ namespace Bankom.Class
                 {
                     Uslov = Program.WWhere;
                     clsObradaOsnovnihSifarnika os = new clsObradaOsnovnihSifarnika();
-                    string res= os. DodajRestrikcije(dokument,"0");
+                    string res = os.DodajRestrikcije(dokument, "0");
 
                     if (res.Trim() != "")
                         Uslov += " AND " + res;
-                    mUpit += Uslov;                   
+                    mUpit += Uslov;
                     tUpit = mUpit;
                 }
                 else
@@ -513,61 +523,61 @@ namespace Bankom.Class
                         {
                             Field ctrls = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == dt.Columns[k].ColumnName.ToString());
                             if (ctrls != null)
-                            { 
-                                    ctrls.ID = "1";
-                                    ctrls.Vrednost = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
+                            {
+                                ctrls.ID = "1";
+                                ctrls.Vrednost = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
 
-                                    switch (ctrls.VrstaKontrole)
-                                    {
-                                        case "tekst":
-                                            if (ctrls.IME == "BrDok")
+                                switch (ctrls.VrstaKontrole)
+                                {
+                                    case "tekst":
+                                        if (ctrls.IME == "BrDok")
+                                        {
+                                            forma.Controls["lBrDok"].Text = ctrls.Vrednost;
+                                        }
+                                        string sadrzaj = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
+                                        clsFormInitialisation fi = new clsFormInitialisation();
+                                        ctrls.textBox.Text = fi.FormatirajPolje(sadrzaj, ctrls.cTip);
+
+
+                                        if (dokument == "IzlazniJCI")
+                                        {
+                                            Console.WriteLine(dt.Rows[0][dt.Columns[k].ColumnName].ToString());
+                                            if (dt.Columns[k].ColumnName.ToString() == "DatumIstupa" && (string.IsNullOrEmpty(dt.Rows[0][dt.Columns[k].ColumnName].ToString())))
+                                                break;
+                                            else
                                             {
-                                                forma.Controls["lBrDok"].Text = ctrls.Vrednost;
-                                            }
-                                            string sadrzaj = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
-                                            clsFormInitialisation fi = new clsFormInitialisation();
-                                            ctrls.textBox.Text = fi.FormatirajPolje(sadrzaj,ctrls.cTip);
-
-                                        
-                                                if (dokument == "IzlazniJCI")
+                                                if (dt.Columns[k].ColumnName.ToString() == "DatumIstupa")
                                                 {
-                                                    Console.WriteLine(dt.Rows[0][dt.Columns[k].ColumnName].ToString());
-                                                    if (dt.Columns[k].ColumnName.ToString() == "DatumIstupa" && (string.IsNullOrEmpty(dt.Rows[0][dt.Columns[k].ColumnName].ToString())))
-                                                        break;
-                                                    else
-                                                    {
-                                                        if (dt.Columns[k].ColumnName.ToString() == "DatumIstupa")
-                                                        {
-                                                            DateTime mdat = Convert.ToDateTime(dt.Rows[0][dt.Columns[k].ColumnName].ToString());
-                                                            ctrls.textBox.Text = mdat.ToString("dd.MM.yy");
-                                                        }
-                                                        else
-                                                            ctrls.textBox.Text = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
-                                                    }
+                                                    DateTime mdat = Convert.ToDateTime(dt.Rows[0][dt.Columns[k].ColumnName].ToString());
+                                                    ctrls.textBox.Text = mdat.ToString("dd.MM.yy");
                                                 }
+                                                else
+                                                    ctrls.textBox.Text = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
+                                            }
+                                        }
                                         break;
-                                        case "datum":
-                                            ctrls.dtp.Text = string.Format("{0:dd.MM.yy}", dt.Rows[0][dt.Columns[k].ColumnName].ToString());
-                                            if (ctrls.IME == "Datum")
+                                    case "datum":
+                                        ctrls.dtp.Text = string.Format("{0:dd.MM.yy}", dt.Rows[0][dt.Columns[k].ColumnName].ToString());
+                                        if (ctrls.IME == "Datum")
+                                        {
+                                            forma.Controls["lDatum"].Text = ctrls.dtp.Text;
+                                        }
+                                        break;
+                                    case "combo":
+                                        ctrls.comboBox.Text = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
+                                        string kojiid;
+                                        kojiid = "ID_" + ctrls.cAlijasTabele;
+                                        for (int kk = 0; kk <= dt.Columns.Count - 1; kk++)
+                                        {
+                                            if (dt.Columns[kk].ColumnName.ToString() == kojiid)
                                             {
-                                                forma.Controls["lDatum"].Text = ctrls.dtp.Text;
+                                                string ccc = dt.Rows[0][dt.Columns[kk].ColumnName].ToString();
+                                                ctrls.ID = dt.Rows[0][dt.Columns[kk].ColumnName].ToString();
+                                                break;
                                             }
-                                            break;
-                                        case "combo":
-                                            ctrls.comboBox.Text = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
-                                            string kojiid;
-                                            kojiid = "ID_" + ctrls.cAlijasTabele;
-                                            for (int kk = 0; kk <= dt.Columns.Count - 1; kk++)
-                                            {
-                                                if (dt.Columns[kk].ColumnName.ToString() == kojiid)
-                                                {
-                                                    string ccc = dt.Rows[0][dt.Columns[kk].ColumnName].ToString();
-                                                    ctrls.ID = dt.Rows[0][dt.Columns[kk].ColumnName].ToString();
-                                                    break;
-                                                }
-                                            }
-                                            break;
-                                    }
+                                        }
+                                        break;
+                                }
                             }
                         }
                     }
@@ -603,13 +613,13 @@ namespace Bankom.Class
         {
             CcalculatedVal cv = new CcalculatedVal();
             clsEvaluation cev = new clsEvaluation();
-      
+
             string KojaValuta;
             KojaValuta = "RSD";
-            string KojePolje; 
-            double mvrednost = 0; 
-            string formula = "";            
-            
+            string KojePolje;
+            double mvrednost = 0;
+            string formula = "";
+
             foreach (var pb in form1.Controls.OfType<Field>())
             {
                 if (pb.cPolje.Contains("IzvodiSe") == true)
@@ -619,9 +629,9 @@ namespace Bankom.Class
                         pb.Vrednost = "0";
                     }
                     else
-                    {                        
+                    {
                         formula = pb.cFormulaForme.Trim();
-                        string  aaa = cv.CalculateValue(form1, formula); //textBox.Text = Convert.ToString(float.Parse(dt.Rows[j][dt.Columns[k].ColumnName].ToString()).ToString("###,##0.00"));
+                        string aaa = cv.CalculateValue(form1, formula); //textBox.Text = Convert.ToString(float.Parse(dt.Rows[j][dt.Columns[k].ColumnName].ToString()).ToString("###,##0.00"));
                         string rez = cev.Evaluate(aaa);
                         pb.Vrednost = Convert.ToString(rez);
                         if (pb.Vrednost.Trim() != "")
@@ -629,10 +639,10 @@ namespace Bankom.Class
                             pb.textBox.Text = Convert.ToString(float.Parse(rez.ToString()).ToString("###,##0.00"));
                         }
                     }
-                }                
+                }
             }
 
-            foreach (var ctrls in form1.Controls.OfType<Field>())    
+            foreach (var ctrls in form1.Controls.OfType<Field>())
             {
                 if (ctrls.IME == "OznVal")
                 {
@@ -646,7 +656,7 @@ namespace Bankom.Class
             }
 
             foreach (var pb in form1.Controls.OfType<Field>())
-            { 
+            {
                 if (pb.cPolje.Contains("Slovima") == true)
                 {
                     if (pb.cFormulaForme == "")
@@ -657,7 +667,7 @@ namespace Bankom.Class
                     {
                         KojePolje = pb.cFormulaForme;
                     }
-                    foreach (var ct in form1.Controls.OfType<Field>())    
+                    foreach (var ct in form1.Controls.OfType<Field>())
                     {
                         if (ct.IME == KojePolje)
                         {
@@ -679,8 +689,3 @@ namespace Bankom.Class
         }
     }
 }
-
-
-
-
-   
