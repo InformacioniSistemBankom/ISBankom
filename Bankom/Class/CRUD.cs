@@ -541,7 +541,7 @@ namespace Bankom.Class
                 field = filds[k].Trim();
                 string fpolje = field.Substring(3).Trim();
 
-                if (field.ToUpper() == "TTIME" || field.ToUpper() == "UUSER")
+                if (field.ToUpper() == "TTIME" || field.ToUpper() == "UUSER" || field== "ID_OrganizacionaStrukturaView") 
                     goto SledecePolje;
 
                 if (field.Contains("ID_") == true)   // jeste ID-polje
@@ -571,6 +571,7 @@ namespace Bankom.Class
                                     || (pb.cIzborno.ToUpper() == fpolje.ToUpper() && pb.cIzborno != pb.cTabela)
                                     || (fpolje == pb.cAlijasTabele && pb.cIzborno == pb.cTabela))
                                 {
+
                                      param = "@param" + Convert.ToString(k).Trim();
                                      paramvred += param + "=" + pb.ID + "`";
                                      naredba += "[" + field + "]=" + param +",";                                     
@@ -583,6 +584,7 @@ namespace Bankom.Class
                                 if (fpolje == pb.cAlijasTabele && pb.cDokument == "Dokumenta")
                                 {
                                     param = "@param" + Convert.ToString(k).Trim();
+                                    if (k == 8) Console.WriteLine(fpolje);
                                     naredba += "[" + field + "]=" + param +",";
                                     paramvred +=param+"=" + pb.ID + "`";
                                     goto SledecePolje;
@@ -611,6 +613,7 @@ namespace Bankom.Class
 
             SledecePolje:
                 sselect = sselect.Substring(sselect.IndexOf(",") + 1, sselect.Length - sselect.IndexOf(",") - 1).Trim();
+                Console.WriteLine(sselect);
             } //  kraj sva polja iz upita 
 
             if (DokumentJe == "S")
