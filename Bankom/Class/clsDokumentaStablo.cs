@@ -409,7 +409,7 @@ namespace Bankom.Class
                                 {
                                     dokType = "";
                                     strParams = "";
-                                    str = "Execute stanje 'ssss'";
+                                    str = "Execute stanje";
                                     strTabela = NazivKlona;
                                     lista.Add(new string[] { str, strParams, strTabela, dokType, "" });
                                     lista.ToArray();

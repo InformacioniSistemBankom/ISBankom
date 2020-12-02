@@ -667,12 +667,13 @@ namespace Bankom.Class
                         {
                             dokType = "";
                             strParams = "";
-                            str = "Execute stanje 'ssss'";
+                            str = "Execute stanje";
                             strTabela = "";
                             lista.Add(new string[] { str, strParams, strTabela, dokType, IdDokView.ToString() });
                             lista.ToArray();
                         }
 
+                      
                         rezultat = db.ReturnSqlTransactionParamsFull(lista);
 
                         if (rezultat != "") { lista.Clear(); MessageBox.Show(rezultat); return false; }
