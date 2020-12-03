@@ -59,6 +59,7 @@
             this.btnPred = new System.Windows.Forms.Button();
             this.btnPrvi = new System.Windows.Forms.Button();
             this.limegrida = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -364,6 +365,14 @@
             this.limegrida.Text = "label1";
             this.limegrida.Visible = false;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1254, 24);
+            this.menuStrip1.TabIndex = 18;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
             // frmChield
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -371,7 +380,7 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Snow;
-            this.ClientSize = new System.Drawing.Size(1254, 1012);
+            this.ClientSize = new System.Drawing.Size(1254, 804);
             this.ControlBox = false;
             this.Controls.Add(this.limegrida);
             this.Controls.Add(this.panel1);
@@ -383,12 +392,14 @@
             this.Controls.Add(this.liddok);
             this.Controls.Add(this.limedok);
             this.Controls.Add(this.OOperacija);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Location = new System.Drawing.Point(30, 10);
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmChield";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -440,5 +451,6 @@
         private System.Windows.Forms.Button btnPred;
         private System.Windows.Forms.Button btnPrvi;
         private System.Windows.Forms.Label limegrida;
+        private System.Windows.Forms.MenuStrip menuStrip1;
     }
 }
