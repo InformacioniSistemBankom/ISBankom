@@ -132,12 +132,15 @@ namespace Bankom
             //if (VrstaPrikaza != "TreeView" )
             //{              
                 Boolean provera = true;
-                clsProveraDozvola provdoz = new clsProveraDozvola();
-                provera = provdoz.ProveriDozvole(imedokumenta,  idstablo.ToString(),Convert.ToString(iddokumenta) ,DokumentJe);
-            // BORKA 01.12.20 DODATA 4 REDA
-            if (provera==false)
+            if (imestabla != "Dokumenta" && idstablo == 1 || imestabla == "Dokumenta")
             {
-                MessageBox.Show("greska provere");
+                clsProveraDozvola provdoz = new clsProveraDozvola();
+                provera = provdoz.ProveriDozvole(imedokumenta, idstablo.ToString(), Convert.ToString(iddokumenta), DokumentJe);
+                // BORKA 01.12.20 DODATA 4 REDA
+                if (provera == false)
+                {
+                    MessageBox.Show("greska provere");
+                }
             }
             //}
             //else
