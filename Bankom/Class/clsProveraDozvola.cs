@@ -448,7 +448,7 @@ namespace Bankom.Class
 
                     if (form1.Controls["lDatum"].Text.Trim() == "")
                     {
-                        provera = false;
+                        //provera = false;
                         provera = true;
                     }
                     else
@@ -487,9 +487,15 @@ namespace Bankom.Class
                             else                                 //nije nalogglavneknjige i nije obracunkredita a dokument se odnosi na predhodne godine
                             {
                                 if (dokument == "Dokumenta" || DokumentJe == "D")
+                                {
                                     form1.Controls["Ooperacija"].Text = "";
-                                ZakljucenaGodina = true;
-                                provera = false;
+                                
+                                }
+                                else
+                                {
+                                    provera = false;
+                                }
+                                   ZakljucenaGodina = true;
                             }
                             if (form1.Controls["Ooperacija"].Text != "")
                             {
