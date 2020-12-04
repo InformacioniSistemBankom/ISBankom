@@ -114,30 +114,33 @@ namespace Bankom.Class
                     case "UNOS":
                     case "IZMENA":
                         if (r == 0)
-                        {
+                        { 
                             // PROVERE ISPRAVNOSTI PODATAKA POCETAK
-                            clsProveraIspravnosti pi = new clsProveraIspravnosti();
-                            isDoIt = pi.ProveraOperacija(NazivKlona);
-                            if ((DokumentJe == "S" && dokument == "Dokumenta" && IdDokumentaStablo != "61") || (DokumentJe == "D" && IdDokumentaStablo != "29" || (DokumentJe == "D" && IdDokumentaStablo != "290")))
-                            {                               
-                                isDoIt = pi.ProveraKursa(dokument, ref Poruka);
-                                if (isDoIt == false)
+                            if (DokumentJe=="D")
+                            {
+                                clsProveraIspravnosti pi = new clsProveraIspravnosti();
+                                isDoIt = pi.ProveraOperacija(NazivKlona);
+                                if ((DokumentJe == "S" && dokument == "Dokumenta" && IdDokumentaStablo != "61") || (DokumentJe == "D" && IdDokumentaStablo != "29" || (DokumentJe == "D" && IdDokumentaStablo != "290")))
                                 {
-                                    MessageBox.Show(Poruka);
-                                    break;
+                                    isDoIt = pi.ProveraKursa(dokument, ref Poruka);
+                                    if (isDoIt == false)
+                                    {
+                                        MessageBox.Show(Poruka);
+                                        break;
+                                    }
                                 }
+                                isDoIt = pi.ProveraObaveznihPolja(NazivKlona);
+                                if (isDoIt == false)
+                                    break;
+
+                                isDoIt = pi.ProveraSadrzaja(NazivKlona, iddokument, Convert.ToString(((Bankom.frmChield)forma).idReda), operacija, ref Poruka);
+                                if (isDoIt == false)
+                                    break;
+
+                                isDoIt = pi.DodatnaProvera();
+                                if (isDoIt == false)
+                                    break;
                             }
-                            isDoIt = pi.ProveraObaveznihPolja(NazivKlona);
-                            if (isDoIt == false)
-                                break;
-
-                            isDoIt = pi.ProveraSadrzaja(NazivKlona, iddokument, Convert.ToString(((Bankom.frmChield)forma).idReda), operacija, ref Poruka);
-                            if (isDoIt == false)
-                                break;
-
-                            isDoIt = pi.DodatnaProvera();
-                            if (isDoIt == false)
-                                break;
                         }
                         // PROVERE ISPRAVNOSTI PODATAKA KRAJ
 
@@ -207,16 +210,27 @@ namespace Bankom.Class
             {
                 if (DokumentJe == "S")
                 {
-                    if( operacija=="UNOS") 
+                    if (operacija == "UNOS")
+                    {
                         sql = "EXECUTE TotaliZaDokument " + NazivKlona + "," + "'tttt'";
+                    }
+                    else // nije unos
+                        if (NazivKlona == "Artikli" || NazivKlona == "Komitenti") { }
                     else
-                        sql = "Execute TotaliZaDokument'" +NazivKlona + "'," + iddok.ToString();
+                        sql = "Execute TotaliZaDokument'" + NazivKlona + "'," + iddok.ToString();
                 }
-                else
-                    sql = "Execute TotaliZaDokument '" + NazivKlona + "', " + iddok.ToString();                
-                lista.Add(new string[] { sql, "", "", "", "" });
-                lista.ToArray();
+                else // nije "S"
+                {
+                    if ((NazivKlona == "Artikli" || NazivKlona == "Komitenti") && operacija == "IZMENA") { }
+                    else
+                    {
+                        sql = "Execute TotaliZaDokument '" + NazivKlona + "', " + iddok.ToString();
+                        lista.Add(new string[] { sql, "", "", "", "" });
+                        lista.ToArray();
+                    }
+                }
             }
+
             if (DokumentJe == "D")
             {
                 // Field kontrola = (Field)forma.Controls["NazivSkl"];
@@ -541,7 +555,7 @@ namespace Bankom.Class
                 field = filds[k].Trim();
                 string fpolje = field.Substring(3).Trim();
 
-                if (field.ToUpper() == "TTIME" || field.ToUpper() == "UUSER")
+                if (field.ToUpper() == "TTIME" || field.ToUpper() == "UUSER" || field== "ID_OrganizacionaStrukturaView") 
                     goto SledecePolje;
 
                 if (field.Contains("ID_") == true)   // jeste ID-polje
@@ -571,6 +585,7 @@ namespace Bankom.Class
                                     || (pb.cIzborno.ToUpper() == fpolje.ToUpper() && pb.cIzborno != pb.cTabela)
                                     || (fpolje == pb.cAlijasTabele && pb.cIzborno == pb.cTabela))
                                 {
+
                                      param = "@param" + Convert.ToString(k).Trim();
                                      paramvred += param + "=" + pb.ID + "`";
                                      naredba += "[" + field + "]=" + param +",";                                     
@@ -583,6 +598,7 @@ namespace Bankom.Class
                                 if (fpolje == pb.cAlijasTabele && pb.cDokument == "Dokumenta")
                                 {
                                     param = "@param" + Convert.ToString(k).Trim();
+                                    if (k == 8) Console.WriteLine(fpolje);
                                     naredba += "[" + field + "]=" + param +",";
                                     paramvred +=param+"=" + pb.ID + "`";
                                     goto SledecePolje;
@@ -611,6 +627,7 @@ namespace Bankom.Class
 
             SledecePolje:
                 sselect = sselect.Substring(sselect.IndexOf(",") + 1, sselect.Length - sselect.IndexOf(",") - 1).Trim();
+                Console.WriteLine(sselect);
             } //  kraj sva polja iz upita 
 
             if (DokumentJe == "S")

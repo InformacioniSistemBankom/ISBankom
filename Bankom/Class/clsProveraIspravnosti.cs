@@ -413,8 +413,9 @@ namespace Bankom.Class
             string DokumentJe = Convert.ToString(((Bankom.frmChield)forma).DokumentJe);
             Vrati = true;
             if (DokumentJe == "P") return (Vrati);
+            if (Dokument =="Artikli") return (Vrati);
             char[] separators = { ',' };
-            string sql = "";
+            string sql = "";          
             clsObradaOsnovnihSifarnika coo = new clsObradaOsnovnihSifarnika();
             string mdatum = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "Datum").Vrednost;
             switch (Dokument)

@@ -63,7 +63,7 @@ namespace Bankom.Class
             strParams += "@param4=" + BrojDok + "`";
             strParams += "@param5=" + Datum + "`";
             strParams += "@param6=" + Opis + "`";
-            strParams += "@param7=" + Program.idOrgDeo + "`";
+            strParams += "@param7=" + Program.idOrgDeo.ToString() + "`";
             strParams += "@param8=" + Proknjizeno + "`";
             strParams += "@param9=" + Convert.ToString(MesecPoreza) + "`";
 

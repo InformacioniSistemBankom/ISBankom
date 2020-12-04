@@ -837,6 +837,7 @@ namespace Bankom.Class
                                 else
                                     aaa = tt.Rows[0]["polje"].ToString();
 
+                                pb.ID = ID;
                                 control.Text = aaa;
                                 control.Refresh();
 
