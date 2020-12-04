@@ -104,7 +104,7 @@ namespace Bankom.Class
                             if (DatumDokumenta.Year != Convert.ToDateTime(forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "Datum").Vrednost).Year)
                             {
                                 Vrati = false;
-                                MessageBox.Show("NIJE DOZVOLJENO PREMESTANJE dokument iz godine u godinu!!!!");
+                                MessageBox.Show("NIJE DOZVOLJENO PREMESTANJE dokumenta iz godine u godinu!!!!");
                                 break;
                             }
                             break;
@@ -413,7 +413,7 @@ namespace Bankom.Class
             string DokumentJe = Convert.ToString(((Bankom.frmChield)forma).DokumentJe);
             Vrati = true;
             if (DokumentJe == "P") return (Vrati);
-            if (Dokument =="Artikli") return (Vrati);
+            //if (Dokument =="Artikli") return (Vrati);
             char[] separators = { ',' };
             string sql = "";          
             clsObradaOsnovnihSifarnika coo = new clsObradaOsnovnihSifarnika();
@@ -1299,7 +1299,8 @@ namespace Bankom.Class
                     if (Convert.ToInt32(ids) == 85) { }/// TUDJA ROBA NA SKLADISTU U OBRENOVCU
                     else
                     {
-                        sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja=" + nazivpolja + "' And NazivSkl='" + nazivskl + "'";
+                        // Jovana 04.12.20
+                        sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpolja + "' And NazivSkl='" + nazivskl + "'";
                         t = db.ReturnDataTable(sql);
                         if (t.Rows.Count == 0)
                         {
