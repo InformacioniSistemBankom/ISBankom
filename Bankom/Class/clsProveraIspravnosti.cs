@@ -1299,7 +1299,8 @@ namespace Bankom.Class
                     if (Convert.ToInt32(ids) == 85) { }/// TUDJA ROBA NA SKLADISTU U OBRENOVCU
                     else
                     {
-                        sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja=" + nazivpolja + "' And NazivSkl='" + nazivskl + "'";
+                        // Jovana 04.12.20
+                        sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpolja + "' And NazivSkl='" + nazivskl + "'";
                         t = db.ReturnDataTable(sql);
                         if (t.Rows.Count == 0)
                         {
