@@ -1177,9 +1177,9 @@ namespace Bankom
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.flowLayoutPanel1.Controls.Add(this.menuStrip1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 68);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 43);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 713);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 738);
             this.flowLayoutPanel1.TabIndex = 40;
             // 
             // menuStrip1

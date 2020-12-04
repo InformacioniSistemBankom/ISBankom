@@ -626,7 +626,7 @@ namespace Bankom
                 }
             }
 
-          SrediFormu();
+         SrediFormu();
 
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
@@ -640,7 +640,7 @@ namespace Bankom
                         {
                             childForm.FormBorderStyle = FormBorderStyle.None;
                             childForm.BackColor = System.Drawing.Color.Snow;
-                            childForm.Focus();
+                            //childForm.Focus();
                             childForm.Activate();
                             //this.ActivateMdiChild(childForm);
                             childForm.LayoutMdi(MdiLayout.TileVertical);
@@ -694,6 +694,9 @@ namespace Bankom
                 toolStrip1.Visible = false;
             }
         }
+
+
+
         public void itemB_click(object sender, EventArgs e)  // zahtev za zatvaranje forme klikom na tab
         {
             toolStripTextBox1.Text = "";
@@ -736,7 +739,11 @@ namespace Bankom
             {
                 toolStrip1.Visible = false;
             }
+            //04.12.2020.
+            SrediFormu();
         }
+
+
         private void toolStripLogin_Click(object sender, EventArgs e)
         {
             toolStrip1.Items.Clear();
