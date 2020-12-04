@@ -104,7 +104,7 @@ namespace Bankom.Class
                             if (DatumDokumenta.Year != Convert.ToDateTime(forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "Datum").Vrednost).Year)
                             {
                                 Vrati = false;
-                                MessageBox.Show("NIJE DOZVOLJENO PREMESTANJE dokument iz godine u godinu!!!!");
+                                MessageBox.Show("NIJE DOZVOLJENO PREMESTANJE dokumenta iz godine u godinu!!!!");
                                 break;
                             }
                             break;
