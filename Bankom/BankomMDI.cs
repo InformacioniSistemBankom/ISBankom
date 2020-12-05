@@ -3098,12 +3098,13 @@ namespace Bankom
 
         public void SrediFormu()
         {
-            flowLayoutPanel1.Width = 161;
+           // flowLayoutPanel1.Width = 161;
 
 
             flowLayoutPanel1.Width = 162;
             flowLayoutPanel1.Width = 0;
-            button1.Location = new Point(0, 301);
+           
+            button1.Location = new Point(0, 73);
 
         }
 
@@ -3115,13 +3116,13 @@ namespace Bankom
             {
                 flowLayoutPanel1.Width = 0;
 
-                button1.Location = new Point(0, 301);
+                button1.Location = new Point(0, 73);
             }
             else
             {
                 flowLayoutPanel1.Width = 162;
-
-                button1.Location = new Point(159, 301);
+           
+                button1.Location = new Point(159, 73);
             }
         }
 
