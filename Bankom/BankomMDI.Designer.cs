@@ -712,7 +712,8 @@ namespace Bankom
             this.KrajRada.Name = "KrajRada";
             this.KrajRada.Size = new System.Drawing.Size(53, 20);
             this.KrajRada.Text = "Kraj rada";
-            this.KrajRada.Click += new System.EventHandler(this.toolStripKrajRada_Click);
+            //4.12.2020.
+            //this.KrajRada.Click += new System.EventHandler(this.toolStripKrajRada_Click);
             // 
             // ToolBar
             // 
@@ -1177,9 +1178,9 @@ namespace Bankom
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.flowLayoutPanel1.Controls.Add(this.menuStrip1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 68);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 43);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 713);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 738);
             this.flowLayoutPanel1.TabIndex = 40;
             // 
             // menuStrip1
@@ -1233,9 +1234,9 @@ namespace Bankom
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(159, 301);
+            this.button1.Location = new System.Drawing.Point(159, 73);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 29);
+            this.button1.Size = new System.Drawing.Size(20, 29);
             this.button1.TabIndex = 42;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
