@@ -445,7 +445,7 @@ namespace Bankom.Class
                 {
 
                     //string.Format("{0:dd.MM.yy}", System.DateTime.Now.ToString());
-
+                    // Jovana 04.12.20 Nije napunjena kad su Dokumenta . MEni je logicnije da tu bude false
                     if (form1.Controls["lDatum"].Text.Trim() == "")
                     {
                         //provera = false;
