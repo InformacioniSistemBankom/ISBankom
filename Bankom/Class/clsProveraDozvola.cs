@@ -421,14 +421,20 @@ namespace Bankom.Class
                                 provera = true;
                             }
                         }
-                        else                                 //nije nalogglavneknjige i nije obracunkredita a dokument se odnosi na predhodne godine
+                        else                                 //nije nalogglavneknjige i nije obracunkredita a dokument se odnosi za predhodne godine
                         {
+                            //07.12.20. zajedno
                             if (dokument == "Dokumenta" || DokumentJe == "D")
+                            {
                                 form1.Controls["Ooperacija"].Text = "";
+                            }
+                            else
+                            {
+                                provera = false;
+                            }
                             ZakljucenaGodina = true;
-                            provera = false;
                         }
-                        if (form1.Controls["Ooperacija"].Text != "")
+                        if (form1.Controls["Ooperacija"].Text.Trim() != "")
                         {
                             form1.Controls["Ooperacija"].Text = "";
                             provera = false;

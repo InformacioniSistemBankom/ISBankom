@@ -2294,19 +2294,19 @@ namespace Bankom
                 }
             }
         }
+        //4.12.2020.
+        //private void toolStripKrajRada_Click(object sender, EventArgs e)
+        //{
+        //    if (MessageBox.Show("Izlaz iz programa ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+        //    {
+        //        Application.Exit();
+        //    }
+        //}
 
-        private void toolStripKrajRada_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Izlaz iz programa ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
-        }
+        //private void toolStripLogin_Click_1(object sender, EventArgs e)
+        //{
 
-        private void toolStripLogin_Click_1(object sender, EventArgs e)
-        {
-
-        }
+        //}
 
         private void Ddokum_Click(object sender, EventArgs e)
         {
@@ -3187,8 +3187,7 @@ namespace Bankom
 
             if (MessageBox.Show("Da li ste sigurni da želite da zatvorite program?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Cancel)
             {
-
-                e.Cancel = true;
+               e.Cancel = true;
             }
             else
             {
