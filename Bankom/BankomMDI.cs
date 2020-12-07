@@ -1848,10 +1848,11 @@ namespace Bankom
         {
             //Daj mi aktivnu child formu
             Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+            
             //Popuni text u kontroli OOperacija sa "PREGLED" na aktivnoj child formi
             if (activeChild != null)
             {
+                activeChild.FormBorderStyle = FormBorderStyle.None;
                 if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
                 activeChild.Controls["OOperacija"].Text = "PREGLED";
                 filter = "S";
@@ -1862,20 +1863,17 @@ namespace Bankom
             }
             else
             {
-                MessageBox.Show("Nemate aktivnu formu");
+               MessageBox.Show("Nemate aktivnu formu");
             }
         }
 
         private void Pprekid_Click(object sender, EventArgs e)
         {
-            //tamara 23.10.2020.
-
-
-
             Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+           
             if (activeChild != null)
             {
+                activeChild.FormBorderStyle = FormBorderStyle.None;
                 if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
                 clsRefreshForm rf = new clsRefreshForm();
                 rf.refreshform();
@@ -1908,7 +1906,7 @@ namespace Bankom
         {
             //Daj mi aktivnu child formu
             Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+           
             //Popuni text u kontroli OOperacija sa "STORNO" na aktivnoj child formi
             if (activeChild == null)
             {
@@ -1916,6 +1914,7 @@ namespace Bankom
             }
             else
             {
+                activeChild.FormBorderStyle = FormBorderStyle.None;
                 activeChild.Controls["OOperacija"].Text = "STORNO";
             }
 
@@ -3226,17 +3225,17 @@ namespace Bankom
         }
 
         private void Ppotvrda_Click_1(object sender, EventArgs e)
-        {
-            
-           
+        {           
             Form forma = this.ActiveMdiChild;
 
             Boolean vrati = new Boolean();
             if (forma == null)
             {
                 MessageBox.Show("Nemate aktivnu formu!");
+                vrati = false;
+                return;
             }
-
+       
             if (forma.Controls["OOperacija"].Text.Trim() == "" && ((Bankom.frmChield)forma).DokumentJe != "I")
             {
                 MessageBox.Show("Niste odabrali operaciju!");
