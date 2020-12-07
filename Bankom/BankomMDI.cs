@@ -640,7 +640,7 @@ namespace Bankom
                         {
                             childForm.FormBorderStyle = FormBorderStyle.None;
                             childForm.BackColor = System.Drawing.Color.Snow;
-                            //childForm.Focus();
+                            childForm.Focus();
                             childForm.Activate();
                             //this.ActivateMdiChild(childForm);
                             childForm.LayoutMdi(MdiLayout.TileVertical);
