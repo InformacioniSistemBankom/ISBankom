@@ -479,11 +479,7 @@ namespace Bankom
                     }
 
                 }
-                else
-                {
-                    pictureBox1.Image = global::Bankom.Properties.Resources.login;
-                    pictureBox1.Refresh();
-                }
+                
 
 
 
