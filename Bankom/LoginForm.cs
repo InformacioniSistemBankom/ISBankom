@@ -370,12 +370,11 @@ namespace Bankom
                                 indexCurrentbaza = k;
                                 strCurrentbaza = result[n].Substring(result[n].IndexOf("=") + 1);
                             }
-
+                            
 
                             aliasDatabase.Add(result[n].Substring(result[n].IndexOf("-") + 1), result[n].Substring(result[n].IndexOf("=") + 1, result[n].IndexOf("-") - result[n].IndexOf("=") - 1));
                             cmbBaze.Items.Add(result[n].Substring(result[n].IndexOf("-") + 1));
-
-
+                            
 
                         }
 
@@ -519,147 +518,153 @@ namespace Bankom
 
         private void OK_Click(object sender, EventArgs e)
         {
-            //tamara 21.10.2020.
-
-
-            Program.ID_Jezik = VratiJezik();
-            //Djora 26.09.20
-            int standardHeight = 1080; // 600;  //900
-            int standardWidth = 1920; // 800;  //1440
-
-            int presentHeight = Screen.PrimaryScreen.Bounds.Height;//.Bounds.Height;
-            int presentWidth = Screen.PrimaryScreen.Bounds.Width;
-            float heightRatio = (float)((float)presentHeight / (float)standardHeight);
-            float widthRatio = (float)((float)presentWidth / (float)standardWidth);
-
-            Program.RacioWith = (float)widthRatio;
-            Program.RacioHeight = (float)heightRatio;
-
-
-            string ImeKorisnika = "";
-            string PassKorisnika = "";
-
-            string n = UsernameTextBox.Text;
-            lblBaza.Text = "";
-            lblGrupa.Text = "";
-
-            if (n.Length == 0)
+            if (CmbOrg.SelectedIndex == 0)
             {
-                MessageBox.Show("Polje korisničko ime je prazno.");
-
-                return;
+                MessageBox.Show("Morate odabrati grupu.");
             }
-            n = PasswordTextBox.Text;
-            if (n.Length == 0)
+            else
             {
-                MessageBox.Show("Polje za lozinku je prazno.");
-                return;
-            }
-            using (SqlConnection cnn = new SqlConnection(connectionString))
-            {
-                if (cnn.State == ConnectionState.Closed) { cnn.Open(); }
+                //tamara 21.10.2020.
 
-                string str = " select  suser,Pass,ID_KadrovskaEvidencija,SifRadnika from KadrovskaEvidencija WITH (NOLOCK) where SUSER = @username and id_kadrovskaevidencija <> 1 	";
+                Program.ID_Jezik = VratiJezik();
+                //Djora 26.09.20
+                int standardHeight = 1080; // 600;  //900
+                int standardWidth = 1920; // 800;  //1440
 
-                var usernameParam = new SqlParameter("username", SqlDbType.NVarChar) { Value = UsernameTextBox.Text.Trim() };
+                int presentHeight = Screen.PrimaryScreen.Bounds.Height;//.Bounds.Height;
+                int presentWidth = Screen.PrimaryScreen.Bounds.Width;
+                float heightRatio = (float)((float)presentHeight / (float)standardHeight);
+                float widthRatio = (float)((float)presentWidth / (float)standardWidth);
+
+                Program.RacioWith = (float)widthRatio;
+                Program.RacioHeight = (float)heightRatio;
 
 
-                var cmd = new SqlCommand
+                string ImeKorisnika = "";
+                string PassKorisnika = "";
+
+                string n = UsernameTextBox.Text;
+                lblBaza.Text = "";
+                lblGrupa.Text = "";
+
+                if (n.Length == 0)
                 {
-                    CommandText = str,
-                    Connection = cnn
-                };
-                cmd.Parameters.Add(usernameParam);
+                    MessageBox.Show("Polje korisničko ime je prazno.");
 
-
-                SqlDataReader rdr = cmd.ExecuteReader();
-                if (rdr.Read())
-                {
-                    ImeKorisnika = Convert.ToString(rdr[0]);
-                    PassKorisnika = Convert.ToString(rdr[1]);
-                    Program.idkadar = Convert.ToInt32(rdr[2]);
-                    Program.SifRadnika = Convert.ToString(rdr[3]);
+                    return;
                 }
-                else
+                n = PasswordTextBox.Text;
+                if (n.Length == 0)
+                {
+                    MessageBox.Show("Polje za lozinku je prazno.");
+                    return;
+                }
+                using (SqlConnection cnn = new SqlConnection(connectionString))
+                {
+                    if (cnn.State == ConnectionState.Closed) { cnn.Open(); }
+
+                    string str = " select  suser,Pass,ID_KadrovskaEvidencija,SifRadnika from KadrovskaEvidencija WITH (NOLOCK) where SUSER = @username and id_kadrovskaevidencija <> 1 	";
+
+                    var usernameParam = new SqlParameter("username", SqlDbType.NVarChar) { Value = UsernameTextBox.Text.Trim() };
+
+
+                    var cmd = new SqlCommand
+                    {
+                        CommandText = str,
+                        Connection = cnn
+                    };
+                    cmd.Parameters.Add(usernameParam);
+
+
+                    SqlDataReader rdr = cmd.ExecuteReader();
+                    if (rdr.Read())
+                    {
+                        ImeKorisnika = Convert.ToString(rdr[0]);
+                        PassKorisnika = Convert.ToString(rdr[1]);
+                        Program.idkadar = Convert.ToInt32(rdr[2]);
+                        Program.SifRadnika = Convert.ToString(rdr[3]);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Pogrešno korisničko ime.");
+                        lblBaza.Visible = false;
+                        cmbBaze.Visible = false;
+                        lblGrupa.Visible = false;
+                        CmbOrg.Visible = false;
+                        rdr.Close();
+                        cmd.Dispose();
+                        cnn.Close();
+                        return;
+                    }
+
+                    rdr.Close();
+                    cmd.Dispose();
+
+                    string strOrgDeo = "select o.ID_OrganizacionaStruktura,o.ID_OrganizacionaStrukturaStablo,os.Naziv  ";
+                    strOrgDeo += " from OrganizacionaStruktura as o WITH(NOLOCK) ,organizacionastrukturastablo os WITH(NOLOCK) ";
+                    strOrgDeo += "  where o.Naziv = '" + CmbOrg.Text + "' and o.ID_OrganizacionaStrukturaStablo=os.ID_OrganizacionaStrukturaStablo   ;";
+
+                    DataSet ds = new DataSet();
+
+                    ds = DB.ReturnDS(strOrgDeo);
+                    DataView dv = ds.Tables[0].DefaultView;
+
+                    Program.imeFirme = dv[0]["Naziv"].ToString();
+                    Program.idOrgDeo = Convert.ToInt32(dv[0]["ID_OrganizacionaStruktura"]);
+                    Program.idFirme = Convert.ToInt32(dv[0]["ID_OrganizacionaStrukturaStablo"]);
+
+
+
+
+                    cnn.Close();
+
+                }
+
+                if (UsernameTextBox.Text != ImeKorisnika)
                 {
                     MessageBox.Show("Pogrešno korisničko ime.");
                     lblBaza.Visible = false;
                     cmbBaze.Visible = false;
                     lblGrupa.Visible = false;
                     CmbOrg.Visible = false;
-                    rdr.Close();
-                    cmd.Dispose();
-                    cnn.Close();
+                    UsernameTextBox.Text = "";
                     return;
                 }
 
-                rdr.Close();
-                cmd.Dispose();
-
-                string strOrgDeo = "select o.ID_OrganizacionaStruktura,o.ID_OrganizacionaStrukturaStablo,os.Naziv  ";
-                strOrgDeo += " from OrganizacionaStruktura as o WITH(NOLOCK) ,organizacionastrukturastablo os WITH(NOLOCK) ";
-                strOrgDeo += "  where o.Naziv = '" + CmbOrg.Text + "' and o.ID_OrganizacionaStrukturaStablo=os.ID_OrganizacionaStrukturaStablo   ;";
-
-                DataSet ds = new DataSet();
-
-                ds = DB.ReturnDS(strOrgDeo);
-                DataView dv = ds.Tables[0].DefaultView;
-
-                Program.imeFirme = dv[0]["Naziv"].ToString();
-                Program.idOrgDeo = Convert.ToInt32(dv[0]["ID_OrganizacionaStruktura"]);
-                Program.idFirme = Convert.ToInt32(dv[0]["ID_OrganizacionaStrukturaStablo"]);
-               
 
 
 
-                cnn.Close();
+                bool result = PasswordTextBox.Text.Equals(PassKorisnika);
+                if (result == false)
+                {
+                    MessageBox.Show("Pogrešna lozinka.");
+                    PasswordTextBox.Text = "";
+                    return;
+                }
+
+                Program.imekorisnika = ImeKorisnika;
+                Program.IntLogovanje = 1;
+                Hide();
+
+                Program.Parent.Text = Program.imeFirme + "-" + Program.imekorisnika;
+                Close();
+
+                int godina = DateTime.Now.Year;
+                string ssel = " Select DatumPocetkaObrade  from ZakljucenjeKnjiga WITH(NOLOCK) "
+                              + " where GodinaZakljucenja=" + (godina - 1).ToString() + " and id_firma =1 ";
+                DataBaseBroker dk = new DataBaseBroker();
+                DataTable tk = new DataTable();
+                tk = dk.ReturnDataTable(ssel);
+                if (tk.Rows.Count > 0)
+                {
+                    Program.kDatum = Convert.ToDateTime(tk.Rows[0]["DatumPocetkaObrade"]);
+                }
+                else
+                {
+                    Program.kDatum = Convert.ToDateTime("01.01." + (godina - 1).ToString());
+                }
 
             }
-
-            if (UsernameTextBox.Text != ImeKorisnika)
-            {
-                MessageBox.Show("Pogrešno korisničko ime.");
-                lblBaza.Visible = false;
-                cmbBaze.Visible = false;
-                lblGrupa.Visible = false;
-                CmbOrg.Visible = false;
-                UsernameTextBox.Text = "";
-                return;
-            }
-
-
-
-
-            bool result = PasswordTextBox.Text.Equals(PassKorisnika);
-            if (result == false)
-            {
-                MessageBox.Show("Pogrešna lozinka.");
-                PasswordTextBox.Text = "";
-                return;
-            }
-
-            Program.imekorisnika = ImeKorisnika;
-            Program.IntLogovanje = 1;
-            Hide();
-           
-            Program.Parent.Text = Program.imeFirme + "-" + Program.imekorisnika;
-            Close();
-
-            int godina = DateTime.Now.Year;
-            string ssel = " Select DatumPocetkaObrade  from ZakljucenjeKnjiga WITH(NOLOCK) "
-                          + " where GodinaZakljucenja=" + (godina - 1).ToString() + " and id_firma =1 ";
-            DataBaseBroker dk = new DataBaseBroker();
-            DataTable tk = new DataTable();
-            tk = dk.ReturnDataTable(ssel);
-            if (tk.Rows.Count > 0)
-            {
-                Program.kDatum = Convert.ToDateTime(tk.Rows[0]["DatumPocetkaObrade"]);
-            }
-            else
-            {
-                Program.kDatum = Convert.ToDateTime("01.01." + (godina - 1).ToString());
-            }
-
         }
 
 
@@ -691,10 +696,12 @@ namespace Bankom
             {
                 if (aliasDatabase[cmbBaze.SelectedItem.ToString()] == Convert.ToString(dv[x][0]))
                 {
-                    strimebaze = Convert.ToString(dv[x][0]); Program.NazivBaze = strimebaze; break;
-              }
+                    strimebaze = Convert.ToString(dv[x][0]);
+                    Program.NazivBaze = strimebaze;
+                    break;
+                }
             }
-
+            //cnn.Close();
             if (strimebaze == "")
             {
                 MessageBox.Show("Ne postoji izabrana baza", "info");
@@ -716,10 +723,10 @@ namespace Bankom
 
                     if (dataTable.Rows[i][0].ToString() == strOrgDefaultText)
                         indexOrgDefault = i;
-                 if (dataTable.Rows[i][0].ToString() != "")
-                       CmbOrg.Items.Add(dataTable.Rows[i][0].ToString());
+                    if (dataTable.Rows[i][0].ToString() != "")
+                        CmbOrg.Items.Add(dataTable.Rows[i][0].ToString());
 
-               }
+                }
 
                 if (cmbBaze.SelectedItem.ToString() == strCurrentbaza) CmbOrg.SelectedIndex = indexOrgDefault;
                 else CmbOrg.SelectedIndex = 0;
