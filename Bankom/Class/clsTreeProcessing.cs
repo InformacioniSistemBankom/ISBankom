@@ -185,12 +185,12 @@ namespace Bankom.Class
         }
         public void SrediFormu()
         {
-          Program.Parent.flowLayoutPanel1.Width = 161;
+          //Program.Parent.flowLayoutPanel1.Width = 161;
 
 
             Program.Parent.flowLayoutPanel1.Width = 162;
             Program.Parent.flowLayoutPanel1.Width = 0;
-            Program.Parent.button1.Location = new Point(0, 301);
+            Program.Parent.button1.Location = new Point(0, 73);
 
         }
 

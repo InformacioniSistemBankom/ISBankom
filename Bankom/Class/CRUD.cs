@@ -215,19 +215,20 @@ namespace Bankom.Class
                         sql = "EXECUTE TotaliZaDokument " + NazivKlona + "," + "'tttt'";
                     }
                     else // nije unos
-                        if (NazivKlona == "Artikli" || NazivKlona == "Komitenti") { }
-                    else
-                        sql = "Execute TotaliZaDokument'" + NazivKlona + "'," + iddok.ToString();
-                }
-                else // nije "S"
-                {
-                    if ((NazivKlona == "Artikli" || NazivKlona == "Komitenti") && operacija == "IZMENA") { }
+                        if ((NazivKlona == "Artikli" || NazivKlona == "Komitenti") && (operacija == "IZMENA")) { }
                     else
                     {
-                        sql = "Execute TotaliZaDokument '" + NazivKlona + "', " + iddok.ToString();
+                        sql = "Execute TotaliZaDokument'" + NazivKlona + "'," + iddok.ToString();
                         lista.Add(new string[] { sql, "", "", "", "" });
                         lista.ToArray();
                     }
+                }
+                else // nije "S"
+                {                    
+                        sql = "Execute TotaliZaDokument '" + NazivKlona + "', " + iddok.ToString();
+                        lista.Add(new string[] { sql, "", "", "", "" });
+                        lista.ToArray();
+                    
                 }
             }
 
