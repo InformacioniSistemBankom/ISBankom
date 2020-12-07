@@ -10,8 +10,8 @@ namespace Bankom.Class
     {
         public void ToolBarItemsEnDis()
         {
-            Form form1 = new Form();
-            form1 = Program.Parent.ActiveMdiChild;
+            Form form1 = Program.Parent.ActiveMdiChild;
+            //form1 = Program.Parent.ActiveMdiChild;
             {
                 for (int h = 0; h < Program.Parent.ToolBar.Items.Count; h++)
                 {
@@ -26,7 +26,7 @@ namespace Bankom.Class
                         case "Pprekid":
                         case "Ppregled":
                         case "Mmagacin":
-                        case "Sstorno":
+                        case "toolStripTextBox1":         
                             Program.Parent.ToolBar.Items[h].Enabled = true;
                             break;
                         case "Sstampa":                           
