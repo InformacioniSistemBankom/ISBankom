@@ -124,20 +124,20 @@ namespace Bankom.Class
                     }
                 } // KRAJ(DokumentJe == "S" && dokument == "Dokumenta")
 
-                //if (td.Rows[0]["izmena"].ToString() == "1")
-                //    Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
-                //else
-                //    Program.Parent.ToolBar.Items["Iizmena"].Enabled = false;
+                if (td.Rows[0]["izmena"].ToString() == "1")
+                    Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
+                else
+                    Program.Parent.ToolBar.Items["Iizmena"].Enabled = false;
 
-                //if (td.Rows[0]["unos"].ToString() == "1")
-                //    Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
-                //else
-                //    Program.Parent.ToolBar.Items["Uunos"].Enabled = false;
+                if (td.Rows[0]["unos"].ToString() == "1")
+                    Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
+                else
+                    Program.Parent.ToolBar.Items["Uunos"].Enabled = false;
 
-                //if (td.Rows[0]["Brisanje"].ToString() == "1")
-                //    Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = true;
-                //else
-                //    Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = false;
+                if (td.Rows[0]["Brisanje"].ToString() == "1")
+                    Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = true;
+                else
+                    Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = false;
 
                 if ((SStatus.IndexOf("tvaranje") > 0) || (idstablo == "24"))
                 {
