@@ -713,7 +713,8 @@ namespace Bankom
             this.KrajRada.Name = "KrajRada";
             this.KrajRada.Size = new System.Drawing.Size(53, 20);
             this.KrajRada.Text = "Kraj rada";
-            this.KrajRada.Click += new System.EventHandler(this.toolStripKrajRada_Click);
+            //4.12.2020.
+            //this.KrajRada.Click += new System.EventHandler(this.toolStripKrajRada_Click);
             // 
             // ToolBar
             // 
