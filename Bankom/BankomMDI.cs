@@ -3234,6 +3234,7 @@ namespace Bankom
                 vrati = false;
                 return;
             }
+            // Jovana 08.12.20
             if (forma.Controls["OOperacija"].Text.Trim() != "UNOS" && forma.Controls["OOperacija"].Text.Trim() != "" && forma.Controls["OOperacija"].Text.Trim() != "PREGLED")
             {
                 if (((Bankom.frmChield)forma).idReda<2 && ((Bankom.frmChield)forma).DokumentJe != "K")
@@ -3243,13 +3244,7 @@ namespace Bankom
                     return;
                 }
             }
-        //        If OperacijaDokumenta<> "Unos" And OperacijaDokumenta<> "" And OperacijaDokumenta<> "Pregled" Then
-        // If IdDokView < 2 And DokumentJe<> "K" Then
-        //   MsgBox "Niste oznacili slog za odabranu operaciju!"
-        //      fform.SetFocus
-        //      GoTo Izlaz
-        //   End If
-        //End If
+
             if (forma.Controls["OOperacija"].Text.Trim() == "" && ((Bankom.frmChield)forma).DokumentJe != "I")
             {
                 MessageBox.Show("Niste odabrali operaciju!");
