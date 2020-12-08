@@ -3198,7 +3198,17 @@ namespace Bankom
                 vrati = false;
                 return;
             }
-       
+            // Jovana 08.12.20
+            if (forma.Controls["OOperacija"].Text.Trim() != "UNOS" && forma.Controls["OOperacija"].Text.Trim() != "" && forma.Controls["OOperacija"].Text.Trim() != "PREGLED")
+            {
+                if (((Bankom.frmChield)forma).idReda<2 && ((Bankom.frmChield)forma).DokumentJe != "K")
+                {
+                    MessageBox.Show("Niste oznacili slog za odabranu operaciju!");
+                    vrati = false;
+                    return;
+                }
+            }
+
             if (forma.Controls["OOperacija"].Text.Trim() == "" && ((Bankom.frmChield)forma).DokumentJe != "I")
             {
                 MessageBox.Show("Niste odabrali operaciju!");

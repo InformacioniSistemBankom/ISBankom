@@ -220,7 +220,7 @@ namespace Bankom
             dataGridView1.DataSource = ds; // dataset
             dataGridView1.DataMember = "ExchangeRate";
 
-            db.ExecuteStoreProcedure("TotaliZaDokument", "NazivDokumentaokumenta", "IdDokument:" + IdDokView.ToString());
+            db.ExecuteStoreProcedure("TotaliZaDokument", "NazivDokumenta:Dokumenta", "IdDokument:" + IdDokView.ToString());
             db.ExecuteStoreProcedure("TotaliZaDokument", "NazivDokumenta:KursnaLista", "IdDokument:" + IdDokView.ToString());
 
         Kraj:;
