@@ -19,11 +19,7 @@ namespace Bankom.Class
     {
         //Djora 14.06.17
       public string connstring = Program.connectionString;///@"Server = ""bankomw""; Database =""Bankom""; User Id = ""sa""; Password = ""password"";";
-        //private string connstring = @"Server = ""Sql2016""; Database =""dbbbTestNew2003Bankom""; User Id = ""sa""; Password = ""password"";";
-
-        // public static string connstring = "Data Source=DESKTOP-540V69B; Initial Catalog = dbbbTestNew2003Bankom; User Id=sa;password=tanjug; ";
-        //zika
-        //kikivrati = db.ExecuteSqlTransaction(lista);
+        
         public DataTable ReturnDataTableWithParam(List<string[]> lista)
         {
             //listu cine dva inputa
