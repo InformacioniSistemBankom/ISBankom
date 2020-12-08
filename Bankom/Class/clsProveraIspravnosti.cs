@@ -41,8 +41,7 @@ namespace Bankom.Class
 
             forma = Program.Parent.ActiveMdiChild;
             string DokumentJe = Convert.ToString(((Bankom.frmChield)forma).DokumentJe);
-            Operacija = Convert.ToString(((Bankom.frmChield)forma).OOperacija.Text).ToUpper();
-            //string Dokument = dokument; Convert.ToString(((Bankom.frmChield)forma).imedokumenta);
+            Operacija = Convert.ToString(((Bankom.frmChield)forma).OOperacija.Text).ToUpper();            
             string IdDokView = Convert.ToString(((Bankom.frmChield)forma).iddokumenta);
             string IdDokumentStablo = Convert.ToString(((Bankom.frmChield)forma).idstablo);
             DateTime DatumDokumenta = DateTime.Now;
