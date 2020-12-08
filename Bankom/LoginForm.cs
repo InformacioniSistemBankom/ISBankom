@@ -426,6 +426,25 @@ namespace Bankom
 
 
                 }
+
+
+
+                //novo 08.12.2020. zajedno
+                CmbOrg.Items.Clear();
+                var query1 = "SELECT Naziv FROM OrganizacionaStruktura ";
+                var databaseBroker = new DataBaseBroker();
+                var dataTable1 = databaseBroker.ReturnDataTable(query1);
+                for (int i = 0; i < dataTable1.Rows.Count; i++)
+                {
+
+                    if (dataTable1.Rows[i][0].ToString() == strOrgDefaultText)
+                        indexOrgDefault = i;
+                    if (dataTable1.Rows[i][0].ToString() != "")
+                        CmbOrg.Items.Add(dataTable1.Rows[i][0].ToString());
+
+                }
+
+
                 Console.WriteLine(cmbBaze.Text);
                 Console.WriteLine(CmbOrg.Text);
                 DataSet IdOrg = DB.ReturnDS(
@@ -697,7 +716,7 @@ namespace Bankom
                     break;
                 }
             }
-            //cnn.Close();
+           
             if (strimebaze == "")
             {
                 MessageBox.Show("Ne postoji izabrana baza", "info");
