@@ -107,6 +107,12 @@ namespace Bankom.Class
                                 MessageBox.Show("NIJE DOZVOLJENO PREMESTANJE dokumenta iz godine u godinu!!!!");
                                 break;
                             }
+                            if (DatumDokumenta.Year <Program.kDatum.Year )
+                            {
+                                Vrati = false;
+                                MessageBox.Show("Dokument je iz godine  zakljucenih knjiga ne moze se menjati!!!!");
+                                break;
+                            }
                             break;
                         case "PDVUlazniRacunZaUsluge":
                         case "KonacniUlazniRacun":

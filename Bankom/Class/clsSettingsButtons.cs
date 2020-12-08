@@ -59,10 +59,7 @@ namespace Bankom.Class
                              }
 
                             break;
-
                     }
-
-
                 }
             }
         }

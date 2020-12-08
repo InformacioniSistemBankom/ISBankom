@@ -42,6 +42,7 @@ namespace Bankom
         {
             InitializeComponent();
             this.Activated += new EventHandler(frmChield_Activated);
+            //this.Activate += new EventHandler(frmChield_Activate);
             this.AutoScroll = true;
         }
         protected override void OnClosed(EventArgs e)
@@ -128,7 +129,7 @@ namespace Bankom
         }
         private void frmChield_Activated(object sender, EventArgs e)
         {
-            //jovana 29.10.20
+            //jovana 29.10.20frmChield_Activate
             //if (VrstaPrikaza != "TreeView" )
             //{              
                 Boolean provera = true;

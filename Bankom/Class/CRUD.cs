@@ -114,11 +114,14 @@ namespace Bankom.Class
                     case "UNOS":
                     case "IZMENA":
                         if (r == 0)
-                        { 
+                        {
                             // PROVERE ISPRAVNOSTI PODATAKA POCETAK
+                            clsProveraIspravnosti pi = new clsProveraIspravnosti();
+                            if (DokumentJe=="S" && NazivKlona=="Dokumenta")
+                                isDoIt = pi.ProveraOperacija(NazivKlona);
                             if (DokumentJe=="D")
                             {
-                                clsProveraIspravnosti pi = new clsProveraIspravnosti();
+                               
                                 isDoIt = pi.ProveraOperacija(NazivKlona);
                                 if ((DokumentJe == "S" && dokument == "Dokumenta" && IdDokumentaStablo != "61") || (DokumentJe == "D" && IdDokumentaStablo != "29" || (DokumentJe == "D" && IdDokumentaStablo != "290")))
                                 {
