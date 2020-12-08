@@ -3234,7 +3234,22 @@ namespace Bankom
                 vrati = false;
                 return;
             }
-       
+            if (forma.Controls["OOperacija"].Text.Trim() != "UNOS" && forma.Controls["OOperacija"].Text.Trim() != "" && forma.Controls["OOperacija"].Text.Trim() != "PREGLED")
+            {
+                if (((Bankom.frmChield)forma).idReda<2 && ((Bankom.frmChield)forma).DokumentJe != "K")
+                {
+                    MessageBox.Show("Niste oznacili slog za odabranu operaciju!");
+                    vrati = false;
+                    return;
+                }
+            }
+        //        If OperacijaDokumenta<> "Unos" And OperacijaDokumenta<> "" And OperacijaDokumenta<> "Pregled" Then
+        // If IdDokView < 2 And DokumentJe<> "K" Then
+        //   MsgBox "Niste oznacili slog za odabranu operaciju!"
+        //      fform.SetFocus
+        //      GoTo Izlaz
+        //   End If
+        //End If
             if (forma.Controls["OOperacija"].Text.Trim() == "" && ((Bankom.frmChield)forma).DokumentJe != "I")
             {
                 MessageBox.Show("Niste odabrali operaciju!");
