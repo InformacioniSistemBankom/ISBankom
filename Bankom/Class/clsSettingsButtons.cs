@@ -24,10 +24,18 @@ namespace Bankom.Class
                         case "Ccalc":
                         case "Ppotvrda":
                         case "Pprekid":
-                        case "Ppregled":
                         case "Mmagacin":
+                       
                         case "toolStripTextBox1":         
                             Program.Parent.ToolBar.Items[h].Enabled = true;
+                            break;
+                        case "Ssort":
+                            if (form1 != null)
+                            {
+                               
+                             if (Convert.ToString(((Bankom.frmChield)form1).VrstaPrikaza) != "TreeView" )
+                                    Program.Parent.ToolBar.Items[h].Enabled = true;
+                            }
                             break;
                         case "Sstampa":                           
                             if (form1 != null)
@@ -48,15 +56,15 @@ namespace Bankom.Class
                             }
                             break;
 
-                        case "Pregled":
+                        case "Ppregled":
                             Program.Parent.ToolBar.Items[h].Enabled = true;
                             if (form1 != null)
                             {
-                                if (form1.Controls["ldokje"].Text == "I")
-                                {
+                                if (form1.Controls["ldokje"].Text == "I")                                
                                     Program.Parent.ToolBar.Items[h].Enabled = false;
-                                }
-                             }
+                                else
+                                    Program.Parent.ToolBar.Items[h].Enabled = true;
+                            }
 
                             break;
                     }
