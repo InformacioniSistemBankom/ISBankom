@@ -39,16 +39,7 @@ namespace Bankom
             InitializeComponent();
         }
         public void ShowNewForm(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
-        {
-            Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = true;
-            Program.Parent.ToolBar.Items["Bbrisanje"].Visible = true;
-            Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
-            Program.Parent.ToolBar.Items["Iizmena"].Visible = true;
-            Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = true;
-            Program.Parent.ToolBar.Items["Ggrupisi"].Visible = true;
-            Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
-            Program.Parent.ToolBar.Items["Uunos"].Visible = true;
-
+        {            
             DataBaseBroker db = new DataBaseBroker();
             string ss = "";
             if (dokumentje == "D")
@@ -65,14 +56,7 @@ namespace Bankom
             {
 
                 frmChield childForm = new frmChield();
-
-
-                childForm.FormBorderStyle = FormBorderStyle.None;
-                childForm.BackColor = System.Drawing.Color.Snow;
                 childForm.MdiParent = this;
-                childForm.AutoScroll = true;
-                // childForm.BringToFront();
-
                 this.WindowState = FormWindowState.Maximized;
 
                 if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
@@ -91,14 +75,6 @@ namespace Bankom
                 childForm.toolStripTextBroj.Text = Convert.ToString(idstablo);
                 childForm.Text = ss;
                 childForm.Name = ss;
-                //childForm.Left = 380;
-                //childForm.Top = 300;
-
-                childForm.AutoScroll = false;
-                //childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
-                ////  childForm.WindowState = FormWindowState.Maximized;
-                //childForm.Width = this.Width - 20;
-
                 addFormTotoolstrip1(childForm, imedokumenta);
 
                 childForm.Show();
@@ -217,14 +193,6 @@ namespace Bankom
             toolStrip1.Items.Add(itemn);
             toolStrip1.Items.Add(itemB);
             toolStrip1.Items.Add(itemnsep);
-
-
-            for (int x = 0; x < toolStrip1.Items.Count; x++)
-            {
-                //toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Regular);
-            }
-
-            // itemn.Font = new Font(toolStripLogin.Font, FontStyle.Bold);
         }
 
 
@@ -716,11 +684,7 @@ namespace Bankom
             }
 
             Form childForm1 = ActiveMdiChild;
-            // BORKA 01.12.20 UMRTVLJENI REDOVI
-            //childForm1.FormBorderStyle = FormBorderStyle.None;
-            //childForm1.BackColor = System.Drawing.Color.Snow;
-            //childForm1.Focus();
-
+            
             childForm1.Dispose();
             //childForm1.Visible = false;
             
@@ -740,7 +704,7 @@ namespace Bankom
                 toolStrip1.Visible = false;
             }
             //04.12.2020.
-            SrediFormu();
+            SrediFormu(); // BORKA 08.12.20 DA LI JE POTREBNO
         }
 
 
