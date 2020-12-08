@@ -263,8 +263,7 @@ namespace Bankom.Class
                   
                     postoji = IsOpen(s);
                     if (postoji == false)
-                    {
-                       
+                    {                       
                         clsObradaOsnovnihSifarnika co0 = new clsObradaOsnovnihSifarnika();
                         mdi.ShowNewForm(s, 1, s, 1, "", "", slovo.ToString(), "", "TreeView");
                     }
