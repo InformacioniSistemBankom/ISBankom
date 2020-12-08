@@ -21,8 +21,8 @@ namespace Bankom.Class
             string sql = "Select Naziv,UlazniIzlazni as NazivDokumenta from SifarnikDokumenta  where Naziv=@param0";
             tt = db.ParamsQueryDT(sql, dokument);
             if (tt.Rows.Count > 0) { dokument = tt.Rows[0]["NazivDokumenta"].ToString(); }
-            Form form1 = new Form();
-            form1 = forma;
+            Form form1 = forma;  ///new Form();
+            //form1 = forma;
             if (Program.ID_Jezik == 0)
                 Program.ID_Jezik = 3;
             //string query = " SELECT RecnikPodatakaDjora.ID_RecnikPodataka AS ID, RecnikPodatakaDjora.levo, RecnikPodatakaDjora.vrh, RecnikPodatakaDjora.width, RecnikPodatakaDjora.height, "
