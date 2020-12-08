@@ -23,7 +23,7 @@ namespace Bankom.Class
         Boolean provera = false;
         Boolean ZakljucenaGodina = false;
         string pStatus = "1";           // status dokumenta 1=nije proknjizen
-
+        DataBaseBroker db = new DataBaseBroker();
         public Boolean ProveriDozvole(String pdokument, string pidstablo, string pIDDok, string pDokumentJe)
         {
             if (pdokument.Trim() == "")
@@ -41,7 +41,7 @@ namespace Bankom.Class
             idstablo = pidstablo;
             IDDok = pIDDok;
             DokumentJe = pDokumentJe;
-            DataBaseBroker db = new DataBaseBroker();
+            //DataBaseBroker db = new DataBaseBroker();
 
             if (DokumentJe == "D" || dokument == "Dokumenta")
             {
@@ -171,15 +171,11 @@ namespace Bankom.Class
                     {
                         Program.Parent.ToolBar.Items["Oodobri"].Visible = false;
                         Program.Parent.ToolBar.Items["OOdobri"].Enabled = false;
-                        //Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
-                        // Program.Parent.ToolBar.Items["Ssort"].Visible = true;
                     }
                     else                                      ///KORISNIK IMA PRAVO DA MENJA STATUS DOKUMENTA OMOGUCAVAMO BUTTON ZA PROMENU STATUSA
                     {
                         Program.Parent.ToolBar.Items["Oodobri"].Visible = true;
                         Program.Parent.ToolBar.Items["OOdobri"].Enabled = true;
-                        // Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
-                        //  Program.Parent.ToolBar.Items["Ssort"].Visible = true;
                     }
                 }
                 else  ////'STATUS JESTE PROKNJIZEN
@@ -207,8 +203,6 @@ namespace Bankom.Class
                             Program.Parent.ToolBar.Items["Iizmena"].Enabled = false;
                             Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = false;
                             Program.Parent.ToolBar.Items["Uunos"].Enabled = false;
-                            // Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
-                            // Program.Parent.ToolBar.Items["Ssort"].Visible = true;
                         }
                     }
                 }
@@ -222,15 +216,11 @@ namespace Bankom.Class
                             {
                                 Program.Parent.ToolBar.Items["Pplati"].Visible = true;
                                 Program.Parent.ToolBar.Items["Pplati"].Enabled = true;
-                                // Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
-                                //  Program.Parent.ToolBar.Items["Ssort"].Visible = true;
                             }
                             else
                             {
                                 Program.Parent.ToolBar.Items["Pplati"].Visible = false;
                                 Program.Parent.ToolBar.Items["Pplati"].Enabled = false;
-                                //  Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
-                                //  Program.Parent.ToolBar.Items["Ssort"].Visible = true;
                             }
                             break;
                         case "PDVPredracun":
@@ -447,59 +437,70 @@ namespace Bankom.Class
                 }  //KRAJ Operacijadokumenta<>"Pregled"      
 
 
-                //IzmeneDisableEnablePolja(dokument, DokumentJe);
-
-                //Program.Parent.ToolBar.Refresh;
+                IzmeneDisableEnablePolja(dokument, DokumentJe);
+               
 
                 return provera;
             }
             return provera;
         }
-        
+
         ///prekidac za CommandButton-e ToolBar-a, ona sto su bila Enabled postaju Disabled, i obrnuto
-        public void IzmeneDisableEnablePolja(string dokument,string dokumentje )
+        public void IzmeneDisableEnablePolja(string dokument, string dokumentje)
         {
             //   Dim rstStablo As ADODB.Recordset
             //     Dim ImePolja As String
+            DataTable rt = new DataTable();
+            string sel = "";
+            if (DokumentJe == "D" || DokumentJe == "S")    // ima smisla samo za dokumenta i sifarnik dokumenata
+            {
+                sel = "Select * FROM RecnikPodataka where TabIndex> -1 and Dokument=@param0";
+                rt = db.ParamsQueryDT(sel, dokument);
+                for( int i=0; i<rt.Rows.Count;i++)
+                {
+                    Console.WriteLine(rt.Rows[i]["Polje"].ToString());
+                    Console.WriteLine(rt.Rows[i]["Zoom"].ToString());
+                    if (rt.Rows[i]["Polje"].ToString().Contains("ID_") == false)
+                    {
+                        Field kontrola = (Field)Program.Parent.ActiveMdiChild.Controls[rt.Rows[i]["Polje"].ToString()]; //  uzimamo kontrolu na formi     
+                        if (kontrola !=null)
+                        {
+                            if (rt.Rows[i]["Zoom"].ToString() == "True" && ZakljucenaGodina == false)
+                            {
+                                kontrola.Enabled = true;
+                                if (Program.Parent.ToolBar.Items["Iizmena"].Enabled == false)
+                                    Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
+                                if (Program.Parent.ActiveMdiChild.Controls["Ooperacija"].Text == "Pregled")
+                                {
+                                    kontrola.Enabled = true;
+                                    kontrola.TabStop = true;
+                                }
+                            }
+                            if (rt.Rows[0]["Izborno"] != null)
+                            {
+                                //kontrola.Visible = false;
+                                //                   fform.Controls("ct" + Trim(rstStablo!PPolje)).Move rstStablo!levo * pOfset, rstStablo!vrh * pOfsety, rstStablo!Width * pOfset, rstStablo!Height * pOfsety
+                                //                   fform.Controls("ct" + Trim(rstStablo!PPolje)).Izborno = rstStablo!Izborno
+                                //                   fform.Controls("ct" + Trim(rstStablo!PPolje)).Visible = True
+                            }
+                            else
+                            {
+                                if (pStatus == "0") // dokument je proknjizen
+                                    kontrola.Enabled = false; //'Not Not fform.Controls(ImePolja).EnDis ' vvvvvvvvvvvvvv
+                                else                  // dokument nije proknjizen
+                                {
+                                    if (rt.Rows[0]["StornoiUpdate"].ToString() == "D")
+                                        kontrola.Enabled = false;
+                                    else
+                                        kontrola.Enabled = true;
+                                }
+                            }
+                        }
+                    }
+                }
 
-            //     If DokumentJe = "D" || DokumentJe = "S" Then    // ima smisla samo za dokumenta i sifarnik dokumenata
-            //        Set rstStablo = RsRecnikPodataka
-            //        rstStablo.filter = "  TabIndex> -1 and Dokument = '" + Dokument + "'"
-            //        While Not rstStablo.EOF
-            //              If InStr(rstStablo!PPolje, "ID_") = 0 Then
-            //                 If rstStablo!Zoom And ZakljucenaGodina = False Then
-            //                    fform.Controls("ct" + rstStablo!PPolje).EnDis = True
-            //                    If frmMain.Toolbar2.Buttons("cmdIzmena").Enabled = False Then frmMain.Toolbar2.Buttons("cmdIzmena").Enabled = True
-            //                 Else
-            //                     If form1.Controls["Ooperacija"].Text == "Pregled" Then
-            //                        fform.Controls("ct" + rstStablo!PPolje).EnDis = True
-            //                        fform.Controls("ct" + Trim(rstStablo!PPolje)).TabStop = True
-
-            //                        If Not IsNull(rstStablo!Izborno) Then
-            //                           fform.Controls("ct" + Trim(rstStablo!PPolje)).Visible = False
-            //                           fform.Controls("ct" + Trim(rstStablo!PPolje)).Move rstStablo!levo* pOfset, rstStablo!vrh* pOfsety, rstStablo!Width* pOfset, rstStablo!Height* pOfsety
-            //                           fform.Controls("ct" + Trim(rstStablo!PPolje)).Izborno = rstStablo!Izborno
-            //                           fform.Controls("ct" + Trim(rstStablo!PPolje)).Visible = True
-            //                        End If
-            //                     Else
-            //                         If pStatus = "0" Then // dokument je proknjizen
-            //                            fform.Controls("ct" + rstStablo!PPolje).EnDis = False 'Not Not fform.Controls(ImePolja).EnDis ' vvvvvvvvvvvvvv
-            //                         Else                  // dokument nije proknjizen
-            //                             If Trim(rstStablo!StornoiUpdate) = "D" Then
-            //                                fform.Controls("ct" + rstStablo!PPolje).EnDis = False
-            //                             Else
-            //                                fform.Controls("ct" + rstStablo!PPolje).EnDis = True
-            //                             End If
-            //                        End If
-            //                     End If
-            //                 End If
-            //              End If
-
-            //              rstStablo.MoveNext
-            //        Wend
-            //        Set rstStablo = Nothing
-            //     End If
+            }
         }
-
     }
 }
+
