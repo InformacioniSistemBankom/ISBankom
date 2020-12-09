@@ -475,6 +475,7 @@ namespace Bankom.Class
                     dv.AllowUserToResizeRows = false;
                     dv.BorderStyle = BorderStyle.Fixed3D;
                     dv.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+                    dv.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
 
                     //dv.DefaultCellStyle.SelectionForeColor = Color.Snow;
                     dv.BackgroundColor = Color.Snow;
