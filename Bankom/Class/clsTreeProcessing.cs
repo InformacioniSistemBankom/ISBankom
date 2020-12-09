@@ -282,6 +282,8 @@ namespace Bankom.Class
         public void tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             SrediFormu();
+
+            /// BORKA 09.12.20 NE ZNAM CEMU OVO SLUZI ?????????
             Program.Parent.ToolBar.Items["Uunos"].Visible = true;
             Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
 
