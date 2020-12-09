@@ -289,10 +289,11 @@ namespace Bankom.Class
                         Vrednost = comboBox.Text;
                         ID = "1";
 
-                        if (EnDis == "D")
-                        {
+                        if (EnDis == "D")                       
                             comboBox.Enabled = false;
-                        }
+                        else
+                            comboBox.Enabled = true;
+
                         if (PozicijaLabele == "1")
                         {
                             //Djora 09.07.20
@@ -311,7 +312,7 @@ namespace Bankom.Class
 
                         comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
                         comboBox.MaxDropDownItems = 10;
-                        comboBox.Enabled = true;
+                        
                         //Djora 13.07.20
                         comboBox.Height = (int)visina;
 
@@ -705,7 +706,6 @@ namespace Bankom.Class
                 case "14":
                     break;
             }
-
         }
         private void ComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
@@ -719,7 +719,7 @@ namespace Bankom.Class
             if (!FoundText(combo))
             {
                 //MessageBox.Show("This is not a valid ");              
-                combo.ForeColor = Color.Red;
+                ////combo.ForeColor = Color.Red;
             }
             else
             {
@@ -860,7 +860,6 @@ namespace Bankom.Class
                             {
                                 ID = "1";
                                 Vrednost = "";
-                                //control.ForeColor = Color.Red;
                                 isfound = false;
                             }
                         }
