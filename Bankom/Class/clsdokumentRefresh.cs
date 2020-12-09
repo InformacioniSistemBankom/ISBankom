@@ -387,7 +387,7 @@ namespace Bankom.Class
                 //double ofset = Program.RacioWith * 1.3333333333333333;
                 double ofset = Program.RacioWith;
                 Console.WriteLine(sel);
-                Console.WriteLine(t2.Rows[i]["AlijasPolja"].ToString());
+                Console.WriteLine(t2.Rows[i]["Format"].ToString());
                 int sirina = (int)Convert.ToDouble(Convert.ToDouble(t2.Rows[i]["WidthKolone"].ToString()) * ofset);
                 if (sirina == 0)
                     dv.Columns[i].Visible = false;
