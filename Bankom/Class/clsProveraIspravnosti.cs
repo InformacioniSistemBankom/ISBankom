@@ -41,8 +41,7 @@ namespace Bankom.Class
 
             forma = Program.Parent.ActiveMdiChild;
             string DokumentJe = Convert.ToString(((Bankom.frmChield)forma).DokumentJe);
-            Operacija = Convert.ToString(((Bankom.frmChield)forma).OOperacija.Text).ToUpper();
-            //string Dokument = dokument; Convert.ToString(((Bankom.frmChield)forma).imedokumenta);
+            Operacija = Convert.ToString(((Bankom.frmChield)forma).OOperacija.Text).ToUpper();            
             string IdDokView = Convert.ToString(((Bankom.frmChield)forma).iddokumenta);
             string IdDokumentStablo = Convert.ToString(((Bankom.frmChield)forma).idstablo);
             DateTime DatumDokumenta = DateTime.Now;
@@ -104,7 +103,13 @@ namespace Bankom.Class
                             if (DatumDokumenta.Year != Convert.ToDateTime(forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "Datum").Vrednost).Year)
                             {
                                 Vrati = false;
-                                MessageBox.Show("NIJE DOZVOLJENO PREMESTANJE dokument iz godine u godinu!!!!");
+                                MessageBox.Show("NIJE DOZVOLJENO PREMESTANJE dokumenta iz godine u godinu!!!!");
+                                break;
+                            }
+                            if (DatumDokumenta.Year <Program.kDatum.Year )
+                            {
+                                Vrati = false;
+                                MessageBox.Show("Dokument je iz godine  zakljucenih knjiga ne moze se menjati!!!!");
                                 break;
                             }
                             break;
@@ -413,8 +418,9 @@ namespace Bankom.Class
             string DokumentJe = Convert.ToString(((Bankom.frmChield)forma).DokumentJe);
             Vrati = true;
             if (DokumentJe == "P") return (Vrati);
+            //if (Dokument =="Artikli") return (Vrati);
             char[] separators = { ',' };
-            string sql = "";
+            string sql = "";          
             clsObradaOsnovnihSifarnika coo = new clsObradaOsnovnihSifarnika();
             string mdatum = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "Datum").Vrednost;
             switch (Dokument)
@@ -1298,7 +1304,8 @@ namespace Bankom.Class
                     if (Convert.ToInt32(ids) == 85) { }/// TUDJA ROBA NA SKLADISTU U OBRENOVCU
                     else
                     {
-                        sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja=" + nazivpolja + "' And NazivSkl='" + nazivskl + "'";
+                        // Jovana 04.12.20
+                        sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpolja + "' And NazivSkl='" + nazivskl + "'";
                         t = db.ReturnDataTable(sql);
                         if (t.Rows.Count == 0)
                         {

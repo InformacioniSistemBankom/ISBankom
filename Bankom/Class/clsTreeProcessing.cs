@@ -181,12 +181,12 @@ namespace Bankom.Class
         }
         public void SrediFormu()
         {
-          Program.Parent.flowLayoutPanel1.Width = 161;
+          //Program.Parent.flowLayoutPanel1.Width = 161;
 
 
             Program.Parent.flowLayoutPanel1.Width = 162;
             Program.Parent.flowLayoutPanel1.Width = 0;
-            Program.Parent.button1.Location = new Point(0, 301);
+            Program.Parent.button1.Location = new Point(0, 73);
 
         }
 
@@ -256,9 +256,12 @@ namespace Bankom.Class
                         {
                             //Djora 10.09.20
                             Program.AktivnaSifraIzvestaja = "";
-
+                        if (MojeStablo == "Artikli" || MojeStablo=="Komitenti")
                             Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-                            SrediFormu();
+                        else
+                            Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+
+                        SrediFormu();
                         }
                     }
                 }

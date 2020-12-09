@@ -39,16 +39,7 @@ namespace Bankom
             InitializeComponent();
         }
         public void ShowNewForm(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
-        {
-            Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = true;
-            Program.Parent.ToolBar.Items["Bbrisanje"].Visible = true;
-            Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
-            Program.Parent.ToolBar.Items["Iizmena"].Visible = true;
-            Program.Parent.ToolBar.Items["Ggrupisi"].Enabled = true;
-            Program.Parent.ToolBar.Items["Ggrupisi"].Visible = true;
-            Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
-            Program.Parent.ToolBar.Items["Uunos"].Visible = true;
-
+        {            
             DataBaseBroker db = new DataBaseBroker();
             string ss = "";
             if (dokumentje == "D")
@@ -65,14 +56,7 @@ namespace Bankom
             {
 
                 frmChield childForm = new frmChield();
-
-
-                childForm.FormBorderStyle = FormBorderStyle.None;
-                childForm.BackColor = System.Drawing.Color.Snow;
                 childForm.MdiParent = this;
-                childForm.AutoScroll = true;
-                // childForm.BringToFront();
-
                 this.WindowState = FormWindowState.Maximized;
 
                 if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
@@ -91,14 +75,6 @@ namespace Bankom
                 childForm.toolStripTextBroj.Text = Convert.ToString(idstablo);
                 childForm.Text = ss;
                 childForm.Name = ss;
-                //childForm.Left = 380;
-                //childForm.Top = 300;
-
-                childForm.AutoScroll = false;
-                //childForm.Height = this.Height - this.toolStrip1.Height - this.menuStrip1.Height - this.toolStrip1.Height - 20;
-                ////  childForm.WindowState = FormWindowState.Maximized;
-                //childForm.Width = this.Width - 20;
-
                 addFormTotoolstrip1(childForm, imedokumenta);
 
                 childForm.Show();
@@ -217,14 +193,6 @@ namespace Bankom
             toolStrip1.Items.Add(itemn);
             toolStrip1.Items.Add(itemB);
             toolStrip1.Items.Add(itemnsep);
-
-
-            for (int x = 0; x < toolStrip1.Items.Count; x++)
-            {
-                //toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Regular);
-            }
-
-            // itemn.Font = new Font(toolStripLogin.Font, FontStyle.Bold);
         }
 
 
@@ -626,7 +594,7 @@ namespace Bankom
                 }
             }
 
-          SrediFormu();
+         SrediFormu();
 
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
@@ -694,6 +662,9 @@ namespace Bankom
                 toolStrip1.Visible = false;
             }
         }
+
+
+
         public void itemB_click(object sender, EventArgs e)  // zahtev za zatvaranje forme klikom na tab
         {
             toolStripTextBox1.Text = "";
@@ -713,11 +684,10 @@ namespace Bankom
             }
 
             Form childForm1 = ActiveMdiChild;
-            childForm1.FormBorderStyle = FormBorderStyle.None;
-            childForm1.BackColor = System.Drawing.Color.Snow;
-            childForm1.Focus();
-            childForm1.Visible = false;
+            
             childForm1.Dispose();
+            //childForm1.Visible = false;
+            
             string ime = b;
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
@@ -733,7 +703,11 @@ namespace Bankom
             {
                 toolStrip1.Visible = false;
             }
+            //04.12.2020.
+            SrediFormu(); // BORKA 08.12.20 DA LI JE POTREBNO
         }
+
+
         private void toolStripLogin_Click(object sender, EventArgs e)
         {
             toolStrip1.Items.Clear();
@@ -1838,10 +1812,11 @@ namespace Bankom
         {
             //Daj mi aktivnu child formu
             Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+            
             //Popuni text u kontroli OOperacija sa "PREGLED" na aktivnoj child formi
             if (activeChild != null)
             {
+                activeChild.FormBorderStyle = FormBorderStyle.None;
                 if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
                 activeChild.Controls["OOperacija"].Text = "PREGLED";
                 filter = "S";
@@ -1852,20 +1827,17 @@ namespace Bankom
             }
             else
             {
-                MessageBox.Show("Nemate aktivnu formu");
+               MessageBox.Show("Nemate aktivnu formu");
             }
         }
 
         private void Pprekid_Click(object sender, EventArgs e)
         {
-            //tamara 23.10.2020.
-
-
-
             Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+           
             if (activeChild != null)
             {
+                activeChild.FormBorderStyle = FormBorderStyle.None;
                 if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
                 clsRefreshForm rf = new clsRefreshForm();
                 rf.refreshform();
@@ -1898,7 +1870,7 @@ namespace Bankom
         {
             //Daj mi aktivnu child formu
             Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+           
             //Popuni text u kontroli OOperacija sa "STORNO" na aktivnoj child formi
             if (activeChild == null)
             {
@@ -1906,6 +1878,7 @@ namespace Bankom
             }
             else
             {
+                activeChild.FormBorderStyle = FormBorderStyle.None;
                 activeChild.Controls["OOperacija"].Text = "STORNO";
             }
 
@@ -2285,19 +2258,19 @@ namespace Bankom
                 }
             }
         }
+        //4.12.2020.
+        //private void toolStripKrajRada_Click(object sender, EventArgs e)
+        //{
+        //    if (MessageBox.Show("Izlaz iz programa ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+        //    {
+        //        Application.Exit();
+        //    }
+        //}
 
-        private void toolStripKrajRada_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Izlaz iz programa ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
-        }
+        //private void toolStripLogin_Click_1(object sender, EventArgs e)
+        //{
 
-        private void toolStripLogin_Click_1(object sender, EventArgs e)
-        {
-
-        }
+        //}
 
         private void Ddokum_Click(object sender, EventArgs e)
         {
@@ -2918,6 +2891,7 @@ namespace Bankom
         {
             KursnaLista kl = new KursnaLista();
             kl.FormBorderStyle = FormBorderStyle.None;
+            
             kl.Show();
         }
 
@@ -3087,12 +3061,13 @@ namespace Bankom
 
         public void SrediFormu()
         {
-            flowLayoutPanel1.Width = 161;
+           // flowLayoutPanel1.Width = 161;
 
 
             flowLayoutPanel1.Width = 162;
             flowLayoutPanel1.Width = 0;
-            button1.Location = new Point(0, 301);
+           
+            button1.Location = new Point(0, 73);
 
         }
 
@@ -3104,13 +3079,13 @@ namespace Bankom
             {
                 flowLayoutPanel1.Width = 0;
 
-                button1.Location = new Point(0, 301);
+                button1.Location = new Point(0, 73);
             }
             else
             {
                 flowLayoutPanel1.Width = 162;
-
-                button1.Location = new Point(159, 301);
+           
+                button1.Location = new Point(159, 73);
             }
         }
 
@@ -3176,8 +3151,7 @@ namespace Bankom
 
             if (MessageBox.Show("Da li ste sigurni da želite da zatvorite program?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Cancel)
             {
-
-                e.Cancel = true;
+               e.Cancel = true;
             }
             else
             {
@@ -3214,15 +3188,25 @@ namespace Bankom
         }
 
         private void Ppotvrda_Click_1(object sender, EventArgs e)
-        {
-            
-           
+        {           
             Form forma = this.ActiveMdiChild;
 
             Boolean vrati = new Boolean();
             if (forma == null)
             {
                 MessageBox.Show("Nemate aktivnu formu!");
+                vrati = false;
+                return;
+            }
+            // Jovana 08.12.20
+            if (forma.Controls["OOperacija"].Text.Trim() != "UNOS" && forma.Controls["OOperacija"].Text.Trim() != "" && forma.Controls["OOperacija"].Text.Trim() != "PREGLED")
+            {
+                if (((Bankom.frmChield)forma).idReda<2 && ((Bankom.frmChield)forma).DokumentJe != "K")
+                {
+                    MessageBox.Show("Niste oznacili slog za odabranu operaciju!");
+                    vrati = false;
+                    return;
+                }
             }
 
             if (forma.Controls["OOperacija"].Text.Trim() == "" && ((Bankom.frmChield)forma).DokumentJe != "I")
@@ -3456,6 +3440,16 @@ namespace Bankom
         }
 
         private void Pporeklo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Ppredlogcena_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolTip_Popup(object sender, PopupEventArgs e)
         {
 
         }

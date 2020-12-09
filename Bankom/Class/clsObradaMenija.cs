@@ -202,7 +202,7 @@ namespace Bankom.Class
             bool pom = false;
             foreach (Form f in Application.OpenForms)
             {
-                if (f.Text == s)
+                if (f.Text.Trim() == s)
                 {
                     pom = true;
                     MessageBox.Show("Već je otvorena ova forma!");
@@ -234,9 +234,12 @@ namespace Bankom.Class
                         Lotovi lotovi = new Lotovi();
                         lotovi.FormBorderStyle = FormBorderStyle.None;
                         lotovi.Text = "Lotovi";
+
                         lotovi.MdiParent = mdi;
+
+
                         lotovi.Dock = DockStyle.Fill;
-                        
+
                         // mdi.WindowState = FormWindowState.Maximized;
                         if (mdi.IzborJezika.Text == "Српски-Ћирилица") { lotovi.Text = mdi.VratiCirlilicu("Lotovi"); }
                         int sirina = (mdi.Width / 100) * 10;
@@ -260,8 +263,7 @@ namespace Bankom.Class
                   
                     postoji = IsOpen(s);
                     if (postoji == false)
-                    {
-                       
+                    {                       
                         clsObradaOsnovnihSifarnika co0 = new clsObradaOsnovnihSifarnika();
                         mdi.ShowNewForm(s, 1, s, 1, "", "", slovo.ToString(), "", "TreeView");
                     }
@@ -298,21 +300,40 @@ namespace Bankom.Class
                   
                     break;
                 case "PreuzimanjeKursneListe":
-                    KursnaLista kl = new KursnaLista();
-            
-                    kl.FormBorderStyle = FormBorderStyle.None;
-                    kl.Text = "Preuzimanje Kursne Liste";
-                    kl.MdiParent = mdi;
-                    kl.Dock = DockStyle.Fill;
-                    kl.AutoScroll = true;
-                    if (mdi.IzborJezika.Text == "Српски-Ћирилица") { kl.Text = mdi.VratiCirlilicu("Lotovi"); }
-                    int sirina1 = (mdi.Width / 100) * 10;
-                    mdi.addFormTotoolstrip1(kl, "Preuzimanje Kursne Liste");
+                    if (!IsOpen(s))
+                    {
 
-                    mdi.SrediFormu();
-                    kl.Show();
 
-                    break;
+                        KursnaLista kl = new KursnaLista();
+
+                        kl.FormBorderStyle = FormBorderStyle.None;
+                        kl.Text = "PreuzimanjeKursneListe";
+
+                        //if (kl.MdiParent != null)
+                        //{
+                        //    kl.MdiParent = mdi;
+                        //}
+                        //else
+                        //{
+                        //    kl.MdiParent = Program.Parent;
+
+
+                        //}
+                        kl.MdiParent = mdi;
+                        kl.Dock = DockStyle.Fill;
+                        kl.AutoScroll = true;
+
+                        if (mdi.IzborJezika.Text == "Српски-Ћирилица") { kl.Text = mdi.VratiCirlilicu("Lotovi"); }
+                        int sirina1 = (mdi.Width / 100) * 10;
+                        mdi.addFormTotoolstrip1(kl, "PreuzimanjeKursneListe");
+
+                        //mdi.updateToolStrip(s);
+                        mdi.SrediFormu();
+
+                        kl.Show();
+                    }
+                        break;
+                    
                 case "Prenosi":
                     Form activeChild = mdi.ActiveMdiChild;
                     activeChild.FormBorderStyle = FormBorderStyle.None;

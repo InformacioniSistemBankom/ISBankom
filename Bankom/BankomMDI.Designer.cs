@@ -137,8 +137,6 @@ namespace Bankom
             this.Oorgsema = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.asdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asdfToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.asdfToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -147,9 +145,14 @@ namespace Bankom
             this.sdfgghToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ToolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // toolTip
+            // 
+            this.toolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip_Popup);
             // 
             // Dokumenta
             // 
@@ -709,7 +712,6 @@ namespace Bankom
             this.KrajRada.Name = "KrajRada";
             this.KrajRada.Size = new System.Drawing.Size(53, 20);
             this.KrajRada.Text = "Kraj rada";
-            this.KrajRada.Click += new System.EventHandler(this.toolStripKrajRada_Click);
             // 
             // ToolBar
             // 
@@ -994,6 +996,7 @@ namespace Bankom
             this.Ppredlogcena.Text = "Pred.c.";
             this.Ppredlogcena.ToolTipText = "Pregled cena";
             this.Ppredlogcena.Visible = false;
+            this.Ppredlogcena.Click += new System.EventHandler(this.Ppredlogcena_Click);
             // 
             // Kkalki
             // 
@@ -1035,7 +1038,7 @@ namespace Bankom
             this.Pporeklo.Image = ((System.Drawing.Image)(resources.GetObject("Pporeklo.Image")));
             this.Pporeklo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Pporeklo.Name = "Pporeklo";
-            this.Pporeklo.Size = new System.Drawing.Size(90, 40);
+            this.Pporeklo.Size = new System.Drawing.Size(80, 40);
             this.Pporeklo.Text = "Poreklo";
             this.Pporeklo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Pporeklo.ToolTipText = "Poreklo robe";
@@ -1049,7 +1052,7 @@ namespace Bankom
             this.Ppotencijal.Image = ((System.Drawing.Image)(resources.GetObject("Ppotencijal.Image")));
             this.Ppotencijal.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Ppotencijal.Name = "Ppotencijal";
-            this.Ppotencijal.Size = new System.Drawing.Size(110, 40);
+            this.Ppotencijal.Size = new System.Drawing.Size(90, 40);
             this.Ppotencijal.Text = "Potencijal";
             this.Ppotencijal.ToolTipText = "Potencijal";
             this.Ppotencijal.Visible = false;
@@ -1163,7 +1166,7 @@ namespace Bankom
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Location = new System.Drawing.Point(0, 43);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1924, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1284, 25);
             this.toolStrip1.TabIndex = 34;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.Visible = false;
@@ -1171,31 +1174,12 @@ namespace Bankom
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel1.Controls.Add(this.menuStrip2);
             this.flowLayoutPanel1.Controls.Add(this.menuStrip1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 43);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 68);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 738);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(162, 713);
             this.flowLayoutPanel1.TabIndex = 40;
-            // 
-            // menuStrip2
-            // 
-            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(162, 24);
-            this.menuStrip2.TabIndex = 1;
-            this.menuStrip2.Text = "menuStrip2";
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(0, 24);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(30, 206);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
             // 
             // asdToolStripMenuItem
             // 
@@ -1238,12 +1222,22 @@ namespace Bankom
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(159, 301);
+            this.button1.Location = new System.Drawing.Point(159, 73);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 29);
+            this.button1.Size = new System.Drawing.Size(20, 29);
             this.button1.TabIndex = 42;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(30, 206);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
             // 
             // BankomMDI
             // 
@@ -1260,7 +1254,6 @@ namespace Bankom
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
-            this.MainMenuStrip = this.menuStrip2;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "BankomMDI";
             this.Text = "IS Bankom";
@@ -1395,10 +1388,9 @@ namespace Bankom
         public System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         public System.Windows.Forms.Button button1;
         public System.Windows.Forms.ToolStrip toolStrip1;
-        public System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripButton Ssort;
         private System.Windows.Forms.ToolStripButton Pporeklo;
-        private System.Windows.Forms.MenuStrip menuStrip2;
+        public System.Windows.Forms.MenuStrip menuStrip1;
     }
 }
 

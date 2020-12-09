@@ -36,8 +36,9 @@ namespace Bankom.Class
             }
             else
             {
-                uslov = "WHERE ID_" + Dokument + "StavkeView>1";
+                uslov = " WHERE ID_" + Dokument + "StavkeView>1";
             }
+          
             Console.WriteLine(sselect);
             int vv = sselect.ToUpper().IndexOf("ORDER BY");
             if (vv == -1)
@@ -48,7 +49,8 @@ namespace Bankom.Class
             {
                 Oorder = sselect.Substring(vv);
                 sselect = sselect.Substring(0, vv - 1);
-            }            
+            }
+            Console.WriteLine(sselect + " " + uslov + " " + Oorder);
             return sselect +" " + uslov +" " + Oorder;
         }
 

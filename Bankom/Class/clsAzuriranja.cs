@@ -31,6 +31,7 @@ namespace Bankom.Class
         double KursiranTrosak = 0;
         double KojiTrosakKalkulacije = 0;
         string TrebaProvera = "0";
+        
         public Boolean DodatnaAzuriranja(string Dokument, string IdDokView)
         {
             bool DodatnaAzuriranja = false;
@@ -44,7 +45,7 @@ namespace Bankom.Class
                     IDValuta = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "OznVal").ID.ToString();
                     string kojavaluta = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "OznVal").Vrednost.ToString();
                     clsProveraIspravnosti pi = new clsProveraIspravnosti();
-                    Vrati = pi.PostojiKurs(kojidatum, IDValuta,kojavaluta, ref srednji, ref Poruka);
+                    Vrati = pi.PostojiKurs(kojidatum, IDValuta, kojavaluta, ref srednji, ref Poruka);
                     if (Vrati == true)
                     {
                         sql = "Update RacunStavke set NabavnaCena=(ProdajnaCena*((100-ProcenatRabata)/100))*@param0"
@@ -164,8 +165,117 @@ namespace Bankom.Class
                     break;
                 default:
                     break;
-            }
 
+                //////////////////////////////////////////////////////////////////
+                case "Artikli":
+                    string sqla = "";
+                    string sqlg = "";
+                    string sqlu = "";
+                    string StariNaziv = "";
+                    string NoviNaziv = "";
+                    DataTable ta = new DataTable();
+                    DataTable tg = new DataTable();
+                    sqla = "Select * from Artikli  WITH(NOLOCK) where ID_Artikli=@param0";
+                    ta = db.ParamsQueryDT(sqla, IdDokView);
+                    sqlg = "Select * from ArtikliGrupaPoreza  WITH(NOLOCK) Where ID_ArtikliView=@param0";
+                    tg = db.ParamsQueryDT(sqlg, ta.Rows[0]["ID_Artikli"]);
+                    if (tg.Rows.Count > 0)
+                    {
+                        int llast = 0;
+                        llast = tg.Rows.Count - 1;
+                        //rsgrupa.MoveLast
+                        if (tg.Rows[llast]["ID_TarifaPoreza"].ToString() == ta.Rows[0]["ID_TarifaPoreza"].ToString())
+                        { }
+                        else
+                        {
+                            string datum = System.DateTime.Now.ToString("dd.MM.yy");
+                            //datum = datum.Replace("", "'");values('" + Format(Now, "dd.mm.yy") + "'
+                            sqlu = " insert into ArtikliGrupaPoreza(DatumGrupe, ID_ArtikliView, ID_TarifaPoreza) values(@param0,@param1,@param2)";
+                            tg = db.ParamsQueryDT(sqlu, datum, ta.Rows[0]["ID_Artikli"].ToString(), ta.Rows[0]["ID_TarifaPoreza"].ToString());
+                        }
+                    }
+                    else
+                    {
+                        string mgodina = System.DateTime.Now.ToString().Substring(6, 2);
+                        string mdatum = "01.01." + mgodina;
+                        sqlu= " insert into ArtikliGrupaPoreza(DatumGrupe, ID_ArtikliView, ID_TarifaPoreza) values(@param0,@param1,@param2)";
+                        tg = db.ParamsQueryDT(sqlu, mdatum, ta.Rows[0]["ID_Artikli"].ToString(), ta.Rows[0]["ID_TarifaPoreza"].ToString());                  
+                    }
+
+                    if (forma.Controls["OOperacija"].Text == "IZMENA")
+                    { 
+                        sqla = "select NazivArt  as  n from ArtikliTotali  WITH(NOLOCK) where ID_ArtikliTotali=@param0";
+                        ta = db.ParamsQueryDT(sqla, IdDokView);
+                        StariNaziv = ta.Rows[0]["n"].ToString();
+
+                        sqla = "select NazivArtikla  as  n from Artikli  WITH(NOLOCK) where ID_Artikli=@param0";
+                        ta = db.ParamsQueryDT(sqla, IdDokView);
+                        NoviNaziv = ta.Rows[0]["n"].ToString();
+                        if (StariNaziv.Trim() != NoviNaziv.Trim())
+                            db.ExecuteStoreProcedure("PlusAzuriranjeVezanih", "NazivDokumenta: " + Dokument, "IdDokument: " + IdDokView, "StariNaziv: " + StariNaziv, "NoviNaziv:" + NoviNaziv);
+                    }
+                    db.ExecuteStoreProcedure("TotaliZaDokument", "NazivDokumenta:" + Dokument, "IdDokument:" + IdDokView);                
+                    break;
+                //-----------------------------------
+                case "Komitenti":                   
+                    string sqlk = "";
+                    string sqlkk = "";
+                    string sqli = "";
+                    DataTable ti = new DataTable();
+                    DataTable tk = new DataTable();
+                    DataTable tkk = new DataTable();
+
+
+                    sqlk = "Select * from Komitenti where ID_Komitenti=@param0";
+                    tk = db.ParamsQueryDT(sqlk, IdDokView);
+                                                                                                                                                
+                    sqlkk = "Select * from VezaKomitentKomercijalisti Where ID_KomitentiView=@param0";
+                    sqlkk += " order by datum, id_VezaKomitentKomercijalisti";
+                    tkk = db.ParamsQueryDT(sqlkk,IdDokView);
+                    if (tkk.Rows.Count > 0)
+                    {                      
+                        if (tk.Rows[tkk.Rows.Count - 1]["ID_OdgovornoLice1"].ToString() == tk.Rows[0]["ID_OdgovornoLice1"].ToString())
+                        { }
+                        else
+                        {
+                                                     
+                            string datumFormat = System.DateTime.Now.ToString("dd.MM.yy");
+                            if (tkk.Rows[tkk.Rows.Count - 1]["Datum"].ToString() != datumFormat)
+                            {
+                                sqli = " insert into VezaKomitentKomercijalisti(Datum, ID_KomitentiView, ID_OdgovornoLice1 )Values(@param0,@param1,@param2)";
+                                ti = db.ParamsQueryDT(sqli, datumFormat, tk.Rows[0]["ID_KomitentiView"].ToString(), tk.Rows[0]["ID_OdgovornoLice1"].ToString());
+                            }
+                            else
+                            {
+                                sqli = "update VezaKomitentKomercijalisti set ID_Odgovornolice1=@param0";
+                                sqli += " where ID_VezaKomitentKomercijalisti = @param1";
+                                ti = db.ParamsQueryDT(sqli, tk.Rows[0]["ID_OdgovornoLice1"], tkk.Rows[tkk.Rows.Count - 1]["ID_VezaKomitentKomercijalisti"].ToString());
+                            }
+                        }
+                    }
+                    else// ne postoji podatak za odgovorno lice
+                    {         
+                        string ggodina = System.DateTime.Now.ToString().Substring(6, 2);
+                        string gdatum = "01.01." + ggodina;
+                        sqli = " insert into VezaKomitentKomercijalisti(Datum, ID_KomitentiView, ID_OdgovornoLice1) values(@param0,@param1,@param2)";
+                        ti = db.ParamsQueryDT(sqli, gdatum, tk.Rows[0]["ID_KomitentiView"].ToString(), tk.Rows[0]["ID_OdgovornoLice1"].ToString());
+                    }
+
+                    if (forma.Controls["OOperacija"].Text == "IZMENA")
+                    {
+                        sqlk = "select NazivKom  as  n from KomitentiTotali  Where ID_KomitentiTotali=@param0";
+                        tk= db.ParamsQueryDT(sqli, IdDokView);
+                        StariNaziv = tk.Rows[0]["n"].ToString();
+                        sqlk = "select NazivKomitenta  as  n from Komitenti  Where ID_Komitenti=@param0";
+                        tk = db.ParamsQueryDT(sqli, IdDokView);
+                        NoviNaziv= tk.Rows[0]["n"].ToString();
+                        if (StariNaziv.Trim() != NoviNaziv.Trim())
+                            db.ExecuteStoreProcedure("PlusAzuriranjeVezanih", "NazivDokumenta: " + Dokument, "IdDokument: " + IdDokView, "StariNaziv: " + StariNaziv, "NoviNaziv:" + NoviNaziv);
+                    }
+                    db.ExecuteStoreProcedure("TotaliZaDokument", "NazivDokumenta:" + Dokument, "IdDokument:" + IdDokView);          
+                    break;            
+                    ///////////////////////////////////////////////////////////////////
+            }
             DodatnaAzuriranja = true;
             return DodatnaAzuriranja;
         }
@@ -667,12 +777,13 @@ namespace Bankom.Class
                         {
                             dokType = "";
                             strParams = "";
-                            str = "Execute stanje 'ssss'";
+                            str = "Execute stanje";
                             strTabela = "";
                             lista.Add(new string[] { str, strParams, strTabela, dokType, IdDokView.ToString() });
                             lista.ToArray();
                         }
 
+                      
                         rezultat = db.ReturnSqlTransactionParamsFull(lista);
 
                         if (rezultat != "") { lista.Clear(); MessageBox.Show(rezultat); return false; }

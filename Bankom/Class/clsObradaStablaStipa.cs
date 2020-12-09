@@ -37,7 +37,7 @@ namespace Bankom.Class
                 if (ts.Rows[0]["VrstaCvora"].ToString() == "f")
                 {
                     MessageBox.Show("Izaberite dokument umesto grupe!!");
-
+                   
                     return "";
                 }
             }   

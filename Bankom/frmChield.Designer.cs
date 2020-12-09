@@ -371,7 +371,7 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Snow;
-            this.ClientSize = new System.Drawing.Size(1254, 1012);
+            this.ClientSize = new System.Drawing.Size(1254, 804);
             this.ControlBox = false;
             this.Controls.Add(this.limegrida);
             this.Controls.Add(this.panel1);

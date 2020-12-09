@@ -326,6 +326,7 @@ namespace Bankom.Class
                         // obrada dogadjaja za comboBox             
                         comboBox.GotFocus += new EventHandler(comboBox_GotFocus);
                         comboBox.MouseClick += new MouseEventHandler(comboBox_MouseClick);
+                        comboBox.TextUpdate += new EventHandler(comboBox_TextUpdate);
 
                         //comboBox.SelectedIndexChanged += new EventHandler(ComboBox_SelectedIndexChanged);
                         comboBox.DropDown += new EventHandler(comboBox_DropDown);
@@ -711,7 +712,20 @@ namespace Bankom.Class
             //ComboBox control = (ComboBox)sender;
             //control.Text = sadrzaj;
         }
-
+        private void comboBox_TextUpdate(Object sender, EventArgs e)
+        {
+            ComboBox combo = (ComboBox)sender;
+            //MessageBox.Show("You are in the ComboBox.TextUpdate event.");
+            if (!FoundText(combo))
+            {
+                //MessageBox.Show("This is not a valid ");              
+                combo.ForeColor = Color.Red;
+            }
+            else
+            {
+                combo.ForeColor = Color.Black;
+            }
+        }
         private void comboBox_GotFocus(object sender, EventArgs e)
         {
 
@@ -755,27 +769,24 @@ namespace Bankom.Class
                 ID = Convert.ToString(control.SelectedValue);
                 Vrednost = dt.Rows[0]["polje"].ToString().Trim();
 
+                //control.SelectedIndex = -1;
+
+                if (control.SelectedIndex > -1)
+                    FillOtherControls(control, ID);
 
                 control.SelectedIndex = -1;
-
-                //Console.WriteLine(control.Text);    
-                if (control.SelectedIndex > 0)
-                    FillOtherControls(control, ID);
             }
             else //.Rows.Count = 0
             {
                 control.DataSource = null;
-                //control.Text = "";
-                //control = null;
 
-                //ID = "1";
-                //Vrednost = "";
+                ID = "1";
+                Vrednost = "";
             }
         }
         private void comboBox_Validating(object sender, CancelEventArgs e)
+        //public new void Leave(object sender, EventArgs e)
         {
-            //    //NOTE: comboBox1 has a DropDownStyle set to "DropDown".
-            //    string userInput = this.comboBox.Text;
             ComboBox combo = (ComboBox)sender;
 
             if (!FoundText(combo))
@@ -788,6 +799,7 @@ namespace Bankom.Class
             else
             {
                 combo.ForeColor = Color.Black;
+                e.Cancel = false;
             }
         }
 
@@ -837,6 +849,7 @@ namespace Bankom.Class
                                 else
                                     aaa = tt.Rows[0]["polje"].ToString();
 
+                                pb.ID = ID;
                                 control.Text = aaa;
                                 control.Refresh();
 
@@ -853,6 +866,11 @@ namespace Bankom.Class
                         }
                     }
                 }
+            }
+            else
+            {
+                ID = "1";
+                Vrednost = "";
             }
             return isfound;
         }
@@ -1049,12 +1067,12 @@ namespace Bankom.Class
         }
         public void SrediFormu()
         {
-            Program.Parent.flowLayoutPanel1.Width = 161;
+            //Program.Parent.flowLayoutPanel1.Width = 161;
 
 
             Program.Parent.flowLayoutPanel1.Width = 162;
             Program.Parent.flowLayoutPanel1.Width = 0;
-            Program.Parent.button1.Location = new Point(0, 301);
+            Program.Parent.button1.Location = new Point(0, 73);
 
         }
 
