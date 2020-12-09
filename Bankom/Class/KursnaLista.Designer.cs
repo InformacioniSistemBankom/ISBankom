@@ -111,53 +111,23 @@ System.Windows.Forms.Padding(4);
             //
             // dataGridView1
             //
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Snow;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle =
-dataGridViewCellStyle1;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.Snow;
-            dataGridViewCellStyle2.Alignment =
-System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor =
-System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle2.Font = new
-System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular,
-System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor =
-System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor =
-System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor =
-System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode =
-System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle =
-dataGridViewCellStyle2;
-            this.dataGridView1.ColumnHeadersHeightSizeMode =
-System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.AliceBlue;
+            this.dataGridView1.ColumnHeadersHeightSizeMode =System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.GridColor = System.Drawing.Color.Snow;
             this.dataGridView1.Location = new System.Drawing.Point(20, 83);
-            this.dataGridView1.Margin = new
-System.Windows.Forms.Padding(4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle3.Alignment =
-System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor =
-System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle3.Font = new
-System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular,
-System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor =
-System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor =
-System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor =
-System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode =
-System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle =
-dataGridViewCellStyle3;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Size = new System.Drawing.Size(1402, 708);
             this.dataGridView1.TabIndex = 10;
+
+          
+            this.dataGridView1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridView1.ForeColor = System.Drawing.SystemColors.WindowText;
+           
             //
             // KursnaLista
             //
@@ -169,11 +139,8 @@ dataGridViewCellStyle3;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePicker1);
-            this.Font = new System.Drawing.Font("TimesRoman", 11F,
-System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point,
-((byte)(0)));
-            this.FormBorderStyle =
-System.Windows.Forms.FormBorderStyle.None;
+            this.Font = new System.Drawing.Font("TimesRoman", 11F,System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point,((byte)(0)));
+            this.FormBorderStyle =System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "KursnaLista";
             this.Text = "KursnaLista";
