@@ -137,7 +137,7 @@ namespace Bankom
                         fs.Dock = DockStyle.Fill;
                         BankomMDI pom = (BankomMDI)this.MdiParent;
                         pom.addFormTotoolstrip1(fs, naslov);
-                        pom.updateToolStrip(naslov);
+                        //pom.updateToolStrip(naslov);
                         fs.Show();
                       
 

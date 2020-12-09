@@ -40,8 +40,11 @@ namespace Bankom.Class
                 case "S":
                     clsObradaStablaStipa procs = new clsObradaStablaStipa();
                     supit = procs.Proces(imestabla, ime, Convert.ToInt32(idstablo));
-                    dr.refreshDokumentBody(forma, imestabla, idstablo, dokje);
-                    dr.refreshDokumentGrid(forma, imestabla, idstablo, supit,"1",dokje);
+                    if (supit.Trim() != "")
+                    {
+                        dr.refreshDokumentBody(forma, imestabla, idstablo, dokje);
+                        dr.refreshDokumentGrid(forma, imestabla, idstablo, supit, "1", dokje);
+                    }
                     break;
                 case "P":
                     clsObradaStablaPtipa procp = new clsObradaStablaPtipa();
