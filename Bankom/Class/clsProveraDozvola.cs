@@ -416,7 +416,7 @@ namespace Bankom.Class
                         }
                         else                                 //nije nalogglavneknjige i nije obracunkredita a dokument se odnosi za predhodne godine
                         {
-                            //07.12.20. zajedno
+                            //07.12.2020. zajedno
                             if (dokument == "Dokumenta" || DokumentJe == "D")
                             {
                                 form1.Controls["Ooperacija"].Text = "";
