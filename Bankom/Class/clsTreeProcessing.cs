@@ -195,78 +195,88 @@ namespace Bankom.Class
                 //Djora 10.09.20
                 Program.AktivnaForma = e.Node.Text.Substring(e.Node.Text.IndexOf("-") + 1).Replace(" ", "");
 
-                if (tv.SelectedNode != null)
+            if (tv.SelectedNode != null)
+            {
+                if (Convert.ToInt32(tv.SelectedNode.Tag) > 1)
                 {
-                    if (Convert.ToInt32(tv.SelectedNode.Tag) > 1)
+                    if (MojeStablo == "Izvestaj")
                     {
-                        if (MojeStablo == "Izvestaj")
+
+                        //string pravoime = tv.SelectedNode.Name.Substring(4);
+                        string ime = tv.SelectedNode.Name;
+
+                        string sql = " select s.ulazniizlazni as NazivDokumenta,NacinRegistracije as nr,"
+                                  + " Knjizise,Izvor  from  SifarnikDokumenta as s"
+                                  + "  Where s.naziv=@param0";
+
+                        DataTable t = db.ParamsQueryDT(sql, ime);
+                        if (t.Rows.Count > 0)
                         {
-
-                            //string pravoime = tv.SelectedNode.Name.Substring(4);
-                            string ime = tv.SelectedNode.Name;
-
-                            string sql = " select s.ulazniizlazni as NazivDokumenta,NacinRegistracije as nr,"
-                                      + " Knjizise,Izvor  from  SifarnikDokumenta as s"
-                                      + "  Where s.naziv=@param0";
-
-                            DataTable t = db.ParamsQueryDT(sql, ime);
-                            if (t.Rows.Count > 0)
+                            //Djora 10.09.20
+                            int crta = tv.SelectedNode.Text.IndexOf("-");
+                            if (crta > 0)
                             {
-                                //Djora 10.09.20
-                                int crta = tv.SelectedNode.Text.IndexOf("-");
-                                if (crta > 0)
-                                {
-                                    //Program.AktivnaSifraIzvestaja = t.Rows["NazivDokumeta"] ;
-                                    Program.AktivnaSifraIzvestaja = tv.SelectedNode.Text.Substring(0, crta);
-                                }
-                                else { Program.AktivnaSifraIzvestaja = ""; }
+                                //Program.AktivnaSifraIzvestaja = t.Rows["NazivDokumeta"] ;
+                                Program.AktivnaSifraIzvestaja = tv.SelectedNode.Text.Substring(0, crta);
+                            }
+                            else { Program.AktivnaSifraIzvestaja = ""; }
 
 
-                                if (t.Rows[0]["nr"].ToString().ToUpper() == "B") // izvestaj je u bazi
+                            if (t.Rows[0]["nr"].ToString().ToUpper() == "B") // izvestaj je u bazi
+                            {
+                                Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                            }
+                            else // izvestaj je excel
+                            {
+                                string iddok = (tv.SelectedNode.Tag).ToString();
+                                string naslov = "print - " + ime;
+                                Boolean odgovor = false;
+                                odgovor = Program.Parent.DalijevecOtvoren("I", naslov, ime);
+                                if (odgovor == false)
                                 {
-                                    Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-                                }
-                                else // izvestaj je excel
-                                {
-                                    string iddok = (tv.SelectedNode.Tag).ToString();
-                                    string naslov = "print - " + ime;
-                                    Boolean odgovor = false;
-                                    odgovor = Program.Parent.DalijevecOtvoren("I", naslov, ime);
-                                    if (odgovor == false)
-                                    {
-                                        frmPrint fs = new frmPrint();
-                                        fs.BackColor = Color.Snow;
+                                    frmPrint fs = new frmPrint();
+                                    fs.BackColor = Color.Snow;
                                     fs.FormBorderStyle = FormBorderStyle.None;
-                                        fs.MdiParent = Program.Parent;
-                                        fs.Text = ime;
-                                        fs.intCurrentdok = Convert.ToInt32(iddok); //id
-                                        fs.LayoutMdi(MdiLayout.TileVertical);
-                                        fs.imefajla = ime;  //ime  InoRacun
-                                        fs.kojiprint = "rpt";
-                                        fs.kojinacin = "E";
-                                        fs.izvor = t.Rows[0]["Izvor"].ToString();
-                                        fs.Show();
-                                        Program.Parent.addFormTotoolstrip1(fs, naslov);
-                                    }
+                                    fs.MdiParent = Program.Parent;
+                                    fs.Text = ime;
+                                    fs.intCurrentdok = Convert.ToInt32(iddok); //id
+                                    fs.LayoutMdi(MdiLayout.TileVertical);
+                                    fs.imefajla = ime;  //ime  InoRacun
+                                    fs.kojiprint = "rpt";
+                                    fs.kojinacin = "E";
+                                    fs.izvor = t.Rows[0]["Izvor"].ToString();
+                                    fs.Show();
+                                    Program.Parent.addFormTotoolstrip1(fs, naslov);
                                 }
                             }
-                            SrediFormu();
                         }
-                        else
-                        {
-                        //Djora 10.09.20
-                        //Borka 09.12.20 dodala MojeStablo+"-"+ tv.SelectedNode.Name u treci red
-                        Program.AktivnaSifraIzvestaja = "";
-                        if (MojeStablo == "Artikli" || MojeStablo=="Komitenti")
-                            Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), MojeStablo+"-"+ tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-                        else
-                            Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-
                         SrediFormu();
+                    }
+                    else // nisu Izvestaji
+                    {
+                        //Djora 10.09.20
+                        //Borka 09.12.20 dodala MojeStablo+"-"+ tv.SelectedNode.Name u treci red                                
+                        Program.AktivnaSifraIzvestaja = "";
+                        string q = "";
+                        if (MojeStablo == "Dokumenta")
+                        {
+                            q = "Select vrstacvora from DokumentaStablo where Naziv=@param0";
+                            DataTable st = new DataTable();
+                            st = db.ParamsQueryDT(q, tv.SelectedNode.Name);
+                            if (st.Rows[0]["Vrstacvora"].ToString() == "f")
+                            {
+                                MessageBox.Show("Izaberite dokument umesto grupe!!");
+                            }                           
                         }
+                        if (MojeStablo == "Artikli" || MojeStablo == "Komitenti")
+                                Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), MojeStablo + "-" + tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                        else
+                                Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                        SrediFormu();                       
                     }
                 }
             }
+        }
 
         //zajedno 28.10.2020.
         public void tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
