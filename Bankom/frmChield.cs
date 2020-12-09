@@ -115,10 +115,14 @@ namespace Bankom
                             }
                             break;
                         case "S":
-                            cononf.addFormControls(this, imestabla, idstablo.ToString(), OOperacija.Text);
+                            
                             clsObradaStablaStipa procss = new clsObradaStablaStipa();
                             supit = procss.Proces(imestabla, imedokumenta, Convert.ToInt32(idstablo));
-                            docref.refreshDokumentGrid(this, imestabla, idstablo.ToString(), supit,"1", DokumentJe);
+                            if (supit != "")
+                            {
+                                cononf.addFormControls(this, imestabla, idstablo.ToString(), OOperacija.Text);
+                                docref.refreshDokumentGrid(this, imestabla, idstablo.ToString(), supit, "1", DokumentJe);
+                            }
                             break;
                     }
                     break;                   
