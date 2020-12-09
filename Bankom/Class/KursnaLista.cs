@@ -21,7 +21,6 @@ namespace Bankom
         {
             InitializeComponent();
             dateTimePicker1.Value = DateTime.Now;
-            this.FormBorderStyle = FormBorderStyle.None;
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -223,7 +222,7 @@ namespace Bankom
             db.ExecuteStoreProcedure("TotaliZaDokument", "NazivDokumenta:Dokumenta", "IdDokument:" + IdDokView.ToString());
             db.ExecuteStoreProcedure("TotaliZaDokument", "NazivDokumenta:KursnaLista", "IdDokument:" + IdDokView.ToString());
 
-        Kraj:;
+            Kraj:;
         }
 
         private void KursnaLista_Load(object sender, EventArgs e)
@@ -233,3 +232,4 @@ namespace Bankom
         }
     }
 }
+

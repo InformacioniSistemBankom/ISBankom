@@ -78,12 +78,8 @@ namespace Bankom.Class
             Console.WriteLine(sselect);
             DataTable ti = db.ReturnDataTable(sselect);
             DataTable tj = ti;
-
-
-            //PUNIStablo:
-
+    //PUNIStablo:
             vveza = 0;
-
             tv.HideSelection = false;
             TreeNode parent = new TreeNode();
 

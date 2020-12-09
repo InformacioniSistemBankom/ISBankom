@@ -205,6 +205,7 @@ namespace Bankom.Class
         private void PripremiPodatkeZaGrid(Form form1, DataGridView dv, string dokument, string tUpit, int tud, string iddok, string tIme, string DokumentJe)
         {
             dv.BackgroundColor = Color.Snow;
+      
             string KojiSegment = tIme.Substring(4);
             clsObradaOsnovnihSifarnika os = new clsObradaOsnovnihSifarnika();
 
