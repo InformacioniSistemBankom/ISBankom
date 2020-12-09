@@ -36,12 +36,11 @@ namespace Bankom
         public  int pageno = 1; //ukupan broj stranica
         public string tUpit = "";
         public int BrRedova = 1;// broj redova na stranici
-        private long brojdok = 1;
-        //public DataTable tgg = new DataTable();
+        private long brojdok = 1;        
         public frmChield()
         {
             InitializeComponent();
-            this.Activated += new EventHandler(frmChield_Activated);
+     //       this.Activated += new EventHandler(frmChield_Activated);
             //this.Activate += new EventHandler(frmChield_Activate);
             this.AutoScroll = true;
         }
@@ -54,7 +53,7 @@ namespace Bankom
         {
             this.FormBorderStyle = FormBorderStyle.None;
             this.BackColor = Color.Snow;
-           this.AutoScroll = true;
+            this.AutoScroll = true;
 
             intStart = 0;                
             toolStripStatusPrazno.Text = new String(' ', 150);
@@ -128,26 +127,14 @@ namespace Bankom
             panel1.Top = 0;
         }
         private void frmChield_Activated(object sender, EventArgs e)
-        {
-            //jovana 29.10.20frmChield_Activate
-            //if (VrstaPrikaza != "TreeView" )
-            //{              
-                Boolean provera = true;
-            if (imestabla != "Dokumenta" && idstablo == 1 || imestabla == "Dokumenta")
-            {
-                clsProveraDozvola provdoz = new clsProveraDozvola();
-                provera = provdoz.ProveriDozvole(imedokumenta, idstablo.ToString(), Convert.ToString(iddokumenta), DokumentJe);
-                // BORKA 01.12.20 DODATA 4 REDA
-                if (provera == false)
-                {
-                    MessageBox.Show("greska provere");
-                }
-            }
-            //}
-            //else
-            //{
-            //  ////  
-            //}
+        {                 
+            Boolean provera = true;
+            clsSettingsButtons sb = new clsSettingsButtons();           
+            clsProveraDozvola provdoz = new clsProveraDozvola();
+            if (imestabla=="Artikli"|| imestabla=="Komitenti")
+                provera = provdoz.ProveriDozvole(imestabla, idstablo.ToString(), Convert.ToString(iddokumenta), DokumentJe);
+            else
+            provera = provdoz.ProveriDozvole(imedokumenta, idstablo.ToString(), Convert.ToString(iddokumenta), DokumentJe);
         }
         private void frmChield_Resize(object sender, EventArgs e)
         {
@@ -155,8 +142,7 @@ namespace Bankom
             //_form_resize._resize();
         }
         private void ToolStripButtFirst_Click(object sender, EventArgs e)
-        {       
-
+        {      
             if( intStart==0) { return; }
             pageno = 1;
             intStart = 0;

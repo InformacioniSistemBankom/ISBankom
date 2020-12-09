@@ -260,9 +260,12 @@ namespace Bankom.Class
                         {
                             //Djora 10.09.20
                             Program.AktivnaSifraIzvestaja = "";
-
+                        if (MojeStablo == "Artikli" || MojeStablo=="Komitenti")
                             Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-                            SrediFormu();
+                        else
+                            Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+
+                        SrediFormu();
                         }
                     }
                 }
