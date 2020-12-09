@@ -258,10 +258,11 @@ namespace Bankom.Class
                         }
                         else
                         {
-                            //Djora 10.09.20
-                            Program.AktivnaSifraIzvestaja = "";
+                        //Djora 10.09.20
+                        //Borka 09.12.20 dodala MojeStablo+"-"+ tv.SelectedNode.Name u treci red
+                        Program.AktivnaSifraIzvestaja = "";
                         if (MojeStablo == "Artikli" || MojeStablo=="Komitenti")
-                            Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                            Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), MojeStablo+"-"+ tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
                         else
                             Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
 
