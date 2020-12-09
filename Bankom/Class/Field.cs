@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Bankom.Class;
+using System.Collections.Generic;
 //NOVI PROJEKAT
 
 namespace Bankom.Class
@@ -69,7 +70,7 @@ namespace Bankom.Class
         public string ctekst;
         //Djora 26.09.20
         public string cIdNaziviNaFormi;
-
+        public List<ComboBox> lista = new List<ComboBox>();
         Form forma = new Form();
         //private int izmena;
         private string aaa = "";
@@ -284,7 +285,9 @@ namespace Bankom.Class
 
                         };
                         comboBox.SelectedIndex = -1;
-
+                        //lista.Clear();
+                        lista.Add(comboBox);
+                       
                         comboBox.Text = "";
                         Vrednost = comboBox.Text;
                         ID = "1";
@@ -855,6 +858,9 @@ namespace Bankom.Class
 
                                 control.ForeColor = Color.Black;
                                 FillOtherControls(control, ID);
+
+                                //int Id = Convert.ToInt32(control.SelectedValue);
+                                //PopuniCombo(lista, Id);
                             }
                             else
                             {
@@ -978,8 +984,25 @@ namespace Bankom.Class
                     }
                 } // NIJE POLJE KOJE SMO UPRAVO NAPUSTILI KRAJ
             } //polja koja pripadaju istom Alijasu Tabele KRAJ
+            //if (cDokument == "Popis")
+            //{
+            //    ////if ()
+            //    //{
+            //    string query = "select NazivPolja from MagacinskaPolja join Skladiste on MagacinskaPolja.ID_Skladiste=Skladiste.ID_Skladiste where MagacinskaPolja.ID_Skladiste=@param0";
+            //    ID = Convert.ToString(control.SelectedValue);
+            //    DataSet ds = db.ParamsQueryDS(query, ID);
+            //    control.DataSource = ds;
+            //    //}
+            //}
         }
-
+        //private string PopuniCombo(List<ComboBox> controls, int IdSloga)
+        //{
+        //    string query = "select NazivPolja from MagacinskaPolja join Skladiste on MagacinskaPolja.ID_Skladiste=Skladiste.ID_Skladiste where MagacinskaPolja.ID_Skladiste=@param0";
+           
+        //    DataSet ds = db.ParamsQueryDS(query, IdSloga);
+        //    controls[9].Items.Add(ds);
+        //    return "";
+        //}
         /// <summary>
         private string FillList(ComboBox control, int Tip)
         {
@@ -990,80 +1013,82 @@ namespace Bankom.Class
             string Dokument = forma.Controls["limedok"].Text;
             string ssel = "";
 
-            if (Dokument == "OpisTransakcije" && forma.Controls["ldokje"].Text == "D")
-            {
-                string tabela = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "Tabela").Vrednost;
-
-                if (control.Name != "Tabela" && control.Name != "Konto" && control.Name != "Analitika")
+          
+                if (Dokument == "OpisTransakcije" && forma.Controls["ldokje"].Text == "D")
                 {
-                    if (control.Name == "Valuta")
-                        Restrikcija = "(" + control.Name + " like '%-" + tabela + "%'  OR " + control.Name + " = 'DomacaValuta')";
-                    else
-                        Restrikcija = "(" + control.Name + " like '%-" + tabela + "%' )";
-                }
-            }
+                    string tabela = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "Tabela").Vrednost;
 
-            Restrikcija += cRestrikcije.Trim();
-            if (Tip != 3)
-            {
-                if (Restrikcija.Trim() != "") // postji restrikcija
-                {
-                    if (cIzborno == "Dokumenta" && control.Name == "Predhodni")
+                    if (control.Name != "Tabela" && control.Name != "Konto" && control.Name != "Analitika")
                     {
-                        ssel = " SELECT DISTINCT TOP 50 ID_" + cIzborno + " as iid," + cPolje + " as polje FROM " + cIzborno;
-                        ssel += " WHERE " + cPolje + " like '%" + control.Text + "%' AND (" + Restrikcija + ")";
+                        if (control.Name == "Valuta")
+                            Restrikcija = "(" + control.Name + " like '%-" + tabela + "%'  OR " + control.Name + " = 'DomacaValuta')";
+                        else
+                            Restrikcija = "(" + control.Name + " like '%-" + tabela + "%' )";
                     }
-                    else
+                }
+
+                Restrikcija += cRestrikcije.Trim();
+                if (Tip != 3)
+                {
+                    if (Restrikcija.Trim() != "") // postji restrikcija
                     {
-                        if (cRestrikcije.ToUpper().Contains("BRDOK") == true)  ///' ako jeste izbor po broju dokumenta
+                        if (cIzborno == "Dokumenta" && control.Name == "Predhodni")
                         {
-                            ssel = " SELECT DISTINCT ID_" + cIzborno + " as iid," + cPolje + " as polje FROM " + cIzborno;
+                            ssel = " SELECT DISTINCT TOP 50 ID_" + cIzborno + " as iid," + cPolje + " as polje FROM " + cIzborno;
                             ssel += " WHERE " + cPolje + " like '%" + control.Text + "%' AND (" + Restrikcija + ")";
-                            Console.WriteLine(ssel);
                         }
-                        else// control.text ne sadrzi brdok 
+                        else
                         {
-                            ssel = "SELECT DISTINCT ID_" + cIzborno + " as iid, " + cPolje + " as polje FROM " + cIzborno;
-                            ssel += " WHERE " + cPolje + " like'%" + control.Text.Trim() + "%'  AND  (" + Restrikcija.Trim() + ")  ORDER BY polje";
+                            if (cRestrikcije.ToUpper().Contains("BRDOK") == true)  ///' ako jeste izbor po broju dokumenta
+                            {
+                                ssel = " SELECT DISTINCT ID_" + cIzborno + " as iid," + cPolje + " as polje FROM " + cIzborno;
+                                ssel += " WHERE " + cPolje + " like '%" + control.Text + "%' AND (" + Restrikcija + ")";
+                                Console.WriteLine(ssel);
+                            }
+                            else// control.text ne sadrzi brdok 
+                            {
+                                ssel = "SELECT DISTINCT ID_" + cIzborno + " as iid, " + cPolje + " as polje FROM " + cIzborno;
+                                ssel += " WHERE " + cPolje + " like'%" + control.Text.Trim() + "%'  AND  (" + Restrikcija.Trim() + ")  ORDER BY polje";
+                            }
+                        }
+                    }
+                    else // nema restrikciju
+                    {
+                        if (cIzborno == "Dokumenta" && control.Name == "Predhodni")
+                        {
+                            ssel = "SELECT DISTINCT Top 50 ID_" + cIzborno + " as iid, " + cPolje + " as polje FROM " + cIzborno;
+                            ssel += " WHERE " + cPolje + " like'%" + control.Text.Trim() + "%'  ORDER BY polje ";
+                        }
+                        else
+                        {
+                            ssel = "SELECT DISTINCT  ID_" + cIzborno + " as iid, " + cPolje + " as polje FROM " + cIzborno;
+                            ssel += " WHERE " + cPolje + " like'%" + control.Text.Trim() + "%'  ORDER BY polje ";
                         }
                     }
                 }
-                else // nema restrikciju
+                else   // jeste tip=3
                 {
-                    if (cIzborno == "Dokumenta" && control.Name == "Predhodni")
+                    clsOperacije co = new clsOperacije();
+                    if (co.IsNumeric(control.Text) == false) { }
+                    if (cRestrikcije.Trim() != "") // ima restrikciju
                     {
-                        ssel = "SELECT DISTINCT Top 50 ID_" + cIzborno + " as iid, " + cPolje + " as polje FROM " + cIzborno;
-                        ssel += " WHERE " + cPolje + " like'%" + control.Text.Trim() + "%'  ORDER BY polje ";
+                        if (co.IsNumeric(control.Text) == true)
+                            ssel = "SELECT DISTINCT TOP 50 ID_" + cIzborno + " as iid," + cPolje + " as polje FROM " + cIzborno + " WHERE " + cPolje + " >= " + control.Text + " And " + Restrikcija.Trim() + " ORDER BY polje ";
+                        else
+                            ssel = "SELECT DISTINCT TOP 50 ID_" + cIzborno + " as iid," + cPolje + " as polje FROM " + cIzborno + " WHERE " + Restrikcija.Trim() + " Order by polje";
                     }
-                    else
+                    else // nema restrikciju
                     {
-                        ssel = "SELECT DISTINCT  ID_" + cIzborno + " as iid, " + cPolje + " as polje FROM " + cIzborno;
-                        ssel += " WHERE " + cPolje + " like'%" + control.Text.Trim() + "%'  ORDER BY polje ";
-                    }
-                }
-            }
-            else   // jeste tip=3
-            {
-                clsOperacije co = new clsOperacije();
-                if (co.IsNumeric(control.Text) == false) { }
-                if (cRestrikcije.Trim() != "") // ima restrikciju
-                {
-                    if (co.IsNumeric(control.Text) == true)
-                        ssel = "SELECT DISTINCT TOP 50 ID_" + cIzborno + " as iid," + cPolje + " as polje FROM " + cIzborno + " WHERE " + cPolje + " >= " + control.Text + " And " + Restrikcija.Trim() + " ORDER BY polje ";
-                    else
-                        ssel = "SELECT DISTINCT TOP 50 ID_" + cIzborno + " as iid," + cPolje + " as polje FROM " + cIzborno + " WHERE " + Restrikcija.Trim() + " Order by polje";
-                }
-                else // nema restrikciju
-                {
-                    if (co.IsNumeric(control.Text) == true)
-                        ssel = "SELECT DISTINCT TOP 50 ID_" + cIzborno + " as iid," + cPolje + " as polje FROM " + cIzborno + " WHERE " + cPolje + " >= " + control.Text + " ORDER BY polje ";
-                    else
-                        ssel = "SELECT DISTINCT Top 50  ID_" + cIzborno + " as iid," + cPolje + " as polje FROM " + cIzborno + " Order by polje";
+                        if (co.IsNumeric(control.Text) == true)
+                            ssel = "SELECT DISTINCT TOP 50 ID_" + cIzborno + " as iid," + cPolje + " as polje FROM " + cIzborno + " WHERE " + cPolje + " >= " + control.Text + " ORDER BY polje ";
+                        else
+                            ssel = "SELECT DISTINCT Top 50  ID_" + cIzborno + " as iid," + cPolje + " as polje FROM " + cIzborno + " Order by polje";
 
+                    }
                 }
-            }
-            sql = ssel;
-            return sql;
+                sql = ssel;
+                return sql;
+            
         }
         public void SrediFormu()
         {
