@@ -73,10 +73,13 @@ namespace Bankom.Class
 
         }
 
-        public static void ObradiDokument(string brojDok,string vrstaDokumenta,string nazivDokumenta)
+        public static void ObradiDokument(string brojDok,string vrstaDokumenta,string nazivDokumenta , string prethodni)
         {
             var db = new DataBaseBroker();
             string putanja = "";
+            string nazivDok = "";
+            string prethodnik = "";
+            bool vecPostoji = false;
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(Program.connectionString);
             var imeServera = builder.DataSource;
             putanja = imeServera.ToUpper() == Program.NazivRacunara.ToUpper() ? @"C:" : @"\\" + imeServera;
@@ -94,7 +97,90 @@ namespace Bankom.Class
                     putanja = putanja + @"\ISdokumenta\" + $"{Program.imeFirme.Trim()}" + @"\Pdf\" + nazivDokumenta + @"\" + brDok.Trim() + ".pdf";
                     System.Diagnostics.Process.Start(putanja);
                     return;
+                case "w":
+                case "W":
+                    string nazivWorda = brojDok.Replace('/', '%');
+                    string PIzvestaja = putanja + @"\ISdokumenta\" + $"{Program.imeFirme.Trim()}" + @"\Word\" + nazivDokumenta + @"\";
+                    putanja = putanja + @"\ISdokumenta\" + $"{Program.imeFirme.Trim()}" + @"\Word\" + nazivDokumenta + @"\" + nazivWorda.Trim() + ".doc";
+                   
+                    if (File.Exists(putanja))
+                    {
+                        nazivDok = putanja.Substring(0, putanja.Length - 4);
+                        vecPostoji = true;
+                    }
+                    else
+                    {
+                        if (!String.IsNullOrEmpty(prethodni.Trim()))
+                        {
+                            if (prethodni.Substring(0, prethodni.IndexOf('-')) == nazivWorda.Substring(0, nazivWorda.IndexOf('-')))
+                            {
+                                prethodnik = prethodni.Replace('/', '%');
+                                if (File.Exists(PIzvestaja.Trim() + prethodnik + ".doc")) nazivDok = PIzvestaja.Trim() + prethodnik;
+                                else nazivDok = PIzvestaja + nazivDokumenta;
+
+
+                            }
+                            else
+                            {
+                                MsgBox.ShowDialog("Pogresan izbor prethodnika");
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            nazivDok = PIzvestaja + nazivDokumenta;
+                        }
+                    }
+                    nazivWorda = PIzvestaja + nazivWorda + ".doc";
+                    nazivDok = nazivDok + ".doc";
+
+                    if (!vecPostoji) File.Copy(nazivDok,nazivWorda);
+                    System.Diagnostics.Process.Start(nazivWorda);
                     break;
+
+                case "e":
+                case "E":
+                    string nazivExcela = brojDok.Replace('/', '%') + ".xls";
+                    string PPutanja = putanja + @"\ISdokumenta\" + $"{Program.imeFirme.Trim()}" + @"\Excel\" + nazivDokumenta + @"\";
+                  
+
+                    if (File.Exists(PPutanja.Trim() + nazivExcela))
+                    {
+                        nazivDok = PPutanja + nazivExcela;
+                        vecPostoji = true;
+                    }
+                    else
+                    {
+                        if (!String.IsNullOrEmpty(prethodni.Trim()))
+                        {
+                            if (prethodni.Substring(0, prethodni.IndexOf('-')) == nazivExcela.Substring(0, nazivExcela.IndexOf('-')))
+                            {
+                                prethodnik = prethodni.Replace('/', '%');
+                                if (File.Exists(PPutanja.Trim() + prethodnik + ".xls")) nazivDok = PPutanja.Trim() + prethodnik + ".xls";
+                                else nazivDok = PPutanja + nazivDokumenta + ".xls";
+
+
+                            }
+                            else
+                            {
+                                MsgBox.ShowDialog("Pogresan izbor prethodnika");
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            nazivDok = PPutanja + nazivDokumenta + ".xls";
+                        }
+                    }
+
+                    nazivDok = PPutanja.Trim() + nazivExcela;
+
+                    if (!vecPostoji) File.Copy(nazivDok, nazivExcela);
+                    System.Diagnostics.Process.Start(nazivExcela);
+
+
+                    break;
+
 
 
             }
