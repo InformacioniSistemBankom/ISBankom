@@ -23,7 +23,9 @@ namespace Bankom.Class
         Boolean provera = false;
         Boolean ZakljucenaGodina = false;
         string pStatus = "1";           // status dokumenta 1=nije proknjizen
+        string imestabla="";
         DataBaseBroker db = new DataBaseBroker();
+        Form forma = Program.Parent.ActiveMdiChild;
         public Boolean ProveriDozvole(String pdokument, string pidstablo, string pIDDok, string pDokumentJe)
         {
             if (pdokument.Trim() == "")
@@ -33,7 +35,7 @@ namespace Bankom.Class
 
             int idfirme = Program.idFirme;
             string idke = Program.idkadar.ToString();
-
+            imestabla = forma.Controls["limestabla"].Text;
             ZakljucenaGodina = false;
             form1 = Program.Parent.ActiveMdiChild;
             string ssel = "";
@@ -66,7 +68,7 @@ namespace Bankom.Class
             string SStatus = "";
             string opis = "";
             string idorg = Convert.ToString(Program.idOrgDeo);  //"11";  
-            if (dokument == "Dokumenta" || DokumentJe == "D")
+            if (imestabla == "Dokumenta" || DokumentJe == "D")
             {
                 // provera statusa dokumenta u vezi sa knjizenjem
                 DataTable tsst = new DataTable(); // tabela vezana za status
@@ -109,10 +111,8 @@ namespace Bankom.Class
                     provera = true;
                 }
 
-                if (DokumentJe == "S" && dokument == "Dokumenta")
+                if (DokumentJe == "S"  && imestabla == "Dokumenta")
                 {
-                    if (SStatus == "Proknjizen")
-                    {
                         if (td.Rows[0]["storno"].ToString() == "1")
                         {
                             Program.Parent.ToolBar.Items["Sstorno"].Enabled = true;
@@ -121,8 +121,8 @@ namespace Bankom.Class
                         {
                             Program.Parent.ToolBar.Items["Sstorno"].Enabled = false;
                         }
-                    }
-                } // KRAJ(DokumentJe == "S" && dokument == "Dokumenta")
+                
+                } // KRAJ(DokumentJe == "S" && imestabla == "Dokumenta")
 
                 if (td.Rows[0]["izmena"].ToString() == "1")
                     Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
@@ -187,7 +187,7 @@ namespace Bankom.Class
                     {
                         pStatus = "0";               // jeste proknjizen dokument pStatus=0
 
-                        if (DokumentJe == "S" && dokument == "Dokumenta")  // jesu dokumenta
+                        if (DokumentJe == "S" && imestabla == "Dokumenta")  // jesu dokumenta
                         {
                             Program.Parent.ToolBar.Items["Iizmena"].Enabled = false;
                             Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = false;
@@ -307,7 +307,7 @@ namespace Bankom.Class
                 }
                 else   //// DOKUMENTJE<>"D"
                 {
-                    if (DokumentJe == "S" && dokument == "Dokumenta")
+                    if (DokumentJe == "S" && imestabla == "Dokumenta")
                     {
                         if (idstablo == "32" || idstablo == "38" || idstablo == "300")
                         {
@@ -417,7 +417,7 @@ namespace Bankom.Class
                         else                                 //nije nalogglavneknjige i nije obracunkredita a dokument se odnosi za predhodne godine
                         {
                             //07.12.2020. zajedno
-                            if (dokument == "Dokumenta" || DokumentJe == "D")
+                            if (imestabla == "Dokumenta" || DokumentJe == "D")
                             {
                                 form1.Controls["Ooperacija"].Text = "";
                             }
@@ -482,12 +482,25 @@ namespace Bankom.Class
                                 }
                                 else
                                 {
+
                                     if (pStatus == "0") // dokument je proknjizen
-                                        kontrola.Enabled = false; //'Not Not fform.Controls(ImePolja).EnDis ' vvvvvvvvvvvvvv
+                                    {
+                                        //if (kontrola.VrstaKontrole == "text")
+                                        //    kontrola.textBox.ReadOnly = true;
+                                        //else
+                                            kontrola.Enabled = false;
+                                    }
+
                                     else                  // dokument nije proknjizen
                                     {
+
                                         if (rt.Rows[i]["StornoiUpdate"].ToString() == "D")
-                                            kontrola.Enabled = false;
+                                        {
+                                            //if (kontrola.VrstaKontrole == "text")
+                                            //    kontrola.textBox.ReadOnly = true;
+                                            //else
+                                                kontrola.Enabled = false;
+                                        }
                                         else
                                             kontrola.Enabled = true;
                                     }
