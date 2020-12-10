@@ -1225,9 +1225,13 @@ namespace Bankom.Class
                     t = db.ReturnDataTable(sql);
                     if (t.Rows.Count == 0)
                     {
-                        MessageBox.Show("Pogresna vrednost: " + nazivpolja1 + " za  polje:" + pnaziv1);
-                        Vrati = false;
-                        return (Vrati);
+                        if (((Bankom.frmChield)forma).idReda == -1) { }
+                        else
+                        {
+                            MessageBox.Show("Pogresna vrednost: " + nazivpolja1 + " za  polje:" + pnaziv1);
+                            Vrati = false;
+                            return (Vrati);
+                        }
                     }
                                        
                     if (nazivpolja.Trim() != "")
@@ -1309,9 +1313,13 @@ namespace Bankom.Class
                         t = db.ReturnDataTable(sql);
                         if (t.Rows.Count == 0)
                         {
-                            MessageBox.Show("Pogresna vrednost: " + nazivpolja + " za polje:" + pnazivpolja);
-                            Vrati = false;
-                            return (Vrati);
+                            if (((Bankom.frmChield)forma).idReda == -1) { }
+                            else
+                            {
+                                MessageBox.Show("Pogresna vrednost: " + nazivpolja + " za polje:" + pnazivpolja);
+                                Vrati = false;
+
+                            }
                         }
                     }
                     break;

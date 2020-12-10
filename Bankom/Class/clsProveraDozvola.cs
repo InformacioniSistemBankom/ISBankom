@@ -115,11 +115,11 @@ namespace Bankom.Class
                     {
                         if (td.Rows[0]["storno"].ToString() == "1")
                         {
-                            Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
+                            Program.Parent.ToolBar.Items["Sstorno"].Enabled = true;
                         }
                         else
                         {
-                            Program.Parent.ToolBar.Items["Ssort"].Enabled = false;
+                            Program.Parent.ToolBar.Items["Sstorno"].Enabled = false;
                         }
                     }
                 } // KRAJ(DokumentJe == "S" && dokument == "Dokumenta")
@@ -449,8 +449,6 @@ namespace Bankom.Class
         ///prekidac za CommandButton-e ToolBar-a, ona sto su bila Enabled postaju Disabled, i obrnuto
         public void IzmeneDisableEnablePolja(string dokument, string dokumentje)
         {
-            //   Dim rstStablo As ADODB.Recordset
-            //     Dim ImePolja As String
             DataTable rt = new DataTable();
             string sel = "";
             if (DokumentJe == "D" || DokumentJe == "S")    // ima smisla samo za dokumenta i sifarnik dokumenata
@@ -466,40 +464,36 @@ namespace Bankom.Class
                         Field kontrola = (Field)Program.Parent.ActiveMdiChild.Controls[rt.Rows[i]["Polje"].ToString()]; //  uzimamo kontrolu na formi     
                         if (kontrola !=null)
                         {
+                            Console.WriteLine(kontrola.IME);
                             if (rt.Rows[i]["Zoom"].ToString() == "True" && ZakljucenaGodina == false)
                             {
                                 kontrola.Enabled = true;
                                 if (Program.Parent.ToolBar.Items["Iizmena"].Enabled == false)
                                     Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
+                            }
+                            else
+                            {
                                 if (Program.Parent.ActiveMdiChild.Controls["Ooperacija"].Text == "Pregled")
                                 {
                                     kontrola.Enabled = true;
                                     kontrola.TabStop = true;
                                 }
-                            }
-                            if (rt.Rows[0]["Izborno"] != null)
-                            {
-                                //kontrola.Visible = false;
-                                //                   fform.Controls("ct" + Trim(rstStablo!PPolje)).Move rstStablo!levo * pOfset, rstStablo!vrh * pOfsety, rstStablo!Width * pOfset, rstStablo!Height * pOfsety
-                                //                   fform.Controls("ct" + Trim(rstStablo!PPolje)).Izborno = rstStablo!Izborno
-                                //                   fform.Controls("ct" + Trim(rstStablo!PPolje)).Visible = True
-                            }
-                            else
-                            {
-                                if (pStatus == "0") // dokument je proknjizen
-                                    kontrola.Enabled = false; //'Not Not fform.Controls(ImePolja).EnDis ' vvvvvvvvvvvvvv
-                                else                  // dokument nije proknjizen
+                                else
                                 {
-                                    if (rt.Rows[0]["StornoiUpdate"].ToString() == "D")
-                                        kontrola.Enabled = false;
-                                    else
-                                        kontrola.Enabled = true;
+                                    if (pStatus == "0") // dokument je proknjizen
+                                        kontrola.Enabled = false; //'Not Not fform.Controls(ImePolja).EnDis ' vvvvvvvvvvvvvv
+                                    else                  // dokument nije proknjizen
+                                    {
+                                        if (rt.Rows[i]["StornoiUpdate"].ToString() == "D")
+                                            kontrola.Enabled = false;
+                                        else
+                                            kontrola.Enabled = true;
+                                    }
                                 }
                             }
                         }
                     }
                 }
-
             }
         }
     }
