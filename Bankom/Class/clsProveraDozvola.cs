@@ -453,6 +453,8 @@ namespace Bankom.Class
             string sel = "";
             if (DokumentJe == "D" || DokumentJe == "S")    // ima smisla samo za dokumenta i sifarnik dokumenata
             {
+
+
                 sel = "Select * FROM RecnikPodataka where TabIndex> -1 and Dokument=@param0";
                 rt = db.ParamsQueryDT(sel, dokument);
                 for( int i=0; i<rt.Rows.Count;i++)
