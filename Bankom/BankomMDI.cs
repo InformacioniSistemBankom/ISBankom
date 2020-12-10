@@ -3203,9 +3203,13 @@ namespace Bankom
             {
                 if (((Bankom.frmChield)forma).idReda<2 && ((Bankom.frmChield)forma).DokumentJe != "K")
                 {
-                    MessageBox.Show("Niste oznacili slog za odabranu operaciju!");
-                    vrati = false;
-                    return;
+                    if (((Bankom.frmChield)forma).idReda == -1) { }
+                    else
+                    {
+                        MessageBox.Show("Niste oznacili slog za odabranu operaciju!");
+                        vrati = false;
+                        return;
+                    }
                 }
             }
 

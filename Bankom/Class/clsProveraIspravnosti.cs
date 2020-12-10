@@ -92,7 +92,7 @@ namespace Bankom.Class
                     if (BrojDokumenta.Contains("S") == true)
                     {
                         Vrati = false;
-                        MessageBox.Show("Nije dozvoljena izmena storno dokumenta !");
+                        MessageBox.Show("Nije dozvoljena izmena dokumenta !");
                         break;
                     }
                     // provera da li se pokusava premestanje dokumenta iz godine u godinu
@@ -1225,9 +1225,13 @@ namespace Bankom.Class
                     t = db.ReturnDataTable(sql);
                     if (t.Rows.Count == 0)
                     {
-                        MessageBox.Show("Pogresna vrednost: " + nazivpolja1 + " za  polje:" + pnaziv1);
-                        Vrati = false;
-                        return (Vrati);
+                        if (((Bankom.frmChield)forma).idReda == -1) { }
+                        else
+                        {
+                            MessageBox.Show("Pogresna vrednost: " + nazivpolja1 + " za  polje:" + pnaziv1);
+                            Vrati = false;
+                            return (Vrati);
+                        }
                     }
                                        
                     if (nazivpolja.Trim() != "")
@@ -1309,9 +1313,13 @@ namespace Bankom.Class
                         t = db.ReturnDataTable(sql);
                         if (t.Rows.Count == 0)
                         {
-                            MessageBox.Show("Pogresna vrednost: " + nazivpolja + " za polje:" + pnazivpolja);
-                            Vrati = false;
-                            return (Vrati);
+                            if (((Bankom.frmChield)forma).idReda == -1) { }
+                            else
+                            {
+                                MessageBox.Show("Pogresna vrednost: " + nazivpolja + " za polje:" + pnazivpolja);
+                                Vrati = false;
+
+                            }
                         }
                     }
                     break;
