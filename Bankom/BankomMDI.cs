@@ -79,7 +79,7 @@ namespace Bankom
 
                 childForm.Show();
 
-               SrediFormu();
+                SrediFormu(); // BORKA OVO MORA OSTATI!!!!!!!!!!!!!!!!!
             }
 
 
@@ -286,27 +286,18 @@ namespace Bankom
       
         private void BankomMDI_Load(object sender, EventArgs e)
         {
-            // tamara 27.10.2020.
-     
 
-            Program.Parent.ToolBar.Items["Uunos"].Visible = true;
-            Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
-         
-
-            this.Text = "IS Bankom";
+            this.Text = "IS Bankom"  + "-" + Program.imekorisnika;
             addKombo();
             clsSettingsButtons sb = new clsSettingsButtons();
             sb.ToolBarItemsEnDis();
 
             //tamara 22.10.2020.
             ToolBar.Enabled = true;
-            Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
-            Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
-            // ivana 21.10.2020.
+           
             clsObradaMenija obradaMenija = new clsObradaMenija(this);
             obradaMenija.CreateMenu();
-            
-
+            SrediFormu();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
@@ -594,8 +585,6 @@ namespace Bankom
                 }
             }
 
-         SrediFormu();
-
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
                 // toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Regular); // regular font za sve tabove
@@ -613,18 +602,11 @@ namespace Bankom
                             //this.ActivateMdiChild(childForm);
                             childForm.LayoutMdi(MdiLayout.TileVertical);
                             childForm.WindowState = FormWindowState.Maximized;
-                            //  SrediFormu();
                             break;
                         }
                     }
                 }
             }
-            SrediFormu();
-            //}
-
-            //  frmChield activeChild = (frmChield)this.ActiveMdiChild;
-            // activeChild.Visible = false;
-
         }
 
         public void itemB1_click(string imetula)  // zahtev za zatvaranje  forme klikom na tipku izlaz
@@ -703,8 +685,6 @@ namespace Bankom
             {
                 toolStrip1.Visible = false;
             }
-            //04.12.2020.
-            SrediFormu(); // BORKA 08.12.20 DA LI JE POTREBNO
         }
 
 
@@ -1216,7 +1196,7 @@ namespace Bankom
                     }
                 }
             }
-            SrediFormu();
+
             ShowNewForm("Dokumenta", idstablo, naziv, 1, "", "", "S", "", ""); // na dogadjaju form load otvara se nova forma  sa predatim parametrima 
         }
 
@@ -3129,21 +3109,14 @@ namespace Bankom
                     while (dr.Read())
                         namesCollection.Add(dr["NazivJavni"].ToString());
                 }
-
-
-
-
+// BORKA 10.12.20 CEMU OVO SLUZI ???????????????
                 toolStripTextBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 toolStripTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
                 toolStripTextBox1.AutoCompleteCustomSource = namesCollection;
-                SrediFormu();
+                //SrediFormu();
                 ToolStripTextBox item = sender as ToolStripTextBox;
                 BrziPristup(item);
-
-
-
             }
-
         }
 
         private void BankomMDI_FormClosing(object sender, FormClosingEventArgs e)
