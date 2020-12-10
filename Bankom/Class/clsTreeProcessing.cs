@@ -178,17 +178,7 @@ namespace Bankom.Class
                 parentNode.Nodes.Add(nod);
                 tv.EndUpdate();
             }
-        }
-        public void SrediFormu()
-        {
-          //Program.Parent.flowLayoutPanel1.Width = 161;
-
-
-            Program.Parent.flowLayoutPanel1.Width = 162;
-            Program.Parent.flowLayoutPanel1.Width = 0;
-            Program.Parent.button1.Location = new Point(0, 73);
-
-        }
+        }        
 
         private void tv_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
@@ -250,7 +240,6 @@ namespace Bankom.Class
                                 }
                             }
                         }
-                        SrediFormu();
                     }
                     else // nisu Izvestaji
                     {
@@ -271,8 +260,7 @@ namespace Bankom.Class
                         if (MojeStablo == "Artikli" || MojeStablo == "Komitenti")
                                 Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), MojeStablo + "-" + tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
                         else
-                                Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-                        SrediFormu();                       
+                                Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");                      
                     }
                 }
             }
@@ -281,21 +269,7 @@ namespace Bankom.Class
         //zajedno 28.10.2020.
         public void tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            SrediFormu();
-
-            /// BORKA 09.12.20 NE ZNAM CEMU OVO SLUZI ?????????
-            Program.Parent.ToolBar.Items["Uunos"].Visible = true;
-            Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
-
-            Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
-            Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
-
-            Program.AktivnaSifraIzvestaja = e.Node.Text.ToString();
-            Program.IdSelektovanogCvora = int.Parse(e.Node.Tag.ToString());
-
-
-            
-
+           
         }
       
     }
