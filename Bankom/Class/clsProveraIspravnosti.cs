@@ -92,7 +92,7 @@ namespace Bankom.Class
                     if (BrojDokumenta.Contains("S") == true)
                     {
                         Vrati = false;
-                        MessageBox.Show("Nije dozvoljena izmena storno dokumenta !");
+                        MessageBox.Show("Nije dozvoljena izmena dokumenta !");
                         break;
                     }
                     // provera da li se pokusava premestanje dokumenta iz godine u godinu

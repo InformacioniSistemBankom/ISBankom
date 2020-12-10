@@ -115,11 +115,11 @@ namespace Bankom.Class
                     {
                         if (td.Rows[0]["storno"].ToString() == "1")
                         {
-                            Program.Parent.ToolBar.Items["Sstorno"].Enabled = true;
+                            Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
                         }
                         else
                         {
-                            Program.Parent.ToolBar.Items["Sstorno"].Enabled = false;
+                            Program.Parent.ToolBar.Items["Ssort"].Enabled = false;
                         }
                     }
                 } // KRAJ(DokumentJe == "S" && dokument == "Dokumenta")
