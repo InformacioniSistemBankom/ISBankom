@@ -287,7 +287,7 @@ namespace Bankom
         private void BankomMDI_Load(object sender, EventArgs e)
         {
 
-            this.Text = "IS Bankom"  + "-" + Program.imekorisnika;
+            this.Text = "ISBankom -" +Program.NazivOrg + "-" + Program.imekorisnika;
             addKombo();
             clsSettingsButtons sb = new clsSettingsButtons();
             sb.ToolBarItemsEnDis();
