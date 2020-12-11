@@ -148,6 +148,7 @@ namespace Bankom
             this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip3 = new System.Windows.Forms.MenuStrip();
+            this.menuStrip4 = new System.Windows.Forms.MenuStrip();
             this.ToolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -1177,6 +1178,7 @@ namespace Bankom
             // 
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
             this.flowLayoutPanel1.Controls.Add(this.menuStrip2);
+            this.flowLayoutPanel1.Controls.Add(this.menuStrip4);
             this.flowLayoutPanel1.Controls.Add(this.menuStrip1);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 67);
@@ -1196,7 +1198,7 @@ namespace Bankom
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(0, 24);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 48);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(30, 206);
             this.menuStrip1.TabIndex = 0;
@@ -1257,6 +1259,14 @@ namespace Bankom
             this.menuStrip3.Size = new System.Drawing.Size(1284, 24);
             this.menuStrip3.TabIndex = 44;
             this.menuStrip3.Text = "menuStrip3";
+            // 
+            // menuStrip4
+            // 
+            this.menuStrip4.Location = new System.Drawing.Point(0, 24);
+            this.menuStrip4.Name = "menuStrip4";
+            this.menuStrip4.Size = new System.Drawing.Size(162, 24);
+            this.menuStrip4.TabIndex = 2;
+            this.menuStrip4.Text = "menuStrip4";
             // 
             // BankomMDI
             // 
@@ -1414,6 +1424,7 @@ namespace Bankom
         public System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.MenuStrip menuStrip2;
         private System.Windows.Forms.MenuStrip menuStrip3;
+        private System.Windows.Forms.MenuStrip menuStrip4;
     }
 }
 
