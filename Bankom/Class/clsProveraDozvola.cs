@@ -449,12 +449,11 @@ namespace Bankom.Class
         ///prekidac za CommandButton-e ToolBar-a, ona sto su bila Enabled postaju Disabled, i obrnuto
         public void IzmeneDisableEnablePolja(string dokument, string dokumentje)
         {
+            string VrstaKontrole="";
             DataTable rt = new DataTable();
             string sel = "";
             if (DokumentJe == "D" || DokumentJe == "S")    // ima smisla samo za dokumenta i sifarnik dokumenata
             {
-
-
                 sel = "Select * FROM RecnikPodataka where TabIndex> -1 and Dokument=@param0";
                 rt = db.ParamsQueryDT(sel, dokument);
                 for( int i=0; i<rt.Rows.Count;i++)
@@ -464,6 +463,7 @@ namespace Bankom.Class
                     if (rt.Rows[i]["Polje"].ToString().Contains("ID_") == false)
                     {
                         Field kontrola = (Field)Program.Parent.ActiveMdiChild.Controls[rt.Rows[i]["Polje"].ToString()]; //  uzimamo kontrolu na formi     
+                        
                         if (kontrola !=null)
                         {
                             Console.WriteLine(kontrola.IME);
@@ -482,26 +482,24 @@ namespace Bankom.Class
                                 }
                                 else
                                 {
-
                                     if (pStatus == "0") // dokument je proknjizen
                                     {
-                                        //if (kontrola.VrstaKontrole == "text")
-                                        //    kontrola.textBox.ReadOnly = true;
-                                        //else
+                                        if (kontrola.VrstaKontrole == "tekst")
+                                            kontrola.textBox.ReadOnly = true;
+                                        else
                                             kontrola.Enabled = false;
                                     }
-
                                     else                  // dokument nije proknjizen
                                     {
 
                                         if (rt.Rows[i]["StornoiUpdate"].ToString() == "D")
                                         {
-                                            //if (kontrola.VrstaKontrole == "text")
-                                            //    kontrola.textBox.ReadOnly = true;
-                                            //else
+                                            if (kontrola.VrstaKontrole == "tekst")
+                                                kontrola.textBox.ReadOnly = true;
+                                            else
                                                 kontrola.Enabled = false;
                                         }
-                                        else
+                                        else// "StornoiUpdate"].ToString() != "D"
                                             kontrola.Enabled = true;
                                     }
                                 }
