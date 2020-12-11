@@ -17,6 +17,8 @@ namespace Bankom
         public static float RacioHeight { get; set; }
 
         public static string imekorisnika { get; set; }
+        public static string NazivOrg { get; set; }
+        public static int mGodina { get; set; }
         public static string strDatum { get; set; }
         public static string BrDok { get; set; }
         public static string PunoImeDokumenta { get; set; } // punoime dokumenta npr prodaja / ime
@@ -47,9 +49,6 @@ namespace Bankom
         public static string imegrida { get; set; }
         public static string colname { get; set; }
         public static DataGridView activecontrol { get; set; }
-
-        //public static string connectionString = "Data Source=BANKOM10; Initial Catalog = dbbbTestNew2003Bankom; User Id=sa;password=password; ";
-        //public static string connectionString = "Data Source=Sql2016;Initial Catalog=dbbbTestNew2003Bankom;User ID=sa;password=password;";
 
         public static string connectionString = "Data Source=bankomw;Initial Catalog=BankomVeza;User ID=sa;password=password;";
         public static string NazivRacunara = System.Environment.MachineName;
