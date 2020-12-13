@@ -247,20 +247,29 @@ namespace Bankom.Class
                         //Borka 09.12.20 dodala MojeStablo+"-"+ tv.SelectedNode.Name u treci red                                
                         Program.AktivnaSifraIzvestaja = "";
                         string q = "";
-                        if (MojeStablo == "Dokumenta")
+                        switch(MojeStablo)
                         {
-                            q = "Select vrstacvora from DokumentaStablo where Naziv=@param0";
-                            DataTable st = new DataTable();
-                            st = db.ParamsQueryDT(q, tv.SelectedNode.Name);
-                            if (st.Rows[0]["Vrstacvora"].ToString() == "f")
-                            {
-                                MessageBox.Show("Izaberite dokument umesto grupe!!");
-                            }                           
+                            case "Dokumenta":
+                            case "PomocniSifarnici":
+                                  q = "Select vrstacvora from "+MojeStablo+"Stablo where Naziv=@param0";
+                                  DataTable st = new DataTable();
+                                  st = db.ParamsQueryDT(q, tv.SelectedNode.Name);
+                                  if (st.Rows[0]["Vrstacvora"].ToString() == "f")
+                                  {
+                                       //MessageBox.Show("Pogresan izbor odabrali ste grupu!!");
+                                  }
+                                  else
+                                      Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                                  break;
+                            case "Artikli":
+                            case "Komitenti":
+                                  Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), MojeStablo + "-" + tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                                  break;
+                            default:
+                                Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                                break;
                         }
-                        if (MojeStablo == "Artikli" || MojeStablo == "Komitenti")
-                                Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), MojeStablo + "-" + tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-                        else
-                                Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");                      
+                        
                     }
                 }
             }
