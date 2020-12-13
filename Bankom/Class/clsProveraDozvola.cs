@@ -14,18 +14,18 @@ namespace Bankom.Class
     class clsProveraDozvola
     {
         Boolean proveragodine = false;
-        string oggod = "0";
+      
         string dokument = "";
         string idstablo = "";
         string IDDok = "";
         string DokumentJe = "";
-        Form form1 = new Form();
         Boolean provera = false;
         Boolean ZakljucenaGodina = false;
         string pStatus = "1";           // status dokumenta 1=nije proknjizen
         string imestabla="";
         DataBaseBroker db = new DataBaseBroker();
         Form forma = Program.Parent.ActiveMdiChild;
+
         public Boolean ProveriDozvole(String pdokument, string pidstablo, string pIDDok, string pDokumentJe)
         {
             if (pdokument.Trim() == "")
@@ -36,14 +36,16 @@ namespace Bankom.Class
             int idfirme = Program.idFirme;
             string idke = Program.idkadar.ToString();
             imestabla = forma.Controls["limestabla"].Text;
+            idstablo = forma.Controls["lidstablo"].Text;
             ZakljucenaGodina = false;
-            form1 = Program.Parent.ActiveMdiChild;
-            string ssel = "";
+
+            string ssel = "";            
             dokument = pdokument;
-            idstablo = pidstablo;
-            IDDok = pIDDok;
+            if (pIDDok == "0")
+                IDDok= forma.Controls["liddok"].Text;
+            else
+                IDDok = pIDDok;
             DokumentJe = pDokumentJe;
-            //DataBaseBroker db = new DataBaseBroker();
 
             if (DokumentJe == "D" || dokument == "Dokumenta")
             {
@@ -195,7 +197,7 @@ namespace Bankom.Class
                             Program.Parent.ToolBar.Items["Ssort"].Enabled = true;
                             Program.Parent.ToolBar.Items["Ssort"].Visible = true;
                             ///// promenjeno na True da bi se mogao izabrati UNOS iako je podignut proknjizen dokument
-                            if (form1.Controls["Ooperacija"].Text == "Unos")
+                            if (forma.Controls["Ooperacija"].Text == "Unos")
                                 pStatus = "1";                             ///// vracamo status da nije proknjizen
                         }
                         else                                            ///// nisu dokumenta 
@@ -256,7 +258,7 @@ namespace Bankom.Class
                                 Program.Parent.ToolBar.Items["Oodobri"].Visible = false;
                                 Program.Parent.ToolBar.Items["Oodobri"].Enabled = false;
                             }
-                            //}
+
                             break;
                         case "Dobit":
                             Program.Parent.ToolBar.Items["Pppppd"].Visible = true;
@@ -376,16 +378,16 @@ namespace Bankom.Class
                     Program.Parent.ToolBar.Items["Bbrisanje"].Enabled = true;
                 }
 
-                if (form1.Controls["Ooperacija"].Text != "Pregled")
+                if (forma.Controls["Ooperacija"].Text != "PREGLED")
                 {
                     //string.Format("{0:dd.MM.yy}", System.DateTime.Now.ToString());
 
-                    if (form1.Controls["lDatum"].Text.Trim() == "")
+                    if (forma.Controls["lDatum"].Text.Trim() == "")
                     {
                         provera = true;
                         return provera;
                     }
-                    DateTime dDatum = Convert.ToDateTime(form1.Controls["lDatum"].Text); // datum sa dokumenta
+                    DateTime dDatum = Convert.ToDateTime(forma.Controls["lDatum"].Text); // datum sa dokumenta
                     DateTime tDatum = DateTime.Now;     // systemski datum
 
                     ////  // Dokument je iz godine razlicite od tekuce godine i datum dokumenta je manji od datuma zakljucenja knjiga
@@ -419,7 +421,7 @@ namespace Bankom.Class
                             //07.12.2020. zajedno
                             if (imestabla == "Dokumenta" || DokumentJe == "D")
                             {
-                                form1.Controls["Ooperacija"].Text = "";
+                                forma.Controls["Ooperacija"].Text = "";
                             }
                             else
                             {
@@ -427,9 +429,9 @@ namespace Bankom.Class
                             }
                             ZakljucenaGodina = true;
                         }
-                        if (form1.Controls["Ooperacija"].Text.Trim() != "")
+                        if (forma.Controls["Ooperacija"].Text.Trim() != "")
                         {
-                            form1.Controls["Ooperacija"].Text = "";
+                            forma.Controls["Ooperacija"].Text = "";
                             provera = false;
                         }
                     }// KRAJ razlicite godine
@@ -449,12 +451,12 @@ namespace Bankom.Class
         ///prekidac za CommandButton-e ToolBar-a, ona sto su bila Enabled postaju Disabled, i obrnuto
         public void IzmeneDisableEnablePolja(string dokument, string dokumentje)
         {
-            string VrstaKontrole="";
-            DataTable rt = new DataTable();
+             DataTable rt = new DataTable();
             string sel = "";
-            if (DokumentJe == "D" || DokumentJe == "S")    // ima smisla samo za dokumenta i sifarnik dokumenata
+            if (dokumentje == "D" || dokumentje == "S")    // ima smisla samo za dokumenta i sifarnik dokumenata
             {
-                sel = "Select * FROM RecnikPodataka where TabIndex> -1 and Dokument=@param0";
+                //sel = "Select * FROM RecnikPodataka where TabIndex> -1 and Dokument=@param0 Order By tabelaVview DESC,Tabindex";
+                sel = "SELECT alijaspolja as polje,Zoom,StornoiUpdate from RecnikPodataka where  dokument=@param0 and TabIndex>=0 and width>0 and Height > 0 ORDER By TabelaVView DESC,Tabindex";
                 rt = db.ParamsQueryDT(sel, dokument);
                 for( int i=0; i<rt.Rows.Count;i++)
                 {
@@ -475,32 +477,74 @@ namespace Bankom.Class
                             }
                             else
                             {
-                                if (Program.Parent.ActiveMdiChild.Controls["Ooperacija"].Text == "Pregled")
+                                if (Program.Parent.ActiveMdiChild.Controls["Ooperacija"].Text == "PREGLED")
                                 {
-                                    kontrola.Enabled = true;
-                                    kontrola.TabStop = true;
+                                    switch (kontrola.VrstaKontrole)
+                                    {
+                                        case "tekst":
+                                            kontrola.textBox.Enabled = true;
+                                            break;
+                                        case "combo":
+                                            kontrola.comboBox.Enabled = true;
+                                            break;
+                                        case "datum":
+                                            kontrola.dtp.Enabled = true;
+                                            break;
+                                    }
+                                    //kontrola.Enabled = true;
+                                    //kontrola.TabStop = true;
                                 }
                                 else
                                 {
                                     if (pStatus == "0") // dokument je proknjizen
                                     {
-                                        if (kontrola.VrstaKontrole == "tekst")
-                                            kontrola.textBox.ReadOnly = true;
-                                        else
-                                            kontrola.Enabled = false;
+                                        switch (kontrola.VrstaKontrole)
+                                        {
+                                            case "tekst":
+                                                kontrola.textBox.ReadOnly =true;                                             
+                                                break;
+                                            case "combo":
+                                                kontrola.comboBox.Enabled = false;
+                                                break;
+                                            case "datum":
+                                            kontrola.dtp.Enabled = false;
+                                            break;
+                                        }
                                     }
                                     else                  // dokument nije proknjizen
                                     {
 
                                         if (rt.Rows[i]["StornoiUpdate"].ToString() == "D")
                                         {
-                                            if (kontrola.VrstaKontrole == "tekst")
-                                                kontrola.textBox.ReadOnly = true;
-                                            else
-                                                kontrola.Enabled = false;
+                                            switch (kontrola.VrstaKontrole)
+                                            {
+                                                case "tekst":
+                                                    kontrola.textBox.ReadOnly = true;
+                                                    break;
+                                                case "combo":
+                                                    kontrola.comboBox.Enabled = false;
+                                                    break;
+                                                case "datum":
+                                                    kontrola.dtp.Enabled = false;
+                                                    break;
+                                            }
                                         }
                                         else// "StornoiUpdate"].ToString() != "D"
-                                            kontrola.Enabled = true;
+                                        {
+                                            switch (kontrola.VrstaKontrole)
+                                            {
+                                                case "tekst":
+                                                    kontrola.textBox.ReadOnly = false;
+                                                    break;
+                                                case "combo":
+                                                    kontrola.comboBox.Enabled = true;
+                                                    break;
+                                                case "datum":
+                                                    kontrola.dtp.Enabled = true;
+                                                    break;
+                                            }
+                                        }
+                                        //kontrola.Enabled = true;
                                     }
                                 }
                             }
