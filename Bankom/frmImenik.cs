@@ -296,6 +296,7 @@ namespace Bankom
         private void frmImenik_Load(object sender, EventArgs e)
         {
             PuniCmb();
+            this.FormBorderStyle = FormBorderStyle.None;
         }
     }
 }

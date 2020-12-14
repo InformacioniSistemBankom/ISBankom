@@ -74,7 +74,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.label2.Location = new System.Drawing.Point(264, 41);
+            this.label2.Location = new System.Drawing.Point(381, 94);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 18);
             this.label2.TabIndex = 16;
@@ -83,7 +83,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(169, 65);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(161, 48);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -106,7 +106,7 @@
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dataGridView1.GridColor = System.Drawing.Color.AliceBlue;
-            this.dataGridView1.Location = new System.Drawing.Point(33, 366);
+            this.dataGridView1.Location = new System.Drawing.Point(183, 435);
             this.dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.AliceBlue;
@@ -159,7 +159,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.button1.Location = new System.Drawing.Point(728, 40);
+            this.button1.Location = new System.Drawing.Point(845, 93);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 25);
             this.button1.TabIndex = 28;
@@ -172,7 +172,7 @@
             this.textBox1.BackColor = System.Drawing.Color.AliceBlue;
             this.textBox1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.Black;
-            this.textBox1.Location = new System.Drawing.Point(358, 41);
+            this.textBox1.Location = new System.Drawing.Point(475, 94);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(311, 24);
             this.textBox1.TabIndex = 29;
@@ -182,7 +182,7 @@
             this.btnIzmena.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIzmena.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIzmena.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.btnIzmena.Location = new System.Drawing.Point(922, 300);
+            this.btnIzmena.Location = new System.Drawing.Point(1072, 369);
             this.btnIzmena.Name = "btnIzmena";
             this.btnIzmena.Size = new System.Drawing.Size(75, 30);
             this.btnIzmena.TabIndex = 103;
@@ -195,7 +195,7 @@
             this.btnBrisanje.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBrisanje.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBrisanje.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.btnBrisanje.Location = new System.Drawing.Point(808, 300);
+            this.btnBrisanje.Location = new System.Drawing.Point(958, 369);
             this.btnBrisanje.Name = "btnBrisanje";
             this.btnBrisanje.Size = new System.Drawing.Size(90, 30);
             this.btnBrisanje.TabIndex = 102;
@@ -208,7 +208,7 @@
             this.btnUnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUnos.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUnos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.btnUnos.Location = new System.Drawing.Point(695, 300);
+            this.btnUnos.Location = new System.Drawing.Point(845, 369);
             this.btnUnos.Name = "btnUnos";
             this.btnUnos.Size = new System.Drawing.Size(75, 30);
             this.btnUnos.TabIndex = 101;
@@ -221,7 +221,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.label10.Location = new System.Drawing.Point(617, 250);
+            this.label10.Location = new System.Drawing.Point(767, 319);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(63, 18);
             this.label10.TabIndex = 100;
@@ -232,7 +232,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.label9.Location = new System.Drawing.Point(624, 208);
+            this.label9.Location = new System.Drawing.Point(774, 277);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(54, 18);
             this.label9.TabIndex = 98;
@@ -243,7 +243,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.label8.Location = new System.Drawing.Point(61, 306);
+            this.label8.Location = new System.Drawing.Point(211, 375);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(97, 18);
             this.label8.TabIndex = 97;
@@ -254,7 +254,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.label7.Location = new System.Drawing.Point(581, 115);
+            this.label7.Location = new System.Drawing.Point(731, 184);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(97, 18);
             this.label7.TabIndex = 96;
@@ -265,7 +265,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.label6.Location = new System.Drawing.Point(617, 160);
+            this.label6.Location = new System.Drawing.Point(767, 229);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 18);
             this.label6.TabIndex = 95;
@@ -276,7 +276,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.label5.Location = new System.Drawing.Point(30, 214);
+            this.label5.Location = new System.Drawing.Point(180, 283);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(131, 18);
             this.label5.TabIndex = 94;
@@ -287,7 +287,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.label4.Location = new System.Drawing.Point(100, 260);
+            this.label4.Location = new System.Drawing.Point(250, 329);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 18);
             this.label4.TabIndex = 93;
@@ -298,7 +298,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.label3.Location = new System.Drawing.Point(106, 163);
+            this.label3.Location = new System.Drawing.Point(256, 232);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 18);
             this.label3.TabIndex = 92;
@@ -309,7 +309,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.label1.Location = new System.Drawing.Point(49, 112);
+            this.label1.Location = new System.Drawing.Point(199, 181);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 18);
             this.label1.TabIndex = 91;
@@ -320,7 +320,7 @@
             this.tbMesto.BackColor = System.Drawing.Color.AliceBlue;
             this.tbMesto.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbMesto.ForeColor = System.Drawing.Color.Black;
-            this.tbMesto.Location = new System.Drawing.Point(686, 204);
+            this.tbMesto.Location = new System.Drawing.Point(836, 273);
             this.tbMesto.Name = "tbMesto";
             this.tbMesto.Size = new System.Drawing.Size(311, 24);
             this.tbMesto.TabIndex = 90;
@@ -330,7 +330,7 @@
             this.tbAdresa.BackColor = System.Drawing.Color.AliceBlue;
             this.tbAdresa.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbAdresa.ForeColor = System.Drawing.Color.Black;
-            this.tbAdresa.Location = new System.Drawing.Point(686, 160);
+            this.tbAdresa.Location = new System.Drawing.Point(836, 229);
             this.tbAdresa.Name = "tbAdresa";
             this.tbAdresa.Size = new System.Drawing.Size(311, 24);
             this.tbAdresa.TabIndex = 89;
@@ -340,7 +340,7 @@
             this.tbIme.BackColor = System.Drawing.Color.AliceBlue;
             this.tbIme.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbIme.ForeColor = System.Drawing.Color.Black;
-            this.tbIme.Location = new System.Drawing.Point(167, 112);
+            this.tbIme.Location = new System.Drawing.Point(317, 181);
             this.tbIme.Name = "tbIme";
             this.tbIme.Size = new System.Drawing.Size(311, 24);
             this.tbIme.TabIndex = 88;
@@ -350,7 +350,7 @@
             this.tbFirma.BackColor = System.Drawing.Color.AliceBlue;
             this.tbFirma.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbFirma.ForeColor = System.Drawing.Color.Black;
-            this.tbFirma.Location = new System.Drawing.Point(167, 163);
+            this.tbFirma.Location = new System.Drawing.Point(317, 232);
             this.tbFirma.Name = "tbFirma";
             this.tbFirma.Size = new System.Drawing.Size(311, 24);
             this.tbFirma.TabIndex = 87;
@@ -360,7 +360,7 @@
             this.tbBroj.BackColor = System.Drawing.Color.AliceBlue;
             this.tbBroj.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbBroj.ForeColor = System.Drawing.Color.Black;
-            this.tbBroj.Location = new System.Drawing.Point(167, 211);
+            this.tbBroj.Location = new System.Drawing.Point(317, 280);
             this.tbBroj.Name = "tbBroj";
             this.tbBroj.Size = new System.Drawing.Size(311, 24);
             this.tbBroj.TabIndex = 86;
@@ -370,7 +370,7 @@
             this.tbEmail.BackColor = System.Drawing.Color.AliceBlue;
             this.tbEmail.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbEmail.ForeColor = System.Drawing.Color.Black;
-            this.tbEmail.Location = new System.Drawing.Point(167, 254);
+            this.tbEmail.Location = new System.Drawing.Point(317, 323);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(311, 25);
             this.tbEmail.TabIndex = 85;
@@ -380,7 +380,7 @@
             this.tbNapomena1.BackColor = System.Drawing.Color.AliceBlue;
             this.tbNapomena1.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbNapomena1.ForeColor = System.Drawing.Color.Black;
-            this.tbNapomena1.Location = new System.Drawing.Point(167, 300);
+            this.tbNapomena1.Location = new System.Drawing.Point(317, 369);
             this.tbNapomena1.Name = "tbNapomena1";
             this.tbNapomena1.Size = new System.Drawing.Size(311, 24);
             this.tbNapomena1.TabIndex = 84;
@@ -390,7 +390,7 @@
             this.tbNapomena2.BackColor = System.Drawing.Color.AliceBlue;
             this.tbNapomena2.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbNapomena2.ForeColor = System.Drawing.Color.Black;
-            this.tbNapomena2.Location = new System.Drawing.Point(686, 112);
+            this.tbNapomena2.Location = new System.Drawing.Point(836, 181);
             this.tbNapomena2.Name = "tbNapomena2";
             this.tbNapomena2.Size = new System.Drawing.Size(311, 24);
             this.tbNapomena2.TabIndex = 83;
@@ -402,7 +402,7 @@
             this.tbDrzava.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbDrzava.ForeColor = System.Drawing.Color.Black;
             this.tbDrzava.FormattingEnabled = true;
-            this.tbDrzava.Location = new System.Drawing.Point(686, 250);
+            this.tbDrzava.Location = new System.Drawing.Point(836, 319);
             this.tbDrzava.Name = "tbDrzava";
             this.tbDrzava.Size = new System.Drawing.Size(311, 26);
             this.tbDrzava.TabIndex = 104;
@@ -413,7 +413,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Snow;
-            this.ClientSize = new System.Drawing.Size(1036, 887);
+            this.ClientSize = new System.Drawing.Size(1354, 992);
             this.Controls.Add(this.tbDrzava);
             this.Controls.Add(this.btnIzmena);
             this.Controls.Add(this.btnBrisanje);
@@ -442,7 +442,7 @@
             this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("TimesRoman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.Name = "frmImenik";

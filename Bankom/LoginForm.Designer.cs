@@ -57,7 +57,6 @@
             this.lbNovaLozinka = new System.Windows.Forms.Label();
             this.tbNovaLozinka = new System.Windows.Forms.TextBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -87,7 +86,6 @@
             this.CmbOrg.Size = new System.Drawing.Size(294, 23);
             this.CmbOrg.TabIndex = 17;
             this.CmbOrg.Visible = false;
-            this.CmbOrg.SelectedIndexChanged += new System.EventHandler(this.CmbOrg_SelectedIndexChanged);
             // 
             // PasswordTextBox
             // 
@@ -98,7 +96,6 @@
             this.PasswordTextBox.Size = new System.Drawing.Size(294, 23);
             this.PasswordTextBox.TabIndex = 14;
             this.PasswordTextBox.WordWrap = false;
-            this.PasswordTextBox.TextChanged += new System.EventHandler(this.PasswordTextBox_TextChanged);
             // 
             // UsernameTextBox
             // 
@@ -178,7 +175,6 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(376, 398);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 15);
@@ -312,12 +308,13 @@
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(655, -6);
+            this.button2.Location = new System.Drawing.Point(673, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(58, 55);
+            this.button2.Size = new System.Drawing.Size(47, 48);
             this.button2.TabIndex = 33;
             this.toolTip1.SetToolTip(this.button2, "Promena lozinke");
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -358,19 +355,10 @@
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
             this.pictureBox7.Location = new System.Drawing.Point(-44, -73);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(446, 567);
+            this.pictureBox7.Size = new System.Drawing.Size(450, 541);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 36;
             this.pictureBox7.TabStop = false;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(722, 24);
-            this.menuStrip1.TabIndex = 37;
-            this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // LoginForm
             // 
@@ -399,10 +387,8 @@
             this.Controls.Add(this.PasswordLabel);
             this.Controls.Add(this.UsernameLabel);
             this.Controls.Add(this.pictureBox7);
-            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -447,8 +433,7 @@
         internal System.Windows.Forms.Button button1;
         internal System.Windows.Forms.Label lbNovaLozinka;
         internal System.Windows.Forms.TextBox tbNovaLozinka;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.Button button2;
     }
 }
