@@ -72,13 +72,11 @@ namespace Bankom.Class
         public string cIdNaziviNaFormi;
         //Ivana 11.12.2020.
         public string cZavisiOd;
-
+        public List<CheckBox> lista = new List<CheckBox>();
         Form forma = new Form();
         //private int izmena;
         private string aaa = "";
         private string sadrzaj = "";
-        //Ivana 14.12.2020.
-        public List<CheckBox> lista = new List<CheckBox>();
         //public event EventHandler ValueChanged;
         //public Field(Form form1, string iddok, string dokument, string label_text, string polje, string Ime, Color boja, double levo, double vrh, double visina, double sirina,
         //string PozicijaLabele, int Tip, string izborno, string idNaziviNaFormi, string tud, string EnDis, string FormatStringa, string Tabela, string AlijasTabele, string TabelaVView, int TabIndex, string FormatPolja, string Segment, string Restrikcije, int ImaNaslov, string FormulaForme) : base()
@@ -256,9 +254,6 @@ namespace Bankom.Class
                     cekboks.Text = ctekst; //    label_text;
                     cekboks.Height = (int)visina;
 
-                    //Ivana 14.12.2020.
-                    lista.Add(cekboks);
-
                     if (EnDis == "D")
                     {
                         cekboks.Enabled = false;
@@ -276,6 +271,9 @@ namespace Bankom.Class
                     //Djora 08.07.20
                     cekboks.Parent.Name = Ime;
 
+                    //Ivana 14.12.2020.
+                    lista.Add(cekboks);
+                    cekboks.CheckedChanged += new EventHandler(checkBox_CheckedChanged);
                     break;
                 default:
                     if (izborno != null && izborno.Trim() != "") // ima izborno
@@ -591,15 +589,15 @@ namespace Bankom.Class
         }
         DataBaseBroker db1 = new DataBaseBroker();
         public DataTable dt = new DataTable();
-        public void checkBox1_CheckedChanged(object sender, MouseEventArgs e)
+        public void checkBox_CheckedChanged(object sender, EventArgs e)
         {
-            string upit = "Select AlijasPolja FROM RecnikPodataka where TabIndex> -1 and ZavisiOd=@param0";
+            string upit = "Select distinct AlijasPolja FROM RecnikPodataka where TabIndex> -1 and ZavisiOd=@param0";
             dt = db1.ParamsQueryDT(upit, this.Name);
-            if (this.checkBoxIsChecked(sender.ToString()))
+            if (this.checkBoxIsChecked(this.Name.ToString()))
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    Field kontrola = (Field)Program.Parent.ActiveMdiChild.Controls[dt.Rows[i]["IME"].ToString()];
+                    Field kontrola = (Field)Program.Parent.ActiveMdiChild.Controls[dt.Rows[i][0].ToString()];
                     kontrola.Visible = true;
                 }
             }
@@ -607,7 +605,7 @@ namespace Bankom.Class
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    Field kontrola = (Field)Program.Parent.ActiveMdiChild.Controls[dt.Rows[i]["IME"].ToString()];
+                    Field kontrola = (Field)Program.Parent.ActiveMdiChild.Controls[dt.Rows[i][0].ToString()];
                     kontrola.Visible = false;
                 }
             }
