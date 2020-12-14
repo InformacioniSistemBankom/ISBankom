@@ -265,6 +265,8 @@ namespace Bankom.Class
 
                     //Djora 08.07.20
                     cekboks.Parent.Name = Ime;
+                    cekboks.CheckedChanged += new EventHandler(cekboks_CheckedChanged);
+                    //comboBox.TextUpdate += new EventHandler(comboBox_TextUpdate);
 
                     break;
                 default:
@@ -569,6 +571,11 @@ namespace Bankom.Class
         private Control activeControl;
 
         private Point previousLocation;
+         
+        public void cekboks_CheckedChanged(Object sender, EventArgs e)
+        {
+            MessageBox.Show("radi");
+        }
 
         void textBox_MouseDown(object sender, MouseEventArgs e)
         {
