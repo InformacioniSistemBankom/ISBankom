@@ -1966,6 +1966,13 @@ namespace Bankom
 
 
 
+            //Application.Exit();
+
+            /* Process myProcess = new Process();
+             myProcess.StartInfo.UseShellExecute = true;
+            // myProcess.StartInfo.FileName = "\\sql2016\d\Imenik.exe";
+             myProcess.StartInfo.CreateNoWindow = true;
+             myProcess.Start();*/
         }
 
         public static string cf;
