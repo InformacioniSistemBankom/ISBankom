@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Bankom.Class;
+using System.Collections.Generic;
 //NOVI PROJEKAT
 
 namespace Bankom.Class
@@ -69,16 +70,20 @@ namespace Bankom.Class
         public string ctekst;
         //Djora 26.09.20
         public string cIdNaziviNaFormi;
+        //Ivana 11.12.2020.
+        public string cZavisiOd;
 
         Form forma = new Form();
         //private int izmena;
         private string aaa = "";
         private string sadrzaj = "";
+        //Ivana 14.12.2020.
+        public List<CheckBox> lista = new List<CheckBox>();
         //public event EventHandler ValueChanged;
         //public Field(Form form1, string iddok, string dokument, string label_text, string polje, string Ime, Color boja, double levo, double vrh, double visina, double sirina,
         //string PozicijaLabele, int Tip, string izborno, string idNaziviNaFormi, string tud, string EnDis, string FormatStringa, string Tabela, string AlijasTabele, string TabelaVView, int TabIndex, string FormatPolja, string Segment, string Restrikcije, int ImaNaslov, string FormulaForme) : base()
         public Field(Form form1, string iddok, string dokument, string label_text, string polje, string Ime, Color boja, double levo, double vrh, double visina, double sirina,
-                     string PozicijaLabele, int Tip, string izborno, string idNaziviNaFormi, string tud, string EnDis, string FormatStringa, string Tabela, string AlijasTabele, string TabelaVView, string FormatPolja, string Segment, string Restrikcije, int ImaNaslov, string FormulaForme) : base()
+                     string PozicijaLabele, int Tip, string izborno, string idNaziviNaFormi, string zavisiOd, string tud, string EnDis, string FormatStringa, string Tabela, string AlijasTabele, string TabelaVView, string FormatPolja, string Segment, string Restrikcije, int ImaNaslov, string FormulaForme) : base()
         {
             boja = Color.AliceBlue;
             forma = form1;
@@ -100,6 +105,8 @@ namespace Bankom.Class
             cTip = Tip;
             //Djora 26.09.20
             cIdNaziviNaFormi = idNaziviNaFormi;
+            //Ivana 11.12.2020.
+            cZavisiOd = zavisiOd;
 
             //Djora 26.09.20
             //this.BackColor = Color.Red;
@@ -248,6 +255,9 @@ namespace Bankom.Class
                     cekboks.Name = Ime;
                     cekboks.Text = ctekst; //    label_text;
                     cekboks.Height = (int)visina;
+
+                    //Ivana 14.12.2020.
+                    lista.Add(cekboks);
 
                     if (EnDis == "D")
                     {
@@ -569,6 +579,39 @@ namespace Bankom.Class
         private Control activeControl;
 
         private Point previousLocation;
+
+        //Ivana 11.12.2020.
+        public bool checkBoxIsChecked(string s)
+        {
+            for(int i=0;i<lista.Count;i++)
+                if (lista[i].Name == s)
+                    if (lista[i].Checked)
+                        return true;
+            return false;
+        }
+        DataBaseBroker db1 = new DataBaseBroker();
+        public DataTable dt = new DataTable();
+        public void checkBox1_CheckedChanged(object sender, MouseEventArgs e)
+        {
+            string upit = "Select AlijasPolja FROM RecnikPodataka where TabIndex> -1 and ZavisiOd=@param0";
+            dt = db1.ParamsQueryDT(upit, this.Name);
+            if (this.checkBoxIsChecked(sender.ToString()))
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    Field kontrola = (Field)Program.Parent.ActiveMdiChild.Controls[dt.Rows[i]["IME"].ToString()];
+                    kontrola.Visible = true;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    Field kontrola = (Field)Program.Parent.ActiveMdiChild.Controls[dt.Rows[i]["IME"].ToString()];
+                    kontrola.Visible = false;
+                }
+            }
+        }
 
         void textBox_MouseDown(object sender, MouseEventArgs e)
         {
