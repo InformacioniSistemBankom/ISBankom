@@ -1065,17 +1065,6 @@ namespace Bankom.Class
             sql = ssel;
             return sql;
         }
-        public void SrediFormu()
-        {
-            //Program.Parent.flowLayoutPanel1.Width = 161;
-
-
-            Program.Parent.flowLayoutPanel1.Width = 162;
-            Program.Parent.flowLayoutPanel1.Width = 0;
-            Program.Parent.button1.Location = new Point(0, 73);
-
-        }
-
         private void dv_CellContenClick(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
         {
             Program.colname = "";
@@ -1085,7 +1074,6 @@ namespace Bankom.Class
             Program.colname = dv.Columns[e.ColumnIndex].Name;
             Program.activecontrol = control;
             dv.BackgroundColor = Color.AliceBlue;
-            SrediFormu();
         }
         private void FillControls(DataGridView control, ref int iid, ref string brdok, ref DateTime datum, DataGridViewCellMouseEventArgs e)
         {
@@ -1207,20 +1195,16 @@ namespace Bankom.Class
                     //jovana
                     clsDokumentaStablo ds = new clsDokumentaStablo();
                     if (ds.Obradi(middok, ref midstablo, ref mimedok, ref mbrdok) == false) return;
-                    Program.Parent.ShowNewForm(mojestablo, midstablo, mimedok, middok, mbrdok, ddatum, "D", "", "");
-                    SrediFormu();
+                    Program.Parent.ShowNewForm(mojestablo, midstablo, mimedok, middok, mbrdok, ddatum, "D", "", ""); 
                 }
                 else
                     this.ObradiDupliKlik(control, mimedok, DokumentJe, "", e);
-
             }
             else
             {
-
                 //((Bankom.frmChield)Me).idReda = middok;
             }
-            control.ReadOnly = false;
-            SrediFormu();
+            control.ReadOnly = false;         
         }
         private void ObradiDupliKlik(DataGridView control, string Dokument, string DokumentJe, string OperacijaDokumenta, DataGridViewCellMouseEventArgs e)
         {
@@ -1534,7 +1518,6 @@ namespace Bankom.Class
                     }
                     break;
             }
-            SrediFormu();
         }
         public void PrikaziDokument(string Broj)
         {

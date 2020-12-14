@@ -598,6 +598,7 @@ namespace Bankom
                         PassKorisnika = Convert.ToString(rdr[1]);
                         Program.idkadar = Convert.ToInt32(rdr[2]);
                         Program.SifRadnika = Convert.ToString(rdr[3]);
+                       
                     }
                     else
                     {
@@ -627,7 +628,7 @@ namespace Bankom
                     Program.imeFirme = dv[0]["Naziv"].ToString();
                     Program.idOrgDeo = Convert.ToInt32(dv[0]["ID_OrganizacionaStruktura"]);
                     Program.idFirme = Convert.ToInt32(dv[0]["ID_OrganizacionaStrukturaStablo"]);
-
+                    Program.NazivOrg = CmbOrg.Text;
 
 
 
@@ -645,9 +646,6 @@ namespace Bankom
                     UsernameTextBox.Text = "";
                     return;
                 }
-
-
-
 
                 bool result = PasswordTextBox.Text.Equals(PassKorisnika);
                 if (result == false)
@@ -679,6 +677,13 @@ namespace Bankom
                     Program.kDatum = Convert.ToDateTime("01.01." + (godina - 1).ToString());
                 }
 
+                ssel = " SELECT min(Godina) as god FROM Godine where flag=1 AND ID_KadrovskaEvidencija=@param0";
+
+                tk = dk.ParamsQueryDT(ssel, Program.idkadar);
+                if (tk.Rows.Count == 0)
+                    Program.mGodina = 0;
+                else
+                    Program.mGodina = Convert.ToInt32(tk.Rows[0]["god"].ToString());
             }
         }
 
@@ -870,6 +875,16 @@ namespace Bankom
             }
 
             
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void PasswordTextBox_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
