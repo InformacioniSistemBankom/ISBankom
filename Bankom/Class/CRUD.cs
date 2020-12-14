@@ -48,6 +48,7 @@ namespace Bankom.Class
             operacija = forma.Controls["OOperacija"].Text;
             iddokument = Convert.ToString(((Bankom.frmChield)forma).iddokumenta);
             clsOperacije op = new clsOperacije();
+            clsProveraIspravnosti pi = new clsProveraIspravnosti();
             // POCETAK OBRADE SLOGOVA IZABRANOM OPERACIJOM
             string sql = "";
             DataTable t = new DataTable();
@@ -92,10 +93,14 @@ namespace Bankom.Class
                         return (isDoIt);
                     }
                 }
+
                 switch (operacija)
                 {                 
                     case "BRISANJE":
-                          PoljeGdeSeUpisujeIId = "ID_" + t.Rows[r]["Tabela"].ToString().Trim();
+                        
+                        if (DokumentJe == "S" && NazivKlona == "Dokumenta")
+                            isDoIt = pi.ProveraOperacija(NazivKlona);
+                        PoljeGdeSeUpisujeIId = "ID_" + t.Rows[r]["Tabela"].ToString().Trim();
                           if (dokument == "Dokumenta")
                                 iddokument = Convert.ToString(((Bankom.frmChield)forma).iddokumenta);
 
@@ -106,6 +111,9 @@ namespace Bankom.Class
                           }
                         break;
                     case "STORNO":
+                        
+                        if (DokumentJe == "S" && NazivKlona == "Dokumenta")
+                            isDoIt = pi.ProveraOperacija(NazivKlona);
                         isDoIt = StornirajDokument();
                         if (isDoIt == false)
                             return isDoIt;
@@ -116,7 +124,7 @@ namespace Bankom.Class
                         if (r == 0)
                         {
                             // PROVERE ISPRAVNOSTI PODATAKA POCETAK
-                            clsProveraIspravnosti pi = new clsProveraIspravnosti();
+                            
                             if (DokumentJe=="S" && NazivKlona=="Dokumenta")
                                 isDoIt = pi.ProveraOperacija(NazivKlona);
                             if (DokumentJe=="D")

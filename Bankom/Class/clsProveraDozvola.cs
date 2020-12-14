@@ -483,11 +483,27 @@ namespace Bankom.Class
                                 else
                                 {
                                     if (pStatus == "0") // dokument je proknjizen
-                                        kontrola.Enabled = false; //'Not Not fform.Controls(ImePolja).EnDis ' vvvvvvvvvvvvvv
+                                                        //  kontrola.Enabled = false; //'Not Not fform.Controls(ImePolja).EnDis ' vvvvvvvvvvvvvv
+                                    {
+                                        foreach (TextBox t in kontrola.Controls.OfType<TextBox>())
+                                        {
+                                            t.Enabled = false;
+                                        }
+                                        foreach (ComboBox t in kontrola.Controls.OfType<ComboBox>())
+                                        {
+                                            t.Enabled = false;
+                                        }
+                                    }
                                     else                  // dokument nije proknjizen
                                     {
                                         if (rt.Rows[i]["StornoiUpdate"].ToString() == "D")
-                                            kontrola.Enabled = false;
+                                        {
+                                            // kontrola.Enabled = false;
+                                            foreach (TextBox t in kontrola.Controls.OfType<TextBox>())
+                                            {
+                                                t.Enabled = false;
+                                            }
+                                        }
                                         else
                                             kontrola.Enabled = true;
                                     }

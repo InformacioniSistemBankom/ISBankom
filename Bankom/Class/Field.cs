@@ -105,7 +105,7 @@ namespace Bankom.Class
             //this.BackColor = Color.Red;
             this.BorderStyle = BorderStyle.None;
             //this.Margin= new Padding(0, 0, 0, 0);
-
+            
 
             if (Ime == "Ugovor")
             {
@@ -134,6 +134,7 @@ namespace Bankom.Class
                 label.TextAlign = ContentAlignment.MiddleCenter;    //MiddleLeft;
                                                                     //Djora 26.09.20
                                                                     //label.Height = (int)(visina * 1.2);
+                label.ForeColor = Color.Black;
                 label.Font = new Font("TimesRoman", 13, FontStyle.Regular);
                 //label.Font = new Font("TimesRoman", 10.8F, FontStyle.Bold);
 
