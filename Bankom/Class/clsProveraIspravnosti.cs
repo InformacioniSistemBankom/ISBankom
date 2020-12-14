@@ -46,6 +46,7 @@ namespace Bankom.Class
             string IdDokumentStablo = Convert.ToString(((Bankom.frmChield)forma).idstablo);
             DateTime DatumDokumenta = DateTime.Now;
             DateTime DatumUnosaDokumenta;
+            string imestabla = forma.Controls["limestabla"].Text;
             string proknjizen = "";
             if (Operacija.Contains("UNOS") == true) return (Vrati);
 

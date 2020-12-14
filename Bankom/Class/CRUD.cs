@@ -52,6 +52,8 @@ namespace Bankom.Class
             string sql = "";
             DataTable t = new DataTable();
             DataTable dtt = new DataTable();
+            clsProveraIspravnosti pi = new clsProveraIspravnosti();
+
             sql = " select s.ulazniizlazni as NazivDokumenta,NacinRegistracije as nr,"
                        + " Knjizise "
                        + " from SifarnikDokumenta as s"
@@ -75,7 +77,7 @@ namespace Bankom.Class
                 return (isDoIt); 
             }
             for (int r = 0; r < t.Rows.Count; r++)
-            { 
+            {
                 if (isDoIt == false) { break; }
                 string tabela = t.Rows[r]["Tabela"].ToString();
                 ime = t.Rows[r]["Ime"].ToString();    //// upiti.GetValue(upiti.GetOrdinal("Ime")).ToString();
@@ -95,7 +97,13 @@ namespace Bankom.Class
                 switch (operacija)
                 {                 
                     case "BRISANJE":
-                          PoljeGdeSeUpisujeIId = "ID_" + t.Rows[r]["Tabela"].ToString().Trim();
+
+                        if (DokumentJe == "S" && NazivKlona == "Dokumenta")
+                            isDoIt = pi.ProveraOperacija(NazivKlona);
+                        if (isDoIt == false)
+                            return isDoIt;
+
+                        PoljeGdeSeUpisujeIId = "ID_" + t.Rows[r]["Tabela"].ToString().Trim();
                           if (dokument == "Dokumenta")
                                 iddokument = Convert.ToString(((Bankom.frmChield)forma).iddokumenta);
 
@@ -105,20 +113,26 @@ namespace Bankom.Class
                                 break;
                           }
                         break;
+
                     case "STORNO":
+                        //clsProveraIspravnosti pi = new clsProveraIspravnosti();
+                        isDoIt = pi.ProveraOperacija(NazivKlona);
+                        if (isDoIt == false)
+                            return isDoIt;
                         isDoIt = StornirajDokument();
                         if (isDoIt == false)
                             return isDoIt;
                         break;
+
                     case "UNOS PODBROJA":
                     case "UNOS":
                     case "IZMENA":
                         if (r == 0)
                         {
-                            // PROVERE ISPRAVNOSTI PODATAKA POCETAK
-                            clsProveraIspravnosti pi = new clsProveraIspravnosti();
+                            // PROVERE ISPRAVNOSTI PODATAKA POCETAK                             
                             if (DokumentJe=="S" && NazivKlona=="Dokumenta")
                                 isDoIt = pi.ProveraOperacija(NazivKlona);
+
                             if (DokumentJe=="D")
                             {
                                
