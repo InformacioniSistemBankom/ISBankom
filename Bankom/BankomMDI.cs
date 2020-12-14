@@ -175,6 +175,7 @@ namespace Bankom
 
         public void addFormTotoolstrip1(Form forma, string imedokumenta)
         {
+            forma.FormBorderStyle = FormBorderStyle.None;
             this.BackColor = System.Drawing.Color.Snow;
             toolStrip1.Visible = true;
             this.Width = Width - 20;
@@ -1946,7 +1947,22 @@ namespace Bankom
         {
 
             frmImenik frmi = new frmImenik();
-            frmi.ShowDialog();
+            frmi.FormBorderStyle = FormBorderStyle.None;
+            frmi.Text = "Imenik";
+
+            frmi.MdiParent = this;
+
+
+            frmi.Dock = DockStyle.Fill;
+
+            
+            if (this.IzborJezika.Text == "Српски-Ћирилица") { frmi.Text = this.VratiCirlilicu("Imenik"); }
+            int sirina = (this.Width / 100) * 10;
+           this.addFormTotoolstrip1(frmi, "Imenik");
+            this.updateToolStrip("Imenik");
+            frmi.StartPosition = FormStartPosition.CenterParent;
+            frmi.Show();
+            
 
 
 
