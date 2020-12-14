@@ -296,8 +296,8 @@ namespace Bankom
 
         private void UsernameTextBox_Leave(object sender, EventArgs e)
         {
-           
 
+            pictureBox1.Visible = false;
             aliasDatabase = new Dictionary<string, string>();
 
             cmbBaze.Items.Clear();
@@ -491,7 +491,11 @@ namespace Bankom
                         int ID_Firma = Convert.ToInt32(prDok.Rows[0]["ID_Firma"]);
                         int mbr = Convert.ToInt32(prDok.Rows[0]["mbr"]);
                         if (File.Exists(@"\\BANKOMW\organizacija\Pictures\" + ID_Firma + "-" + mbr + ".jpg"))
+                        {
                             pictureBox1.Image = Image.FromFile(@"\\BANKOMW\organizacija\Pictures\" + ID_Firma + "-" + mbr + ".jpg");
+                            pictureBox1.Visible = true;
+                        }
+                          
 
                         pictureBox1.Refresh();
 
@@ -878,14 +882,7 @@ namespace Bankom
 
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
 
-        }
-
-        private void PasswordTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
