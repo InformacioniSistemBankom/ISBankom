@@ -296,8 +296,8 @@ namespace Bankom
 
         private void UsernameTextBox_Leave(object sender, EventArgs e)
         {
-           
 
+            pictureBox1.Visible = false;
             aliasDatabase = new Dictionary<string, string>();
 
             cmbBaze.Items.Clear();
@@ -491,7 +491,11 @@ namespace Bankom
                         int ID_Firma = Convert.ToInt32(prDok.Rows[0]["ID_Firma"]);
                         int mbr = Convert.ToInt32(prDok.Rows[0]["mbr"]);
                         if (File.Exists(@"\\BANKOMW\organizacija\Pictures\" + ID_Firma + "-" + mbr + ".jpg"))
+                        {
                             pictureBox1.Image = Image.FromFile(@"\\BANKOMW\organizacija\Pictures\" + ID_Firma + "-" + mbr + ".jpg");
+                            pictureBox1.Visible = true;
+                        }
+                          
 
                         pictureBox1.Refresh();
 
@@ -598,6 +602,7 @@ namespace Bankom
                         PassKorisnika = Convert.ToString(rdr[1]);
                         Program.idkadar = Convert.ToInt32(rdr[2]);
                         Program.SifRadnika = Convert.ToString(rdr[3]);
+                       
                     }
                     else
                     {
@@ -627,7 +632,7 @@ namespace Bankom
                     Program.imeFirme = dv[0]["Naziv"].ToString();
                     Program.idOrgDeo = Convert.ToInt32(dv[0]["ID_OrganizacionaStruktura"]);
                     Program.idFirme = Convert.ToInt32(dv[0]["ID_OrganizacionaStrukturaStablo"]);
-
+                    Program.NazivOrg = CmbOrg.Text;
 
 
 
@@ -645,9 +650,6 @@ namespace Bankom
                     UsernameTextBox.Text = "";
                     return;
                 }
-
-
-
 
                 bool result = PasswordTextBox.Text.Equals(PassKorisnika);
                 if (result == false)
@@ -679,6 +681,13 @@ namespace Bankom
                     Program.kDatum = Convert.ToDateTime("01.01." + (godina - 1).ToString());
                 }
 
+                ssel = " SELECT min(Godina) as god FROM Godine where flag=1 AND ID_KadrovskaEvidencija=@param0";
+
+                tk = dk.ParamsQueryDT(ssel, Program.idkadar);
+                if (tk.Rows.Count == 0)
+                    Program.mGodina = 0;
+                else
+                    Program.mGodina = Convert.ToInt32(tk.Rows[0]["god"].ToString());
             }
         }
 
@@ -800,6 +809,34 @@ namespace Bankom
             toolTip1.SetToolTip(this.pictureBox6, "RUS");
         }
 
+       
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if(UsernameTextBox.Text!=null && PasswordTextBox.Text != null)
+            {
+                var param0 = UsernameTextBox.Text.Trim();
+                var param1 = PasswordTextBox.Text.Trim();
+
+                string upit = "select count (*) from KadrovskaEvidencija where SUSER = @param0 and Pass=@param1";
+                var rez = DB.ParamsQueryDT(upit, param0, param1);
+
+                if (Convert.ToInt32(rez.Rows[0][0]) == 1)
+                {
+                    tbNovaLozinka.Visible = true;
+                    lbNovaLozinka.Visible = true;
+                    button1.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("Morate uneti ispravno korisničko ime i staru lozinku!");
+                }
+            }
+            else MessageBox.Show("Morate uneti ispravno korisničko ime i staru lozinku!");
+
+
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             lblBaza.Visible = false;
@@ -811,42 +848,41 @@ namespace Bankom
 
             var param0 = UsernameTextBox.Text.Trim();
 
-                string upit = " select Pass, suser from KadrovskaEvidencija WITH (NOLOCK) where SUSER = @param0 and id_kadrovskaevidencija <> 1 	";
-                DataTable rez = DB.ParamsQueryDT(upit, param0);
+            string upit = "select Pass, suser from KadrovskaEvidencija where SUSER = @param0 and id_kadrovskaevidencija <> 1 	";
+            DataTable rez = DB.ParamsQueryDT(upit, param0);
 
-                if (rez.Rows[0][0].ToString() == PasswordTextBox.Text.Trim())
-                {
-                    
-
-                    var param1 = param0;
-                    param0 = tbNovaLozinka.Text.Trim();
-
-                    string upit1 = "update KadrovskaEvidencija set Pass=@param0 where SUSER = @param1 and id_kadrovskaevidencija <> 1 	";
-                    DataTable rez1 = DB.ParamsQueryDT(upit1,param0,param1);
+            if (rez.Rows[0][0].ToString() == PasswordTextBox.Text.Trim())
+            {
 
 
-                    MessageBox.Show("Lozinka uspešno promenjena!");
-                }
-                else
-                {
-                    MessageBox.Show("Pogrešno korisničko ime ili lozinka,izmena nije moguća!");
-                }
+                var param1 = param0;
+                param0 = tbNovaLozinka.Text.Trim();
 
-            PasswordTextBox.Text = "";
+                string upit1 = "update KadrovskaEvidencija set Pass=@param0 where SUSER = @param1 and id_kadrovskaevidencija <> 1 	";
+                DataTable rez1 = DB.ParamsQueryDT(upit1, param0, param1);
 
-            UsernameTextBox.Visible = false;
 
+                MessageBox.Show("Lozinka uspešno promenjena!");
+                PasswordTextBox.Text = "";
+
+            tbNovaLozinka.Visible = false;
+            lbNovaLozinka.Visible = false;
             lblBaza.Visible = true;
             cmbBaze.Visible = true;
             lblGrupa.Visible = true;
             CmbOrg.Visible = true;
 
+            }
+            else
+            {
+                MessageBox.Show("Pogrešno korisničko ime ili lozinka,izmena nije moguća!");
+            }
+
+            
 
         }
 
-        private void CmbOrg_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
+        
     }
 }

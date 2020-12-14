@@ -467,7 +467,7 @@ namespace Bankom.Class
                         dg.Rows[i].DefaultCellStyle.BackColor = Color.DimGray;
                         break;
                     case "3,0":
-                        dg.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                        dg.Rows[i].DefaultCellStyle.BackColor = Color.Black;
                         break;
                 }
             }

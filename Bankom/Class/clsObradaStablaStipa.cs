@@ -27,22 +27,8 @@ namespace Bankom.Class
             IDStablo = IdTree;
             mStablo = Stablo;
             //form1.Controls["lidstablo"].Text = IdTree.ToString();
-            string sstablo = "";                 
+            
          
-            sstablo = "select VrstaCvora,Naziv from " + mStablo + "Stablo WITH(NOLOCK) where Id_" + mStablo + "Stablo=" + IDStablo.ToString();
-            DataTable ts = db.ReturnDataTable(sstablo);
-           
-            if (mStablo.Trim() == "Dokumenta") 
-            {
-                if (ts.Rows[0]["VrstaCvora"].ToString() == "f")
-                {
-                    MessageBox.Show("Izaberite dokument umesto grupe!!");
-                   
-                    return "";
-                }
-            }   
-   
-          //  ((Bankom.frmChield)form1).toolStripTexIme.Text = Dokument;           
             SelectUpit = CreateQuery(Stablo, Dokument);
             return SelectUpit;
         }
@@ -150,14 +136,16 @@ namespace Bankom.Class
                 }
                 //treba se vrsiti provera godine dokumenta
                 ProveraGodine = false;
-                if (Ddokument == "Dokumenta")
+                if (Stablo == "Dokumenta")
                 {
                     if (ts.Rows[0]["OgraniceneGodine"].ToString() == "1") //mogu se videti samo one godine koje su dozvoljene za prijavljenog user-a
                     {
-                        //if( mGodine.Trim() == "")
-                        //{
-
-                        //}
+                        if (Program.mGodina>0 )
+                        {
+                           uslov += " AND YEAR(s.datum) >="+Program.mGodina.ToString();
+                            Console.WriteLine(uslov);
+                 
+                        }
                     }
                 }
                 else

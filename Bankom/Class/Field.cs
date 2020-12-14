@@ -139,7 +139,7 @@ namespace Bankom.Class
                 label.Text = ctekst;//label_text;
                 label.Anchor = AnchorStyles.Left;
                 label.TextAlign = ContentAlignment.MiddleCenter;    //MiddleLeft;
-                                                                    //Djora 26.09.20
+                label.ForeColor = Color.Black;                                                   //Djora 26.09.20
                                                                     //label.Height = (int)(visina * 1.2);
                 label.Font = new Font("TimesRoman", 13, FontStyle.Regular);
                 //label.Font = new Font("TimesRoman", 10.8F, FontStyle.Bold);
@@ -1693,6 +1693,11 @@ namespace Bankom.Class
         //Djora 26.09.20
         public void PromenaFonta(Control kontrola)
         {
+
+            if (kontrola == label)
+            {
+                label.ForeColor = Color.Black;
+            }
 
             if (Screen.PrimaryScreen.Bounds.Width < 1440)
             {
