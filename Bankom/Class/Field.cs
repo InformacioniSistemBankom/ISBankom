@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Bankom.Class;
+using System.Collections.Generic;
 //NOVI PROJEKAT
 
 namespace Bankom.Class
@@ -69,7 +70,9 @@ namespace Bankom.Class
         public string ctekst;
         //Djora 26.09.20
         public string cIdNaziviNaFormi;
-
+        //Ivana 11.12.2020.
+        public string cZavisiOd;
+        CheckBox poslednji = new CheckBox();
         Form forma = new Form();
         //private int izmena;
         private string aaa = "";
@@ -78,7 +81,7 @@ namespace Bankom.Class
         //public Field(Form form1, string iddok, string dokument, string label_text, string polje, string Ime, Color boja, double levo, double vrh, double visina, double sirina,
         //string PozicijaLabele, int Tip, string izborno, string idNaziviNaFormi, string tud, string EnDis, string FormatStringa, string Tabela, string AlijasTabele, string TabelaVView, int TabIndex, string FormatPolja, string Segment, string Restrikcije, int ImaNaslov, string FormulaForme) : base()
         public Field(Form form1, string iddok, string dokument, string label_text, string polje, string Ime, Color boja, double levo, double vrh, double visina, double sirina,
-                     string PozicijaLabele, int Tip, string izborno, string idNaziviNaFormi, string tud, string EnDis, string FormatStringa, string Tabela, string AlijasTabele, string TabelaVView, string FormatPolja, string Segment, string Restrikcije, int ImaNaslov, string FormulaForme) : base()
+                     string PozicijaLabele, int Tip, string izborno, string idNaziviNaFormi, string zavisiOd, string tud, string EnDis, string FormatStringa, string Tabela, string AlijasTabele, string TabelaVView, string FormatPolja, string Segment, string Restrikcije, int ImaNaslov, string FormulaForme) : base()
         {
             boja = Color.AliceBlue;
             forma = form1;
@@ -100,6 +103,8 @@ namespace Bankom.Class
             cTip = Tip;
             //Djora 26.09.20
             cIdNaziviNaFormi = idNaziviNaFormi;
+            //Ivana 11.12.2020.
+            cZavisiOd = zavisiOd;
 
             //Djora 26.09.20
             //this.BackColor = Color.Red;
@@ -266,6 +271,9 @@ namespace Bankom.Class
                     //Djora 08.07.20
                     cekboks.Parent.Name = Ime;
 
+                    //Ivana 14.12.2020.
+                    poslednji = cekboks;
+                    cekboks.CheckedChanged += new EventHandler(checkBox_CheckedChanged);
                     break;
                 default:
                     if (izborno != null && izborno.Trim() != "") // ima izborno
@@ -569,6 +577,31 @@ namespace Bankom.Class
         private Control activeControl;
 
         private Point previousLocation;
+
+        //Ivana 11.12.2020.
+        DataBaseBroker db1 = new DataBaseBroker();
+        public DataTable dt = new DataTable();
+        public void checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            string upit = "Select distinct AlijasPolja FROM RecnikPodataka where TabIndex> -1 and ZavisiOd=@param0";
+            dt = db1.ParamsQueryDT(upit, this.Name);
+            if (poslednji.Checked)
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    Field kontrola = (Field)Program.Parent.ActiveMdiChild.Controls[dt.Rows[i][0].ToString()];
+                    kontrola.Visible = true;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    Field kontrola = (Field)Program.Parent.ActiveMdiChild.Controls[dt.Rows[i][0].ToString()];
+                    kontrola.Visible = false;
+                }
+            }
+        }
 
         void textBox_MouseDown(object sender, MouseEventArgs e)
         {

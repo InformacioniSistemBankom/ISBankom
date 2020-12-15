@@ -14,7 +14,7 @@ namespace Bankom.Class
 {
     class clscontrolsOnForm
     {
-        public void addFormControls(Form forma, string dokument, string iddok,string operacija)
+        public void addFormControls(Form forma, string dokument, string iddok, string operacija)
         {
             DataBaseBroker db = new DataBaseBroker();
             DataTable tt = new DataTable();
@@ -55,7 +55,7 @@ namespace Bankom.Class
             //Djora 26.09.20
             string query = " SELECT RecnikPodatakaDjora.ID_RecnikPodataka AS ID, RecnikPodatakaDjora.Clevo as levo, RecnikPodatakaDjora.Cvrh as vrh, RecnikPodatakaDjora.Cwidth as width, RecnikPodatakaDjora.height, "
                   + " RecnikPodatakaDjora.AlijasPolja, RecnikPodatakaDjora.AlijasTabele, dbo.TipoviPodataka.tip, dbo.TipoviPodataka.velicina, dbo.TipoviPodataka.naziv, dbo.TipoviPodataka.DifoltZaIzvestaje, "
-                  + " dbo.TipoviPodataka.Format, dbo.TipoviPodataka.Alajment, RecnikPodatakaDjora.Izborno, RecnikPodatakaDjora.Polje, RecnikPodatakaDjora.PostojiLabela, RecnikPodatakaDjora.ID_NaziviNaFormi, "
+                  + " dbo.TipoviPodataka.Format, dbo.TipoviPodataka.Alajment, RecnikPodatakaDjora.Izborno, RecnikPodatakaDjora.Polje, RecnikPodatakaDjora.PostojiLabela, RecnikPodatakaDjora.ID_NaziviNaFormi, RecnikPodatakaDjora.ZavisiOd,"
                   + " RecnikPodatakaDjora.TUD, RecnikPodatakaDjora.TabelaVView, RecnikPodatakaDjora.StornoIUpdate, RecnikPodatakaDjora.Tabela, dbo.Prevodi.Prevod as Srpski, "
                   + " dbo.TipoviPodataka.CSharp as FormatPolja,RecnikPodatakaDjora.Restrikcije,RecnikPodatakaDjora.JJoinTvV as ImaNaslov,RecnikPodatakaDjora.FormulaForme"
                   + " FROM dbo.RecnikPodataka AS RecnikPodatakaDjora INNER JOIN "
@@ -71,41 +71,47 @@ namespace Bankom.Class
             if (t.Rows.Count > 0)
             {
                 foreach (DataRow row in t.Rows)
-                {                    
+                {
                     var csirina = Convert.ToDouble(row["width"].ToString());
-                    if (csirina == 0 || csirina > 9 || row["polje"].ToString()=="RedniBroj") // BORKA ne prikazuju se kontrole za polja cija je sirina<9 primeceno u pdvkalkulacijaulaza ????????
+                    if (csirina == 0 || csirina > 9 || row["polje"].ToString() == "RedniBroj") // BORKA ne prikazuju se kontrole za polja cija je sirina<9 primeceno u pdvkalkulacijaulaza ????????
                     {
-                            var clevo = Convert.ToDouble(row["levo"].ToString());
-                            var cvrh = Convert.ToDouble(row["vrh"].ToString());
-                            var cvisina = Convert.ToDouble(row["height"].ToString());
-                            var ctekst = row["Srpski"].ToString();
-                            var cPostojiLabela = row["PostojiLabela"].ToString();
-                            var cTip = Int32.Parse(row["tip"].ToString());
-                            var cAlijasPolja = row["AlijasPolja"].ToString();
-                            var cizborno = row["izborno"].ToString();
-                            var cidNaziviNaFormi = row["ID_NaziviNaFormi"].ToString();
-                            var cTUD = row["tud"].ToString();
-                            var cPolje = row["polje"].ToString();
-                            string cEnDis = row["StornoIUpdate"].ToString();
-                            string cFormat = row["Format"].ToString();
-                            var cAlijasTabele = row["AlijasTabele"].ToString();
-                            string cTabelaVView = row["TabelaVView"].ToString();
-                            string cFormatPolja = row["FormatPolja"].ToString();
-                            var cTabela = row["Tabela"].ToString();
-                            var cSegment = row["TabelavView"].ToString();
-                            //var cTabIndex = Convert.ToInt32(row["TabIndex"].ToString());
-                            var cRestrikcije = row["Restrikcije"].ToString();
-                            var cImaNaslov = 0;
-                            //Console.WriteLine(row["ImaNaslov"].ToString());
-                            if (row["ImaNaslov"].ToString() == "False")
-                                cImaNaslov = 0;//row["ImaNaslov"].ToString();
-                            else
-                                cImaNaslov = 1;
-                            var cFormulaForme = row["FormulaForme"].ToString();
-                            var mfield = new Field(form1, iddok, dokument, ctekst, cPolje, cAlijasPolja, Color.Lavender, clevo, cvrh, cvisina, csirina, cPostojiLabela, cTip, cizborno, cidNaziviNaFormi, cTUD, cEnDis, cFormat, cTabela, cAlijasTabele, cTabelaVView,  cFormatPolja, cSegment, cRestrikcije, cImaNaslov, cFormulaForme);
+                        var clevo = Convert.ToDouble(row["levo"].ToString());
+                        var cvrh = Convert.ToDouble(row["vrh"].ToString());
+                        var cvisina = Convert.ToDouble(row["height"].ToString());
+                        var ctekst = row["Srpski"].ToString();
+                        var cPostojiLabela = row["PostojiLabela"].ToString();
+                        var cTip = Int32.Parse(row["tip"].ToString());
+                        var cAlijasPolja = row["AlijasPolja"].ToString();
+                        var cizborno = row["izborno"].ToString();
+                        var cidNaziviNaFormi = row["ID_NaziviNaFormi"].ToString();
+                        //Ivana 11.12.2020.
+                        var cZavisiOd = row["ZavisiOd"].ToString();
 
-                            form1.Controls.Add(mfield);                    
-                    }    
+                        var cTUD = row["tud"].ToString();
+                        var cPolje = row["polje"].ToString();
+                        string cEnDis = row["StornoIUpdate"].ToString();
+                        string cFormat = row["Format"].ToString();
+                        var cAlijasTabele = row["AlijasTabele"].ToString();
+                        string cTabelaVView = row["TabelaVView"].ToString();
+                        string cFormatPolja = row["FormatPolja"].ToString();
+                        var cTabela = row["Tabela"].ToString();
+                        var cSegment = row["TabelavView"].ToString();
+                        //var cTabIndex = Convert.ToInt32(row["TabIndex"].ToString());
+                        var cRestrikcije = row["Restrikcije"].ToString();
+                        var cImaNaslov = 0;
+                        //Console.WriteLine(row["ImaNaslov"].ToString());
+                        if (row["ImaNaslov"].ToString() == "False")
+                            cImaNaslov = 0;//row["ImaNaslov"].ToString();
+                        else
+                            cImaNaslov = 1;
+                        var cFormulaForme = row["FormulaForme"].ToString();
+                        
+                        var mfield = new Field(form1, iddok, dokument, ctekst, cPolje, cAlijasPolja, Color.Lavender, clevo, cvrh, cvisina, csirina, cPostojiLabela, cTip, cizborno, cidNaziviNaFormi, cZavisiOd, cTUD, cEnDis, cFormat, cTabela, cAlijasTabele, cTabelaVView, cFormatPolja, cSegment, cRestrikcije, cImaNaslov, cFormulaForme);
+                         form1.Controls.Add(mfield);
+                        //Ivana 11.12.2020.
+                        if (cZavisiOd.Trim() != "")
+                            mfield.Visible = false;
+                    }
                 }
 
                 foreach (var ctrls in forma.Controls.OfType<Field>())
