@@ -1170,6 +1170,13 @@ namespace Bankom.Class
                                     datum = pb.dtp.Value;
                                 }
                                 break;
+                            case "cek":
+                                if (control.Rows[e.RowIndex].Cells[i].Value.ToString() == "1")
+                                    pb.cekboks.Checked = true;
+                                else
+                                    pb.cekboks.Checked = false;                         
+                                break;
+
                         }
                     }
                     if (column.Name.ToUpper().Contains("IID"))
