@@ -528,7 +528,7 @@ namespace Bankom.Class
                                 ctrls.ID = "1";
                                 ctrls.Vrednost = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
 
-                                switch (ctrls.VrstaKontrole)
+                                 switch (ctrls.VrstaKontrole)
                                 {
                                     case "tekst":
                                         if (ctrls.IME == "BrDok")
@@ -578,6 +578,13 @@ namespace Bankom.Class
                                             }
                                         }
                                         break;
+                                    case "cek":
+                                        if (dt.Rows[0][dt.Columns[k].ColumnName].ToString() == "1")
+                                            ctrls.cekboks.Checked = true;
+                                       else
+                                           ctrls.cekboks.Checked = false;
+                                       break;
+
                                 }
                             }
                         }
@@ -604,6 +611,9 @@ namespace Bankom.Class
                                     ctrls.dtp.Text = ((Bankom.frmChield)forma).datum;
                                     ctrls.dtp.Value = Convert.ToDateTime(ctrls.dtp.Text);
                                 }
+                                break;
+                            case "cek":
+
                                 break;
                         }
                     }
