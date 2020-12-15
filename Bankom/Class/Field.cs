@@ -72,7 +72,6 @@ namespace Bankom.Class
         public string cIdNaziviNaFormi;
         //Ivana 11.12.2020.
         public string cZavisiOd;
-        CheckBox poslednji = new CheckBox();
         Form forma = new Form();
         //private int izmena;
         private string aaa = "";
@@ -272,7 +271,6 @@ namespace Bankom.Class
                     cekboks.Parent.Name = Ime;
 
                     //Ivana 14.12.2020.
-                    poslednji = cekboks;
                     cekboks.CheckedChanged += new EventHandler(checkBox_CheckedChanged);
                     break;
                 default:
@@ -585,7 +583,7 @@ namespace Bankom.Class
         {
             string upit = "Select distinct AlijasPolja FROM RecnikPodataka where TabIndex> -1 and ZavisiOd=@param0";
             dt = db1.ParamsQueryDT(upit, this.Name);
-            if (poslednji.Checked)
+            if (cekboks.Checked)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
