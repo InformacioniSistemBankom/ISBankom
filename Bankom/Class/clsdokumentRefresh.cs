@@ -164,6 +164,7 @@ namespace Bankom.Class
                     ((Bankom.frmChield)form1).BrRedova = brredova;
 
                 ((Bankom.frmChield)form1).imegrida = tIme;
+
                 if (mUpit.Trim() == "")
                     tUpit = CreateQuery(tUpit, KojiSegment, iddok, dokument, DokumentJe);
                 else
@@ -184,6 +185,7 @@ namespace Bankom.Class
                 {
                     if (((Bankom.frmChield)form1).statusStrip1.Visible == true)
                     {
+                        Console.WriteLine(tUpit);
                         PripremiPaging(ref tUpit, iddok);
                     }
                     tg = db.ReturnDataTable(tUpit);  // za datasource grida ako je prosao kroz PripremiPaging  tg samo slogove stranice inace sadrzi sve slogove iz upita
@@ -243,22 +245,17 @@ namespace Bankom.Class
             int intfrom = tUpit.ToUpper().IndexOf("FROM", StringComparison.OrdinalIgnoreCase);
             int intOrder = tUpit.ToUpper().IndexOf("ORDER", StringComparison.OrdinalIgnoreCase);
 
-            if (((Bankom.frmChield)form1).intUkupno == 0)
-            {
-                if (intOrder > -1)// UPIT SADRZI ORDER BY
-                {
-                    // broj slogova u upitu
-                    ((Bankom.frmChield)form1).intUkupno = db.ReturnInt(" select count(*) from " + tUpit.Substring(intfrom + 5, intOrder - intfrom - 5), 0);
-                }
-                else
-                    ((Bankom.frmChield)form1).intUkupno = db.ReturnInt(" select count(*) from " + tUpit.Substring(intfrom + 5), 0);
-            }
-            ((Bankom.frmChield)form1).toolStripTextBroj.Text = iddok;
-            ((Bankom.frmChield)form1).statusStrip1.Visible = true;
-            string strstart = "";
-            int pageno = 0;
-            if (((Bankom.frmChield)form1).intUkupno > 0)
-            {
+        if (intOrder > -1)// UPIT SADRZI ORDER BY
+           ((Bankom.frmChield)form1).intUkupno = db.ReturnInt(" select count(*) from " + tUpit.Substring(intfrom + 5, intOrder - intfrom - 5), 0);
+        else
+            ((Bankom.frmChield)form1).intUkupno = db.ReturnInt(" select count(*) from " + tUpit.Substring(intfrom + 5), 0);
+       
+        ((Bankom.frmChield)form1).toolStripTextBroj.Text = iddok;
+        ((Bankom.frmChield)form1).statusStrip1.Visible = true;
+        string strstart = "";
+        int pageno = 0;
+        if (((Bankom.frmChield)form1).intUkupno > 0)
+        {
                 if (((Bankom.frmChield)form1).BrRedova > 0)
                     pageno = ((Bankom.frmChield)form1).intUkupno / ((Bankom.frmChield)form1).BrRedova;
             }
@@ -267,6 +264,7 @@ namespace Bankom.Class
             strFind = ((Bankom.frmChield)form1).toolStripTextFind.Text;
             ((Bankom.frmChield)form1).ToolStripLblPos.Text = Convert.ToString(pageno);
             ((Bankom.frmChield)form1).toolStripTexIme.Text = ((Bankom.frmChield)form1).Controls["limedok"].Text;
+            if (((Bankom.frmChield)form1).intStart < 0) ((Bankom.frmChield)form1).intStart = 0;
             if (((Bankom.frmChield)form1).intUkupno > 0 && ((Bankom.frmChield)form1).intStart >= ((Bankom.frmChield)form1).intUkupno)
             {
                 ((Bankom.frmChield)form1).intStart = ((Bankom.frmChield)form1).intUkupno - ((Bankom.frmChield)form1).BrRedova;
