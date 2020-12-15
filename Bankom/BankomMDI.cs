@@ -1980,9 +1980,11 @@ namespace Bankom
         {
             // ivana 24.11.2020.
             Form childForm = this.ActiveMdiChild;
-            itemB1_click(childForm.Text);
-            childForm.Close();
-
+            if (childForm != null)
+            {
+                itemB1_click(childForm.Text);
+                childForm.Close();
+            }
             if (toolStrip1.Items.Count == 0)
             {
                 toolStrip1.Visible = false;
