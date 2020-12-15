@@ -1170,9 +1170,15 @@ namespace Bankom.Class
                                 break;
                             case "cek":
                                 if (control.Rows[e.RowIndex].Cells[i].Value.ToString() == "1")
+                                {
                                     pb.cekboks.Checked = true;
+                                    Vrednost = "1";
+                                }
                                 else
-                                    pb.cekboks.Checked = false;                         
+                                {
+                                    pb.cekboks.Checked = false;
+                                    Vrednost = "0";
+                                }
                                 break;
 
                         }
