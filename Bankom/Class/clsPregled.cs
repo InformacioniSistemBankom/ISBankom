@@ -60,7 +60,7 @@ namespace Bankom.Class
                        goto PrinudniIzlaz;
                     }
                     else
-                    {
+                    {                        
                         clsdokumentRefresh docref1 = new clsdokumentRefresh();
                         Console.WriteLine(UpitZaPregled);
                         docref1.refreshDokumentGrid(forma, imedokumenta, "1", UpitZaPregled,"1", dokje);///?????????????????
@@ -132,8 +132,7 @@ namespace Bankom.Class
                     IdDokView = dp.Rows[Convert.ToInt32(kk-1)]["IdDokumentZaPregled"].ToString();
                     ((Bankom.frmChield)forma).lblBroj.Text = Convert.ToString(kk);
                     break;
-            }     
- 
+            }      
             clsdokumentRefresh cdr = new clsdokumentRefresh();            
             cdr.refreshDokumentBody(forma, imedokumenta, IdDokView, dokje);
             cdr.refreshDokumentGrid(forma, imedokumenta, IdDokView, "","1", "");
@@ -181,6 +180,9 @@ namespace Bankom.Class
                                 case "combo":
                                     pb.comboBox.Text = "";
                                     pb.ID = "1";
+                                    break;
+                                case "cek":
+                                    pb.cekboks.Checked = false;
                                     break;
                             }
 
@@ -316,7 +318,8 @@ namespace Bankom.Class
             if (imedokumenta == "Dokumenta")
             {
                 IdDokView = "0";
-                PripremaidDokumentaZaPregled = PripremaidDokumentaZaPregled + " AND nazivorg like '" + Program.imeFirme + "%'" + " ORDER BY  ID_DokumentaTotali desc";
+                PripremaidDokumentaZaPregled = PripremaidDokumentaZaPregled + " AND nazivorg like '" + Program.imeFirme + "%'" + " AND YEAR(Datum)>="+Program.mGodina.ToString() + " ORDER BY  ID_DokumentaTotali desc";
+                Console.WriteLine(PripremaidDokumentaZaPregled);
             }
 
             if (dokje == "D")
