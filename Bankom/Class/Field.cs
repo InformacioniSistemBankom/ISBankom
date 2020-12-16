@@ -72,7 +72,6 @@ namespace Bankom.Class
         public string cIdNaziviNaFormi;
         //Ivana 11.12.2020.
         public string cZavisiOd;
-        public List<CheckBox> lista = new List<CheckBox>();
         Form forma = new Form();
         //private int izmena;
         private string aaa = "";
@@ -272,7 +271,6 @@ namespace Bankom.Class
                     cekboks.Parent.Name = Ime;
 
                     //Ivana 14.12.2020.
-                    lista.Add(cekboks);
                     cekboks.CheckedChanged += new EventHandler(checkBox_CheckedChanged);
                     break;
                 default:
@@ -579,21 +577,13 @@ namespace Bankom.Class
         private Point previousLocation;
 
         //Ivana 11.12.2020.
-        public bool checkBoxIsChecked(string s)
-        {
-            for(int i=0;i<lista.Count;i++)
-                if (lista[i].Name == s)
-                    if (lista[i].Checked)
-                        return true;
-            return false;
-        }
         DataBaseBroker db1 = new DataBaseBroker();
         public DataTable dt = new DataTable();
         public void checkBox_CheckedChanged(object sender, EventArgs e)
         {
             string upit = "Select distinct AlijasPolja FROM RecnikPodataka where TabIndex> -1 and ZavisiOd=@param0";
             dt = db1.ParamsQueryDT(upit, this.Name);
-            if (this.checkBoxIsChecked(this.Name.ToString()))
+            if (cekboks.Checked)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
@@ -1178,6 +1168,19 @@ namespace Bankom.Class
                                     datum = pb.dtp.Value;
                                 }
                                 break;
+                            case "cek":
+                                if (control.Rows[e.RowIndex].Cells[i].Value.ToString() == "1")
+                                {
+                                    pb.cekboks.Checked = true;
+                                    Vrednost = "1";
+                                }
+                                else
+                                {
+                                    pb.cekboks.Checked = false;
+                                    Vrednost = "0";
+                                }
+                                break;
+
                         }
                     }
                     if (column.Name.ToUpper().Contains("IID"))

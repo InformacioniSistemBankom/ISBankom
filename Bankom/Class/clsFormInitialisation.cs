@@ -69,7 +69,10 @@ namespace Bankom.Class
                         ctrls.comboBox.Text = "";
                         ctrls.Vrednost = ctrls.comboBox.Text;
                         break;
-                }
+                    case "cek":
+
+                        break;
+                     }
 
             } // end searching controls     
         }
