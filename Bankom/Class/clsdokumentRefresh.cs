@@ -474,7 +474,9 @@ namespace Bankom.Class
         {
             DataBaseBroker db = new DataBaseBroker();
             DataTable tt = new DataTable();
+            
             string sql = "Select Naziv,UlazniIzlazni as NazivDokumenta from SifarnikDokumenta  where naziv=@param0";
+
             tt = db.ParamsQueryDT(sql, dokument);
             if (tt.Rows.Count > 0) { dokument = tt.Rows[0]["NazivDokumenta"].ToString(); }
 
@@ -575,6 +577,7 @@ namespace Bankom.Class
                                                 break;
                                             }
                                         }
+                                        
                                         break;
                                     case "cek":
                                         if (dt.Rows[0][dt.Columns[k].ColumnName].ToString() == "1")
