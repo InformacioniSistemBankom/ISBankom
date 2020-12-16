@@ -490,9 +490,10 @@ namespace Bankom.Class
                                         case "datum":
                                             kontrola.dtp.Enabled = true;
                                             break;
+                                        case "cek":
+                                            kontrola.cekboks.Enabled = true;
+                                            break;
                                     }
-                                    //kontrola.Enabled = true;
-                                    //kontrola.TabStop = true;
                                 }
                                 else
                                 {
@@ -508,6 +509,10 @@ namespace Bankom.Class
                                                 break;
                                             case "datum":
                                             kontrola.dtp.Enabled = false;
+                                                break;
+                                            case "cek":
+                                                kontrola.cekboks.Enabled = false;
+                                               
                                             break;
                                         }
                                     }
@@ -527,9 +532,12 @@ namespace Bankom.Class
                                                 case "datum":
                                                     kontrola.dtp.Enabled = false;
                                                     break;
+                                                case "cek":
+                                                    kontrola.cekboks.Enabled = false;
+                                                    break;
                                             }
                                         }
-                                        else// "StornoiUpdate"].ToString() != "D"
+                                        else// "StornoiUpdate"].ToString() != "D" a dokument nije proknjizen
                                         {
                                             switch (kontrola.VrstaKontrole)
                                             {
@@ -542,9 +550,11 @@ namespace Bankom.Class
                                                 case "datum":
                                                     kontrola.dtp.Enabled = true;
                                                     break;
+                                                case "cek":
+                                                    kontrola.cekboks.Enabled = true;
+                                                    break;
                                             }
                                         }
-                                        //kontrola.Enabled = true;
                                     }
                                 }
                             }

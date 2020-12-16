@@ -1962,37 +1962,27 @@ namespace Bankom
             this.updateToolStrip("Imenik");
             frmi.StartPosition = FormStartPosition.CenterParent;
             frmi.Show();
-            
-
-
-
-            //Application.Exit();
-
-            /* Process myProcess = new Process();
-             myProcess.StartInfo.UseShellExecute = true;
-            // myProcess.StartInfo.FileName = "\\sql2016\d\Imenik.exe";
-             myProcess.StartInfo.CreateNoWindow = true;
-             myProcess.Start();*/
         }
 
         public static string cf;
         private void Iizlaz_Click(object sender, EventArgs e)
         {
             // ivana 24.11.2020.
-            Form childForm = this.ActiveMdiChild;
-            if (childForm != null)
+            if (this.ActiveMdiChild != null)
             {
+                Form childForm = this.ActiveMdiChild;
                 itemB1_click(childForm.Text);
                 childForm.Close();
             }
             if (toolStrip1.Items.Count == 0)
             {
                 toolStrip1.Visible = false;
-                if (MessageBox.Show("Izlaz iz programa?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    toolStrip1.Visible = false;
+                //if (MessageBox.Show("Izlaz iz programa?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                //{
+                    //toolStrip1.Visible = false;
+
                     Application.Exit();
-                }
+                //}
             }
 
             ////staro
