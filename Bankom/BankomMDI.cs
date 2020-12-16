@@ -175,6 +175,7 @@ namespace Bankom
 
         public void addFormTotoolstrip1(Form forma, string imedokumenta)
         {
+            //tamara 14.12.2020.
             forma.FormBorderStyle = FormBorderStyle.None;
             this.BackColor = System.Drawing.Color.Snow;
             toolStrip1.Visible = true;
@@ -598,8 +599,11 @@ namespace Bankom
                         {
                             childForm.FormBorderStyle = FormBorderStyle.None;
                             childForm.BackColor = System.Drawing.Color.Snow;
-                            childForm.Focus();
-                            childForm.Activate();
+                            
+                                childForm.Activate();
+                                childForm.Focus();
+                           
+                            
                             //this.ActivateMdiChild(childForm);
                             childForm.LayoutMdi(MdiLayout.TileVertical);
                             childForm.WindowState = FormWindowState.Maximized;
@@ -608,6 +612,7 @@ namespace Bankom
                     }
                 }
             }
+            SrediFormu();
         }
 
         public void itemB1_click(string imetula)  // zahtev za zatvaranje  forme klikom na tipku izlaz
@@ -644,6 +649,7 @@ namespace Bankom
             {
                 toolStrip1.Visible = false;
             }
+            SrediFormu();
         }
 
 
@@ -686,6 +692,7 @@ namespace Bankom
             {
                 toolStrip1.Visible = false;
             }
+            SrediFormu();
         }
 
 
