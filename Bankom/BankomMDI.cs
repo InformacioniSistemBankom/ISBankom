@@ -83,7 +83,7 @@ namespace Bankom
             }
 
 
-            updateToolStrip(ss);
+            updateToolStrip(imedokumenta);
 
         }
         public void updateToolStrip(string imedokumenta)
@@ -185,7 +185,6 @@ namespace Bankom
             ToolStripButton itemB = new ToolStripButton();
             ToolStripSeparator itemnsep = new ToolStripSeparator();
             itemn.Text = forma.Text;
-            //itemn.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             itemn.ToolTipText = imedokumenta;
             itemn.Name = forma.Text;
             itemB.Image = global::Bankom.Properties.Resources.del12;
@@ -1309,6 +1308,16 @@ namespace Bankom
 
 
 
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void windowsMenu_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void pretragaToolStripMenuItem_Click(object sender, EventArgs e)
 
@@ -1378,9 +1387,25 @@ namespace Bankom
 
         }
 
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
+        }
 
-       
+        private void toolStripOpis_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void toolStripBrDok_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void PomocniSifarnici_Click(object sender, EventArgs e)
 
@@ -3012,9 +3037,16 @@ namespace Bankom
             Preuzimanja.PreuzimanjeUplataKupacaIzBanaka();
         }
 
-   
+        private void Oodjava_Click(object sender, EventArgs e)
+        {
 
-   
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void Oodjava_Click_1(object sender, EventArgs e)
         {
             Application.Exit();
@@ -3124,9 +3156,9 @@ namespace Bankom
             customMessage.ShowDialog();
 
             if (customMessage.DialogResult == DialogResult.Cancel)
-               e.Cancel = true;
+                e.Cancel = false;
 
-            
+
             //if (MessageBox.Show("Da li ste sigurni da želite da zatvorite program?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Cancel)
             //{
             //    e.Cancel = true;
