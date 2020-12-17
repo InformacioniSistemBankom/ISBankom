@@ -152,7 +152,7 @@ namespace Bankom
             // 
             // toolTip
             // 
-            this.toolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip_Popup);
+           // this.toolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip_Popup);
             // 
             // Dokumenta
             // 
@@ -854,6 +854,7 @@ namespace Bankom
             this.toolStripTextBox1.Size = new System.Drawing.Size(200, 43);
             this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             // 
+            // 
             // Ggrupisi
             // 
             this.Ggrupisi.AutoSize = false;
@@ -996,7 +997,7 @@ namespace Bankom
             this.Ppredlogcena.Text = "Pred.c.";
             this.Ppredlogcena.ToolTipText = "Pregled cena";
             this.Ppredlogcena.Visible = false;
-            this.Ppredlogcena.Click += new System.EventHandler(this.Ppredlogcena_Click);
+           // this.Ppredlogcena.Click += new System.EventHandler(this.Ppredlogcena_Click);
             // 
             // Kkalki
             // 
@@ -1145,7 +1146,7 @@ namespace Bankom
             this.Oorigin.Text = "Original";
             this.Oorigin.ToolTipText = "Original";
             this.Oorigin.Visible = false;
-            this.Oorigin.Click += new System.EventHandler(this.Oorigin_Click);
+            //this.Oorigin.Click += new System.EventHandler(this.Oorigin_Click);
             // 
             // Oorgsema
             // 
@@ -1383,7 +1384,6 @@ namespace Bankom
         public System.Windows.Forms.ToolStripMenuItem Ggrupisinp;
         public System.Windows.Forms.ToolStripMenuItem unospb;
         public System.Windows.Forms.ToolStripMenuItem premestiGrupuToolStripMenuItem;
-        public System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.ToolStripButton Ppotvrda;
         public System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         public System.Windows.Forms.Button button1;
@@ -1391,6 +1391,7 @@ namespace Bankom
         private System.Windows.Forms.ToolStripButton Ssort;
         private System.Windows.Forms.ToolStripButton Pporeklo;
         public System.Windows.Forms.MenuStrip menuStrip1;
+        public System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
     }
 }
 
