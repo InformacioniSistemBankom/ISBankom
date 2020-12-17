@@ -748,7 +748,7 @@ namespace Bankom
             this.Oorgsema});
             this.ToolBar.Location = new System.Drawing.Point(0, 0);
             this.ToolBar.Name = "ToolBar";
-            this.ToolBar.Size = new System.Drawing.Size(1284, 43);
+            this.ToolBar.Size = new System.Drawing.Size(1378, 43);
             this.ToolBar.TabIndex = 32;
             this.ToolBar.Text = "toolbar";
             // 
@@ -1245,7 +1245,7 @@ namespace Bankom
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Snow;
-            this.ClientSize = new System.Drawing.Size(1284, 781);
+            this.ClientSize = new System.Drawing.Size(1378, 781);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.toolStrip1);

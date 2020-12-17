@@ -39,12 +39,12 @@ namespace Bankom
             InitializeComponent();
         }
         public void ShowNewForm(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
-        {
+        {            
             DataBaseBroker db = new DataBaseBroker();
             string ss = "";
             if (dokumentje == "D")
             {
-                ss = brojdokumenta;
+                ss = brojdokumenta; 
             }
             else
             {
@@ -59,7 +59,7 @@ namespace Bankom
                 childForm.MdiParent = this;
                 this.WindowState = FormWindowState.Maximized;
 
-                if (IzborJezika.Text == "РЎСЂРїСЃРєРё-Р‹РёСЂРёР»РёС†Р°") { childForm.Text = VratiCirlilicu(imedokumenta); }
+                if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
                 int sirina = (Width / 100) * 10;
 
 
@@ -112,7 +112,7 @@ namespace Bankom
                     ss = brojdokumenta;
                     if (f.Text == ss)
                     {
-                        MessageBox.Show("Ova forma je veД‡ otvorena.");
+                        MessageBox.Show("Ova forma je već otvorena.");
                         f.Focus();
                         vrednost = true;
                         break;
@@ -127,7 +127,7 @@ namespace Bankom
                     ss = imedokumenta;
                     if (f.Text == ss)
                     {
-                        MessageBox.Show("Ova forma je veД‡ otvorena.");
+                        MessageBox.Show("Ova forma je već otvorena.");
                         f.Focus();
 
                         vrednost = true;
@@ -151,25 +151,25 @@ namespace Bankom
         //    for(int i=0; i<niz.Length; i++)
         //    {
         //        if (niz[i] == '~')
-        //            niz[i] = 'ДЌ';
+        //            niz[i] = 'č';
         //        else if (niz[i] == '`')
-        //            niz[i] = 'Еѕ';
+        //            niz[i] = 'ž';
         //        else if (niz[i] == '\')
-        //            niz[i] = 'Дђ';
+        //            niz[i] = 'Đ';
         //        else if (niz[i] == '{')
-        //            niz[i] = 'ЕЎ';
+        //            niz[i] = 'š';
         //        else if (niz[i] == '}')
-        //            niz[i] = 'Д‡';
+        //            niz[i] = 'ć';
         //        else if (niz[i] == '[')
-        //            niz[i] = 'Е ';
+        //            niz[i] = 'Š';
         //        else if (niz[i] == ']')
-        //            niz[i] = 'Д†';
+        //            niz[i] = 'Ć';
         //        else if (niz[i] == '|')
-        //            niz[i] = 'Д‘';
+        //            niz[i] = 'đ';
         //        else if (niz[i] == '@')
-        //            niz[i] = 'ЕЅ';
+        //            niz[i] = 'Ž';
         //        else if (niz[i] == '^')
-        //            niz[i] = 'ДЊ';
+        //            niz[i] = 'Č';
         //    }
         //}
 
@@ -286,18 +286,18 @@ namespace Bankom
         //    ShowNewForm("Dokumenta", 1, "Dokumenta", 1, "", "", "S", "", "TreeView");
 
         //}
-
+      
         private void BankomMDI_Load(object sender, EventArgs e)
         {
 
-            this.Text = "ISBankom -" + Program.NazivOrg + "-" + Program.imekorisnika;
+            this.Text = "ISBankom -" +Program.NazivOrg + "-" + Program.imekorisnika;
             addKombo();
             clsSettingsButtons sb = new clsSettingsButtons();
             sb.ToolBarItemsEnDis();
 
             //tamara 22.10.2020.
             ToolBar.Enabled = true;
-
+           
             clsObradaMenija obradaMenija = new clsObradaMenija(this);
             obradaMenija.CreateMenu();
             SrediFormu();
@@ -355,7 +355,7 @@ namespace Bankom
 
         }
 
-        public string VratiCirlilicu(string inputLatinica)
+       public string VratiCirlilicu(string inputLatinica)
         {
             string str;
             str = inputLatinica;
@@ -378,68 +378,68 @@ namespace Bankom
                     else
                     {
                         sCir = word;
-                        sCir = sCir.Replace("nj", "Сљ");
-                        sCir = sCir.Replace("lj", "С™");
-                        sCir = sCir.Replace("dЕѕ", "Сџ");
-                        sCir = sCir.Replace("dj", "С’");
-                        sCir = sCir.Replace("Д‘", "С’");
-                        sCir = sCir.Replace("Nj", "РЉ");
-                        sCir = sCir.Replace("Lj", "Р‰");
-                        sCir = sCir.Replace("DЕѕ", "РЏ");
-                        sCir = sCir.Replace("Dj", "Р‚");
-                        sCir = sCir.Replace("DJ", "Р‚");
-                        sCir = sCir.Replace("Дђ", "Р‚");
-                        sCir = sCir.Replace("Lj", "Р‰");
-                        sCir = sCir.Replace("DЕЅ", "РЏ");
-                        sCir = sCir.Replace("NJ", "РЉ");
-                        sCir = sCir.Replace("LJ", "Р‰");
-                        sCir = sCir.Replace("d", "Рґ");
-                        sCir = sCir.Replace("Еѕ", "Р¶");
-                        sCir = sCir.Replace("z", "Р·");
-                        sCir = sCir.Replace("l", "Р»");
-                        sCir = sCir.Replace("n", "РЅ");
-                        sCir = sCir.Replace("h", "С…");
-                        sCir = sCir.Replace("p", "Рї");
-                        sCir = sCir.Replace("r", "СЂ");
-                        sCir = sCir.Replace("s", "СЃ");
-                        sCir = sCir.Replace("Д‡", "С›");
-                        sCir = sCir.Replace("u", "Сѓ");
-                        sCir = sCir.Replace("f", "С„");
-                        sCir = sCir.Replace("c", "С†");
-                        sCir = sCir.Replace("ЕЎ", "С€");
-                        sCir = sCir.Replace("b", "Р±");
-                        sCir = sCir.Replace("v", "РІ");
-                        sCir = sCir.Replace("g", "Рі");
-                        sCir = sCir.Replace("a", "Р°");
-                        sCir = sCir.Replace("e", "Рµ");
-                        sCir = sCir.Replace("j", "С");
-                        sCir = sCir.Replace("k", "Рє");
-                        sCir = sCir.Replace("m", "Рј");
-                        sCir = sCir.Replace("o", "Рѕ");
-                        sCir = sCir.Replace("i", "Рё");
-                        sCir = sCir.Replace("ДЌ", "С‡");
-                        sCir = sCir.Replace("t", "С‚");
-                        sCir = sCir.Replace("D", "Р”");
-                        sCir = sCir.Replace("ЕЅ", "Р–");
-                        sCir = sCir.Replace("Z", "Р—");
-                        sCir = sCir.Replace("L", "Р›");
-                        sCir = sCir.Replace("N", "Рќ");
-                        sCir = sCir.Replace("H", "РҐ");
-                        sCir = sCir.Replace("P", "Рџ");
-                        sCir = sCir.Replace("R", "Р ");
-                        sCir = sCir.Replace("S", "РЎ");
-                        sCir = sCir.Replace("Д†", "Р‹");
-                        sCir = sCir.Replace("U", "РЈ");
-                        sCir = sCir.Replace("F", "С„");
-                        sCir = sCir.Replace("C", "Р¦");
-                        sCir = sCir.Replace("Е ", "РЁ");
-                        sCir = sCir.Replace("B", "Р‘");
-                        sCir = sCir.Replace("V", "Р’");
-                        sCir = sCir.Replace("G", "Р“");
-                        sCir = sCir.Replace("P", "Рџ");
-                        sCir = sCir.Replace("I", "Р");
-                        sCir = sCir.Replace("ДЊ", "Р§");
-                        sCir = sCir.Replace("DЕѕ", "РЏ");
+                        sCir = sCir.Replace("nj", "њ");
+                        sCir = sCir.Replace("lj", "љ");
+                        sCir = sCir.Replace("dž", "џ");
+                        sCir = sCir.Replace("dj", "ђ");
+                        sCir = sCir.Replace("đ", "ђ");
+                        sCir = sCir.Replace("Nj", "Њ");
+                        sCir = sCir.Replace("Lj", "Љ");
+                        sCir = sCir.Replace("Dž", "Џ");
+                        sCir = sCir.Replace("Dj", "Ђ");
+                        sCir = sCir.Replace("DJ", "Ђ");
+                        sCir = sCir.Replace("Đ", "Ђ");
+                        sCir = sCir.Replace("Lj", "Љ");
+                        sCir = sCir.Replace("DŽ", "Џ");
+                        sCir = sCir.Replace("NJ", "Њ");
+                        sCir = sCir.Replace("LJ", "Љ");
+                        sCir = sCir.Replace("d", "д");
+                        sCir = sCir.Replace("ž", "ж");
+                        sCir = sCir.Replace("z", "з");
+                        sCir = sCir.Replace("l", "л");
+                        sCir = sCir.Replace("n", "н");
+                        sCir = sCir.Replace("h", "х");
+                        sCir = sCir.Replace("p", "п");
+                        sCir = sCir.Replace("r", "р");
+                        sCir = sCir.Replace("s", "с");
+                        sCir = sCir.Replace("ć", "ћ");
+                        sCir = sCir.Replace("u", "у");
+                        sCir = sCir.Replace("f", "ф");
+                        sCir = sCir.Replace("c", "ц");
+                        sCir = sCir.Replace("š", "ш");
+                        sCir = sCir.Replace("b", "б");
+                        sCir = sCir.Replace("v", "в");
+                        sCir = sCir.Replace("g", "г");
+                        sCir = sCir.Replace("a", "а");
+                        sCir = sCir.Replace("e", "е");
+                        sCir = sCir.Replace("j", "ј");
+                        sCir = sCir.Replace("k", "к");
+                        sCir = sCir.Replace("m", "м");
+                        sCir = sCir.Replace("o", "о");
+                        sCir = sCir.Replace("i", "и");
+                        sCir = sCir.Replace("č", "ч");
+                        sCir = sCir.Replace("t", "т");
+                        sCir = sCir.Replace("D", "Д");
+                        sCir = sCir.Replace("Ž", "Ж");
+                        sCir = sCir.Replace("Z", "З");
+                        sCir = sCir.Replace("L", "Л");
+                        sCir = sCir.Replace("N", "Н");
+                        sCir = sCir.Replace("H", "Х");
+                        sCir = sCir.Replace("P", "П");
+                        sCir = sCir.Replace("R", "Р");
+                        sCir = sCir.Replace("S", "С");
+                        sCir = sCir.Replace("Ć", "Ћ");
+                        sCir = sCir.Replace("U", "У");
+                        sCir = sCir.Replace("F", "ф");
+                        sCir = sCir.Replace("C", "Ц");
+                        sCir = sCir.Replace("Š", "Ш");
+                        sCir = sCir.Replace("B", "Б");
+                        sCir = sCir.Replace("V", "В");
+                        sCir = sCir.Replace("G", "Г");
+                        sCir = sCir.Replace("P", "П");
+                        sCir = sCir.Replace("I", "И");
+                        sCir = sCir.Replace("Č", "Ч");
+                        sCir = sCir.Replace("Dž", "Џ");
                         sCirZ = sCirZ + sCir;
                     }
                     str = sCirZ;
@@ -458,67 +458,67 @@ namespace Bankom
             str = inputLat;
             string word;
             word = inputLat;
-            word = inputLat.Replace("Сљ", "nj");
-            word = inputLat.Replace("С™", "lj");
-            word = inputLat.Replace("Сџ", "dЕѕ");
-            word = inputLat.Replace("С’", "dj");
-            word = inputLat.Replace("С’", "Д‘");
-            word = inputLat.Replace("РЉ", "Nj");
-            word = inputLat.Replace("Р‰", "Lj");
-            word = inputLat.Replace("РЏ", "DЕѕ");
-            word = inputLat.Replace("Р‚", "Dj");
-            word = inputLat.Replace("Р‚", "DJ");
-            word = inputLat.Replace("Р‚", "Дђ");
-            word = inputLat.Replace("Р‰", "Lj");
-            word = inputLat.Replace("РЏ", "DЕЅ");
-            word = inputLat.Replace("Р‰", "LJ");
-            word = inputLat.Replace("Рґ", "d");
-            word = inputLat.Replace("Еѕ", "Р¶");
-            word = inputLat.Replace("Р·", "z");
-            word = inputLat.Replace("Р»", "l");
-            word = inputLat.Replace("РЅ", "n");
-            word = inputLat.Replace("С…", "h");
-            word = inputLat.Replace("Рї", "p");
-            word = inputLat.Replace("СЂ", "r");
-            word = inputLat.Replace("СЃ", "s");
-            word = inputLat.Replace("С›", "Д‡");
-            word = inputLat.Replace("Сѓ", "u");
-            word = inputLat.Replace("С„", "f");
-            word = inputLat.Replace("С†", "c");
-            word = inputLat.Replace("С€", "ЕЎ");
-            word = inputLat.Replace("Р±", "b");
-            word = inputLat.Replace("РІ", "v");
-            word = inputLat.Replace("Рі", "g");
-            word = inputLat.Replace("Р°", "a");
-            word = inputLat.Replace("Рµ", "e");
-            word = inputLat.Replace("Рє", "k");
-            word = inputLat.Replace("Рј", "m");
-            word = inputLat.Replace("Рё", "i");
-            word = inputLat.Replace("С‡", "ДЌ");
-            word = inputLat.Replace("С‚", "t");
+            word = inputLat.Replace("њ", "nj");
+            word = inputLat.Replace("љ", "lj");
+            word = inputLat.Replace("џ", "dž");
+            word = inputLat.Replace("ђ", "dj");
+            word = inputLat.Replace("ђ", "đ");
+            word = inputLat.Replace("Њ", "Nj");
+            word = inputLat.Replace("Љ", "Lj");
+            word = inputLat.Replace("Џ", "Dž");
+            word = inputLat.Replace("Ђ", "Dj");
+            word = inputLat.Replace("Ђ", "DJ");
+            word = inputLat.Replace("Ђ", "Đ");
+            word = inputLat.Replace("Љ", "Lj");
+            word = inputLat.Replace("Џ", "DŽ");
+            word = inputLat.Replace("Љ", "LJ");
+            word = inputLat.Replace("д", "d");
+            word = inputLat.Replace("ž", "ж");
+            word = inputLat.Replace("з", "z");
+            word = inputLat.Replace("л", "l");
+            word = inputLat.Replace("н", "n");
+            word = inputLat.Replace("х", "h");
+            word = inputLat.Replace("п", "p");
+            word = inputLat.Replace("р", "r");
+            word = inputLat.Replace("с", "s");
+            word = inputLat.Replace("ћ", "ć");
+            word = inputLat.Replace("у", "u");
+            word = inputLat.Replace("ф", "f");
+            word = inputLat.Replace("ц", "c");
+            word = inputLat.Replace("ш", "š");
+            word = inputLat.Replace("б", "b");
+            word = inputLat.Replace("в", "v");
+            word = inputLat.Replace("г", "g");
+            word = inputLat.Replace("а", "a");
+            word = inputLat.Replace("е", "e");
+            word = inputLat.Replace("к", "k");
+            word = inputLat.Replace("м", "m");
+            word = inputLat.Replace("и", "i");
+            word = inputLat.Replace("ч", "č");
+            word = inputLat.Replace("т", "t");
 
 
-            word = inputLat.Replace("Р”", "D");
-            word = inputLat.Replace("Р–", "ЕЅ");
-            word = inputLat.Replace("Р—", "Z");
-            word = inputLat.Replace("Р›", "L");
-            word = inputLat.Replace("Рќ", "N");
-            word = inputLat.Replace("РҐ", "H");
-            word = inputLat.Replace("Рџ", "P");
-            word = inputLat.Replace("Р ", "R");
-            word = inputLat.Replace("РЎ", "S");
-            word = inputLat.Replace("Р‹", "Д†");
-            word = inputLat.Replace("РЈ", "U");
-            word = inputLat.Replace("С„", "F");
-            word = inputLat.Replace("C", "Р¦");
-            word = inputLat.Replace("РЁ", "Е ");
-            word = inputLat.Replace("Р‘", "B");
-            word = inputLat.Replace("Р’", "V");
-            word = inputLat.Replace("Р“", "G");
-            word = inputLat.Replace("Рџ", "P");
-            word = inputLat.Replace("Р", "I");
-            word = inputLat.Replace("Р§", "ДЊ");
-            word = inputLat.Replace("РЏ", "DЕѕ");
+            word = inputLat.Replace("Д", "D");
+            word = inputLat.Replace("Ж", "Ž");
+            word = inputLat.Replace("З", "Z");
+            word = inputLat.Replace("Л", "L");
+            word = inputLat.Replace("Н", "N");
+            word = inputLat.Replace("Х", "H");
+            word = inputLat.Replace("П", "P");
+            word = inputLat.Replace("Р", "R");
+            word = inputLat.Replace("С", "S");
+            word = inputLat.Replace("Ћ", "Ć");
+            word = inputLat.Replace("У", "U");
+            word = inputLat.Replace("ф", "F");
+            word = inputLat.Replace("C", "Ц");
+            word = inputLat.Replace("Ш", "Š");
+            word = inputLat.Replace("Б", "B");
+            word = inputLat.Replace("В", "V");
+            word = inputLat.Replace("Г", "G");
+            word = inputLat.Replace("П", "P");
+            word = inputLat.Replace("И", "I");
+            word = inputLat.Replace("Ч", "Č");
+            word = inputLat.Replace("Џ", "Dž");
             return word;
         }
 
@@ -577,7 +577,7 @@ namespace Bankom
             string b = sender.ToString();
             frmChield active = new frmChield();
             active.AutoScroll = true;
-            active.FormBorderStyle = FormBorderStyle.None;
+            active.FormBorderStyle= FormBorderStyle.None;
             int a = toolStrip1.Items.Count;
             for (int i = 0; i < a; i++)
             {
@@ -600,11 +600,11 @@ namespace Bankom
                         {
                             childForm.FormBorderStyle = FormBorderStyle.None;
                             childForm.BackColor = System.Drawing.Color.Snow;
-
-                            childForm.Activate();
-                            childForm.Focus();
-
-
+                            
+                                childForm.Activate();
+                                childForm.Focus();
+                           
+                            
                             //this.ActivateMdiChild(childForm);
                             childForm.LayoutMdi(MdiLayout.TileVertical);
                             childForm.WindowState = FormWindowState.Maximized;
@@ -619,7 +619,7 @@ namespace Bankom
         public void itemB1_click(string imetula)  // zahtev za zatvaranje  forme klikom na tipku izlaz
         {
             cf = imetula;
-            toolStripTextBox1.Text = "";
+           toolStripTextBox1.Text = "";
             for (int j = 0; j < toolStrip1.Items.Count; j++)
             {
                 if (this.MdiChildren[j].Text == imetula)
@@ -674,10 +674,10 @@ namespace Bankom
             }
 
             Form childForm1 = ActiveMdiChild;
-
+            
             childForm1.Dispose();
             //childForm1.Visible = false;
-
+            
             string ime = b;
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
@@ -726,28 +726,28 @@ namespace Bankom
         private void SrpskiCirilica_Click(object sender, EventArgs e)
         {
             Program.ID_Jezik = 4;
-            IzborJezika.Text = "РЎСЂРїСЃРєРё-Р‹РёСЂРёР»РёС†Р°";
+            IzborJezika.Text = "Српски-Ћирилица";
             //if (this.Text != "")
             //    VratiCirlilicu(this.Text);
-            //fileMenu.Text = "&Р¤Р°СЃС†РёРєР»Рµ";
-            //toolsMenu.Text = "&РђР»Р°С‚Рё";
-            //windowsMenu.Text = "&РџСЂРѕР·РѕСЂРё";
-            //OsnovniSifarnici.Text = "РћСЃРЅРѕРІРЅРё С€РёС„Р°СЂРЅРёС†Рё";
+            //fileMenu.Text = "&Фасцикле";
+            //toolsMenu.Text = "&Алати";
+            //windowsMenu.Text = "&Прозори";
+            //OsnovniSifarnici.Text = "Основни шифарници";
 
-            //toolStripLogin.Text = "Р›РѕРіРѕРІР°СљРµ";
-            //KrajRada.Text = "РљСЂР°С СЂР°РґР°";
-            //// newWindowToolStripMenuItem.Text = "&РќРѕРІРё  РџСЂРѕР·РѕСЂ";
-            //cascadeToolStripMenuItem.Text = "&РљР°СЃРєР°РґРµ";
-            //tileVerticalToolStripMenuItem.Text = "РЈСЃРїСЂР°РІР°РЅ РїСЂРёРєР°Р·";
-            //tileHorizontalToolStripMenuItem.Text = "Р’РѕРґРѕСЂР°РІРЅРё РїСЂРёРєР°Р·";
-            //closeAllToolStripMenuItem.Text = "Р—&Р°С‚РІРѕСЂРё СЃРІРµ";
-            //arrangeIconsToolStripMenuItem.Text = "&Р Р°СЃРїРѕСЂРµРґ РёРєРѕРЅР°";
-            //DozvoleToolStripMenuItem.Text = "Р”РѕР·РІРѕР»Р°";
-            //Sort.Text = "Р Р°Р·РЅРѕ";
-            //PeeisiToolStripMenuItem.Text = "РџСЂРµРЅРѕСЃРё";
-            //GodisnjeObradeToolStripMenuItem.Text = "Р“РѕРґРёС€СљРµ РћР±СЂР°РґРµ";
-            //PocesiranjeToolStripMenuItem.Text = "РџСЂРѕС†РµСЃРёСЂР°СљРµ";
-            //IzvestajiIzStabla.Text = "РР·РІРµС€С‚Р°СРё РёР· СЃС‚Р°Р±Р°Р»Р°";
+            //toolStripLogin.Text = "Логовање";
+            //KrajRada.Text = "Крај рада";
+            //// newWindowToolStripMenuItem.Text = "&Нови  Прозор";
+            //cascadeToolStripMenuItem.Text = "&Каскаде";
+            //tileVerticalToolStripMenuItem.Text = "Усправан приказ";
+            //tileHorizontalToolStripMenuItem.Text = "Водоравни приказ";
+            //closeAllToolStripMenuItem.Text = "З&атвори све";
+            //arrangeIconsToolStripMenuItem.Text = "&Распоред икона";
+            //DozvoleToolStripMenuItem.Text = "Дозвола";
+            //Sort.Text = "Разно";
+            //PeeisiToolStripMenuItem.Text = "Преноси";
+            //GodisnjeObradeToolStripMenuItem.Text = "Годишње Обраде";
+            //PocesiranjeToolStripMenuItem.Text = "Процесирање";
+            //IzvestajiIzStabla.Text = "Извештаји из стабала";
             //Dokumenta.DropDownItems.Clear();
             //Dokumenta.Text = VratiCirlilicu(Dokumenta.Text);
 
@@ -800,9 +800,9 @@ namespace Bankom
             MenuStrip menuStrip,
             ToolStrip toolStrip,
             StatusStrip statusStrip,
-
+  
             ToolStripMenuItem printSetupToolStripMenuItem,
-
+         
             ToolStripStatusLabel toolStripStatusLabel,
             ToolStripMenuItem tileHorizontalToolStripMenuItem,
             ToolStripMenuItem fileMenu,
@@ -844,7 +844,7 @@ namespace Bankom
             ToolStripMenuItem finansijskaKartica,
             ToolStripMenuItem dnevniBilansUspeha,
             ToolStripMenuItem troskoviZaposlenih,
-
+       
             ToolStripMenuItem maloprodaja,
             ToolStripMenuItem stampaCenovnikaRecepcije,
             ToolStripMenuItem stampaCenovnika,
@@ -853,20 +853,20 @@ namespace Bankom
             ToolStripMenuItem prometRecepcijePoNacinuPlacanja,
             ToolStripMenuItem prometrecepcijepovrstamausluga,
             ToolStripMenuItem nabavkaZaKuhinjuNevski,
-
+      
             ToolStripMenuItem pregledRazduzenjaPoVrednosti,
             ToolStripMenuItem pregledRazduzenjaPoProizvodima,
-
+          
             ToolStripMenuItem zaRobuIUsluge,
             ToolStripMenuItem realizacijaUgovoraOKupoprodajiToolStripMenuItem,
             ToolStripMenuItem realizacijaOtkupaToolStripMenuItem,
             ToolStripMenuItem pregledInternihNalogaToolStripMenuItem,
             ToolStripMenuItem zavisniTroskoviNabavkeToolStripMenuItem,
-
+     
             ToolStripMenuItem razlikaUCeniPoArtiklimaToolStripMenuItem,
             ToolStripMenuItem razlikaUCeniPoArtiklimaanalitikaToolStripMenuItem,
             ToolStripMenuItem razlikaUCeniPoArtiklimaIKupcimaToolStripMenuItem,
-
+          
             ToolStripMenuItem zaKupceIDobavljace,
             ToolStripMenuItem spisakNakogaZaPrijemIUtovar,
             ToolStripMenuItem rekapitulacijaNarudzbenicaKupaca,
@@ -883,13 +883,13 @@ namespace Bankom
             ToolStripMenuItem razlikaUCeniPoKupcimaanalitika,
             ToolStripMenuItem analizaRazlikeUCeniPoKupcima,
             ToolStripMenuItem mesecniPotencijalKupaca,
-
+  
             ToolStripMenuItem ukupnaNabavkaPoDobavljacima,
             ToolStripMenuItem analizaPrometaPoDobavljacu,
             ToolStripMenuItem ucesceUUkupnojNabavci,
             ToolStripMenuItem analitikaNabavkePoDobavljacima,
             ToolStripMenuItem razlikeUCeniSaAnalitikama,
-
+        
             ToolStripMenuItem knjigovodstvo,
             ToolStripMenuItem obracunPoreza,
             ToolStripMenuItem stanjeSkladista,
@@ -908,7 +908,7 @@ namespace Bankom
             ToolStripMenuItem portfolioKomitenta,
             ToolStripMenuItem brutoBilansMenuItem1,
             ToolStripMenuItem brutoBilansWeb,
-
+      
             ToolStripMenuItem nestimajuciNalozi,
             ToolStripMenuItem nestimajiciNaloziAnaliticki,
             ToolStripMenuItem finansijskaKarticaToolStripMenuItem1,
@@ -922,7 +922,7 @@ namespace Bankom
             ToolStripMenuItem spisakPromenaZaKomitentaIOdabraniIntervalVremena,
             ToolStripMenuItem dnevniIzvestaj,
             ToolStripMenuItem stanjeGotovineIVisokoLikvidnihSredstava,
-
+    
             ToolStripMenuItem dospecaObavezaIPotrazivanjaMenuItem1,
             ToolStripMenuItem dugovanjaIAvansi,
             ToolStripMenuItem potrazivanjaIAvansi,
@@ -932,7 +932,7 @@ namespace Bankom
             ToolStripMenuItem dnevniBilansUspehaMenuItem2,
             ToolStripMenuItem zastarelaPotrazivanja,
             ToolStripMenuItem prometGKKursiranUEure,
-
+      
             ToolStripMenuItem spoljnaTrgovina,
             ToolStripMenuItem kontrolnikUvoza,
             ToolStripMenuItem kontrolnikIzvoza,
@@ -950,7 +950,7 @@ namespace Bankom
             ToolStripMenuItem rUCOdProdajeVlastitihProizvoda,
             ToolStripMenuItem proizvodi,
             ToolStripMenuItem sirovineZaProizvodnju,
-
+     
             ToolStripMenuItem osnovnaSredstva,
             ToolStripMenuItem karticaOsnovnihSredstavaIOpreme,
             ToolStripMenuItem stanjeOsnovnihSredstavaIOpreme,
@@ -969,11 +969,11 @@ namespace Bankom
             ToolStripMenuItem uvozPlataUPlacanja,
             ToolStripMenuItem formiranjePPPPDZaPrevoz,
             ToolStripMenuItem uvozPrevozaUPlacanja,
-
+           
             ToolStripMenuItem prenosiZaProdajnaMjesta,
             ToolStripMenuItem faktureRecepcijeZaOdabraneDatume,
             ToolStripMenuItem faktureRestoranaZaOdabraneDatume,
-
+         
             ToolStripMenuItem razduzenjesirovinaminibar,
             ToolStripMenuItem razduzenjesirovinazaodabraniintervaldatuma,
             ToolStripMenuItem godisnjeObradeToolStripMenuItem,
@@ -986,7 +986,7 @@ namespace Bankom
             ToolStripMenuItem procesirajeDnevnogiIzvestaja,
             ToolStripMenuItem procesiranjeBrutoBilansa,
             ToolStripMenuItem izvestajiIzStabla,
-
+        
             ToolStripLabel toolStripLogin,
             ToolStripLabel KrajRada,
             ToolStripMenuItem izborJezika,
@@ -1004,18 +1004,18 @@ namespace Bankom
             ToolStripMenuItem pregled,
             ToolStripMenuItem unos,
             ToolStripMenuItem prekid,
-
+     
             ToolStripMenuItem closeActive,
             ToolStripComboBox toolStripComboBox1,
             ToolStripTextBox toolStripTextBox2,
             ToolStripTextBox toolStripTextBox3,
             ToolStripMenuItem kalkulator,
-
+      
             ToolStripButton printToolStripButton,
             ToolStripMenuItem toolStripMenuItem1,
             ToolStripMenuItem f1ToolStripMenuItem,
             ToolStripMenuItem spaceToolStripMenuItem,
-
+       
             ToolStrip toolStrip1,
             ToolStrip toolStrip2,
             ToolStripTextBox toolStripPrazno,
@@ -1034,7 +1034,7 @@ namespace Bankom
             this.components = components;
             //this.toolStrip = toolStrip;
 
-
+         
             this.tileHorizontalToolStripMenuItem = tileHorizontalToolStripMenuItem;
             this.fileMenu = fileMenu;
             this.newToolStripMenuItem = newToolStripMenuItem;
@@ -1066,18 +1066,18 @@ namespace Bankom
             PreuzimanjeManjkovaIViskova = preuzimanjeManjkovaIViskova;
             PreuzimanjeUplataKupacaIzBanaka = preuzimanjeUplataKupacaIzBanaka;
             PrenosNalogaNaPlacanje = prenosNalogaNaPlacanje;
-
+  
             PreuzimanjeIzvodaIzBanaka = preuzimanjeIzvodaIzBanaka;
             PrepisNaplataIPlacanjaUIzvod = prepisNaplataIPlacanjaUIzvod;
             FormiranjePPPPDZaPlate = formiranjePPPPDZaPlate;
             UvozPlataUPlacanja = uvozPlataUPlacanja;
             FormiranjePPPPDZaPrevoz = formiranjePPPPDZaPrevoz;
             UvozPrevozaUPlacanja = uvozPrevozaUPlacanja;
-
+           
             PrenosiZaProdajnaMjesta = prenosiZaProdajnaMjesta;
             FaktureRecepcijeZaOdabraneDatume = faktureRecepcijeZaOdabraneDatume;
             FaktureRestoranaZaOdabraneDatume = faktureRestoranaZaOdabraneDatume;
-
+        
             Razduzenjesirovinaminibar = razduzenjesirovinaminibar;
             Razduzenjesirovinazaodabraniintervaldatuma = razduzenjesirovinazaodabraniintervaldatuma;
             GodisnjeObradeToolStripMenuItem = godisnjeObradeToolStripMenuItem;
@@ -1098,18 +1098,18 @@ namespace Bankom
             SrpskiLatinica = srpskiLatinica;
             English = english;
             Ruski = ruski;
-
+  
             CloseActive = closeActive;
             // this.tstbPretraga = tstbPretraga;
 
             //this.toolStripTextBox3 = toolStripTextBox3;
 
 
-
+      
             this.toolStripMenuItem1 = toolStripMenuItem1;
             this.f1ToolStripMenuItem = f1ToolStripMenuItem;
             this.spaceToolStripMenuItem = spaceToolStripMenuItem;
-
+        
             this.toolStrip1 = toolStrip1;
 
         }
@@ -1247,9 +1247,9 @@ namespace Bankom
             //fileMenu.Text = "&Fascikle";
             //toolsMenu.Text = "&Alati";
             //windowsMenu.Text = "&Prozori";
-            //// HelpMenu.Text = "PomoД‡"
+            //// HelpMenu.Text = "Pomoć"
             //Dokumenta.Text = "Dokumenta";
-            //OsnovniSifarnici.Text = "Osnovni ЕЎifarnici";
+            //OsnovniSifarnici.Text = "Osnovni šifarnici";
 
             //toolStripLogin.Text = "Logovanje";
             //KrajRada.Text = "Kraj rada";
@@ -1262,10 +1262,10 @@ namespace Bankom
             //DozvoleToolStripMenuItem.Text = "Dozvola";
             //Sort.Text = "Razno";
             //PeeisiToolStripMenuItem.Text = "Prenosi";
-            //GodisnjeObradeToolStripMenuItem.Text = "GodiЕЎnje Obrade";
+            //GodisnjeObradeToolStripMenuItem.Text = "Godišnje Obrade";
             //PocesiranjeToolStripMenuItem.Text = "Procesiranje";
-            //IzvestajiIzStabla.Text = "IzveЕЎtaji iz stabala";
-            //PomocniSifarnici.Text = "PomoД‡ni ЕЎifarnici";
+            //IzvestajiIzStabla.Text = "Izveštaji iz stabala";
+            //PomocniSifarnici.Text = "Pomoćni šifarnici";
 
             //Dokumenta.DropDownItems.Clear();
             //Dokumenta.Text = VratiLatinicu(Dokumenta.Text);
@@ -1324,7 +1324,7 @@ namespace Bankom
         {
 
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+            activeChild.FormBorderStyle= FormBorderStyle.None;
             activeChild.BackColor = System.Drawing.Color.Snow;
             DialogResult res = MsgBox.ShowDialog("Tekst pretrage:", "Pretraga", ((Bankom.frmChield)activeChild).toolStripTextFind.Text,
             MsgBox.Icon.Question,
@@ -1500,7 +1500,7 @@ namespace Bankom
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+            activeChild.FormBorderStyle= FormBorderStyle.None;
             activeChild.BackColor = System.Drawing.Color.Snow;
             DajVrednostPropertija(activeChild);
         }
@@ -1546,7 +1546,7 @@ namespace Bankom
             }
 
             Form activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+            activeChild.FormBorderStyle= FormBorderStyle.None;
             activeChild.BackColor = System.Drawing.Color.Snow;
             if (activeChild != null)
             {
@@ -1576,13 +1576,13 @@ namespace Bankom
 
             if (dt.Rows.Count == 0)
             {
-                MessageBox.Show("Ne postoji izveЕЎtaj!");
+                MessageBox.Show("Ne postoji izveštaj!");
                 return;
             }
 
             frmPrint fs = new frmPrint();
             fs.BackColor = System.Drawing.Color.Snow;
-            fs.FormBorderStyle = FormBorderStyle.None;
+            fs.FormBorderStyle= FormBorderStyle.None;
             fs.MdiParent = this;
             fs.Text = "print - " + ime;
             fs.intCurrentdok = Convert.ToInt32(t);
@@ -1627,7 +1627,7 @@ namespace Bankom
 
 
             Form activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+            activeChild.FormBorderStyle= FormBorderStyle.None;
             activeChild.BackColor = System.Drawing.Color.Snow;
             if (activeChild != null)
             {
@@ -1661,13 +1661,13 @@ namespace Bankom
 
             if (dt.Rows.Count == 0)
             {
-                MessageBox.Show("Ne postoji izveЕЎtaj!");
+                MessageBox.Show("Ne postoji izveštaj!");
                 return;
             }
 
             frmPrint fs = new frmPrint();
             fs.BackColor = System.Drawing.Color.Snow;
-            fs.FormBorderStyle = FormBorderStyle.None;
+            fs.FormBorderStyle= FormBorderStyle.None;
             fs.MdiParent = this;
             fs.Text = "print - " + ime;
             fs.LayoutMdi(MdiLayout.TileVertical);
@@ -1698,7 +1698,7 @@ namespace Bankom
         {
 
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+            activeChild.FormBorderStyle= FormBorderStyle.None;
             activeChild.BackColor = System.Drawing.Color.Snow;
             string c = ((Bankom.frmChield)activeChild).toolStripTexIme.Text;
             string d = ((Bankom.frmChield)activeChild).toolStripTextBroj.Text;
@@ -1756,14 +1756,14 @@ namespace Bankom
 
         }
 
-
+     
 
         private void Uunos_Click(object sender, EventArgs e)
         {
 
 
             Form activeChild = this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
+            activeChild.FormBorderStyle= FormBorderStyle.None;
             if (activeChild != null)
             {
                 activeChild.Controls["OOperacija"].Text = "UNOS";
@@ -1801,7 +1801,7 @@ namespace Bankom
         {
             //Daj mi aktivnu child formu
             Form activeChild = this.ActiveMdiChild;
-
+            
             //Popuni text u kontroli OOperacija sa "PREGLED" na aktivnoj child formi
             if (activeChild != null)
             {
@@ -1816,14 +1816,14 @@ namespace Bankom
             }
             else
             {
-                MessageBox.Show("Nemate aktivnu formu");
+               MessageBox.Show("Nemate aktivnu formu");
             }
         }
 
         private void Pprekid_Click(object sender, EventArgs e)
         {
             Form activeChild = this.ActiveMdiChild;
-
+           
             if (activeChild != null)
             {
                 activeChild.FormBorderStyle = FormBorderStyle.None;
@@ -1859,7 +1859,7 @@ namespace Bankom
         {
             //Daj mi aktivnu child formu
             Form activeChild = this.ActiveMdiChild;
-
+           
             //Popuni text u kontroli OOperacija sa "STORNO" na aktivnoj child formi
             if (activeChild == null)
             {
@@ -1963,10 +1963,10 @@ namespace Bankom
 
             frmi.Dock = DockStyle.Fill;
 
-
-            if (this.IzborJezika.Text == "РЎСЂРїСЃРєРё-Р‹РёСЂРёР»РёС†Р°") { frmi.Text = this.VratiCirlilicu("Imenik"); }
+            
+            if (this.IzborJezika.Text == "Српски-Ћирилица") { frmi.Text = this.VratiCirlilicu("Imenik"); }
             int sirina = (this.Width / 100) * 10;
-            this.addFormTotoolstrip1(frmi, "Imenik");
+           this.addFormTotoolstrip1(frmi, "Imenik");
             this.updateToolStrip("Imenik");
             frmi.StartPosition = FormStartPosition.CenterParent;
             frmi.Show();
@@ -1987,14 +1987,14 @@ namespace Bankom
                 toolStrip1.Visible = false;
                 //if (MessageBox.Show("Izlaz iz programa?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 //{
-                //toolStrip1.Visible = false;
+                    //toolStrip1.Visible = false;
 
-                Application.Exit();
+                    Application.Exit();
                 //}
             }
 
             ////staro
-
+            
             //foreach (Form childForm in this.MdiChildren)
             //{
             //    if (childForm == this.ActiveMdiChild)
@@ -2138,29 +2138,29 @@ namespace Bankom
         private void SrpskiCirilica_Click_1(object sender, EventArgs e)
         {
             Program.ID_Jezik = 4;
-            IzborJezika.Text = "РЎСЂРїСЃРєРё-Р‹РёСЂРёР»РёС†Р°";
+            IzborJezika.Text = "Српски-Ћирилица";
 
             //if (this.Text != "")
             //    VratiCirlilicu(this.Text);
-            //fileMenu.Text = "&Р¤Р°СЃС†РёРєР»Рµ";
-            //toolsMenu.Text = "&РђР»Р°С‚Рё";
-            //windowsMenu.Text = "&РџСЂРѕР·РѕСЂРё";
-            //OsnovniSifarnici.Text = "РћСЃРЅРѕРІРЅРё С€РёС„Р°СЂРЅРёС†Рё";
-            //viewMenu.Text = "РџРѕРіР»РµРґ";
-            //toolStripLogin.Text = "Р›РѕРіРѕРІР°СљРµ";
-            //KrajRada.Text = "РљСЂР°С СЂР°РґР°";
-            //// newWindowToolStripMenuItem.Text = "&РќРѕРІРё  РџСЂРѕР·РѕСЂ";
-            //cascadeToolStripMenuItem.Text = "&РљР°СЃРєР°РґРµ";
-            //tileVerticalToolStripMenuItem.Text = "РЈСЃРїСЂР°РІР°РЅ РїСЂРёРєР°Р·";
-            //tileHorizontalToolStripMenuItem.Text = "Р’РѕРґРѕСЂР°РІРЅРё РїСЂРёРєР°Р·";
-            //closeAllToolStripMenuItem.Text = "Р—&Р°С‚РІРѕСЂРё СЃРІРµ";
-            //arrangeIconsToolStripMenuItem.Text = "&Р Р°СЃРїРѕСЂРµРґ РёРєРѕРЅР°";
-            //DozvoleToolStripMenuItem.Text = "Р”РѕР·РІРѕР»Р°";
-            //Sort.Text = "Р Р°Р·РЅРѕ";
-            //PeeisiToolStripMenuItem.Text = "РџСЂРµРЅРѕСЃРё";
-            //GodisnjeObradeToolStripMenuItem.Text = "Р“РѕРґРёС€СљРµ РћР±СЂР°РґРµ";
-            //PocesiranjeToolStripMenuItem.Text = "РџСЂРѕС†РµСЃРёСЂР°СљРµ";
-            //PomocniSifarnici.Text = "РџРѕРјРѕС›РЅРё С€РёС„Р°СЂРЅРёС†Рё";
+            //fileMenu.Text = "&Фасцикле";
+            //toolsMenu.Text = "&Алати";
+            //windowsMenu.Text = "&Прозори";
+            //OsnovniSifarnici.Text = "Основни шифарници";
+            //viewMenu.Text = "Поглед";
+            //toolStripLogin.Text = "Логовање";
+            //KrajRada.Text = "Крај рада";
+            //// newWindowToolStripMenuItem.Text = "&Нови  Прозор";
+            //cascadeToolStripMenuItem.Text = "&Каскаде";
+            //tileVerticalToolStripMenuItem.Text = "Усправан приказ";
+            //tileHorizontalToolStripMenuItem.Text = "Водоравни приказ";
+            //closeAllToolStripMenuItem.Text = "З&атвори све";
+            //arrangeIconsToolStripMenuItem.Text = "&Распоред икона";
+            //DozvoleToolStripMenuItem.Text = "Дозвола";
+            //Sort.Text = "Разно";
+            //PeeisiToolStripMenuItem.Text = "Преноси";
+            //GodisnjeObradeToolStripMenuItem.Text = "Годишње Обраде";
+            //PocesiranjeToolStripMenuItem.Text = "Процесирање";
+            //PomocniSifarnici.Text = "Помоћни шифарници";
 
 
 
@@ -2524,7 +2524,7 @@ namespace Bankom
             DateTime d = DateTime.Now;
             string pDatum = d.ToString("dd.MM.yy");
 
-            string mg = Prompt.ShowDialog(pDatum.Substring(3, 2) + pDatum.Substring(6, 2), "Formiranje naloga za knjiЕѕenje prevoza : ", "Unesite mesec i godinu za koji isplaД‡ujemo prevoz");
+            string mg = Prompt.ShowDialog(pDatum.Substring(3, 2) + pDatum.Substring(6, 2), "Formiranje naloga za knjiženje prevoza : ", "Unesite mesec i godinu za koji isplaćujemo prevoz");
             if (string.IsNullOrEmpty(mg)) { return; }
             clsOperacije co = new clsOperacije();
             bool r = co.IsNumeric(mg);
@@ -2570,7 +2570,7 @@ namespace Bankom
             DateTime d = DateTime.Now;
             string pDatum = d.ToString("dd.MM.yy");
 
-            string mg = Prompt.ShowDialog(pDatum.Substring(3, 2) + pDatum.Substring(6, 2), "Formiranje naloga za knjiЕѕenje nagrada :  ", "Unesite mesec i godinu za koji isplaД‡ujemo nagrade");
+            string mg = Prompt.ShowDialog(pDatum.Substring(3, 2) + pDatum.Substring(6, 2), "Formiranje naloga za knjiženje nagrada :  ", "Unesite mesec i godinu za koji isplaćujemo nagrade");
             if (string.IsNullOrEmpty(mg)) { return; }
             clsOperacije co = new clsOperacije();
             bool r = co.IsNumeric(mg);
@@ -2887,7 +2887,7 @@ namespace Bankom
         {
             KursnaLista kl = new KursnaLista();
             kl.FormBorderStyle = FormBorderStyle.None;
-
+            
             kl.Show();
         }
 
@@ -3052,17 +3052,17 @@ namespace Bankom
             Application.Exit();
         }
 
-
+   
 
 
         public void SrediFormu()
         {
-            // flowLayoutPanel1.Width = 161;
+           // flowLayoutPanel1.Width = 161;
 
 
             flowLayoutPanel1.Width = 162;
             flowLayoutPanel1.Width = 0;
-
+           
             button1.Location = new Point(0, 73);
 
         }
@@ -3080,7 +3080,7 @@ namespace Bankom
             else
             {
                 flowLayoutPanel1.Width = 162;
-
+           
                 button1.Location = new Point(159, 73);
             }
         }
@@ -3125,8 +3125,8 @@ namespace Bankom
                     while (dr.Read())
                         namesCollection.Add(dr["NazivJavni"].ToString());
                 }
-                // BORKA 10.12.20 CEMU OVO SLUZI ???????????????
-                // Tamara: autocomplete popunjava predloge u pretrazi tj kada ukucate kona, predlaze i konacni racun i konacni ulazni racun...
+// BORKA 10.12.20 CEMU OVO SLUZI ???????????????
+// Tamara: autocomplete popunjava predloge u pretrazi tj kada ukucate kona, predlaze i konacni racun i konacni ulazni racun...
                 toolStripTextBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 toolStripTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
                 toolStripTextBox1.AutoCompleteCustomSource = namesCollection;
@@ -3143,7 +3143,7 @@ namespace Bankom
             //frm.StartPosition = FormStartPosition.CenterParent;
             //frm.ShowDialog();
             CustomMessageBox customMessage = new CustomMessageBox(
-            "Da li ste sigurni da Еѕelite da izaД‘ete iz aplikacije?",
+            "Da li ste sigurni da želite da izađete iz aplikacije?",
             "Da",
             "Ne",
             "Odjava"
@@ -3159,7 +3159,7 @@ namespace Bankom
                 e.Cancel = false;
 
 
-            //if (MessageBox.Show("Da li ste sigurni da Еѕelite da zatvorite program?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Cancel)
+            //if (MessageBox.Show("Da li ste sigurni da želite da zatvorite program?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Cancel)
             //{
             //    e.Cancel = true;
             //}
@@ -3176,7 +3176,7 @@ namespace Bankom
 
         //private void b2_Click(object sender, EventArgs e)
         //{
-
+            
         //}
 
         //private void b1_Click(object sender, EventArgs e)
@@ -3184,7 +3184,7 @@ namespace Bankom
         //    Application.Exit();
         //}
 
-        private void unosNovogДЊvoraToolStripMenuItem_Click(object sender, EventArgs e)
+        private void unosNovogČvoraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //zajedno 28.10.2020.
 
@@ -3213,7 +3213,7 @@ namespace Bankom
         }
 
         private void Ppotvrda_Click_1(object sender, EventArgs e)
-        {
+        {           
             Form forma = this.ActiveMdiChild;
 
             Boolean vrati = new Boolean();
@@ -3226,7 +3226,7 @@ namespace Bankom
             // Jovana 08.12.20
             if (forma.Controls["OOperacija"].Text.Trim() != "UNOS" && forma.Controls["OOperacija"].Text.Trim() != "" && forma.Controls["OOperacija"].Text.Trim() != "PREGLED")
             {
-                if (((Bankom.frmChield)forma).idReda < 2 && ((Bankom.frmChield)forma).DokumentJe != "K")
+                if (((Bankom.frmChield)forma).idReda<2 && ((Bankom.frmChield)forma).DokumentJe != "K")
                 {
                     if (((Bankom.frmChield)forma).idReda == -1) { }
                     else
@@ -3332,7 +3332,7 @@ namespace Bankom
                                 o.KlasifikacijaNovaPozicija(Program.pomIzv, Program.pomStablo);
 
                             }
-
+                       
 
 
                             break;
@@ -3433,7 +3433,7 @@ namespace Bankom
                 MessageBox.Show("Odaberite kolonu za sortiranje");
             }
             else if (activeChild == this.ActiveMdiChild)
-            {
+                {
 
                 string dokumentje = ((Bankom.frmChield)activeChild).DokumentJe;
                 string nazivklona = ((Bankom.frmChield)activeChild).imedokumenta;
@@ -3457,9 +3457,9 @@ namespace Bankom
                 Program.colname = "";
 
             }
-
-
-
+                
+            
+        
 
         }
 
@@ -3487,17 +3487,17 @@ namespace Bankom
         public class CustomMessageBox : System.Windows.Forms.Form
         {
             Label message = new Label();
-            public Button b1 = new Button();
+           public Button b1 = new Button();
             public Button b2 = new Button();
             public Button b3 = new Button();
 
-
-            public CustomMessageBox(string body, string button1, string button2, string button3)
+         
+            public CustomMessageBox( string body, string button1, string button2, string button3)
             {
-
+               
 
                 this.ClientSize = new System.Drawing.Size(490, 150);
-
+             
                 b1.Location = new System.Drawing.Point(311, 112);
                 b1.Size = new System.Drawing.Size(75, 23);
                 b1.Text = button1;
@@ -3527,7 +3527,7 @@ namespace Bankom
                 message.Text = body;
                 message.Font = new System.Drawing.Font("TimesRoman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 message.AutoSize = true;
-                message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+                message.ForeColor= System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
 
                 this.FormBorderStyle = FormBorderStyle.None;
                 this.BackColor = Color.White;
@@ -3541,3 +3541,4 @@ namespace Bankom
         }
     }
 }
+
