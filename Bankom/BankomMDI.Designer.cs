@@ -152,7 +152,7 @@ namespace Bankom
             // 
             // toolTip
             // 
-            this.toolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip_Popup);
+           // this.toolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip_Popup);
             // 
             // Dokumenta
             // 
@@ -996,7 +996,7 @@ namespace Bankom
             this.Ppredlogcena.Text = "Pred.c.";
             this.Ppredlogcena.ToolTipText = "Pregled cena";
             this.Ppredlogcena.Visible = false;
-            this.Ppredlogcena.Click += new System.EventHandler(this.Ppredlogcena_Click);
+           // this.Ppredlogcena.Click += new System.EventHandler(this.Ppredlogcena_Click);
             // 
             // Kkalki
             // 
@@ -1145,7 +1145,7 @@ namespace Bankom
             this.Oorigin.Text = "Original";
             this.Oorigin.ToolTipText = "Original";
             this.Oorigin.Visible = false;
-            this.Oorigin.Click += new System.EventHandler(this.Oorigin_Click);
+            //this.Oorigin.Click += new System.EventHandler(this.Oorigin_Click);
             // 
             // Oorgsema
             // 

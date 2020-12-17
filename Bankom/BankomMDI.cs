@@ -3139,9 +3139,7 @@ namespace Bankom
         private void BankomMDI_FormClosing(object sender, FormClosingEventArgs e)
         {
             //tamara 16.12.2020.
-            //frmLogout frm = new frmLogout();
-            //frm.StartPosition = FormStartPosition.CenterParent;
-            //frm.ShowDialog();
+          
             CustomMessageBox customMessage = new CustomMessageBox(
             "Da li ste sigurni da želite da izađete iz aplikacije?",
             "Da",
@@ -3149,40 +3147,28 @@ namespace Bankom
             "Odjava"
             );
             customMessage.StartPosition = FormStartPosition.CenterParent;
-            //customMessage.b1.Click += new EventHandler(b1_Click);
-            //customMessage.b2.Click += new EventHandler(b2_Click);
-            //customMessage.b3.Click += new EventHandler(b3_Click);
+     
 
             customMessage.ShowDialog();
 
             if (customMessage.DialogResult == DialogResult.Cancel)
+                e.Cancel = true;
+           else if (customMessage.DialogResult == DialogResult.Yes)
                 e.Cancel = false;
+           else
+            {
+                //LoginForm frm = new LoginForm();
+                //frm.ShowDialog();
+                e.Cancel = false;
+                //Application.Start();
+            }
 
 
-            //if (MessageBox.Show("Da li ste sigurni da želite da zatvorite program?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Cancel)
-            //{
-            //    e.Cancel = true;
-            //}
-            //else
-            //{
-            //    e.Cancel = false;
-            //}
+
+         
         }
 
-        //private void b3_Click(object sender, EventArgs e)
-        //{
-        //    MessageBox.Show("Logout");
-        //}
-
-        //private void b2_Click(object sender, EventArgs e)
-        //{
-            
-        //}
-
-        //private void b1_Click(object sender, EventArgs e)
-        //{
-        //    Application.Exit();
-        //}
+        
 
         private void unosNovogČvoraToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -3333,8 +3319,6 @@ namespace Bankom
 
                             }
                        
-
-
                             break;
                         case "D":
                             vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
@@ -3463,25 +3447,7 @@ namespace Bankom
 
         }
 
-        private void Oorigin_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Pporeklo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Ppredlogcena_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolTip_Popup(object sender, PopupEventArgs e)
-        {
-
-        }
+        
 
         //tamara 16.12.2020.
         public class CustomMessageBox : System.Windows.Forms.Form
@@ -3529,7 +3495,9 @@ namespace Bankom
                 message.AutoSize = true;
                 message.ForeColor= System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
 
-                this.FormBorderStyle = FormBorderStyle.None;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                this.ShowIcon = false;
+                this.Text = "";
                 this.BackColor = Color.White;
                 this.ShowIcon = false;
 
