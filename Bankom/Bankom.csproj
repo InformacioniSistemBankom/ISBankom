@@ -161,6 +161,9 @@
     <Compile Include="Class\Preuzimanja.cs" />
     <Compile Include="Class\Prompt.cs" />
     <Compile Include="Class\clsProveraIspravnosti.cs" />
+    <Compile Include="clsCustomMessagebox.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmChield.cs">
       <SubType>Form</SubType>
     </Compile>

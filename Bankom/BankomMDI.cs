@@ -3139,8 +3139,8 @@ namespace Bankom
         private void BankomMDI_FormClosing(object sender, FormClosingEventArgs e)
         {
             //tamara 16.12.2020.
-          
-            CustomMessageBox customMessage = new CustomMessageBox(
+
+            clsCustomMessagebox customMessage = new clsCustomMessagebox(
             "Da li ste sigurni da želite da izađete iz aplikacije?",
             "Da",
             "Ne",
@@ -3157,10 +3157,7 @@ namespace Bankom
                 e.Cancel = false;
            else
             {
-                //LoginForm frm = new LoginForm();
-                //frm.ShowDialog();
-                e.Cancel = false;
-                //Application.Start();
+                
             }
 
 
