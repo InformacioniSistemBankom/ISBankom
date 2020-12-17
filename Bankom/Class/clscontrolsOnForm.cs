@@ -106,7 +106,7 @@ namespace Bankom.Class
                             cImaNaslov = 1;
                         var cFormulaForme = row["FormulaForme"].ToString();
                         
-                        var mfield = new Field(form1, iddok, dokument, ctekst, cPolje, cAlijasPolja, Color.Lavender, clevo, cvrh, cvisina, csirina, cPostojiLabela, cTip, cizborno, cidNaziviNaFormi, cZavisiOd, cAlijasPolja, cTUD, cEnDis, cFormat, cTabela, cAlijasTabele, cTabelaVView, cFormatPolja, cSegment, cRestrikcije, cImaNaslov, cFormulaForme);
+                        var mfield = new Field(form1, iddok, dokument, ctekst, cPolje, cAlijasPolja, Color.Lavender, clevo, cvrh, cvisina, csirina, cPostojiLabela, cTip, cizborno, cidNaziviNaFormi, cZavisiOd, cTUD, cEnDis, cFormat, cTabela, cAlijasTabele, cTabelaVView, cFormatPolja, cSegment, cRestrikcije, cImaNaslov, cFormulaForme);
                          form1.Controls.Add(mfield);
                         //Ivana 11.12.2020.
                         if (cZavisiOd.Trim() != "" && cAlijasPolja.Substring(0,2)!="ID")

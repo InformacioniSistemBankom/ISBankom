@@ -82,7 +82,7 @@ namespace Bankom.Class
         //public Field(Form form1, string iddok, string dokument, string label_text, string polje, string Ime, Color boja, double levo, double vrh, double visina, double sirina,
         //string PozicijaLabele, int Tip, string izborno, string idNaziviNaFormi, string tud, string EnDis, string FormatStringa, string Tabela, string AlijasTabele, string TabelaVView, int TabIndex, string FormatPolja, string Segment, string Restrikcije, int ImaNaslov, string FormulaForme) : base()
         public Field(Form form1, string iddok, string dokument, string label_text, string polje, string Ime, Color boja, double levo, double vrh, double visina, double sirina,
-                     string PozicijaLabele, int Tip, string izborno, string idNaziviNaFormi, string zavisiOd, string AlijasPolja, string tud, string EnDis, string FormatStringa, string Tabela, string AlijasTabele, string TabelaVView, string FormatPolja, string Segment, string Restrikcije, int ImaNaslov, string FormulaForme) : base()
+                     string PozicijaLabele, int Tip, string izborno, string idNaziviNaFormi, string zavisiOd, string tud, string EnDis, string FormatStringa, string Tabela, string AlijasTabele, string TabelaVView, string FormatPolja, string Segment, string Restrikcije, int ImaNaslov, string FormulaForme) : base()
         {
             boja = Color.AliceBlue;
             forma = form1;
@@ -106,7 +106,6 @@ namespace Bankom.Class
             cIdNaziviNaFormi = idNaziviNaFormi;
             //Ivana 11.12.2020.
             cZavisiOd = zavisiOd;
-            cAlijasPolja = AlijasPolja;
             //Djora 26.09.20
             //this.BackColor = Color.Red;
             this.BorderStyle = BorderStyle.None;
@@ -275,12 +274,12 @@ namespace Bankom.Class
                     //Ivana 14.12.2020.
                     cekboks.CheckedChanged += new EventHandler(checkBox_CheckedChanged);
                     break;
-                case 10:
-                    if(cAlijasPolja=="NazivSkl")
-                    {
+                //case 10:
+                //    if(cAlijasPolja=="NazivSkl")
+                //    {
 
-                    }
-                    break;
+                //    }
+                //    break;
                 default:
                     if (izborno != null && izborno.Trim() != "") // ima izborno
                     {
