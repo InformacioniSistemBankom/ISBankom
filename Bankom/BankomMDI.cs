@@ -177,6 +177,7 @@ namespace Bankom
         {
             //tamara 14.12.2020.
             forma.FormBorderStyle = FormBorderStyle.None;
+
             this.BackColor = System.Drawing.Color.Snow;
             toolStrip1.Visible = true;
             this.Width = Width - 20;
@@ -3125,6 +3126,7 @@ namespace Bankom
                         namesCollection.Add(dr["NazivJavni"].ToString());
                 }
 // BORKA 10.12.20 CEMU OVO SLUZI ???????????????
+// Tamara: autocomplete popunjava predloge u pretrazi tj kada ukucate kona, predlaze i konacni racun i konacni ulazni racun...
                 toolStripTextBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 toolStripTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
                 toolStripTextBox1.AutoCompleteCustomSource = namesCollection;
@@ -3136,16 +3138,51 @@ namespace Bankom
 
         private void BankomMDI_FormClosing(object sender, FormClosingEventArgs e)
         {
+            //tamara 16.12.2020.
+            //frmLogout frm = new frmLogout();
+            //frm.StartPosition = FormStartPosition.CenterParent;
+            //frm.ShowDialog();
+            CustomMessageBox customMessage = new CustomMessageBox(
+            "Da li ste sigurni da želite da izađete iz aplikacije?",
+            "Da",
+            "Ne",
+            "Odjava"
+            );
+            customMessage.StartPosition = FormStartPosition.CenterParent;
+            //customMessage.b1.Click += new EventHandler(b1_Click);
+            //customMessage.b2.Click += new EventHandler(b2_Click);
+            //customMessage.b3.Click += new EventHandler(b3_Click);
 
-            if (MessageBox.Show("Da li ste sigurni da želite da zatvorite program?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Cancel)
-            {
-               e.Cancel = true;
-            }
-            else
-            {
+            customMessage.ShowDialog();
+
+            if (customMessage.DialogResult == DialogResult.Cancel)
                 e.Cancel = false;
-            }
+
+
+            //if (MessageBox.Show("Da li ste sigurni da želite da zatvorite program?", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Cancel)
+            //{
+            //    e.Cancel = true;
+            //}
+            //else
+            //{
+            //    e.Cancel = false;
+            //}
         }
+
+        //private void b3_Click(object sender, EventArgs e)
+        //{
+        //    MessageBox.Show("Logout");
+        //}
+
+        //private void b2_Click(object sender, EventArgs e)
+        //{
+            
+        //}
+
+        //private void b1_Click(object sender, EventArgs e)
+        //{
+        //    Application.Exit();
+        //}
 
         private void unosNovogČvoraToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -3444,6 +3481,63 @@ namespace Bankom
         private void toolTip_Popup(object sender, PopupEventArgs e)
         {
 
+        }
+
+        //tamara 16.12.2020.
+        public class CustomMessageBox : System.Windows.Forms.Form
+        {
+            Label message = new Label();
+           public Button b1 = new Button();
+            public Button b2 = new Button();
+            public Button b3 = new Button();
+
+         
+            public CustomMessageBox( string body, string button1, string button2, string button3)
+            {
+               
+
+                this.ClientSize = new System.Drawing.Size(490, 150);
+             
+                b1.Location = new System.Drawing.Point(311, 112);
+                b1.Size = new System.Drawing.Size(75, 23);
+                b1.Text = button1;
+                b1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+                b1.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                b1.ForeColor = System.Drawing.Color.Snow;
+                b1.DialogResult = DialogResult.OK;
+
+                b2.Location = new System.Drawing.Point(211, 112);
+                b2.Size = new System.Drawing.Size(75, 23);
+                b2.Text = button2;
+                b2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+                b2.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                b2.ForeColor = System.Drawing.Color.Snow;
+                b2.DialogResult = DialogResult.Cancel;
+
+
+                b3.Location = new System.Drawing.Point(111, 112);
+                b3.Size = new System.Drawing.Size(75, 23);
+                b3.Text = button3;
+                b3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+                b3.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                b3.ForeColor = System.Drawing.Color.Snow;
+                b3.DialogResult = DialogResult.Retry;
+
+                message.Location = new System.Drawing.Point(30, 30);
+                message.Text = body;
+                message.Font = new System.Drawing.Font("TimesRoman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                message.AutoSize = true;
+                message.ForeColor= System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+
+                this.FormBorderStyle = FormBorderStyle.None;
+                this.BackColor = Color.White;
+                this.ShowIcon = false;
+
+                this.Controls.Add(b1);
+                this.Controls.Add(b2);
+                this.Controls.Add(b3);
+                this.Controls.Add(message);
+            }
         }
     }
 }
