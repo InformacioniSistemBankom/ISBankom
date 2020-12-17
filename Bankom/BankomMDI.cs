@@ -3154,7 +3154,7 @@ namespace Bankom
 
             if (customMessage.DialogResult == DialogResult.Cancel)
                 e.Cancel = true;
-           else if (customMessage.DialogResult == DialogResult.Yes)
+           else if (customMessage.DialogResult == DialogResult.OK)
                 e.Cancel = false;
            else
             {
