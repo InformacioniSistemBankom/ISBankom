@@ -21,6 +21,7 @@ using Microsoft.VisualBasic.Compatibility;
 using Microsoft.VisualBasic;
 using System.Globalization;
 using Bankom.Class;
+using System.Threading;
 
 namespace Bankom
 {
@@ -3157,7 +3158,14 @@ namespace Bankom
                 e.Cancel = false;
            else
             {
-                
+                //LoginForm frm = new LoginForm();
+                //frm.ShowDialog();
+                e.Cancel = false;
+                //Application.Start();
+                Thread t = new Thread(new ThreadStart(Program.Main));
+                t.Start();
+                Application.ExitThread();
+              
             }
 
 
