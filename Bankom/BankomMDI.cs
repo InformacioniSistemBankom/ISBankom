@@ -3162,6 +3162,9 @@ namespace Bankom
                 e.Cancel = false;
            
                 Thread t = new Thread(new ThreadStart(Program.Main));
+#pragma warning disable CS0618 // Type or member is obsolete
+                t.ApartmentState = ApartmentState.STA;
+#pragma warning restore CS0618 // Type or member is obsolete
                 t.Start();
                 Application.ExitThread();
               
