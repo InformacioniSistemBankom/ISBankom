@@ -3157,10 +3157,7 @@ namespace Bankom
            else if (customMessage.DialogResult == DialogResult.Yes)
                 e.Cancel = false;
            else
-            {
-                
-                e.Cancel = false;
-           
+            {         
                 Thread t = new Thread(new ThreadStart(Program.Main));
 #pragma warning disable CS0618 // Type or member is obsolete
                 t.ApartmentState = ApartmentState.STA;
@@ -3168,11 +3165,7 @@ namespace Bankom
                 t.Start();
                 Application.ExitThread();
               
-            }
-
-
-
-         
+            } 
         }
 
         
