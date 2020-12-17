@@ -1986,12 +1986,11 @@ namespace Bankom
             if (toolStrip1.Items.Count == 0)
             {
                 toolStrip1.Visible = false;
-                //if (MessageBox.Show("Izlaz iz programa?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                //{
-                    //toolStrip1.Visible = false;
-
-                    Application.Exit();
-                //}
+                if (MessageBox.Show("Izlaz iz programa?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    toolStrip1.Visible = false;
+                    Application.ExitThread();
+                }
             }
 
             ////staro
@@ -3137,7 +3136,7 @@ namespace Bankom
             }
         }
 
-        private void BankomMDI_FormClosing(object sender, FormClosingEventArgs e)
+        public void BankomMDI_FormClosing(object sender, FormClosingEventArgs e)
         {
             //tamara 16.12.2020.
 

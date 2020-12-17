@@ -72,6 +72,8 @@ namespace Bankom.Class
         public string cIdNaziviNaFormi;
         //Ivana 11.12.2020.
         public string cZavisiOd;
+        public string cAlijasPolja;
+
         Form forma = new Form();
         //private int izmena;
         private string aaa = "";
@@ -80,7 +82,7 @@ namespace Bankom.Class
         //public Field(Form form1, string iddok, string dokument, string label_text, string polje, string Ime, Color boja, double levo, double vrh, double visina, double sirina,
         //string PozicijaLabele, int Tip, string izborno, string idNaziviNaFormi, string tud, string EnDis, string FormatStringa, string Tabela, string AlijasTabele, string TabelaVView, int TabIndex, string FormatPolja, string Segment, string Restrikcije, int ImaNaslov, string FormulaForme) : base()
         public Field(Form form1, string iddok, string dokument, string label_text, string polje, string Ime, Color boja, double levo, double vrh, double visina, double sirina,
-                     string PozicijaLabele, int Tip, string izborno, string idNaziviNaFormi, string zavisiOd, string tud, string EnDis, string FormatStringa, string Tabela, string AlijasTabele, string TabelaVView, string FormatPolja, string Segment, string Restrikcije, int ImaNaslov, string FormulaForme) : base()
+                     string PozicijaLabele, int Tip, string izborno, string idNaziviNaFormi, string zavisiOd, string AlijasPolja, string tud, string EnDis, string FormatStringa, string Tabela, string AlijasTabele, string TabelaVView, string FormatPolja, string Segment, string Restrikcije, int ImaNaslov, string FormulaForme) : base()
         {
             boja = Color.AliceBlue;
             forma = form1;
@@ -104,7 +106,7 @@ namespace Bankom.Class
             cIdNaziviNaFormi = idNaziviNaFormi;
             //Ivana 11.12.2020.
             cZavisiOd = zavisiOd;
-
+            cAlijasPolja = AlijasPolja;
             //Djora 26.09.20
             //this.BackColor = Color.Red;
             this.BorderStyle = BorderStyle.None;
@@ -272,6 +274,12 @@ namespace Bankom.Class
 
                     //Ivana 14.12.2020.
                     cekboks.CheckedChanged += new EventHandler(checkBox_CheckedChanged);
+                    break;
+                case 10:
+                    if(cAlijasPolja=="NazivSkl")
+                    {
+
+                    }
                     break;
                 default:
                     if (izborno != null && izborno.Trim() != "") // ima izborno
@@ -768,7 +776,7 @@ namespace Bankom.Class
         }
         private void comboBox_DropDownClosed(object sender, EventArgs e)
         {
-            SendKeys.Send("{tab}");
+                SendKeys.Send("{tab}");
         }
         private void comboBox_DropDown(object sender, EventArgs e)
         {
@@ -931,7 +939,7 @@ namespace Bankom.Class
             cQuery = "Select * from " + cIzborno + " WHERE ID_" + cIzborno.Trim() + "=" + IdSloga;
             Console.WriteLine(cQuery);
             DataTable dt2 = db.ReturnDataTable(cQuery);
-            foreach (var pb in this.Parent.Controls.OfType<Field>().Where(g => String.Equals(g.cAlijasTabele, cAlijasTabele)))
+            foreach (var pb in this.Parent.Controls.OfType<Field>().Where(g =>  String.Equals(g.cAlijasTabele, cAlijasTabele)))
             {
                 if (pb.IME != control.Name) // ovde ulaza samo kontrole razlicite od kontrole koju smo upravo napustili a imaju isti alijastabele
                 {
