@@ -3529,7 +3529,8 @@ namespace Bankom
                 message.AutoSize = true;
                 message.ForeColor= System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
 
-                this.FormBorderStyle = FormBorderStyle.None;
+                this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
+                this.Text = "";
                 this.BackColor = Color.White;
                 this.ShowIcon = false;
 
