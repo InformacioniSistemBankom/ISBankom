@@ -62,7 +62,8 @@ namespace Bankom
                 this.Controls.Add(b1);
                 this.Controls.Add(b2);
                 this.Controls.Add(b3);
-                this.Controls.Add(message);
+                this.Controls.Add(message); 
             }
         }
     }
+
