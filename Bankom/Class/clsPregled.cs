@@ -45,11 +45,10 @@ namespace Bankom.Class
             DataTable dt = db.ParamsQueryDT(sql, imedokumenta);
             if (dt.Rows.Count > 0) NazivKlona = dt.Rows[0]["NazivKlona"].ToString();
 
-            if (forma.Controls["OOperacija"].Text == "PREGLED")
-            {                
+          // if (forma.Controls["OOperacija"].Text == "PREGLED")
+          //  {                
                 UpitZaPregled = PripremaidDokumentaZaPregled();
-                if (UpitZaPregled == "KRAJ") goto PrinudniIzlaz;
-                Console.WriteLine(UpitZaPregled);
+                if (UpitZaPregled == "KRAJ") goto PrinudniIzlaz;                
 
                 if (dokje == "S" || dokje == "P")
                 {
@@ -59,7 +58,7 @@ namespace Bankom.Class
                        MessageBox.Show("Ne postoje podaci za zadate uslove");
                        goto PrinudniIzlaz;
                     }
-                    else
+                    else//t.rows.count>0
                     {                        
                         clsdokumentRefresh docref1 = new clsdokumentRefresh();
                         Console.WriteLine(UpitZaPregled);
@@ -67,7 +66,7 @@ namespace Bankom.Class
                         kk = 1;
                     }
                 }
-                else
+                else// nisu S ili P
                 {
                     if (kk > 0)
                     {
@@ -79,9 +78,9 @@ namespace Bankom.Class
                         MessageBox.Show("Ne postoje podaci za zadate uslove");
                     }
                 }
-            }
-            else
-                Osvezi(Operacija, ref BrojacDokumenata);
+            //}
+            //else
+                //Osvezi(Operacija, ref BrojacDokumenata);
 
  PrinudniIzlaz:
             return kk;
@@ -181,9 +180,9 @@ namespace Bankom.Class
                                     pb.comboBox.Text = "";
                                     pb.ID = "1";
                                     break;
-                                case "cek":
-                                    pb.cekboks.Checked = false;
-                                    break;
+                                //case "cek":
+                                //    pb.cekboks.Checked = false;
+                                //    break;
                             }
 
                             forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cEnDis = "true";
@@ -257,37 +256,42 @@ namespace Bankom.Class
                                     WWhere = WWhere + c1 + " = " + pb.Vrednost.Replace(".", "") + " AND ";
 
                             }
+                           
                         }
                         else
                         {
                             if (pb.cTip == 8 || pb.cTip == 9)
-                                WWhere = WWhere + c1 + " = " + "'" + pb.Vrednost + "'" + " AND ";
+                                WWhere = WWhere + c1 + " = " + "'" + pb.Vrednost + "'" + " AND ";                          
                             else
                             {
-                                if (pb.cIzborno != "" && Convert.ToInt32(pb.ID) > 1)
-                                {
-                                    if (pb.cIzborno == pb.cTabela)
-                                        sql = "select alijaspolja from recnikpodataka where dokument = '" + NazivKlona + "'" + " and Polje = 'ID_" + pb.cAlijasTabele + "'";
-                                    else
-                                        sql = "select alijaspolja from recnikpodataka where dokument ='" + NazivKlona + "'" + " and alijaspolja =  'ID_" + pb.cIzborno + "'";
-
-                                    DataTable t = db.ReturnDataTable(sql);
-                                    if (t.Rows.Count != 0)
-                                        WWhere = WWhere + t.Rows[0]["alijaspolja"].ToString() + "=" + pb.ID + " AND ";
-                                    else
-                                        WWhere = WWhere + c1 + " = " + "'" + pb.Vrednost.Trim() + "'" + " AND ";
-
-                                }
+                                if (pb.cTip == 24) { }
                                 else
                                 {
-                                    if (filter == "P")
-                                        WWhere = WWhere + c1 + " LIKE " + "'" + pb.Vrednost.Trim() + "%'" + " AND ";
+                                    if (pb.cIzborno != "" && Convert.ToInt32(pb.ID) > 1)
+                                    {
+                                        if (pb.cIzborno == pb.cTabela)
+                                            sql = "select alijaspolja from recnikpodataka where dokument = '" + NazivKlona + "'" + " and Polje = 'ID_" + pb.cAlijasTabele + "'";
+                                        else
+                                            sql = "select alijaspolja from recnikpodataka where dokument ='" + NazivKlona + "'" + " and alijaspolja =  'ID_" + pb.cIzborno + "'";
+
+                                        DataTable t = db.ReturnDataTable(sql);
+                                        if (t.Rows.Count != 0)
+                                            WWhere = WWhere + t.Rows[0]["alijaspolja"].ToString() + "=" + pb.ID + " AND ";
+                                        else
+                                            WWhere = WWhere + c1 + " = " + "'" + pb.Vrednost.Trim() + "'" + " AND ";
+
+                                    }
                                     else
                                     {
-                                        filter = "S";
-                                        WWhere = WWhere + c1 + " LIKE " + "'%" + pb.Vrednost.Trim() + "%'" + " AND ";
-                                    }
+                                        if (filter == "P")
+                                            WWhere = WWhere + c1 + " LIKE " + "'" + pb.Vrednost.Trim() + "%'" + " AND ";
+                                        else
+                                        {
+                                            filter = "S";
+                                            WWhere = WWhere + c1 + " LIKE " + "'%" + pb.Vrednost.Trim() + "%'" + " AND ";
+                                        }
 
+                                    }
                                 }
                             }
                         }                        
@@ -326,6 +330,7 @@ namespace Bankom.Class
             {
                 IdDokView = "0";
                 PripremaidDokumentaZaPregled = PripremaidDokumentaZaPregled + " order by IdDokumentZapregled desc";
+                Console.WriteLine(PripremaidDokumentaZaPregled);
                 DataTable kt = db.ReturnDataTable(PripremaidDokumentaZaPregled);
                 kk = kt.Rows.Count;
             }
