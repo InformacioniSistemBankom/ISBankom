@@ -66,7 +66,7 @@ namespace Bankom
 
         [STAThread]
 
-         static void Main()
+        public  static void Main()
         {
 
             Process process = Process.GetCurrentProcess();
