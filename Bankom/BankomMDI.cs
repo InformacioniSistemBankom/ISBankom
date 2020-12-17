@@ -83,7 +83,7 @@ namespace Bankom
             }
 
 
-            updateToolStrip(imedokumenta);
+            updateToolStrip(ss);
 
         }
         public void updateToolStrip(string imedokumenta)
