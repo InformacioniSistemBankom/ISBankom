@@ -86,6 +86,7 @@
             this.CmbOrg.Size = new System.Drawing.Size(294, 23);
             this.CmbOrg.TabIndex = 17;
             this.CmbOrg.Visible = false;
+            this.CmbOrg.Enter += new System.EventHandler(this.CmbOrg_Enter);
             // 
             // PasswordTextBox
             // 

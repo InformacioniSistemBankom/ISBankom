@@ -691,7 +691,7 @@ namespace Bankom
             }
         }
 
-
+        public AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
         private void CmbBaze_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -742,24 +742,22 @@ namespace Bankom
                 var query = "SELECT Naziv FROM OrganizacionaStruktura ";
                 var databaseBroker = new DataBaseBroker();
                 var dataTable = databaseBroker.ReturnDataTable(query);
+
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
 
                     if (dataTable.Rows[i][0].ToString() == strOrgDefaultText)
                         indexOrgDefault = i;
                     if (dataTable.Rows[i][0].ToString() != "")
+                    {
                         CmbOrg.Items.Add(dataTable.Rows[i][0].ToString());
-
+                        lista.Add(dataTable.Rows[i][0].ToString());
+                    }
+                        
                 }
-
                 if (cmbBaze.SelectedItem.ToString() == strCurrentbaza) CmbOrg.SelectedIndex = indexOrgDefault;
                 else CmbOrg.SelectedIndex = 0;
-
             }
-
-
-
-
         }
 
         //Djora 07.07.20
@@ -881,8 +879,11 @@ namespace Bankom
             
 
         }
-
-
-        
+        private void CmbOrg_Enter(object sender, EventArgs e)
+        {
+            CmbOrg.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CmbOrg.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            CmbOrg.AutoCompleteCustomSource = lista;
+        }
     }
 }

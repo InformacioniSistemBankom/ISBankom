@@ -854,6 +854,7 @@ namespace Bankom
             this.toolStripTextBox1.Size = new System.Drawing.Size(200, 43);
             this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             // 
+            // 
             // Ggrupisi
             // 
             this.Ggrupisi.AutoSize = false;
@@ -1187,7 +1188,7 @@ namespace Bankom
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(126, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(30, 206);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1383,7 +1384,6 @@ namespace Bankom
         public System.Windows.Forms.ToolStripMenuItem Ggrupisinp;
         public System.Windows.Forms.ToolStripMenuItem unospb;
         public System.Windows.Forms.ToolStripMenuItem premestiGrupuToolStripMenuItem;
-        public System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.ToolStripButton Ppotvrda;
         public System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         public System.Windows.Forms.Button button1;
@@ -1391,6 +1391,7 @@ namespace Bankom
         private System.Windows.Forms.ToolStripButton Ssort;
         private System.Windows.Forms.ToolStripButton Pporeklo;
         public System.Windows.Forms.MenuStrip menuStrip1;
+        public System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
     }
 }
 
