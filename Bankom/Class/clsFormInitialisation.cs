@@ -70,10 +70,9 @@ namespace Bankom.Class
                         ctrls.Vrednost = ctrls.comboBox.Text;
                         break;
                     case "cek":
-
+                       ctrls.cekboks.Checked = false;
                         break;
                      }
-
             } // end searching controls     
         }
         public string FormatirajPolje(string polje,int  Tip)
