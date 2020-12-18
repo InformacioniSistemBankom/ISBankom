@@ -312,6 +312,7 @@ namespace Bankom
             if (UsernameTextBox.Text != "")
             {
                 //var fileReader = File.ReadAllText(Application.StartupPath + @"\XmlLat\xxxx.ini");
+                // ImeServera = UCase(CitajIniFile("LOGOVANJE", "Server"))
 
                 var fileReader = File.ReadAllText(@"\\BANKOMW\Repozitorijum\ISBankom\XXXX\xxxx.ini");
                 string[] separators11 = new[] { "[", "]" };
