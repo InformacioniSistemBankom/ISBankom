@@ -91,18 +91,18 @@ namespace Bankom
                                 okal.RasporedTroskova(iddokumenta, " ", " ", " ", Odakle);
                                 Odakle = "";
                             }
-                            cononf.addFormControls(this, imedokumenta, iddokumenta.ToString(), OOperacija.Text);
-                            docref.refreshDokumentBody(this, imedokumenta, iddokumenta.ToString(), DokumentJe);
-                            docref.refreshDokumentGrid(this, imedokumenta, iddokumenta.ToString(), "", "",DokumentJe);
+                            cononf.addFormControls(this,imedokumenta, iddokumenta.ToString(), OOperacija.Text);
+                            docref.refreshDokumentBody(this,imedokumenta, iddokumenta.ToString(), DokumentJe);
+                            docref.refreshDokumentGrid(this,imedokumenta, iddokumenta.ToString(), "", "",DokumentJe);
                             break;
                         case "P":
-                            cononf.addFormControls(this, imedokumenta, iddokumenta.ToString(), OOperacija.Text);
+                            cononf.addFormControls(this,imedokumenta, iddokumenta.ToString(), OOperacija.Text);
                             clsObradaStablaPtipa procp = new clsObradaStablaPtipa();
                             supit = procp.Proces(imestabla, imedokumenta, idstablo);
-                            docref.refreshDokumentGrid(this, imedokumenta, idstablo.ToString(), supit, "1",DokumentJe);
+                            docref.refreshDokumentGrid(this,imedokumenta, idstablo.ToString(), supit, "1",DokumentJe);
                             break;
                         case "I":                           
-                            cononf.addFormControls(this, imedokumenta, iddokumenta.ToString(), OOperacija.Text);
+                            cononf.addFormControls(this,imedokumenta, iddokumenta.ToString(), OOperacija.Text); cononf.addFormControls(this,imestabla, idstablo.ToString(), OOperacija.Text);
                             string sel = "Select TUD From Upiti Where NazivDokumenta='" + imedokumenta + "' and ime like'GGrr%' AND TUD>0 Order by TUD";
                             Console.WriteLine(sel);
                             System.Data.DataTable ti = db.ReturnDataTable(sel);
@@ -111,7 +111,7 @@ namespace Bankom
                             {
                                 supit = proci.Proces(imedokumenta, ti.Rows[j]["TUD"].ToString());
                                     Console.WriteLine(supit);
-                                docref.refreshDokumentGrid(this, imedokumenta, idstablo.ToString(), supit, ti.Rows[j]["TUD"].ToString(), DokumentJe);
+                                docref.refreshDokumentGrid(this,imedokumenta, idstablo.ToString(), supit, ti.Rows[j]["TUD"].ToString(), DokumentJe);
                             }
                             break;
                         case "S":
@@ -120,7 +120,7 @@ namespace Bankom
                             supit = procss.Proces(imestabla, imedokumenta, Convert.ToInt32(idstablo));
                             if (supit != "")
                             {
-                                cononf.addFormControls(this, imestabla, idstablo.ToString(), OOperacija.Text);
+                                cononf.addFormControls( this,imestabla, idstablo.ToString(), OOperacija.Text);
                                 docref.refreshDokumentGrid(this, imestabla, idstablo.ToString(), supit, "1", DokumentJe);
                             }
                             break;
