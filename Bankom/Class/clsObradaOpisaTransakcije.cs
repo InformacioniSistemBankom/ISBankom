@@ -29,7 +29,7 @@ namespace Bankom.Class
         public bool ObradiOpisTransakcije()
         {
             bool ObradiOpisTransakcije = false;
-            forma = new Form();
+            //forma = new Form();
             forma = Program.Parent.ActiveMdiChild;
             iddokview = Convert.ToString(((Bankom.frmChield)forma).iddokumenta);
             idReda = Convert.ToString(((Bankom.frmChield)forma).idReda);
