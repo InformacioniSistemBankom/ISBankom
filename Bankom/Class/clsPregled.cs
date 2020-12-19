@@ -63,7 +63,7 @@ namespace Bankom.Class
                     {                        
                         clsdokumentRefresh docref1 = new clsdokumentRefresh();
                         Console.WriteLine(UpitZaPregled);
-                        docref1.refreshDokumentGrid(forma, imedokumenta, "1", UpitZaPregled,"1", dokje);///?????????????????
+                        docref1.refreshDokumentGrid(forma,imedokumenta, "1", UpitZaPregled,"1", dokje);///?????????????????
                         kk = 1;
                     }
                 }
@@ -132,10 +132,10 @@ namespace Bankom.Class
                     IdDokView = dp.Rows[Convert.ToInt32(kk-1)]["IdDokumentZaPregled"].ToString();
                     ((Bankom.frmChield)forma).lblBroj.Text = Convert.ToString(kk);
                     break;
-            }      
+            }     
             clsdokumentRefresh cdr = new clsdokumentRefresh();            
-            cdr.refreshDokumentBody(forma, imedokumenta, IdDokView, dokje);
-            cdr.refreshDokumentGrid(forma, imedokumenta, IdDokView, "","1", "");
+            cdr.refreshDokumentBody(forma,imedokumenta, IdDokView, dokje);
+            cdr.refreshDokumentGrid(forma,imedokumenta, IdDokView, "","1", "");
 
             //clsProveraDozvola pd = new clsProveraDozvola();
             pd.ProveriDozvole(imedokumenta, Idstablo, IdDokView, dokje);
