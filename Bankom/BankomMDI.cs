@@ -574,7 +574,7 @@ namespace Bankom
 
         public void itemn_click(object sender, EventArgs e) // aktiviranje forme klikom na tab
         {
-            toolStripTextBox1.Text = "";
+            cmbPretraga.Text = "";
             string b = sender.ToString();
             frmChield active = new frmChield();
             active.AutoScroll = true;
@@ -620,7 +620,7 @@ namespace Bankom
         public void itemB1_click(string imetula)  // zahtev za zatvaranje  forme klikom na tipku izlaz
         {
             cf = imetula;
-           toolStripTextBox1.Text = "";
+            cmbPretraga.Text = "";
             for (int j = 0; j < toolStrip1.Items.Count; j++)
             {
                 if (this.MdiChildren[j].Text == imetula)
@@ -658,13 +658,13 @@ namespace Bankom
 
         public void itemB_click(object sender, EventArgs e)  // zahtev za zatvaranje forme klikom na tab
         {
-            toolStripTextBox1.Text = "";
+            cmbPretraga.Text = "";
             ToolStripButton tb = sender as ToolStripButton;
             string b = tb.Name;
 
 
             cf = b;
-            toolStripTextBox1.Text = "";
+            cmbPretraga.Text = "";
             for (int j = 0; j < toolStrip1.Items.Count; j++)
             {
                 if (this.MdiChildren[j].Text == b)
@@ -2110,7 +2110,7 @@ namespace Bankom
             {
                 childForm.Close();
             }
-            toolStripTextBox1.Text = "";
+            cmbPretraga.Text = "";
             if (toolStrip1.Items.Count == 0) { toolStrip1.Visible = false; }
         }
         private void CloseAllToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2132,7 +2132,7 @@ namespace Bankom
             }
             toolStrip1.Items.Clear();
 
-            toolStripTextBox1.Text = "";
+            cmbPretraga.Text = "";
             if (toolStrip1.Items.Count == 0) { toolStrip1.Visible = false; }
 
         }
@@ -3089,52 +3089,36 @@ namespace Bankom
 
 
 
-        private void toolStripTextBox1_Click(object sender, EventArgs e)
+
+        private void cmbPretraga_DropDown(object sender, EventArgs e)
         {
+            cmbPretraga.Items.Clear();
+            DataBaseBroker db = new DataBaseBroker();
+            List<string> lista = new List<string>();
 
-            if (Program.KlasifikacijaSlovo == "K" || Program.KlasifikacijaSlovo == "k")
+            string sselect;
+            string idke = Program.idkadar.ToString();
+            string idfirme = Program.idFirme.ToString();
+            sselect = "; WITH RekurzivnoStablo (ID_DokumentaStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS "
+                   + "(SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
+                   + " PrikazDetaljaDaNe as pd,PrikazPo as pp"
+                   + " FROM DokumentaStablo AS e WITH (NOLOCK) "
+                   + " where Naziv in (select g.naziv from Grupa as g,KadroviIOrganizacionaStrukturaStavkeView as ko Where (KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura "
+                   + " Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija=" + idke + " )"
+                   + "UNION ALL  SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level +1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
+                   + " PrikazDetaljaDaNe As pd, PrikazPo As pp  FROM DokumentaStablo  AS e WITH (NOLOCK) "
+                   + " INNER JOIN RekurzivnoStablo AS d  ON e.ID_DokumentaStablo = d.Vezan) "
+                   + " SELECT distinct NazivJavni FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0";
+
+            var dt = db.ReturnDataTable(sselect);
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
-
-                toolStripTextBox1.AutoCompleteCustomSource = null;
+                if (dt.Rows[i]["NazivJavni"].ToString().ToLower().Contains(cmbPretraga.Text.ToLower()))
+                    cmbPretraga.Items.Add(dt.Rows[i]["NazivJavni"]);
             }
-            else
-            {
-                DataBaseBroker db = new DataBaseBroker();
-                AutoCompleteStringCollection namesCollection = new AutoCompleteStringCollection();
 
-
-                string sselect;
-                string idke = Program.idkadar.ToString();
-                string idfirme = Program.idFirme.ToString();
-                sselect = "; WITH RekurzivnoStablo (ID_DokumentaStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS "
-                       + "(SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
-                       + " PrikazDetaljaDaNe as pd,PrikazPo as pp"
-                       + " FROM DokumentaStablo AS e WITH (NOLOCK) "
-                       + " where Naziv in (select g.naziv from Grupa as g,KadroviIOrganizacionaStrukturaStavkeView as ko Where (KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura "
-                       + " Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija=" + idke + " )"
-                       + "UNION ALL  SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level +1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
-                       + " PrikazDetaljaDaNe As pd, PrikazPo As pp  FROM DokumentaStablo  AS e WITH (NOLOCK) "
-                       + " INNER JOIN RekurzivnoStablo AS d  ON e.ID_DokumentaStablo = d.Vezan) "
-                       + " SELECT distinct NazivJavni FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0";
-
-                var dr = db.ReturnDataReader(sselect);
-
-
-
-                if (dr.HasRows == true)
-                {
-                    while (dr.Read())
-                        namesCollection.Add(dr["NazivJavni"].ToString());
-                }
-// BORKA 10.12.20 CEMU OVO SLUZI ???????????????
-// Tamara: autocomplete popunjava predloge u pretrazi tj kada ukucate kona, predlaze i konacni racun i konacni ulazni racun...
-                toolStripTextBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                toolStripTextBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                toolStripTextBox1.AutoCompleteCustomSource = namesCollection;
-                //SrediFormu();
-                ToolStripTextBox item = sender as ToolStripTextBox;
-                BrziPristup(item);
-            }
+            ToolStripComboBox item = sender as ToolStripComboBox;
+            BrziPristup(item);
         }
 
         public void BankomMDI_FormClosing(object sender, FormClosingEventArgs e)
@@ -3290,7 +3274,7 @@ namespace Bankom
                             if (forma.Controls["OOperacija"].Text.Trim() == "UNOS")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                string d = toolStripTextBox1.Text;
+                                string d = cmbPretraga.Text;
                                 o.Klasifikacija_Click(d, Program.pomIzv, Program.pomStablo);
                             }
                             else if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE")
@@ -3301,7 +3285,7 @@ namespace Bankom
                             else if (forma.Controls["OOperacija"].Text.Trim() == "IZMENA")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
-                                string d = toolStripTextBox1.Text;
+                                string d = cmbPretraga.Text;
                                 o.KlasifikacijaIzmena(d, Program.pomIzv, Program.pomStablo);
                             }
                             else if (forma.Controls["OOperacija"].Text.Trim() == "KOPIRAJ")
@@ -3441,15 +3425,7 @@ namespace Bankom
                 Program.colname = "";
 
             }
-                
-            
-        
-
         }
-
-        
-
-        
     }
 }
 
