@@ -30,6 +30,7 @@ namespace Bankom
         string strIzborOrganizacionogDela = ""; // status izbora Organizacionog Dela dela
         string strOrgDefaultText = "";// default OrganizacionogDela dela
         string strCurrentbaza = ""; //default baza 
+        public static string ImeServera;
         private int indexCurrentbaza = -1;
         private int indexOrgDefault = -1;
  
@@ -37,7 +38,7 @@ namespace Bankom
 
         public void changeDatabase(string nazivBaze)
         {
-            Program.connectionString = "Data Source=bankomw;Initial Catalog=" + aliasDatabase[nazivBaze] + ";User ID=sa;password=password;";
+            Program.connectionString = "Data Source=" + ImeServera +";Initial Catalog=" + aliasDatabase[nazivBaze] + ";User ID=sa;password=password;";
             this.connectionString = Program.connectionString;
 
 
@@ -337,6 +338,25 @@ namespace Bankom
                     {
                         strobrada = words[n];
 
+                    }
+                    if (cc == "logovanje")
+                    {
+
+                        string pom = words[n+1];
+                        char[] separators1 = { '#' };
+                        pom = pom.Replace("\r\n", "#").Replace("\r", "").Replace("\n", "");
+
+
+                        var result1 = pom.Split(separators1, StringSplitOptions.None);
+
+                        for (int j = 0; j < result1.Length; j++)
+                        {
+                            if (result1[j].Contains("Server="))
+                            {
+                                ImeServera = result1[j].Substring(result1[j].IndexOf("=") + 1);
+                                break;
+                            }
+                        }
                     }
                 }
 
