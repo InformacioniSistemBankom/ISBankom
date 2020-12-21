@@ -72,7 +72,9 @@ namespace Bankom.Class
         public string cIdNaziviNaFormi;
         //Ivana 11.12.2020.
         public string cZavisiOd;
-        public string cAlijasPolja;
+        public string globSkladiste;
+        public string globMagPolje;
+
 
         Form forma = new Form();
         //private int izmena;
@@ -138,7 +140,7 @@ namespace Bankom.Class
                 label.Anchor = AnchorStyles.Left;
                 label.TextAlign = ContentAlignment.MiddleCenter;    //MiddleLeft;
                 label.ForeColor = Color.Black;                                                   //Djora 26.09.20
-                                                                    //label.Height = (int)(visina * 1.2);
+                                                                                                 //label.Height = (int)(visina * 1.2);
                 label.Font = new Font("TimesRoman", 13, FontStyle.Regular);
                 //label.Font = new Font("TimesRoman", 10.8F, FontStyle.Bold);
 
@@ -274,13 +276,8 @@ namespace Bankom.Class
                     //Ivana 14.12.2020.
                     cekboks.CheckedChanged += new EventHandler(checkBox_CheckedChanged);
                     break;
-                //case 10:
-                //    if(cAlijasPolja=="NazivSkl")
-                //    {
-
-                //    }
-                //    break;
                 default:
+
                     if (izborno != null && izborno.Trim() != "") // ima izborno
                     {
                         VrstaKontrole = "combo";
@@ -302,7 +299,7 @@ namespace Bankom.Class
                         Vrednost = comboBox.Text;
                         ID = "1";
 
-                        if (EnDis == "D")                       
+                        if (EnDis == "D")
                             comboBox.Enabled = false;
                         else
                             comboBox.Enabled = true;
@@ -325,7 +322,7 @@ namespace Bankom.Class
 
                         comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
                         comboBox.MaxDropDownItems = 10;
-                        
+
                         //Djora 13.07.20
                         comboBox.Height = (int)visina;
 
@@ -348,6 +345,26 @@ namespace Bankom.Class
                         //comboBox.Leave += new EventHandler(Leave);
                         comboBox.Validating += comboBox_Validating;
 
+                        //if (ImaLiMagacinskoPolje(dokument))
+                        //    FunkcijaZaSkladiste(comboBox, IME, cTip);
+                        //if (ImaLiMagacinskoPolje(dokument))
+                        //    FunkcijaZaMagPolje(comboBox, IME, cTip);
+                        //if (IME == "NazivSkl" && cTip == 10 && ImaLiMagacinskoPolje(dokument))
+                        //{
+                           comboBox.TextChanged += new EventHandler(ComboBox_SelectedIndexChanged);
+                        //}
+                        if (IME == "NazivPolja" && cTip == 10 && ImaLiMagacinskoPolje(dokument))
+                        {
+                            globMagPolje = "NazivPolja";
+                        }
+
+                        if (globMagPolje == "NazivPolja")
+                        {
+                            globMagPolje = "";
+                                comboBox.Click += new EventHandler(ComboBox_Click);
+                        }
+                            
+                        //}
                     }
                     else // nema izborno 
                     {
@@ -583,9 +600,20 @@ namespace Bankom.Class
 
         private Point previousLocation;
 
-        //Ivana 11.12.2020.
         DataBaseBroker db1 = new DataBaseBroker();
         public DataTable dt = new DataTable();
+        public bool ImaLiMagacinskoPolje(string dokument)
+        {
+            string upit = "select count(*) from RecnikPodataka where dokument = @param0 and AlijasPolja = @param1";
+            dt = db1.ParamsQueryDT(upit, dokument, "NazivPolja");
+            if (Convert.ToInt32(dt.Rows[0][0].ToString()) > 0)
+                return true;
+            else
+                return false;
+        }
+
+        //Ivana 11.12.2020.
+
         public void checkBox_CheckedChanged(object sender, EventArgs e)
         {
             string upit = "Select distinct AlijasPolja FROM RecnikPodataka where TabIndex> -1 and ZavisiOd=@param0";
@@ -746,10 +774,42 @@ namespace Bankom.Class
                     break;
             }
         }
-        private void ComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
+        DataTable nasDT;
+        //public void FunkcijaZaSkladiste(ComboBox cb, string i, int t)
+        //{
+        //    if (i == "NazivSkl" && t == 10)
+        //    {
+        //        string upit = "select NazivPolja from MagacinskaPoljaStavkeView where NazivSkl=@param0";
+        //        nasDT = db1.ParamsQueryDT(upit, cb.Text);
+        //    }
+        //}
+        //public void FunkcijaZaMagPolje(ComboBox cb, string i, int t)
+        //{
+        //    if (i == "NazivPolja" && t == 10)
+        //        cb.DataSource = nasDT;
+        //}
+        public string probaaaa = "";
+        public void ComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            //ComboBox control = (ComboBox)sender;
-            //control.Text = sadrzaj;
+            ComboBox control = (ComboBox)sender;
+            //    //control.Text = sadrzaj;
+            //    //zajedno 18.12.2020.
+            if (IME == "NazivSkl")
+            {
+                var param0 = "Premiksana";
+                string upit = "select NazivPolja from MagacinskaPoljaStavkeView where NazivSkl=@param0";
+              
+                nasDT = db1.ParamsQueryDT(upit, param0);
+                //MessageBox.Show(control.Text);
+            }
+        }
+        public void ComboBox_Click(object sender, System.EventArgs e)
+        {
+            ComboBox control = (ComboBox)sender;
+
+            if (IME == "NazivPolja")
+                for(int i=0; i<nasDT.Rows.Count;i++)
+                    control.Items.Add(nasDT.Rows[i][0]);
         }
         private void comboBox_TextUpdate(Object sender, EventArgs e)
         {
@@ -775,7 +835,7 @@ namespace Bankom.Class
         }
         private void comboBox_DropDownClosed(object sender, EventArgs e)
         {
-                SendKeys.Send("{tab}");
+            SendKeys.Send("{tab}");
         }
         private void comboBox_DropDown(object sender, EventArgs e)
         {
@@ -938,7 +998,7 @@ namespace Bankom.Class
             cQuery = "Select * from " + cIzborno + " WHERE ID_" + cIzborno.Trim() + "=" + IdSloga;
             Console.WriteLine(cQuery);
             DataTable dt2 = db.ReturnDataTable(cQuery);
-            foreach (var pb in this.Parent.Controls.OfType<Field>().Where(g =>  String.Equals(g.cAlijasTabele, cAlijasTabele)))
+            foreach (var pb in this.Parent.Controls.OfType<Field>().Where(g => String.Equals(g.cAlijasTabele, cAlijasTabele)))
             {
                 if (pb.IME != control.Name) // ovde ulaza samo kontrole razlicite od kontrole koju smo upravo napustili a imaju isti alijastabele
                 {
@@ -1246,7 +1306,7 @@ namespace Bankom.Class
                     //jovana
                     clsDokumentaStablo ds = new clsDokumentaStablo();
                     if (ds.Obradi(middok, ref midstablo, ref mimedok, ref mbrdok) == false) return;
-                    Program.Parent.ShowNewForm(mojestablo, midstablo, mimedok, middok, mbrdok, ddatum, "D", "", ""); 
+                    Program.Parent.ShowNewForm(mojestablo, midstablo, mimedok, middok, mbrdok, ddatum, "D", "", "");
                 }
                 else
                     this.ObradiDupliKlik(control, mimedok, DokumentJe, "", e);
@@ -1255,7 +1315,7 @@ namespace Bankom.Class
             {
                 //((Bankom.frmChield)Me).idReda = middok;
             }
-            control.ReadOnly = false;         
+            control.ReadOnly = false;
         }
         private void ObradiDupliKlik(DataGridView control, string Dokument, string DokumentJe, string OperacijaDokumenta, DataGridViewCellMouseEventArgs e)
         {
