@@ -77,10 +77,10 @@ namespace Bankom
                 childForm.Text = ss;
                 childForm.Name = ss;
                 addFormTotoolstrip1(childForm, imedokumenta);
-
+                
                 childForm.Show();
-
                 SrediFormu(); // BORKA OVO MORA OSTATI!!!!!!!!!!!!!!!!!
+
             }
 
 
@@ -1349,7 +1349,7 @@ namespace Bankom
 
 
                     string str = "SELECT DISTINCT ID_Proknjizeno,ID_MesecPoreza,ID_Predhodni,ID_DokumentaStablo,IId,ID_KadrovskaEvidencija,ID_OrganizacionaStrukturaView,ID_LikvidacijaDokumenta, ID_DokumentaTotali  AS ID_GgRrDokumentaStavkeView,BrDok,Datum,Opis,Predhodni,LikvidacijaDokumenta,Proknjizeno,MesecPoreza,TTime,SifRadnika,NazivOrg,RB FROM DokumentaTotali  as s  WITH(NOLOCK)  WHERE s.ID_DokumentaStablo= " + strstablo + " and nazivorg in (Select nazivorg  from OrganizacionaStrukturaStavkeView where ID_OrganizacionaStrukturaStablo= 6)  order by  s.id_DokumentaTotali desc";
-                    docref1.refreshDokumentGrid(this, "Dokumenta", "1", str, "1", "S");
+                    docref1.refreshDokumentGrid(this,"Dokumenta", "1", str, "1", "S");
                     DataBaseBroker db = new DataBaseBroker();
                     DataTable tbb = db.ReturnDataTable("select  Count(*)  from Dokumentatotali where ID_DokumentaStablo=" + strstablo);
 
@@ -1376,7 +1376,7 @@ namespace Bankom
 
 
                 clsdokumentRefresh docref = new clsdokumentRefresh();
-                docref.refreshDokumentGrid(this, "Dokumenta", "1", "SELECT DISTINCT ID_Proknjizeno, ID_MesecPoreza, ID_Predhodni, ID_DokumentaStablo, IId, ID_KadrovskaEvidencija, ID_OrganizacionaStrukturaView, ID_LikvidacijaDokumenta, ID_DokumentaTotali  AS ID_GgRrDokumentaStavkeView, BrDok, Datum, Opis, Predhodni, LikvidacijaDokumenta, Proknjizeno, MesecPoreza, TTime, SifRadnika, NazivOrg, RB FROM DokumentaTotali as s  WITH(NOLOCK)  WHERE s.ID_DokumentaStablo = " + Convert.ToString(d) + " and nazivorg in (Select nazivorg  from OrganizacionaStrukturaStavkeView where ID_OrganizacionaStrukturaStablo = 6)  order by  s.id_DokumentaTotali desc", "1", "S");
+                docref.refreshDokumentGrid(this,"Dokumenta", "1", "SELECT DISTINCT ID_Proknjizeno, ID_MesecPoreza, ID_Predhodni, ID_DokumentaStablo, IId, ID_KadrovskaEvidencija, ID_OrganizacionaStrukturaView, ID_LikvidacijaDokumenta, ID_DokumentaTotali  AS ID_GgRrDokumentaStavkeView, BrDok, Datum, Opis, Predhodni, LikvidacijaDokumenta, Proknjizeno, MesecPoreza, TTime, SifRadnika, NazivOrg, RB FROM DokumentaTotali as s  WITH(NOLOCK)  WHERE s.ID_DokumentaStablo = " + Convert.ToString(d) + " and nazivorg in (Select nazivorg  from OrganizacionaStrukturaStavkeView where ID_OrganizacionaStrukturaStablo = 6)  order by  s.id_DokumentaTotali desc", "1", "S");
 
 
             }
@@ -1827,11 +1827,12 @@ namespace Bankom
            
             if (activeChild != null)
             {
+                activeChild.Controls["OOperacija"].Text = "";
                 activeChild.FormBorderStyle = FormBorderStyle.None;
                 if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
                 clsRefreshForm rf = new clsRefreshForm();
                 rf.refreshform();
-                activeChild.Controls["OOperacija"].Text = "";
+                
             }
             else
             {
@@ -2315,7 +2316,7 @@ namespace Bankom
 
 
                     string str = "SELECT DISTINCT ID_Proknjizeno,ID_MesecPoreza,ID_Predhodni,ID_DokumentaStablo,IId,ID_KadrovskaEvidencija,ID_OrganizacionaStrukturaView,ID_LikvidacijaDokumenta, ID_DokumentaTotali  AS ID_GgRrDokumentaStavkeView,BrDok,Datum,Opis,Predhodni,LikvidacijaDokumenta,Proknjizeno,MesecPoreza,TTime,SifRadnika,NazivOrg,RB FROM DokumentaTotali  as s  WITH(NOLOCK)  WHERE s.ID_DokumentaStablo= " + strstablo + " and nazivorg in (Select nazivorg  from OrganizacionaStrukturaStavkeView where ID_OrganizacionaStrukturaStablo= 6)  order by  s.id_DokumentaTotali desc";
-                    docref1.refreshDokumentGrid(this, "Dokumenta", "1", str, "1", "S");
+                    docref1.refreshDokumentGrid(activeChild,"Dokumenta", "1", str, "1", "S");
                     DataBaseBroker db = new DataBaseBroker();
                     DataTable tbb = db.ReturnDataTable("select  Count(*)  from Dokumentatotali where ID_DokumentaStablo=" + strstablo);
 

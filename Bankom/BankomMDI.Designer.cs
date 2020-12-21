@@ -150,10 +150,6 @@ namespace Bankom
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolTip
-            // 
-           // this.toolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip_Popup);
-            // 
             // Dokumenta
             // 
             this.Dokumenta.Name = "Dokumenta";
@@ -854,7 +850,6 @@ namespace Bankom
             this.toolStripTextBox1.Size = new System.Drawing.Size(200, 43);
             this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             // 
-            // 
             // Ggrupisi
             // 
             this.Ggrupisi.AutoSize = false;
@@ -997,7 +992,6 @@ namespace Bankom
             this.Ppredlogcena.Text = "Pred.c.";
             this.Ppredlogcena.ToolTipText = "Pregled cena";
             this.Ppredlogcena.Visible = false;
-           // this.Ppredlogcena.Click += new System.EventHandler(this.Ppredlogcena_Click);
             // 
             // Kkalki
             // 
@@ -1146,7 +1140,6 @@ namespace Bankom
             this.Oorigin.Text = "Original";
             this.Oorigin.ToolTipText = "Original";
             this.Oorigin.Visible = false;
-            //this.Oorigin.Click += new System.EventHandler(this.Oorigin_Click);
             // 
             // Oorgsema
             // 

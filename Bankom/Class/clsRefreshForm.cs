@@ -13,12 +13,11 @@ using System.Drawing;
 namespace Bankom.Class
 {
     class clsRefreshForm
-    {
-        private Form forma = new Form();
+    {        
         DataBaseBroker db = new DataBaseBroker();
         public void refreshform()
         {
-            forma = Program.Parent.ActiveMdiChild;
+            Form forma = Program.Parent.ActiveMdiChild;
             //string dokje,string imestabla,string ime,string idstablo,string ident)
             string supit = "";
             string dokje = forma.Controls["ldokje"].Text;
@@ -42,7 +41,7 @@ namespace Bankom.Class
                     supit = procs.Proces(imestabla, ime, Convert.ToInt32(idstablo));
                     if (supit.Trim() != "")
                     {
-                        dr.refreshDokumentBody(forma, imestabla, idstablo, dokje);
+                        dr.refreshDokumentBody( forma,imestabla, idstablo, dokje);
                         dr.refreshDokumentGrid(forma, imestabla, idstablo, supit, "1", dokje);
                     }
                     break;
@@ -65,8 +64,8 @@ namespace Bankom.Class
                     break;
                     //
                 default:
-                    dr.refreshDokumentBody(forma, ime, ident, dokje);
-                    dr.refreshDokumentGrid(forma, ime, ident, ""," ", dokje);
+                    dr.refreshDokumentBody( forma,ime, ident, dokje);
+                    dr.refreshDokumentGrid(forma,ime, ident, ""," ", dokje);
                     break;
             }
         }

@@ -13,22 +13,22 @@ namespace Bankom.Class
 {
     class clsdokumentRefresh
     {
-        Form form1 = new Form();
+        Form forma = Program.Parent.ActiveMdiChild;
         static DataBaseBroker db = new DataBaseBroker();
         DataTable tg = new DataTable();
 
-        public void refreshDokument(Form forma, string KojiSegment, string iddok, string dokument, string TUD, string DokumentJe)
+        public void refreshDokument(Form form1,string KojiSegment, string iddok, string dokument, string TUD, string DokumentJe)
         {
-            form1 = forma;
+            forma = form1;
             if (KojiSegment.Contains("Stavke") == true)
             {
-                refreshDokumentGrid(form1, dokument, iddok, "", TUD, "");
+                refreshDokumentGrid( forma,dokument, iddok, "", TUD, "");
             }
             else
             {
                 if (DokumentJe != "I")
                 {
-                    refreshDokumentBody(form1, dokument, iddok, DokumentJe);
+                    refreshDokumentBody(forma, dokument, iddok, DokumentJe);
                 }
             }
         }
@@ -119,10 +119,10 @@ namespace Bankom.Class
             return KojiUpit;
         }
 
-        public void refreshDokumentGrid(Form forma, string dokument, string iddok, string mUpit, string TUD, string DokumentJe)
+        public void refreshDokumentGrid(Form forma,string dokument, string iddok, string mUpit, string TUD, string DokumentJe)
         {
             Console.WriteLine(mUpit);
-            form1 = forma;
+           Form  form1 = forma;
             string tUpit = "";
             string tIme = "";
             string tud = "";
@@ -161,9 +161,9 @@ namespace Bankom.Class
                 brredova = Convert.ToInt32(t.Rows[i]["MaxHeight"]);
 
                 if (tud == "1")
-                    ((Bankom.frmChield)form1).BrRedova = brredova;
+                    ((Bankom.frmChield)forma).BrRedova = brredova;
 
-                ((Bankom.frmChield)form1).imegrida = tIme;
+                ((Bankom.frmChield)forma).imegrida = tIme;
 
                 if (mUpit.Trim() == "")
                     tUpit = CreateQuery(tUpit, KojiSegment, iddok, dokument, DokumentJe);
@@ -171,26 +171,26 @@ namespace Bankom.Class
                 {
                     tUpit = mUpit;
                 }
-                 ((Bankom.frmChield)form1).tUpit = tUpit; // sacuvana tabela za grid pocetni upit
+                 ((Bankom.frmChield)forma).tUpit = tUpit; // sacuvana tabela za grid pocetni upit
                 Console.WriteLine(tUpit);
                 //statusStrip1 - podaci o paging-u
                 if (DokumentJe == "D" || DokumentJe == "I")
-                    ((Bankom.frmChield)form1).statusStrip1.Visible = false;// NEMA PAGING
+                    ((Bankom.frmChield)forma).statusStrip1.Visible = false;// NEMA PAGING
                 else
-                    ((Bankom.frmChield)form1).statusStrip1.Visible = true;//IMA PAGING
+                    ((Bankom.frmChield)forma).statusStrip1.Visible = true;//IMA PAGING
 
-                if (!(((Bankom.frmChield)form1).Controls.Find(tIme, true).FirstOrDefault() is DataGridView dv))
+                if (!(((Bankom.frmChield)forma).Controls.Find(tIme, true).FirstOrDefault() is DataGridView dv))
                     MessageBox.Show("Greska ne postoji grid");
                 else // postoji grid                     
                 {
-                    if (((Bankom.frmChield)form1).statusStrip1.Visible == true)
+                    if (((Bankom.frmChield)forma).statusStrip1.Visible == true)
                     {
                         Console.WriteLine(tUpit);
-                        PripremiPaging(ref tUpit, iddok);
+                        PripremiPaging(forma,ref tUpit, iddok);
                     }
                     tg = db.ReturnDataTable(tUpit);  // za datasource grida ako je prosao kroz PripremiPaging  tg samo slogove stranice inace sadrzi sve slogove iz upita
 
-                    PripremiPodatkeZaGrid(form1, dv, dokument, tUpit, Convert.ToInt32(tud), iddok, tIme, DokumentJe);
+                    PripremiPodatkeZaGrid(forma, dv, dokument, tUpit, Convert.ToInt32(tud), iddok, tIme, DokumentJe);
 
                     dv.DataSource = tg;
                     if (dv.Columns.Count > 0)
@@ -204,7 +204,7 @@ namespace Bankom.Class
                 }
             }
         }
-        private void PripremiPodatkeZaGrid(Form form1, DataGridView dv, string dokument, string tUpit, int tud, string iddok, string tIme, string DokumentJe)
+        private void PripremiPodatkeZaGrid(Form forma, DataGridView dv, string dokument, string tUpit, int tud, string iddok, string tIme, string DokumentJe)
         {
             dv.BackgroundColor = Color.Snow;
       
@@ -218,9 +218,9 @@ namespace Bankom.Class
             }
             Console.WriteLine(tUpit);
 
-            if (((Bankom.frmChield)form1).intUkupno == 0)// broj slogova u upitu
+            if (((Bankom.frmChield)forma).intUkupno == 0)// broj slogova u upitu
             {
-                ((Bankom.frmChield)form1).intUkupno = tg.Rows.Count; //// db.ReturnInt(" select count(*) from " + tUpit.Substring(intfrom + 5), 0); // koliko ima slogova u upitu
+                ((Bankom.frmChield)forma).intUkupno = tg.Rows.Count; //// db.ReturnInt(" select count(*) from " + tUpit.Substring(intfrom + 5), 0); // koliko ima slogova u upitu
             }
 
             // DORADA TABELE tg postavljanjem rednog broja i osvezavanjem salda prema zahtevima dokumenta
@@ -239,68 +239,68 @@ namespace Bankom.Class
                     os.OsveziSalda(ref tg, dt.Rows[ii]["AlijasPolja"].ToString(), dt.Rows[ii]["FormulaForme"].ToString());
             }
         }
-        private void PripremiPaging(ref string tUpit, string iddok)
+        private void PripremiPaging(Form forma,ref string tUpit, string iddok)
         {
             // POCETAK KODA VEZAN ZA PSGEING
             int intfrom = tUpit.ToUpper().IndexOf("FROM", StringComparison.OrdinalIgnoreCase);
             int intOrder = tUpit.ToUpper().IndexOf("ORDER", StringComparison.OrdinalIgnoreCase);
 
         if (intOrder > -1)// UPIT SADRZI ORDER BY
-           ((Bankom.frmChield)form1).intUkupno = db.ReturnInt(" select count(*) from " + tUpit.Substring(intfrom + 5, intOrder - intfrom - 5), 0);
+           ((Bankom.frmChield)forma).intUkupno = db.ReturnInt(" select count(*) from " + tUpit.Substring(intfrom + 5, intOrder - intfrom - 5), 0);
         else
-            ((Bankom.frmChield)form1).intUkupno = db.ReturnInt(" select count(*) from " + tUpit.Substring(intfrom + 5), 0);
+            ((Bankom.frmChield)forma).intUkupno = db.ReturnInt(" select count(*) from " + tUpit.Substring(intfrom + 5), 0);
        
-        ((Bankom.frmChield)form1).toolStripTextBroj.Text = iddok;
-        ((Bankom.frmChield)form1).statusStrip1.Visible = true;
+        ((Bankom.frmChield)forma).toolStripTextBroj.Text = iddok;
+        ((Bankom.frmChield)forma).statusStrip1.Visible = true;
         string strstart = "";
         int pageno = 0;
-        if (((Bankom.frmChield)form1).intUkupno > 0)
+        if (((Bankom.frmChield)forma).intUkupno > 0)
         {
-                if (((Bankom.frmChield)form1).BrRedova > 0)
-                    pageno = ((Bankom.frmChield)form1).intUkupno / ((Bankom.frmChield)form1).BrRedova;
+                if (((Bankom.frmChield)forma).BrRedova > 0)
+                    pageno = ((Bankom.frmChield)forma).intUkupno / ((Bankom.frmChield)forma).BrRedova;
             }
-            if (pageno * ((Bankom.frmChield)form1).BrRedova < ((Bankom.frmChield)form1).intUkupno) pageno = pageno + 1;
+            if (pageno * ((Bankom.frmChield)forma).BrRedova < ((Bankom.frmChield)forma).intUkupno) pageno = pageno + 1;
             string strFind = "";
-            strFind = ((Bankom.frmChield)form1).toolStripTextFind.Text;
-            ((Bankom.frmChield)form1).ToolStripLblPos.Text = Convert.ToString(pageno);
-            ((Bankom.frmChield)form1).toolStripTexIme.Text = ((Bankom.frmChield)form1).Controls["limedok"].Text;
-            if (((Bankom.frmChield)form1).intStart < 0) ((Bankom.frmChield)form1).intStart = 0;
-            if (((Bankom.frmChield)form1).intUkupno > 0 && ((Bankom.frmChield)form1).intStart >= ((Bankom.frmChield)form1).intUkupno)
+            strFind = ((Bankom.frmChield)forma).toolStripTextFind.Text;
+            ((Bankom.frmChield)forma).ToolStripLblPos.Text = Convert.ToString(pageno);
+            ((Bankom.frmChield)forma).toolStripTexIme.Text = ((Bankom.frmChield)forma).Controls["limedok"].Text;
+            if (((Bankom.frmChield)forma).intStart < 0) ((Bankom.frmChield)forma).intStart = 0;
+            if (((Bankom.frmChield)forma).intUkupno > 0 && ((Bankom.frmChield)forma).intStart >= ((Bankom.frmChield)forma).intUkupno)
             {
-                ((Bankom.frmChield)form1).intStart = ((Bankom.frmChield)form1).intUkupno - ((Bankom.frmChield)form1).BrRedova;
-                strstart = Convert.ToString(((Bankom.frmChield)form1).intStart);
+                ((Bankom.frmChield)forma).intStart = ((Bankom.frmChield)forma).intUkupno - ((Bankom.frmChield)forma).BrRedova;
+                strstart = Convert.ToString(((Bankom.frmChield)forma).intStart);
             }
-            if (((Bankom.frmChield)form1).intUkupno > ((Bankom.frmChield)form1).BrRedova)
+            if (((Bankom.frmChield)forma).intUkupno > ((Bankom.frmChield)forma).BrRedova)
             {
                 strstart = "";
-                frmChield activeChild1 = (frmChield)form1.ActiveMdiChild;
-                if (activeChild1 != null) // da li se nalazimo  na form1 ako je odgovor DA nije null radi se o PAGING-u
+                frmChield activeChild1 = (frmChield)forma.ActiveMdiChild;
+                if (activeChild1 != null) // da li se nalazimo  na forma ako je odgovor DA nije null radi se o PAGING-u
                 {
                     strFind = activeChild1.toolStripTextFind.Text.ToString();
                     strstart = activeChild1.ToolStripTextPos.Text.ToString();
                     ((Bankom.frmChield)activeChild1).ToolStripLblPos.Text = Convert.ToString(((Bankom.frmChield)activeChild1).intUkupno);
                     if (((Bankom.frmChield)activeChild1).intUkupno > 0 && ((Bankom.frmChield)activeChild1).intStart >= ((Bankom.frmChield)activeChild1).intUkupno)
                     {
-                        ((Bankom.frmChield)activeChild1).intStart = ((Bankom.frmChield)activeChild1).intUkupno - ((Bankom.frmChield)form1).BrRedova;
+                        ((Bankom.frmChield)activeChild1).intStart = ((Bankom.frmChield)activeChild1).intUkupno - ((Bankom.frmChield)forma).BrRedova;
                         strstart = Convert.ToString(((Bankom.frmChield)activeChild1).intStart);
                     }
                 }
                 else
                 {
-                    strFind = ((Bankom.frmChield)form1).toolStripTextFind.Text.ToString();
-                    strstart = Convert.ToString(((Bankom.frmChield)form1).intStart);
-                    ((Bankom.frmChield)form1).ToolStripLblPos.Text = Convert.ToString(pageno);
-                    if (((Bankom.frmChield)form1).intUkupno > 0 && ((Bankom.frmChield)form1).intStart >= ((Bankom.frmChield)form1).intUkupno)
+                    strFind = ((Bankom.frmChield)forma).toolStripTextFind.Text.ToString();
+                    strstart = Convert.ToString(((Bankom.frmChield)forma).intStart);
+                    ((Bankom.frmChield)forma).ToolStripLblPos.Text = Convert.ToString(pageno);
+                    if (((Bankom.frmChield)forma).intUkupno > 0 && ((Bankom.frmChield)forma).intStart >= ((Bankom.frmChield)forma).intUkupno)
                     {
-                        ((Bankom.frmChield)form1).intStart = ((Bankom.frmChield)form1).intUkupno - ((Bankom.frmChield)form1).BrRedova;
-                        strstart = Convert.ToString(((Bankom.frmChield)form1).intStart);
+                        ((Bankom.frmChield)forma).intStart = ((Bankom.frmChield)forma).intUkupno - ((Bankom.frmChield)forma).BrRedova;
+                        strstart = Convert.ToString(((Bankom.frmChield)forma).intStart);
                     }
                 }
                 switch (strFind)
                 {
                     case "":
                     case null:
-                        if (intOrder > -1) { tUpit += " OFFSET " + strstart + " ROWS FETCH NEXT " + ((Bankom.frmChield)form1).BrRedova + " ROWS ONLY;"; }
+                        if (intOrder > -1) { tUpit += " OFFSET " + strstart + " ROWS FETCH NEXT " + ((Bankom.frmChield)forma).BrRedova + " ROWS ONLY;"; }
                         Console.WriteLine(tUpit);
                         break;
                     default:
@@ -321,27 +321,27 @@ namespace Bankom.Class
                                 DataTable tu = db.ReturnDataTable(tUpit);
                                 int intukupno = tu.Rows.Count;
                                 activeChild1.intUkupno = intukupno;
-                                if (((Bankom.frmChield)form1).BrRedova > 0)
+                                if (((Bankom.frmChield)forma).BrRedova > 0)
                                 {
-                                    float broj = intukupno / ((Bankom.frmChield)form1).BrRedova;
-                                    activeChild1.ToolStripLblPos.Text = Convert.ToString(intukupno / ((Bankom.frmChield)form1).BrRedova);
+                                    float broj = intukupno / ((Bankom.frmChield)forma).BrRedova;
+                                    activeChild1.ToolStripLblPos.Text = Convert.ToString(intukupno / ((Bankom.frmChield)forma).BrRedova);
                                 }
                             }
                             DataTable tu1 = db.ReturnDataTable(tUpit);
                             int intukupno1 = tu1.Rows.Count;
-                            ((Bankom.frmChield)form1).ToolStripLblPos.Text = Convert.ToString(intukupno1 / ((Bankom.frmChield)form1).BrRedova);
-                            tUpit += " OFFSET " + strstart + " ROWS FETCH NEXT " + ((Bankom.frmChield)form1).BrRedova + " ROWS ONLY;";
+                            ((Bankom.frmChield)forma).ToolStripLblPos.Text = Convert.ToString(intukupno1 / ((Bankom.frmChield)forma).BrRedova);
+                            tUpit += " OFFSET " + strstart + " ROWS FETCH NEXT " + ((Bankom.frmChield)forma).BrRedova + " ROWS ONLY;";
                         }
                         break;
                 }
             }
         }
 
-        public DataTable ShowPage(Form form1, int pageNumber, DataTable tg)
+        public DataTable ShowPage(Form forma, int pageNumber, DataTable tg)
         {
             DataTable dt = new DataTable();
 
-            int PageSize = ((Bankom.frmChield)form1).BrRedova;
+            int PageSize = ((Bankom.frmChield)forma).BrRedova;
             int startIndex = PageSize * (pageNumber - 1);
             int endindex = 0;
 
@@ -350,10 +350,10 @@ namespace Bankom.Class
                 dt.Columns.Add(colunm.ColumnName);
             }
 
-            if (((Bankom.frmChield)form1).statusStrip1.Visible == true)
+            if (((Bankom.frmChield)forma).statusStrip1.Visible == true)
                 endindex = startIndex + PageSize;
             else
-                endindex = ((Bankom.frmChield)form1).intUkupno;
+                endindex = ((Bankom.frmChield)forma).intUkupno;
 
             var result1 = tg.AsEnumerable().Where((s, k) => (k >= startIndex && k <= endindex));
             foreach (var item in result1)
@@ -470,11 +470,11 @@ namespace Bankom.Class
                 }
             }
         }
-        public void refreshDokumentBody(Form forma, string dokument, string iddok, string DokumentJe)
+        public void refreshDokumentBody( Form forma,string dokument, string iddok, string DokumentJe)
         {
             DataBaseBroker db = new DataBaseBroker();
             DataTable tt = new DataTable();
-            
+        
             string sql = "Select Naziv,UlazniIzlazni as NazivDokumenta from SifarnikDokumenta  where naziv=@param0";
 
             tt = db.ParamsQueryDT(sql, dokument);
@@ -621,7 +621,7 @@ namespace Bankom.Class
                 }
             }
         }
-        public Double CalculatedField(Form form1, string dokument, string iddok)
+        public Double CalculatedField(Form forma, string dokument, string iddok)
         {
             CcalculatedVal cv = new CcalculatedVal();
             clsEvaluation cev = new clsEvaluation();
@@ -632,7 +632,7 @@ namespace Bankom.Class
             double mvrednost = 0;
             string formula = "";
 
-            foreach (var pb in form1.Controls.OfType<Field>())
+            foreach (var pb in forma.Controls.OfType<Field>())
             {
                 if (pb.cPolje.Contains("IzvodiSe") == true)
                 {
@@ -643,7 +643,7 @@ namespace Bankom.Class
                     else
                     {
                         formula = pb.cFormulaForme.Trim();
-                        string aaa = cv.CalculateValue(form1, formula); //textBox.Text = Convert.ToString(float.Parse(dt.Rows[j][dt.Columns[k].ColumnName].ToString()).ToString("###,##0.00"));
+                        string aaa = cv.CalculateValue(forma, formula); //textBox.Text = Convert.ToString(float.Parse(dt.Rows[j][dt.Columns[k].ColumnName].ToString()).ToString("###,##0.00"));
                         string rez = cev.Evaluate(aaa);
                         pb.Vrednost = Convert.ToString(rez);
                         if (pb.Vrednost.Trim() != "")
@@ -654,7 +654,7 @@ namespace Bankom.Class
                 }
             }
 
-            foreach (var ctrls in form1.Controls.OfType<Field>())
+            foreach (var ctrls in forma.Controls.OfType<Field>())
             {
                 if (ctrls.IME == "OznVal")
                 {
@@ -667,7 +667,7 @@ namespace Bankom.Class
                 }
             }
 
-            foreach (var pb in form1.Controls.OfType<Field>())
+            foreach (var pb in forma.Controls.OfType<Field>())
             {
                 if (pb.cPolje.Contains("Slovima") == true)
                 {
@@ -679,7 +679,7 @@ namespace Bankom.Class
                     {
                         KojePolje = pb.cFormulaForme;
                     }
-                    foreach (var ct in form1.Controls.OfType<Field>())
+                    foreach (var ct in forma.Controls.OfType<Field>())
                     {
                         if (ct.IME == KojePolje)
                         {

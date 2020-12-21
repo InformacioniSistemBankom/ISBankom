@@ -52,6 +52,7 @@ namespace Bankom.Class
 
                 if (dokje == "S" || dokje == "P")
                 {
+                    Console.WriteLine(UpitZaPregled);
                     DataTable t = db.ReturnDataTable(UpitZaPregled);
                     if (t.Rows.Count == 0)
                     {
@@ -62,7 +63,7 @@ namespace Bankom.Class
                     {                        
                         clsdokumentRefresh docref1 = new clsdokumentRefresh();
                         Console.WriteLine(UpitZaPregled);
-                        docref1.refreshDokumentGrid(forma, imedokumenta, "1", UpitZaPregled,"1", dokje);///?????????????????
+                        docref1.refreshDokumentGrid(forma,imedokumenta, "1", UpitZaPregled,"1", dokje);///?????????????????
                         kk = 1;
                     }
                 }
@@ -131,10 +132,10 @@ namespace Bankom.Class
                     IdDokView = dp.Rows[Convert.ToInt32(kk-1)]["IdDokumentZaPregled"].ToString();
                     ((Bankom.frmChield)forma).lblBroj.Text = Convert.ToString(kk);
                     break;
-            }      
+            }     
             clsdokumentRefresh cdr = new clsdokumentRefresh();            
-            cdr.refreshDokumentBody(forma, imedokumenta, IdDokView, dokje);
-            cdr.refreshDokumentGrid(forma, imedokumenta, IdDokView, "","1", "");
+            cdr.refreshDokumentBody(forma,imedokumenta, IdDokView, dokje);
+            cdr.refreshDokumentGrid(forma,imedokumenta, IdDokView, "","1", "");
 
             //clsProveraDozvola pd = new clsProveraDozvola();
             pd.ProveriDozvole(imedokumenta, Idstablo, IdDokView, dokje);
@@ -267,10 +268,10 @@ namespace Bankom.Class
                                 if (pb.cTip == 24) { }
                                 else
                                 {
-                                    if (pb.cIzborno != "" && Convert.ToInt32(pb.ID) > 1)
+                                    if (pb.cIzborno.Trim() != "" && Convert.ToInt32(pb.ID) > 1)
                                     {
                                         if (pb.cIzborno == pb.cTabela)
-                                            sql = "select alijaspolja from recnikpodataka where dokument = '" + NazivKlona + "'" + " and Polje = 'ID_" + pb.cAlijasTabele + "'";
+                                            sql = "select alijaspolja from recnikpodataka where dokument = '" + NazivKlona + "'" + " and alijaspolja = 'ID_" + pb.cAlijasTabele + "'";
                                         else
                                             sql = "select alijaspolja from recnikpodataka where dokument ='" + NazivKlona + "'" + " and alijaspolja =  'ID_" + pb.cIzborno + "'";
 
@@ -284,11 +285,11 @@ namespace Bankom.Class
                                     else
                                     {
                                         if (filter == "P")
-                                            WWhere = WWhere + c1 + " LIKE " + "'" + pb.Vrednost.Trim() + "%'" + " AND ";
+                                            WWhere = WWhere + c1 + " LIKE " + "'" + pb.Vrednost.Trim() + "N%'" + " AND ";
                                         else
                                         {
                                             filter = "S";
-                                            WWhere = WWhere + c1 + " LIKE " + "'%" + pb.Vrednost.Trim() + "%'" + " AND ";
+                                            WWhere = WWhere + c1 + " LIKE " + "N'%" + pb.Vrednost.Trim() + "%'" + " AND ";
                                         }
 
                                     }
@@ -299,7 +300,7 @@ namespace Bankom.Class
                 }
             }
 
-            if (WWhere.Contains(" LIKE ") == true)
+            if (WWhere.Contains("LIKE") == true)
             {
                 clsOperacije op = new clsOperacije();
                 WWhere = op.AsciiKarakteri(WWhere);
@@ -329,7 +330,7 @@ namespace Bankom.Class
             if (dokje == "D")
             {
                 IdDokView = "0";
-                PripremaidDokumentaZaPregled = PripremaidDokumentaZaPregled + " order by IdDokumentZapregled desc";
+                PripremaidDokumentaZaPregled = PripremaidDokumentaZaPregled + " AND YEAR(Datum) >= "+Program.mGodina.ToString()+ " order by IdDokumentZapregled desc";
                 Console.WriteLine(PripremaidDokumentaZaPregled);
                 DataTable kt = db.ReturnDataTable(PripremaidDokumentaZaPregled);
                 kk = kt.Rows.Count;
