@@ -11,18 +11,19 @@ using System.Drawing;
 
 
 namespace Bankom.Class
-{
+{ 
+
     class clscontrolsOnForm
     {
-        public void addFormControls(Form forma, string dokument, string iddok, string operacija)
+        public void addFormControls(Form forma1,string dokument, string iddok, string operacija)
         {
+            Form forma = forma1;
             DataBaseBroker db = new DataBaseBroker();
             DataTable tt = new DataTable();
             string sql = "Select Naziv,UlazniIzlazni as NazivDokumenta from SifarnikDokumenta  where Naziv=@param0";
             tt = db.ParamsQueryDT(sql, dokument);
-            if (tt.Rows.Count > 0) { dokument = tt.Rows[0]["NazivDokumenta"].ToString(); }
-            Form form1 = forma;  ///new Form();
-            //form1 = forma;
+            if (tt.Rows.Count > 0) { dokument = tt.Rows[0]["NazivDokumenta"].ToString(); }           
+        
             if (Program.ID_Jezik == 0)
                 Program.ID_Jezik = 3;
             //string query = " SELECT RecnikPodatakaDjora.ID_RecnikPodataka AS ID, RecnikPodatakaDjora.levo, RecnikPodatakaDjora.vrh, RecnikPodatakaDjora.width, RecnikPodatakaDjora.height, "
@@ -106,18 +107,14 @@ namespace Bankom.Class
                             cImaNaslov = 1;
                         var cFormulaForme = row["FormulaForme"].ToString();
                         
-                        var mfield = new Field(form1, iddok, dokument, ctekst, cPolje, cAlijasPolja, Color.Lavender, clevo, cvrh, cvisina, csirina, cPostojiLabela, cTip, cizborno, cidNaziviNaFormi, cZavisiOd, cTUD, cEnDis, cFormat, cTabela, cAlijasTabele, cTabelaVView, cFormatPolja, cSegment, cRestrikcije, cImaNaslov, cFormulaForme);
-                         form1.Controls.Add(mfield);
+                        var mfield = new Field(forma, iddok, dokument, ctekst, cPolje, cAlijasPolja, Color.Lavender, clevo, cvrh, cvisina, csirina, cPostojiLabela, cTip, cizborno, cidNaziviNaFormi, cZavisiOd, cTUD, cEnDis, cFormat, cTabela, cAlijasTabele, cTabelaVView, cFormatPolja, cSegment, cRestrikcije, cImaNaslov, cFormulaForme);
+                         forma.Controls.Add(mfield);
                         //Ivana 11.12.2020.
                         if (cZavisiOd.Trim() != "" && cAlijasPolja.Substring(0,2)!="ID")
                             mfield.Visible = false;
                     }
                 }
-
-                foreach (var ctrls in forma.Controls.OfType<Field>())
-                {
-                    Console.WriteLine(ctrls.IME);
-                }
+                
             }
         }
     }

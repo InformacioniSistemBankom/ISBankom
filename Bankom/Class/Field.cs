@@ -850,9 +850,10 @@ namespace Bankom.Class
                 Vrednost = dt.Rows[0]["polje"].ToString().Trim();
 
                 //control.SelectedIndex = -1;
-
+                Console.WriteLine(forma.Controls["OOperacija"].Text.Trim());
                 if (control.SelectedIndex > -1)
-                    FillOtherControls(control, ID);
+                    if (forma.Controls["OOperacija"].Text.Trim() != "PREGLED") // BORKA da se ne bi u pregledu punila ostala polja za izabrano                        
+                       FillOtherControls(control, ID);
 
                 control.SelectedIndex = -1;
             }
@@ -934,7 +935,8 @@ namespace Bankom.Class
                                 control.Refresh();
 
                                 control.ForeColor = Color.Black;
-                                FillOtherControls(control, ID);
+                                if (forma.Controls["OOperacija"].Text.Trim() != "PREGLED") // BORKA da se ne bi u pregledu punila ostala polja za izabrano                        
+                                    FillOtherControls(control, ID);
                             }
                             else
                             {

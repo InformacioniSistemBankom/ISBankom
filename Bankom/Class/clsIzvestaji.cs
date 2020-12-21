@@ -319,7 +319,7 @@ namespace Bankom.Class
                 else
                 {
                     Console.WriteLine(mUpit);
-                    dokr.refreshDokumentBody(forma, Dokument, iddok, "I");//BORKA DA LI NAM OVO TREBA 29.11.20
+                    dokr.refreshDokumentBody(forma,Dokument, iddok, "I");//BORKA DA LI NAM OVO TREBA 29.11.20
 
                 }
             }
