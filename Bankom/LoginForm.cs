@@ -511,9 +511,9 @@ namespace Bankom
                     {
                         int ID_Firma = Convert.ToInt32(prDok.Rows[0]["ID_Firma"]);
                         int mbr = Convert.ToInt32(prDok.Rows[0]["mbr"]);
-                        if (File.Exists(@"\\BANKOMW\organizacija\Pictures\" + ID_Firma + "-" + mbr + ".jpg"))
+                        if (File.Exists(@"\\" + LoginForm.ImeServera + @"\organizacija\Pictures\" + ID_Firma + " - " + mbr + ".jpg"))
                         {
-                            pictureBox1.Image = Image.FromFile(@"\\BANKOMW\organizacija\Pictures\" + ID_Firma + "-" + mbr + ".jpg");
+                            pictureBox1.Image = Image.FromFile(@"\\" + LoginForm.ImeServera + @"\organizacija\Pictures\" + ID_Firma + " - " + mbr + ".jpg");
                             pictureBox1.Visible = true;
                         }
                           
