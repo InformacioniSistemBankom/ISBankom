@@ -72,7 +72,7 @@ namespace Bankom.Class
         public string cIdNaziviNaFormi;
         //Ivana 11.12.2020.
         public string cZavisiOd;
-        
+        public string cAlijasPolja;
 
         Form forma = new Form();
         //private int izmena;
@@ -274,8 +274,13 @@ namespace Bankom.Class
                     //Ivana 14.12.2020.
                     cekboks.CheckedChanged += new EventHandler(checkBox_CheckedChanged);
                     break;
-                default:
+                //case 10:
+                //    if(cAlijasPolja=="NazivSkl")
+                //    {
 
+                //    }
+                //    break;
+                default:
                     if (izborno != null && izborno.Trim() != "") // ima izborno
                     {
                         VrstaKontrole = "combo";
@@ -292,12 +297,12 @@ namespace Bankom.Class
 
                         };
                         comboBox.SelectedIndex = -1;
-                        
+
                         comboBox.Text = "";
                         Vrednost = comboBox.Text;
                         ID = "1";
 
-                        if (EnDis == "D")
+                        if (EnDis == "D")                       
                             comboBox.Enabled = false;
                         else
                             comboBox.Enabled = true;
@@ -320,7 +325,7 @@ namespace Bankom.Class
 
                         comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
                         comboBox.MaxDropDownItems = 10;
-
+                        
                         //Djora 13.07.20
                         comboBox.Height = (int)visina;
 
@@ -343,18 +348,6 @@ namespace Bankom.Class
                         //comboBox.Leave += new EventHandler(Leave);
                         comboBox.Validating += comboBox_Validating;
 
-                        if(ImaLiMagacinskoPolje(dokument))
-                             FunkcijaZaSkladiste(comboBox, IME, cTip);
-                        if (ImaLiMagacinskoPolje(dokument))
-                            FunkcijaZaMagPolje(comboBox, IME, cTip);
-                        //if (IME == "NazivSkl" && cTip == 10 && ImaLiMagacinskoPolje(dokument))
-                        //{
-                        //    comboBox.SelectedIndexChanged += new EventHandler(ComboBox_SelectedIndexChanged);
-                        //}
-                        //if (IME == "NazivPolja" && cTip == 10 && ImaLiMagacinskoPolje(dokument))
-                        //{
-                        //    comboBox.Click += new EventHandler(ComboBox_Click);
-                        //}
                     }
                     else // nema izborno 
                     {
@@ -590,20 +583,9 @@ namespace Bankom.Class
 
         private Point previousLocation;
 
+        //Ivana 11.12.2020.
         DataBaseBroker db1 = new DataBaseBroker();
         public DataTable dt = new DataTable();
-        public bool ImaLiMagacinskoPolje(string dokument)
-        {
-            string upit = "select count(*) from RecnikPodataka where dokument = @param0 and AlijasPolja = @param1";
-            dt = db1.ParamsQueryDT(upit, dokument, "NazivPolja");
-            if (Convert.ToInt32(dt.Rows[0][0].ToString()) > 0)
-                return true;
-            else
-                return false;
-        }
-
-        //Ivana 11.12.2020.
-        
         public void checkBox_CheckedChanged(object sender, EventArgs e)
         {
             string upit = "Select distinct AlijasPolja FROM RecnikPodataka where TabIndex> -1 and ZavisiOd=@param0";
@@ -764,33 +746,10 @@ namespace Bankom.Class
                     break;
             }
         }
-        DataTable nasDT = new DataTable();
-        public void FunkcijaZaSkladiste(ComboBox cb, string i, int t) 
+        private void ComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            if (i == "NazivSkl" && t==10)
-            {
-                string upit = "select NazivPolja from MagacinskaPoljaStavkeView where NazivSkl=@param0";
-                nasDT = db1.ParamsQueryDT(upit, cb.Text);
-            }
-        }
-        public void FunkcijaZaMagPolje(ComboBox cb, string i, int t)
-        {
-            if (i == "NazivPolja" && t == 10)
-                cb.DataSource = nasDT;
-        }
-        public void ComboBox_Click(object sender, System.EventArgs e)
-        {
-            ComboBox control = (ComboBox)sender;
-            control.DataSource = nasDT;
-        }
-        public void ComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
-        {
-            
-        //    ComboBox control = (ComboBox)sender;
-        //    //control.Text = sadrzaj;
-        //    //zajedno 18.12.2020.
-        //    string upit = "select NazivPolja from MagacinskaPoljaStavkeView where NazivSkl=@param0";
-        //    nasDT = db1.ParamsQueryDT(upit, control.Text);
+            //ComboBox control = (ComboBox)sender;
+            //control.Text = sadrzaj;
         }
         private void comboBox_TextUpdate(Object sender, EventArgs e)
         {
