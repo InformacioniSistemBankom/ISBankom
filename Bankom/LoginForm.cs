@@ -691,10 +691,9 @@ namespace Bankom
             }
         }
 
-        public AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
+        public List<string> lista = new List<string>();
         private void CmbBaze_SelectedIndexChanged(object sender, EventArgs e)
         {
-
 
             string strimebaze = "";
 
@@ -881,9 +880,17 @@ namespace Bankom
         }
         private void CmbOrg_Enter(object sender, EventArgs e)
         {
-            CmbOrg.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            CmbOrg.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            CmbOrg.AutoCompleteCustomSource = lista;
+        //    CmbOrg.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+        //    CmbOrg.AutoCompleteSource = AutoCompleteSource.CustomSource;
+        //    CmbOrg.AutoCompleteCustomSource = lista;
+        }
+
+        private void CmbOrg_DropDown(object sender, EventArgs e)
+        {
+            CmbOrg.Items.Clear();
+            for (int i = 0; i < lista.Count; i++)
+                if (lista[i].Contains(CmbOrg.Text))
+                    CmbOrg.Items.Add(lista[i]);
         }
     }
 }
