@@ -28,6 +28,7 @@ namespace Bankom.Class
         public string Idstablo = "0";
         DataBaseBroker db = new DataBaseBroker();
         clsProveraDozvola pd = new clsProveraDozvola();
+        clsdokumentRefresh cdr = new clsdokumentRefresh();
         public long Pregledaj(string ffilter)
         {
             forma = Program.Parent.ActiveMdiChild;
@@ -37,21 +38,19 @@ namespace Bankom.Class
                 imedokumenta = ((Bankom.frmChield)forma).imestabla;
             else
                 imedokumenta = forma.Controls["limedok"].Text;
-            Idstablo = forma.Controls["lidstablo"].Text; 
-
+            Idstablo = forma.Controls["lidstablo"].Text;
+            
             filter = ffilter;
 
             sql = "SELECT UlazniIzlazni as NazivKlona from SifarnikDokumenta where Naziv=@param0";
             DataTable dt = db.ParamsQueryDT(sql, imedokumenta);
             if (dt.Rows.Count > 0) NazivKlona = dt.Rows[0]["NazivKlona"].ToString();
 
-          // if (forma.Controls["OOperacija"].Text == "PREGLED")
-          //  {                
-                UpitZaPregled = PripremaidDokumentaZaPregled();
-                if (UpitZaPregled == "KRAJ") goto PrinudniIzlaz;                
+            UpitZaPregled = PripremaidDokumentaZaPregled();
+            if (UpitZaPregled == "KRAJ") goto PrinudniIzlaz;                
 
-                if (dokje == "S" || dokje == "P")
-                {
+            if (dokje == "S" || dokje == "P")
+            {
                     Console.WriteLine(UpitZaPregled);
                     DataTable t = db.ReturnDataTable(UpitZaPregled);
                     if (t.Rows.Count == 0)
@@ -59,16 +58,13 @@ namespace Bankom.Class
                        MessageBox.Show("Ne postoje podaci za zadate uslove");
                        goto PrinudniIzlaz;
                     }
-                    else//t.rows.count>0
-                    {                        
-                        clsdokumentRefresh docref1 = new clsdokumentRefresh();
-                        Console.WriteLine(UpitZaPregled);
-                        docref1.refreshDokumentGrid(forma,imedokumenta, "1", UpitZaPregled,"1", dokje);///?????????????????
-                        kk = 1;
-                    }
-                }
-                else// nisu S ili P
-                {
+                  //t.rows.count>0    
+                    Console.WriteLine(UpitZaPregled);
+                    cdr.refreshDokumentGrid(forma,imedokumenta, "1", UpitZaPregled,"1", dokje);///?????????????????
+                    kk = 1;                    
+            }
+            else// nisu S ili P
+            {
                     if (kk > 0)
                     {
                         Operacija = "prvi";
@@ -78,14 +74,9 @@ namespace Bankom.Class
                     {
                         MessageBox.Show("Ne postoje podaci za zadate uslove");
                     }
-                }
-            //}
-            //else
-                //Osvezi(Operacija, ref BrojacDokumenata);
-
+            }           
  PrinudniIzlaz:
-            return kk;
-           
+            return kk;           
         }
         public void Osvezi( string Operacija, ref long BrojDok)
         {
@@ -94,7 +85,8 @@ namespace Bankom.Class
             if (IdDokView == "0")
             {
                 dp = db.ReturnDataTable(UpitZaPregled);
-                IdDokView = dp.Rows[0]["IdDokumentZaPregled"].ToString();
+                if(dp.Rows.Count>0)
+                   IdDokView = dp.Rows[0]["IdDokumentZaPregled"].ToString();
             }
             //  if (((Bankom.frmChield)forma).statusStrip1.Visible == true) ((Bankom.frmChield)forma).statusStrip1.Visible = false;
             //if (((Bankom.frmChield)forma).toolStrip1.Visible == false) ((Bankom.frmChield)forma).toolStrip1.Visible = true;
@@ -133,86 +125,92 @@ namespace Bankom.Class
                     ((Bankom.frmChield)forma).lblBroj.Text = Convert.ToString(kk);
                     break;
             }     
-            clsdokumentRefresh cdr = new clsdokumentRefresh();            
+            //clsdokumentRefresh cdr = new clsdokumentRefresh();            
             cdr.refreshDokumentBody(forma,imedokumenta, IdDokView, dokje);
             cdr.refreshDokumentGrid(forma,imedokumenta, IdDokView, "","1", "");
 
-            //clsProveraDozvola pd = new clsProveraDozvola();
             pd.ProveriDozvole(imedokumenta, Idstablo, IdDokView, dokje);
 
         }
-        public void ObrisiZaglavljeIStavkePoljaZaUnos()
+         public void ObrisiZaglavljeIStavkePoljaZaUnos()
         {
             forma = Program.Parent.ActiveMdiChild;
             dokje = forma.Controls["ldokje"].Text;
-            imedokumenta = dokje == "S" ? ((Bankom.frmChield)forma).imestabla : forma.Controls["limedok"].Text;
+            if (dokje == "S")
+                imedokumenta = ((Bankom.frmChield)forma).imestabla;
+            else
+                imedokumenta = forma.Controls["limedok"].Text;
             sql = "SELECT UlazniIzlazni as NazivKlona from SifarnikDokumenta where Naziv=@param0";
             DataTable dt = db.ParamsQueryDT(sql, imedokumenta);
             if (dt.Rows.Count != 0) NazivKlona = dt.Rows[0]["NazivKlona"].ToString();
 
-            sql = "SELECT alijaspolja as polje,levo,vrh,height,width,izborno from RecnikPodataka where  dokument=@param0 and TabIndex>=0 and width>0 and Height > 0";
+            sql = "SELECT alijaspolja as polje,izborno from RecnikPodataka where  dokument=@param0 and TabIndex>=0 and width>0 and Height > 0 order by tabindex";
             DataTable drp = db.ParamsQueryDT(sql, NazivKlona);
+            
             foreach (DataRow row in drp.Rows)
             {
-               
-                foreach (var pb in forma.Controls.OfType<Field>())
-                {
-
+                Console.WriteLine(row["polje"].ToString());
+                //foreach (var pb in forma.Controls.OfType<Field>())
+                //{
+                Field pb = (Field)Program.Parent.ActiveMdiChild.Controls[row["polje"].ToString()];
+                if(pb!=null)
+                { 
                     if (forma.Controls["OOperacija"].Text == "PREGLED")
                     {
-                        if (pb.IME == row["polje"].ToString())
-                        {
+                        Console.WriteLine(pb.IME);
+                        //{
                             pb.ID = "1";
                             pb.Vrednost = "";
-
+                            pb.cEnDis = "";
                             switch (pb.VrstaKontrole)
                             {
                                 case "tekst":
                                     pb.textBox.Text = "";
+                                    pb.textBox.Enabled = true;
                                     break;
                                 case "datum":
                                     pb.dtp.Text = "";
-                                    pb.dtp.CustomFormat = " ";
+                                    //pb.dtp.CustomFormat = " ";
                                     pb.dtp.Format = DateTimePickerFormat.Custom;
+                                    pb.dtp.Enabled = true;
                                     //pb.dtp.CustomFormat = "dd.MM.yy";
                                     //pb.dtp.Format = DateTimePickerFormat.Custom;
                                     break;
                                 case "combo":
                                     pb.comboBox.Text = "";
                                     pb.ID = "1";
-                                    break;
-                                //case "cek":
-                                //    pb.cekboks.Checked = false;
-                                //    break;
+                                    pb.comboBox.Enabled = true;
+                                    pb.cIzborno = row["izborno"].ToString();
+                                break;
                             }
 
-                            forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cEnDis = "true";
-                            if (row["izborno"].ToString().Trim() != null || row["izborno"].ToString().Trim() != "")
-                                forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cIzborno = row["izborno"].ToString();
-                            //    forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Visible = true;
-                        
-                    
+                            //forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cEnDis = "true";
+                            //if (row["izborno"].ToString().Trim() != null || row["izborno"].ToString().Trim() != "")
+                            //    forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cIzborno = row["izborno"].ToString();
+                            ////    forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Visible = true;
 
-                             if (forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cTip != 24)
-                             {
-                                 forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Vrednost = "";
-                                 forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).ID = "1";
-                             }
-                            else
-                                forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Vrednost = "0";
-                            if (forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cTip == 8 || forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cTip == 9)
-                               if(forma.Controls["OOperacija"].Text != "PREGLED")
-                                 if (forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cTip == 8)
-                                    forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Vrednost =Convert.ToDateTime(System.DateTime.Now).ToShortDateString(); 
-                             if (forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cTip == 9)
-                                forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Vrednost = Convert.ToDateTime("01.01." + System.DateTime.Now.ToString().Substring(6, 2)).ToShortDateString();
-                             Console.WriteLine(row["polje"].ToString());
-                             Console.WriteLine(forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Vrednost);
-                        }
+
+
+                            //if (forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cTip != 24)
+                            //{
+                            //    forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Vrednost = "";
+                            //    forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).ID = "1";
+                            //}
+                            //else
+                            //    forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Vrednost = "0";
+
+                            //if (forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cTip == 8 || forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cTip == 9)
+                            //    if (forma.Controls["OOperacija"].Text != "PREGLED")
+                            //        if (forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cTip == 8)
+                            //            forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Vrednost = Convert.ToDateTime(System.DateTime.Now).ToShortDateString();
+                            //if (forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cTip == 9)
+                            //    forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Vrednost = Convert.ToDateTime("01.01." + System.DateTime.Now.ToString().Substring(6, 2)).ToShortDateString();
+                            //Console.WriteLine(row["polje"].ToString());
+                            //Console.WriteLine(forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Vrednost);                        
                     }
                 }
             }
-            pd.ProveriDozvole(imedokumenta, Idstablo, "1", dokje);
+            //pd.ProveriDozvole(imedokumenta, Idstablo, "1", dokje);
         }
         public string PripremaidDokumentaZaPregled()
         {
@@ -240,7 +238,7 @@ namespace Bankom.Class
 
             foreach (var pb in forma.Controls.OfType<Field>())
             {                
-                if( pb.Height > 1.5 && pb.cPolje.Contains("IzvodiSe") == false && pb.cEnDis.Trim() =="true")
+                if( pb.Height > 1.5 && pb.cPolje.Contains("IzvodiSe") == false && pb.cEnDis.Trim() !="D")
                 {
                     Console.WriteLine(pb.cPolje);
                     c1 = pb.IME;
@@ -262,7 +260,9 @@ namespace Bankom.Class
                         else
                         {
                             if (pb.cTip == 8 || pb.cTip == 9)
-                                WWhere = WWhere + c1 + " = " + "'" + pb.Vrednost + "'" + " AND ";                          
+                            {
+                                //WWhere = WWhere + c1 + " = " + "'" + pb.Vrednost + "'" + " AND ";  //BORKA UMRTVILA JER MI IZ NEPOZNATOG RAZLOGA U DATUM PUNI DANASNJI DATUM
+                            }
                             else
                             {
                                 if (pb.cTip == 24) { }
@@ -334,8 +334,7 @@ namespace Bankom.Class
                 Console.WriteLine(PripremaidDokumentaZaPregled);
                 DataTable kt = db.ReturnDataTable(PripremaidDokumentaZaPregled);
                 kk = kt.Rows.Count;
-            }
-          
+            }          
 
             return PripremaidDokumentaZaPregled;
         }

@@ -471,7 +471,7 @@ namespace Bankom.Class
                             Console.WriteLine(kontrola.IME);
                             if (rt.Rows[i]["Zoom"].ToString() == "True" && ZakljucenaGodina == false)
                             {
-                                kontrola.Enabled = true;
+                                kontrola.cEnDis = "";
                                 if (Program.Parent.ToolBar.Items["Iizmena"].Enabled == false)
                                     Program.Parent.ToolBar.Items["Iizmena"].Enabled = true;
                             }
@@ -494,6 +494,7 @@ namespace Bankom.Class
                                             kontrola.cekboks.Enabled = true;
                                             break;
                                     }
+                                    kontrola.cEnDis = "";
                                 }
                                 else
                                 {
@@ -502,7 +503,7 @@ namespace Bankom.Class
                                         switch (kontrola.VrstaKontrole)
                                         {
                                             case "tekst":
-                                                kontrola.textBox.ReadOnly =true;                                             
+                                                kontrola.textBox.Enabled = false;                                             
                                                 break;
                                             case "combo":
                                                 kontrola.comboBox.Enabled = false;
@@ -515,6 +516,7 @@ namespace Bankom.Class
                                                
                                             break;
                                         }
+                                        kontrola.cEnDis = "D";
                                     }
                                     else                  // dokument nije proknjizen
                                     {
@@ -524,7 +526,7 @@ namespace Bankom.Class
                                             switch (kontrola.VrstaKontrole)
                                             {
                                                 case "tekst":
-                                                    kontrola.textBox.ReadOnly = true;
+                                                    kontrola.textBox.Enabled = false;
                                                     break;
                                                 case "combo":
                                                     kontrola.comboBox.Enabled = false;
@@ -536,13 +538,14 @@ namespace Bankom.Class
                                                     kontrola.cekboks.Enabled = false;
                                                     break;
                                             }
+                                            kontrola.cEnDis = "D";
                                         }
                                         else// "StornoiUpdate"].ToString() != "D" a dokument nije proknjizen
                                         {
                                             switch (kontrola.VrstaKontrole)
                                             {
                                                 case "tekst":
-                                                    kontrola.textBox.ReadOnly = false;
+                                                    kontrola.textBox.Enabled = true;
                                                     break;
                                                 case "combo":
                                                     kontrola.comboBox.Enabled = true;
@@ -554,6 +557,7 @@ namespace Bankom.Class
                                                     kontrola.cekboks.Enabled = true;
                                                     break;
                                             }
+                                            kontrola.cEnDis = "";
                                         }
                                     }
                                 }

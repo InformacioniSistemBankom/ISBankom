@@ -135,10 +135,16 @@ namespace Bankom
             Boolean provera = true;
             clsSettingsButtons sb = new clsSettingsButtons();           
             clsProveraDozvola provdoz = new clsProveraDozvola();
-            if (imestabla=="Artikli"|| imestabla=="Komitenti")
-                provera = provdoz.ProveriDozvole(imestabla, idstablo.ToString(), Convert.ToString(iddokumenta), DokumentJe);
+            if (imestabla == "Artikli" || imestabla == "Komitenti")
+            {
+                if (OOperacija.Text != "PREGLED")
+                    provera = provdoz.ProveriDozvole(imestabla, idstablo.ToString(), Convert.ToString(iddokumenta), DokumentJe);
+            }
             else
-            provera = provdoz.ProveriDozvole(imedokumenta, idstablo.ToString(), Convert.ToString(iddokumenta), DokumentJe);
+            {
+                if (OOperacija.Text != "PREGLED")
+                    provera = provdoz.ProveriDozvole(imedokumenta, idstablo.ToString(), Convert.ToString(iddokumenta), DokumentJe);
+            }   
         }
         private void frmChield_Resize(object sender, EventArgs e)
         {
