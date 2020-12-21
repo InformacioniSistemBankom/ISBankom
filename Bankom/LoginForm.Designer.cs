@@ -87,7 +87,6 @@
             this.CmbOrg.TabIndex = 17;
             this.CmbOrg.Visible = false;
             this.CmbOrg.DropDown += new System.EventHandler(this.CmbOrg_DropDown);
-            this.CmbOrg.Enter += new System.EventHandler(this.CmbOrg_Enter);
             // 
             // PasswordTextBox
             // 

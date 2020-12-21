@@ -749,7 +749,7 @@ namespace Bankom
             if (strimebaze == "")
             {
                 MessageBox.Show("Ne postoji izabrana baza", "info");
-
+                lista.Clear();
                 CmbOrg.Items.Clear();
 
             }
@@ -757,8 +757,9 @@ namespace Bankom
             {
 
                 changeDatabase(cmbBaze.SelectedItem.ToString());
-
+                lista.Clear();
                 CmbOrg.Items.Clear();
+                CmbOrg.Text = "";
                 var query = "SELECT Naziv FROM OrganizacionaStruktura ";
                 var databaseBroker = new DataBaseBroker();
                 var dataTable = databaseBroker.ReturnDataTable(query);
@@ -770,13 +771,10 @@ namespace Bankom
                         indexOrgDefault = i;
                     if (dataTable.Rows[i][0].ToString() != "")
                     {
-                        CmbOrg.Items.Add(dataTable.Rows[i][0].ToString());
                         lista.Add(dataTable.Rows[i][0].ToString());
                     }
                         
                 }
-                if (cmbBaze.SelectedItem.ToString() == strCurrentbaza) CmbOrg.SelectedIndex = indexOrgDefault;
-                else CmbOrg.SelectedIndex = 0;
             }
         }
 
@@ -896,21 +894,13 @@ namespace Bankom
                 MessageBox.Show("Pogrešno korisničko ime ili lozinka,izmena nije moguća!");
             }
 
-            
-
-        }
-        private void CmbOrg_Enter(object sender, EventArgs e)
-        {
-        //    CmbOrg.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-        //    CmbOrg.AutoCompleteSource = AutoCompleteSource.CustomSource;
-        //    CmbOrg.AutoCompleteCustomSource = lista;
         }
 
         private void CmbOrg_DropDown(object sender, EventArgs e)
         {
             CmbOrg.Items.Clear();
             for (int i = 0; i < lista.Count; i++)
-                if (lista[i].Contains(CmbOrg.Text))
+                if (lista[i].ToLower().Contains(CmbOrg.Text.ToLower()))
                     CmbOrg.Items.Add(lista[i]);
         }
     }
