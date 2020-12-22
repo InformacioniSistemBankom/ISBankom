@@ -68,6 +68,21 @@ namespace Bankom.Class
                     case "combo":
                         ctrls.comboBox.Text = "";
                         ctrls.Vrednost = ctrls.comboBox.Text;
+                        // jovana 21.12.20
+
+                        //string kojiid;
+                        //kojiid = "ID_" + ctrls.cAlijasTabele;
+
+                        //for (int kk = 0; kk <= dt.Columns.Count - 1; kk++)
+                        //{
+                        //    if (dt.Columns[kk].ColumnName.ToString() == kojiid)
+                        //    {
+                        //        string ccc = dt.Rows[0][dt.Columns[kk].ColumnName].ToString();
+                        //        ctrls.ID = dt.Rows[0][dt.Columns[kk].ColumnName].ToString();
+                        //        break;
+                        //    }
+                        //}
+
                         break;
                     case "cek":
                        ctrls.cekboks.Checked = false;

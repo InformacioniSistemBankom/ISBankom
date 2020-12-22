@@ -1832,7 +1832,7 @@ namespace Bankom
                 if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
                 clsRefreshForm rf = new clsRefreshForm();
                 rf.refreshform();
-                
+                //pd.ProveriDozvole(imedokumenta, Idstablo, IdDokView, dokje);
             }
             else
             {
