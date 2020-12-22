@@ -1980,7 +1980,7 @@ namespace Bankom
             }
             string PutanjaKomitenti = "";
             sw.Close();
-            StreamReader sr = new StreamReader(@"\\BANKOMW\Repozitorijum\ISBankom\XXXX\xxxx.ini");
+            StreamReader sr = new StreamReader(@"\\" + LoginForm.ImeServera + @"\Repozitorijum\ISBankom\XXXX\xxxx.ini");
             string line;
             line = sr.ReadLine();
 
