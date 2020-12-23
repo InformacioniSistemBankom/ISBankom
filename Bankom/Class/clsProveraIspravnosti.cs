@@ -94,7 +94,7 @@ namespace Bankom.Class
                     {
                         Vrati = false;
                         MessageBox.Show("Nije dozvoljena izmena dokumenta !");
-                        break;
+                        return (Vrati);
                     }
                     // provera da li se pokusava premestanje dokumenta iz godine u godinu
                     switch (Dokument)
@@ -111,7 +111,7 @@ namespace Bankom.Class
                             {
                                 Vrati = false;
                                 MessageBox.Show("Dokument je iz godine  zakljucenih knjiga ne moze se menjati!!!!");
-                                break;
+                                return (Vrati);
                             }
                             break;
                         case "PDVUlazniRacunZaUsluge":
@@ -131,7 +131,7 @@ namespace Bankom.Class
                             {
                                 MessageBox.Show("Nije dozvoljena operacija ukljucen u kalkulaciju br:" + tt.Rows[0]["BD"].ToString());
                                 Vrati = false;
-                                break;
+                                return (Vrati);
                             }
                             break;
                     } // KRAJ switch dokument         
@@ -149,7 +149,7 @@ namespace Bankom.Class
                         {
                             Vrati = false;
                             MessageBox.Show("Nije Dozvoljeno brisanje storno dokumenta !");
-                            break;
+                            return (Vrati);
                         }
 
                         ///// provera da li se brise proknjizen dokument
@@ -157,14 +157,14 @@ namespace Bankom.Class
                         {
                             Vrati = false;
                             MessageBox.Show("Nije dozvoljeno brisanje dokument je proknjizen!!");
-                            break;
+                            return (Vrati);
                         }
                         // provera da li brisemo dokument iz predhodne godine ili arhivirani dokument
                         if (NazivDokumenta.Trim() == "")
                         {
                             Vrati = false;
                             MessageBox.Show("Dokument ne postoji u tabeli Dokumenta ne moze se brisati!!");
-                            break;
+                            return (Vrati);
                         }
                         // provera da li brisemo dokument koji je predhodnik drugog dokumenta
                         sql = "select BrojDokumenta from dokumenta WITH (NOLOCK) where  id_Predhodni=@param0"; // + IdDokView.ToString();
@@ -173,7 +173,7 @@ namespace Bankom.Class
                         {
                             MessageBox.Show("Nije dozvoljeno brisanje, dokument je predhodnik dokumentu: " + tt.Rows[0]["BrojDokumenta"]);
                             Vrati = false;
-                            break;
+                            return (Vrati);
                         }
 
                         string myDokument = "";
@@ -193,7 +193,7 @@ namespace Bankom.Class
                             {
                                 Vrati = false;
                                 MessageBox.Show("Nije Dozvoljeno brisanje storno dokumenta !");
-                                break;
+                                return (Vrati);
                             }
 
                             ///// provera da li se brise proknjizen dokument
@@ -210,7 +210,7 @@ namespace Bankom.Class
                             {
                                 MessageBox.Show("Nije dozvoljeno brisanje, dokument arhiviran " );
                                 Vrati = false;
-                                break;
+                                return (Vrati);
                             }
                             // provera da li brisemo dokument koji je predhodnik drugog dokumenta
                             sql = "select BrojDokumenta from dokumenta WITH (NOLOCK) where  id_Predhodni=@param0"; // + IdDokView.ToString();
@@ -219,7 +219,7 @@ namespace Bankom.Class
                             {
                                 MessageBox.Show("Nije dozvoljeno brisanje, dokument je predhodnik dokumentu: " + BrojDokumenta);
                                 Vrati = false;
-                                break;
+                                return (Vrati);
                             }                         
                         
                             break;
@@ -240,7 +240,7 @@ namespace Bankom.Class
                             {
                                 MessageBox.Show("Nije dozvoljena operacija ukljucen u kalkulaciju br:" + t.Rows[0]["BD"].ToString());
                                 Vrati = false;
-                                break;
+                                return (Vrati);
                             }
                             break;
                         case "Normativ":
@@ -261,7 +261,7 @@ namespace Bankom.Class
                             {
                                 MessageBox.Show("Dokument je koriscen, ne moze se brisati!!!");
                                 Vrati = false;
-                                break;
+                                return (Vrati);
                             }
                             break;
                         // da li brisemo prijemnicu ili otpremnicu ili narudzbenicu koja je vec koriscena
@@ -279,7 +279,7 @@ namespace Bankom.Class
                             {
                                 MessageBox.Show("Dokument je koriscen, ne moze se brisati!!!");
                                 Vrati = false;
-                                break;
+                                return (Vrati);
                             }
                             break;
                                                  
@@ -291,7 +291,7 @@ namespace Bankom.Class
                             {
                                 MessageBox.Show("Nalog nije prazan, zabranjeno brisanje!!!");
                                 Vrati = false;
-                                break;
+                                return(Vrati);
                             }
                             
                             break;
@@ -303,21 +303,21 @@ namespace Bankom.Class
                     {
                         MessageBox.Show("Niste odabrali dokument za storno !!! ");
                         Vrati = false;
-                        break;
+                        return (Vrati);
                     }
                     //provera da li se pokusava storno  storniranog dokumenta
                     if (BrojDokumenta.Contains("S") == true)
                     {
                         Vrati = false;
                         MessageBox.Show("Nije Dozvoljen storno storniranog dokumenta !");
-                        break;
+                        return (Vrati);
                     }
                     //provera da li je dokument  proknjizen
                     if (proknjizen != "Proknjizen" && IdDokumentStablo != "501" && IdDokumentStablo != "502" && IdDokumentStablo != "602")
                     {
                         Vrati = false;
                         MessageBox.Show("Dokument nije  proknjizen ne moze storno!!");
-                        break;
+                        return (Vrati);
                     }
                     break;
             } //KRAJ SWITCH OPERACIJA ZA OPERACIJU
@@ -350,8 +350,8 @@ namespace Bankom.Class
                                 {
                                     MessageBox.Show("na formi ne postoji tabela:" + tIme);
                                     Vrati = false;
-                                    return Vrati;
-                                }
+                                    return (Vrati);
+                            }
                                 idreda = Convert.ToInt32(dv.Tag);
                                 if (idreda == -1)
                                 {
@@ -465,7 +465,7 @@ namespace Bankom.Class
                                     {
                                         MessageBox.Show("Naziv komitenta se razlikuje od naziva komitenta sa izabranog Avansa !");
                                         Vrati = false;
-                                        break;
+                                        return (Vrati);
                                     }
                                 }
                             }
@@ -505,7 +505,7 @@ namespace Bankom.Class
                         {
                             MessageBox.Show("Obavezan unos prijemnice");
                             Vrati = false;
-                            break;
+                            return (Vrati);
                         }
                     }
                     else // prijemnica nije prazna
@@ -539,7 +539,7 @@ namespace Bankom.Class
                                 MessageBox.Show("Prijemnica " + mOtpremnica + " pogresna ili nije evidentirana!!!");
                                 ifpostoji.Close();
                                 Vrati = false;
-                                break;
+                                return (Vrati);
                             }
                             ifpostoji.Close();
                         }
@@ -558,7 +558,7 @@ namespace Bankom.Class
                             MessageBox.Show(" Vec postoji racun za unesenu prijemnicu!!! " + mOtpremnica);
                             DaLiPoOtp.Close();
                             Vrati = false;
-                            break;
+                            return (Vrati);
                         }
                         DaLiPoOtp.Close();
                     }
@@ -574,7 +574,7 @@ namespace Bankom.Class
                         {
                             MessageBox.Show("Preneseno na placanje ne moze " + Operacija);
                             Vrati = false;
-                            break;
+                            return (Vrati);
                         }
 
                     }
@@ -595,14 +595,14 @@ namespace Bankom.Class
                             {
                                 MessageBox.Show("Pogresan broj tekuceg racuna komitenta");
                                 Vrati = false;
-                                break;
+                                return (Vrati);
                             }
                         }
                         else
                         {
                             MessageBox.Show("Obavezan unos tekuceg racuna komitenta !");
                             Vrati = false;
-                            break;
+                            return (Vrati);
                         }
                         ////' provera ispravnosti ziro racuna banke
                         string trpl = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "TekuciRacunPlacanja").ID.ToString();
@@ -618,7 +618,7 @@ namespace Bankom.Class
                             {
                                 MessageBox.Show("Pogresan broj tekuceg racuna placanja");
                                 Vrati = false;
-                                break;
+                                return (Vrati);
                             }
                         }
                         //' provera ispravnosti unosa komitenta i iznosa placanja
@@ -635,7 +635,7 @@ namespace Bankom.Class
                                 {
                                     MessageBox.Show("Naziv komitenta se razlikuje od naziva komitenta sa izabranog dokumenta !");
                                     Vrati = false;
-                                    break;
+                                    return (Vrati);
                                 }
                             }
 
@@ -645,14 +645,14 @@ namespace Bankom.Class
                                 //MessageBox.Show("Uneseni iznos veci od iznosa na dokumentu nastavljate ?", vbYesNo) = vbNo Then
                                 MessageBox.Show(" Uneseni iznos veci od iznosa na dokumentu !");
                                 Vrati = false;
-                                break;
+                                return (Vrati);
                             }
                         }
                         else
                         {
                             MessageBox.Show("Pogresno odabran poziv na broj ili komitent!");
                             Vrati = false;
-                            break;
+                            return (Vrati);
 
                         }
 
@@ -681,7 +681,7 @@ namespace Bankom.Class
                             {
                                 MessageBox.Show(" Dokument " + ponabr + " je vec unesen za placanje ");
                                 Vrati = false;
-                                break;
+                                return (Vrati);
                             }
                         }
 
@@ -695,7 +695,7 @@ namespace Bankom.Class
                         {
                             RazlikaPlacanja = UkupnoPlacanje - Convert.ToDouble(tt.Rows[0]["Isplate"].ToString());
                             MessageBox.Show(" Dokument " + ponabr + " je placen vise za " + RazlikaPlacanja.ToString());
-                            break;
+                            return (Vrati);
                         }
                     }
 
@@ -714,7 +714,7 @@ namespace Bankom.Class
                         {
                             MessageBox.Show("Obavezan unos otpremnice");
                             Vrati = false;
-                            break;
+                            return (Vrati);
                         }
                         else
                         {
@@ -765,7 +765,7 @@ namespace Bankom.Class
                                     MessageBox.Show("Otpremnica vec postoji!!!");
                                     postoji.Close();
                                     Vrati = false;
-                                    break;
+                                    return (Vrati);
                                 }
                             }
                             postoji.Close();
@@ -798,7 +798,7 @@ namespace Bankom.Class
                                 {
                                     MessageBox.Show("Naziv komitenta se razlikuje od naziva komitenta sa izabranog Avansa !");
                                     Vrati=false;
-                                    break;
+                                    return (Vrati);
                                 }
                             }
                         }
@@ -872,7 +872,7 @@ namespace Bankom.Class
                         {
                             mPoruka = ("Narudzbenica ukljucena u prodaju NIJE DOZVOLJENA Operacija!!!");
                             Vrati = false;
-                            break;
+                            return (Vrati);
                         }
                         break;
                     }
