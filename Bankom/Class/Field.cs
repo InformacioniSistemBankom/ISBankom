@@ -745,17 +745,17 @@ namespace Bankom.Class
         }
             private void comboBox_TextUpdate(Object sender, EventArgs e)
         {
-            ComboBox combo = (ComboBox)sender;
-            //MessageBox.Show("You are in the ComboBox.TextUpdate event.");
-            if (!FoundText(combo))
-            {
-                //MessageBox.Show("This is not a valid ");              
-                ////combo.ForeColor = Color.Red;
-            }
-            else
-            {
-                combo.ForeColor = Color.Black;
-            }
+            ////ComboBox combo = (ComboBox)sender;
+            //////MessageBox.Show("You are in the ComboBox.TextUpdate event.");
+            ////if (!FoundText(combo))
+            ////{
+            ////    //MessageBox.Show("This is not a valid ");              
+            ////    ////combo.ForeColor = Color.Red;
+            ////}
+            ////else
+            ////{
+            ////    combo.ForeColor = Color.Black;
+            ////}
         }
         private void comboBox_GotFocus(object sender, EventArgs e)
         {
