@@ -56,7 +56,7 @@ namespace Bankom.Class
         }
         public DataTable ReturnDataTable(string sql)
         {
-            DataTable dt = new DataTable();
+                DataTable dt = new DataTable();
             SqlConnection conn = new SqlConnection(connstring);
             if (conn.State == ConnectionState.Closed) { conn.Open(); }
             Console.WriteLine(sql);
