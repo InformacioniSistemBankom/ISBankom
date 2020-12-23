@@ -3379,8 +3379,11 @@ namespace Bankom
                     // OSVEZAVANJE FORME NAKON IZVRSENE OPERACIJE
                     if (vrati == true) //jovana
                     {
-                        clsRefreshForm rf = new clsRefreshForm();
-                        rf.refreshform();
+                        clsFormInitialisation fi = new clsFormInitialisation();                
+                        fi.ObrisiZaglavljeIStavkePoljaZaUnos();
+                        clsRefreshForm fr = new clsRefreshForm();
+                        fr.refreshform();
+
                     }
                 }
                 forma.Controls["OOperacija"].Text = "";
