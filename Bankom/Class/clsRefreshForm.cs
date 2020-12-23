@@ -27,7 +27,7 @@ namespace Bankom.Class
             string ime = forma.Controls["limedok"].Text;
 
             clsFormInitialisation finit = new clsFormInitialisation();
-            finit.InitValues();
+            //finit.InitValues();
             clsdokumentRefresh dr = new clsdokumentRefresh();
 
             switch (dokje)
@@ -66,12 +66,6 @@ namespace Bankom.Class
                 default:
                     dr.refreshDokumentBody( forma,ime, ident, dokje);
                     dr.refreshDokumentGrid(forma,ime, ident, ""," ", dokje);
-                    Field pb = (Field)forma.Controls["OznVal"];
-                    Console.WriteLine(pb.Vrednost);
-
-                    Field pb1 = (Field)forma.Controls["NazivKom"];
-                    Console.WriteLine(pb1.Vrednost);
-                    Console.WriteLine(pb1.Text);
                     clsProveraDozvola pd = new clsProveraDozvola();
                     pd.ProveriDozvole(ime, idstablo.ToString(), ident, dokje);
                     break;

@@ -469,7 +469,6 @@ namespace Bankom.Class
                         if (kontrola !=null)
                         {
                             Console.WriteLine(kontrola.IME);
-                            Console.WriteLine(kontrola.Vrednost);
                             if (rt.Rows[i]["Zoom"].ToString() == "True" && ZakljucenaGodina == false)
                             {
                                 kontrola.cEnDis = "";
