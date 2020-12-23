@@ -558,7 +558,7 @@ namespace Bankom
 
         private void OK_Click(object sender, EventArgs e)
         {
-            if (CmbOrg.SelectedIndex == 0)
+            if (CmbOrg.Text.Trim() == "")
             {
                 MessageBox.Show("Morate odabrati grupu.");
             }
