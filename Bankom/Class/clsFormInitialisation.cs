@@ -63,10 +63,10 @@ namespace Bankom.Class
                             //pb.dtp.CustomFormat = "dd.MM.yy";
                             //pb.dtp.Format = DateTimePickerFormat.Custom;
                             break;
-                        case "combo":                            
+                        case "combo":
+                            pb.comboBox.Text = "";
                             if (operacija == "PREGLED")
                             {
-                                pb.comboBox.Text = "";
                                 pb.ID = "1";
                                 pb.cIzborno = row["izborno"].ToString();
                                 pb.comboBox.Enabled = true;
@@ -84,9 +84,7 @@ namespace Bankom.Class
             operacija = forma.Controls["OOperacija"].Text;                        
 
             foreach (var ctrls in forma.Controls.OfType<Field>())
-            {                        
-                 
-
+            {               
                 switch (ctrls.VrstaKontrole)
                 {
                     case "tekst":
