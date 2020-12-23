@@ -30,6 +30,7 @@ namespace Bankom
         string strIzborOrganizacionogDela = ""; // status izbora Organizacionog Dela dela
         string strOrgDefaultText = "";// default OrganizacionogDela dela
         string strCurrentbaza = ""; //default baza 
+        public static string ImeServera;
         private int indexCurrentbaza = -1;
         private int indexOrgDefault = -1;
  
@@ -37,7 +38,7 @@ namespace Bankom
 
         public void changeDatabase(string nazivBaze)
         {
-            Program.connectionString = "Data Source=bankomw;Initial Catalog=" + aliasDatabase[nazivBaze] + ";User ID=sa;password=password;";
+            Program.connectionString = "Data Source=" + ImeServera +";Initial Catalog=" + aliasDatabase[nazivBaze] + ";User ID=sa;password=password;";
             this.connectionString = Program.connectionString;
 
 
@@ -338,6 +339,25 @@ namespace Bankom
                         strobrada = words[n];
 
                     }
+                    if (cc == "logovanje")
+                    {
+
+                        string pom = words[n+1];
+                        char[] separators1 = { '#' };
+                        pom = pom.Replace("\r\n", "#").Replace("\r", "").Replace("\n", "");
+
+
+                        var result1 = pom.Split(separators1, StringSplitOptions.None);
+
+                        for (int j = 0; j < result1.Length; j++)
+                        {
+                            if (result1[j].Contains("Server="))
+                            {
+                                ImeServera = result1[j].Substring(result1[j].IndexOf("=") + 1);
+                                break;
+                            }
+                        }
+                    }
                 }
 
                 //  char[] separators = { '#','=' };
@@ -491,9 +511,9 @@ namespace Bankom
                     {
                         int ID_Firma = Convert.ToInt32(prDok.Rows[0]["ID_Firma"]);
                         int mbr = Convert.ToInt32(prDok.Rows[0]["mbr"]);
-                        if (File.Exists(@"\\BANKOMW\organizacija\Pictures\" + ID_Firma + "-" + mbr + ".jpg"))
+                        if (File.Exists(@"\\" + LoginForm.ImeServera + @"\organizacija\Pictures\" + ID_Firma + " - " + mbr + ".jpg"))
                         {
-                            pictureBox1.Image = Image.FromFile(@"\\BANKOMW\organizacija\Pictures\" + ID_Firma + "-" + mbr + ".jpg");
+                            pictureBox1.Image = Image.FromFile(@"\\" + LoginForm.ImeServera + @"\organizacija\Pictures\" + ID_Firma + " - " + mbr + ".jpg");
                             pictureBox1.Visible = true;
                         }
                           
@@ -538,7 +558,7 @@ namespace Bankom
 
         private void OK_Click(object sender, EventArgs e)
         {
-            if (CmbOrg.SelectedIndex == 0)
+            if (CmbOrg.Text.Trim() == "")
             {
                 MessageBox.Show("Morate odabrati grupu.");
             }
@@ -692,10 +712,9 @@ namespace Bankom
             }
         }
 
-        public AutoCompleteStringCollection lista = new AutoCompleteStringCollection();
+        public List<string> lista = new List<string>();
         private void CmbBaze_SelectedIndexChanged(object sender, EventArgs e)
         {
-
 
             string strimebaze = "";
 
@@ -730,7 +749,7 @@ namespace Bankom
             if (strimebaze == "")
             {
                 MessageBox.Show("Ne postoji izabrana baza", "info");
-
+                lista.Clear();
                 CmbOrg.Items.Clear();
 
             }
@@ -738,8 +757,9 @@ namespace Bankom
             {
 
                 changeDatabase(cmbBaze.SelectedItem.ToString());
-
+                lista.Clear();
                 CmbOrg.Items.Clear();
+                CmbOrg.Text = "";
                 var query = "SELECT Naziv FROM OrganizacionaStruktura ";
                 var databaseBroker = new DataBaseBroker();
                 var dataTable = databaseBroker.ReturnDataTable(query);
@@ -751,13 +771,10 @@ namespace Bankom
                         indexOrgDefault = i;
                     if (dataTable.Rows[i][0].ToString() != "")
                     {
-                        CmbOrg.Items.Add(dataTable.Rows[i][0].ToString());
                         lista.Add(dataTable.Rows[i][0].ToString());
                     }
                         
                 }
-                if (cmbBaze.SelectedItem.ToString() == strCurrentbaza) CmbOrg.SelectedIndex = indexOrgDefault;
-                else CmbOrg.SelectedIndex = 0;
             }
         }
 
@@ -877,14 +894,14 @@ namespace Bankom
                 MessageBox.Show("Pogrešno korisničko ime ili lozinka,izmena nije moguća!");
             }
 
-            
-
         }
-        private void CmbOrg_Enter(object sender, EventArgs e)
+
+        private void CmbOrg_DropDown(object sender, EventArgs e)
         {
-            CmbOrg.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            CmbOrg.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            CmbOrg.AutoCompleteCustomSource = lista;
+            CmbOrg.Items.Clear();
+            for (int i = 0; i < lista.Count; i++)
+                if (lista[i].ToLower().Contains(CmbOrg.Text.ToLower()))
+                    CmbOrg.Items.Add(lista[i]);
         }
     }
 }

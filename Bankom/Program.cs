@@ -63,6 +63,8 @@ namespace Bankom
         public static string pomStablo { get; set; }
         public static string pomIzv{ get; set; }
 
+        //zajedno 21.12.2020.
+        public static string NazivSkladista { get; set; }
 
         [STAThread]
 

@@ -72,7 +72,6 @@ namespace Bankom.Class
         public string cIdNaziviNaFormi;
         //Ivana 11.12.2020.
         public string cZavisiOd;
-        public string cAlijasPolja;
 
         Form forma = new Form();
         //private int izmena;
@@ -274,170 +273,163 @@ namespace Bankom.Class
                     //Ivana 14.12.2020.
                     cekboks.CheckedChanged += new EventHandler(checkBox_CheckedChanged);
                     break;
-                //case 10:
-                //    if(cAlijasPolja=="NazivSkl")
-                //    {
-
-                //    }
-                //    break;
                 default:
-                    if (izborno != null && izborno.Trim() != "") // ima izborno
-                    {
-                        VrstaKontrole = "combo";
-                        comboBox = new ComboBox()
+                        if (izborno != null && izborno.Trim() != "") // ima izborno
                         {
-                            DropDownWidth = 300,
-                            //Height = (int)visina,
-                            Name = Ime,
-                            Tag = Tip,
-                            BackColor = Color.AliceBlue,
-                            ForeColor = Color.Black,
-                            FlatStyle = FlatStyle.Standard
-                            //FlatStyle = FlatStyle.Flat
+                            VrstaKontrole = "combo";
+                            comboBox = new ComboBox()
+                            {
+                                DropDownWidth = 300,
+                                //Height = (int)visina,
+                                Name = Ime,
+                                Tag = Tip,
+                                BackColor = Color.AliceBlue,
+                                ForeColor = Color.Black,
+                                FlatStyle = FlatStyle.Standard
+                                //FlatStyle = FlatStyle.Flat
 
-                        };
-                        comboBox.SelectedIndex = -1;
+                            };
+                            comboBox.SelectedIndex = -1;
 
-                        comboBox.Text = "";
-                        Vrednost = comboBox.Text;
-                        ID = "1";
+                            comboBox.Text = "";
+                            Vrednost = comboBox.Text;
+                            ID = "1";
 
-                        if (EnDis == "D")                       
-                            comboBox.Enabled = false;
-                        else
-                            comboBox.Enabled = true;
+                            if (EnDis == "D")
+                                comboBox.Enabled = false;
+                            else
+                                comboBox.Enabled = true;
 
-                        if (PozicijaLabele == "1")
-                        {
-                            //Djora 09.07.20
-                            //comboBox.Width = (int)(sirina);
-                            comboBox.Width = (int)Convert.ToDouble((sirina * ofset) / 2);
+                            if (PozicijaLabele == "1")
+                            {
+                                //Djora 09.07.20
+                                //comboBox.Width = (int)(sirina);
+                                comboBox.Width = (int)Convert.ToDouble((sirina * ofset) / 2);
+                            }
+                            if (PozicijaLabele == "0" || PozicijaLabele == "2")
+                            {
+                                comboBox.Width = (int)Convert.ToDouble(sirina * ofset);
+                                comboBox.Left = Left;
+                            }
+
+                            //Djora 26.09.20
+                            //comboBox.Font = new Font("TimesRoman", 13, FontStyle.Regular);
+                            PromenaFonta(comboBox);
+
+                            comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+                            comboBox.MaxDropDownItems = 10;
+
+                            //Djora 13.07.20
+                            comboBox.Height = (int)visina;
+
+                            //Djora 26.09.20
+                            comboBox.Margin = new Padding(0, 0, 0, 0);
+
+                            Controls.Add(comboBox);
+
+                            //Djora 08.07.20
+                            comboBox.Parent.Name = Ime;
+
+                            // obrada dogadjaja za comboBox             
+                            comboBox.GotFocus += new EventHandler(comboBox_GotFocus);
+                            comboBox.MouseClick += new MouseEventHandler(comboBox_MouseClick);
+                            comboBox.TextUpdate += new EventHandler(comboBox_TextUpdate);
+
+                            //comboBox.SelectedIndexChanged += new EventHandler(ComboBox_SelectedIndexChanged);
+                            comboBox.DropDown += new EventHandler(comboBox_DropDown);
+                            comboBox.DropDownClosed += new EventHandler(comboBox_DropDownClosed);
+                            //comboBox.Leave += new EventHandler(Leave);
+                            comboBox.Validating += comboBox_Validating;
                         }
-                        if (PozicijaLabele == "0" || PozicijaLabele == "2")
+                        else // nema izborno 
                         {
-                            comboBox.Width = (int)Convert.ToDouble(sirina * ofset);
-                            comboBox.Left = Left;
+                            VrstaKontrole = "tekst";
+                            textBox = new TextBox()
+                            {
+                                BackColor = Color.AliceBlue,
+                                ForeColor = Color.Black,
+                                Tag = Tip,  //Tip polja: broj, datum, combobox, ....                            
+                                Name = Ime,
+                                Text = "",
+                                Enabled = true
+                            };
+
+                            if (visina > 0)
+                            {
+                                textBox.Visible = true;
+                            }
+                            else
+                            {
+                                textBox.Visible = false;
+                            }
+                            Vrednost = textBox.Text;
+
+                            if (PozicijaLabele == "1")
+                            {
+                                //Djora 09.07.20
+                                //textBox.Width = (int)sirina;
+                                textBox.Width = (int)Convert.ToDouble((sirina * ofset) / 2);
+
+                            }
+                            if (PozicijaLabele == "0" || PozicijaLabele == "2")
+                            {
+                                textBox.Width = (int)Convert.ToDouble(sirina * ofset);
+                            }
+
+                            //Djora 26.09.20
+                            //textBox.Height = (int)visina;
+                            textBox.Height = (int)(visina * ofsety);
+
+
+                            if (Tip == 3 || Tip == 4 || Tip == 5 || Tip == 6 || Tip == 7 || Tip == 11 || Tip == 13 || Tip == 17 || Tip == 19 || Tip == 20 || Tip == 21)
+                            {
+                                textBox.TextAlign = HorizontalAlignment.Right;
+
+                                //Djora 31.08.20
+                                textBox.Text = "0";
+
+                                clsFormInitialisation fi = new clsFormInitialisation();
+                                textBox.Text = fi.FormatirajPolje(textBox.Text, Tip);
+                            }
+
+                            else
+                            {
+                                textBox.TextAlign = HorizontalAlignment.Left;
+                            }
+
+
+                            if (EnDis == "D")
+                            {
+                                textBox.ReadOnly = true;
+                            }
+                            textBox.MouseDown += new MouseEventHandler(textBox_MouseDown);
+                            textBox.KeyPress += new KeyPressEventHandler(textBox_KeyPress);
+                            textBox.TextChanged += new EventHandler(textBox_TextChange);
+                            textBox.LostFocus += new EventHandler(textBox_LostFocus);
+
+                            //Djora 28.08.20                       
+                            textBox.Enter += new EventHandler(textBox_Enter);
+
+                            Vrednost = textBox.Text;
+                            ID = "1";
+
+                            //Djora 26.09.20
+                            //textBox.Font = new Font("TimesRoman", 13, FontStyle.Regular);
+                            PromenaFonta(textBox);
+
+                            if (textBox.Tag == null)
+                            {
+                                //MessageBox.Show(Ime);
+                            }
+
+                            //Djora 26.09.20
+                            textBox.Margin = new Padding(0, 0, 0, 0);
+
+                            Controls.Add(textBox);
+
+                            //Djora 08.07.20
+                            textBox.Parent.Name = Ime;
                         }
-
-                        //Djora 26.09.20
-                        //comboBox.Font = new Font("TimesRoman", 13, FontStyle.Regular);
-                        PromenaFonta(comboBox);
-
-                        comboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-                        comboBox.MaxDropDownItems = 10;
-                        
-                        //Djora 13.07.20
-                        comboBox.Height = (int)visina;
-
-                        //Djora 26.09.20
-                        comboBox.Margin = new Padding(0, 0, 0, 0);
-
-                        Controls.Add(comboBox);
-
-                        //Djora 08.07.20
-                        comboBox.Parent.Name = Ime;
-
-                        // obrada dogadjaja za comboBox             
-                        comboBox.GotFocus += new EventHandler(comboBox_GotFocus);
-                        comboBox.MouseClick += new MouseEventHandler(comboBox_MouseClick);
-                        comboBox.TextUpdate += new EventHandler(comboBox_TextUpdate);
-
-                        //comboBox.SelectedIndexChanged += new EventHandler(ComboBox_SelectedIndexChanged);
-                        comboBox.DropDown += new EventHandler(comboBox_DropDown);
-                        comboBox.DropDownClosed += new EventHandler(comboBox_DropDownClosed);
-                        //comboBox.Leave += new EventHandler(Leave);
-                        comboBox.Validating += comboBox_Validating;
-
-                    }
-                    else // nema izborno 
-                    {
-                        VrstaKontrole = "tekst";
-                        textBox = new TextBox()
-                        {
-                            BackColor = Color.AliceBlue,
-                            ForeColor = Color.Black,
-                            Tag = Tip,  //Tip polja: broj, datum, combobox, ....                            
-                            Name = Ime,
-                            Text = "",
-                            Enabled = true
-                        };
-
-                        if (visina > 0)
-                        {
-                            textBox.Visible = true;
-                        }
-                        else
-                        {
-                            textBox.Visible = false;
-                        }
-                        Vrednost = textBox.Text;
-
-                        if (PozicijaLabele == "1")
-                        {
-                            //Djora 09.07.20
-                            //textBox.Width = (int)sirina;
-                            textBox.Width = (int)Convert.ToDouble((sirina * ofset) / 2);
-
-                        }
-                        if (PozicijaLabele == "0" || PozicijaLabele == "2")
-                        {
-                            textBox.Width = (int)Convert.ToDouble(sirina * ofset);
-                        }
-
-                        //Djora 26.09.20
-                        //textBox.Height = (int)visina;
-                        textBox.Height = (int)(visina * ofsety);
-
-
-                        if (Tip == 3 || Tip == 4 || Tip == 5 || Tip == 6 || Tip == 7 || Tip == 11 || Tip == 13 || Tip == 17 || Tip == 19 || Tip == 20 || Tip == 21)
-                        {
-                            textBox.TextAlign = HorizontalAlignment.Right;
-
-                            //Djora 31.08.20
-                            textBox.Text = "0";
-
-                            clsFormInitialisation fi = new clsFormInitialisation();
-                            textBox.Text = fi.FormatirajPolje(textBox.Text, Tip);
-                        }
-
-                        else
-                        {
-                            textBox.TextAlign = HorizontalAlignment.Left;
-                        }
-
-
-                        if (EnDis == "D")
-                        {
-                            textBox.ReadOnly = true;
-                        }
-                        textBox.MouseDown += new MouseEventHandler(textBox_MouseDown);
-                        textBox.KeyPress += new KeyPressEventHandler(textBox_KeyPress);
-                        textBox.TextChanged += new EventHandler(textBox_TextChange);
-                        textBox.LostFocus += new EventHandler(textBox_LostFocus);
-
-                        //Djora 28.08.20                       
-                        textBox.Enter += new EventHandler(textBox_Enter);
-
-                        Vrednost = textBox.Text;
-                        ID = "1";
-
-                        //Djora 26.09.20
-                        //textBox.Font = new Font("TimesRoman", 13, FontStyle.Regular);
-                        PromenaFonta(textBox);
-
-                        if (textBox.Tag == null)
-                        {
-                            //MessageBox.Show(Ime);
-                        }
-
-                        //Djora 26.09.20
-                        textBox.Margin = new Padding(0, 0, 0, 0);
-
-                        Controls.Add(textBox);
-
-                        //Djora 08.07.20
-                        textBox.Parent.Name = Ime;
-                    }
                     break;
             }
             //}// kraj za idNaziviNaFormi<>20
@@ -584,12 +576,12 @@ namespace Bankom.Class
         private Point previousLocation;
 
         //Ivana 11.12.2020.
-        DataBaseBroker db1 = new DataBaseBroker();
+
         public DataTable dt = new DataTable();
         public void checkBox_CheckedChanged(object sender, EventArgs e)
         {
             string upit = "Select distinct AlijasPolja FROM RecnikPodataka where TabIndex> -1 and ZavisiOd=@param0";
-            dt = db1.ParamsQueryDT(upit, this.Name);
+            dt = db.ParamsQueryDT(upit, this.Name);
             if (cekboks.Checked)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -607,7 +599,6 @@ namespace Bankom.Class
                 }
             }
         }
-
         void textBox_MouseDown(object sender, MouseEventArgs e)
         {
             activeControl = sender as Control;
@@ -715,12 +706,13 @@ namespace Bankom.Class
                     break;
             }
         }
-        private void ComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
+        public void ComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            //ComboBox control = (ComboBox)sender;
-            //control.Text = sadrzaj;
+
+            //    ComboBox control = (ComboBox)sender;
+            //    //control.Text = sadrzaj;
         }
-        private void comboBox_TextUpdate(Object sender, EventArgs e)
+            private void comboBox_TextUpdate(Object sender, EventArgs e)
         {
             ComboBox combo = (ComboBox)sender;
             //MessageBox.Show("You are in the ComboBox.TextUpdate event.");
