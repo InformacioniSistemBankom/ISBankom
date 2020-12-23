@@ -15,6 +15,7 @@ namespace Bankom.Class
 
     class clscontrolsOnForm
     {
+        public int pomSkladiste;
         public void addFormControls(Form forma1,string dokument, string iddok, string operacija)
         {
             Form forma = forma1;
@@ -87,7 +88,7 @@ namespace Bankom.Class
                         var cidNaziviNaFormi = row["ID_NaziviNaFormi"].ToString();
                         //Ivana 11.12.2020.
                         var cZavisiOd = row["ZavisiOd"].ToString();
-
+                        
                         var cTUD = row["tud"].ToString();
                         var cPolje = row["polje"].ToString();
                         string cEnDis = row["StornoIUpdate"].ToString();
@@ -112,6 +113,10 @@ namespace Bankom.Class
                         //Ivana 11.12.2020.
                         if (cZavisiOd.Trim() != "" && cAlijasPolja.Substring(0,2)!="ID")
                             mfield.Visible = false;
+                        if (cAlijasPolja == "NazivSkl")
+                            pomSkladiste = 1;
+                        else
+                            pomSkladiste = 0;
                     }
                 }
                 

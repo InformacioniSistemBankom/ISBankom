@@ -3143,8 +3143,8 @@ namespace Bankom
 
             clsCustomMessagebox customMessage = new clsCustomMessagebox(
             "Da li ste sigurni da želite da izađete iz aplikacije?",
-            "Da",
             "Ne",
+            "Da",
             "Odjava"
             );
             customMessage.StartPosition = FormStartPosition.CenterParent;
@@ -3153,9 +3153,9 @@ namespace Bankom
             customMessage.ShowDialog();
 
             if (customMessage.DialogResult == DialogResult.Cancel)
-                e.Cancel = true;
-           else if (customMessage.DialogResult == DialogResult.OK)
                 e.Cancel = false;
+           else if (customMessage.DialogResult == DialogResult.OK)
+                e.Cancel = true;
            else
             {         
                 Thread t = new Thread(new ThreadStart(Program.Main));
