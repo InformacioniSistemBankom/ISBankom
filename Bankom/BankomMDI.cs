@@ -1833,6 +1833,8 @@ namespace Bankom
                 clsRefreshForm rf = new clsRefreshForm();
                 rf.refreshform();
                 //pd.ProveriDozvole(imedokumenta, Idstablo, IdDokView, dokje);
+               // ((Bankom.frmChield)activeChild).Activate();
+                activeChild.Controls["OOperacija"].Text = "";
             }
             else
             {
