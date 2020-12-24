@@ -899,19 +899,18 @@ namespace Bankom.Class
         private void FillOtherControls(ComboBox control, string IdSloga)
         {
             string cQuery = "";
+            string aaa = "";
 
             cQuery = "Select * from " + cIzborno + " WHERE ID_" + cIzborno.Trim() + "=" + IdSloga;
             Console.WriteLine(cQuery);
             DataTable dt2 = db.ReturnDataTable(cQuery);
             foreach (var pb in this.Parent.Controls.OfType<Field>().Where(g => String.Equals(g.cAlijasTabele, cAlijasTabele)))
-            //    Field pb = (Field)Program.Parent.ActiveMdiChild.Controls[column.Name];
-            //if( pb!=null)
             {
                 if (pb.IME != control.Name) // ovde ulaza samo kontrole razlicite od kontrole koju smo upravo napustili a imaju isti alijastabele
                 {
-                    pb.ID = "1";
                     if (dt2.Rows.Count == 0)
                     {
+                        pb.ID = "1";
                         pb.Vrednost = "";
                     }
                     else
@@ -920,70 +919,76 @@ namespace Bankom.Class
                         {
                             if (pb.cTip != 25)
                             {
-                                try
+                                //pb.Vrednost = IIf(IsNull(rs.Fields(forma(j).PPolje).Value), "", Trim(rs.Fields(forma(j).PPolje).Value))
+                                if (string.IsNullOrEmpty(dt2.Rows[0][pb.cPolje].ToString()))
+                                {
+                                    pb.Vrednost = "";
+                                    pb.ID = "1";
+                                }
+                                else
                                 {
                                     pb.ID = IdSloga;
                                     pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
-                                }
-                                catch (Exception ex)
-                                {
-                                    pb.Vrednost = "";
+                                    aaa = dt2.Rows[0][pb.cPolje].ToString();
                                 }
                             }
-                            else ///pb.cTip=25
+                            else
                             {
-                                pb.Vrednost = "";
+                                aaa = "";
                             }
                         }
-                        else //nije pb.cizbormo=cizborno
+                        else //nije pb.izbormo=cizborno
                         {
                             if (pb.cIzborno.Trim() != "")
                             {
-                                if (pb.cTip != 25)//nije lot
+                                string cQuery1 = "Select * from " + pb.cIzborno + " WHERE ID_" + pb.cIzborno + "=" + dt2.Rows[0]["ID_" + pb.cIzborno].ToString();
+                                Console.WriteLine(cQuery1);
+                                DataTable dt1 = db.ReturnDataTable(cQuery1);
+                                if (dt1.Rows.Count > 0)
                                 {
-                                    try
+                                    if (pb.cTip != 25)//nije lot
                                     {
-                                        pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
+                                        //pb.Vrednost = IIf(IsNull(rs.Fields(forma(j).PPolje).Value), "", Trim(rs.Fields(forma(j).PPolje).Value))
+                                        if (string.IsNullOrEmpty(dt2.Rows[0][pb.cPolje].ToString()))
+                                        {
+                                            pb.Vrednost = "";
+                                            pb.ID = "1";
+                                        }
+                                        else
+                                        {
+                                            pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
+                                            pb.ID = dt1.Rows[0]["ID_" + pb.cIzborno].ToString(); //IdSloga;
+                                        }
+                                        aaa = dt1.Rows[0][pb.cPolje].ToString();
                                     }
-                                    catch (Exception ex)
+                                    else // jeste lot
                                     {
-                                        pb.Vrednost = "";
+                                        aaa = "";
                                     }
-                                }
-                                else // jeste lot 
-                                {
-                                    pb.Vrednost = "";
                                 }
                             }
-                            else //izborno jeste prazno
+                            else
                             {
-                                try
-                                {
-                                    pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
-                                }
-                                catch (Exception ex)
-                                {
-                                    pb.Vrednost = "";
-                                }
+                                aaa = dt2.Rows[0][pb.cPolje].ToString();
                             }
-                        }   // NIJE cIzborno=izborno KRAJ                     
-
+                        }
                         switch (pb.VrstaKontrole)
                         {
                             case "tekst":
-                                pb.textBox.Text = pb.Vrednost;
+                                pb.textBox.Text = aaa;
                                 break;
                             case "combo":
-                                pb.comboBox.Text = pb.Vrednost;
+                                pb.comboBox.Text = aaa;
                                 break;
                             case "datum":
-                                pb.dtp.Value = Convert.ToDateTime(pb.Vrednost);
+                                pb.dtp.Value = Convert.ToDateTime(aaa);
                                 break;
                         }
                     }
-                } // NIJE POLJE KOJE SMO UPRAVO NAPUSTILI KRAJ
+                } // KRAJ NIJE POLJE KOJE SMO UPRAVO NAPUSTILI
             } //polja koja pripadaju istom Alijasu Tabele KRAJ
         }
+
 
         /// <summary>
         private string FillList(ComboBox control, int Tip)
