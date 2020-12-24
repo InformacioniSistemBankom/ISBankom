@@ -895,7 +895,6 @@ namespace Bankom
             }
 
         }
-
         private void CmbOrg_DropDown(object sender, EventArgs e)
         {
             CmbOrg.Items.Clear();
