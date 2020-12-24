@@ -1811,8 +1811,11 @@ namespace Bankom
                 activeChild.Controls["OOperacija"].Text = "PREGLED";
                 filter = "S";
 
-                clsPregled clsP = new clsPregled();
-                clsP.ObrisiZaglavljeIStavkePoljaZaUnos();
+                //clsPregled clsP = new clsPregled();
+                //clsP.ObrisiZaglavljeIStavkePoljaZaUnos();
+                clsFormInitialisation fi = new clsFormInitialisation();
+                fi.ObrisiZaglavljeIStavkePoljaZaUnos();
+                fi.InitValues();
 
             }
             else
@@ -1829,10 +1832,13 @@ namespace Bankom
             {
                 activeChild.Controls["OOperacija"].Text = "";
                 activeChild.FormBorderStyle = FormBorderStyle.None;
+                
                 if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
+                clsFormInitialisation fi = new clsFormInitialisation();
+                fi.ObrisiZaglavljeIStavkePoljaZaUnos();
                 clsRefreshForm rf = new clsRefreshForm();
                 rf.refreshform();
-                //pd.ProveriDozvole(imedokumenta, Idstablo, IdDokView, dokje);
+
             }
             else
             {
@@ -2357,11 +2363,11 @@ namespace Bankom
             }
         }
 
-        private void toolStripMenuRefresh_Click_1(object sender, EventArgs e)
-        {
-            clsRefreshForm rf = new clsRefreshForm();
-            rf.refreshform();
-        }
+        //private void toolStripMenuRefresh_Click_1(object sender, EventArgs e)
+        //{
+        //    clsRefreshForm rf = new clsRefreshForm();
+        //    rf.refreshform();
+        //}
 
         private void IzborJezika_Click(object sender, EventArgs e)
         {

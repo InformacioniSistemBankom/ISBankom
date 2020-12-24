@@ -644,38 +644,7 @@ namespace Bankom.Class
         {
             clsFormInitialisation FI = new clsFormInitialisation();
             int Tip = Convert.ToInt32(textBox.Tag.ToString());
-            // borka 07.09.20
-            //Djora 01.09.20
-            //switch (Tip)
-            //{
-            //    case 3:
-            //    case 4:
-            //    case 11:
-            //        textBox.Text = string.Format("{0}", double.Parse(textBox.Text));
-            //        break;
-            //    case 5:
-            //    case 13:
-            //        textBox.Text = string.Format("{0:#,##0.00}", double.Parse(textBox.Text));
-            //        break;
-            //    case 6:
-            //        textBox.Text = string.Format("{0:#,##0.000}", double.Parse(textBox.Text));
-            //        break;
-            //    case 7:
-            //        textBox.Text = string.Format("{0:#,##0.0000}", double.Parse(textBox.Text));
-            //        break;
-            //    case 19:
-            //        textBox.Text = string.Format("{0:#,##0.0000}", double.Parse(textBox.Text));
-            //        break;
-            //    case 20:
-            //        textBox.Text = string.Format("{0:#,##0.0000000}", double.Parse(textBox.Text));
-            //        break;
-            //    case 21:
-            //        textBox.Text = string.Format("{0:#,##0.000000000}", double.Parse(textBox.Text));
-            //        break;
-
-            //    default:
-            //        break;
-            //}
+                   
             string sadrzaj = textBox.Text;
             textBox.Text = FI.FormatirajPolje(sadrzaj, Tip);
             Vrednost = textBox.Text;

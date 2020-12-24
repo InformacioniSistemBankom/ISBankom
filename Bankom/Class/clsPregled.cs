@@ -88,10 +88,10 @@ namespace Bankom.Class
                 if(dp.Rows.Count>0)
                    IdDokView = dp.Rows[0]["IdDokumentZaPregled"].ToString();
             }
-            //  if (((Bankom.frmChield)forma).statusStrip1.Visible == true) ((Bankom.frmChield)forma).statusStrip1.Visible = false;
-            //if (((Bankom.frmChield)forma).toolStrip1.Visible == false) ((Bankom.frmChield)forma).toolStrip1.Visible = true;
-            if (((Bankom.frmChield)forma).panel1.Visible == false) ((Bankom.frmChield)forma).panel1.Visible = true;
-            //  ((Bankom.frmChield)forma).toolStripTextBox2.Text = Convert.ToString(kk);
+          
+            if (((Bankom.frmChield)forma).panel1.Visible == false)
+                ((Bankom.frmChield)forma).panel1.Visible = true;
+           
             switch (Operacija)
             {
                 case "prvi":
@@ -125,93 +125,63 @@ namespace Bankom.Class
                     ((Bankom.frmChield)forma).lblBroj.Text = Convert.ToString(kk);
                     break;
             }     
-            //clsdokumentRefresh cdr = new clsdokumentRefresh();            
+                     
             cdr.refreshDokumentBody(forma,imedokumenta, IdDokView, dokje);
-            cdr.refreshDokumentGrid(forma,imedokumenta, IdDokView, "","1", "");
+            cdr.refreshDokumentGrid(forma,imedokumenta, IdDokView, "","", ""); 
+
 
             pd.ProveriDozvole(imedokumenta, Idstablo, IdDokView, dokje);
 
         }
-         public void ObrisiZaglavljeIStavkePoljaZaUnos()
-        {
-            forma = Program.Parent.ActiveMdiChild;
-            dokje = forma.Controls["ldokje"].Text;
-            if (dokje == "S")
-                imedokumenta = ((Bankom.frmChield)forma).imestabla;
-            else
-                imedokumenta = forma.Controls["limedok"].Text;
-            sql = "SELECT UlazniIzlazni as NazivKlona from SifarnikDokumenta where Naziv=@param0";
-            DataTable dt = db.ParamsQueryDT(sql, imedokumenta);
-            if (dt.Rows.Count != 0) NazivKlona = dt.Rows[0]["NazivKlona"].ToString();
+        //public void ObrisiZaglavljeIStavkePoljaZaUnos()
+        //{
+        //    forma = Program.Parent.ActiveMdiChild;
+        //    dokje = forma.Controls["ldokje"].Text;
+        //    if (dokje == "S")
+        //        imedokumenta = ((Bankom.frmChield)forma).imestabla;
+        //    else
+        //        imedokumenta = forma.Controls["limedok"].Text;
+        //    sql = "SELECT UlazniIzlazni as NazivKlona from SifarnikDokumenta where Naziv=@param0";
+        //    DataTable dt = db.ParamsQueryDT(sql, imedokumenta);
+        //    if (dt.Rows.Count != 0) NazivKlona = dt.Rows[0]["NazivKlona"].ToString();
 
-            sql = "SELECT alijaspolja as polje,izborno from RecnikPodataka where  dokument=@param0 and TabIndex>=0 and width>0 and Height > 0 order by tabindex";
-            DataTable drp = db.ParamsQueryDT(sql, NazivKlona);
+        //    sql = "SELECT alijaspolja as polje,izborno from RecnikPodataka where  dokument=@param0 and TabIndex>=0 and width>0 and Height > 0 order by tabindex";
+        //    DataTable drp = db.ParamsQueryDT(sql, NazivKlona);
             
-            foreach (DataRow row in drp.Rows)
-            {
-                Console.WriteLine(row["polje"].ToString());
-                //foreach (var pb in forma.Controls.OfType<Field>())
-                //{
-                Field pb = (Field)Program.Parent.ActiveMdiChild.Controls[row["polje"].ToString()];
-                if(pb!=null)
-                { 
-                    if (forma.Controls["OOperacija"].Text == "PREGLED")
-                    {
-                        Console.WriteLine(pb.IME);
-                        //{
-                            pb.ID = "1";
-                            pb.Vrednost = "";
-                            pb.cEnDis = "";
-                            switch (pb.VrstaKontrole)
-                            {
-                                case "tekst":
-                                    pb.textBox.Text = "";
-                                    pb.textBox.Enabled = true;
-                                    break;
-                                case "datum":
-                                    pb.dtp.Text = "";
-                                    //pb.dtp.CustomFormat = " ";
-                                    pb.dtp.Format = DateTimePickerFormat.Custom;
-                                    pb.dtp.Enabled = true;
-                                    //pb.dtp.CustomFormat = "dd.MM.yy";
-                                    //pb.dtp.Format = DateTimePickerFormat.Custom;
-                                    break;
-                                case "combo":
-                                    pb.comboBox.Text = "";
-                                    pb.ID = "1";
-                                    pb.comboBox.Enabled = true;
-                                    pb.cIzborno = row["izborno"].ToString();
-                                break;
-                            }
-
-                            //forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cEnDis = "true";
-                            //if (row["izborno"].ToString().Trim() != null || row["izborno"].ToString().Trim() != "")
-                            //    forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cIzborno = row["izborno"].ToString();
-                            ////    forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Visible = true;
-
-
-
-                            //if (forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cTip != 24)
-                            //{
-                            //    forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Vrednost = "";
-                            //    forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).ID = "1";
-                            //}
-                            //else
-                            //    forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Vrednost = "0";
-
-                            //if (forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cTip == 8 || forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cTip == 9)
-                            //    if (forma.Controls["OOperacija"].Text != "PREGLED")
-                            //        if (forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cTip == 8)
-                            //            forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Vrednost = Convert.ToDateTime(System.DateTime.Now).ToShortDateString();
-                            //if (forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).cTip == 9)
-                            //    forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Vrednost = Convert.ToDateTime("01.01." + System.DateTime.Now.ToString().Substring(6, 2)).ToShortDateString();
-                            //Console.WriteLine(row["polje"].ToString());
-                            //Console.WriteLine(forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == row["polje"].ToString()).Vrednost);                        
-                    }
-                }
-            }
-            //pd.ProveriDozvole(imedokumenta, Idstablo, "1", dokje);
-        }
+        //    foreach (DataRow row in drp.Rows)
+        //    {
+        //        //Console.WriteLine(row["polje"].ToString());
+        //        Field pb = (Field)Program.Parent.ActiveMdiChild.Controls[row["polje"].ToString()];
+        //        if(pb!=null)
+        //        { 
+        //                    //pb.ID = "1";
+        //                    //pb.Vrednost = "";
+        //                    pb.cEnDis = "";
+        //                    switch (pb.VrstaKontrole)
+        //                    {
+        //                        case "tekst":
+        //                            pb.textBox.Text = "";
+        //                            pb.textBox.Enabled = true;
+        //                            break;
+        //                        case "datum":
+        //                            pb.dtp.Text = "";
+        //                            //pb.dtp.CustomFormat = " ";
+        //                            pb.dtp.Format = DateTimePickerFormat.Custom;
+        //                            pb.dtp.Enabled = true;
+        //                            //pb.dtp.CustomFormat = "dd.MM.yy";
+        //                            //pb.dtp.Format = DateTimePickerFormat.Custom;
+        //                            break;
+        //                        case "combo":
+        //                            pb.comboBox.Text = "";
+        //                            pb.ID = "1";
+        //                            pb.comboBox.Enabled = true;
+        //                            pb.cIzborno = row["izborno"].ToString();
+        //                        break;
+        //                    }
+        //        }
+        //    }
+        //    //pd.ProveriDozvole(imedokumenta, Idstablo, "1", dokje);
+        //}
         public string PripremaidDokumentaZaPregled()
         {
             string PripremaidDokumentaZaPregled = "";
@@ -231,7 +201,7 @@ namespace Bankom.Class
             if (dokje == "S" || dokje == "P")
             {
                 sql = "select upit from upiti where Ime='GgRr" + NazivKlona.Trim() + "StavkeView'";
-                Console.WriteLine(sql);
+                ////Console.WriteLine(sql);
                 DataTable dt = db.ReturnDataTable(sql);
                 if (dt.Rows.Count > 0) uupit = dt.Rows[0]["upit"].ToString();
             }
@@ -240,11 +210,11 @@ namespace Bankom.Class
             {                
                 if( pb.Height > 1.5 && pb.cPolje.Contains("IzvodiSe") == false && pb.cEnDis.Trim() !="D")
                 {
-                    Console.WriteLine(pb.cPolje);
+                    //Console.WriteLine(pb.cPolje);
                     c1 = pb.IME;
                     if (pb.Vrednost.Trim() != "")
                     {
-                        if ((pb.cTip > 2 && pb.cTip < 8) || pb.cTip == 13 || (pb.cTip > 18 && pb.cTip < 22) || pb.cTip == 26)  // numericni sadrzaji
+                        if ((pb.cTip > 2 && pb.cTip < 8) || pb.cTip == 13 || (pb.cTip > 18 && pb.cTip < 22) || pb.cTip == 26)  // numericka polja
                         {
                             if (pb.cTip == 3 || pb.cTip == 26)
                             {
@@ -253,11 +223,9 @@ namespace Bankom.Class
                                 else
                                 if (Convert.ToDouble(pb.Vrednost.Replace(".", "")) > 1)
                                     WWhere = WWhere + c1 + " = " + pb.Vrednost.Replace(".", "") + " AND ";
-
-                            }
-                           
+                            }                      
                         }
-                        else
+                        else // nisu numericka polja
                         {
                             if (pb.cTip == 8 || pb.cTip == 9)
                             {
@@ -331,10 +299,11 @@ namespace Bankom.Class
             {
                 IdDokView = "0";
                 PripremaidDokumentaZaPregled = PripremaidDokumentaZaPregled + " AND YEAR(Datum) >= "+Program.mGodina.ToString()+ " order by IdDokumentZapregled desc";
-                Console.WriteLine(PripremaidDokumentaZaPregled);
+                //Console.WriteLine(PripremaidDokumentaZaPregled);
                 DataTable kt = db.ReturnDataTable(PripremaidDokumentaZaPregled);
                 kk = kt.Rows.Count;
-            }          
+            }
+            Console.WriteLine(PripremaidDokumentaZaPregled);
 
             return PripremaidDokumentaZaPregled;
         }

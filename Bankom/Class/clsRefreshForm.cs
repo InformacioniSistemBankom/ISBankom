@@ -13,11 +13,13 @@ using System.Drawing;
 namespace Bankom.Class
 {
     class clsRefreshForm
-    {        
+    {
         DataBaseBroker db = new DataBaseBroker();
+        Form forma = new Form();
+
         public void refreshform()
         {
-            Form forma = Program.Parent.ActiveMdiChild;
+            forma = Program.Parent.ActiveMdiChild;
             //string dokje,string imestabla,string ime,string idstablo,string ident)
             string supit = "";
             string dokje = forma.Controls["ldokje"].Text;
@@ -26,8 +28,6 @@ namespace Bankom.Class
             string idstablo = forma.Controls["lidstablo"].Text;
             string ime = forma.Controls["limedok"].Text;
 
-            clsFormInitialisation finit = new clsFormInitialisation();
-            //finit.InitValues();
             clsdokumentRefresh dr = new clsdokumentRefresh();
 
             switch (dokje)
@@ -41,14 +41,14 @@ namespace Bankom.Class
                     supit = procs.Proces(imestabla, ime, Convert.ToInt32(idstablo));
                     if (supit.Trim() != "")
                     {
-                        dr.refreshDokumentBody( forma,imestabla, idstablo, dokje);
+                        dr.refreshDokumentBody(forma, imestabla, idstablo, dokje);
                         dr.refreshDokumentGrid(forma, imestabla, idstablo, supit, "1", dokje);
                     }
                     break;
                 case "P":
                     clsObradaStablaPtipa procp = new clsObradaStablaPtipa();
                     supit = procp.Proces(imestabla, ime, Convert.ToInt32(idstablo));
-                    dr.refreshDokumentGrid(forma, ime, idstablo, supit,"1", dokje);
+                    dr.refreshDokumentGrid(forma, ime, idstablo, supit, "1", dokje);
                     break;
                 case "I":
                     string sel = "Select TUD From Upiti Where NazivDokumenta='" + ime + "' and ime like'GGrr%' AND TUD>0 Order by TUD";
@@ -60,16 +60,16 @@ namespace Bankom.Class
                         supit = proci.Proces(ime, ti.Rows[j]["TUD"].ToString());
                         Console.WriteLine(supit);
                         dr.refreshDokumentGrid(forma, ime, idstablo.ToString(), supit, ti.Rows[j]["TUD"].ToString(), dokje);
-                    }                   
+                    }
                     break;
-                    //
                 default:
-                    dr.refreshDokumentBody( forma,ime, ident, dokje);
-                    dr.refreshDokumentGrid(forma,ime, ident, ""," ", dokje);
-                    clsProveraDozvola pd = new clsProveraDozvola();
-                    pd.ProveriDozvole(ime, idstablo.ToString(), ident, dokje);
+                    dr.refreshDokumentBody(forma, ime, ident, dokje);
+                    dr.refreshDokumentGrid(forma, ime, ident, "", "", dokje);
+
                     break;
             }
+
         }
+        
     }
 }
