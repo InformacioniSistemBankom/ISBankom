@@ -16,15 +16,75 @@ namespace Bankom.Class
         private Form forma = new Form();
         private string operacija;
 
+        public void ObrisiZaglavljeIStavkePoljaZaUnos()
+        {
+            DataBaseBroker db = new DataBaseBroker();
+            forma = Program.Parent.ActiveMdiChild;
+            //string dokje,string imestabla,string ime,string idstablo,string ident)
+            string sql = "";
+            string dokje = forma.Controls["ldokje"].Text;
+            string imestabla = forma.Controls["limestabla"].Text;
+            string ident = forma.Controls["liddok"].Text;
+            string idstablo = forma.Controls["lidstablo"].Text;
+            string imedokumenta = forma.Controls["limedok"].Text;
+            string NazivKlona = "";
+            dokje = forma.Controls["ldokje"].Text;
+            operacija = forma.Controls["OOperacija"].Text;
+            if (dokje == "S")
+                imedokumenta = ((Bankom.frmChield)forma).imestabla;
+            else
+                imedokumenta = forma.Controls["limedok"].Text;
+            sql = "SELECT UlazniIzlazni as NazivKlona from SifarnikDokumenta where Naziv=@param0";
+            DataTable dt = db.ParamsQueryDT(sql, imedokumenta);
+            if (dt.Rows.Count != 0) NazivKlona = dt.Rows[0]["NazivKlona"].ToString();
+
+            sql = "SELECT alijaspolja as polje,izborno from RecnikPodataka where  dokument=@param0 and TabIndex>=0 and width>0 and Height > 0 order by tabindex";
+            DataTable drp = db.ParamsQueryDT(sql, NazivKlona);
+
+            foreach (DataRow row in drp.Rows)
+            {                
+                Field pb = (Field)Program.Parent.ActiveMdiChild.Controls[row["polje"].ToString()];
+                if (pb != null)
+                {
+                    //pb.ID = "1";
+                    pb.Vrednost = "";
+                    pb.cEnDis = "";
+                    switch (pb.VrstaKontrole)
+                    {
+                        case "tekst":
+                            pb.textBox.Text = "";
+                            pb.textBox.Enabled = true;
+                            break;
+                        case "datum":
+                            pb.dtp.Text = "";
+                            //pb.dtp.CustomFormat = " ";
+                            pb.dtp.Format = DateTimePickerFormat.Custom;
+                            pb.dtp.Enabled = true;
+                            //pb.dtp.CustomFormat = "dd.MM.yy";
+                            //pb.dtp.Format = DateTimePickerFormat.Custom;
+                            break;
+                        case "combo":
+                            pb.comboBox.Text = "";
+                            if (operacija == "PREGLED")
+                            {
+                                pb.ID = "1";
+                                pb.cIzborno = row["izborno"].ToString();
+                                pb.comboBox.Enabled = true;
+                            }
+                            
+                            break;
+                    }
+                }
+            }
+        }
         public void InitValues()
+           
         {
             forma = Program.Parent.ActiveMdiChild;
             operacija = forma.Controls["OOperacija"].Text;                        
 
             foreach (var ctrls in forma.Controls.OfType<Field>())
-            {                        
-                 ctrls.ID = "1";
-
+            {               
                 switch (ctrls.VrstaKontrole)
                 {
                     case "tekst":
@@ -51,23 +111,26 @@ namespace Bankom.Class
                         break;
 
                     case "datum":
-                        if (ctrls.cTip == 8)
-                        {
-                            ctrls.dtp.Text = string.Format("{0:dd.MM.yy}", System.DateTime.Now.ToString());
-                            ctrls.dtp.Value =  System.DateTime.Now;
-                        }
-                        else
-                        {
-                            string mgodina = System.DateTime.Now.ToString().Substring(6, 2);
-                            string mdatum = "01.01."+mgodina;
-                            ctrls.dtp.Text = string.Format("{0:dd.MM.yy}", mdatum.ToString());
-                            ctrls.dtp.Value = Convert.ToDateTime(ctrls.dtp.Text);
-                        }
-                        ctrls.Vrednost = ctrls.dtp.Text;
+                         if (ctrls.cTip == 8)
+                            {
+
+                                ctrls.dtp.Text = string.Format("{0:dd.MM.yy}", System.DateTime.Now.ToString());
+                                ctrls.dtp.Value = System.DateTime.Now;
+                            }
+                            else
+                            {
+                                string mgodina = System.DateTime.Now.ToString().Substring(6, 2);
+                                string mdatum = "01.01." + mgodina;
+                                ctrls.dtp.Text = string.Format("{0:dd.MM.yy}", mdatum.ToString());
+                                ctrls.dtp.Value = Convert.ToDateTime(ctrls.dtp.Text);
+                                ctrls.Vrednost = ctrls.dtp.Text;
+                            }
+                        //}
                         break;
                     case "combo":
                         ctrls.comboBox.Text = "";
                         ctrls.Vrednost = ctrls.comboBox.Text;
+                        ctrls.ID = "1";
                         break;
                     case "cek":
                        ctrls.cekboks.Checked = false;

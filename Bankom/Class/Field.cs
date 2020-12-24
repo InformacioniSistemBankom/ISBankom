@@ -331,17 +331,17 @@ namespace Bankom.Class
                             comboBox.Parent.Name = Ime;
 
                             // obrada dogadjaja za comboBox             
-                            comboBox.GotFocus += new EventHandler(comboBox_GotFocus);
+                            //comboBox.GotFocus += new EventHandler(comboBox_GotFocus);
                             comboBox.MouseClick += new MouseEventHandler(comboBox_MouseClick);
-                            comboBox.TextUpdate += new EventHandler(comboBox_TextUpdate);
+                            //comboBox.TextUpdate += new EventHandler(comboBox_TextUpdate);
 
                             //comboBox.SelectedIndexChanged += new EventHandler(ComboBox_SelectedIndexChanged);
                             comboBox.DropDown += new EventHandler(comboBox_DropDown);
                             comboBox.DropDownClosed += new EventHandler(comboBox_DropDownClosed);
-                            //comboBox.Leave += new EventHandler(Leave);
-                            comboBox.Validating += comboBox_Validating;
-                        }
-                        else // nema izborno 
+                        comboBox.Leave += new EventHandler(Leave);
+                        comboBox.Validating += comboBox_Validating;
+                    }
+                    else // nema izborno 
                         {
                             VrstaKontrole = "tekst";
                             textBox = new TextBox()
@@ -644,38 +644,7 @@ namespace Bankom.Class
         {
             clsFormInitialisation FI = new clsFormInitialisation();
             int Tip = Convert.ToInt32(textBox.Tag.ToString());
-            // borka 07.09.20
-            //Djora 01.09.20
-            //switch (Tip)
-            //{
-            //    case 3:
-            //    case 4:
-            //    case 11:
-            //        textBox.Text = string.Format("{0}", double.Parse(textBox.Text));
-            //        break;
-            //    case 5:
-            //    case 13:
-            //        textBox.Text = string.Format("{0:#,##0.00}", double.Parse(textBox.Text));
-            //        break;
-            //    case 6:
-            //        textBox.Text = string.Format("{0:#,##0.000}", double.Parse(textBox.Text));
-            //        break;
-            //    case 7:
-            //        textBox.Text = string.Format("{0:#,##0.0000}", double.Parse(textBox.Text));
-            //        break;
-            //    case 19:
-            //        textBox.Text = string.Format("{0:#,##0.0000}", double.Parse(textBox.Text));
-            //        break;
-            //    case 20:
-            //        textBox.Text = string.Format("{0:#,##0.0000000}", double.Parse(textBox.Text));
-            //        break;
-            //    case 21:
-            //        textBox.Text = string.Format("{0:#,##0.000000000}", double.Parse(textBox.Text));
-            //        break;
-
-            //    default:
-            //        break;
-            //}
+                   
             string sadrzaj = textBox.Text;
             textBox.Text = FI.FormatirajPolje(sadrzaj, Tip);
             Vrednost = textBox.Text;
@@ -743,24 +712,25 @@ namespace Bankom.Class
             //    ComboBox control = (ComboBox)sender;
             //    //control.Text = sadrzaj;
         }
-            private void comboBox_TextUpdate(Object sender, EventArgs e)
+        //private void comboBox_TextUpdate(Object sender, EventArgs e)
+        public new void Leave(object sender, EventArgs e)
         {
             ComboBox combo = (ComboBox)sender;
             //MessageBox.Show("You are in the ComboBox.TextUpdate event.");
             if (!FoundText(combo))
             {
                 //MessageBox.Show("This is not a valid ");              
-                ////combo.ForeColor = Color.Red;
+                combo.ForeColor = Color.Red;
             }
             else
             {
                 combo.ForeColor = Color.Black;
             }
         }
-        private void comboBox_GotFocus(object sender, EventArgs e)
-        {
+        //private void comboBox_GotFocus(object sender, EventArgs e)
+        //{
 
-        }
+        //}
         private void comboBox_MouseClick(object sender, EventArgs e)
         {
             //  comboBox.DroppedDown = true;
@@ -816,8 +786,9 @@ namespace Bankom.Class
                 Vrednost = "";
             }
         }
-        private void comboBox_Validating(object sender, CancelEventArgs e)
+
         //public new void Leave(object sender, EventArgs e)
+        private void comboBox_Validating(object sender, CancelEventArgs e)
         {
             ComboBox combo = (ComboBox)sender;
 
@@ -932,7 +903,9 @@ namespace Bankom.Class
             cQuery = "Select * from " + cIzborno + " WHERE ID_" + cIzborno.Trim() + "=" + IdSloga;
             Console.WriteLine(cQuery);
             DataTable dt2 = db.ReturnDataTable(cQuery);
-            foreach (var pb in this.Parent.Controls.OfType<Field>().Where(g =>  String.Equals(g.cAlijasTabele, cAlijasTabele)))
+            foreach (var pb in this.Parent.Controls.OfType<Field>().Where(g => String.Equals(g.cAlijasTabele, cAlijasTabele)))
+            //    Field pb = (Field)Program.Parent.ActiveMdiChild.Controls[column.Name];
+            //if( pb!=null)
             {
                 if (pb.IME != control.Name) // ovde ulaza samo kontrole razlicite od kontrole koju smo upravo napustili a imaju isti alijastabele
                 {
@@ -1118,12 +1091,12 @@ namespace Bankom.Class
             int i = 0;
             foreach (DataGridViewColumn column in control.Columns)
             {
-                foreach (var pb in this.Parent.Controls.OfType<Field>().Where(g => String.Equals(g.cTabelaVView, mimegrida)))
+                Field pb = (Field)Program.Parent.ActiveMdiChild.Controls[column.Name];
                 {
-                    if (pb.IME == column.Name)
-                    {
+                    if( pb !=null)
+                    {              
                         if (pb.cTip == 25)
-                        {
+                        {                            
                             if (control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString().Trim() != "")
                             {
                                 sel = " Select lot from LotView where barkod='" + control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString() + "'";
@@ -1145,13 +1118,10 @@ namespace Bankom.Class
                                 {
                                     brdok = pb.textBox.Text;
                                 }
-
                                 break;
                             case "combo":
                                 pb.comboBox.Text = control.Rows[e.RowIndex].Cells[i].Value.ToString();
-                                DataTable myt = (DataTable)control.DataSource;
-                                pb.ID = "1";
-
+                                DataTable myt = (DataTable)control.DataSource;                                                         
                                 if (pb.cIzborno == pb.cTabela)
                                     if (myt.Columns.Contains("ID_" + pb.cAlijasTabele))
                                         pb.ID = myt.Rows[e.RowIndex]["ID_" + pb.cAlijasTabele].ToString();
@@ -1181,12 +1151,10 @@ namespace Bankom.Class
                                     Vrednost = "0";
                                 }
                                 break;
-
                         }
                     }
                     if (column.Name.ToUpper().Contains("IID"))
                     {
-
                         iid = Convert.ToInt32(control.Rows[e.RowIndex].Cells[i].Value.ToString());
                         // jovana 04.11. grid tag napuni sa idreda
                         control.Tag = control.Rows[e.RowIndex].Cells[i].Value.ToString();

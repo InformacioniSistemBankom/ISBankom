@@ -132,6 +132,8 @@ namespace Bankom.Class
                             // PROVERE ISPRAVNOSTI PODATAKA POCETAK                             
                             if (DokumentJe=="S" && NazivKlona=="Dokumenta")
                                 isDoIt = pi.ProveraOperacija(NazivKlona);
+                            if (isDoIt == false)
+                                break;
 
                             if (DokumentJe=="D")
                             {
