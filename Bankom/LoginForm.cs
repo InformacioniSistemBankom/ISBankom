@@ -903,5 +903,11 @@ namespace Bankom
                 if (lista[i].ToLower().Contains(CmbOrg.Text.ToLower()))
                     CmbOrg.Items.Add(lista[i]);
         }
+
+        private void UsernameTextBox_TextChanged(object sender, EventArgs e)
+        {
+           
+                PasswordTextBox.Text = "";
+        }
     }
 }
