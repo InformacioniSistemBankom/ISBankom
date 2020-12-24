@@ -1814,8 +1814,11 @@ namespace Bankom
                 activeChild.Controls["OOperacija"].Text = "PREGLED";
                 filter = "S";
 
-                clsPregled clsP = new clsPregled();
-                clsP.ObrisiZaglavljeIStavkePoljaZaUnos();
+                //clsPregled clsP = new clsPregled();
+                //clsP.ObrisiZaglavljeIStavkePoljaZaUnos();
+                clsFormInitialisation fi = new clsFormInitialisation();
+                fi.ObrisiZaglavljeIStavkePoljaZaUnos();
+                fi.InitValues();
 
             }
             else
@@ -1832,10 +1835,13 @@ namespace Bankom
             {
                 activeChild.Controls["OOperacija"].Text = "";
                 activeChild.FormBorderStyle = FormBorderStyle.None;
+                
                 if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
+                clsFormInitialisation fi = new clsFormInitialisation();
+                fi.ObrisiZaglavljeIStavkePoljaZaUnos();
                 clsRefreshForm rf = new clsRefreshForm();
                 rf.refreshform();
-                
+
             }
             else
             {
@@ -2360,11 +2366,11 @@ namespace Bankom
             }
         }
 
-        private void toolStripMenuRefresh_Click_1(object sender, EventArgs e)
-        {
-            clsRefreshForm rf = new clsRefreshForm();
-            rf.refreshform();
-        }
+        //private void toolStripMenuRefresh_Click_1(object sender, EventArgs e)
+        //{
+        //    clsRefreshForm rf = new clsRefreshForm();
+        //    rf.refreshform();
+        //}
 
         private void IzborJezika_Click(object sender, EventArgs e)
         {
@@ -3102,6 +3108,7 @@ namespace Bankom
             }
             else
             {
+                var param0 = toolStripTextBox1.Text;
                 DataBaseBroker db = new DataBaseBroker();
                 AutoCompleteStringCollection namesCollection = new AutoCompleteStringCollection();
 
@@ -3118,7 +3125,7 @@ namespace Bankom
                        + "UNION ALL  SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level +1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
                        + " PrikazDetaljaDaNe As pd, PrikazPo As pp  FROM DokumentaStablo  AS e WITH (NOLOCK) "
                        + " INNER JOIN RekurzivnoStablo AS d  ON e.ID_DokumentaStablo = d.Vezan) "
-                       + " SELECT distinct NazivJavni FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0";
+                       + " SELECT distinct NazivJavni FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0 and NazivJavni like '%" + param0 +"%'";
 
                 var dr = db.ReturnDataReader(sselect);
 
@@ -3376,8 +3383,11 @@ namespace Bankom
                     // OSVEZAVANJE FORME NAKON IZVRSENE OPERACIJE
                     if (vrati == true) //jovana
                     {
-                        clsRefreshForm rf = new clsRefreshForm();
-                        rf.refreshform();
+                        clsFormInitialisation fi = new clsFormInitialisation();                
+                        fi.ObrisiZaglavljeIStavkePoljaZaUnos();
+                        clsRefreshForm fr = new clsRefreshForm();
+                        fr.refreshform();
+
                     }
                 }
                 forma.Controls["OOperacija"].Text = "";
