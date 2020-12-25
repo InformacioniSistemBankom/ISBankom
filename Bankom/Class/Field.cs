@@ -72,7 +72,6 @@ namespace Bankom.Class
         public string cIdNaziviNaFormi;
         //Ivana 11.12.2020.
         public string cZavisiOd;
-
         Form forma = new Form();
         //private int izmena;
         private string aaa = "";
@@ -339,8 +338,25 @@ namespace Bankom.Class
                         comboBox.DropDown += new EventHandler(comboBox_DropDown);
                         comboBox.DropDownClosed += new EventHandler(comboBox_DropDownClosed);
                         //zajedno 24.12.2020.
-                        if (IME == "NazivSkl")
+                        string upit = "select count(*) from RecnikPodataka where AlijasPolja like 'NazivPolja%' and Dokument=@param0 and ID_TipoviPodataka=10 and TabIndex>=0";
+                        int broj = db.ParamsInsertScalar(upit,cDokument);
+
+                        string upit1 = "select AlijasPolja from RecnikPodataka where AlijasPolja like 'NazivSkl%' and Dokument=@param0 and ID_TipoviPodataka=10 and TabIndex>=0";
+                        DataTable dt = db.ParamsQueryDT(upit1, cDokument);
+                        if (dt.Rows.Count == 1)
+                            Program.nastavakSkladista1 = dt.Rows[0][0].ToString().Substring(8);
+                        else if (dt.Rows.Count == 2)
                         {
+                            Program.nastavakSkladista1 = dt.Rows[0][0].ToString().Substring(8);
+                            Program.nastavakSkladista2 = dt.Rows[1][0].ToString().Substring(8);
+                        }
+                        //for (int i=0;i<dt.Rows.Count;i++)
+                        //{
+                        //    if (dt.Rows[i][0].ToString().Length > 8)
+                        //        nastavakSkladista1 = dt.Rows[i][0].ToString().Substring(8);
+                        //}
+                        if (IME.Contains("NazivSkl") && broj>0) //uci ce samo kada ima mag polje, a desavace se samo pri stvaranju comboBox-a NazivSkl
+                        { 
                             Program.NazivSkladista = comboBox.Text;
                             comboBox.SelectedIndexChanged += new EventHandler(comboBox_SelectedIndexChanged);
                         }
@@ -608,7 +624,18 @@ namespace Bankom.Class
         //zajedno 22.12.2020.
         public void comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Program.NazivSkladista = comboBox.Text;
+            if(comboBox.Name.Length==8)
+                Program.NazivSkladista = comboBox.Text;
+            else if (Program.nastavakSkladista1 == comboBox.Name.Substring(8))
+            {
+                Program.NazivSkladista1 = comboBox.Text;
+                Program.nastavakSkladista1 = comboBox.Name.Substring(8);
+            }
+            else
+            {
+                Program.NazivSkladista2 = comboBox.Text;
+                Program.nastavakSkladista2 = comboBox.Name.Substring(8);
+            }
         }
         void textBox_MouseDown(object sender, MouseEventArgs e)
         {
@@ -1040,13 +1067,18 @@ namespace Bankom.Class
 
             Restrikcija += cRestrikcije.Trim();
             //zajedno 24.12.2020.
-            if (IME == "NazivPolja" && Tip == 10)
+            if (IME.Contains("NazivPolja") && Tip == 10)
             {
                 comboBox.Text = "";
                 comboBox.Items.Clear();
-                DataTable rez;
+                DataTable rez = new DataTable();
                 string upit = "select NazivPolja from MagacinskaPoljaStavkeView where NazivSkl=@param0";
-                rez = db.ParamsQueryDT(upit, Program.NazivSkladista);
+                if(IME.Length==10)
+                    rez = db.ParamsQueryDT(upit, Program.NazivSkladista);
+                else if (IME.Substring(10) == Program.nastavakSkladista1)
+                    rez = db.ParamsQueryDT(upit, Program.NazivSkladista1);
+                else
+                    rez = db.ParamsQueryDT(upit, Program.NazivSkladista2);
                 if (comboBox != null)
                     for (int i = 0; i < rez.Rows.Count; i++)
                         comboBox.Items.Add(rez.Rows[i][0]);

@@ -65,7 +65,10 @@ namespace Bankom
 
         //zajedno 21.12.2020.
         public static string NazivSkladista { get; set; }
-
+        public static string NazivSkladista1 { get; set; }
+        public static string NazivSkladista2 { get; set; }
+        public static string nastavakSkladista1 { get; set; }
+        public static string nastavakSkladista2 { get; set; }
         [STAThread]
 
         public  static void Main()
