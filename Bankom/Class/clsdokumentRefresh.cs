@@ -565,6 +565,9 @@ namespace Bankom.Class
                                         }
                                         break;
                                     case "combo":
+                                        //ivana 24.12.2020.
+                                        if(ctrls.IME=="NazivSkl")
+                                            Program.NazivSkladista = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
                                         ctrls.comboBox.Text = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
                                         string kojiid;
                                         kojiid = "ID_" + ctrls.cAlijasTabele;
