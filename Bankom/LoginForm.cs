@@ -905,7 +905,7 @@ namespace Bankom
 
         private void UsernameTextBox_TextChanged(object sender, EventArgs e)
         {
-           //tamara
+           //tamara123
                 PasswordTextBox.Text = "";
         }
     }
