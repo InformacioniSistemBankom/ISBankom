@@ -439,7 +439,7 @@ namespace Bankom.Class
                 }  //KRAJ Operacijadokumenta<>"Pregled"      
 
 
-                IzmeneDisableEnablePolja(dokument, DokumentJe);
+               IzmeneDisableEnablePolja(dokument, DokumentJe);
                
 
                 return provera;

@@ -895,13 +895,18 @@ namespace Bankom
             }
 
         }
-
         private void CmbOrg_DropDown(object sender, EventArgs e)
         {
             CmbOrg.Items.Clear();
             for (int i = 0; i < lista.Count; i++)
                 if (lista[i].ToLower().Contains(CmbOrg.Text.ToLower()))
                     CmbOrg.Items.Add(lista[i]);
+        }
+
+        private void UsernameTextBox_TextChanged(object sender, EventArgs e)
+        {
+           //tamara123
+                PasswordTextBox.Text = "";
         }
     }
 }

@@ -110,6 +110,7 @@
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.Size = new System.Drawing.Size(391, 26);
             this.UsernameTextBox.TabIndex = 12;
+            this.UsernameTextBox.TextChanged += new System.EventHandler(this.UsernameTextBox_TextChanged);
             this.UsernameTextBox.Leave += new System.EventHandler(this.UsernameTextBox_Leave);
             // 
             // PasswordLabel

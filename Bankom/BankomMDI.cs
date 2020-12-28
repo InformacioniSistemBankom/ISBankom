@@ -615,6 +615,9 @@ namespace Bankom
                 }
             }
             SrediFormu();
+            //jovana 24.12.2020.
+            clsRefreshForm rf = new clsRefreshForm();
+            rf.refreshform();
         }
 
         public void itemB1_click(string imetula)  // zahtev za zatvaranje  forme klikom na tipku izlaz
@@ -3105,6 +3108,7 @@ namespace Bankom
             }
             else
             {
+                var param0 = toolStripTextBox1.Text;
                 DataBaseBroker db = new DataBaseBroker();
                 AutoCompleteStringCollection namesCollection = new AutoCompleteStringCollection();
 
@@ -3121,7 +3125,7 @@ namespace Bankom
                        + "UNION ALL  SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level +1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
                        + " PrikazDetaljaDaNe As pd, PrikazPo As pp  FROM DokumentaStablo  AS e WITH (NOLOCK) "
                        + " INNER JOIN RekurzivnoStablo AS d  ON e.ID_DokumentaStablo = d.Vezan) "
-                       + " SELECT distinct NazivJavni FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0";
+                       + " SELECT distinct NazivJavni FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0 and NazivJavni like '%" + param0 +"%'";
 
                 var dr = db.ReturnDataReader(sselect);
 
