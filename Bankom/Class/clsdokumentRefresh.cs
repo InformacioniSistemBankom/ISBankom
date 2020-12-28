@@ -159,7 +159,7 @@ namespace Bankom.Class
                 tud = t.Rows[i]["TUD"].ToString();
                 tUpit = t.Rows[i]["Upit"].ToString();
                 brredova = Convert.ToInt32(t.Rows[i]["MaxHeight"]);
-
+                DokumentJe = ((Bankom.frmChield)forma).DokumentJe.ToString();
                 if (tud == "1")
                     ((Bankom.frmChield)forma).BrRedova = brredova;
 
