@@ -775,7 +775,7 @@ namespace Bankom.Class
         }
         private void comboBox_DropDownClosed(object sender, EventArgs e)
         {
-                SendKeys.Send("{tab}");
+            SendKeys.Send("{tab}");
         }
         private void comboBox_DropDown(object sender, EventArgs e)
         {
@@ -884,7 +884,8 @@ namespace Bankom.Class
             Form Me = Program.Parent.ActiveMdiChild;
             string uuPIT = "";
             string Restrikcija = "";
-            if (control.Text.Trim() != "")
+            // zajedno 28.12.2020. dopuna, jer je pucao pri zatvaranju, kada je Me bilo null
+            if (control.Text.Trim() != "" && Me!=null)
             {
                 if(Me!=null)
                 { 
@@ -1095,9 +1096,6 @@ namespace Bankom.Class
                     rez = db.ParamsQueryDT(upit, Program.NazivSkladista1);
                 else
                     rez = db.ParamsQueryDT(upit, Program.NazivSkladista2);
-                //if (comboBox != null)
-                //    for (int i = 0; i < rez.Rows.Count; i++)
-                //        comboBox.Items.Add(rez.Rows[i][0]);
             }
             else if (Tip != 3)
             {
