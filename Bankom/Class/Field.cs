@@ -983,12 +983,16 @@ namespace Bankom.Class
                     {
                         pb.ID = "1";
                         pb.Vrednost = "";
+                        pb.ID = "1";
+                        break;
                     }
-                    else
+                    else // dt2.Rows.Count <> 0
                     {
-                        if (pb.cIzborno == cIzborno)
+                        if (pb.cIzborno == pb.cTabela)
                         {
-                            if (pb.cTip != 25)
+                            pb.ID = IdSloga;
+                            pb.Vrednost = dt2.Rows[0]["Polje"].ToString();
+                            if (pb.IME.ToUpper().Contains("LOT") == false)
                             {
                                 //pb.Vrednost = IIf(IsNull(rs.Fields(forma(j).PPolje).Value), "", Trim(rs.Fields(forma(j).PPolje).Value))
                                 if (string.IsNullOrEmpty(dt2.Rows[0][pb.cPolje].ToString()))
@@ -1059,6 +1063,7 @@ namespace Bankom.Class
                 } // KRAJ NIJE POLJE KOJE SMO UPRAVO NAPUSTILI
             } //polja koja pripadaju istom Alijasu Tabele KRAJ
         }
+        /// <summary>
 
 
         /// <summary>
@@ -1183,17 +1188,21 @@ namespace Bankom.Class
             {
                 Field pb = (Field)Program.Parent.ActiveMdiChild.Controls[column.Name];
                 {
-                    if (pb != null)
+                    if( pb !=null)
                     {
                         if (pb.cTip == 25)
                         {
                             if (control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString().Trim() != "")
                             {
-                                sel = " Select lot from LotView where barkod='" + control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString() + "'";
+                                sel = " Select lot,ID_LotVieW from LotView where barkod='" + control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString() + "'";
                                 Console.WriteLine(sel);
                                 t = db.ReturnDataTable(sel);
                                 if (t.Rows.Count > 0)
+                                {
                                     pb.Vrednost = t.Rows[0]["lot"].ToString();
+                                    pb.ID= t.Rows[0]["ID_LotView"].ToString();
+                                }
+
                             }
                         }
                         else
@@ -1213,13 +1222,16 @@ namespace Bankom.Class
                                 pb.comboBox.Text = control.Rows[e.RowIndex].Cells[i].Value.ToString();
                                 DataTable myt = (DataTable)control.DataSource;
                                 if (pb.cIzborno == pb.cTabela)
+                                {
                                     if (myt.Columns.Contains("ID_" + pb.cAlijasTabele))
                                         pb.ID = myt.Rows[e.RowIndex]["ID_" + pb.cAlijasTabele].ToString();
-                                    else
-                                    {
-                                        if (pb.cIzborno.Trim() != "" && myt.Columns.Contains("ID_" + pb.cIzborno))
-                                            pb.ID = myt.Rows[e.RowIndex]["ID_" + pb.cIzborno].ToString();
-                                    }
+                                }
+                                else
+                                {
+                                    if (pb.cIzborno.Trim() != "" && myt.Columns.Contains("ID_" + pb.cIzborno))
+                                        pb.ID = myt.Rows[e.RowIndex]["ID_" + pb.cIzborno].ToString();
+                                }
+
 
                                 break;
                             case "datum":
@@ -1777,6 +1789,7 @@ namespace Bankom.Class
         }
     }
 }
+
 
 
 
