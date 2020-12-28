@@ -887,8 +887,6 @@ namespace Bankom.Class
             // zajedno 28.12.2020. dopuna, jer je pucao pri zatvaranju, kada je Me bilo null
             if (control.Text.Trim() != "" && Me!=null)
             {
-                if(Me!=null)
-                { 
                     Field pb = (Field)Me.Controls[control.Name]; //  uzimamo kontrolu na formi  
                     if (pb != null)
                     {
@@ -942,7 +940,6 @@ namespace Bankom.Class
                             }
                         }
                     }
-                }
             }
             else
             {
