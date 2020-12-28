@@ -886,55 +886,58 @@ namespace Bankom.Class
             string Restrikcija = "";
             if (control.Text.Trim() != "")
             {
-                Field pb = (Field)Me.Controls[control.Name]; //  uzimamo kontrolu na formi  
-                if (pb != null)
-                {
-                    if (pb.cRestrikcije.Trim() != "")
+                if(Me!=null)
+                { 
+                    Field pb = (Field)Me.Controls[control.Name]; //  uzimamo kontrolu na formi  
+                    if (pb != null)
                     {
-                        Restrikcija = " AND " + pb.cRestrikcije;
-                    }
+                        if (pb.cRestrikcije.Trim() != "")
+                        {
+                            Restrikcija = " AND " + pb.cRestrikcije;
+                        }
 
-                    if ((control.Text).Trim() == "")
-                    {
-                        ID = "1";
-                        Vrednost = "";
-                    }
-                    else
-                    {
-                        if (pb.cIzborno.Contains("KKNJ"))
+                        if ((control.Text).Trim() == "")
                         {
                             ID = "1";
+                            Vrednost = "";
                         }
-                        else  // nisu kknjupiti
+                        else
                         {
-                            if (pb.cTip == 25)
-                                uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + " Like N'%" + control.Text + "%'" + Restrikcija;
-                            else
-                                uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + "='" + control.Text + "'" + Restrikcija;
-                            Console.WriteLine(uuPIT);
-                            DataTable tt = db.ReturnDataTable(uuPIT);
-                            if (tt.Rows.Count > 0)
-                            {
-                                ID = tt.Rows[0]["idt"].ToString();
-                                Vrednost = tt.Rows[0]["polje"].ToString();
-                                if (pb.cTip == 25)
-                                    aaa = tt.Rows[0]["polje"].ToString().Substring(0, tt.Rows[0]["polje"].ToString().IndexOf(","));
-                                else
-                                    aaa = tt.Rows[0]["polje"].ToString();
-
-                                pb.ID = ID;
-                                control.Text = aaa;
-                                control.Refresh();
-
-                                control.ForeColor = Color.Black;
-                                if (forma.Controls["OOperacija"].Text.Trim() != "PREGLED") // BORKA da se ne bi u pregledu punila ostala polja za izabrano                        
-                                    FillOtherControls(control, ID);
-                            }
-                            else
+                            if (pb.cIzborno.Contains("KKNJ"))
                             {
                                 ID = "1";
-                                Vrednost = "";
-                                isfound = false;
+                            }
+                            else  // nisu kknjupiti
+                            {
+                                if (pb.cTip == 25)
+                                    uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + " Like N'%" + control.Text + "%'" + Restrikcija;
+                                else
+                                    uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + "='" + control.Text + "'" + Restrikcija;
+                                Console.WriteLine(uuPIT);
+                                DataTable tt = db.ReturnDataTable(uuPIT);
+                                if (tt.Rows.Count > 0)
+                                {
+                                    ID = tt.Rows[0]["idt"].ToString();
+                                    Vrednost = tt.Rows[0]["polje"].ToString();
+                                    if (pb.cTip == 25)
+                                        aaa = tt.Rows[0]["polje"].ToString().Substring(0, tt.Rows[0]["polje"].ToString().IndexOf(","));
+                                    else
+                                        aaa = tt.Rows[0]["polje"].ToString();
+
+                                    pb.ID = ID;
+                                    control.Text = aaa;
+                                    control.Refresh();
+
+                                    control.ForeColor = Color.Black;
+                                    if (forma.Controls["OOperacija"].Text.Trim() != "PREGLED") // BORKA da se ne bi u pregledu punila ostala polja za izabrano                        
+                                        FillOtherControls(control, ID);
+                                }
+                                else
+                                {
+                                    ID = "1";
+                                    Vrednost = "";
+                                    isfound = false;
+                                }
                             }
                         }
                     }
@@ -969,7 +972,6 @@ namespace Bankom.Class
         private void FillOtherControls(ComboBox control, string IdSloga)
         {
             string cQuery = "";
-            string aaa = "";
 
             cQuery = "Select * from " + cIzborno + " WHERE ID_" + cIzborno.Trim() + "=" + IdSloga;
             Console.WriteLine(cQuery);
@@ -978,88 +980,79 @@ namespace Bankom.Class
             {
                 if (pb.IME != control.Name) // ovde ulaza samo kontrole razlicite od kontrole koju smo upravo napustili a imaju isti alijastabele
                 {
+                    pb.ID = "1";
                     if (dt2.Rows.Count == 0)
                     {
-                        pb.ID = "1";
                         pb.Vrednost = "";
-                        pb.ID = "1";
-                        break;
                     }
-                    else // dt2.Rows.Count <> 0
+                    else
                     {
-                        if (pb.cIzborno == pb.cTabela)
+                        if (pb.cIzborno == cIzborno)
                         {
-                            pb.ID = IdSloga;
-                            pb.Vrednost = dt2.Rows[0]["Polje"].ToString();
-                            if (pb.IME.ToUpper().Contains("LOT") == false)
+                            if (pb.cTip != 25)
                             {
-                                //pb.Vrednost = IIf(IsNull(rs.Fields(forma(j).PPolje).Value), "", Trim(rs.Fields(forma(j).PPolje).Value))
-                                if (string.IsNullOrEmpty(dt2.Rows[0][pb.cPolje].ToString()))
-                                {
-                                    pb.Vrednost = "";
-                                    pb.ID = "1";
-                                }
-                                else
+                                try
                                 {
                                     pb.ID = IdSloga;
                                     pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
-                                    aaa = dt2.Rows[0][pb.cPolje].ToString();
+                                }
+                                catch (Exception ex)
+                                {
+                                    pb.Vrednost = "";
                                 }
                             }
-                            else
+                            else ///pb.cTip=25
                             {
-                                aaa = "";
+                                pb.Vrednost = "";
                             }
                         }
-                        else //nije pb.izbormo=cizborno
+                        else //nije pb.cizbormo=cizborno
                         {
                             if (pb.cIzborno.Trim() != "")
                             {
-                                string cQuery1 = "Select * from " + pb.cIzborno + " WHERE ID_" + pb.cIzborno + "=" + dt2.Rows[0]["ID_" + pb.cIzborno].ToString();
-                                Console.WriteLine(cQuery1);
-                                DataTable dt1 = db.ReturnDataTable(cQuery1);
-                                if (dt1.Rows.Count > 0)
+                                if (pb.cTip != 25)//nije lot
                                 {
-                                    if (pb.cTip != 25)//nije lot
+                                    try
                                     {
-                                        //pb.Vrednost = IIf(IsNull(rs.Fields(forma(j).PPolje).Value), "", Trim(rs.Fields(forma(j).PPolje).Value))
-                                        if (string.IsNullOrEmpty(dt2.Rows[0][pb.cPolje].ToString()))
-                                        {
-                                            pb.Vrednost = "";
-                                            pb.ID = "1";
-                                        }
-                                        else
-                                        {
-                                            pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
-                                            pb.ID = dt1.Rows[0]["ID_" + pb.cIzborno].ToString(); //IdSloga;
-                                        }
-                                        aaa = dt1.Rows[0][pb.cPolje].ToString();
+                                        pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
                                     }
-                                    else // jeste lot
+                                    catch (Exception ex)
                                     {
-                                        aaa = "";
+                                        pb.Vrednost = "";
                                     }
                                 }
+                                else // jeste lot 
+                                {
+                                    pb.Vrednost = "";
+                                }
                             }
-                            else
+                            else //izborno jeste prazno
                             {
-                                aaa = dt2.Rows[0][pb.cPolje].ToString();
+                                try
+                                {
+                                    pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
+                                }
+                                catch (Exception ex)
+                                {
+                                    pb.Vrednost = "";
+                                }
                             }
-                        }
+                        }   // NIJE cIzborno=izborno KRAJ                     
+
                         switch (pb.VrstaKontrole)
                         {
                             case "tekst":
-                                pb.textBox.Text = aaa;
+                                pb.textBox.Text = pb.Vrednost;
                                 break;
                             case "combo":
-                                pb.comboBox.Text = aaa;
+                                pb.comboBox.Text = pb.Vrednost;
                                 break;
                             case "datum":
-                                pb.dtp.Value = Convert.ToDateTime(aaa);
+                                pb.dtp.Value = Convert.ToDateTime(pb.Vrednost);
                                 break;
                         }
                     }
-                } // KRAJ NIJE POLJE KOJE SMO UPRAVO NAPUSTILI
+                } // NIJE POLJE KOJE SMO UPRAVO NAPUSTILI KRAJ
             } //polja koja pripadaju istom Alijasu Tabele KRAJ
         }
         /// <summary>
