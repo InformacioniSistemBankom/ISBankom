@@ -775,23 +775,41 @@ namespace Bankom.Class
         }
         private void comboBox_DropDownClosed(object sender, EventArgs e)
         {
-            SendKeys.Send("{tab}");
+                SendKeys.Send("{tab}");
         }
         private void comboBox_DropDown(object sender, EventArgs e)
         {
             ComboBox control = (ComboBox)sender;
             string sql = FillList(control, cTip);
             DataTable dt = new DataTable();
+            bool crveno = false;
             //zajedno 24.12.2020.
             if (sql == "")
             {
-                control.ValueMember = "iid";
-                control.DisplayMember = "polje";
-                ID = Convert.ToString(control.SelectedValue);
-                if (control.SelectedIndex > -1)
-                    if (forma.Controls["OOperacija"].Text.Trim() != "PREGLED")
-                        FillOtherControls(control, ID);
-                control.SelectedIndex = -1;
+                if (rez.Rows.Count != 0)
+                {
+                    for (int i = 0; i < rez.Rows.Count; i++)
+                        if (rez.Rows[i][0].ToString().ToLower().Contains(control.Text.ToLower()))
+                        {
+                            control.Items.Add(rez.Rows[i][0]);
+                            crveno = true;
+                        }
+                    if (crveno)
+                    {
+                        control.Text = "";
+                        control.ValueMember = "iid";
+                        control.DisplayMember = "polje";
+                        ID = Convert.ToString(control.SelectedValue);
+                        if (control.SelectedIndex > -1)
+                            if (forma.Controls["OOperacija"].Text.Trim() != "PREGLED")
+                                FillOtherControls(control, ID);
+                        control.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        control.ForeColor = Color.Red;
+                    }
+                }
             }
             else
             {
@@ -825,7 +843,7 @@ namespace Bankom.Class
                     Console.WriteLine(forma.Controls["OOperacija"].Text.Trim());
                     if (control.SelectedIndex > -1)
                         if (forma.Controls["OOperacija"].Text.Trim() != "PREGLED") // BORKA da se ne bi u pregledu punila ostala polja za izabrano                        
-                            FillOtherControls(control, ID);
+                                FillOtherControls(control, ID);
 
                     control.SelectedIndex = -1;
                 }
@@ -1043,6 +1061,8 @@ namespace Bankom.Class
 
 
         /// <summary>
+        /// 
+        public DataTable rez = new DataTable();
         private string FillList(ComboBox control, int Tip)
         {
             Form forma = new Form();
@@ -1069,9 +1089,7 @@ namespace Bankom.Class
             //zajedno 24.12.2020.
             if (IME.Contains("NazivPolja") && Tip == 10)
             {
-                comboBox.Text = "";
                 comboBox.Items.Clear();
-                DataTable rez = new DataTable();
                 string upit = "select NazivPolja from MagacinskaPoljaStavkeView where NazivSkl=@param0";
                 if(IME.Length==10)
                     rez = db.ParamsQueryDT(upit, Program.NazivSkladista);
@@ -1079,9 +1097,9 @@ namespace Bankom.Class
                     rez = db.ParamsQueryDT(upit, Program.NazivSkladista1);
                 else
                     rez = db.ParamsQueryDT(upit, Program.NazivSkladista2);
-                if (comboBox != null)
-                    for (int i = 0; i < rez.Rows.Count; i++)
-                        comboBox.Items.Add(rez.Rows[i][0]);
+                //if (comboBox != null)
+                //    for (int i = 0; i < rez.Rows.Count; i++)
+                //        comboBox.Items.Add(rez.Rows[i][0]);
             }
             else if (Tip != 3)
             {
