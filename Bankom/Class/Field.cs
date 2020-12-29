@@ -1122,7 +1122,7 @@ namespace Bankom.Class
             Program.activecontrol = control;
             dv.BackgroundColor = Color.AliceBlue;
         }
-        private void FillControls(DataGridView control, ref int iid, ref string brdok, ref DateTime datum, DataGridViewCellMouseEventArgs e)
+        private void    FillControls(DataGridView control, ref int iid, ref string brdok, ref DateTime datum, DataGridViewCellMouseEventArgs e)
         {
             dv.BackgroundColor = Color.AliceBlue;
             string mimegrida = control.Name;
