@@ -112,6 +112,7 @@ namespace Bankom
             this.Sstorno = new System.Windows.Forms.ToolStripButton();
             this.Sstampa = new System.Windows.Forms.ToolStripButton();
             this.Bbrisanje = new System.Windows.Forms.ToolStripButton();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.Ggrupisi = new System.Windows.Forms.ToolStripDropDownButton();
             this.Ggrupisinp = new System.Windows.Forms.ToolStripMenuItem();
             this.premestiGrupuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -145,7 +146,6 @@ namespace Bankom
             this.sdfgghToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
-            this.tbPretraga = new System.Windows.Forms.ToolStripTextBox();
             this.ToolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -570,6 +570,7 @@ namespace Bankom
             this.toolStripMenuRefresh.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F5)));
             this.toolStripMenuRefresh.Size = new System.Drawing.Size(159, 22);
             this.toolStripMenuRefresh.Text = "Refresh";
+            //this.toolStripMenuRefresh.Click += new System.EventHandler(this.toolStripMenuRefresh_Click_1);
             // 
             // windowsMenu
             // 
@@ -720,7 +721,7 @@ namespace Bankom
             this.Sstorno,
             this.Sstampa,
             this.Bbrisanje,
-            this.tbPretraga,
+            this.toolStripTextBox1,
             this.Ggrupisi,
             this.Iimenik,
             this.Ssort,
@@ -837,6 +838,17 @@ namespace Bankom
             this.Bbrisanje.Size = new System.Drawing.Size(100, 40);
             this.Bbrisanje.Text = "Brisanje";
             this.Bbrisanje.Click += new System.EventHandler(this.Bbrisanje_Click);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.toolStripTextBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.toolStripTextBox1.BackColor = System.Drawing.Color.Snow;
+            this.toolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.toolStripTextBox1.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(200, 43);
+            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             // 
             // Ggrupisi
             // 
@@ -1221,13 +1233,6 @@ namespace Bankom
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // tbPretraga
-            // 
-            this.tbPretraga.Name = "tbPretraga";
-            this.tbPretraga.Size = new System.Drawing.Size(200, 43);
-            this.tbPretraga.Enter += new System.EventHandler(this.tbPretraga_Enter);
-            this.tbPretraga.Click += new System.EventHandler(this.tbPretraga_Click);
-            // 
             // BankomMDI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1379,7 +1384,7 @@ namespace Bankom
         private System.Windows.Forms.ToolStripButton Ssort;
         private System.Windows.Forms.ToolStripButton Pporeklo;
         public System.Windows.Forms.MenuStrip menuStrip1;
-        public System.Windows.Forms.ToolStripTextBox tbPretraga;
+        public System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
     }
 }
 
