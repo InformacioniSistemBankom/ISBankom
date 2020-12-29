@@ -656,9 +656,6 @@ namespace Bankom
             }
             SrediFormu();
         }
-
-
-
         public void itemB_click(object sender, EventArgs e)  // zahtev za zatvaranje forme klikom na tab
         {
             toolStripTextBox1.Text = "";
@@ -699,7 +696,6 @@ namespace Bankom
             }
             SrediFormu();
         }
-
 
         private void toolStripLogin_Click(object sender, EventArgs e)
         {

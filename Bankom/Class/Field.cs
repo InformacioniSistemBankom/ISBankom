@@ -72,7 +72,6 @@ namespace Bankom.Class
         public string cIdNaziviNaFormi;
         //Ivana 11.12.2020.
         public string cZavisiOd;
-
         Form forma = new Form();
         //private int izmena;
         private string aaa = "";
@@ -339,8 +338,25 @@ namespace Bankom.Class
                         comboBox.DropDown += new EventHandler(comboBox_DropDown);
                         comboBox.DropDownClosed += new EventHandler(comboBox_DropDownClosed);
                         //zajedno 24.12.2020.
-                        if (IME == "NazivSkl")
+                        string upit = "select count(*) from RecnikPodataka where AlijasPolja like 'NazivPolja%' and Dokument=@param0 and ID_TipoviPodataka=10 and TabIndex>=0";
+                        int broj = db.ParamsInsertScalar(upit,cDokument);
+
+                        string upit1 = "select AlijasPolja from RecnikPodataka where AlijasPolja like 'NazivSkl%' and Dokument=@param0 and ID_TipoviPodataka=10 and TabIndex>=0";
+                        DataTable dt = db.ParamsQueryDT(upit1, cDokument);
+                        if (dt.Rows.Count == 1)
+                            Program.nastavakSkladista1 = dt.Rows[0][0].ToString().Substring(8);
+                        else if (dt.Rows.Count == 2)
                         {
+                            Program.nastavakSkladista1 = dt.Rows[0][0].ToString().Substring(8);
+                            Program.nastavakSkladista2 = dt.Rows[1][0].ToString().Substring(8);
+                        }
+                        //for (int i=0;i<dt.Rows.Count;i++)
+                        //{
+                        //    if (dt.Rows[i][0].ToString().Length > 8)
+                        //        nastavakSkladista1 = dt.Rows[i][0].ToString().Substring(8);
+                        //}
+                        if (IME.Contains("NazivSkl") && broj>0) //uci ce samo kada ima mag polje, a desavace se samo pri stvaranju comboBox-a NazivSkl
+                        { 
                             Program.NazivSkladista = comboBox.Text;
                             comboBox.SelectedIndexChanged += new EventHandler(comboBox_SelectedIndexChanged);
                         }
@@ -608,7 +624,18 @@ namespace Bankom.Class
         //zajedno 22.12.2020.
         public void comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Program.NazivSkladista = comboBox.Text;
+            if(comboBox.Name.Length==8)
+                Program.NazivSkladista = comboBox.Text;
+            else if (Program.nastavakSkladista1 == comboBox.Name.Substring(8))
+            {
+                Program.NazivSkladista1 = comboBox.Text;
+                Program.nastavakSkladista1 = comboBox.Name.Substring(8);
+            }
+            else
+            {
+                Program.NazivSkladista2 = comboBox.Text;
+                Program.nastavakSkladista2 = comboBox.Name.Substring(8);
+            }
         }
         void textBox_MouseDown(object sender, MouseEventArgs e)
         {
@@ -755,16 +782,34 @@ namespace Bankom.Class
             ComboBox control = (ComboBox)sender;
             string sql = FillList(control, cTip);
             DataTable dt = new DataTable();
+            bool crveno = false;
             //zajedno 24.12.2020.
             if (sql == "")
             {
-                control.ValueMember = "iid";
-                control.DisplayMember = "polje";
-                ID = Convert.ToString(control.SelectedValue);
-                if (control.SelectedIndex > -1)
-                    if (forma.Controls["OOperacija"].Text.Trim() != "PREGLED")
-                        FillOtherControls(control, ID);
-                control.SelectedIndex = -1;
+                if (rez.Rows.Count != 0)
+                {
+                    for (int i = 0; i < rez.Rows.Count; i++)
+                        if (rez.Rows[i][0].ToString().ToLower().Contains(control.Text.ToLower()))
+                        {
+                            control.Items.Add(rez.Rows[i][0]);
+                            crveno = true;
+                        }
+                    if (crveno)
+                    {
+                        control.Text = "";
+                        control.ValueMember = "iid";
+                        control.DisplayMember = "polje";
+                        ID = Convert.ToString(control.SelectedValue);
+                        if (control.SelectedIndex > -1)
+                            if (forma.Controls["OOperacija"].Text.Trim() != "PREGLED")
+                                FillOtherControls(control, ID);
+                        control.SelectedIndex = -1;
+                    }
+                    else
+                    {
+                        control.ForeColor = Color.Red;
+                    }
+                }
             }
             else
             {
@@ -798,7 +843,7 @@ namespace Bankom.Class
                     Console.WriteLine(forma.Controls["OOperacija"].Text.Trim());
                     if (control.SelectedIndex > -1)
                         if (forma.Controls["OOperacija"].Text.Trim() != "PREGLED") // BORKA da se ne bi u pregledu punila ostala polja za izabrano                        
-                            FillOtherControls(control, ID);
+                                FillOtherControls(control, ID);
 
                     control.SelectedIndex = -1;
                 }
@@ -839,61 +884,62 @@ namespace Bankom.Class
             Form Me = Program.Parent.ActiveMdiChild;
             string uuPIT = "";
             string Restrikcija = "";
-            if (control.Text.Trim() != "")
+            // zajedno 28.12.2020. dopuna, jer je pucao pri zatvaranju, kada je Me bilo null
+            if (control.Text.Trim() != "" && Me!=null)
             {
-                Field pb = (Field)Me.Controls[control.Name]; //  uzimamo kontrolu na formi  
-                if (pb != null)
-                {
-                    if (pb.cRestrikcije.Trim() != "")
+                    Field pb = (Field)Me.Controls[control.Name]; //  uzimamo kontrolu na formi  
+                    if (pb != null)
                     {
-                        Restrikcija = " AND " + pb.cRestrikcije;
-                    }
+                        if (pb.cRestrikcije.Trim() != "")
+                        {
+                            Restrikcija = " AND " + pb.cRestrikcije;
+                        }
 
-                    if ((control.Text).Trim() == "")
-                    {
-                        ID = "1";
-                        Vrednost = "";
-                    }
-                    else
-                    {
-                        if (pb.cIzborno.Contains("KKNJ"))
+                        if ((control.Text).Trim() == "")
                         {
                             ID = "1";
+                            Vrednost = "";
                         }
-                        else  // nisu kknjupiti
+                        else
                         {
-                            if (pb.cTip == 25)
-                                uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + " Like N'%" + control.Text + "%'" + Restrikcija;
-                            else
-                                uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + "='" + control.Text + "'" + Restrikcija;
-                            Console.WriteLine(uuPIT);
-                            DataTable tt = db.ReturnDataTable(uuPIT);
-                            if (tt.Rows.Count > 0)
-                            {
-                                ID = tt.Rows[0]["idt"].ToString();
-                                Vrednost = tt.Rows[0]["polje"].ToString();
-                                if (pb.cTip == 25)
-                                    aaa = tt.Rows[0]["polje"].ToString().Substring(0, tt.Rows[0]["polje"].ToString().IndexOf(","));
-                                else
-                                    aaa = tt.Rows[0]["polje"].ToString();
-
-                                pb.ID = ID;
-                                control.Text = aaa;
-                                control.Refresh();
-
-                                control.ForeColor = Color.Black;
-                                if (forma.Controls["OOperacija"].Text.Trim() != "PREGLED") // BORKA da se ne bi u pregledu punila ostala polja za izabrano                        
-                                    FillOtherControls(control, ID);
-                            }
-                            else
+                            if (pb.cIzborno.Contains("KKNJ"))
                             {
                                 ID = "1";
-                                Vrednost = "";
-                                isfound = false;
+                            }
+                            else  // nisu kknjupiti
+                            {
+                                if (pb.cTip == 25)
+                                    uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + " Like N'%" + control.Text + "%'" + Restrikcija;
+                                else
+                                    uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + "='" + control.Text + "'" + Restrikcija;
+                                Console.WriteLine(uuPIT);
+                                DataTable tt = db.ReturnDataTable(uuPIT);
+                                if (tt.Rows.Count > 0)
+                                {
+                                    ID = tt.Rows[0]["idt"].ToString();
+                                    Vrednost = tt.Rows[0]["polje"].ToString();
+                                    if (pb.cTip == 25)
+                                        aaa = tt.Rows[0]["polje"].ToString().Substring(0, tt.Rows[0]["polje"].ToString().IndexOf(","));
+                                    else
+                                        aaa = tt.Rows[0]["polje"].ToString();
+
+                                    pb.ID = ID;
+                                    control.Text = aaa;
+                                    control.Refresh();
+
+                                    control.ForeColor = Color.Black;
+                                    if (forma.Controls["OOperacija"].Text.Trim() != "PREGLED") // BORKA da se ne bi u pregledu punila ostala polja za izabrano                        
+                                        FillOtherControls(control, ID);
+                                }
+                                else
+                                {
+                                    ID = "1";
+                                    Vrednost = "";
+                                    isfound = false;
+                                }
                             }
                         }
                     }
-                }
             }
             else
             {
@@ -924,7 +970,6 @@ namespace Bankom.Class
         private void FillOtherControls(ComboBox control, string IdSloga)
         {
             string cQuery = "";
-            string aaa = "";
 
             cQuery = "Select * from " + cIzborno + " WHERE ID_" + cIzborno.Trim() + "=" + IdSloga;
             Console.WriteLine(cQuery);
@@ -933,9 +978,9 @@ namespace Bankom.Class
             {
                 if (pb.IME != control.Name) // ovde ulaza samo kontrole razlicite od kontrole koju smo upravo napustili a imaju isti alijastabele
                 {
+                    pb.ID = "1";
                     if (dt2.Rows.Count == 0)
                     {
-                        pb.ID = "1";
                         pb.Vrednost = "";
                     }
                     else
@@ -944,78 +989,76 @@ namespace Bankom.Class
                         {
                             if (pb.cTip != 25)
                             {
-                                //pb.Vrednost = IIf(IsNull(rs.Fields(forma(j).PPolje).Value), "", Trim(rs.Fields(forma(j).PPolje).Value))
-                                if (string.IsNullOrEmpty(dt2.Rows[0][pb.cPolje].ToString()))
-                                {
-                                    pb.Vrednost = "";
-                                    pb.ID = "1";
-                                }
-                                else
+                                try
                                 {
                                     pb.ID = IdSloga;
                                     pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
-                                    aaa = dt2.Rows[0][pb.cPolje].ToString();
+                                }
+                                catch (Exception ex)
+                                {
+                                    pb.Vrednost = "";
                                 }
                             }
-                            else
+                            else ///pb.cTip=25
                             {
-                                aaa = "";
+                                pb.Vrednost = "";
                             }
                         }
-                        else //nije pb.izbormo=cizborno
+                        else //nije pb.cizbormo=cizborno
                         {
                             if (pb.cIzborno.Trim() != "")
                             {
-                                string cQuery1 = "Select * from " + pb.cIzborno + " WHERE ID_" + pb.cIzborno + "=" + dt2.Rows[0]["ID_" + pb.cIzborno].ToString();
-                                Console.WriteLine(cQuery1);
-                                DataTable dt1 = db.ReturnDataTable(cQuery1);
-                                if (dt1.Rows.Count > 0)
+                                if (pb.cTip != 25)//nije lot
                                 {
-                                    if (pb.cTip != 25)//nije lot
+                                    try
                                     {
-                                        //pb.Vrednost = IIf(IsNull(rs.Fields(forma(j).PPolje).Value), "", Trim(rs.Fields(forma(j).PPolje).Value))
-                                        if (string.IsNullOrEmpty(dt2.Rows[0][pb.cPolje].ToString()))
-                                        {
-                                            pb.Vrednost = "";
-                                            pb.ID = "1";
-                                        }
-                                        else
-                                        {
-                                            pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
-                                            pb.ID = dt1.Rows[0]["ID_" + pb.cIzborno].ToString(); //IdSloga;
-                                        }
-                                        aaa = dt1.Rows[0][pb.cPolje].ToString();
+                                        pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
                                     }
-                                    else // jeste lot
+                                    catch (Exception ex)
                                     {
-                                        aaa = "";
+                                        pb.Vrednost = "";
                                     }
                                 }
+                                else // jeste lot 
+                                {
+                                    pb.Vrednost = "";
+                                }
                             }
-                            else
+                            else //izborno jeste prazno
                             {
-                                aaa = dt2.Rows[0][pb.cPolje].ToString();
+                                try
+                                {
+                                    pb.Vrednost = dt2.Rows[0][pb.cPolje].ToString();
+                                }
+                                catch (Exception ex)
+                                {
+                                    pb.Vrednost = "";
+                                }
                             }
-                        }
+                        }   // NIJE cIzborno=izborno KRAJ                     
+
                         switch (pb.VrstaKontrole)
                         {
                             case "tekst":
-                                pb.textBox.Text = aaa;
+                                pb.textBox.Text = pb.Vrednost;
                                 break;
                             case "combo":
-                                pb.comboBox.Text = aaa;
+                                pb.comboBox.Text = pb.Vrednost;
                                 break;
                             case "datum":
-                                pb.dtp.Value = Convert.ToDateTime(aaa);
+                                pb.dtp.Value = Convert.ToDateTime(pb.Vrednost);
                                 break;
                         }
                     }
-                } // KRAJ NIJE POLJE KOJE SMO UPRAVO NAPUSTILI
+                } // NIJE POLJE KOJE SMO UPRAVO NAPUSTILI KRAJ
             } //polja koja pripadaju istom Alijasu Tabele KRAJ
         }
+        /// <summary>
 
 
         /// <summary>
+        /// 
+        public DataTable rez = new DataTable();
         private string FillList(ComboBox control, int Tip)
         {
             Form forma = new Form();
@@ -1040,16 +1083,16 @@ namespace Bankom.Class
 
             Restrikcija += cRestrikcije.Trim();
             //zajedno 24.12.2020.
-            if (IME == "NazivPolja" && Tip == 10)
+            if (IME.Contains("NazivPolja") && Tip == 10)
             {
-                comboBox.Text = "";
                 comboBox.Items.Clear();
-                DataTable rez;
                 string upit = "select NazivPolja from MagacinskaPoljaStavkeView where NazivSkl=@param0";
-                rez = db.ParamsQueryDT(upit, Program.NazivSkladista);
-                if (comboBox != null)
-                    for (int i = 0; i < rez.Rows.Count; i++)
-                        comboBox.Items.Add(rez.Rows[i][0]);
+                if(IME.Length==10)
+                    rez = db.ParamsQueryDT(upit, Program.NazivSkladista);
+                else if (IME.Substring(10) == Program.nastavakSkladista1)
+                    rez = db.ParamsQueryDT(upit, Program.NazivSkladista1);
+                else
+                    rez = db.ParamsQueryDT(upit, Program.NazivSkladista2);
             }
             else if (Tip != 3)
             {
@@ -1135,17 +1178,21 @@ namespace Bankom.Class
             {
                 Field pb = (Field)Program.Parent.ActiveMdiChild.Controls[column.Name];
                 {
-                    if (pb != null)
+                    if( pb !=null)
                     {
                         if (pb.cTip == 25)
                         {
                             if (control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString().Trim() != "")
                             {
-                                sel = " Select lot from LotView where barkod='" + control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString() + "'";
+                                sel = " Select lot,ID_LotVieW from LotView where barkod='" + control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString() + "'";
                                 Console.WriteLine(sel);
                                 t = db.ReturnDataTable(sel);
                                 if (t.Rows.Count > 0)
+                                {
                                     pb.Vrednost = t.Rows[0]["lot"].ToString();
+                                    pb.ID= t.Rows[0]["ID_LotView"].ToString();
+                                }
+
                             }
                         }
                         else
@@ -1165,13 +1212,16 @@ namespace Bankom.Class
                                 pb.comboBox.Text = control.Rows[e.RowIndex].Cells[i].Value.ToString();
                                 DataTable myt = (DataTable)control.DataSource;
                                 if (pb.cIzborno == pb.cTabela)
+                                {
                                     if (myt.Columns.Contains("ID_" + pb.cAlijasTabele))
                                         pb.ID = myt.Rows[e.RowIndex]["ID_" + pb.cAlijasTabele].ToString();
-                                    else
-                                    {
-                                        if (pb.cIzborno.Trim() != "" && myt.Columns.Contains("ID_" + pb.cIzborno))
-                                            pb.ID = myt.Rows[e.RowIndex]["ID_" + pb.cIzborno].ToString();
-                                    }
+                                }
+                                else
+                                {
+                                    if (pb.cIzborno.Trim() != "" && myt.Columns.Contains("ID_" + pb.cIzborno))
+                                        pb.ID = myt.Rows[e.RowIndex]["ID_" + pb.cIzborno].ToString();
+                                }
+
 
                                 break;
                             case "datum":
@@ -1729,6 +1779,7 @@ namespace Bankom.Class
         }
     }
 }
+
 
 
 
