@@ -615,9 +615,13 @@ namespace Bankom
                 }
             }
             SrediFormu();
-            //jovana 24.12.2020.
-            clsRefreshForm rf = new clsRefreshForm();
-            rf.refreshform();
+
+            //zajedno 30.12.2020.
+            if (!b.Contains("print")) {
+                //jovana 24.12.2020.
+                clsRefreshForm rf = new clsRefreshForm();
+                rf.refreshform();
+            }
         }
 
         public void itemB1_click(string imetula)  // zahtev za zatvaranje  forme klikom na tipku izlaz
