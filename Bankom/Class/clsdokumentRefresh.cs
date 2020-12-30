@@ -159,7 +159,7 @@ namespace Bankom.Class
                 tud = t.Rows[i]["TUD"].ToString();
                 tUpit = t.Rows[i]["Upit"].ToString();
                 brredova = Convert.ToInt32(t.Rows[i]["MaxHeight"]);
-                DokumentJe = ((Bankom.frmChield)forma).DokumentJe.ToString();
+               // DokumentJe = ((Bankom.frmChield)forma).DokumentJe.ToString();
                 if (tud == "1")
                     ((Bankom.frmChield)forma).BrRedova = brredova;
 
@@ -178,11 +178,12 @@ namespace Bankom.Class
                     ((Bankom.frmChield)forma).statusStrip1.Visible = false;// NEMA PAGING
                 else
                     ((Bankom.frmChield)forma).statusStrip1.Visible = true;//IMA PAGING
+                 //    ovde je bila greska 30.12.20. otklonile smo if
+                if (/*!*/(((Bankom.frmChield)forma).Controls.Find(tIme, true).FirstOrDefault() is DataGridView dv))
 
-                if (!(((Bankom.frmChield)forma).Controls.Find(tIme, true).FirstOrDefault() is DataGridView dv))
-                    //ovde je greska 30.12.20.
-                    MessageBox.Show("Greska ne postoji grid");
-                else // postoji grid                     
+        
+                //    MessageBox.Show("Greska ne postoji grid");
+                ///*else*/ // postoji grid                     
                 {
                     if (((Bankom.frmChield)forma).statusStrip1.Visible == true)
                     {

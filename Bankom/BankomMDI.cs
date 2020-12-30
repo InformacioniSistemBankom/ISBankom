@@ -615,8 +615,9 @@ namespace Bankom
                 }
             }
             SrediFormu();
-            if (!b.Contains("print"))
-            {
+
+            //zajedno 30.12.2020.
+            if (!b.Contains("print")) {
                 //jovana 24.12.2020.
                 clsRefreshForm rf = new clsRefreshForm();
                 rf.refreshform();
