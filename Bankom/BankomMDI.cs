@@ -1830,10 +1830,10 @@ namespace Bankom
         private void Pprekid_Click(object sender, EventArgs e)
         {
             Form activeChild = this.ActiveMdiChild;
-           
+            activeChild.Controls["OOperacija"].Text = "PREKID";
             if (activeChild != null)
             {
-                activeChild.Controls["OOperacija"].Text = "";
+                
                 activeChild.FormBorderStyle = FormBorderStyle.None;
                 
                 if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
@@ -1841,6 +1841,7 @@ namespace Bankom
                 fi.ObrisiZaglavljeIStavkePoljaZaUnos();
                 clsRefreshForm rf = new clsRefreshForm();
                 rf.refreshform();
+                activeChild.Controls["OOperacija"].Text = "";
 
             }
             else
