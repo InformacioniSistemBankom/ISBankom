@@ -63,15 +63,15 @@ namespace Bankom.Class
                             //pb.dtp.Format = DateTimePickerFormat.Custom;
                             break;
                         case "combo":
-                         
-                            if (operacija == "PREGLED")
+
+                            if (operacija == "PREGLED" || operacija == "PREKID")
                             {
                                 pb.ID = "1";
                                 pb.cIzborno = row["izborno"].ToString();
                                 pb.comboBox.Enabled = true;
                                 pb.comboBox.Text = "";
                             }
-                            
+
                             break;
                     }
                 }
