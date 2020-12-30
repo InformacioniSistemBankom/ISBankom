@@ -1267,36 +1267,36 @@ namespace Bankom.Class
                         if (Operacija == "IZMENA" && ((Bankom.frmChield)forma).idReda == -1) { goto ProveriStanje; }
                     }
                     break;
-                case "LotPDVInternaDostavnica":
-                    pnazivpolja = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPolja").label.Text;
-                    nazivpolja = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPolja").Vrednost;
-                    nazivskliz = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivSklIzlaz").Vrednost;
-                    sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpolja + "' And NazivSkl='" + nazivskliz + "'";
-                    t = db.ReturnDataTable(sql);
-                    if (t.Rows.Count == 0)
-                    {
-                        MessageBox.Show("Pogresna vrednost: " + nazivpolja + " za  polje:" + pnazivpolja);
-                        Vrati = false;
-                        return (Vrati);
-                    }
-                    else
-                    {
-                      
-                        string nazivpoljaulaz = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPoljaUlaz").Vrednost;
-                        
-                        string pnazivpoljaulaz = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPoljaUlaz").label.Text;
-                        nazivsklU = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivSklUlaz").Vrednost;
-                        sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpoljaulaz + "' And NazivSkl='" + nazivsklU + "'";
-                        t = db.ReturnDataTable(sql);
-                        if (t.Rows.Count == 0)
-                        {
-                            MessageBox.Show("Pogresna vrednost: " + nazivpoljaulaz + " za polje:" + pnazivpoljaulaz);
-                            Vrati = false;
-                            return (Vrati);
-                        }
-                    }
+                //case "LotPDVInternaDostavnica":
+                //    pnazivpolja = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPolja").label.Text;
+                //    nazivpolja = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPolja").Vrednost;
+                //    nazivskliz = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivSklIzlaz").Vrednost;
+                //    sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpolja + "' And NazivSkl='" + nazivskliz + "'";
+                //    t = db.ReturnDataTable(sql);
+                //    if (t.Rows.Count == 0)
+                //    {
+                //        MessageBox.Show("Pogresna vrednost: " + nazivpolja + " za  polje:" + pnazivpolja);
+                //        Vrati = false;
+                //        return (Vrati);
+                //    }
+                //    else
+                //    {
 
-                    break;
+                //        string nazivpoljaulaz = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPoljaUlaz").Vrednost;
+
+                //        string pnazivpoljaulaz = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPoljaUlaz").label.Text;
+                //        nazivsklU = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivSklUlaz").Vrednost;
+                //        sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpoljaulaz + "' And NazivSkl='" + nazivsklU + "'";
+                //        t = db.ReturnDataTable(sql);
+                //        if (t.Rows.Count == 0)
+                //        {
+                //            MessageBox.Show("Pogresna vrednost: " + nazivpoljaulaz + " za polje:" + pnazivpoljaulaz);
+                //            Vrati = false;
+                //            return (Vrati);
+                //        }
+                //    }
+
+                //    break;
                 case "LotInterniNalogZaRobu":
                 case "LotPDVInterniNalogZaRobu":
                 case "LotOtpremnica":        //   Or NazivKlona = "LotPrijemnica" Or NazivKlona = "LotPDVDostavnicaUMaloprodaju" Then

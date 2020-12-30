@@ -46,7 +46,6 @@ namespace Bankom.Class
                 Field pb = (Field)Program.Parent.ActiveMdiChild.Controls[row["polje"].ToString()];
                 if (pb != null)
                 {
-                    //pb.ID = "1";
                     pb.Vrednost = "";
                     pb.cEnDis = "";
                     switch (pb.VrstaKontrole)
@@ -64,12 +63,13 @@ namespace Bankom.Class
                             //pb.dtp.Format = DateTimePickerFormat.Custom;
                             break;
                         case "combo":
-                            pb.comboBox.Text = "";
+                         
                             if (operacija == "PREGLED")
                             {
                                 pb.ID = "1";
                                 pb.cIzborno = row["izborno"].ToString();
                                 pb.comboBox.Enabled = true;
+                                pb.comboBox.Text = "";
                             }
                             
                             break;
