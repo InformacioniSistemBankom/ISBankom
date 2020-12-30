@@ -22,8 +22,9 @@ namespace Bankom.Class
             forma = Program.Parent.ActiveMdiChild;
             //string dokje,string imestabla,string ime,string idstablo,string ident)
             string supit = "";
-            string dokje = forma.Controls["ldokje"].Text;
             string imestabla = forma.Controls["limestabla"].Text;
+            string dokje = forma.Controls["ldokje"].Text;
+           
             string ident = forma.Controls["liddok"].Text;
             string idstablo = forma.Controls["lidstablo"].Text;
             string ime = forma.Controls["limedok"].Text;
@@ -37,6 +38,7 @@ namespace Bankom.Class
                     tw.ObradaStabla(forma, "1", imestabla, dokje);
                     break;
                 case "S":
+                    if (idstablo == "1") { break; }
                     clsObradaStablaStipa procs = new clsObradaStablaStipa();
                     supit = procs.Proces(imestabla, ime, Convert.ToInt32(idstablo));
                     if (supit.Trim() != "")
