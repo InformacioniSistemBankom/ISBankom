@@ -180,6 +180,7 @@ namespace Bankom.Class
                     ((Bankom.frmChield)forma).statusStrip1.Visible = true;//IMA PAGING
 
                 if (!(((Bankom.frmChield)forma).Controls.Find(tIme, true).FirstOrDefault() is DataGridView dv))
+                    //ovde je greska 30.12.20.
                     MessageBox.Show("Greska ne postoji grid");
                 else // postoji grid                     
                 {
