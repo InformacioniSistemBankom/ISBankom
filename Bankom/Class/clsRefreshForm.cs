@@ -38,6 +38,7 @@ namespace Bankom.Class
                     tw.ObradaStabla(forma, "1", imestabla, dokje);
                     break;
                 case "S":
+                    if (idstablo == "1") { break; }
                     clsObradaStablaStipa procs = new clsObradaStablaStipa();
                     supit = procs.Proces(imestabla, ime, Convert.ToInt32(idstablo));
                     if (supit.Trim() != "")
