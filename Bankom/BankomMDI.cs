@@ -3148,6 +3148,8 @@ namespace Bankom
                 //SrediFormu();
                 ToolStripTextBox item = sender as ToolStripTextBox;
                 BrziPristup(item);
+                //30.12.2020.
+                toolStripTextBox1.Text = "";
             }
         }
 
