@@ -382,7 +382,8 @@ namespace Bankom.Class
 
             Console.WriteLine(sel);
             DataTable t2 = db.ParamsQueryDT(sel, tud, dokument);
-            for (int i = 0; i < dv.ColumnCount; i++)
+            // zajedno 4.1.2021. bilo je     for (int i = 0; i < dv.ColumnCount; i++)
+            for (int i = 0; i < t2.Rows.Count; i++)
             {
                 //Djora 26.09.20
                 //double ofset = Program.RacioWith * 1.3333333333333333;
