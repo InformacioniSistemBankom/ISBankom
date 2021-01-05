@@ -638,12 +638,14 @@ namespace Bankom.Class
         {
             CcalculatedVal cv = new CcalculatedVal();
             clsEvaluation cev = new clsEvaluation();
+            DataBaseBroker db = new DataBaseBroker();
 
             string KojaValuta;
             KojaValuta = "RSD";
             string KojePolje;
             double mvrednost = 0;
             string formula = "";
+            Dictionary<string, string> Broj = new Dictionary<string, string>();
 
             foreach (var pb in forma.Controls.OfType<Field>())
             {
@@ -662,6 +664,7 @@ namespace Bankom.Class
                         if (pb.Vrednost.Trim() != "")
                         {
                             pb.textBox.Text = Convert.ToString(float.Parse(rez.ToString()).ToString("###,##0.00"));
+
                         }
                     }
                 }
@@ -702,7 +705,10 @@ namespace Bankom.Class
                                 if (mvrednost != 0)
                                 {
                                     Console.WriteLine(mvrednost);
-                                    pb.textBox.Text = cv.Slovima(mvrednost, KojaValuta);
+                                    // pb.textBox.Text = cv.Slovima(mvrednost, KojaValuta);
+                                    // jovana 05.01.21
+                                    Broj =  db.ExecuteStoreProcedure("BrojSlovima", "KojiBroj:" + mvrednost, "KojaValuta:"+ KojaValuta, "Slovima:") ;
+                                    pb.textBox.Text = Broj["@Slovima"].Trim();
                                 }
                             }
                         }
