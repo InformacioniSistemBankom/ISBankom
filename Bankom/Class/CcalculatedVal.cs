@@ -85,6 +85,178 @@ namespace Bankom.Class
             return (gotov);
         }    
 
+        public string slova2 (double KojiBroj, string KojaValuta)
+        {
+            string slova = "";
+         //ako je broj negativan
+            if (KojiBroj < 0)
+            {
+                slova = "minus ";
+                KojiBroj = KojiBroj * -1;
+            }
+            
+            string str = KojiBroj.ToString();
+            char[] broj = str.ToCharArray();
+
+            if (str.Contains(","))
+            {
+                MessageBox.Show("ne radi");
+            }
+            //poslednje dve cifre su uvek posle decimalnog zareza 
+            string ostatak = broj[str.Length - 2].ToString();
+            ostatak += broj[str.Length - 1].ToString();
+            
+            int brojac = str.Length - 2;
+
+            string Jedinica = "";
+            if (brojac > 0)
+            {
+                if (brojac > 1)
+                {
+                    string pom = broj[brojac - 2].ToString();
+                    pom += broj[brojac - 1].ToString();
+
+                    if (Convert.ToInt32(pom) > 20)
+                    {
+                        DataTable upit = db.ReturnDataTable("Select DESETICA from Brojevi Where BR=" + broj[brojac - 2]);
+                        Jedinica = upit.Rows[0][0].ToString();
+
+                        DataTable upit1 = db.ReturnDataTable("Select JEDINICA from Brojevi Where BR=" + broj[brojac - 1]);
+                        Jedinica += upit1.Rows[0][0].ToString();
+                    }
+                    else
+                    {
+                        DataTable upit = db.ReturnDataTable("Select JEDINICA from Brojevi Where BR=" + pom);
+                        Jedinica = upit.Rows[0][0].ToString();
+                    }
+                }
+                else
+                {
+                    DataTable upit1 = db.ReturnDataTable("Select JEDINICA from Brojevi Where BR=" + broj[brojac - 1]);
+                    Jedinica = upit1.Rows[0][0].ToString();
+                }
+
+                brojac = brojac - 2;
+            }
+
+            string Sto = "";
+            if (brojac > 0)
+            {
+                DataTable upit = db.ReturnDataTable("Select STOTINA from Brojevi Where BR=" + broj[brojac - 1]);
+                Sto = upit.Rows[0][0].ToString();
+
+                brojac--;
+            }
+
+            string Hiljade = "";
+            if (brojac > 0)
+            {
+                if (brojac > 1)
+                {
+                    string pom = broj[brojac - 2].ToString();
+                    pom += broj[brojac - 1].ToString();
+
+                    if (Convert.ToInt32(pom) >= 20)
+                    {
+                        DataTable upit = db.ReturnDataTable("Select DESETICA from Brojevi Where BR=" + broj[brojac - 2]);
+                        Hiljade = upit.Rows[0][0].ToString();
+
+                        DataTable upit1 = db.ReturnDataTable("Select HILJADA from Brojevi Where BR=" + broj[brojac - 1]);
+                        Hiljade += upit1.Rows[0][0].ToString();
+
+                        if (Hiljade == "hiljada")
+                            Hiljade = "";
+                    }
+                    else
+                    {
+                        DataTable upit = db.ReturnDataTable("Select HILJADA from Brojevi Where BR=" + pom);
+                        Hiljade = upit.Rows[0][0].ToString();
+                        if (Hiljade == "hiljada")
+                            Hiljade = "";
+                    }
+                }
+                else
+                {
+                    DataTable upit = db.ReturnDataTable("Select HILJADA from Brojevi Where BR=" + broj[brojac - 1]);
+                    Hiljade = upit.Rows[0][0].ToString();
+                    if (Hiljade == "hiljada")
+                        Hiljade = "";
+                }
+                brojac = brojac - 2;
+            }
+
+            string StoHiljada = "";
+            if (brojac > 0)
+            {
+                DataTable upit = db.ReturnDataTable("Select STOTINA from Brojevi Where BR=" + broj[brojac - 1]);
+                StoHiljada = upit.Rows[0][0].ToString();
+
+                brojac--;
+            }
+
+            string Milion = "";
+            if (brojac > 0)
+            {
+                if (brojac > 1)
+                {
+                    string pom = broj[brojac - 2].ToString();
+                    pom += broj[brojac - 1].ToString();
+
+                    if (Convert.ToInt32(pom) > 20)
+                    {
+                        DataTable upit = db.ReturnDataTable("Select DESETICA from Brojevi Where BR=" + broj[brojac - 2]);
+                        Milion = upit.Rows[0][0].ToString();
+
+                        DataTable upit1 = db.ReturnDataTable("Select MILION from Brojevi Where BR=" + broj[brojac - 1]);
+                        Milion += upit1.Rows[0][0].ToString();
+                    }
+                    else
+                    {
+                        DataTable upit = db.ReturnDataTable("Select MILION from Brojevi Where BR=" + pom);
+                        Milion = upit.Rows[0][0].ToString();
+                    }
+                }
+                else
+                {
+                    DataTable upit = db.ReturnDataTable("Select MILION from Brojevi Where BR=" + broj[brojac - 1]);
+                    Milion = upit.Rows[0][0].ToString();
+                }
+
+                brojac = brojac - 2;
+
+            }
+            
+            string StoMiliona = "";
+            if (brojac > 0)
+            {
+                DataTable upit = db.ReturnDataTable("Select STOTINA from Brojevi Where BR=" + broj[brojac - 1]);
+                StoMiliona = upit.Rows[0][0].ToString();
+
+                brojac--;
+            }
+
+            string Milijardu = "";
+            if (brojac > 0)
+            {
+                DataTable upit = db.ReturnDataTable("Select MILIJARDA from Brojevi Where BR=" + broj[brojac - 1]);
+                Milijardu = upit.Rows[0][0].ToString();
+
+                brojac--;
+            }
+
+            slova += Milijardu;
+            slova += StoMiliona;
+            slova += Milion;
+            slova += StoHiljada;
+            slova += Hiljade;
+            slova += Sto;
+            slova += Jedinica;
+            slova += " "+KojaValuta+" ";
+            slova += ostatak + "/100";
+
+            return slova;
+        }
+
         public string Slovima(double KojiBroj, string KojaValuta)
         {
             double U = KojiBroj;
@@ -225,7 +397,12 @@ namespace Bankom.Class
 
             double aaaa = Mod2(U, 100);
             //if (Mod2(U, 100) != 0)
-            //{                
+            //{   
+            if (Broj < 0)
+            {
+                sSlovima = string.Concat("minus"," ",sSlovima, " ", "RSD ", Convert.ToString(aaaa), "/100 ");
+            }
+            else
             sSlovima = string.Concat(sSlovima, " ", "RSD ", Convert.ToString(aaaa), "/100 ");
             //}
             //else
