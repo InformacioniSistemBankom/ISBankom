@@ -707,9 +707,8 @@ namespace Bankom.Class
                                     Console.WriteLine(mvrednost);
                                     // pb.textBox.Text = cv.Slovima(mvrednost, KojaValuta);
                                     // jovana 05.01.21
-                                    pb.textBox.Text = cv.slova2(mvrednost,KojaValuta);
-                                    //Broj =  db.ExecuteStoreProcedure("BrojSlovima", "KojiBroj:" + mvrednost, "KojaValuta:"+ KojaValuta, "Slovima:") ;
-                                    //pb.textBox.Text = Broj["@Slovima"].Trim();
+                                    Broj =  db.ExecuteStoreProcedure("BrojSlovima", "KojiBroj:" + mvrednost, "KojaValuta:"+ KojaValuta, "Slovima:") ;
+                                    pb.textBox.Text = Broj["@Slovima"].Trim();
                                 }
                             }
                         }
