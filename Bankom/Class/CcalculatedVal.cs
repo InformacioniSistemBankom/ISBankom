@@ -87,7 +87,9 @@ namespace Bankom.Class
 
         public string Slovima(double KojiBroj, string KojaValuta)
         {
-            double U = KojiBroj;
+            //Jovana 05.01.21
+            double U = Math.Abs(KojiBroj);
+           // double U =  KojiBroj;
             double Broj;
             double Ost;
             double CeoDeo;
@@ -137,10 +139,10 @@ namespace Bankom.Class
                     }
                     else
                     {
-                        if (sSlovima.Length > 8 && sSlovima.Substring(0, 7) == "hiljada")
-                            sSlovima = string.Concat(Pretraga.Rows[0][k].ToString(), sSlovima.Substring(7));
-                        else
-                            sSlovima = string.Concat(Pretraga.Rows[0][k].ToString(), sSlovima);
+                        //Jovana 05.01.21
+                        if (sSlovima.IndexOf("hiljada") == 0)
+                            sSlovima = sSlovima.Substring(7, sSlovima.Length - 7);
+                        sSlovima = string.Concat(Pretraga.Rows[0][k].ToString(), sSlovima);
                     }
                 }
                 else
@@ -229,16 +231,16 @@ namespace Bankom.Class
 
             double aaaa = Math.Abs(KojiBroj)%100;
             //if (Mod2(U, 100) != 0)
-            //{   
+            //{                
             sSlovima = string.Concat(sSlovima, " ", "RSD ", Convert.ToString(aaaa), "/100 ");
             //}
             //else
             //{
             //sSlovima = string.Concat(sSlovima, " ", "RSD", " 0/100");
             //}
-
-            return minus + sSlovima;
-        }
+    
+                    return sSlovima;
+        } 
         private double Mod2(double aa, double bb)
         {
             double mMod;

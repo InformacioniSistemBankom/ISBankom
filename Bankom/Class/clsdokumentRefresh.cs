@@ -388,8 +388,8 @@ namespace Bankom.Class
                 //Djora 26.09.20
                 //double ofset = Program.RacioWith * 1.3333333333333333;
                 double ofset = Program.RacioWith;
-                Console.WriteLine(sel);
-                Console.WriteLine(t2.Rows[i]["Format"].ToString());
+                // Console.WriteLine(sel);
+                //Console.WriteLine(t2.Rows[i]["Format"].ToString());
                 int sirina = (int)Convert.ToDouble(Convert.ToDouble(t2.Rows[i]["WidthKolone"].ToString()) * ofset);
                 if (sirina == 0)
                     dv.Columns[i].Visible = false;
@@ -663,7 +663,10 @@ namespace Bankom.Class
                         pb.Vrednost = Convert.ToString(rez);
                         if (pb.Vrednost.Trim() != "")
                         {
-                            pb.textBox.Text = Convert.ToString(float.Parse(rez.ToString()).ToString("###,##0.00"));
+                            //pb.textBox.Text = Convert.ToString(float.Parse(rez.ToString()).ToString("###,##0.00"));
+                            //Jovana 05.01.21
+                            clsFormInitialisation fi = new clsFormInitialisation();
+                            pb.textBox.Text = fi.FormatirajPolje(rez.ToString(), pb.cTip);
 
                         }
                     }
@@ -701,14 +704,16 @@ namespace Bankom.Class
                         {
                             if (ct.Vrednost.Trim() != "")
                             {
-                                mvrednost = Convert.ToDouble(ct.Vrednost) * 100;
+                                mvrednost = Convert.ToDouble(ct.Vrednost)*100;
+                                // jovana 05.01.21
+                                mvrednost = Convert.ToInt32(mvrednost);
                                 if (mvrednost != 0)
                                 {
                                     Console.WriteLine(mvrednost);
-                                    //pb.textBox.Text = cv.Slovima(mvrednost, KojaValuta);
+                                     pb.textBox.Text = cv.Slovima(mvrednost, KojaValuta);
                                     // jovana 05.01.21
-                                    Broj =  db.ExecuteStoreProcedure("BrojSlovima", "KojiBroj:" + mvrednost, "KojaValuta:"+ KojaValuta, "Slovima:") ;
-                                    pb.textBox.Text = Broj["@Slovima"].Trim();
+                                    //Broj =  db.ExecuteStoreProcedure("BrojSlovima", "KojiBroj:" + mvrednost, "KojaValuta:"+ KojaValuta, "Slovima:") ;
+                                    //pb.textBox.Text = Broj["@Slovima"].Trim();
                                 }
                             }
                         }
