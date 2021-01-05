@@ -705,7 +705,7 @@ namespace Bankom.Class
                                 if (mvrednost != 0)
                                 {
                                     Console.WriteLine(mvrednost);
-                                    // pb.textBox.Text = cv.Slovima(mvrednost, KojaValuta);
+                                    //pb.textBox.Text = cv.Slovima(mvrednost, KojaValuta);
                                     // jovana 05.01.21
                                     Broj =  db.ExecuteStoreProcedure("BrojSlovima", "KojiBroj:" + mvrednost, "KojaValuta:"+ KojaValuta, "Slovima:") ;
                                     pb.textBox.Text = Broj["@Slovima"].Trim();
