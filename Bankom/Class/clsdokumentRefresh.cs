@@ -706,7 +706,7 @@ namespace Bankom.Class
                             {
                                 mvrednost = Convert.ToDouble(ct.Vrednost)*100;
                                 // jovana 05.01.21
-                                mvrednost = Convert.ToInt32(mvrednost);
+                                mvrednost = Convert.ToInt64(mvrednost);
                                 if (mvrednost != 0)
                                 {
                                     Console.WriteLine(mvrednost);
