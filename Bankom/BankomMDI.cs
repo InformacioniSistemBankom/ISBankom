@@ -615,9 +615,16 @@ namespace Bankom
                 }
             }
             SrediFormu();
-            //jovana 24.12.2020.
-            clsRefreshForm rf = new clsRefreshForm();
-            rf.refreshform();
+
+            ////zajedno 30.12.2020.
+          
+       
+            if (b.Substring(0, 1).All(char.IsDigit))
+            {
+                //jovana 24.12.2020.
+                clsRefreshForm rf = new clsRefreshForm();
+                rf.refreshform();
+            }
         }
 
         public void itemB1_click(string imetula)  // zahtev za zatvaranje  forme klikom na tipku izlaz
@@ -1826,10 +1833,10 @@ namespace Bankom
         private void Pprekid_Click(object sender, EventArgs e)
         {
             Form activeChild = this.ActiveMdiChild;
-           
+            activeChild.Controls["OOperacija"].Text = "PREKID";
             if (activeChild != null)
             {
-                activeChild.Controls["OOperacija"].Text = "";
+                
                 activeChild.FormBorderStyle = FormBorderStyle.None;
                 
                 if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
@@ -1837,6 +1844,7 @@ namespace Bankom
                 fi.ObrisiZaglavljeIStavkePoljaZaUnos();
                 clsRefreshForm rf = new clsRefreshForm();
                 rf.refreshform();
+                activeChild.Controls["OOperacija"].Text = "";
 
             }
             else
@@ -3140,6 +3148,8 @@ namespace Bankom
                 //SrediFormu();
                 ToolStripTextBox item = sender as ToolStripTextBox;
                 BrziPristup(item);
+                //30.12.2020.
+                toolStripTextBox1.Text = "";
             }
         }
 
