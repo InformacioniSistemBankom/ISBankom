@@ -83,158 +83,180 @@ namespace Bankom.Class
             }
             Console.WriteLine(gotov);
             return (gotov);
-        }    
+        }
 
         public string Slovima(double KojiBroj, string KojaValuta)
         {
-            double U = KojiBroj;
-            double Broj;
-            double Ost;
-            double CeoDeo;
-            double Ceo;
-            double Ostatak;
-            int k;
-            double OstOst;
-            double CeoOst;
-            double pom;
-            string sSlovima = "";
+            //SqlConnection con1 = new SqlConnection(Program.connectionString);
+            //if (con1.State == ConnectionState.Closed) { con1.Open(); }
+            //SqlCommand cmd = new SqlCommand();
+            //cmd.Connection = con1;
+            //cmd.CommandText = "dbo.BrojSlovima";
+            //cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.Parameters.AddWithValue("@KojiBroj", KojiBroj);
+            //cmd.Parameters.AddWithValue("@KojaValuta", KojaValuta);
+            //Console.WriteLine(cmd.Parameters["@KojiBroj"].Value.ToString());
 
-            CeoDeo = (U - (Mod2(U, 100))) / 100;
-            if (CeoDeo < 0)
-            {
-                Broj = -1 * CeoDeo;
-            }
-            else
-            {
-                Broj = CeoDeo;
-            }
-            Ost = Mod2(U, 100);
-            Ceo = (Broj - (Mod2(Broj, 1000))) / 1000;       
-            k = 1;
-            Ostatak = Mod2(Broj, 1000);
+            //var returnParameter = cmd.Parameters.Add("@Slovima", SqlDbType.NVarChar);
+            //returnParameter.Direction = ParameterDirection.ReturnValue;
+            //cmd.ExecuteNonQuery();
+            //return cmd.Parameters["@Slovima"].Value.ToString();
 
-            do
-            {
-                OstOst = Mod2(Ostatak, 100);
-                CeoOst = (Ostatak - (Mod2(Ostatak, 100))) / 100;
-                if (OstOst < 10)
-                {
-                    DataTable Pretraga = db.ReturnDataTable("Select * from Brojevi Where BR=" + OstOst.ToString());
-                    if (k == 1)
-                    {
-                        if (OstOst == 1)
-                        {
-                            sSlovima = Pretraga.Rows[0][k].ToString();
-                        }
-                        else
-                        {
-                            if (OstOst != 0)
-                            {
-                                sSlovima = Pretraga.Rows[0][k].ToString();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        sSlovima = string.Concat(Pretraga.Rows[0][k].ToString(), sSlovima);
-                    }
-                }
-                else
-                {
-                    if (OstOst < 20 && OstOst > 10)
-                    {
-                        DataTable Pretraga = db.ReturnDataTable("Select * from Brojevi Where BR=" + OstOst.ToString());
-                        if (k == 1)
-                        {
-                            sSlovima = Pretraga.Rows[0]["JEDINICA"].ToString();
-                        }
-                        else
-                        {
-                            sSlovima = string.Concat(Pretraga.Rows[0][k].ToString(), sSlovima);
-                        }
-                    }
-                    else
-                    {
-                        if (k == 1)
-                        {
-                            pom = Mod2(OstOst, 10);
-                            if (pom != 0)
-                            {
-                                DataTable Pretraga1 = db.ReturnDataTable("Select * from Brojevi Where BR=" + pom.ToString());
-                                //if (pom == 1)
-                                //{
-                                //    sSlovima = Pretraga1.Rows[0][k].ToString();
-                                //}
-                                //else
-                                //{
-                                    sSlovima = (Pretraga1.Rows[0][k].ToString());
-                                //}
-                            }
-                            pom = (OstOst - (Mod2(OstOst, 10))) / 10;
-                            DataTable Pretraga2 = db.ReturnDataTable("Select * from Brojevi Where BR=" + pom.ToString());
-                            sSlovima = string.Concat(Pretraga2.Rows[0]["DESETICA"].ToString(), sSlovima);/// Pretraga!desetica + sSlovima
-                        }
-                        else
-                        {
-                            pom = Mod2(OstOst, 10);
-                            if (pom != 0)
-                            {
-                                DataTable Pretraga3 = db.ReturnDataTable("Select * from Brojevi Where BR=" + pom.ToString());
-                                sSlovima = string.Concat(Pretraga3.Rows[0][k].ToString(), sSlovima);
-                            }
-                            pom = ((OstOst - (Mod2(OstOst, 10))) / 10);
-                            //DataTable Pretraga5 = db.ReturnDataTable("Select * from Brojevi Where BR=" + pom.ToString());
-                            if (k != 1 && (Mod2(OstOst, 10)) == 0)
-                            {
-                                DataTable Pretraga6 = db.ReturnDataTable("Select * from Brojevi Where BR=0");
-                                sSlovima = string.Concat(Pretraga6.Rows[0][k].ToString(), sSlovima);
-                            }
-                            DataTable Pretraga = db.ReturnDataTable("Select * from Brojevi Where BR=" + pom.ToString());
-                            sSlovima = string.Concat(Pretraga.Rows[0]["DESETICA"].ToString(), sSlovima);
-                        }
-                    }
-                }
-                if (CeoOst == -1)
-                {
-                    CeoOst = 0;
-                }
-                if (CeoOst != 0)
-                {
-                    DataTable Pretraga = db.ReturnDataTable("Select * from Brojevi Where BR=" + CeoOst.ToString());
-                    sSlovima = string.Concat(Pretraga.Rows[0]["STOTINA"].ToString(), sSlovima);
-                }
-                if (k == 1)
-                {
-                    k = k + 3;
-                }
-                else
-                {
-                    if (k == 4)
-                    {
-                        k = k + 1;
-                    }
-                    else
-                    {
-                        k = 1;
-                    }
-                }
-                Broj = Ceo;
-                Ostatak = Mod2(Ceo, 1000);
-                Ceo = (Ceo - (Mod2(Ceo, 1000))) / 1000;
-            } while (Broj != 0);  // kraj do while
+            var rez = db.ExecuteStoreProcedure("dbo.BrojSlovima", KojiBroj, KojaValuta);
+           return rez.ToString();
+            
+        }
+        //var rez = db.ExecuteStoreProcedure("dbo.BrojSlovima",KojiBroj,KojaValuta);
+        //string sSlovima = rez.ToString();
 
-            double aaaa = Mod2(U, 100);
-            //if (Mod2(U, 100) != 0)
-            //{                
-            sSlovima = string.Concat(sSlovima, " ", "RSD ", Convert.ToString(aaaa), "/100 ");
-            //}
-            //else
-            //{
-            //sSlovima = string.Concat(sSlovima, " ", "RSD", " 0/100");
-            //}
-    
-                    return sSlovima;
-        } 
+        //double U = KojiBroj;
+        //double Broj;
+        //double Ost;
+        //double CeoDeo;
+        //double Ceo;
+        //double Ostatak;
+        //int k;
+        //double OstOst;
+        //double CeoOst;
+        //double pom;
+        //string sSlovima = "";
+
+        //CeoDeo = (U - (Mod2(U, 100))) / 100;
+        //if (CeoDeo < 0)
+        //{
+        //    Broj = -1 * CeoDeo;
+        //}
+        //else
+        //{
+        //    Broj = CeoDeo;
+        //}
+        //Ost = Mod2(U, 100);
+        //Ceo = (Broj - (Mod2(Broj, 1000))) / 1000;       
+        //k = 1;
+        //Ostatak = Mod2(Broj, 1000);
+
+        //do
+        //{
+        //    OstOst = Mod2(Ostatak, 100);
+        //    CeoOst = (Ostatak - (Mod2(Ostatak, 100))) / 100;
+        //    if (OstOst < 10)
+        //    {
+        //        DataTable Pretraga = db.ReturnDataTable("Select * from Brojevi Where BR=" + OstOst.ToString());
+        //        if (k == 1)
+        //        {
+        //            if (OstOst == 1)
+        //            {
+        //                sSlovima = Pretraga.Rows[0][k].ToString();
+        //            }
+        //            else
+        //            {
+        //                if (OstOst != 0)
+        //                {
+        //                    sSlovima = Pretraga.Rows[0][k].ToString();
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            sSlovima = string.Concat(Pretraga.Rows[0][k].ToString(), sSlovima);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (OstOst < 20 && OstOst > 10)
+        //        {
+        //            DataTable Pretraga = db.ReturnDataTable("Select * from Brojevi Where BR=" + OstOst.ToString());
+        //            if (k == 1)
+        //            {
+        //                sSlovima = Pretraga.Rows[0]["JEDINICA"].ToString();
+        //            }
+        //            else
+        //            {
+        //                sSlovima = string.Concat(Pretraga.Rows[0][k].ToString(), sSlovima);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (k == 1)
+        //            {
+        //                pom = Mod2(OstOst, 10);
+        //                if (pom != 0)
+        //                {
+        //                    DataTable Pretraga1 = db.ReturnDataTable("Select * from Brojevi Where BR=" + pom.ToString());
+        //                    //if (pom == 1)
+        //                    //{
+        //                    //    sSlovima = Pretraga1.Rows[0][k].ToString();
+        //                    //}
+        //                    //else
+        //                    //{
+        //                        sSlovima = (Pretraga1.Rows[0][k].ToString());
+        //                    //}
+        //                }
+        //                pom = (OstOst - (Mod2(OstOst, 10))) / 10;
+        //                DataTable Pretraga2 = db.ReturnDataTable("Select * from Brojevi Where BR=" + pom.ToString());
+        //                sSlovima = string.Concat(Pretraga2.Rows[0]["DESETICA"].ToString(), sSlovima);/// Pretraga!desetica + sSlovima
+        //            }
+        //            else
+        //            {
+        //                pom = Mod2(OstOst, 10);
+        //                if (pom != 0)
+        //                {
+        //                    DataTable Pretraga3 = db.ReturnDataTable("Select * from Brojevi Where BR=" + pom.ToString());
+        //                    sSlovima = string.Concat(Pretraga3.Rows[0][k].ToString(), sSlovima);
+        //                }
+        //                pom = ((OstOst - (Mod2(OstOst, 10))) / 10);
+        //                //DataTable Pretraga5 = db.ReturnDataTable("Select * from Brojevi Where BR=" + pom.ToString());
+        //                if (k != 1 && (Mod2(OstOst, 10)) == 0)
+        //                {
+        //                    DataTable Pretraga6 = db.ReturnDataTable("Select * from Brojevi Where BR=0");
+        //                    sSlovima = string.Concat(Pretraga6.Rows[0][k].ToString(), sSlovima);
+        //                }
+        //                DataTable Pretraga = db.ReturnDataTable("Select * from Brojevi Where BR=" + pom.ToString());
+        //                sSlovima = string.Concat(Pretraga.Rows[0]["DESETICA"].ToString(), sSlovima);
+        //            }
+        //        }
+        //    }
+        //    if (CeoOst == -1)
+        //    {
+        //        CeoOst = 0;
+        //    }
+        //    if (CeoOst != 0)
+        //    {
+        //        DataTable Pretraga = db.ReturnDataTable("Select * from Brojevi Where BR=" + CeoOst.ToString());
+        //        sSlovima = string.Concat(Pretraga.Rows[0]["STOTINA"].ToString(), sSlovima);
+        //    }
+        //    if (k == 1)
+        //    {
+        //        k = k + 3;
+        //    }
+        //    else
+        //    {
+        //        if (k == 4)
+        //        {
+        //            k = k + 1;
+        //        }
+        //        else
+        //        {
+        //            k = 1;
+        //        }
+        //    }
+        //    Broj = Ceo;
+        //    Ostatak = Mod2(Ceo, 1000);
+        //    Ceo = (Ceo - (Mod2(Ceo, 1000))) / 1000;
+        //} while (Broj != 0);  // kraj do while
+
+        //double aaaa = Mod2(U, 100);
+        ////if (Mod2(U, 100) != 0)
+        ////{                
+        //sSlovima = string.Concat(sSlovima, " ", "RSD ", Convert.ToString(aaaa), "/100 ");
+        ////}
+        ////else
+        ////{
+        ////sSlovima = string.Concat(sSlovima, " ", "RSD", " 0/100");
+        ////}
+
+        //return sSlovima;
+        //} 
         private double Mod2(double aa, double bb)
         {
             double mMod;
