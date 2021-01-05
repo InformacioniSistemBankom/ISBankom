@@ -233,6 +233,7 @@ namespace Bankom.Class
             //{                
             sSlovima = string.Concat(sSlovima, " ", KojaValuta, " ", Convert.ToString(aaaa), "/100 ");
             //Jovana 05.01.21
+            //
             if (KojiBroj < 0)
                 sSlovima = "minus " + sSlovima;
 
