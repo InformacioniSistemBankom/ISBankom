@@ -524,7 +524,8 @@ namespace Bankom.Class
                     {
                         if (dt.Columns[k].ColumnName.ToUpper().ToString().Contains("ID_") == false)
                         {
-                            Field ctrls = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == dt.Columns[k].ColumnName.ToString());
+                            Field ctrls = (Field)forma.Controls[dt.Columns[k].ColumnName];
+                            //Field ctrls = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == dt.Columns[k].ColumnName.ToString());
                             if (ctrls != null)
                             {
                                 ctrls.ID = "1";
