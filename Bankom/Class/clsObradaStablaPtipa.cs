@@ -27,7 +27,8 @@ namespace Bankom.Class
              //((Bankom.frmChield)form1).toolStripTexIme.Text = Dokument;
             mselect = "Select Upit From Upiti Where ime='GgRr" + Dokument + "StavkeView'";
             Console.WriteLine(mselect);
-            DataTable tu = db.ReturnDataTable(mselect);        
+            DataTable tu = db.ReturnDataTable(mselect);    
+            //if (tu.Rows.Count )
             sselect = tu.Rows[0]["Upit"].ToString();           
             
             if (sselect.ToUpper().Contains("WHERE") == true)
