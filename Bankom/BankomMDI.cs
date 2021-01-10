@@ -298,10 +298,9 @@ namespace Bankom
 
             //tamara 22.10.2020.
             ToolBar.Enabled = true;
-           
+            Console.WriteLine("ivana");
             clsObradaMenija obradaMenija = new clsObradaMenija(this);
             obradaMenija.CreateMenu();
-            SrediFormu();
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
