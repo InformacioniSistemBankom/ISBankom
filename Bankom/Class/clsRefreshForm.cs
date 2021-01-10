@@ -22,8 +22,9 @@ namespace Bankom.Class
             forma = Program.Parent.ActiveMdiChild;
             //string dokje,string imestabla,string ime,string idstablo,string ident)
             string supit = "";
-            string dokje = forma.Controls["ldokje"].Text;
             string imestabla = forma.Controls["limestabla"].Text;
+            string dokje = forma.Controls["ldokje"].Text;
+           
             string ident = forma.Controls["liddok"].Text;
             string idstablo = forma.Controls["lidstablo"].Text;
             string ime = forma.Controls["limedok"].Text;
