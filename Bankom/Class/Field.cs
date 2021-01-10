@@ -911,7 +911,7 @@ namespace Bankom.Class
                                 if (pb.cTip == 25)
                                     uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + " Like N'%" + control.Text + "%'" + Restrikcija;
                                 else
-                                    uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + "='" + control.Text + "'" + Restrikcija;
+                                uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + "='" + control.Text + "'" + Restrikcija;
                                 Console.WriteLine(uuPIT);
                                 DataTable tt = db.ReturnDataTable(uuPIT);
                                 if (tt.Rows.Count > 0)
