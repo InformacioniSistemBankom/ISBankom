@@ -1089,10 +1089,10 @@ namespace Bankom.Class
                 string upit = "select NazivPolja from MagacinskaPoljaStavkeView where NazivSkl=@param0";
                 if(IME.Length==10)
                     rez = db.ParamsQueryDT(upit, Program.NazivSkladista);
-                else if (IME.Substring(10) == Program.nastavakSkladista1)
-                    rez = db.ParamsQueryDT(upit, Program.NazivSkladista1);
-                else
+                else if (IME.Substring(10) == Program.nastavakSkladista2)
                     rez = db.ParamsQueryDT(upit, Program.NazivSkladista2);
+                else
+                    rez = db.ParamsQueryDT(upit, Program.NazivSkladista1);
             }
             else if (Tip != 3)
             {
