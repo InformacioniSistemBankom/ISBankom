@@ -127,7 +127,7 @@ namespace Bankom.Class
             }     
                      
             cdr.refreshDokumentBody(forma,imedokumenta, IdDokView, dokje);
-            cdr.refreshDokumentGrid(forma,imedokumenta, IdDokView, "","", ""); 
+            cdr.refreshDokumentGrid(forma,imedokumenta, IdDokView, "","", dokje); 
 
 
             pd.ProveriDozvole(imedokumenta, Idstablo, IdDokView, dokje);
