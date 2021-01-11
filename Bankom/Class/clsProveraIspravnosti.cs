@@ -1325,44 +1325,45 @@ namespace Bankom.Class
                     }
                     break;
 
-                case "PrevodjenjeProizvoda":
-                    string starasifrau = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "StaraSifraU").Vrednost;
-                    string starasifra = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "StaraSifra").Vrednost;
-                     nazivpolja = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPolja").Vrednost;
-                    string nazivpoljau = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPoljaU").Vrednost;
-                    string pnazivpoljau = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPoljaU").label.Text;
-                    pnazivpolja = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPolja").label.Text;
-                    nazivskl = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivSkl").Vrednost;
-                    idr = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivSkl").ID;
-                    if (starasifra != starasifrau)
-                    {
-                        MessageBox.Show("Pogresno!!!! Nije dozvoljeno prevodjenje izmedju razlicitih artikala    KORISTITE NALOG ZA DORADU!!!");  // "razliciti artikli u prevodjenju", "OK"
-                        Vrati = false;
-                        return (Vrati);
-                    }
-                    if (Convert.ToInt32(idr) != 85)    /// 85= TUDJA ROBA NA SKLADISTU U 
-                    {
-                        sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpolja + "' And NazivSkl='" + nazivskl + "'";
-                        t = db.ReturnDataTable(sql);
-                        if (t.Rows.Count == 0)
-                        {
-                            MessageBox.Show("Pogresna vrednost: " + nazivpolja + " za polje:" + pnazivpolja);
-                            Vrati = false;
-                            return (Vrati);
-                        }
-                        else
-                        {
-                            sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpoljau + "' And NazivSkl='" + nazivskl + "'";
-                            t = db.ReturnDataTable(sql);
-                            if (t.Rows.Count == 0)
-                            {
-                                MessageBox.Show("Pogresna vrednost: " + nazivpoljau + " za polje:" + pnazivpoljau);
-                                Vrati = false;
-                                return (Vrati);
-                            }
-                        }
-                    }
-                    break;
+                //case "PrevodjenjeProizvoda":
+                //    string starasifrau = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "StaraSifraU").Vrednost;
+                //    string starasifra = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "StaraSifra").Vrednost;
+                //    //zajedno 11.1.2021.
+                //     nazivpolja = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPoljaU2").Vrednost;
+                //    string nazivpoljau = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPoljaU").Vrednost;
+                //    string pnazivpoljau = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPoljaU").label.Text;
+                //    pnazivpolja = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPoljaU2").label.Text;
+                //    nazivskl = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivSkl").Vrednost;
+                //    idr = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivSkl").ID;
+                //    if (starasifra != starasifrau)
+                //    {
+                //        MessageBox.Show("Pogresno!!!! Nije dozvoljeno prevodjenje izmedju razlicitih artikala    KORISTITE NALOG ZA DORADU!!!");  // "razliciti artikli u prevodjenju", "OK"
+                //        Vrati = false;
+                //        return (Vrati);
+                //    }
+                //    if (Convert.ToInt32(idr) != 85)    /// 85= TUDJA ROBA NA SKLADISTU U 
+                //    {
+                //        sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpolja + "' And NazivSkl='" + nazivskl + "'";
+                //        t = db.ReturnDataTable(sql);
+                //        if (t.Rows.Count == 0)
+                //        {
+                //            MessageBox.Show("Pogresna vrednost: " + nazivpolja + " za polje:" + pnazivpolja);
+                //            Vrati = false;
+                //            return (Vrati);
+                //        }
+                //        else
+                //        {
+                //            sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpoljau + "' And NazivSkl='" + nazivskl + "'";
+                //            t = db.ReturnDataTable(sql);
+                //            if (t.Rows.Count == 0)
+                //            {
+                //                MessageBox.Show("Pogresna vrednost: " + nazivpoljau + " za polje:" + pnazivpoljau);
+                //                Vrati = false;
+                //                return (Vrati);
+                //            }
+                //        }
+                //    }
+                //    break;
                 //  provera pripadnosti magacinskih polja KRAJ
 
                 //'''NALOGZARAZDUZENJEAMBALAZE pocetak

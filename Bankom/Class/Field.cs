@@ -775,7 +775,7 @@ namespace Bankom.Class
         }
         private void comboBox_DropDownClosed(object sender, EventArgs e)
         {
-            SendKeys.Send("{tab}");
+                        SendKeys.Send("{tab}");
         }
         private void comboBox_DropDown(object sender, EventArgs e)
         {
@@ -788,7 +788,7 @@ namespace Bankom.Class
             {
                 if (rez.Rows.Count != 0)
                 {
-                    for (int i = 0; i < rez.Rows.Count; i++)
+                    for (   int i = 0; i < rez.Rows.Count; i++)
                         if (rez.Rows[i][0].ToString().ToLower().Contains(control.Text.ToLower()))
                         {
                             control.Items.Add(rez.Rows[i][0]);
@@ -1087,12 +1087,12 @@ namespace Bankom.Class
             {
                 comboBox.Items.Clear();
                 string upit = "select NazivPolja from MagacinskaPoljaStavkeView where NazivSkl=@param0";
-                if(IME.Length==10)
-                    rez = db.ParamsQueryDT(upit, Program.NazivSkladista);
-                else if (IME.Substring(10) == Program.nastavakSkladista2)
-                    rez = db.ParamsQueryDT(upit, Program.NazivSkladista2);
+                if (Program.nastavakSkladista2 != "" && Program.NazivSkladista2!=null && IME.Substring(10).Contains(Program.nastavakSkladista2))
+                        rez = db.ParamsQueryDT(upit, Program.NazivSkladista2);
+                else if (Program.nastavakSkladista1 != "" && Program.NazivSkladista1 != null && IME.Substring(10).Contains(Program.nastavakSkladista1))
+                            rez = db.ParamsQueryDT(upit, Program.NazivSkladista1);
                 else
-                    rez = db.ParamsQueryDT(upit, Program.NazivSkladista1);
+                    rez = db.ParamsQueryDT(upit, Program.NazivSkladista);
             }
             else if (Tip != 3)
             {
