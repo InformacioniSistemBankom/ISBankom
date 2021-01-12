@@ -498,7 +498,7 @@ namespace Bankom
             for (int x = 0; x < dv.Count; x++)
             {
                 Console.WriteLine(Convert.ToString(dv[x][0]));
-                if (aliasDatabase[cmbBaze.SelectedItem.ToString()].Trim() == Convert.ToString(dv[x][0])) ;
+                if (aliasDatabase[cmbBaze.SelectedItem.ToString()].Trim() == Convert.ToString(dv[x][0])) 
                 {
                     strimebaze = Convert.ToString(dv[x][0]);
                     Program.NazivBaze = strimebaze;
