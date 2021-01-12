@@ -611,7 +611,7 @@ KrajTransakcije:
         //Primer sa Like klauzulom: DataTable ss = db22.ParamsQueryDT("SELECT NazivArtikla FROM dbo.Artikli WHERE(NazivArtikla like @param0) AND(ID_ArtikliStablo = @param1)", "%ban%", 1440);
         //Primer bez parametara: DataTable ss = db22.ParamsQueryDT("SELECT NazivArtikla FROM dbo.Artikli");
         public DataTable ParamsQueryDT(string query, params object[] args)
-        {
+                    {
             try
             {
                 var con = new SqlConnection(connstring);

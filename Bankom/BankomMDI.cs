@@ -2793,16 +2793,10 @@ namespace Bankom
                 string sselect;
                 string idke = Program.idkadar.ToString();
                 string idfirme = Program.idFirme.ToString();
-                sselect = "; WITH RekurzivnoStablo (ID_DokumentaStablo,Naziv, NazivJavni,Brdok,Vezan,RedniBroj,ccopy, Level,slave,pd,pp) AS "
-                       + "(SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.Brdok, e.Vezan,e.RedniBroj,e.ccopy,0 AS Level, CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
-                       + " PrikazDetaljaDaNe as pd,PrikazPo as pp"
-                       + " FROM DokumentaStablo AS e WITH (NOLOCK) "
-                       + " where Naziv in (select g.naziv from Grupa as g,KadroviIOrganizacionaStrukturaStavkeView as ko Where (KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura "
-                       + " Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija)  And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija=" + idke + " )"
-                       + "UNION ALL  SELECT e.ID_DokumentaStablo,e.Naziv,e.NazivJavni,e.BrDok,e.Vezan,e.RedniBroj, e.ccopy,Level +1 ,  CASE e.vrstacvora WHEN 'f' THEN 0 ELSE 1 END as slave, "
-                       + " PrikazDetaljaDaNe As pd, PrikazPo As pp  FROM DokumentaStablo  AS e WITH (NOLOCK) "
-                       + " INNER JOIN RekurzivnoStablo AS d  ON e.ID_DokumentaStablo = d.Vezan) "
-                       + " SELECT distinct NazivJavni FROM RekurzivnoStablo WITH(NOLOCK) where ccopy= 0 and NazivJavni like '%" + param0 +"%'";
+                //tamara 08.01.2021.s
+                sselect = "select distinct NazivJavni from DokumentaStablo where ccopy= 0 and VrstaCvora='d' and Naziv in "
+                +"(select g.naziv from Grupa as g,KadroviIOrganizacionaStrukturaStavkeView as ko Where (KO.ID_OrganizacionaStruktura = G.ID_OrganizacionaStruktura Or KO.id_kadrovskaevidencija = G.id_kadrovskaevidencija) "
+                +" And KO.ID_OrganizacionaStrukturaStablo = " + idfirme + " and ko.id_kadrovskaevidencija = " + idke + ") and NazivJavni like '%" + param0 +"%'";
 
                 var dr = db.ReturnDataReader(sselect);
 
@@ -2821,6 +2815,8 @@ namespace Bankom
                 //SrediFormu();
                 ToolStripTextBox item = sender as ToolStripTextBox;
                 BrziPristup(item);
+                //30.12.2020.
+                toolStripTextBox1.Text = "";
             }
         }
 
