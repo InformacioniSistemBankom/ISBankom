@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing.Printing;
+using System.IO;
 using System.Net;
+using System.Net.Mail;
 using System.Windows.Forms;
 
 namespace Bankom
@@ -72,8 +74,36 @@ namespace Bankom
 
             {
                 case "prn":
-                    putanja = "http://"+ LoginForm.ImeServera +"/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprn" + imefajla + "&rs:Command=Render" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + ParamZaStampu;
-                   
+                    //putanja = "http://"+ LoginForm.ImeServera +"/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprn" + imefajla + "&rs:Command=Render" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + ParamZaStampu;
+                    putanja = @"http://192.168.1.4/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprn" + imefajla + "&rs:Command=Render" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + ParamZaStampu;
+                    //putanja = "http://192.168.1.4/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprn" + imefajla + "&rs:Command=Render" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + "&id=" + intCurrentdok;
+
+                    ////Djora 11.01.21 poc --------------------------------
+                    WebClient client = new WebClient();
+                    client.UseDefaultCredentials = true;
+                    string putanjaPdf = "http://192.168.1.4/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprn" + imefajla + "&rs:Command=Render&rs:Format=PDF" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + ParamZaStampu;  // "&rs%3aFormat=PDF";
+
+                    byte[] bytes = client.DownloadData(putanjaPdf);
+                    MemoryStream ms = new MemoryStream(bytes);
+
+                    SmtpClient server = new SmtpClient("mail.bankom.rs");
+                    server.Credentials = new NetworkCredential("ivana.jelic@bankom.rs", "Bundorfo8&");
+                    MailMessage mail = new MailMessage();
+                    mail.From = new MailAddress("ivana.jelic@bankom.rs");
+                    mail.To.Add("tamara.martinovic@bankom.rs");
+                    mail.Subject = "Subject";
+                    mail.Body = "Body";
+                    //mail.BodyFormat = MailFormat.Html;
+                    mail.Attachments.Add(new Attachment(ms, "temp.pdf"));
+                    try
+                    {
+                        server.Send(mail);
+                    }
+                    catch (SmtpFailedRecipientException error)
+                    {
+                        MessageBox.Show("error: " + error.Message + "\nFailing recipient: " + error.FailedRecipient);
+                    }
+                    //Djora 11.01.21 kraj --------------------------------
 
                     break;
                 case "rpt":
@@ -125,7 +155,10 @@ namespace Bankom
             webBrowser1.ShowSaveAsDialog();
         }
 
-        
+        public void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
