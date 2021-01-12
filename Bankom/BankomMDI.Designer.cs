@@ -570,7 +570,6 @@ namespace Bankom
             this.toolStripMenuRefresh.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F5)));
             this.toolStripMenuRefresh.Size = new System.Drawing.Size(159, 22);
             this.toolStripMenuRefresh.Text = "Refresh";
-            //this.toolStripMenuRefresh.Click += new System.EventHandler(this.toolStripMenuRefresh_Click_1);
             // 
             // windowsMenu
             // 
@@ -1156,11 +1155,12 @@ namespace Bankom
             // 
             // toolStrip1
             // 
+            this.toolStrip1.AutoSize = false;
             this.toolStrip1.Font = new System.Drawing.Font("TimesRoman", 9F);
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Location = new System.Drawing.Point(0, 43);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1284, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1378, 25);
             this.toolStrip1.TabIndex = 34;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.Visible = false;

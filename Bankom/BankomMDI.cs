@@ -93,6 +93,8 @@ namespace Bankom
 
             for (int i = 0; i < a; i++)
             {
+                //08.01.2021. tamara
+                //toolStrip1.Items[i].Width = 10;
                 toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 if (toolStrip1.Items[i].Text == imedokumenta)
                 {
@@ -556,7 +558,7 @@ namespace Bankom
                 ToolStripLabel itemn = new ToolStripLabel();
                 ToolStripButton itemB = new ToolStripButton();
                 ToolStripSeparator itemnsep = new ToolStripSeparator();
-
+             
                 itemn.Text = item.Name;
                 itemn.Name = item.Name;
                 itemB.Image = global::Bankom.Properties.Resources.del12;
@@ -576,12 +578,14 @@ namespace Bankom
         {
             toolStripTextBox1.Text = "";
             string b = sender.ToString();
+          
             frmChield active = new frmChield();
             active.AutoScroll = true;
             active.FormBorderStyle= FormBorderStyle.None;
             int a = toolStrip1.Items.Count;
             for (int i = 0; i < a; i++)
             {
+               
                 toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 if (toolStrip1.Items[i].Text == b)
                 {

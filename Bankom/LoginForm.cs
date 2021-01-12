@@ -266,7 +266,7 @@ namespace Bankom
         //                    }
 
         //                }
-        //                CmbOrg.Text = strOrgDefaultText;
+        //                CmbOrg.Text = strOrgDefaultText; 
 
         //                break;
 
