@@ -20,7 +20,6 @@ using System.Data.SqlTypes;
 using Microsoft.VisualBasic.Compatibility;
 using Microsoft.VisualBasic;
 using System.Globalization;
-using Bankom.Class;
 using System.Threading;
 
 namespace Bankom
@@ -41,8 +40,7 @@ namespace Bankom
         }
         public void ShowNewForm(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
         {            
-            DataBaseBroker db = new DataBaseBroker();
-            string ss = "";
+            string ss;
             if (dokumentje == "D")
             {
                 ss = brojdokumenta; 
@@ -55,13 +53,11 @@ namespace Bankom
             odgovor = DalijevecOtvoren(dokumentje, brojdokumenta, imedokumenta);            //string ss;    
             if (odgovor == false) ///nije vec otvoren
             {
-
                 frmChield childForm = new frmChield();
                 childForm.MdiParent = this;
-                this.WindowState = FormWindowState.Maximized;
-
+                int sirina;
                 if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
-                int sirina = (Width / 100) * 10;
+                sirina = (Width / 100) * 10;
 
 
                 childForm.imedokumenta = imedokumenta;
@@ -80,12 +76,8 @@ namespace Bankom
                 
                 childForm.Show();
                 SrediFormu(); // BORKA OVO MORA OSTATI!!!!!!!!!!!!!!!!!
-
             }
-
-
             updateToolStrip(ss);
-
         }
         public void updateToolStrip(string imedokumenta)
         {
@@ -93,6 +85,8 @@ namespace Bankom
 
             for (int i = 0; i < a; i++)
             {
+                //08.01.2021. tamara
+                //toolStrip1.Items[i].Width = 10;
                 toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 if (toolStrip1.Items[i].Text == imedokumenta)
                 {
@@ -103,9 +97,7 @@ namespace Bankom
         public bool DalijevecOtvoren(string dokumentje, string brojdokumenta, string imedokumenta)
         {
             string ss;
-
             bool vrednost = true;
-
             foreach (Form f in Application.OpenForms)
             {
                 if (dokumentje == "D")
@@ -130,7 +122,6 @@ namespace Bankom
                     {
                         MessageBox.Show("Ova forma je već otvorena.");
                         f.Focus();
-
                         vrednost = true;
                         break;
                     }
@@ -140,46 +131,11 @@ namespace Bankom
                     }
                 }
             }
-
-
             return vrednost;
         }
-
-
-        //public void Latinica(string s)
-        //{
-        //    char[] niz = s.ToCharArray();
-        //    for(int i=0; i<niz.Length; i++)
-        //    {
-        //        if (niz[i] == '~')
-        //            niz[i] = 'č';
-        //        else if (niz[i] == '`')
-        //            niz[i] = 'ž';
-        //        else if (niz[i] == '\')
-        //            niz[i] = 'Đ';
-        //        else if (niz[i] == '{')
-        //            niz[i] = 'š';
-        //        else if (niz[i] == '}')
-        //            niz[i] = 'ć';
-        //        else if (niz[i] == '[')
-        //            niz[i] = 'Š';
-        //        else if (niz[i] == ']')
-        //            niz[i] = 'Ć';
-        //        else if (niz[i] == '|')
-        //            niz[i] = 'đ';
-        //        else if (niz[i] == '@')
-        //            niz[i] = 'Ž';
-        //        else if (niz[i] == '^')
-        //            niz[i] = 'Č';
-        //    }
-        //}
-
         public void addFormTotoolstrip1(Form forma, string imedokumenta)
         {
             //tamara 14.12.2020.
-            forma.FormBorderStyle = FormBorderStyle.None;
-
-            this.BackColor = System.Drawing.Color.Snow;
             toolStrip1.Visible = true;
             this.Width = Width - 20;
             ToolStripLabel itemn = new ToolStripLabel();
@@ -198,8 +154,6 @@ namespace Bankom
             toolStrip1.Items.Add(itemB);
             toolStrip1.Items.Add(itemnsep);
         }
-
-
         private void OpenFile(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -210,7 +164,6 @@ namespace Bankom
                 string FileName = openFileDialog.FileName;
             }
         }
-
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -221,16 +174,13 @@ namespace Bankom
                 string FileName = saveFileDialog.FileName;
             }
         }
-
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void CutToolStripMenuItem_Click(object sender, EventArgs e)
         {
         }
-
         private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
         {
         }
@@ -239,13 +189,10 @@ namespace Bankom
         {
 
         }
-
-
         private void StatusBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //statusStrip.Visible = statusBarToolStripMenuItem.Checked;
         }
-
         private void CascadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LayoutMdi(MdiLayout.Cascade);
@@ -265,33 +212,10 @@ namespace Bankom
         {
             LayoutMdi(MdiLayout.ArrangeIcons);
         }
-
-
-
-        //private void Dokumenta_Click(object sender, EventArgs e)
-        //{
-        //    string b = "Dokumenta";
-
-        //    for (int x = 0; x < toolStrip1.Items.Count; x++)
-        //    {
-        //        if (b == toolStrip1.Items[x].Name)
-        //            if (b == toolStrip1.Items[x].Name)
-        //            {
-        //                MessageBox.Show("Vec postoji");
-        //                return;
-        //            }
-        //    }
-        //    clsObradaOsnovnihSifarnika co = new clsObradaOsnovnihSifarnika();
-        //    string odgovor = co.FormatirajRacun("190-1360-78");
-
-        //    ShowNewForm("Dokumenta", 1, "Dokumenta", 1, "", "", "S", "", "TreeView");
-
-        //}
-      
         private void BankomMDI_Load(object sender, EventArgs e)
         {
-
-            this.Text = "ISBankom -" +Program.NazivOrg + "-" + Program.imekorisnika;
+            this.WindowState = FormWindowState.Maximized;
+            this.Text = "ISBankom - " +Program.NazivOrg + " - " + Program.imekorisnika;
             addKombo();
             clsSettingsButtons sb = new clsSettingsButtons();
             sb.ToolBarItemsEnDis();
@@ -335,11 +259,8 @@ namespace Bankom
             dv = ds.Tables[0].DefaultView;
             List<string> alphabet = new List<string>();
             int x1 = 0;
-
             do
             {
-
-
                 alphabet.Add(item: dv[x1][0].ToString());
                 //  alphabet.Add(item:  dv[x1][0].ToString());
 
@@ -444,10 +365,7 @@ namespace Bankom
                     }
                     str = sCirZ;
                     return str;
-
                 }
-
-
             }
             return str;
         }
@@ -521,7 +439,6 @@ namespace Bankom
             word = inputLat.Replace("Џ", "Dž");
             return word;
         }
-
         private void Menuitem_Click(object sender, EventArgs e)
         {
 
@@ -555,7 +472,7 @@ namespace Bankom
                 ToolStripLabel itemn = new ToolStripLabel();
                 ToolStripButton itemB = new ToolStripButton();
                 ToolStripSeparator itemnsep = new ToolStripSeparator();
-
+             
                 itemn.Text = item.Name;
                 itemn.Name = item.Name;
                 itemB.Image = global::Bankom.Properties.Resources.del12;
@@ -575,12 +492,14 @@ namespace Bankom
         {
             toolStripTextBox1.Text = "";
             string b = sender.ToString();
+          
             frmChield active = new frmChield();
             active.AutoScroll = true;
-            active.FormBorderStyle= FormBorderStyle.None;
+            active.FormBorderStyle = FormBorderStyle.None;
             int a = toolStrip1.Items.Count;
             for (int i = 0; i < a; i++)
             {
+               
                 toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 if (toolStrip1.Items[i].Text == b)
                 {
@@ -589,46 +508,37 @@ namespace Bankom
             }
 
             for (int x = 0; x < toolStrip1.Items.Count; x++)
-            {
-                // toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Regular); // regular font za sve tabove
-                if (toolStrip1.Items[x].Name == b)
-                {
-                    //toolStrip1.Items[x].Font = new Font(toolStripLogin.Font, FontStyle.Bold);
+            {                  
                     foreach (Form childForm in MdiChildren)
                     {
                         if (childForm.Text.ToUpper() == b.ToUpper())
                         {
                             childForm.FormBorderStyle = FormBorderStyle.None;
                             childForm.BackColor = System.Drawing.Color.Snow;
-                            
-                                childForm.Activate();
-                                childForm.Focus();
-                           
-                            
-                            //this.ActivateMdiChild(childForm);
+
+                            childForm.Activate();
+                            childForm.Focus();
+
                             childForm.LayoutMdi(MdiLayout.TileVertical);
                             childForm.WindowState = FormWindowState.Maximized;
                             break;
                         }
                     }
-                }
             }
             SrediFormu();
-
-            ////zajedno 30.12.2020.
-
-
-            if (b.Substring(0, 1).All(char.IsDigit))
-            {
-                //jovana 24.12.2020.
-                clsRefreshForm rf = new clsRefreshForm();
-                rf.refreshform();
-            }
+            //10.01.21 BORKA UMRTVILA  JER ZELIM DA SE KOD AKTIVACIJE FORME DOBIJEM IZGLED KAKAV JE BIO 
+            //KAD SAM FORMU NAPUSTILA NPR AKO SAM  SORTIRALA DOKUMENTA  DA OSTANU SORTIRANA
+            //zajedno 30.12.2020.
+            //if (!b.Contains("print")) 
+            //{
+            //    //jovana 24.12.2020.
+            //    clsRefreshForm rf = new clsRefreshForm();
+            //    rf.refreshform();
+            //}
         }
 
         public void itemB1_click(string imetula)  // zahtev za zatvaranje  forme klikom na tipku izlaz
         {
-            cf = imetula;
            toolStripTextBox1.Text = "";
             for (int j = 0; j < toolStrip1.Items.Count; j++)
             {
@@ -640,12 +550,9 @@ namespace Bankom
             }
 
             Form childForm1 = ActiveMdiChild;
-            childForm1.FormBorderStyle = FormBorderStyle.None;
-            childForm1.BackColor = System.Drawing.Color.Snow;
-            childForm1.Focus();
             childForm1.Visible = false;
             childForm1.Dispose();
-            string ime = imetula;
+
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
                 if (imetula == toolStrip1.Items[x].Name)
@@ -656,10 +563,13 @@ namespace Bankom
                     break;
                 }
             }
+            
+            
             if (toolStrip1.Items.Count == 0)
             {
                 toolStrip1.Visible = false;
-            }
+            }            
+
             SrediFormu();
         }
         public void itemB_click(object sender, EventArgs e)  // zahtev za zatvaranje forme klikom na tab
@@ -668,8 +578,6 @@ namespace Bankom
             ToolStripButton tb = sender as ToolStripButton;
             string b = tb.Name;
 
-
-            cf = b;
             toolStripTextBox1.Text = "";
             for (int j = 0; j < toolStrip1.Items.Count; j++)
             {
@@ -681,11 +589,9 @@ namespace Bankom
             }
 
             Form childForm1 = ActiveMdiChild;
-            
+            childForm1.Visible = false;
             childForm1.Dispose();
-            //childForm1.Visible = false;
-            
-            string ime = b;
+
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
                 if (b == toolStrip1.Items[x].Name)
@@ -707,7 +613,6 @@ namespace Bankom
         {
             toolStrip1.Items.Clear();
             toolStrip1.Visible = false;
-            //menuStrip1.Enabled = false;
             Program.IntLogovanje = -1;
             foreach (Form ChildForm in this.MdiChildren)
             {
@@ -731,75 +636,8 @@ namespace Bankom
 
         private void SrpskiCirilica_Click(object sender, EventArgs e)
         {
-            Program.ID_Jezik = 4;
-            IzborJezika.Text = "Српски-Ћирилица";
-            //if (this.Text != "")
-            //    VratiCirlilicu(this.Text);
-            //fileMenu.Text = "&Фасцикле";
-            //toolsMenu.Text = "&Алати";
-            //windowsMenu.Text = "&Прозори";
-            //OsnovniSifarnici.Text = "Основни шифарници";
-
-            //toolStripLogin.Text = "Логовање";
-            //KrajRada.Text = "Крај рада";
-            //// newWindowToolStripMenuItem.Text = "&Нови  Прозор";
-            //cascadeToolStripMenuItem.Text = "&Каскаде";
-            //tileVerticalToolStripMenuItem.Text = "Усправан приказ";
-            //tileHorizontalToolStripMenuItem.Text = "Водоравни приказ";
-            //closeAllToolStripMenuItem.Text = "З&атвори све";
-            //arrangeIconsToolStripMenuItem.Text = "&Распоред икона";
-            //DozvoleToolStripMenuItem.Text = "Дозвола";
-            //Sort.Text = "Разно";
-            //PeeisiToolStripMenuItem.Text = "Преноси";
-            //GodisnjeObradeToolStripMenuItem.Text = "Годишње Обраде";
-            //PocesiranjeToolStripMenuItem.Text = "Процесирање";
-            //IzvestajiIzStabla.Text = "Извештаји из стабала";
-            //Dokumenta.DropDownItems.Clear();
-            //Dokumenta.Text = VratiCirlilicu(Dokumenta.Text);
-
-            //PomocniSifarnici.DropDownItems.Clear();
-            //PomocniSifarnici.Text = VratiCirlilicu(PomocniSifarnici.Text);
-
-
-
-            //IzvestajiIzStabla.DropDownItems.Clear();
-            //IzvestajiIzStabla.Text = VratiCirlilicu(IzvestajiIzStabla.Text);
-
-            //PreuzimanjeRateKredita.Text = VratiCirlilicu(PreuzimanjeRateKredita.Text);
-            //PreuzimanjeManjkovaIViskova.Text = VratiCirlilicu(PreuzimanjeManjkovaIViskova.Text);
-            //PreuzimanjeUplataKupacaIzBanaka.Text = VratiCirlilicu(PreuzimanjeUplataKupacaIzBanaka.Text);
-            //PrenosNalogaNaPlacanje.Text = VratiCirlilicu(PrenosNalogaNaPlacanje.Text);
-            //PreuzimanjeIzvodaIzBanaka.Text = VratiCirlilicu(PreuzimanjeIzvodaIzBanaka.Text);
-            //PrepisNaplataIPlacanjaUIzvod.Text = VratiCirlilicu(PrepisNaplataIPlacanjaUIzvod.Text);
-            //FormiranjePPPPDZaPlate.Text = VratiCirlilicu(FormiranjePPPPDZaPlate.Text);
-            //UvozPlataUPlacanja.Text = VratiCirlilicu(UvozPlataUPlacanja.Text);
-            //FormiranjePPPPDZaPrevoz.Text = VratiCirlilicu(FormiranjePPPPDZaPrevoz.Text);
-            //UvozPrevozaUPlacanja.Text = VratiCirlilicu(UvozPrevozaUPlacanja.Text);
-            //PrenosiZaProdajnaMjesta.Text = VratiCirlilicu(PrenosiZaProdajnaMjesta.Text);
-            //FaktureRecepcijeZaOdabraneDatume.Text = VratiCirlilicu(FaktureRecepcijeZaOdabraneDatume.Text);
-            //FaktureRestoranaZaOdabraneDatume.Text = VratiCirlilicu(FaktureRestoranaZaOdabraneDatume.Text);
-            //Razduzenjesirovinazaodabraniintervaldatuma.Text = VratiCirlilicu(Razduzenjesirovinazaodabraniintervaldatuma.Text);
-            //FaktureRestoranaZaOdabraneDatume.Text = VratiCirlilicu(FaktureRestoranaZaOdabraneDatume.Text);
-
-
-            //ZatvaranjeStanjaPoLotu.Text = VratiCirlilicu(ZatvaranjeStanjaPoLotu.Text);
-            //PocetakGodine.Text = VratiCirlilicu(PocetakGodine.Text);
-            //UsaglasavanjeRobeIFinansija.Text = VratiCirlilicu(UsaglasavanjeRobeIFinansija.Text);
-            //KursnaListaZaCeluGodinu.Text = VratiCirlilicu(KursnaListaZaCeluGodinu.Text);
-            //PopunjavanjeTabeleDatuma.Text = VratiCirlilicu(PopunjavanjeTabeleDatuma.Text);
-            //ProcesirajeDnevnogiIzvestaja.Text = VratiCirlilicu(ProcesirajeDnevnogiIzvestaja.Text);
-            //ProcesiranjeBrutoBilansa.Text = VratiCirlilicu(ProcesiranjeBrutoBilansa.Text);
+            
         }
-
-        //private void tstbPretraga_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if (e.KeyCode != Keys.Enter)
-        //    {
-        //        return;
-        //    }
-        //    ToolStripTextBox item = sender as ToolStripTextBox;
-        //    BrziPristup(item);
-        //}
 
         public BankomMDI(string connectionString,
             IContainer components,
@@ -1245,75 +1083,8 @@ namespace Bankom
         private void SrpskiLatinica_Click(object sender, EventArgs e)
         {
             Program.ID_Jezik = 3;
-
             IzborJezika.Text = "Srpski-Latinica";
-
-            //if (this.Text != "")
-            //    VratiLatinicu(this.Text); // Me.Text = "Bankom"
-            //fileMenu.Text = "&Fascikle";
-            //toolsMenu.Text = "&Alati";
-            //windowsMenu.Text = "&Prozori";
-            //// HelpMenu.Text = "Pomoć"
-            //Dokumenta.Text = "Dokumenta";
-            //OsnovniSifarnici.Text = "Osnovni šifarnici";
-
-            //toolStripLogin.Text = "Logovanje";
-            //KrajRada.Text = "Kraj rada";
-            ////     newWindowToolStripMenuItem.Text = "&Novi prozor";
-            //cascadeToolStripMenuItem.Text = "&Kaskade";
-            //tileVerticalToolStripMenuItem.Text = "Uspravan prikaz";
-            //tileHorizontalToolStripMenuItem.Text = "Vodoravni prikaz";
-            //closeAllToolStripMenuItem.Text = "Z&atvori sve";
-            //arrangeIconsToolStripMenuItem.Text = "&Raspored ikona";
-            //DozvoleToolStripMenuItem.Text = "Dozvola";
-            //Sort.Text = "Razno";
-            //PeeisiToolStripMenuItem.Text = "Prenosi";
-            //GodisnjeObradeToolStripMenuItem.Text = "Godišnje Obrade";
-            //PocesiranjeToolStripMenuItem.Text = "Procesiranje";
-            //IzvestajiIzStabla.Text = "Izveštaji iz stabala";
-            //PomocniSifarnici.Text = "Pomoćni šifarnici";
-
-            //Dokumenta.DropDownItems.Clear();
-            //Dokumenta.Text = VratiLatinicu(Dokumenta.Text);
-
-            //PomocniSifarnici.DropDownItems.Clear();
-            //PomocniSifarnici.Text = VratiLatinicu(PomocniSifarnici.Text);
-
-
-            //IzvestajiIzStabla.DropDownItems.Clear();
-            //IzvestajiIzStabla.Text = VratiLatinicu(IzvestajiIzStabla.Text);
-
-
-            //PreuzimanjeRateKredita.Text = VratiLatinicu(PreuzimanjeRateKredita.Text);
-            //PreuzimanjeManjkovaIViskova.Text = VratiLatinicu(PreuzimanjeManjkovaIViskova.Text);
-            //PreuzimanjeUplataKupacaIzBanaka.Text = VratiLatinicu(PreuzimanjeUplataKupacaIzBanaka.Text);
-            //PrenosNalogaNaPlacanje.Text = VratiLatinicu(PrenosNalogaNaPlacanje.Text);
-            //PreuzimanjeIzvodaIzBanaka.Text = VratiLatinicu(PreuzimanjeIzvodaIzBanaka.Text);
-            //PrepisNaplataIPlacanjaUIzvod.Text = VratiLatinicu(PrepisNaplataIPlacanjaUIzvod.Text);
-            //FormiranjePPPPDZaPlate.Text = VratiLatinicu(FormiranjePPPPDZaPlate.Text);
-            //UvozPlataUPlacanja.Text = VratiLatinicu(UvozPlataUPlacanja.Text);
-            //FormiranjePPPPDZaPrevoz.Text = VratiLatinicu(FormiranjePPPPDZaPrevoz.Text);
-            //UvozPrevozaUPlacanja.Text = VratiLatinicu(UvozPrevozaUPlacanja.Text);
-            //PrenosiZaProdajnaMjesta.Text = VratiLatinicu(PrenosiZaProdajnaMjesta.Text);
-            //FaktureRecepcijeZaOdabraneDatume.Text = VratiLatinicu(FaktureRecepcijeZaOdabraneDatume.Text);
-            //FaktureRestoranaZaOdabraneDatume.Text = VratiLatinicu(FaktureRestoranaZaOdabraneDatume.Text);
-            //Razduzenjesirovinazaodabraniintervaldatuma.Text = VratiLatinicu(Razduzenjesirovinazaodabraniintervaldatuma.Text);
-            //FaktureRestoranaZaOdabraneDatume.Text = VratiLatinicu(FaktureRestoranaZaOdabraneDatume.Text);
-
-
-            //ZatvaranjeStanjaPoLotu.Text = VratiLatinicu(ZatvaranjeStanjaPoLotu.Text);
-            //PocetakGodine.Text = VratiLatinicu(PocetakGodine.Text);
-            //UsaglasavanjeRobeIFinansija.Text = VratiLatinicu(UsaglasavanjeRobeIFinansija.Text);
-            //KursnaListaZaCeluGodinu.Text = VratiLatinicu(KursnaListaZaCeluGodinu.Text);
-            //PopunjavanjeTabeleDatuma.Text = VratiLatinicu(PopunjavanjeTabeleDatuma.Text);
-            //ProcesirajeDnevnogiIzvestaja.Text = VratiLatinicu(ProcesirajeDnevnogiIzvestaja.Text);
-            //ProcesiranjeBrutoBilansa.Text = VratiLatinicu(ProcesiranjeBrutoBilansa.Text);
-
-
         }
-
-
-
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -1326,7 +1097,6 @@ namespace Bankom
         }
 
         private void pretragaToolStripMenuItem_Click(object sender, EventArgs e)
-
         {
 
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
@@ -1421,11 +1191,9 @@ namespace Bankom
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
                 if (b == toolStrip1.Items[x].Name)
-                    if (b == toolStrip1.Items[x].Name)
-                    {
+                { 
                         MessageBox.Show("Vec postoji");
-                        return;
-                    }
+                        return;                }
             }
             ShowNewForm("PomocniSifarnici", 1, "PomocniSifarnici", 1, "", "", "P", "", "TreeView");
 
@@ -1433,18 +1201,16 @@ namespace Bankom
 
 
         private void Artikli_Click(object sender, EventArgs e)
-
         {
             string b = "Artikli";
 
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
                 if (b == toolStrip1.Items[x].Name)
-                    if (b == toolStrip1.Items[x].Name)
-                    {
+                {
                         MessageBox.Show("Vec postoji");
                         return;
-                    }
+                }
             }
             ShowNewForm("Artikli", 1, "Artikli", 1, "", "", "S", "", "TreeView");
         }
@@ -1456,11 +1222,10 @@ namespace Bankom
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
                 if (b == toolStrip1.Items[x].Name)
-                    if (b == toolStrip1.Items[x].Name)
-                    {
+                {
                         MessageBox.Show("Vec postoji");
                         return;
-                    }
+                }
             }
             ShowNewForm("Izvestaj", 1, "Izvestaj", 1, "", "", "I", "", "TreeView");
         }
@@ -1472,11 +1237,10 @@ namespace Bankom
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
                 if (b == toolStrip1.Items[x].Name)
-                    if (b == toolStrip1.Items[x].Name)
-                    {
+                {
                         MessageBox.Show("Vec postoji");
                         return;
-                    }
+                }
             }
 
             ShowNewForm("Organizacionastruktura", 1, "Organizacionastruktura", 1, "", "", "S", "", "TreeView");
@@ -1489,11 +1253,10 @@ namespace Bankom
             for (int x = 0; x < toolStrip1.Items.Count; x++)
             {
                 if (b == toolStrip1.Items[x].Name)
-                    if (b == toolStrip1.Items[x].Name)
-                    {
+                {
                         MessageBox.Show("Vec postoji");
                         return;
-                    }
+                }
             }
             ShowNewForm("Komitenti", 1, "Komitenti", 1, "", "", "S", "", "TreeView");
         }
@@ -1815,9 +1578,6 @@ namespace Bankom
                 if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
                 activeChild.Controls["OOperacija"].Text = "PREGLED";
                 filter = "S";
-
-                //clsPregled clsP = new clsPregled();
-                //clsP.ObrisiZaglavljeIStavkePoljaZaUnos();
                 clsFormInitialisation fi = new clsFormInitialisation();
                 fi.ObrisiZaglavljeIStavkePoljaZaUnos();
                 fi.InitValues();
@@ -1980,7 +1740,7 @@ namespace Bankom
             
             if (this.IzborJezika.Text == "Српски-Ћирилица") { frmi.Text = this.VratiCirlilicu("Imenik"); }
             int sirina = (this.Width / 100) * 10;
-           this.addFormTotoolstrip1(frmi, "Imenik");
+            this.addFormTotoolstrip1(frmi, "Imenik");
             this.updateToolStrip("Imenik");
             frmi.StartPosition = FormStartPosition.CenterParent;
             frmi.Show();
@@ -1994,46 +1754,17 @@ namespace Bankom
             {
                 Form childForm = this.ActiveMdiChild;
                 itemB1_click(childForm.Text);
-                childForm.Close();
             }
             if (toolStrip1.Items.Count == 0)
             {
                 toolStrip1.Visible = false;
                 if (MessageBox.Show("Izlaz iz programa?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    toolStrip1.Visible = false;
+                    //toolStrip1.Visible = false;
                     Application.ExitThread();
                 }
+
             }
-
-            ////staro
-            
-            //foreach (Form childForm in this.MdiChildren)
-            //{
-            //    if (childForm == this.ActiveMdiChild)
-            //    {
-            //        itemB1_click(childForm.Text);
-            //        childForm.Close();
-
-            //        if (toolStrip1.Items.Count == 0)
-            //        {
-            //            toolStrip1.Visible = false;
-            //            if (MessageBox.Show("Izlaz iz programa ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //            {
-            //                toolStrip1.Visible = false;
-            //                Application.Exit();
-            //            }
-            //        }
-            //    }
-            //}
-            //if (toolStrip1.Items.Count == 0)
-            //{
-            //    toolStrip1.Visible = false;
-            //    if (MessageBox.Show("Izlaz iz programa ?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            //    {
-            //        Application.Exit();
-            //    }
-            //}
         }
         private void unospb_Click(object sender, EventArgs e)
         {
@@ -2151,60 +1882,7 @@ namespace Bankom
         private void SrpskiCirilica_Click_1(object sender, EventArgs e)
         {
             Program.ID_Jezik = 4;
-            IzborJezika.Text = "Српски-Ћирилица";
-
-            //if (this.Text != "")
-            //    VratiCirlilicu(this.Text);
-            //fileMenu.Text = "&Фасцикле";
-            //toolsMenu.Text = "&Алати";
-            //windowsMenu.Text = "&Прозори";
-            //OsnovniSifarnici.Text = "Основни шифарници";
-            //viewMenu.Text = "Поглед";
-            //toolStripLogin.Text = "Логовање";
-            //KrajRada.Text = "Крај рада";
-            //// newWindowToolStripMenuItem.Text = "&Нови  Прозор";
-            //cascadeToolStripMenuItem.Text = "&Каскаде";
-            //tileVerticalToolStripMenuItem.Text = "Усправан приказ";
-            //tileHorizontalToolStripMenuItem.Text = "Водоравни приказ";
-            //closeAllToolStripMenuItem.Text = "З&атвори све";
-            //arrangeIconsToolStripMenuItem.Text = "&Распоред икона";
-            //DozvoleToolStripMenuItem.Text = "Дозвола";
-            //Sort.Text = "Разно";
-            //PeeisiToolStripMenuItem.Text = "Преноси";
-            //GodisnjeObradeToolStripMenuItem.Text = "Годишње Обраде";
-            //PocesiranjeToolStripMenuItem.Text = "Процесирање";
-            //PomocniSifarnici.Text = "Помоћни шифарници";
-
-
-
-            //Dokumenta.DropDownItems.Clear();
-            //Dokumenta.Text = VratiCirlilicu(Dokumenta.Text);
-
-            //PreuzimanjeRateKredita.Text = VratiCirlilicu(PreuzimanjeRateKredita.Text);
-            //PreuzimanjeManjkovaIViskova.Text = VratiCirlilicu(PreuzimanjeManjkovaIViskova.Text);
-            //PreuzimanjeUplataKupacaIzBanaka.Text = VratiCirlilicu(PreuzimanjeUplataKupacaIzBanaka.Text);
-            //PrenosNalogaNaPlacanje.Text = VratiCirlilicu(PrenosNalogaNaPlacanje.Text);
-            //PreuzimanjeIzvodaIzBanaka.Text = VratiCirlilicu(PreuzimanjeIzvodaIzBanaka.Text);
-            //PrepisNaplataIPlacanjaUIzvod.Text = VratiCirlilicu(PrepisNaplataIPlacanjaUIzvod.Text);
-            //FormiranjePPPPDZaPlate.Text = VratiCirlilicu(FormiranjePPPPDZaPlate.Text);
-            //UvozPlataUPlacanja.Text = VratiCirlilicu(UvozPlataUPlacanja.Text);
-            //FormiranjePPPPDZaPrevoz.Text = VratiCirlilicu(FormiranjePPPPDZaPrevoz.Text);
-            //UvozPrevozaUPlacanja.Text = VratiCirlilicu(UvozPrevozaUPlacanja.Text);
-            //PrenosiZaProdajnaMjesta.Text = VratiCirlilicu(PrenosiZaProdajnaMjesta.Text);
-            //FaktureRecepcijeZaOdabraneDatume.Text = VratiCirlilicu(FaktureRecepcijeZaOdabraneDatume.Text);
-            //FaktureRestoranaZaOdabraneDatume.Text = VratiCirlilicu(FaktureRestoranaZaOdabraneDatume.Text);
-            //Razduzenjesirovinazaodabraniintervaldatuma.Text = VratiCirlilicu(Razduzenjesirovinazaodabraniintervaldatuma.Text);
-            //FaktureRestoranaZaOdabraneDatume.Text = VratiCirlilicu(FaktureRestoranaZaOdabraneDatume.Text);
-
-
-            //ZatvaranjeStanjaPoLotu.Text = VratiCirlilicu(ZatvaranjeStanjaPoLotu.Text);
-            //PocetakGodine.Text = VratiCirlilicu(PocetakGodine.Text);
-            //UsaglasavanjeRobeIFinansija.Text = VratiCirlilicu(UsaglasavanjeRobeIFinansija.Text);
-            //KursnaListaZaCeluGodinu.Text = VratiCirlilicu(KursnaListaZaCeluGodinu.Text);
-            //PopunjavanjeTabeleDatuma.Text = VratiCirlilicu(PopunjavanjeTabeleDatuma.Text);
-            //ProcesirajeDnevnogiIzvestaja.Text = VratiCirlilicu(ProcesirajeDnevnogiIzvestaja.Text);
-            //ProcesiranjeBrutoBilansa.Text = VratiCirlilicu(ProcesiranjeBrutoBilansa.Text);
-
+            IzborJezika.Text = "Српски-Ћирилица";            
         }
 
         private void statusBarToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -3458,10 +3136,6 @@ namespace Bankom
         
 
         }
-
-        
-
-        
     }
 }
 

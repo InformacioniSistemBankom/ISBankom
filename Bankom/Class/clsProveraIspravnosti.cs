@@ -19,7 +19,6 @@ namespace Bankom.Class
         DataTable t = new DataTable();
         DataTable tt = new DataTable();
         Form forma = new Form();
-        string Datum = "";
         string IDValuta = "1"; // ident valute iz sifarnikavaluta        
         string NazivKlona = "";
         int p = 0; //pozicija
@@ -935,7 +934,6 @@ namespace Bankom.Class
         }
         Boolean ProveriKurs(ref string Poruka)
         {
-            //Datum = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "Datum").Vrednost;
             if (ddokument == "KonacniUlazniRacun") kojidatum = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "DatumCarinjenja").Vrednost;
             else
             {
@@ -1024,11 +1022,13 @@ namespace Bankom.Class
             string NazivKlona = "";
             string SkladisteJe = "";
             string nazivpolja = "";
+            string nazivpolja1 = "";
             string pnazivpolja = "";
             string nazivskl = "";
             string idr = "";
-            string nazivskliz = "";
-            string nazivsklU = "";
+            int iid = -1;
+            //string nazivskliz = "";
+            //string nazivsklU = "";
             string lot = "";
             string Operacija = forma.Controls["OOperacija"].Text.ToUpper();
             sql = "Select UlazniIzlazni from SifarnikDokumenta Where Naziv=@param0"; /// + ddokument + "'";
@@ -1062,18 +1062,14 @@ namespace Bankom.Class
                             return (Vrati);
                         }
                     }
-                    rr = rr + 1;
+                    rr += 1;
                 } while (rr < t.Rows.Count);
             }
 
-            string mgrid = ((Bankom.frmChield)forma).imegrida;
-            int Tud=0;
-// Borka lot u LotNalogZaPoluproizvodStavkeView POCETAK
-            string iid = Convert.ToString(((Bankom.frmChield)forma).idReda);
-            if ((((Bankom.frmChield)forma).Controls.Find(mgrid, true).FirstOrDefault() is DataGridView dv))
+            string mgrid;   ///((Bankom.frmChield)forma).imegrida;
 
-            Tud = Convert.ToInt32(dv.Tag);
 
+// Borka lot u LotNalogZaPoluproizvodStavkeView POCETAK           
             string sqs = "";
             DataTable ts = new DataTable();
             switch (NazivKlona)

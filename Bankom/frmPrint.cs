@@ -142,20 +142,8 @@ namespace Bankom
 
             //System.Diagnostics.Process.Start(putanja);
            
-            webBrowser1.Navigate(putanja);
-           
-            
-        Izlaz:;
-
-        }
-
-       
-
-      
-    
-
-       
-
+            webBrowser1.Navigate(putanja);       
+        }   
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             webBrowser1.Print();

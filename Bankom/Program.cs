@@ -50,7 +50,9 @@ namespace Bankom
         public static string colname { get; set; }
         public static DataGridView activecontrol { get; set; }
 
+
         public static string connectionString = "Data Source=bankomw;Initial Catalog=BankomVeza;User ID=sa;password=password;";
+       // public static string connectionString = "Data Source=Borka;Initial Catalog=dbbbTestNew2003Bankom;User ID=sa;password=password;";
         public static string NazivRacunara = System.Environment.MachineName;
         public static string UserDomainName = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName;
 

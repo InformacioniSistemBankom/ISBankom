@@ -807,16 +807,16 @@ namespace Bankom.Class
                                         + " select @param0, r.ID_SirovinaView,0 as Kolicina, n.ID_NormativView "
                                         + " from NalogKooperantaSirovineStavke as n, ReceptiStavke as r "
                                         + " where n.id_normativview=r.id_DokumentaView and n.ID_DokumentaView=@param1";
-                                    DataTable dtp1 = db.ParamsQueryDT(sql, IdDokView, IdDokView);
                                 }
                                 else
                                 {
                                     sql = "insert into NalogKooperantaStavke(id_DokumentaView, ID_SirovinaView, Kolicina,ID_NormativView ) "
                                        + " select @param0, r.ID_SirovinaView,0 as Kolicina, n.ID_NormativView "
                                        + " from NalogKooperanta as n, ReceptiStavke as r "
-                                       + " where n.id_normativview=r.id_DokumentaView and n.ID_DokumentaView=@param1";
-                                    DataTable dtp1 = db.ParamsQueryDT(sql, IdDokView, IdDokView);
+                                       + " where n.id_normativview=r.id_DokumentaView and n.ID_DokumentaView=@param1";                                   
                                 }
+                                ////DataTable dtp1 = db.ParamsQueryDT(sql, IdDokView, IdDokView);
+                                ret = db.ParamsInsertScalar(sql, IdDokView, IdDokView);
                             }
                         }
 

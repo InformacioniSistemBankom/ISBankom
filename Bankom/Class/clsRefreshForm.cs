@@ -69,7 +69,6 @@ namespace Bankom.Class
                 default:
                     dr.refreshDokumentBody(forma, ime, ident, dokje);
                     dr.refreshDokumentGrid(forma, ime, ident, "", "", dokje);
-
                     break;
             }
 
