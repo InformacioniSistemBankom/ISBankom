@@ -523,7 +523,8 @@ namespace Bankom.Class
                     //dv.Height = (int)(theight);
                     dv.Height = (int)(theight * brredova);
 
-                    dv.Tag = ttud;
+                    //dv.Tag = ttud;
+                    dv.Tag = "-1";
                     dv.Name = tIme;
 
                     //Da  moze da se edituju celije
@@ -577,7 +578,7 @@ namespace Bankom.Class
 
                     //Djora 26.09.20
                     dv.Margin = new Padding(0, 0, 0, 0);
-
+                    VrstaKontrole = "grid";
                     Controls.Add(dv);
 
                     //Djora 08.07.20
@@ -911,7 +912,7 @@ namespace Bankom.Class
                                 if (pb.cTip == 25)
                                     uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + " Like N'%" + control.Text + "%'" + Restrikcija;
                                 else
-                                    uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + "='" + control.Text + "'" + Restrikcija;
+                                uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + "='" + control.Text + "'" + Restrikcija;
                                 Console.WriteLine(uuPIT);
                                 DataTable tt = db.ReturnDataTable(uuPIT);
                                 if (tt.Rows.Count > 0)
@@ -1184,15 +1185,14 @@ namespace Bankom.Class
                         {
                             if (control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString().Trim() != "")
                             {
-                                sel = " Select lot,ID_LotVieW from LotView where barkod='" + control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString() + "'";
+                                sel = " Select barkod,ID_LotVieW from LotView where barkod='" + control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString() + "'";
                                 Console.WriteLine(sel);
                                 t = db.ReturnDataTable(sel);
                                 if (t.Rows.Count > 0)
                                 {
-                                    pb.Vrednost = t.Rows[0]["lot"].ToString();
+                                    pb.Vrednost = t.Rows[0]["barkod"].ToString();
                                     pb.ID= t.Rows[0]["ID_LotView"].ToString();
                                 }
-
                             }
                         }
                         else
@@ -1250,6 +1250,7 @@ namespace Bankom.Class
                         iid = Convert.ToInt32(control.Rows[e.RowIndex].Cells[i].Value.ToString());
                         // jovana 04.11. grid tag napuni sa idreda
                         control.Tag = control.Rows[e.RowIndex].Cells[i].Value.ToString();
+                        ((Bankom.frmChield)forma).idReda = iid;
                     }
                 }
                 i++;
@@ -1277,13 +1278,12 @@ namespace Bankom.Class
             string mojestablo = Me.Controls["limestabla"].Text.Trim();
             int midstablo = Convert.ToInt32(Me.Controls["lidstablo"].Text);
 
-            ((Bankom.frmChield)Me).imegrida = control.Name; // borka 25.02.20 Substring(4, mGrid.Length - 4)
+            ((Bankom.frmChield)Me).imegrida = control.Name; 
             ((Bankom.frmChield)Me).idReda = middok;
             ((Bankom.frmChield)Me).brdok = mbrdok;
 
-            string ddatum = mdatum.ToString("dd.MM.yy");
-            string DokumentJe = "";
-            DokumentJe = ((Bankom.frmChield)Me).DokumentJe;
+            string ddatum = mdatum.ToString("dd.MM.yy");            
+            string DokumentJe = ((Bankom.frmChield)Me).DokumentJe;
             if (mojestablo == "Dokumenta" && DokumentJe == "S")
             {
                 ((Bankom.frmChield)Me).iddokumenta = middok;
@@ -1316,8 +1316,7 @@ namespace Bankom.Class
             dv.BackgroundColor = Color.AliceBlue;
             Form Me = Program.Parent.ActiveMdiChild;
 
-            string[] separators = new[] { "," };
-            string d1, d2;
+            string[] separators = new[] { "," };           
             Form novaforma = new Form();
 
             string vl, ll, sts, ss;
@@ -1705,51 +1704,16 @@ namespace Bankom.Class
                 string OperacijaDokumenta = "";
                 string Dokument = mdokument;
                 string Naslov = mNaslov;
-                int IdUpdateReda = -1;
-                int TUD = 0;
-
                 string PPrikaz = ts.Rows[0]["prikaz"].ToString();
                 string NacinRegistracije = ts.Rows[0]["NacinRegistracije"].ToString();
                 string NazivKlona = ts.Rows[0]["UlazniIzlazni"].ToString();
                 string DokumentJe = ts.Rows[0]["Vrsta"].ToString();
-
                 long IdDokView = 0;
                 if (DokumentJe == "I")
                     IdDokView = -1;
                 else
                     IdDokView = 0;
-
-
-
-                //     NovaForma Naslov
-
-                //     fform.Controls("OOperacija").Caption = OperacijaDokumenta
-                //     OsveziKontrole
-
-                //     Select Case Trim(mdokument)
-                //            Case "SpisakDokumenata"
-                //            On Error Resume Next
-                //                 fform.Controls("ctProknjizeno").Vrednost = "NijeProknjizeno"
-                //             On Error GoTo 0
-                //            Case "RealizacijaProdaje"
-                //                On Error Resume Next
-                //                fform.Controls("ctMesec").Vrednost = Month(Date)
-                //                fform.Controls("ctgodina").Vrednost = Year(Date)
-                //                On Error GoTo 0
-                //     End Select
-
-            }
-            else
-            {
-                //    If DokumentJe = "I" Then
-                //       MsgBox "Ne postoji odabrani izvestaj"
-                //    Else
-                //         MsgBox "Ne postoji odabrani sifarnik"
-                //    End If
-                //    On Error GoTo 0
-            }
-
-            //KRAJ:
+            }           
         }
 
         //Djora 26.09.20

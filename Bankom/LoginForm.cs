@@ -33,17 +33,17 @@ namespace Bankom
         public static string ImeServera;
         private int indexCurrentbaza = -1;
         private int indexOrgDefault = -1;
- 
+
         private Dictionary<string, string> aliasDatabase;
 
         public void changeDatabase(string nazivBaze)
         {
-            Program.connectionString = "Data Source=" + ImeServera +";Initial Catalog=" + aliasDatabase[nazivBaze] + ";User ID=sa;password=password;";
+            Program.connectionString = "Data Source=" + ImeServera + ";Initial Catalog=" + aliasDatabase[nazivBaze] + ";User ID=sa;password=password;";
             this.connectionString = Program.connectionString;
 
 
         }
-      
+
         private void password_Enter(object sender, EventArgs e)
         {
 
@@ -54,251 +54,11 @@ namespace Bankom
         {
             UsernameTextBox.Text = "";
         }
-        
-
-        //private void Obrada(string imebaze = "")
-
-        //{
-        //    strIzborBaze = "";
-        //    strOrgDefaultText = "";
-        //    strCurrentbaza = "";
-        //    cmbBaze.Text = imebaze;
-
-        //    strCurrentbaza = imebaze;
-
-        //    string usrnam = UsernameTextBox.Text;
-        //    var dv = new DataView();
-        //    lblBaza.Visible = false;
-        //    CmbOrg.Visible = false;
-        //    lblBaza.Visible = false;
-        //    cmbBaze.Visible = false;
-        //    cmbBaze.Items.Clear();
-        //    CmbOrg.Items.Clear();
-
-        //    if (usrnam != "")
-        //    {
-        //        //fileReader = File.ReadAllText(Application.StartupPath + @"\XmlLat\xxxx.ini");
-
-        //        var fileReader = File.ReadAllText(@"\\BANKOMW\Repozitorijum\ISBankom\XXXX\xxxx.ini");
-        //        string[] separators11 = new[] { "[", "]" };
-
-        //        int n = 0;
-
-        //        string struser = usrnam;
-        //        string strobrada = "";
-        //        string[] words = fileReader.Split(separators11, StringSplitOptions.RemoveEmptyEntries);
-        //        for (n = 0; n < words.Length; n++)
-        //        {
-        //            string cc = words[n].ToLower();
-
-        //            if (strobrada != "")
-        //            {
-        //                strobrada = words[n];
-        //                break;
-
-        //            }
-
-        //            if (cc == struser)
-        //            {
-        //                strobrada = words[n];
-
-        //            }
-        //        }
-
-        //        //  char[] separators = { '#','=' };
-        //        char[] separators = { '#' };
-        //        strobrada = strobrada.Replace("\r\n", "#").Replace("\r", "").Replace("\n", "");
-
-
-        //        var result = strobrada.Split(separators, StringSplitOptions.None);
-        //        //strIzborBaze statusbaze
-        //        //strCurrentbaza defaultna baza.
-
-        //        //strIzborOrganizacionogDela = status org deo
-        //        // strOrgDefaultText = defaultna org deo
-        //        for (n = 0; n < result.Length; n++)
-        //        {
-        //            if (result[n] != "")
-        //            {
-
-        //                if (result[n].Contains("Baza1") == true)
-        //                {
-
-        //                    if (strCurrentbaza == "") strCurrentbaza = result[n].Substring(result[n].IndexOf("=") + 1);
-        //                }
-
-
-        //                if (result[n] == "IzborBaze=1")
-        //                {
-        //                    strIzborBaze = result[n];
-
-
-
-        //                }
-                        
-
-        //                if (result[n] == "IzborOrganizacionogDela=1") { strIzborOrganizacionogDela = result[n]; }
-
-
-        //                if (result[n].Length > 4 && result[n].Substring(0, 4) == "Baza")
-        //                {
-
-        //                    if (strIzborBaze == "IzborBaze=1" && strCurrentbaza == "")
-        //                    {
-        //                        strCurrentbaza = result[n].Substring(result[n].IndexOf("=") + 1);
-        //                    }
-
-
-        //                }
-        //                if ((result[n].Length > 15 && result[n].Substring(0, 16) == "OrganizacioniDeo"))
-        //                {
-        //                    strOrgDefaultText = result[n].Substring(result[n].IndexOf("=") + 1);
-        //                    //break;
-        //                }
-        //            }
-        //        }
-        //        if (strIzborBaze == "IzborBaze=1")  // ako je 1 puni combo
-        //        {
-
-        //            var con1 = new SqlConnection(Program.connectionString);
-        //            if (con1.State == ConnectionState.Closed) { con1.Open(); }
-
-
-        //            var cmd = new SqlCommand();
-        //            var da = new SqlDataAdapter();
-
-        //            cmd.Connection = con1;
-        //            cmd.CommandText = "listaDB";
-        //            cmd.Parameters.Add("@imebaze", SqlDbType.VarChar, 100).Value = imebaze;
-        //            cmd.CommandType = CommandType.StoredProcedure;
-
-
-
-        //            da.SelectCommand = cmd;
-        //            da.Fill(dtUlaz);
-
-
-        //            string[] tobeDistinct = { "DatabaseName" };
-        //            DataTable dtDistinct = GetDistinctRecords(dtUlaz, tobeDistinct);
-
-        //            for (int p = 0; p < dtDistinct.Rows.Count; p++)
-        //            {
-        //                if (dtDistinct.Rows[p][0].ToString() != "")
-        //                    if (dtDistinct.Rows[p][0].ToString() == strCurrentbaza)
-        //                        indexCurrentbaza = p;
-        //                cmbBaze.Items.Add(dtDistinct.Rows[p][0].ToString());
-        //                aliasDatabase.Add(dtDistinct.Rows[p][0].ToString(), dtDistinct.Rows[p][0].ToString());
-
-        //            }
-
-        //        }
-
-        //        if (strIzborOrganizacionogDela == "IzborOrganizacionogDela=1") // puni combo za org
-        //        {
-
-
-        //            string[] TobeDistinct = { "Naziv" };
-        //            DataTable dtDistinct = GetDistinctRecords(dtUlaz, TobeDistinct);
-        //            CmbOrg.Items.Clear();
-
-        //            for (int p = 0; p < dtDistinct.Rows.Count; p++)
-        //            {
-        //                if (dtDistinct.Rows[p][0].ToString() == strOrgDefaultText)
-        //                    indexOrgDefault = p;
-        //                if (dtDistinct.Rows[p][0].ToString() != "")
-        //                    CmbOrg.Items.Add(dtDistinct.Rows[p][0].ToString());
-
-        //            }
-
-        //        }
-        //        DataTable drr = new DataTable();
-        //        cmbBaze.Visible = false;
-        //        CmbOrg.Visible = false;
-
-        //        switch (strIzborBaze)
-        //        {
-        //            case "":
-        //                cmbBaze.Items.Clear();
-        //                break;
-
-        //            case "IzborBaze=1":
-        //                lblBaza.Visible = true;
-        //                cmbBaze.Visible = true;
-        //                cmbBaze.SelectedIndex = indexCurrentbaza;
-
-        //                break;
-
-        //        }
-        //        switch (strIzborOrganizacionogDela)
-        //        {
-        //            case "":
-        //                CmbOrg.Items.Clear();
-        //                break;
-
-        //            case "IzborOrganizacionogDela=1":
-        //                lblGrupa.Visible = true;
-        //                CmbOrg.Visible = true;
-        //                CmbOrg.SelectedIndex = indexOrgDefault;
-
-
-        //                DataTable IdOrg = DB.ReturnDataTable(" select o.*,os.NazivJavni as Firma ,os.NazivStampaca, os.PutanjaStampaca,os.Pib from OrganizacionaStruktura as o WITH (NOLOCK) ,organizacionastrukturastablo os WITH (NOLOCK)  where o.Naziv='" + strOrgDefaultText + "' And o.ID_OrganizacionaStrukturaStablo=os.ID_OrganizacionaStrukturaStablo  ;");
-        //                dv = IdOrg.DefaultView;
-        //                if (dv.Count > 0)
-        //                {
-        //                    string str = "select v.ID_Sifrarnikvaluta,OznVal,ID_Zemlja from sifrarnikvaluta as v WITH (NOLOCK) ,Zemlja as z WITH (NOLOCK) ";
-        //                    str += " where z.ID_Zemlja=" + Convert.ToString(dv[0]["ID_Zemlja"]);
-        //                    str += " AND v.SifraZemlje=z.SifraZemlje";
-        //                    DataBaseBroker db = new DataBaseBroker();
-        //                    DataTable t = new DataTable();
-        //                    t = db.ReturnDataTable(str);
-
-        //                    if (t.Rows.Count == 0)
-        //                    {
-        //                        Program.DomacaValuta = "RSD";
-        //                        Program.ID_DomacaValuta = 1;
-        //                        Program.ID_MojaZemlja = 4;
-        //                    }
-        //                    else
-        //                    {
-        //                        Program.DomacaValuta = Convert.ToString(t.Rows[0]["OznVal"]);
-        //                        Program.ID_DomacaValuta = Convert.ToInt32(t.Rows[0]["ID_SifrarnikValuta"]);
-        //                        Program.ID_MojaZemlja = Convert.ToInt32(t.Rows[0]["ID_Zemlja"]);
-        //                    }
-
-        //                }
-        //                CmbOrg.Text = strOrgDefaultText;
-
-        //                break;
-
-        //        }
-
-
-
-        //    }
-        //    if (cmbBaze.SelectedIndex != -1)
-        //    {
-        //        Program.NazivBaze = cmbBaze.SelectedValue.ToString(); // izmeniti konekciju i u Program.cs
-        //        //   Program.connectionString = "Data Source=DESKTOP-71PLEMH;Initial Catalog=" + cmbBaze.Text + ";User ID=sa;password=password;";
-        //        //  Program.GetConnection();
-        //    }
-
-
-
-        //}
-        //public DataTable GetDistinctRecords(DataTable dt, string[] Columns)
-        //{
-        //    DataTable dtUniqRecords = new DataTable();
-
-        //    dtUniqRecords = dt.DefaultView.ToTable(true, Columns);
-
-        //    return dtUniqRecords;
-
-        //}
 
         private void UsernameTextBox_Leave(object sender, EventArgs e)
         {
 
-           //pictureBox1.Visible = false;
+            //pictureBox1.Visible = false;
             aliasDatabase = new Dictionary<string, string>();
 
             cmbBaze.Items.Clear();
@@ -313,9 +73,8 @@ namespace Bankom
             if (UsernameTextBox.Text != "")
             {
                 //var fileReader = File.ReadAllText(Application.StartupPath + @"\XmlLat\xxxx.ini");
-                // ImeServera = UCase(CitajIniFile("LOGOVANJE", "Server"))
-
-                var fileReader = File.ReadAllText(@"\\BANKOMW\Repozitorijum\ISBankom\XXXX\xxxx.ini");
+                Console.WriteLine(Application.StartupPath);
+                var fileReader = File.ReadAllText(Application.StartupPath+ @"\xxxx.ini");
                 string[] separators11 = new[] { "[", "]" };
 
                 int n = 0;
@@ -342,7 +101,7 @@ namespace Bankom
                     if (cc == "logovanje")
                     {
 
-                        string pom = words[n+1];
+                        string pom = words[n + 1];
                         char[] separators1 = { '#' };
                         pom = pom.Replace("\r\n", "#").Replace("\r", "").Replace("\n", "");
 
@@ -391,11 +150,11 @@ namespace Bankom
                                 indexCurrentbaza = k;
                                 strCurrentbaza = result[n].Substring(result[n].IndexOf("=") + 1);
                             }
-                            
+
 
                             aliasDatabase.Add(result[n].Substring(result[n].IndexOf("-") + 1), result[n].Substring(result[n].IndexOf("=") + 1, result[n].IndexOf("-") - result[n].IndexOf("=") - 1));
                             cmbBaze.Items.Add(result[n].Substring(result[n].IndexOf("-") + 1));
-                            
+
 
                         }
 
@@ -499,31 +258,31 @@ namespace Bankom
                 var param0 = UsernameTextBox.Text;
                 var prDok = DB.ParamsQueryDT(upit, param0);
 
-             
+
                 if (prDok.Rows.Count != 0 && prDok.Rows[0]["ID_Radnik"] != System.DBNull.Value)
                 {
-                    
-                   int ID_Radnik = Convert.ToInt32(prDok.Rows[0]["ID_Radnik"]);
+
+                    int ID_Radnik = Convert.ToInt32(prDok.Rows[0]["ID_Radnik"]);
                     upit = "SELECT ID_Firma,mbr FROM Radnik where ID = @param0";
-                    
+
                     prDok = DB.ParamsQueryDT(upit, ID_Radnik);
                     if (prDok.Rows.Count != 0)
                     {
                         int ID_Firma = Convert.ToInt32(prDok.Rows[0]["ID_Firma"]);
                         int mbr = Convert.ToInt32(prDok.Rows[0]["mbr"]);
-                        if (File.Exists(@"\\" + LoginForm.ImeServera+ @"\organizacija\Pictures\" + ID_Firma + "-" + mbr + ".jpg"))
+                        if (File.Exists(@"\\" + LoginForm.ImeServera + @"\organizacija\Pictures\" + ID_Firma + "-" + mbr + ".jpg"))
                         {
                             pictureBox1.Image = Image.FromFile(@"\\" + LoginForm.ImeServera + @"\organizacija\Pictures\" + ID_Firma + "-" + mbr + ".jpg");
                             pictureBox1.Visible = true;
                         }
-                          
+
 
                         pictureBox1.Refresh();
 
                     }
 
                 }
-                
+
 
 
 
@@ -535,7 +294,7 @@ namespace Bankom
 
             if (Control.IsKeyLocked(Keys.CapsLock))
             {
-              
+
 
             }
 
@@ -543,7 +302,7 @@ namespace Bankom
 
         private int VratiJezik()
         {
-            int j=0;
+            int j = 0;
 
             foreach (RadioButton r in groupBox1.Controls.OfType<RadioButton>())
             {
@@ -623,7 +382,7 @@ namespace Bankom
                         PassKorisnika = Convert.ToString(rdr[1]);
                         Program.idkadar = Convert.ToInt32(rdr[2]);
                         Program.SifRadnika = Convert.ToString(rdr[3]);
-                       
+
                     }
                     else
                     {
@@ -726,7 +485,7 @@ namespace Bankom
                 Application.Exit();
                 System.Environment.Exit(1);
             }
-
+            Console.WriteLine(aliasDatabase[cmbBaze.SelectedItem.ToString()]);
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = "SELECT name FROM master.dbo.sysdatabases";
             cmd.Connection = cnn;
@@ -738,14 +497,15 @@ namespace Bankom
             dv = dss.Tables[0].DefaultView;
             for (int x = 0; x < dv.Count; x++)
             {
-                if (aliasDatabase[cmbBaze.SelectedItem.ToString()] == Convert.ToString(dv[x][0]))
+                Console.WriteLine(Convert.ToString(dv[x][0]));
+                if (aliasDatabase[cmbBaze.SelectedItem.ToString()].Trim() == Convert.ToString(dv[x][0])) ;
                 {
                     strimebaze = Convert.ToString(dv[x][0]);
                     Program.NazivBaze = strimebaze;
                     break;
                 }
             }
-           
+
             if (strimebaze == "")
             {
                 MessageBox.Show("Ne postoji izabrana baza", "info");
@@ -773,7 +533,7 @@ namespace Bankom
                     {
                         lista.Add(dataTable.Rows[i][0].ToString());
                     }
-                        
+
                 }
             }
         }
@@ -795,7 +555,7 @@ namespace Bankom
         }
 
 
-        
+
         private void BtnPrekid_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -803,33 +563,33 @@ namespace Bankom
 
         private void pictureBox3_MouseHover(object sender, EventArgs e)
         {
-           
-           toolTip1.SetToolTip(this.pictureBox3, "СРБ");
+
+            toolTip1.SetToolTip(this.pictureBox3, "СРБ");
         }
 
         private void pictureBox5_MouseHover(object sender, EventArgs e)
         {
-            
-           toolTip1.SetToolTip(this.pictureBox5, "SRB");
+
+            toolTip1.SetToolTip(this.pictureBox5, "SRB");
         }
 
         private void pictureBox4_MouseHover(object sender, EventArgs e)
         {
-            
+
             toolTip1.SetToolTip(this.pictureBox4, "ENG");
         }
 
         private void pictureBox6_MouseHover(object sender, EventArgs e)
         {
-            
+
             toolTip1.SetToolTip(this.pictureBox6, "RUS");
         }
 
-       
+
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if(UsernameTextBox.Text!=null && PasswordTextBox.Text != null)
+            if (UsernameTextBox.Text != null && PasswordTextBox.Text != null)
             {
                 var param0 = UsernameTextBox.Text.Trim();
                 var param1 = PasswordTextBox.Text.Trim();
@@ -881,12 +641,12 @@ namespace Bankom
                 MessageBox.Show("Lozinka uspešno promenjena!");
                 PasswordTextBox.Text = "";
 
-            tbNovaLozinka.Visible = false;
-            lbNovaLozinka.Visible = false;
-            lblBaza.Visible = true;
-            cmbBaze.Visible = true;
-            lblGrupa.Visible = true;
-            CmbOrg.Visible = true;
+                tbNovaLozinka.Visible = false;
+                lbNovaLozinka.Visible = false;
+                lblBaza.Visible = true;
+                cmbBaze.Visible = true;
+                lblGrupa.Visible = true;
+                CmbOrg.Visible = true;
 
             }
             else
@@ -905,8 +665,9 @@ namespace Bankom
 
         private void UsernameTextBox_TextChanged(object sender, EventArgs e)
         {
-           //tamara123
-                PasswordTextBox.Text = "";
+            //tamara123
+            PasswordTextBox.Text = "";
         }
     }
 }
+

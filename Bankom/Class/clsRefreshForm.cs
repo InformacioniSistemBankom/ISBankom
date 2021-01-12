@@ -47,11 +47,13 @@ namespace Bankom.Class
                     }
                     break;
                 case "P":
+                    if (idstablo == "1") { break; }
                     clsObradaStablaPtipa procp = new clsObradaStablaPtipa();
                     supit = procp.Proces(imestabla, ime, Convert.ToInt32(idstablo));
                     dr.refreshDokumentGrid(forma, ime, idstablo, supit, "1", dokje);
                     break;
                 case "I":
+                    if (idstablo == "1") { break; }
                     string sel = "Select TUD From Upiti Where NazivDokumenta='" + ime + "' and ime like'GGrr%' AND TUD>0 Order by TUD";
                     Console.WriteLine(sel);
                     DataTable ti = db.ReturnDataTable(sel);
@@ -66,7 +68,6 @@ namespace Bankom.Class
                 default:
                     dr.refreshDokumentBody(forma, ime, ident, dokje);
                     dr.refreshDokumentGrid(forma, ime, ident, "", "", dokje);
-
                     break;
             }
 
