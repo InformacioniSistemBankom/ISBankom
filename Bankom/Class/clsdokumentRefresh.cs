@@ -570,13 +570,13 @@ namespace Bankom.Class
                                     case "combo":
                                         //ivana 24.12.2020.
                                         if (ctrls.IME.Contains("NazivSkl"))
-                                        {
+                                        {  frmChield dete = new frmChield();
                                             if(ctrls.IME.Length==8)
-                                            Program.NazivSkladista = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
-                                            else if (ctrls.IME.Substring(8) == Program.nastavakSkladista1)
-                                                Program.NazivSkladista1 = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
+                                           dete.NazivSkladista = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
+                                            else if (ctrls.IME.Substring(8) == dete.nastavakSkladista1)
+                                                dete.NazivSkladista1 = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
                                             else
-                                                Program.NazivSkladista2 = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
+                                                dete.NazivSkladista2 = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
                                         }
                                         ctrls.comboBox.Text = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
                                         string kojiid;
