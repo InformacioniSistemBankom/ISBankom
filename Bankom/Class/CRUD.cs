@@ -15,21 +15,20 @@ namespace Bankom.Class
 {
     class CRUD
     {
-
         private string PoljeGdeSeUpisujeIId;
         private string id_redaLog;
         private string iid;
         private string iddokument;
         private string IndUpisan;
         private string IdDokumentaStablo;
-        private string DokumentJe = "";
-        private string dokument="";
+        private string DokumentJe;
+        private string dokument;
         private Form forma;
         bool isDoIt = true;
-        private string NazivKlona = "";
+        private string NazivKlona;
         DataBaseBroker db = new DataBaseBroker();
         Form Me = Program.Parent.ActiveMdiChild;
-        string operacija = "";
+        string operacija;
         List<string[]> lista = new List<string[]>();
         private string TrebaProvera = "0";
         public bool DoIt(Form forma1, string iddok, string dokument1)
@@ -38,27 +37,24 @@ namespace Bankom.Class
             forma = forma1;
             DokumentJe = forma.Controls["ldokje"].Text;
             string IndUpisan = "";
-            string mGrid = "";
-            string mIme = "";
+            string mGrid;
             string ime = "";
-            long Koliko = 0;
-            string Nacinr = "";
+            string Nacinr;
             IdDokumentaStablo = forma.Controls["lidstablo"].Text;
             dokument = dokument1;
             operacija = forma.Controls["OOperacija"].Text;
             iddokument = Convert.ToString(((Bankom.frmChield)forma).iddokumenta);
             clsOperacije op = new clsOperacije();
             // POCETAK OBRADE SLOGOVA IZABRANOM OPERACIJOM
-            string sql = "";
-            DataTable t = new DataTable();
-            DataTable dtt = new DataTable();
+            string sql;
+
             clsProveraIspravnosti pi = new clsProveraIspravnosti();
 
             sql = " select s.ulazniizlazni as NazivDokumenta,NacinRegistracije as nr,"
                        + " Knjizise "
                        + " from SifarnikDokumenta as s"
                        + "  Where s.naziv=@param0";
-            t = db.ParamsQueryDT(sql, dokument);
+            DataTable t = db.ParamsQueryDT(sql, dokument);
 
             //'zapamtimo podatke sa odabranog dokumenta
             if (t.Rows.Count > 0)
@@ -68,7 +64,7 @@ namespace Bankom.Class
             }
 
             sql = "Select DISTINCT u.Ime,u.Tabela,u.Upit,r.TUD from Upiti  u,RecnikPodataka as r " +
-                      " WHERE NazivDokumenta =@param0 AND  TabelaVView =substring(ime,4,len(ime)-3)  AND ime like 'Uu%' Order By r.TUD";
+                      " WHERE Dokument=NazivDokumenta AND NazivDokumenta =@param0 AND  TabelaVView =substring(ime,4,len(ime)-3)  AND ime like 'Uu%' Order By r.TUD";
             t = db.ParamsQueryDT(sql, NazivKlona);
             if (t.Rows.Count == 0)
             {
@@ -81,12 +77,11 @@ namespace Bankom.Class
                 if (isDoIt == false) { break; }
                 string tabela = t.Rows[r]["Tabela"].ToString();
                 ime = t.Rows[r]["Ime"].ToString();    //// upiti.GetValue(upiti.GetOrdinal("Ime")).ToString();
-                mGrid = Convert.ToString(((Bankom.frmChield)forma).imegrida);
-                mIme = ime.Substring(3, ime.Length - 3);
+                mGrid = "GgRr" + t.Rows[r]["Ime"].ToString().Substring(3);
+
                 string Poruka = "";
                 IndUpisan = "0";
                 isDoIt = true;
-                if (isDoIt == false) return (isDoIt);
                 if (r == 0 && operacija == "BRISANJE")
                 {
                     if (MessageBox.Show("Da li stvarno zelite brisanje ?", "Brisanje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -97,7 +92,6 @@ namespace Bankom.Class
                 switch (operacija)
                 {                 
                     case "BRISANJE":
-
                         if (DokumentJe == "S" && NazivKlona == "Dokumenta")
                             isDoIt = pi.ProveraOperacija(NazivKlona);
                         if (isDoIt == false)
@@ -115,7 +109,6 @@ namespace Bankom.Class
                         break;
 
                     case "STORNO":
-                        //clsProveraIspravnosti pi = new clsProveraIspravnosti();
                         isDoIt = pi.ProveraOperacija(NazivKlona);
                         if (isDoIt == false)
                             return isDoIt;
@@ -127,19 +120,27 @@ namespace Bankom.Class
                     case "UNOS PODBROJA":
                     case "UNOS":
                     case "IZMENA":
+
                         if (r == 0)
                         {
                             // PROVERE ISPRAVNOSTI PODATAKA POCETAK                             
-                            if (DokumentJe=="S" && NazivKlona=="Dokumenta")
-                                isDoIt = pi.ProveraOperacija(NazivKlona);
-                            if (isDoIt == false)
-                                break;
-
-                            if (DokumentJe=="D")
+                            if (DokumentJe == "S" && NazivKlona == "Dokumenta")
                             {
-                               
                                 isDoIt = pi.ProveraOperacija(NazivKlona);
-                                if ((DokumentJe == "S" && dokument == "Dokumenta" && IdDokumentaStablo != "61") || (DokumentJe == "D" && IdDokumentaStablo != "29" || (DokumentJe == "D" && IdDokumentaStablo != "290")))
+                                if (isDoIt == false)
+                                    break;
+                                if (IdDokumentaStablo != "61")
+                                    isDoIt = pi.ProveraKursa(dokument, ref Poruka);
+                                if (isDoIt == false)
+                                {
+                                    MessageBox.Show(Poruka);
+                                    break;
+                                }
+                            }
+                            if (DokumentJe=="D")
+                            {                               
+                                isDoIt = pi.ProveraOperacija(NazivKlona);                                
+                                if (IdDokumentaStablo != "29" || IdDokumentaStablo != "290")
                                 {
                                     isDoIt = pi.ProveraKursa(dokument, ref Poruka);
                                     if (isDoIt == false)
@@ -154,8 +155,10 @@ namespace Bankom.Class
 
                                 isDoIt = pi.ProveraSadrzaja(NazivKlona, iddokument, Convert.ToString(((Bankom.frmChield)forma).idReda), operacija, ref Poruka);
                                 if (isDoIt == false)
+                                {
+                                    MessageBox.Show(Poruka);
                                     break;
-
+                                }
                                 isDoIt = pi.DodatnaProvera();
                                 if (isDoIt == false)
                                     break;
@@ -166,27 +169,19 @@ namespace Bankom.Class
                         // OBRADA ZAGLAVLJA NISU STAVKE
                         if (t.Rows[r]["Ime"].ToString().Contains("Stavke") == false)
                         {
+
                             // upis zaglavlja
                             PoljeGdeSeUpisujeIId = "ID_DokumentaView";
                             iid = iddokument;
                             id_redaLog = iid;
-                            DataTable tt = new DataTable();
+                            //DataTable tt = new DataTable();
                             // da li je vec upisano zaglavlje 0=ne postoji slog u zaglavlju,1=upisan slog u zaglavlje
                             SqlDataReader DaLiJeUpisano = db.ReturnDataReader("if not exists (select ID_DokumentaView from " + tabela + " where " +
-                                      "ID_DokumentaView = " + iddok + " ) select 0 else select  1");
+                            " ID_DokumentaView = " + iddok + " ) select 0 else select  1");
                             DaLiJeUpisano.Read();
                             IndUpisan = DaLiJeUpisano[0].ToString();
                             DaLiJeUpisano.Close();
                             DaLiJeUpisano.Dispose();
-                        }
-                        else //JESU STAVKE
-                        {
-                            iid = Convert.ToString(((Bankom.frmChield)forma).idReda);
-                            PoljeGdeSeUpisujeIId = "ID_" + t.Rows[r]["Tabela"].ToString().Trim();
-                        }
-
-                        if (forma.Controls["OOperacija"].Text.Contains("UNOS") == true)
-                        {
                             if (IndUpisan == "1")  // slog je upisan pa vrsimo update
                             {
                                 isDoIt = Update(t.Rows[r]["Upit"].ToString(), t.Rows[r]["Ime"].ToString(), t.Rows[r]["Tabela"].ToString());
@@ -196,19 +191,21 @@ namespace Bankom.Class
                                 isDoIt = Insert(t.Rows[r]["Upit"].ToString(), t.Rows[r]["Ime"].ToString(), t.Rows[r]["Tabela"].ToString());
                             }
                         }
-                        //if (forma.Controls["OOperacija"].Text.Contains("IZMENA") == true)
-                        if(operacija=="IZMENA")
+                        else //JESU STAVKE
                         {
-                            if (iid != "0" && iid != null && iid != "-1")
+                            mGrid = "GgRr" + t.Rows[r]["Ime"].ToString().Substring(3);
+                            if ((((Bankom.frmChield)forma).Controls.Find(mGrid, true).FirstOrDefault() is DataGridView dv))
+                                iid = Convert.ToString(dv.Tag);
+                            PoljeGdeSeUpisujeIId = "ID_" + t.Rows[r]["Tabela"].ToString().Trim();
+
+
+                            if (operacija == "IZMENA")
                             {
-                                if (mIme == mGrid.Substring(4) && mIme.Contains("Stavke"))
+                                if (iid != "0" && iid != null && iid != "-1")
                                     isDoIt = Update(t.Rows[r]["Upit"].ToString(), t.Rows[r]["Ime"].ToString(), t.Rows[r]["Tabela"].ToString());
-                                else
-                                {
-                                    if (mIme.Contains("Stavke") == false)
-                                        isDoIt = Update(t.Rows[r]["Upit"].ToString(), t.Rows[r]["Ime"].ToString(), t.Rows[r]["Tabela"].ToString());
-                                }
                             }
+                            else // nije IZMENA
+                                isDoIt = Insert(t.Rows[r]["Upit"].ToString(), t.Rows[r]["Ime"].ToString(), t.Rows[r]["Tabela"].ToString());                           
                         }
                         break;
                     default:
@@ -253,11 +250,8 @@ namespace Bankom.Class
 
             if (DokumentJe == "D")
             {
-                // Field kontrola = (Field)forma.Controls["NazivSkl"];
-                //if (kontrola != null) // dokument je robni dokument
-                //{
                 sql = "select polje from recnikpodataka where dokument=@param0 and polje=@param1";
-                dtt = db.ParamsQueryDT(sql, NazivKlona, "NazivSkl");
+                DataTable dtt = db.ParamsQueryDT(sql, NazivKlona, "NazivSkl");
                 if (dtt.Rows.Count > 0)
                 {
                      sql = "Execute CeneArtikalaPoSkladistimaIStanje " + iddok.ToString();
@@ -306,6 +300,7 @@ namespace Bankom.Class
                     }                    
                 }
             }
+            
             if (isDoIt == false) { return (isDoIt); }
             
             CreateLog(forma, iddok, Convert.ToString(((Bankom.frmChield)forma).idReda), dokument, operacija, ime);

@@ -14,7 +14,6 @@ namespace Bankom.Class
     class clsFormInitialisation
     {
         private Form forma = new Form();
-        private string operacija;
 
         public void ObrisiZaglavljeIStavkePoljaZaUnos()
         {
@@ -29,7 +28,7 @@ namespace Bankom.Class
             string imedokumenta = forma.Controls["limedok"].Text;
             string NazivKlona = "";
             dokje = forma.Controls["ldokje"].Text;
-            operacija = forma.Controls["OOperacija"].Text;
+
             if (dokje == "S")
                 imedokumenta = ((Bankom.frmChield)forma).imestabla;
             else
@@ -42,7 +41,7 @@ namespace Bankom.Class
             DataTable drp = db.ParamsQueryDT(sql, NazivKlona);
 
             foreach (DataRow row in drp.Rows)
-            {                
+            {
                 Field pb = (Field)Program.Parent.ActiveMdiChild.Controls[row["polje"].ToString()];
                 if (pb != null)
                 {
@@ -63,25 +62,31 @@ namespace Bankom.Class
                             //pb.dtp.Format = DateTimePickerFormat.Custom;
                             break;
                         case "combo":
-
-                            if (operacija == "PREGLED" || operacija == "PREKID")
-                            {
-                                pb.ID = "1";
-                                pb.cIzborno = row["izborno"].ToString();
-                                pb.comboBox.Enabled = true;
-                                pb.comboBox.Text = "";
-                            }
-
+                            pb.ID = "1";
+                            pb.Vrednost = "";
+                            pb.cIzborno = row["izborno"].ToString();
+                            pb.comboBox.Enabled = true;
+                            pb.comboBox.Text = "";
+                            pb.comboBox.SelectedIndex = -1;
                             break;
                     }
+                }
+            }
+            foreach (var ctrls in forma.Controls.OfType<Field>())
+            {
+                switch(ctrls.VrstaKontrole)
+                { 
+                    case "grid":
+                    ctrls.dv.Tag = "-1";
+                    break;
                 }
             }
         }
         public void InitValues()
            
         {
-            forma = Program.Parent.ActiveMdiChild;
-            operacija = forma.Controls["OOperacija"].Text;                        
+            forma = Program.Parent.ActiveMdiChild;                
+
 
             foreach (var ctrls in forma.Controls.OfType<Field>())
             {               
@@ -93,27 +98,25 @@ namespace Bankom.Class
                             if (ctrls.cTip==3)
                             {
                                 ctrls.textBox.Text = "1";
-
+                                ctrls.Vrednost = "1";
                             }
                             else
                             {
                                 ctrls.textBox.Text = "0";
+                                ctrls.Vrednost = "0";
                             }
                             string vred = ctrls.textBox.Text;
-                            ctrls.textBox.Text = FormatirajPolje(vred, ctrls.cTip);
-                            Console.WriteLine(ctrls.textBox.Text);
+                            ctrls.textBox.Text = FormatirajPolje(vred, ctrls.cTip);                            
                         }
                         else
                         {
                             ctrls.textBox.Text = "";
-                            ctrls.Vrednost = ctrls.textBox.Text;
                         }
                         break;
 
                     case "datum":
                          if (ctrls.cTip == 8)
                             {
-
                                 ctrls.dtp.Text = string.Format("{0:dd.MM.yy}", System.DateTime.Now.ToString());
                                 ctrls.dtp.Value = System.DateTime.Now;
                             }
@@ -125,7 +128,6 @@ namespace Bankom.Class
                                 ctrls.dtp.Value = Convert.ToDateTime(ctrls.dtp.Text);
                                 ctrls.Vrednost = ctrls.dtp.Text;
                             }
-                        //}
                         break;
                     case "combo":
                         ctrls.comboBox.Text = "";
@@ -134,8 +136,8 @@ namespace Bankom.Class
                         break;
                     case "cek":
                        ctrls.cekboks.Checked = false;
-                        break;
-                     }
+                        break;                    
+                }
             } // end searching controls     
         }
         public string FormatirajPolje(string polje,int  Tip)

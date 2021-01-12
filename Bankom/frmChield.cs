@@ -56,9 +56,9 @@ namespace Bankom
             this.AutoScroll = true;
 
             intStart = 0;                
-            toolStripStatusPrazno.Text = new String(' ', 150);
-            
+            toolStripStatusPrazno.Text = new String(' ', 150);            
             toolStripStatusprdva.Text = new String(' ', 50);
+
             clscontrolsOnForm cononf = new clscontrolsOnForm();
             clsdokumentRefresh docref = new clsdokumentRefresh();
             DataBaseBroker db = new DataBaseBroker();
@@ -443,25 +443,11 @@ namespace Bankom
                     double pW = Math.Round(this.ActiveControl.Parent.Width / delW, 0);
                     double pH = Math.Round(this.ActiveControl.Parent.Height / delH, 0);
 
-
-                    //double pT =this.ActiveControl.Parent.Top;
-                    //double pL = this.ActiveControl.Parent.Left;
-                    //double pW = this.ActiveControl.Parent.Width;
-                    //double pH = this.ActiveControl.Parent.Height;
-
-
                     Field ctrls = (Field)this.ActiveControl.Parent;
-
-                    //Console.WriteLine(ctrls.cIdNaziviNaFormi);
 
                     if (ctrls.cIdNaziviNaFormi == "20")
                     {
                         imeKontrole = ctrls.IME;
-                        //Djora 10.11.20
-                        //string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL
-                        //             + " WHERE(dbo.RecnikPodataka.Dokument = N'" + imestabla + "') "
-                        //             + " AND RecnikPodataka.AlijasPolja = N'" + imeKontrole + "'";
-
                         string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL
                                      + " WHERE(dbo.RecnikPodataka.Dokument = N'" + isd + "') "
                                     + " AND RecnikPodataka.AlijasPolja = N'" + imeKontrole + "'";
@@ -480,23 +466,9 @@ namespace Bankom
                     else
                     {
                         imeKontrole = this.ActiveControl.Name;
-
-                        //string dokument = tt.Rows[0]["NazivDokumenta"].ToString();
-                        //string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL + ", "
-                        //             + " width=" + pW + ", height=" + pH + ", WidthKolone=" + pW
-                        //             + " FROM dbo.RecnikPodataka "
-                        //             + " WHERE(RecnikPodataka.Dokument = N'" + imestabla + "') "
-                        //             + " AND RecnikPodataka.AlijasPolja = N'" + this.ActiveControl.Name + "'";
-
-                        //Djora 10.11.20
-                        //string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL + ", cwidth=" + pW + ", cWidthKolone=" + pW
-                        //             + " WHERE(RecnikPodataka.Dokument = N'" + imestabla + "') "
-                        //             + " AND RecnikPodataka.AlijasPolja = N'" + imeKontrole + "'";
                         string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL + ", cwidth=" + pW + ", cWidthKolone=" + pW
                                      + " WHERE(RecnikPodataka.Dokument = N'" + isd + "') "
                                      + " AND RecnikPodataka.AlijasPolja = N'" + imeKontrole + "'";
-
-
                         SqlCommand cmd1 = new SqlCommand(query);
                         db.Comanda(cmd1);
                     }

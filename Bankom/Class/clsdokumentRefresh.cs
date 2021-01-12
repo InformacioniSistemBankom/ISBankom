@@ -159,7 +159,6 @@ namespace Bankom.Class
                 tud = t.Rows[i]["TUD"].ToString();
                 tUpit = t.Rows[i]["Upit"].ToString();
                 brredova = Convert.ToInt32(t.Rows[i]["MaxHeight"]);
-               // DokumentJe = ((Bankom.frmChield)forma).DokumentJe.ToString();
                 if (tud == "1")
                     ((Bankom.frmChield)forma).BrRedova = brredova;
 
@@ -525,7 +524,8 @@ namespace Bankom.Class
                     {
                         if (dt.Columns[k].ColumnName.ToUpper().ToString().Contains("ID_") == false)
                         {
-                            Field ctrls = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == dt.Columns[k].ColumnName.ToString());
+                            Field ctrls = (Field)forma.Controls[dt.Columns[k].ColumnName];
+                            //Field ctrls = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == dt.Columns[k].ColumnName.ToString());
                             if (ctrls != null)
                             {
                                 ctrls.ID = "1";
