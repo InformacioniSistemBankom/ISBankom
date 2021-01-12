@@ -1078,195 +1078,195 @@ namespace Bankom.Class
             DataTable ts = new DataTable();
             switch (NazivKlona)
             {                   
-                case "LotNalogZaPoluproizvod":
-                case "LotNalogZaPoluproizvodEkstrakcija":
-                    if (NazivKlona == "LotNalogZaPoluproizvod")
-                    {
-                        //PROVERA SAGLASNOSTI LOTA I PROIZVODA U DRUGOM GRIDU
-                        if (Convert.ToInt32(iid) > -1) // fform.GridK(2).IdUpdateReda > -1 Then //Ako smo podigli  stavku u drugog grida
-                        {
-                            Field pbl = (Field)forma.Controls["Lot"];
-                            if (pbl != null)
-                            {
-                                lot = pbl.Vrednost.Substring(0, pbl.Vrednost.IndexOf(","));
-                            }
-                            //string lot = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "Lot").Vrednost;
-                            if (lot.Trim() != "")
-                            {
-                                sql = "Select ID_Artikli from lot where barkod='" + lot + "'";
-                                sqs = "Select ID_SirovinaView from NalogKooperantaStavke where ID_NalogKooperantaStavke=" + iid;
-                                t = db.ReturnDataTable(sql);  //
-                                ts = db.ReturnDataTable(sqs);
-                                Console.WriteLine(t.Rows[0]["ID_Artikli"].ToString());
-                                Console.WriteLine(ts.Rows[0]["ID_SirovinaView"].ToString());
-                                if (ts.Rows[0]["ID_SirovinaView"].ToString() != t.Rows[0]["ID_Artikli"].ToString())
-                                {
-                                    MessageBox.Show("Ne slazu se Lot i naziv proizvoda");
-                                    Vrati = false;
-                                    return (Vrati);
-                                }
-                            }
-                        }
+                //case "LotNalogZaPoluproizvod":
+                //case "LotNalogZaPoluproizvodEkstrakcija":
+                //    if (NazivKlona == "LotNalogZaPoluproizvod")
+                //    {
+                //        //PROVERA SAGLASNOSTI LOTA I PROIZVODA U DRUGOM GRIDU
+                //        if (Convert.ToInt32(iid) > -1) // fform.GridK(2).IdUpdateReda > -1 Then //Ako smo podigli  stavku u drugog grida
+                //        {
+                //            Field pbl = (Field)forma.Controls["Lot"];
+                //            if (pbl != null)
+                //            {
+                //                lot = pbl.Vrednost.Substring(0, pbl.Vrednost.IndexOf(","));
+                //            }
+                //            //string lot = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "Lot").Vrednost;
+                //            if (lot.Trim() != "")
+                //            {
+                //                sql = "Select ID_Artikli from lot where barkod='" + lot + "'";
+                //                sqs = "Select ID_SirovinaView from NalogKooperantaStavke where ID_NalogKooperantaStavke=" + iid;
+                //                t = db.ReturnDataTable(sql);  //
+                //                ts = db.ReturnDataTable(sqs);
+                //                Console.WriteLine(t.Rows[0]["ID_Artikli"].ToString());
+                //                Console.WriteLine(ts.Rows[0]["ID_SirovinaView"].ToString());
+                //                if (ts.Rows[0]["ID_SirovinaView"].ToString() != t.Rows[0]["ID_Artikli"].ToString())
+                //                {
+                //                    MessageBox.Show("Ne slazu se Lot i naziv proizvoda");
+                //                    Vrati = false;
+                //                    return (Vrati);
+                //                }
+                //            }
+                //        }
 
-                        //PROVERA SAGLASNOSTI LOTA I PROIZVODA U prvom GRIDU
-                        string lotproizvoda = "";
-                        Field pb = (Field)forma.Controls["LotProizvoda"];
-                        if (pb != null)
-                        {              
-                            lotproizvoda= pb.Vrednost.Substring(0, pb.Vrednost.IndexOf(","));
-                        }
-                        Field pb1 = (Field)forma.Controls["Receptura"];
-                        if (pb1 != null)
-                        {
-                            idr = pb1.ID;
-                        }                           
-                        if (Operacija == "IZMENA" && idr == "1") //Ako nismo podigli  stavku  prvog grida ili vrsimo unos
-                        { }
-                        else
-                        {
-                            sql = "Select ID_ArtikliView from lotview where barkod ='" + lotproizvoda + "'";
-                            sqs = "select DISTINCT ID_ProizvodView from RastavnicaTotali where ID_RastavnicaTotali=" + idr;
-                            t = db.ReturnDataTable(sql);
-                            ts = db.ReturnDataTable(sqs);
-                            if (ts.Rows[0]["ID_ProizvodView"].ToString() != t.Rows[0]["ID_ArtikliView"].ToString())
-                            {
-                                MessageBox.Show("Ne slazu se Lot i naziv proizvoda");
-                                Vrati = false;
-                                return (Vrati);
-                            }
-                        }
-                    }
-                    // Borka lot u LotNalogZaPoluproizvodStavkeView KRAJ
+                //        //PROVERA SAGLASNOSTI LOTA I PROIZVODA U prvom GRIDU
+                //        string lotproizvoda = "";
+                //        Field pb = (Field)forma.Controls["LotProizvoda"];
+                //        if (pb != null)
+                //        {              
+                //            lotproizvoda= pb.Vrednost.Substring(0, pb.Vrednost.IndexOf(","));
+                //        }
+                //        Field pb1 = (Field)forma.Controls["Receptura"];
+                //        if (pb1 != null)
+                //        {
+                //            idr = pb1.ID;
+                //        }                           
+                //        if (Operacija == "IZMENA" && idr == "1") //Ako nismo podigli  stavku  prvog grida ili vrsimo unos
+                //        { }
+                //        else
+                //        {
+                //            sql = "Select ID_ArtikliView from lotview where barkod ='" + lotproizvoda + "'";
+                //            sqs = "select DISTINCT ID_ProizvodView from RastavnicaTotali where ID_RastavnicaTotali=" + idr;
+                //            t = db.ReturnDataTable(sql);
+                //            ts = db.ReturnDataTable(sqs);
+                //            if (ts.Rows[0]["ID_ProizvodView"].ToString() != t.Rows[0]["ID_ArtikliView"].ToString())
+                //            {
+                //                MessageBox.Show("Ne slazu se Lot i naziv proizvoda");
+                //                Vrati = false;
+                //                return (Vrati);
+                //            }
+                //        }
+                //    }
+                //    // Borka lot u LotNalogZaPoluproizvodStavkeView KRAJ
 
-                    //  Jovana - ekstrakcija 27.11.18
-                    //string lot = "";
-                    if (NazivKlona == "LotNalogZaPoluproizvodEkstrakcija")
-                    {
-                        // PROVERA SAGLASNOSTI LOTA I PROIZVODA U TRECEM GRIDU
-                        if (Convert.ToInt32(iid) > -1) //Ako smo podigli  stavku u drugog grida
-                        {
-                            //string lot = "";
-                            Field pb = (Field)forma.Controls["Lot"];
-                            if (pb != null)
-                            {
-                                lot = pb.Vrednost;
-                            }
-                            //string lot = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "Lot").Vrednost;
-                            sql = "Select ID_Artikli from lot where barkod=@param0";
-                            sqs = "Select ID_SirovinaView from NalogKooperantaStavke where ID_NalogKooperantaStavke=@param0"; // + iid;
-                            t =  db.ParamsQueryDT(sql,lot);
-                            ts = db.ParamsQueryDT(sqs, iid);
-                            if (ts.Rows[0]["ID_SirovinaView"].ToString() != t.Rows[0]["ID_Artikli"].ToString())
-                            {
-                                MessageBox.Show("Ne slazu se Lot i naziv proizvoda");
-                                Vrati = false;
-                                return (Vrati);
-                            }
-                        }
-                        //PROVERA SAGLASNOSTI LOTA I PROIZVODA U DRUGOM GRIDU
-                        if (Convert.ToInt32(iid) > -1)     //Ako smo podigli  stavku u drugog grida
-                        {
-                            Field pblp = (Field)forma.Controls["LotPomocne"];
-                            if (pblp != null)
-                            {
-                                lot = pblp.Vrednost;
-                            }
-                            //string lot = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "LotPomocne").Vrednost;
-                            sql = "Select ID_Artikli from lot where barkod=@param0";
-                            sqs = "Select ID_SirovinaPomocneView from NalogKooperantaSirovinePomocneStavke where ID_NalogKooperantaSirovinePomocneStavke=@param0";
-                            t = db.ParamsQueryDT(sql,lot);
-                            ts = db.ParamsQueryDT(sqs,iid);
-                            if (ts.Rows[0]["ID_SirovinaPomocneView"].ToString() != t.Rows[0]["ID_Artikli"].ToString())
-                            {
-                                MessageBox.Show("Ne slazu se Lot i naziv pomocne sirovine");
-                                Vrati = false;
-                                return (Vrati);
-                            }
+                //    //  Jovana - ekstrakcija 27.11.18
+                //    //string lot = "";
+                //    if (NazivKlona == "LotNalogZaPoluproizvodEkstrakcija")
+                //    {
+                //        // PROVERA SAGLASNOSTI LOTA I PROIZVODA U TRECEM GRIDU
+                //        if (Convert.ToInt32(iid) > -1) //Ako smo podigli  stavku u drugog grida
+                //        {
+                //            //string lot = "";
+                //            Field pb = (Field)forma.Controls["Lot"];
+                //            if (pb != null)
+                //            {
+                //                lot = pb.Vrednost;
+                //            }
+                //            //string lot = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "Lot").Vrednost;
+                //            sql = "Select ID_Artikli from lot where barkod=@param0";
+                //            sqs = "Select ID_SirovinaView from NalogKooperantaStavke where ID_NalogKooperantaStavke=@param0"; // + iid;
+                //            t =  db.ParamsQueryDT(sql,lot);
+                //            ts = db.ParamsQueryDT(sqs, iid);
+                //            if (ts.Rows[0]["ID_SirovinaView"].ToString() != t.Rows[0]["ID_Artikli"].ToString())
+                //            {
+                //                MessageBox.Show("Ne slazu se Lot i naziv proizvoda");
+                //                Vrati = false;
+                //                return (Vrati);
+                //            }
+                //        }
+                //        //PROVERA SAGLASNOSTI LOTA I PROIZVODA U DRUGOM GRIDU
+                //        if (Convert.ToInt32(iid) > -1)     //Ako smo podigli  stavku u drugog grida
+                //        {
+                //            Field pblp = (Field)forma.Controls["LotPomocne"];
+                //            if (pblp != null)
+                //            {
+                //                lot = pblp.Vrednost;
+                //            }
+                //            //string lot = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "LotPomocne").Vrednost;
+                //            sql = "Select ID_Artikli from lot where barkod=@param0";
+                //            sqs = "Select ID_SirovinaPomocneView from NalogKooperantaSirovinePomocneStavke where ID_NalogKooperantaSirovinePomocneStavke=@param0";
+                //            t = db.ParamsQueryDT(sql,lot);
+                //            ts = db.ParamsQueryDT(sqs,iid);
+                //            if (ts.Rows[0]["ID_SirovinaPomocneView"].ToString() != t.Rows[0]["ID_Artikli"].ToString())
+                //            {
+                //                MessageBox.Show("Ne slazu se Lot i naziv pomocne sirovine");
+                //                Vrati = false;
+                //                return (Vrati);
+                //            }
 
-                        }
+                //        }
 
-                        //PROVERA SAGLASNOSTI LOTA I PROIZVODA U prvom GRIDU
-                        if ((Convert.ToInt32(iid) > -1 && Operacija == "IZMENA") || (Operacija == "UNOS")) //// '''Ako smo podigli  stavku  prvo grida ili vrsimo unos
-                        {
-                            Field pblp = (Field)forma.Controls["LotProizvoda"];
-                            if (pblp != null)
-                            {
-                                lot = pblp.Vrednost;
-                            }
-                            // jovana 04.11.20 u lot treba da bude samo lot isecen , a ne sve treba pblp.text
-                            // string lot = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "LotProizvoda").Vrednost;
-                            Field pbrc = (Field)forma.Controls["Receptura"];
-                            if (pbrc != null)
-                            {
-                                idr = pbrc.ID;
-                            }
-                            //idr = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "Receptura").ID;
-                            sql = "Select ID_Artikli from lot where barkod=@param0";
-                            sqs = "select DISTINCT ID_ProizvodView from Rastavnica2Totali where ID_Rastavnica2Totali=@param0";
-                            t = db.ParamsQueryDT(sql,lot);
-                            ts = db.ParamsQueryDT(sqs,idr);
-                            if (ts.Rows[0]["ID_ProizvodView"].ToString() != t.Rows[0]["ID_Artikli"].ToString())
-                            {
-                                MessageBox.Show("Ne slazu se Lot i naziv sirovine");
-                                Vrati = false;
-                                return (Vrati);
-                            }
-                        }
-                    }
+                //        //PROVERA SAGLASNOSTI LOTA I PROIZVODA U prvom GRIDU
+                //        if ((Convert.ToInt32(iid) > -1 && Operacija == "IZMENA") || (Operacija == "UNOS")) //// '''Ako smo podigli  stavku  prvo grida ili vrsimo unos
+                //        {
+                //            Field pblp = (Field)forma.Controls["LotProizvoda"];
+                //            if (pblp != null)
+                //            {
+                //                lot = pblp.Vrednost;
+                //            }
+                //            // jovana 04.11.20 u lot treba da bude samo lot isecen , a ne sve treba pblp.text
+                //            // string lot = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "LotProizvoda").Vrednost;
+                //            Field pbrc = (Field)forma.Controls["Receptura"];
+                //            if (pbrc != null)
+                //            {
+                //                idr = pbrc.ID;
+                //            }
+                //            //idr = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "Receptura").ID;
+                //            sql = "Select ID_Artikli from lot where barkod=@param0";
+                //            sqs = "select DISTINCT ID_ProizvodView from Rastavnica2Totali where ID_Rastavnica2Totali=@param0";
+                //            t = db.ParamsQueryDT(sql,lot);
+                //            ts = db.ParamsQueryDT(sqs,idr);
+                //            if (ts.Rows[0]["ID_ProizvodView"].ToString() != t.Rows[0]["ID_Artikli"].ToString())
+                //            {
+                //                MessageBox.Show("Ne slazu se Lot i naziv sirovine");
+                //                Vrati = false;
+                //                return (Vrati);
+                //            }
+                //        }
+                //    }
 
-                    //provera pripadnosti magacinskih polja POCETAK
-                    string nazivpolja1 = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPolja1").Vrednost;
-                    nazivpolja = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPolja").Vrednost;
-                    nazivskliz = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivSklIz").Vrednost;
-                    nazivsklU = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivSklU").Vrednost;
-                    string pnaziv1 = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPolja1").label.Text;
-                    string pnaziv = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPolja").Vrednost;
-                    if (nazivpolja1.Trim() != "")
-                        sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpolja1 + "' And NazivSkl='" + nazivskliz + "'";
-                    t = db.ReturnDataTable(sql);
-                    if (t.Rows.Count == 0)
-                    {
-                        if (((Bankom.frmChield)forma).idReda == -1) { }
-                        else
-                        {
-                            MessageBox.Show("Pogresna vrednost: " + nazivpolja1 + " za  polje:" + pnaziv1);
-                            Vrati = false;
-                            return (Vrati);
-                        }
-                    }
+                //    //provera pripadnosti magacinskih polja POCETAK
+                //    string nazivpolja1 = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPolja1").Vrednost;
+                //    nazivpolja = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPolja").Vrednost;
+                //    nazivskliz = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivSklIz").Vrednost;
+                //    nazivsklU = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivSklU").Vrednost;
+                //    string pnaziv1 = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPolja1").label.Text;
+                //    string pnaziv = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPolja").Vrednost;
+                //    if (nazivpolja1.Trim() != "")
+                //        sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpolja1 + "' And NazivSkl='" + nazivskliz + "'";
+                //    t = db.ReturnDataTable(sql);
+                //    if (t.Rows.Count == 0)
+                //    {
+                //        if (((Bankom.frmChield)forma).idReda == -1) { }
+                //        else
+                //        {
+                //            MessageBox.Show("Pogresna vrednost: " + nazivpolja1 + " za  polje:" + pnaziv1);
+                //            Vrati = false;
+                //            return (Vrati);
+                //        }
+                //    }
                                        
-                    if (nazivpolja.Trim() != "")
-                    {
-                        sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpolja + "' And NazivSkl='" + nazivsklU + "'";
-                        t = db.ReturnDataTable(sql);
-                        if (t.Rows.Count == 0)
-                        {
-                            Vrati = false;
-                            return (Vrati);
-                        }
-                    }
-                    //    '  Jovana - ekstrakcija 27.11.18
-                    if (NazivKlona == "LotNalogZaPoluproizvodEkstrakcija")
-                    {
-                        nazivpolja = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPoljaPomocne").Vrednost;
-                        pnazivpolja = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPoljaPomocne").label.Text;
+                //    if (nazivpolja.Trim() != "")
+                //    {
+                //        sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpolja + "' And NazivSkl='" + nazivsklU + "'";
+                //        t = db.ReturnDataTable(sql);
+                //        if (t.Rows.Count == 0)
+                //        {
+                //            Vrati = false;
+                //            return (Vrati);
+                //        }
+                //    }
+                //    //    '  Jovana - ekstrakcija 27.11.18
+                //    if (NazivKlona == "LotNalogZaPoluproizvodEkstrakcija")
+                //    {
+                //        nazivpolja = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPoljaPomocne").Vrednost;
+                //        pnazivpolja = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPoljaPomocne").label.Text;
 
-                        nazivskliz = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivSklIz").Vrednost;
-                        if (nazivpolja.Trim() != "")
-                        {
-                            sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpolja + "' And NazivSkl='" + nazivskliz + "'";
-                            t = db.ReturnDataTable(sql);
-                            if (t.Rows.Count == 0)
-                            {
-                                MessageBox.Show("Pogresna vrednost: " + nazivpolja + " za  polje:" + pnazivpolja);
-                                Vrati = false;
-                                return (Vrati);
-                            }
-                        }
+                //        nazivskliz = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivSklIz").Vrednost;
+                //        if (nazivpolja.Trim() != "")
+                //        {
+                //            sql = "Select * From MagacinskaPoljaStavkeView where NazivPolja='" + nazivpolja + "' And NazivSkl='" + nazivskliz + "'";
+                //            t = db.ReturnDataTable(sql);
+                //            if (t.Rows.Count == 0)
+                //            {
+                //                MessageBox.Show("Pogresna vrednost: " + nazivpolja + " za  polje:" + pnazivpolja);
+                //                Vrati = false;
+                //                return (Vrati);
+                //            }
+                //        }
 
-                        if (Operacija == "IZMENA" && ((Bankom.frmChield)forma).idReda == -1) { goto ProveriStanje; }
-                    }
-                    break;
+                //        if (Operacija == "IZMENA" && ((Bankom.frmChield)forma).idReda == -1) { goto ProveriStanje; }
+                //    }
+                //    break;
                 //case "LotPDVInternaDostavnica":
                 //    pnazivpolja = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPolja").label.Text;
                 //    nazivpolja = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "NazivPolja").Vrednost;

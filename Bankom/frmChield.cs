@@ -36,7 +36,14 @@ namespace Bankom
         public  int pageno = 1; //ukupan broj stranica
         public string tUpit = "";
         public int BrRedova = 1;// broj redova na stranici
-        private long brojdok = 1;        
+        private long brojdok = 1;
+        //zajedno 12.1.2021.
+        public string NazivSkladista;
+        public string NazivSkladista1;
+        public string NazivSkladista2;
+        public string nastavakSkladista1;
+        public string nastavakSkladista2;
+
         public frmChield()
         {
             InitializeComponent();
@@ -338,7 +345,8 @@ namespace Bankom
             //Da si ulogovan kao SA i da u tekstboxu u meniju gore pise 123
             if (Program.imekorisnika == "sa" & Program.Parent.ToolBar.Items["toolStripTextBox1"].Text == "123")
             {
-                //Povecanje visine redova
+              
+                  //Povecanje visine redova
                 if (e.KeyCode == Keys.F12)
                 {
 

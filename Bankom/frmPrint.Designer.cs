@@ -37,6 +37,8 @@
             this.toolStripSaveAs = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.button1 = new System.Windows.Forms.Button();
+            this.comboEmail = new System.Windows.Forms.ComboBox();
             this.statusPrint.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -96,6 +98,25 @@
             this.webBrowser1.Size = new System.Drawing.Size(728, 388);
             this.webBrowser1.TabIndex = 1;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(831, 249);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(68, 32);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Send email";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // comboEmail
+            // 
+            this.comboEmail.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboEmail.FormattingEnabled = true;
+            this.comboEmail.Location = new System.Drawing.Point(806, 139);
+            this.comboEmail.Name = "comboEmail";
+            this.comboEmail.Size = new System.Drawing.Size(121, 23);
+            this.comboEmail.TabIndex = 5;
+            // 
             // frmPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -104,6 +125,8 @@
             this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(943, 587);
             this.ControlBox = false;
+            this.Controls.Add(this.comboEmail);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusPrint);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -131,5 +154,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.ComboBox comboEmail;
     }
 }

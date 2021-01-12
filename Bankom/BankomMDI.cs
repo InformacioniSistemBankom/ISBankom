@@ -616,8 +616,8 @@ namespace Bankom
             SrediFormu();
 
             ////zajedno 30.12.2020.
-          
-       
+
+
             if (b.Substring(0, 1).All(char.IsDigit))
             {
                 //jovana 24.12.2020.
