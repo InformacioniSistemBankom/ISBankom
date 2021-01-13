@@ -80,6 +80,7 @@
             this.button3.TabIndex = 3;
             this.button3.Text = "Brisanje";
             this.button3.UseVisualStyleBackColor = true;
+           // this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button1
             // 
@@ -105,7 +106,7 @@
             this.pretraga.Name = "pretraga";
             this.pretraga.Size = new System.Drawing.Size(251, 24);
             this.pretraga.TabIndex = 5;
-            this.pretraga.TextChanged += new System.EventHandler(this.pretraga_TextChanged);
+            //this.pretraga.TextChanged += new System.EventHandler(this.pretraga_TextChanged);
             this.pretraga.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.pretraga_KeyPress);
             // 
             // dataGridViewPaging1
@@ -122,7 +123,7 @@
             this.dataGridViewPaging1.Name = "dataGridViewPaging1";
             this.dataGridViewPaging1.Size = new System.Drawing.Size(940, 502);
             this.dataGridViewPaging1.TabIndex = 6;
-            this.dataGridViewPaging1.Load += new System.EventHandler(this.dataGridViewPaging1_Load);
+            //this.dataGridViewPaging1.Load += new System.EventHandler(this.dataGridViewPaging1_Load);
             // 
             // label1
             // 
@@ -153,7 +154,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Lotovi";
             this.Text = "Lotovi";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Lotovi_FormClosed);
+            //this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Lotovi_FormClosed);
             this.Load += new System.EventHandler(this.Lotovi_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

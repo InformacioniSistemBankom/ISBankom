@@ -571,12 +571,13 @@ namespace Bankom.Class
                                         //ivana 24.12.2020.
                                         if (ctrls.IME.Contains("NazivSkl"))
                                         {  frmChield dete = new frmChield();
+                                            // jovana 13.01.21
                                             if(ctrls.IME.Length==8)
-                                           dete.NazivSkladista = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
+                                                ((Bankom.frmChield)forma).NazivSkladista = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
                                             else if (ctrls.IME.Substring(8) == dete.nastavakSkladista1)
-                                                dete.NazivSkladista1 = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
+                                                ((Bankom.frmChield)forma).NazivSkladista1 = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
                                             else
-                                                dete.NazivSkladista2 = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
+                                                ((Bankom.frmChield)forma).NazivSkladista2 = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
                                         }
                                         ctrls.comboBox.Text = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
                                         string kojiid;

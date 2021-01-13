@@ -39,7 +39,8 @@ namespace Bankom
             InitializeComponent();
         }
         public void ShowNewForm(string imestabla, int idstablo, string imedokumenta, long iddokument, string brojdokumenta, string datum, string dokumentje, string operacija, string vrstaprikaza)
-        {            
+        {        
+            
             string ss;
             if (dokumentje == "D")
             {
@@ -53,12 +54,13 @@ namespace Bankom
             odgovor = DalijevecOtvoren(dokumentje, brojdokumenta, imedokumenta);            //string ss;    
             if (odgovor == false) ///nije vec otvoren
             {
+               
                 frmChield childForm = new frmChield();
                 childForm.MdiParent = this;
                 int sirina;
                 if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
                 sirina = (Width / 100) * 10;
-
+               
 
                 childForm.imedokumenta = imedokumenta;
                 childForm.iddokumenta = iddokument;
@@ -73,7 +75,7 @@ namespace Bankom
                 childForm.Text = ss;
                 childForm.Name = ss;
                 addFormTotoolstrip1(childForm, imedokumenta);
-                
+             
                 childForm.Show();
                 SrediFormu(); // BORKA OVO MORA OSTATI!!!!!!!!!!!!!!!!!
             }
@@ -1592,6 +1594,16 @@ namespace Bankom
         private void Pprekid_Click(object sender, EventArgs e)
         {
             Form activeChild = this.ActiveMdiChild;
+            //13.01.2021. tamara
+            if (activeChild.Text == "LOT")
+            {
+
+                foreach (var pb in activeChild.Controls.OfType<Field>())
+                {
+                    if (pb.cTip == 10 || pb.cTip == 8)
+                        pb.Enabled = false;
+                }
+            }
             activeChild.Controls["OOperacija"].Text = "PREKID";
             if (activeChild != null)
             {
@@ -1618,6 +1630,16 @@ namespace Bankom
             //Daj mi aktivnu child formu
             Form activeChild = this.ActiveMdiChild;
             activeChild.FormBorderStyle = FormBorderStyle.None;
+            //13.01.2021. tamara
+            if (activeChild.Text == "LOT")
+            {
+
+                foreach (var pb in activeChild.Controls.OfType<Field>())
+                {
+                    if (pb.cTip == 10 || pb.cTip == 8)
+                        pb.Enabled = true;
+                }
+            }
             //Popuni text u kontroli OOperacija sa "IZMENA" na aktivnoj child formi
             if (activeChild != null)
             {
@@ -2888,7 +2910,16 @@ namespace Bankom
         private void Ppotvrda_Click_1(object sender, EventArgs e)
         {           
             Form forma = this.ActiveMdiChild;
+            //13.01.2021. tamara
+            if (forma.Text == "LOT")
+            {
 
+                foreach (var pb in forma.Controls.OfType<Field>())
+                {
+                    if (pb.cTip == 10 || pb.cTip == 8)
+                        pb.Enabled = false;
+                }
+            }
             Boolean vrati = new Boolean();
             if (forma == null)
             {
@@ -3054,7 +3085,18 @@ namespace Bankom
                             }
                             break;
                         default:
-                            vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
+                           
+                            //13.01.2021. tamara lotovi
+                            if (forma.Controls["OOperacija"].Text.Trim() == "UNOS" && ((Bankom.frmChield)forma).DokumentJe == "P" && ((Bankom.frmChield)forma).Text=="LOT")
+                            {
+                                NoviLot unosNovog = new NoviLot();
+                                unosNovog.Show();
+                                clsRefreshForm rf = new clsRefreshForm();
+                                rf.refreshform();
+                            }
+                            else
+                                vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
+
                             break;
                     }
                     // OSVEZAVANJE FORME NAKON IZVRSENE OPERACIJE

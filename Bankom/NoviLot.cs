@@ -235,16 +235,7 @@ namespace Bankom
 
         }
 
-        private void proizvodjaci_TextUpdate(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void proizvodjaci_DropDown(object sender, EventArgs e)
-        {
-
-        }
+    
 
         private void idArtikal_Leave(object sender, EventArgs e)
 
@@ -263,11 +254,7 @@ namespace Bankom
             }
         }
 
-        private void idArtikal_Validating(object sender, CancelEventArgs e)
-        {
-           
-                
-        }
+       
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -308,6 +295,7 @@ namespace Bankom
                         redniBroj = 1;
                     }
 
+                    
 
                     string barKod = datPro.ToShortDateString().Replace(".", string.Empty).Trim() + oznakaSkladista + redniBroj + "A" + idArtikal;
 
@@ -328,9 +316,10 @@ namespace Bankom
                     if (dialogResult == DialogResult.OK || dialogResult == DialogResult.Cancel)
                     {
                         this.Close();
-                        Lotovi.innerReference.dataGridViewPaging1.Initialize(Lotovi.innerReference.count());
+                       
+                        //Lotovi.innerReference.dataGridViewPaging1.Initialize(Lotovi.innerReference.count());
 
-                    } 
+                    }
 
 
 
@@ -449,24 +438,6 @@ namespace Bankom
             else updateLot(currentLot, Convert.ToInt32(zempro.SelectedValue), datumIsteka.Value, Convert.ToInt32(proizvodjaci.SelectedValue), lotproizvodjaca.Text);
         }
 
-        private void skladista_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void proizvodjaci_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void zempro_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lotproizvodjaca_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
