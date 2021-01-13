@@ -792,7 +792,7 @@ namespace Bankom.Class
         }
         private void comboBox_DropDownClosed(object sender, EventArgs e)
         {
-                        SendKeys.Send("{tab}");
+            SendKeys.Send("{tab}");
         }
         private void comboBox_DropDown(object sender, EventArgs e)
         {
@@ -1104,12 +1104,13 @@ namespace Bankom.Class
             {
                 comboBox.Items.Clear();
                 string upit = "select NazivPolja from MagacinskaPoljaStavkeView where NazivSkl=@param0";
-                if (dete.nastavakSkladista2 != "" && dete.NazivSkladista2!=null && IME.Substring(10).Contains(dete.nastavakSkladista2))
+                // jovana 13.01.21
+                if (((Bankom.frmChield)forma).nastavakSkladista2 != "" && ((Bankom.frmChield)forma).NazivSkladista2!=null && IME.Substring(10).Contains(((Bankom.frmChield)forma).nastavakSkladista2))
                         rez = db.ParamsQueryDT(upit, dete.NazivSkladista2);
-                else if (dete.nastavakSkladista1 != "" && dete.NazivSkladista1 != null && IME.Substring(10).Contains(dete.nastavakSkladista1))
-                            rez = db.ParamsQueryDT(upit, dete.NazivSkladista1);
+                else if (((Bankom.frmChield)forma).nastavakSkladista1 != "" && ((Bankom.frmChield)forma).NazivSkladista1 != null && IME.Substring(10).Contains(((Bankom.frmChield)forma).nastavakSkladista1))
+                            rez = db.ParamsQueryDT(upit, ((Bankom.frmChield)forma).NazivSkladista1);
                 else
-                    rez = db.ParamsQueryDT(upit, dete.NazivSkladista);
+                    rez = db.ParamsQueryDT(upit, ((Bankom.frmChield)forma).NazivSkladista);
             }
             else if (Tip != 3)
             {

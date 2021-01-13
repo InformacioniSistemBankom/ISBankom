@@ -331,10 +331,14 @@ namespace Bankom.Class
                 }
             }
 
-            //jovana 25.11.20
-            db.ExecuteStoreProcedure("TotaliZaDokument", "NazivDokumenta:" + NazivKlona, "IdDokument:" + iddok);
-            db.ExecuteStoreProcedure("CeneArtikalaPoSkladistimaIStanje", "IdDokView:" + iddok);
-            db.ExecuteStoreProcedure("StanjeRobePoLotu", "IdDokView:" + iddok);
+           // jovana 25.11.20
+           // jovana 13.01.21
+            if (imaTotale == "1")
+            {
+                db.ExecuteStoreProcedure("TotaliZaDokument", "NazivDokumenta:" + NazivKlona, "IdDokument:" + iddok);
+                db.ExecuteStoreProcedure("CeneArtikalaPoSkladistimaIStanje", "IdDokView:" + iddok);
+                db.ExecuteStoreProcedure("StanjeRobePoLotu", "IdDokView:" + iddok);
+            }
             if (isDoIt ==false) return (isDoIt);
             ((Bankom.frmChield)forma).idReda = -1;
             return isDoIt;
