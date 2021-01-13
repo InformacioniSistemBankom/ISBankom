@@ -45,9 +45,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lotproizvodjaca = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.izmena = new System.Windows.Forms.Button();
             this.rucnilot = new System.Windows.Forms.Button();
-            this.prekid = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -229,29 +227,13 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("TimesRoman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.button1.Location = new System.Drawing.Point(33, 417);
+            this.button1.Location = new System.Drawing.Point(240, 417);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(114, 33);
             this.button1.TabIndex = 35;
             this.button1.Text = "Kreiraj";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // izmena
-            // 
-            this.izmena.BackColor = System.Drawing.Color.Snow;
-            this.izmena.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.izmena.FlatAppearance.BorderSize = 3;
-            this.izmena.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.izmena.Font = new System.Drawing.Font("TimesRoman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.izmena.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.izmena.Location = new System.Drawing.Point(189, 417);
-            this.izmena.Name = "izmena";
-            this.izmena.Size = new System.Drawing.Size(114, 33);
-            this.izmena.TabIndex = 36;
-            this.izmena.Text = "Izmena";
-            this.izmena.UseVisualStyleBackColor = false;
-            this.izmena.Click += new System.EventHandler(this.izmena_Click_1);
             // 
             // rucnilot
             // 
@@ -261,28 +243,12 @@
             this.rucnilot.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rucnilot.Font = new System.Drawing.Font("TimesRoman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rucnilot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.rucnilot.Location = new System.Drawing.Point(339, 417);
+            this.rucnilot.Location = new System.Drawing.Point(360, 417);
             this.rucnilot.Name = "rucnilot";
             this.rucnilot.Size = new System.Drawing.Size(129, 33);
             this.rucnilot.TabIndex = 37;
             this.rucnilot.Text = "Ručni lot";
             this.rucnilot.UseVisualStyleBackColor = false;
-            // 
-            // prekid
-            // 
-            this.prekid.BackColor = System.Drawing.Color.Snow;
-            this.prekid.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.prekid.FlatAppearance.BorderSize = 3;
-            this.prekid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.prekid.Font = new System.Drawing.Font("TimesRoman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.prekid.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.prekid.Location = new System.Drawing.Point(514, 417);
-            this.prekid.Name = "prekid";
-            this.prekid.Size = new System.Drawing.Size(114, 33);
-            this.prekid.TabIndex = 38;
-            this.prekid.Text = "Prekid";
-            this.prekid.UseVisualStyleBackColor = false;
-            this.prekid.Click += new System.EventHandler(this.prekid_Click);
             // 
             // NoviLot
             // 
@@ -290,9 +256,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(743, 471);
-            this.Controls.Add(this.prekid);
             this.Controls.Add(this.rucnilot);
-            this.Controls.Add(this.izmena);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.lotproizvodjaca);
             this.Controls.Add(this.label7);
@@ -314,7 +278,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NoviLot";
-            this.Load += new System.EventHandler(this.NoviLot_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -338,8 +301,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox lotproizvodjaca;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button izmena;
         private System.Windows.Forms.Button rucnilot;
-        private System.Windows.Forms.Button prekid;
     }
 }
