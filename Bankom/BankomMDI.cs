@@ -75,7 +75,18 @@ namespace Bankom
                 childForm.Text = ss;
                 childForm.Name = ss;
                 addFormTotoolstrip1(childForm, imedokumenta);
-             
+
+                if (imedokumenta == "LOT")
+                {
+
+                    foreach (var pb in childForm.Controls.OfType<Field>())
+                    {
+                        string s = pb.IME;
+                        if (pb.cTip == 10 || pb.cTip == 8)
+                            pb.Enabled = false;
+                    }
+                }
+
                 childForm.Show();
                 SrediFormu(); // BORKA OVO MORA OSTATI!!!!!!!!!!!!!!!!!
             }
@@ -119,6 +130,7 @@ namespace Bankom
                 }
                 else
                 {
+                   
                     ss = imedokumenta;
                     if (f.Text == ss)
                     {
@@ -1535,6 +1547,15 @@ namespace Bankom
 
             Form activeChild = this.ActiveMdiChild;
             activeChild.FormBorderStyle= FormBorderStyle.None;
+            //13.01.2021. tamara lotovi
+            if (activeChild.Text == "LOT")
+            {
+                NoviLot unosNovog = new NoviLot();
+                unosNovog.FormBorderStyle = FormBorderStyle.FixedSingle;
+                unosNovog.Show();
+                clsRefreshForm rf = new clsRefreshForm();
+                rf.refreshform();
+            }
             if (activeChild != null)
             {
                 activeChild.Controls["OOperacija"].Text = "UNOS";
@@ -3085,17 +3106,7 @@ namespace Bankom
                             }
                             break;
                         default:
-                           
-                            //13.01.2021. tamara lotovi
-                            if (forma.Controls["OOperacija"].Text.Trim() == "UNOS" && ((Bankom.frmChield)forma).DokumentJe == "P" && ((Bankom.frmChield)forma).Text=="LOT")
-                            {
-                                NoviLot unosNovog = new NoviLot();
-                                unosNovog.Show();
-                                clsRefreshForm rf = new clsRefreshForm();
-                                rf.refreshform();
-                            }
-                            else
-                                vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
+                           vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
 
                             break;
                     }

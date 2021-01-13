@@ -103,6 +103,7 @@ namespace Bankom
                             docref.refreshDokumentGrid(this,imedokumenta, iddokumenta.ToString(), "", "",DokumentJe);
                             break;
                         case "P":
+                           
                             cononf.addFormControls(this,imedokumenta, iddokumenta.ToString(), OOperacija.Text);
                             clsObradaStablaPtipa procp = new clsObradaStablaPtipa();
                             supit = procp.Proces(imestabla, imedokumenta, idstablo);

@@ -20,7 +20,7 @@ namespace Bankom
         {
             InitializeComponent();
             rucnilot.Enabled = false;
-            izmena.Enabled = false;
+           // izmena.Enabled = false;
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeLot();
         }
@@ -155,11 +155,7 @@ namespace Bankom
             }
         }
 
-        private void NoviLot_Load(object sender, EventArgs e)
-        {
-
-            this.FormBorderStyle = FormBorderStyle.None;
-        }
+        
 
         // 
         public string Konverzija_u_yuscii(string word)
