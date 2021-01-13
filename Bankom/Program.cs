@@ -64,6 +64,7 @@ namespace Bankom
         public static string KlasifikacijaSlovo { get; set; }
         public static string pomStablo { get; set; }
         public static string pomIzv{ get; set; }
+
         [STAThread]
 
         public  static void Main()

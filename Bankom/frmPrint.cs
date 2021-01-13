@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bankom.Class;
+using System;
+using System.Data;
 using System.Drawing.Printing;
 using System.IO;
 using System.Net;
@@ -14,6 +16,9 @@ namespace Bankom
         public string kojiprint= "";
         public string kojinacin = "";
         public string izvor = "";
+        //Ivana 13.1.2021.
+        DataBaseBroker db = new DataBaseBroker();
+        DataTable rez = new DataTable();
         //public string param { get; set; }
         //public string mparam;
         //public string mvred;
@@ -30,8 +35,8 @@ namespace Bankom
             ((BankomMDI)MdiParent).Controls["menuStrip"].Enabled = true;
             ((BankomMDI)MdiParent).Controls["menuStrip"].Enabled = true;
             base.OnClosed(e);
-        }      
-
+        }
+        string ParamZaStampu;
         private void frmPrint_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.None;
@@ -39,7 +44,7 @@ namespace Bankom
             string[] separators = new[] { "," };
             string putanja = "";                
             string mid = intCurrentdok.ToString();
-            string ParamZaStampu = "";
+            ParamZaStampu = "";
             string baza = "";
             panel1.Width = Width - 136;
             panel1.Height = Height;
@@ -69,42 +74,16 @@ namespace Bankom
             {
                 ParamZaStampu += "&id=" + mid;
             }
-
             switch (kojiprint)
 
             {
                 case "prn":
                     putanja = "http://"+ LoginForm.ImeServera +"/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprn" + imefajla + "&rs:Command=Render" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + ParamZaStampu;
-                    //putanja = @"http://192.168.1.4/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprn" + imefajla + "&rs:Command=Render" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + ParamZaStampu;
-                    ////putanja = "http://192.168.1.4/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprn" + imefajla + "&rs:Command=Render" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + "&id=" + intCurrentdok;
-
-                    //////Djora 11.01.21 poc --------------------------------
-                    //WebClient client = new WebClient();
-                    //client.UseDefaultCredentials = true;
-                    //string putanjaPdf = "http://192.168.1.4/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprn" + imefajla + "&rs:Command=Render&rs:Format=PDF" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + ParamZaStampu;  // "&rs%3aFormat=PDF";
-
-                    //byte[] bytes = client.DownloadData(putanjaPdf);
-                    //MemoryStream ms = new MemoryStream(bytes);
-
-                    //SmtpClient server = new SmtpClient("mail.bankom.rs");
-                    //server.Credentials = new NetworkCredential("ivana.jelic@bankom.rs", "Bundorfo8&");
-                    //MailMessage mail = new MailMessage();
-                    //mail.From = new MailAddress("ivana.jelic@bankom.rs");
-                    //mail.To.Add("tamara.martinovic@bankom.rs");
-                    //mail.Subject = "Subject";
-                    //mail.Body = "Body";
-                    ////mail.BodyFormat = MailFormat.Html;
-                    //mail.Attachments.Add(new Attachment(ms, "temp.pdf"));
-                    //try
-                    //{
-                    //    server.Send(mail);
-                    //}
-                    //catch (SmtpFailedRecipientException error)
-                    //{
-                    //    MessageBox.Show("error: " + error.Message + "\nFailing recipient: " + error.FailedRecipient);
-                    //}
-                    //Djora 11.01.21 kraj --------------------------------
-
+                    //Ivana 13.1.2021.
+                    string upit = "select Email from Komitenti where Email<>''";
+                    rez = db.ParamsQueryDT(upit);
+                    for (int i = 0; i < rez.Rows.Count; i++)
+                        cmbEmail.Items.Add(rez.Rows[i][0].ToString());
                     break;
                 case "rpt":
                     putanja = "http://" + LoginForm.ImeServera + "/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2frpt" + imefajla + "&rs:Command=Render" + "&database=" + baza + ParamZaStampu;
@@ -155,9 +134,52 @@ namespace Bankom
             webBrowser1.ShowSaveAsDialog();
         }
 
-        public void button1_Click(object sender, EventArgs e)
+        public void btnEmail_Click(object sender, EventArgs e)
         {
-
+            //Djora 11.01.21 poc --------------------------------
+            WebClient client = new WebClient();
+            client.UseDefaultCredentials = true;
+            string putanjaPdf = "http://192.168.1.4/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprn" + imefajla + "&rs:Command=Render&rs:Format=PDF" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + ParamZaStampu;  // "&rs%3aFormat=PDF";
+            byte[] bytes = client.DownloadData(putanjaPdf);
+            MemoryStream ms = new MemoryStream(bytes);
+            SmtpClient server = new SmtpClient("mail.bankom.rs");
+            server.EnableSsl = true;
+            server.UseDefaultCredentials = false;
+            server.DeliveryMethod = SmtpDeliveryMethod.Network;
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("ivana.jelic@bankom.rs");
+            if (mejl != "")
+            {
+                mail.To.Add(mejl);
+                mail.Subject = "bez mejla";
+                mail.Body = "Bez sifre";
+                //mail.BodyFormat = MailFormat.Html;
+                mail.Attachments.Add(new Attachment(ms, "temp.pdf"));
+                try
+                {
+                    server.Send(mail);
+                }
+                catch (SmtpFailedRecipientException error)
+                {
+                    MessageBox.Show("error: " + error.Message + "\nFailing recipient: " + error.FailedRecipient);
+                }
+            }
+            else
+                MessageBox.Show("Morate uneti e-mail!");
+            btnEmail.Enabled = false;
+            //Djora 11.01.21 kraj --------------------------------
+        }
+        //Ivana 13.1.2021.
+        string mejl = "";
+        private void cmbEmail_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mejl = cmbEmail.SelectedItem.ToString();
+            btnEmail.Enabled = true;
+        }
+        private void cmbEmail_TextChanged(object sender, EventArgs e)
+        {
+            mejl = cmbEmail.Text;
+            btnEmail.Enabled = true;
         }
     }
 

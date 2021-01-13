@@ -37,8 +37,8 @@
             this.toolStripSaveAs = new System.Windows.Forms.ToolStripStatusLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboEmail = new System.Windows.Forms.ComboBox();
+            this.btnEmail = new System.Windows.Forms.Button();
+            this.cmbEmail = new System.Windows.Forms.ComboBox();
             this.statusPrint.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +55,7 @@
             this.toolStripSaveAs});
             this.statusPrint.Location = new System.Drawing.Point(0, 564);
             this.statusPrint.Name = "statusPrint";
-            this.statusPrint.Size = new System.Drawing.Size(943, 23);
+            this.statusPrint.Size = new System.Drawing.Size(1274, 23);
             this.statusPrint.TabIndex = 2;
             this.statusPrint.Text = "statusStrip1";
             // 
@@ -98,24 +98,26 @@
             this.webBrowser1.Size = new System.Drawing.Size(728, 388);
             this.webBrowser1.TabIndex = 1;
             // 
-            // button1
+            // btnEmail
             // 
-            this.button1.Location = new System.Drawing.Point(831, 249);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(68, 32);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Send email";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnEmail.Location = new System.Drawing.Point(1074, 177);
+            this.btnEmail.Name = "btnEmail";
+            this.btnEmail.Size = new System.Drawing.Size(68, 32);
+            this.btnEmail.TabIndex = 4;
+            this.btnEmail.Text = "Send email";
+            this.btnEmail.UseVisualStyleBackColor = true;
+            this.btnEmail.Click += new System.EventHandler(this.btnEmail_Click);
             // 
-            // comboEmail
+            // cmbEmail
             // 
-            this.comboEmail.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboEmail.FormattingEnabled = true;
-            this.comboEmail.Location = new System.Drawing.Point(806, 139);
-            this.comboEmail.Name = "comboEmail";
-            this.comboEmail.Size = new System.Drawing.Size(121, 23);
-            this.comboEmail.TabIndex = 5;
+            this.cmbEmail.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEmail.FormattingEnabled = true;
+            this.cmbEmail.Location = new System.Drawing.Point(806, 183);
+            this.cmbEmail.Name = "cmbEmail";
+            this.cmbEmail.Size = new System.Drawing.Size(251, 23);
+            this.cmbEmail.TabIndex = 5;
+            this.cmbEmail.SelectedIndexChanged += new System.EventHandler(this.cmbEmail_SelectedIndexChanged);
+            this.cmbEmail.TextChanged += new System.EventHandler(this.cmbEmail_TextChanged);
             // 
             // frmPrint
             // 
@@ -123,10 +125,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.Snow;
-            this.ClientSize = new System.Drawing.Size(943, 587);
+            this.ClientSize = new System.Drawing.Size(1274, 587);
             this.ControlBox = false;
-            this.Controls.Add(this.comboEmail);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cmbEmail);
+            this.Controls.Add(this.btnEmail);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusPrint);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -154,7 +156,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.Button button1;
-        public System.Windows.Forms.ComboBox comboEmail;
+        private System.Windows.Forms.Button btnEmail;
+        public System.Windows.Forms.ComboBox cmbEmail;
     }
 }

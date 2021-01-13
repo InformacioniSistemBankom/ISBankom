@@ -779,7 +779,7 @@ namespace Bankom.Class
         }
         private void comboBox_DropDownClosed(object sender, EventArgs e)
         {
-                        SendKeys.Send("{tab}");
+            SendKeys.Send("{tab}");
         }
         private void comboBox_DropDown(object sender, EventArgs e)
         {
