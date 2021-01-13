@@ -72,9 +72,6 @@ namespace Bankom.Class
         public string cIdNaziviNaFormi;
         //Ivana 11.12.2020.
         public string cZavisiOd;
-
-        public frmChield dete = new frmChield();
-
         Form forma = new Form();
         //private int izmena;
         private string aaa = "";
@@ -347,11 +344,11 @@ namespace Bankom.Class
                         string upit1 = "select AlijasPolja from RecnikPodataka where AlijasPolja like 'NazivSkl%' and Dokument=@param0 and ID_TipoviPodataka=10 and TabIndex>=0";
                         DataTable dt = db.ParamsQueryDT(upit1, cDokument);
                         if (dt.Rows.Count == 1)
-                            dete.nastavakSkladista1 = dt.Rows[0][0].ToString().Substring(8);
+                            ((Bankom.frmChield)forma).nastavakSkladista1 = dt.Rows[0][0].ToString().Substring(8);
                         else if (dt.Rows.Count == 2)
                         {
-                            dete.nastavakSkladista1 = dt.Rows[0][0].ToString().Substring(8);
-                            dete.nastavakSkladista2 = dt.Rows[1][0].ToString().Substring(8);
+                            ((Bankom.frmChield)forma).nastavakSkladista1 = dt.Rows[0][0].ToString().Substring(8);
+                            ((Bankom.frmChield)forma).nastavakSkladista2 = dt.Rows[1][0].ToString().Substring(8);
                         }
                         //for (int i=0;i<dt.Rows.Count;i++)
                         //{
@@ -359,8 +356,8 @@ namespace Bankom.Class
                         //        nastavakSkladista1 = dt.Rows[i][0].ToString().Substring(8);
                         //}
                         if (IME.Contains("NazivSkl") && broj>0) //uci ce samo kada ima mag polje, a desavace se samo pri stvaranju comboBox-a NazivSkl
-                        { 
-                            dete.NazivSkladista = comboBox.Text;
+                        {
+                            ((Bankom.frmChield)forma).NazivSkladista = comboBox.Text;
                             comboBox.SelectedIndexChanged += new EventHandler(comboBox_SelectedIndexChanged);
                         }
                         comboBox.Leave += new EventHandler(Leave);
@@ -640,16 +637,16 @@ namespace Bankom.Class
         public void comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(comboBox.Name.Length==8)
-                dete.NazivSkladista = comboBox.Text;
-            else if (dete.nastavakSkladista1 == comboBox.Name.Substring(8))
+                ((Bankom.frmChield)forma).NazivSkladista = comboBox.Text;
+            else if (((Bankom.frmChield)forma).nastavakSkladista1 == comboBox.Name.Substring(8))
             {
-                dete.NazivSkladista1 = comboBox.Text;
-                dete.nastavakSkladista1 = comboBox.Name.Substring(8);
+                ((Bankom.frmChield)forma).NazivSkladista1 = comboBox.Text;
+                ((Bankom.frmChield)forma).nastavakSkladista1 = comboBox.Name.Substring(8);
             }
             else
             {
-                dete.NazivSkladista2 = comboBox.Text;
-                dete.nastavakSkladista2 = comboBox.Name.Substring(8);
+                ((Bankom.frmChield)forma).NazivSkladista2 = comboBox.Text;
+                ((Bankom.frmChield)forma).nastavakSkladista2 = comboBox.Name.Substring(8);
             }
         }
         void textBox_MouseDown(object sender, MouseEventArgs e)
@@ -1104,7 +1101,7 @@ namespace Bankom.Class
                 string upit = "select NazivPolja from MagacinskaPoljaStavkeView where NazivSkl=@param0";
                 // jovana 13.01.21
                 if (((Bankom.frmChield)forma).nastavakSkladista2 != "" && ((Bankom.frmChield)forma).NazivSkladista2!=null && IME.Substring(10).Contains(((Bankom.frmChield)forma).nastavakSkladista2))
-                        rez = db.ParamsQueryDT(upit, dete.NazivSkladista2);
+                        rez = db.ParamsQueryDT(upit, ((Bankom.frmChield)forma).NazivSkladista2);
                 else if (((Bankom.frmChield)forma).nastavakSkladista1 != "" && ((Bankom.frmChield)forma).NazivSkladista1 != null && IME.Substring(10).Contains(((Bankom.frmChield)forma).nastavakSkladista1))
                             rez = db.ParamsQueryDT(upit, ((Bankom.frmChield)forma).NazivSkladista1);
                 else
