@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NoviLot));
             this.label1 = new System.Windows.Forms.Label();
             this.idArtikal = new System.Windows.Forms.TextBox();
             this.artikli = new System.Windows.Forms.ComboBox();
@@ -71,7 +72,6 @@
             this.idArtikal.TabIndex = 6;
             this.idArtikal.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.idArtikal.Leave += new System.EventHandler(this.idArtikal_Leave);
-            this.idArtikal.Validating += new System.ComponentModel.CancelEventHandler(this.idArtikal_Validating);
             // 
             // artikli
             // 
@@ -108,7 +108,6 @@
             this.skladista.Name = "skladista";
             this.skladista.Size = new System.Drawing.Size(680, 26);
             this.skladista.TabIndex = 23;
-            this.skladista.SelectedIndexChanged += new System.EventHandler(this.skladista_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -178,9 +177,6 @@
             this.proizvodjaci.Name = "proizvodjaci";
             this.proizvodjaci.Size = new System.Drawing.Size(680, 26);
             this.proizvodjaci.TabIndex = 30;
-            this.proizvodjaci.DropDown += new System.EventHandler(this.proizvodjaci_DropDown);
-            this.proizvodjaci.SelectedIndexChanged += new System.EventHandler(this.proizvodjaci_SelectedIndexChanged);
-            this.proizvodjaci.TextUpdate += new System.EventHandler(this.proizvodjaci_TextUpdate);
             // 
             // label6
             // 
@@ -203,7 +199,6 @@
             this.zempro.Name = "zempro";
             this.zempro.Size = new System.Drawing.Size(680, 26);
             this.zempro.TabIndex = 32;
-            this.zempro.SelectedIndexChanged += new System.EventHandler(this.zempro_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -225,7 +220,6 @@
             this.lotproizvodjaca.Name = "lotproizvodjaca";
             this.lotproizvodjaca.Size = new System.Drawing.Size(680, 24);
             this.lotproizvodjaca.TabIndex = 34;
-            this.lotproizvodjaca.TextChanged += new System.EventHandler(this.lotproizvodjaca_TextChanged);
             // 
             // button1
             // 
@@ -317,9 +311,9 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("TimesRoman", 11F, System.Drawing.FontStyle.Bold);
             this.ForeColor = System.Drawing.Color.Black;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NoviLot";
-            this.Text = "NoviLot";
             this.Load += new System.EventHandler(this.NoviLot_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

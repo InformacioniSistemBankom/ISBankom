@@ -593,6 +593,17 @@ namespace Bankom.Class
                 }
             } // kraj za idNaziviNaFormi == "20" && tud != "0"
 
+            //13.01.2021. tamara
+            if (dokument == "Lot")
+            {
+
+                foreach (var pb in form1.Controls.OfType<Field>())
+                {
+                    string s = pb.IME;
+                    if (pb.cTip == 10 || pb.cTip == 8)
+                        pb.Enabled = false;
+                }
+            }
         }
         private Control activeControl;
 
