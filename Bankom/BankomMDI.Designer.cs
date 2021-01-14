@@ -570,7 +570,6 @@ namespace Bankom
             this.toolStripMenuRefresh.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F5)));
             this.toolStripMenuRefresh.Size = new System.Drawing.Size(159, 22);
             this.toolStripMenuRefresh.Text = "Refresh";
-            //this.toolStripMenuRefresh.Click += new System.EventHandler(this.toolStripMenuRefresh_Click_1);
             // 
             // windowsMenu
             // 
