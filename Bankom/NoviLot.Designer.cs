@@ -175,7 +175,7 @@
             this.proizvodjaci.Name = "proizvodjaci";
             this.proizvodjaci.Size = new System.Drawing.Size(680, 26);
             this.proizvodjaci.TabIndex = 30;
-            // 
+             // 
             // label6
             // 
             this.label6.AutoSize = true;
