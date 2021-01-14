@@ -247,29 +247,35 @@ namespace Bankom.Class
                         //Borka 09.12.20 dodala MojeStablo+"-"+ tv.SelectedNode.Name u treci red                                
                         Program.AktivnaSifraIzvestaja = "";
                         string q = "";
-                        switch(MojeStablo)
+                        // Jovana 12.01.21
+                        q = "Select vrstacvora from " + MojeStablo + "Stablo where Naziv=@param0";
+                        DataTable st = new DataTable();
+                        st = db.ParamsQueryDT(q, tv.SelectedNode.Name);
+                        if (st.Rows[0]["Vrstacvora"].ToString() != "f")
                         {
-                            case "Dokumenta":
-                            case "PomocniSifarnici":
-                                  q = "Select vrstacvora from "+MojeStablo+"Stablo where Naziv=@param0";
-                                  DataTable st = new DataTable();
-                                  st = db.ParamsQueryDT(q, tv.SelectedNode.Name);
-                                  if (st.Rows[0]["Vrstacvora"].ToString() == "f")
-                                  {
-                                       //MessageBox.Show("Pogresan izbor odabrali ste grupu!!");
-                                  }
-                                  else
-                                      Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-                                  break;
-                            case "Artikli":
-                            case "Komitenti":
-                                  Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), MojeStablo + "-" + tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-                                  break;
-                            default:
-                                Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-                                break;
+                            switch (MojeStablo)
+                            {
+                                case "Dokumenta":
+                                case "PomocniSifarnici":
+                                    //q = "Select vrstacvora from "+MojeStablo+"Stablo where Naziv=@param0";
+                                    //DataTable st = new DataTable();
+                                    //st = db.ParamsQueryDT(q, tv.SelectedNode.Name);
+                                    //if (st.Rows[0]["Vrstacvora"].ToString() == "f")
+                                    //{
+                                    //     //MessageBox.Show("Pogresan izbor odabrali ste grupu!!");
+                                    //}
+                                    //else
+                                    Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                                    break;
+                                case "Artikli":
+                                case "Komitenti":
+                                    Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), MojeStablo + "-" + tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                                    break;
+                                default:
+                                    Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                                    break;
+                            }
                         }
-                        
                     }
                 }
             }
@@ -278,7 +284,14 @@ namespace Bankom.Class
         //zajedno 28.10.2020.
         public void tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-           
+            Program.Parent.ToolBar.Items["Uunos"].Visible = true;
+            Program.Parent.ToolBar.Items["Uunos"].Enabled = true;
+
+            Program.Parent.ToolBar.Items["toolStripTextBox1"].Enabled = true;
+            Program.Parent.ToolBar.Items["toolStripTextBox1"].Visible = true;
+
+            Program.AktivnaSifraIzvestaja = e.Node.Text.ToString();
+            Program.IdSelektovanogCvora = int.Parse(e.Node.Tag.ToString());
         }
       
     }

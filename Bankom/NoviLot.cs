@@ -20,7 +20,7 @@ namespace Bankom
         {
             InitializeComponent();
             rucnilot.Enabled = false;
-            izmena.Enabled = false;
+           // izmena.Enabled = false;
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeLot();
         }
@@ -155,11 +155,7 @@ namespace Bankom
             }
         }
 
-        private void NoviLot_Load(object sender, EventArgs e)
-        {
-
-            this.FormBorderStyle = FormBorderStyle.None;
-        }
+        
 
         // 
         public string Konverzija_u_yuscii(string word)
@@ -235,16 +231,7 @@ namespace Bankom
 
         }
 
-        private void proizvodjaci_TextUpdate(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void proizvodjaci_DropDown(object sender, EventArgs e)
-        {
-
-        }
+    
 
         private void idArtikal_Leave(object sender, EventArgs e)
 
@@ -263,11 +250,7 @@ namespace Bankom
             }
         }
 
-        private void idArtikal_Validating(object sender, CancelEventArgs e)
-        {
-           
-                
-        }
+       
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -276,26 +259,17 @@ namespace Bankom
             if (!String.IsNullOrEmpty(greska)) MessageBox.Show(greska);
             else UpisiNoviLot(Convert.ToInt32(zempro.SelectedValue), Convert.ToInt32(idArtikal.Text), datumProizvodnje.Value, datumIsteka.Value, Convert.ToInt32(proizvodjaci.SelectedValue), lotproizvodjaca.Text, skladista.SelectedValue.ToString());
 
-
-
-
-
         }
 
         public void UpisiNoviLot(int idZemlja,int idArtikal,DateTime datPro, DateTime datIst,int idProizvodjac,string njihovBarKod,string oznakaSkladista)
-
         {
-           
-           
             int redniBroj;
             using (SqlConnection sqlConnection = new SqlConnection(Program.connectionString))
             {
                 sqlConnection.Open();
                 using (var command = sqlConnection.CreateCommand())
                 {
-                    
-
-                   command.CommandText = "SELECT MAX(rednibroj) as max FROM Lot where barkod like '%" + oznakaSkladista + "%' AND DatumProizvodnje = '" + datPro.ToLongDateString() + "'";
+                    command.CommandText = "SELECT MAX(rednibroj) as max FROM Lot where barkod like '%" + oznakaSkladista + "%' AND DatumProizvodnje = '" + datPro.ToLongDateString() + "'";
                    var reader = command.ExecuteScalar();
 
                     if (!Convert.IsDBNull(reader))
@@ -308,6 +282,7 @@ namespace Bankom
                         redniBroj = 1;
                     }
 
+                    
 
                     string barKod = datPro.ToShortDateString().Replace(".", string.Empty).Trim() + oznakaSkladista + redniBroj + "A" + idArtikal;
 
@@ -317,26 +292,21 @@ namespace Bankom
                         {
                             njihovBarKod = barKod;
                         }
-
-
                     }
 
-                    command.CommandText = $"INSERT INTO Lot ( DatumProizvodnje, RokTrajanja, DatumIsteka, ID_Komitenti, ID_Zemlja, NjihovLot, barkod, ID_Artikli, UUser,RedniBroj) VALUES('{datPro.Date}',0,'{datIst.Date}',{idProizvodjac},{idZemlja},'{njihovBarKod}','{barKod}',{idArtikal},{Program.idkadar},{redniBroj})";
+                    //tamara 14.01.2021.
+                    var a = datPro.ToShortDateString();
+                    var b = datIst.ToShortDateString();
+
+                    command.CommandText = $"INSERT INTO Lot ( DatumProizvodnje, RokTrajanja, DatumIsteka, ID_Komitenti, ID_Zemlja, NjihovLot, barkod, ID_Artikli, UUser,RedniBroj) VALUES('{a}',0,'{b}',{idProizvodjac},{idZemlja},'{njihovBarKod}','{barKod}',{idArtikal},{Program.idkadar},{redniBroj})";
                     command.ExecuteNonQuery();
                     var dialogResult = MessageBox.Show("Kreiran je novi lot!", "", MessageBoxButtons.OKCancel);
 
                     if (dialogResult == DialogResult.OK || dialogResult == DialogResult.Cancel)
                     {
                         this.Close();
-                        Lotovi.innerReference.dataGridViewPaging1.Initialize(Lotovi.innerReference.count());
-
-                    } 
-
-
-
-
-
-
+                    }
+                    
                 }
 
 
@@ -354,7 +324,8 @@ namespace Bankom
                     njihovBarKod = lot;
                 }
             }
-                using (SqlConnection sqlConnection = new SqlConnection(Program.connectionString))
+          
+            using (SqlConnection sqlConnection = new SqlConnection(Program.connectionString))
             {
                 sqlConnection.Open();
                 using (var command = sqlConnection.CreateCommand())
@@ -449,24 +420,6 @@ namespace Bankom
             else updateLot(currentLot, Convert.ToInt32(zempro.SelectedValue), datumIsteka.Value, Convert.ToInt32(proizvodjaci.SelectedValue), lotproizvodjaca.Text);
         }
 
-        private void skladista_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void proizvodjaci_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void zempro_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lotproizvodjaca_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

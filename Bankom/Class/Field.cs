@@ -72,6 +72,9 @@ namespace Bankom.Class
         public string cIdNaziviNaFormi;
         //Ivana 11.12.2020.
         public string cZavisiOd;
+
+        public frmChield dete = new frmChield();
+
         Form forma = new Form();
         //private int izmena;
         private string aaa = "";
@@ -353,11 +356,11 @@ namespace Bankom.Class
                         string upit1 = "select AlijasPolja from RecnikPodataka where AlijasPolja like 'NazivSkl%' and Dokument=@param0 and ID_TipoviPodataka=10 and TabIndex>=0";
                         DataTable dt = db.ParamsQueryDT(upit1, cDokument);
                         if (dt.Rows.Count == 1)
-                            Program.nastavakSkladista1 = dt.Rows[0][0].ToString().Substring(8);
+                            dete.nastavakSkladista1 = dt.Rows[0][0].ToString().Substring(8);
                         else if (dt.Rows.Count == 2)
                         {
-                            Program.nastavakSkladista1 = dt.Rows[0][0].ToString().Substring(8);
-                            Program.nastavakSkladista2 = dt.Rows[1][0].ToString().Substring(8);
+                            dete.nastavakSkladista1 = dt.Rows[0][0].ToString().Substring(8);
+                            dete.nastavakSkladista2 = dt.Rows[1][0].ToString().Substring(8);
                         }
                         //for (int i=0;i<dt.Rows.Count;i++)
                         //{
@@ -366,7 +369,7 @@ namespace Bankom.Class
                         //}
                         if (IME.Contains("NazivSkl") && broj>0) //uci ce samo kada ima mag polje, a desavace se samo pri stvaranju comboBox-a NazivSkl
                         { 
-                            Program.NazivSkladista = comboBox.Text;
+                            dete.NazivSkladista = comboBox.Text;
                             comboBox.SelectedIndexChanged += new EventHandler(comboBox_SelectedIndexChanged);
                         }
                         comboBox.Leave += new EventHandler(Leave);
@@ -462,6 +465,8 @@ namespace Bankom.Class
                         textBox.Parent.Name = Ime;
                     }
                     break;
+                  
+
             }
             //}// kraj za idNaziviNaFormi<>20
 
@@ -532,7 +537,8 @@ namespace Bankom.Class
                     //dv.Height = (int)(theight);
                     dv.Height = (int)(theight * brredova);
 
-                    dv.Tag = ttud;
+                    //dv.Tag = ttud;
+                    dv.Tag = "-1";
                     dv.Name = tIme;
 
                     //Da  moze da se edituju celije
@@ -586,7 +592,7 @@ namespace Bankom.Class
 
                     //Djora 26.09.20
                     dv.Margin = new Padding(0, 0, 0, 0);
-
+                    VrstaKontrole = "grid";
                     Controls.Add(dv);
 
                     //Djora 08.07.20
@@ -601,6 +607,8 @@ namespace Bankom.Class
                 }
             } // kraj za idNaziviNaFormi == "20" && tud != "0"
 
+
+           
         }
         private Control activeControl;
 
@@ -634,16 +642,16 @@ namespace Bankom.Class
         public void comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(comboBox.Name.Length==8)
-                Program.NazivSkladista = comboBox.Text;
-            else if (Program.nastavakSkladista1 == comboBox.Name.Substring(8))
+                dete.NazivSkladista = comboBox.Text;
+            else if (dete.nastavakSkladista1 == comboBox.Name.Substring(8))
             {
-                Program.NazivSkladista1 = comboBox.Text;
-                Program.nastavakSkladista1 = comboBox.Name.Substring(8);
+                dete.NazivSkladista1 = comboBox.Text;
+                dete.nastavakSkladista1 = comboBox.Name.Substring(8);
             }
             else
             {
-                Program.NazivSkladista2 = comboBox.Text;
-                Program.nastavakSkladista2 = comboBox.Name.Substring(8);
+                dete.NazivSkladista2 = comboBox.Text;
+                dete.nastavakSkladista2 = comboBox.Name.Substring(8);
             }
         }
         void textBox_MouseDown(object sender, MouseEventArgs e)
@@ -797,7 +805,7 @@ namespace Bankom.Class
             {
                 if (rez.Rows.Count != 0)
                 {
-                    for (int i = 0; i < rez.Rows.Count; i++)
+                    for (   int i = 0; i < rez.Rows.Count; i++)
                         if (rez.Rows[i][0].ToString().ToLower().Contains(control.Text.ToLower()))
                         {
                             control.Items.Add(rez.Rows[i][0]);
@@ -920,7 +928,7 @@ namespace Bankom.Class
                                 if (pb.cTip == 25)
                                     uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + " Like N'%" + control.Text + "%'" + Restrikcija;
                                 else
-                                    uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + "='" + control.Text + "'" + Restrikcija;
+                                uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + "='" + control.Text + "'" + Restrikcija;
                                 Console.WriteLine(uuPIT);
                                 DataTable tt = db.ReturnDataTable(uuPIT);
                                 if (tt.Rows.Count > 0)
@@ -1096,12 +1104,13 @@ namespace Bankom.Class
             {
                 comboBox.Items.Clear();
                 string upit = "select NazivPolja from MagacinskaPoljaStavkeView where NazivSkl=@param0";
-                if(IME.Length==10)
-                    rez = db.ParamsQueryDT(upit, Program.NazivSkladista);
-                else if (IME.Substring(10) == Program.nastavakSkladista1)
-                    rez = db.ParamsQueryDT(upit, Program.NazivSkladista1);
+                // jovana 13.01.21
+                if (((Bankom.frmChield)forma).nastavakSkladista2 != "" && ((Bankom.frmChield)forma).NazivSkladista2!=null && IME.Substring(10).Contains(((Bankom.frmChield)forma).nastavakSkladista2))
+                        rez = db.ParamsQueryDT(upit, dete.NazivSkladista2);
+                else if (((Bankom.frmChield)forma).nastavakSkladista1 != "" && ((Bankom.frmChield)forma).NazivSkladista1 != null && IME.Substring(10).Contains(((Bankom.frmChield)forma).nastavakSkladista1))
+                            rez = db.ParamsQueryDT(upit, ((Bankom.frmChield)forma).NazivSkladista1);
                 else
-                    rez = db.ParamsQueryDT(upit, Program.NazivSkladista2);
+                    rez = db.ParamsQueryDT(upit, ((Bankom.frmChield)forma).NazivSkladista);
             }
             else if (Tip != 3)
             {
@@ -1193,15 +1202,14 @@ namespace Bankom.Class
                         {
                             if (control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString().Trim() != "")
                             {
-                                sel = " Select lot,ID_LotVieW from LotView where barkod='" + control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString() + "'";
+                                sel = " Select barkod,ID_LotVieW from LotView where barkod='" + control.Rows[e.RowIndex].Cells[i].FormattedValue.ToString() + "'";
                                 Console.WriteLine(sel);
                                 t = db.ReturnDataTable(sel);
                                 if (t.Rows.Count > 0)
                                 {
-                                    pb.Vrednost = t.Rows[0]["lot"].ToString();
+                                    pb.Vrednost = t.Rows[0]["barkod"].ToString();
                                     pb.ID= t.Rows[0]["ID_LotView"].ToString();
                                 }
-
                             }
                         }
                         else
@@ -1259,6 +1267,7 @@ namespace Bankom.Class
                         iid = Convert.ToInt32(control.Rows[e.RowIndex].Cells[i].Value.ToString());
                         // jovana 04.11. grid tag napuni sa idreda
                         control.Tag = control.Rows[e.RowIndex].Cells[i].Value.ToString();
+                        ((Bankom.frmChield)forma).idReda = iid;
                     }
                 }
                 i++;
@@ -1286,13 +1295,12 @@ namespace Bankom.Class
             string mojestablo = Me.Controls["limestabla"].Text.Trim();
             int midstablo = Convert.ToInt32(Me.Controls["lidstablo"].Text);
 
-            ((Bankom.frmChield)Me).imegrida = control.Name; // borka 25.02.20 Substring(4, mGrid.Length - 4)
+            ((Bankom.frmChield)Me).imegrida = control.Name; 
             ((Bankom.frmChield)Me).idReda = middok;
             ((Bankom.frmChield)Me).brdok = mbrdok;
 
-            string ddatum = mdatum.ToString("dd.MM.yy");
-            string DokumentJe = "";
-            DokumentJe = ((Bankom.frmChield)Me).DokumentJe;
+            string ddatum = mdatum.ToString("dd.MM.yy");            
+            string DokumentJe = ((Bankom.frmChield)Me).DokumentJe;
             if (mojestablo == "Dokumenta" && DokumentJe == "S")
             {
                 ((Bankom.frmChield)Me).iddokumenta = middok;
@@ -1325,8 +1333,7 @@ namespace Bankom.Class
             dv.BackgroundColor = Color.AliceBlue;
             Form Me = Program.Parent.ActiveMdiChild;
 
-            string[] separators = new[] { "," };
-            string d1, d2;
+            string[] separators = new[] { "," };           
             Form novaforma = new Form();
 
             string vl, ll, sts, ss;
@@ -1714,51 +1721,16 @@ namespace Bankom.Class
                 string OperacijaDokumenta = "";
                 string Dokument = mdokument;
                 string Naslov = mNaslov;
-                int IdUpdateReda = -1;
-                int TUD = 0;
-
                 string PPrikaz = ts.Rows[0]["prikaz"].ToString();
                 string NacinRegistracije = ts.Rows[0]["NacinRegistracije"].ToString();
                 string NazivKlona = ts.Rows[0]["UlazniIzlazni"].ToString();
                 string DokumentJe = ts.Rows[0]["Vrsta"].ToString();
-
                 long IdDokView = 0;
                 if (DokumentJe == "I")
                     IdDokView = -1;
                 else
                     IdDokView = 0;
-
-
-
-                //     NovaForma Naslov
-
-                //     fform.Controls("OOperacija").Caption = OperacijaDokumenta
-                //     OsveziKontrole
-
-                //     Select Case Trim(mdokument)
-                //            Case "SpisakDokumenata"
-                //            On Error Resume Next
-                //                 fform.Controls("ctProknjizeno").Vrednost = "NijeProknjizeno"
-                //             On Error GoTo 0
-                //            Case "RealizacijaProdaje"
-                //                On Error Resume Next
-                //                fform.Controls("ctMesec").Vrednost = Month(Date)
-                //                fform.Controls("ctgodina").Vrednost = Year(Date)
-                //                On Error GoTo 0
-                //     End Select
-
-            }
-            else
-            {
-                //    If DokumentJe = "I" Then
-                //       MsgBox "Ne postoji odabrani izvestaj"
-                //    Else
-                //         MsgBox "Ne postoji odabrani sifarnik"
-                //    End If
-                //    On Error GoTo 0
-            }
-
-            //KRAJ:
+            }           
         }
 
         //Djora 26.09.20

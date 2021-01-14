@@ -86,20 +86,7 @@ namespace Bankom
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+   
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -145,20 +132,7 @@ namespace Bankom
             }
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridViewPaging1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pretraga_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void pretraga_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -195,9 +169,6 @@ namespace Bankom
 
         }
 
-        private void Lotovi_FormClosed(object sender, FormClosedEventArgs e)
-        {
-
-        }
+        
     }
 }

@@ -159,7 +159,6 @@ namespace Bankom.Class
                 tud = t.Rows[i]["TUD"].ToString();
                 tUpit = t.Rows[i]["Upit"].ToString();
                 brredova = Convert.ToInt32(t.Rows[i]["MaxHeight"]);
-               // DokumentJe = ((Bankom.frmChield)forma).DokumentJe.ToString();
                 if (tud == "1")
                     ((Bankom.frmChield)forma).BrRedova = brredova;
 
@@ -525,7 +524,8 @@ namespace Bankom.Class
                     {
                         if (dt.Columns[k].ColumnName.ToUpper().ToString().Contains("ID_") == false)
                         {
-                            Field ctrls = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == dt.Columns[k].ColumnName.ToString());
+                            Field ctrls = (Field)forma.Controls[dt.Columns[k].ColumnName];
+                            //Field ctrls = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == dt.Columns[k].ColumnName.ToString());
                             if (ctrls != null)
                             {
                                 ctrls.ID = "1";
@@ -570,13 +570,14 @@ namespace Bankom.Class
                                     case "combo":
                                         //ivana 24.12.2020.
                                         if (ctrls.IME.Contains("NazivSkl"))
-                                        {
+                                        {  frmChield dete = new frmChield();
+                                            // jovana 13.01.21
                                             if(ctrls.IME.Length==8)
-                                            Program.NazivSkladista = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
-                                            else if (ctrls.IME.Substring(8) == Program.nastavakSkladista1)
-                                                Program.NazivSkladista1 = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
+                                                ((Bankom.frmChield)forma).NazivSkladista = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
+                                            else if (ctrls.IME.Substring(8) == dete.nastavakSkladista1)
+                                                ((Bankom.frmChield)forma).NazivSkladista1 = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
                                             else
-                                                Program.NazivSkladista2 = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
+                                                ((Bankom.frmChield)forma).NazivSkladista2 = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
                                         }
                                         ctrls.comboBox.Text = dt.Rows[0][dt.Columns[k].ColumnName].ToString();
                                         string kojiid;

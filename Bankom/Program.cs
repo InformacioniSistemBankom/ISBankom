@@ -50,7 +50,9 @@ namespace Bankom
         public static string colname { get; set; }
         public static DataGridView activecontrol { get; set; }
 
+
         public static string connectionString = "Data Source=bankomw;Initial Catalog=BankomVeza;User ID=sa;password=password;";
+       // public static string connectionString = "Data Source=Borka;Initial Catalog=dbbbTestNew2003Bankom;User ID=sa;password=password;";
         public static string NazivRacunara = System.Environment.MachineName;
         public static string UserDomainName = System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties().DomainName;
 
@@ -63,12 +65,6 @@ namespace Bankom
         public static string pomStablo { get; set; }
         public static string pomIzv{ get; set; }
 
-        //zajedno 21.12.2020.
-        public static string NazivSkladista { get; set; }
-        public static string NazivSkladista1 { get; set; }
-        public static string NazivSkladista2 { get; set; }
-        public static string nastavakSkladista1 { get; set; }
-        public static string nastavakSkladista2 { get; set; }
         [STAThread]
 
         public  static void Main()

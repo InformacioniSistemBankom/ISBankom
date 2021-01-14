@@ -228,29 +228,30 @@ namespace Bankom.Class
             Program.KlasifikacijaSlovo = "";
             switch (s)
             {
-                case "Lotovi":
-                    if (!IsOpen(s))
-                    {
-                        Lotovi lotovi = new Lotovi();
-                        lotovi.FormBorderStyle = FormBorderStyle.None;
-                        lotovi.Text = "Lotovi";
+                //13.01.2021. tamara
+                //case "Lotovi":
+                //    if (!IsOpen(s))
+                //    {
+                //        Lotovi lotovi = new Lotovi();
+                //        lotovi.FormBorderStyle = FormBorderStyle.None;
+                //        lotovi.Text = "Lotovi";
 
-                        lotovi.MdiParent = mdi;
+                //        lotovi.MdiParent = mdi;
 
 
-                        lotovi.Dock = DockStyle.Fill;
+                //        lotovi.Dock = DockStyle.Fill;
 
-                        // mdi.WindowState = FormWindowState.Maximized;
-                        if (mdi.IzborJezika.Text == "Српски-Ћирилица") { lotovi.Text = mdi.VratiCirlilicu("Lotovi"); }
-                        int sirina = (mdi.Width / 100) * 10;
-                        mdi.addFormTotoolstrip1(lotovi, "Lotovi");
-                        mdi.updateToolStrip(s);
-                        mdi.SrediFormu();
-                        lotovi.Show();
+                //        // mdi.WindowState = FormWindowState.Maximized;
+                //        if (mdi.IzborJezika.Text == "Српски-Ћирилица") { lotovi.Text = mdi.VratiCirlilicu("Lotovi"); }
+                //        int sirina = (mdi.Width / 100) * 10;
+                //        mdi.addFormTotoolstrip1(lotovi, "Lotovi");
+                //        mdi.updateToolStrip(s);
+                //        mdi.SrediFormu();
+                //        lotovi.Show();
                         
 
-                    }
-                    break;
+                //    }
+                //    break;
                 case "Dokumenta":
                 case "Izvestaj":
                 case "OsnovniSifarnici":

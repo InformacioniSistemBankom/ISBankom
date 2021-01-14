@@ -36,7 +36,14 @@ namespace Bankom
         public  int pageno = 1; //ukupan broj stranica
         public string tUpit = "";
         public int BrRedova = 1;// broj redova na stranici
-        private long brojdok = 1;        
+        private long brojdok = 1;
+        //zajedno 12.1.2021.
+        public string NazivSkladista;
+        public string NazivSkladista1;
+        public string NazivSkladista2;
+        public string nastavakSkladista1;
+        public string nastavakSkladista2;
+
         public frmChield()
         {
             InitializeComponent();
@@ -56,9 +63,9 @@ namespace Bankom
             this.AutoScroll = true;
 
             intStart = 0;                
-            toolStripStatusPrazno.Text = new String(' ', 150);
-            
+            toolStripStatusPrazno.Text = new String(' ', 150);            
             toolStripStatusprdva.Text = new String(' ', 50);
+
             clscontrolsOnForm cononf = new clscontrolsOnForm();
             clsdokumentRefresh docref = new clsdokumentRefresh();
             DataBaseBroker db = new DataBaseBroker();
@@ -96,6 +103,7 @@ namespace Bankom
                             docref.refreshDokumentGrid(this,imedokumenta, iddokumenta.ToString(), "", "",DokumentJe);
                             break;
                         case "P":
+                           
                             cononf.addFormControls(this,imedokumenta, iddokumenta.ToString(), OOperacija.Text);
                             clsObradaStablaPtipa procp = new clsObradaStablaPtipa();
                             supit = procp.Proces(imestabla, imedokumenta, idstablo);
@@ -129,6 +137,15 @@ namespace Bankom
             }
             
             panel1.Top = 0;
+            if (this.Text == "LOT")
+            {
+                foreach (var pb in this.Controls.OfType<Field>())
+                {
+                    if (pb.cTip == 10 || pb.cTip == 8)
+                         pb.Enabled = false;
+                }
+            }
+
         }
         private void frmChield_Activated(object sender, EventArgs e)
         {                 
@@ -338,7 +355,8 @@ namespace Bankom
             //Da si ulogovan kao SA i da u tekstboxu u meniju gore pise 123
             if (Program.imekorisnika == "sa" & Program.Parent.ToolBar.Items["toolStripTextBox1"].Text == "123")
             {
-                //Povecanje visine redova
+              
+                  //Povecanje visine redova
                 if (e.KeyCode == Keys.F12)
                 {
 
@@ -443,25 +461,11 @@ namespace Bankom
                     double pW = Math.Round(this.ActiveControl.Parent.Width / delW, 0);
                     double pH = Math.Round(this.ActiveControl.Parent.Height / delH, 0);
 
-
-                    //double pT =this.ActiveControl.Parent.Top;
-                    //double pL = this.ActiveControl.Parent.Left;
-                    //double pW = this.ActiveControl.Parent.Width;
-                    //double pH = this.ActiveControl.Parent.Height;
-
-
                     Field ctrls = (Field)this.ActiveControl.Parent;
-
-                    //Console.WriteLine(ctrls.cIdNaziviNaFormi);
 
                     if (ctrls.cIdNaziviNaFormi == "20")
                     {
                         imeKontrole = ctrls.IME;
-                        //Djora 10.11.20
-                        //string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL
-                        //             + " WHERE(dbo.RecnikPodataka.Dokument = N'" + imestabla + "') "
-                        //             + " AND RecnikPodataka.AlijasPolja = N'" + imeKontrole + "'";
-
                         string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL
                                      + " WHERE(dbo.RecnikPodataka.Dokument = N'" + isd + "') "
                                     + " AND RecnikPodataka.AlijasPolja = N'" + imeKontrole + "'";
@@ -480,23 +484,9 @@ namespace Bankom
                     else
                     {
                         imeKontrole = this.ActiveControl.Name;
-
-                        //string dokument = tt.Rows[0]["NazivDokumenta"].ToString();
-                        //string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL + ", "
-                        //             + " width=" + pW + ", height=" + pH + ", WidthKolone=" + pW
-                        //             + " FROM dbo.RecnikPodataka "
-                        //             + " WHERE(RecnikPodataka.Dokument = N'" + imestabla + "') "
-                        //             + " AND RecnikPodataka.AlijasPolja = N'" + this.ActiveControl.Name + "'";
-
-                        //Djora 10.11.20
-                        //string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL + ", cwidth=" + pW + ", cWidthKolone=" + pW
-                        //             + " WHERE(RecnikPodataka.Dokument = N'" + imestabla + "') "
-                        //             + " AND RecnikPodataka.AlijasPolja = N'" + imeKontrole + "'";
                         string query = " UPDATE dbo.RecnikPodataka SET cvrh=" + pT + ", clevo=" + pL + ", cwidth=" + pW + ", cWidthKolone=" + pW
                                      + " WHERE(RecnikPodataka.Dokument = N'" + isd + "') "
                                      + " AND RecnikPodataka.AlijasPolja = N'" + imeKontrole + "'";
-
-
                         SqlCommand cmd1 = new SqlCommand(query);
                         db.Comanda(cmd1);
                     }
