@@ -137,6 +137,15 @@ namespace Bankom
             }
             
             panel1.Top = 0;
+            if (this.Text == "LOT")
+            {
+                foreach (var pb in this.Controls.OfType<Field>())
+                {
+                    if (pb.cTip == 10 || pb.cTip == 8)
+                         pb.Enabled = false;
+                }
+            }
+
         }
         private void frmChield_Activated(object sender, EventArgs e)
         {                 
