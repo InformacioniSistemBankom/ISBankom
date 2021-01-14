@@ -72,9 +72,6 @@ namespace Bankom.Class
         public string cIdNaziviNaFormi;
         //Ivana 11.12.2020.
         public string cZavisiOd;
-
-        public frmChield dete = new frmChield();
-
         Form forma = new Form();
         //private int izmena;
         private string aaa = "";
@@ -132,38 +129,41 @@ namespace Bankom.Class
             ////{
             Console.WriteLine(IME);
 
-            if (PozicijaLabele != "2")        //   2- labela ne postoji ; 1 = ispred, 0= iznad
-            {                                // label postoji
-                label = new Label();
-                label.Text = ctekst;//label_text;
-                label.Anchor = AnchorStyles.Left;
-                label.TextAlign = ContentAlignment.MiddleCenter;    //MiddleLeft;
-                label.ForeColor = Color.Black;                                                   //Djora 26.09.20
-                                                                                                 //label.Height = (int)(visina * 1.2);
-                label.Font = new Font("TimesRoman", 13, FontStyle.Regular);
-                //label.Font = new Font("TimesRoman", 10.8F, FontStyle.Bold);
-
-                //Djora 26.09.20
-                PromenaFonta(label);
-                //Djora 26.09.20
-                label.Margin = new Padding(0, 0, 0, 0);
-
-                Controls.Add(label);
-            }
-            if (PozicijaLabele == "0")// labela je iznad
+            if (Tip != 24) //Djora 30.12.20
             {
-                label.Width = (int)Convert.ToDouble(sirina * ofset);
-                FlowDirection = FlowDirection.TopDown;
-            }
+                if (PozicijaLabele != "2")        //   2- labela ne postoji ; 1 = ispred, 0= iznad
+                {                                // label postoji
+                    label = new Label();
+                    label.Text = ctekst;//label_text;
+                    label.Anchor = AnchorStyles.Left;
+                    label.TextAlign = ContentAlignment.MiddleCenter;    //MiddleLeft;
+                    label.ForeColor = Color.Black;                                                   //Djora 26.09.20
+                                                                                                     //label.Height = (int)(visina * 1.2);
+                    label.Font = new Font("TimesRoman", 13, FontStyle.Regular);
+                    //label.Font = new Font("TimesRoman", 10.8F, FontStyle.Bold);
 
-            if (PozicijaLabele == "1") // labela je ispred
-            {
-                //Djora 09.07.20   
-                //label.Width = (int)sirina;
-                label.Width = (int)Convert.ToDouble((sirina * ofset) / 2);
-                label.TextAlign = ContentAlignment.MiddleLeft;
-                FlowDirection = FlowDirection.LeftToRight;
-                //label.Margin = new Padding(0, 0, 0, 0);
+                    //Djora 26.09.20
+                    PromenaFonta(label);
+                    //Djora 26.09.20
+                    label.Margin = new Padding(0, 0, 0, 0);
+
+                    Controls.Add(label);
+                }
+                if (PozicijaLabele == "0")// labela je iznad
+                {
+                    label.Width = (int)Convert.ToDouble(sirina * ofset);
+                    FlowDirection = FlowDirection.TopDown;
+                }
+
+                if (PozicijaLabele == "1") // labela je ispred
+                {
+                    //Djora 09.07.20   
+                    //label.Width = (int)sirina;
+                    label.Width = (int)Convert.ToDouble((sirina * ofset) / 2);
+                    label.TextAlign = ContentAlignment.MiddleLeft;
+                    FlowDirection = FlowDirection.LeftToRight;
+                    //label.Margin = new Padding(0, 0, 0, 0);
+                }
             }
             //}
             switch (Tip)
@@ -253,7 +253,9 @@ namespace Bankom.Class
 
                     cekboks.Name = Ime;
                     cekboks.Text = ctekst; //    label_text;
-                    cekboks.Height = (int)visina;
+                    //Djora 30.12.20
+                    //cekboks.Height = (int)visina;
+                    cekboks.Height = (int)(visina * ofsety);
 
                     if (EnDis == "D")
                     {
@@ -274,6 +276,10 @@ namespace Bankom.Class
 
                     //Ivana 14.12.2020.
                     cekboks.CheckedChanged += new EventHandler(checkBox_CheckedChanged);
+
+                    //Djora 30.12.20
+                    PromenaFonta(cekboks);
+
                     break;
                 default:
                     if (izborno != null && izborno.Trim() != "") // ima izborno
@@ -347,11 +353,11 @@ namespace Bankom.Class
                         string upit1 = "select AlijasPolja from RecnikPodataka where AlijasPolja like 'NazivSkl%' and Dokument=@param0 and ID_TipoviPodataka=10 and TabIndex>=0";
                         DataTable dt = db.ParamsQueryDT(upit1, cDokument);
                         if (dt.Rows.Count == 1)
-                            dete.nastavakSkladista1 = dt.Rows[0][0].ToString().Substring(8);
+                            ((Bankom.frmChield)forma).nastavakSkladista1 = dt.Rows[0][0].ToString().Substring(8);
                         else if (dt.Rows.Count == 2)
                         {
-                            dete.nastavakSkladista1 = dt.Rows[0][0].ToString().Substring(8);
-                            dete.nastavakSkladista2 = dt.Rows[1][0].ToString().Substring(8);
+                            ((Bankom.frmChield)forma).nastavakSkladista1 = dt.Rows[0][0].ToString().Substring(8);
+                            ((Bankom.frmChield)forma).nastavakSkladista2 = dt.Rows[1][0].ToString().Substring(8);
                         }
                         //for (int i=0;i<dt.Rows.Count;i++)
                         //{
@@ -359,8 +365,8 @@ namespace Bankom.Class
                         //        nastavakSkladista1 = dt.Rows[i][0].ToString().Substring(8);
                         //}
                         if (IME.Contains("NazivSkl") && broj>0) //uci ce samo kada ima mag polje, a desavace se samo pri stvaranju comboBox-a NazivSkl
-                        { 
-                            dete.NazivSkladista = comboBox.Text;
+                        {
+                            ((Bankom.frmChield)forma).NazivSkladista = comboBox.Text;
                             comboBox.SelectedIndexChanged += new EventHandler(comboBox_SelectedIndexChanged);
                         }
                         comboBox.Leave += new EventHandler(Leave);
@@ -633,16 +639,16 @@ namespace Bankom.Class
         public void comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(comboBox.Name.Length==8)
-                dete.NazivSkladista = comboBox.Text;
-            else if (dete.nastavakSkladista1 == comboBox.Name.Substring(8))
+                ((Bankom.frmChield)forma).NazivSkladista = comboBox.Text;
+            else if (((Bankom.frmChield)forma).nastavakSkladista1 == comboBox.Name.Substring(8))
             {
-                dete.NazivSkladista1 = comboBox.Text;
-                dete.nastavakSkladista1 = comboBox.Name.Substring(8);
+                ((Bankom.frmChield)forma).NazivSkladista1 = comboBox.Text;
+                ((Bankom.frmChield)forma).nastavakSkladista1 = comboBox.Name.Substring(8);
             }
             else
             {
-                dete.NazivSkladista2 = comboBox.Text;
-                dete.nastavakSkladista2 = comboBox.Name.Substring(8);
+                ((Bankom.frmChield)forma).NazivSkladista2 = comboBox.Text;
+                ((Bankom.frmChield)forma).nastavakSkladista2 = comboBox.Name.Substring(8);
             }
         }
         void textBox_MouseDown(object sender, MouseEventArgs e)
@@ -1097,7 +1103,7 @@ namespace Bankom.Class
                 string upit = "select NazivPolja from MagacinskaPoljaStavkeView where NazivSkl=@param0";
                 // jovana 13.01.21
                 if (((Bankom.frmChield)forma).nastavakSkladista2 != "" && ((Bankom.frmChield)forma).NazivSkladista2!=null && IME.Substring(10).Contains(((Bankom.frmChield)forma).nastavakSkladista2))
-                        rez = db.ParamsQueryDT(upit, dete.NazivSkladista2);
+                        rez = db.ParamsQueryDT(upit, ((Bankom.frmChield)forma).NazivSkladista2);
                 else if (((Bankom.frmChield)forma).nastavakSkladista1 != "" && ((Bankom.frmChield)forma).NazivSkladista1 != null && IME.Substring(10).Contains(((Bankom.frmChield)forma).nastavakSkladista1))
                             rez = db.ParamsQueryDT(upit, ((Bankom.frmChield)forma).NazivSkladista1);
                 else
