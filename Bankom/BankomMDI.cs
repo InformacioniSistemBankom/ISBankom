@@ -1708,7 +1708,7 @@ namespace Bankom
         {
 
         }
-
+        DataTable rezProvere = new DataTable();
         private void Sstampa_Click(object sender, EventArgs e)
         {
             Form Me = this.ActiveMdiChild;
@@ -1756,10 +1756,16 @@ namespace Bankom
                             fs.kojiprint = "prn";
                             break;
                     }
-
-
-                    fs.Show();
-                    addFormTotoolstrip1(fs, ime);
+                    //zajedno 14.1.2021. provera da li dokument ima stampu
+                    string upit1 = "Select Name from Catalog where Name=@param0";
+                    rezProvere = db.ParamsQueryDT(upit1, fs.kojiprint + fs.imefajla);
+                    if (rezProvere.Rows.Count == 0)
+                        MessageBox.Show("Dokument nema štampu!");
+                    else
+                    {
+                        fs.Show();
+                        addFormTotoolstrip1(fs, ime);
+                    }
                 }
             }
         }

@@ -120,8 +120,7 @@ namespace Bankom
             }
 
             //System.Diagnostics.Process.Start(putanja);
-           
-            webBrowser1.Navigate(putanja);       
+            webBrowser1.Navigate(putanja);
         }   
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
