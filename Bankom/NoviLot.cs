@@ -294,7 +294,7 @@ namespace Bankom
                         }
                     }
 
-                    //tamara 14.01.2021.
+                    //tamara 14.01.2021.  
                     var a = datPro.ToShortDateString();
                     var b = datIst.ToShortDateString();
 
