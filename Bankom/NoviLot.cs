@@ -264,12 +264,17 @@ namespace Bankom
         public void UpisiNoviLot(int idZemlja,int idArtikal,DateTime datPro, DateTime datIst,int idProizvodjac,string njihovBarKod,string oznakaSkladista)
         {
             int redniBroj;
+            //tamara 14.01.2021.  
+            var a = datPro.ToShortDateString();
+            var b = datIst.ToShortDateString();
+
             using (SqlConnection sqlConnection = new SqlConnection(Program.connectionString))
             {
                 sqlConnection.Open();
                 using (var command = sqlConnection.CreateCommand())
-                {
-                    command.CommandText = "SELECT MAX(rednibroj) as max FROM Lot where barkod like '%" + oznakaSkladista + "%' AND DatumProizvodnje = '" + datPro.ToLongDateString() + "'";
+                { 
+                    
+                    command.CommandText = "SELECT MAX(rednibroj) as max FROM Lot where barkod like '%" + oznakaSkladista + "%' AND DatumProizvodnje = '" + a + "'";
                    var reader = command.ExecuteScalar();
 
                     if (!Convert.IsDBNull(reader))
@@ -294,9 +299,7 @@ namespace Bankom
                         }
                     }
 
-                    //tamara 14.01.2021.
-                    var a = datPro.ToShortDateString();
-                    var b = datIst.ToShortDateString();
+                  
 
                     command.CommandText = $"INSERT INTO Lot ( DatumProizvodnje, RokTrajanja, DatumIsteka, ID_Komitenti, ID_Zemlja, NjihovLot, barkod, ID_Artikli, UUser,RedniBroj) VALUES('{a}',0,'{b}',{idProizvodjac},{idZemlja},'{njihovBarKod}','{barKod}',{idArtikal},{Program.idkadar},{redniBroj})";
                     command.ExecuteNonQuery();
