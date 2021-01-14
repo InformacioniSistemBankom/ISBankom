@@ -82,8 +82,14 @@ namespace Bankom
                     foreach (var pb in childForm.Controls.OfType<Field>())
                     {
                         string s = pb.IME;
-                        if (pb.cTip == 10 || pb.cTip == 8)
-                            pb.Enabled = false;
+                        //if (pb.cTip == 10 || pb.cTip == 8)
+                        //    pb.Enabled = false;
+                        if (pb.cTip == 10)
+                        {
+                            if (pb.VrstaKontrole == "combo") pb.comboBox.Enabled = false;
+                            else pb.textBox.Enabled = false;
+                        }
+                        if (pb.cTip == 8) pb.dtp.Enabled = false;
                     }
                 }
 
@@ -1617,8 +1623,14 @@ namespace Bankom
 
                 foreach (var pb in activeChild.Controls.OfType<Field>())
                 {
-                    if (pb.cTip == 10 || pb.cTip == 8)
-                        pb.Enabled = false;
+                    //if (pb.cTip == 10 || pb.cTip == 8)
+                    //    pb.Enabled = false;
+                    if (pb.cTip == 10 )
+                    {
+                        if (pb.VrstaKontrole == "combo") pb.comboBox.Enabled = false;
+                        else pb.textBox.Enabled = false;
+                    }
+                    if (pb.cTip == 8) pb.dtp.Enabled = false;
                 }
             }
             activeChild.Controls["OOperacija"].Text = "PREKID";
@@ -1653,8 +1665,14 @@ namespace Bankom
 
                 foreach (var pb in activeChild.Controls.OfType<Field>())
                 {
-                    if (pb.cTip == 10 || pb.cTip == 8)
-                        pb.Enabled = true;
+                    //if (pb.cTip == 10 || pb.cTip == 8)
+                    //    pb.Enabled = true;
+                    if (pb.cTip == 10)
+                    {
+                        if (pb.VrstaKontrole == "combo") pb.comboBox.Enabled = true;
+                        else pb.textBox.Enabled = true;
+                    }
+                    if (pb.cTip == 8) pb.dtp.Enabled = true;
                 }
             }
             //Popuni text u kontroli OOperacija sa "IZMENA" na aktivnoj child formi
@@ -2939,8 +2957,14 @@ namespace Bankom
 
                 foreach (var pb in forma.Controls.OfType<Field>())
                 {
-                    if (pb.cTip == 10 || pb.cTip == 8)
-                        pb.Enabled = false;
+                    //if (pb.cTip == 10 || pb.cTip == 8)
+                    //    pb.Enabled = false;
+                    if (pb.cTip == 10)
+                    {
+                        if (pb.VrstaKontrole == "combo") pb.comboBox.Enabled = false;
+                        else pb.textBox.Enabled = false;
+                    }
+                    if (pb.cTip == 8) pb.dtp.Enabled = false;
                 }
             }
             Boolean vrati = new Boolean();

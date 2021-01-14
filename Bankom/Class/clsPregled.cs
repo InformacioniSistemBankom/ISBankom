@@ -186,6 +186,7 @@ namespace Bankom.Class
         {
             string PripremaidDokumentaZaPregled = "";
             string uupit = "";
+            string KrajUpita = "";
             string WWhere = "";
             string c1 = "";
             if (dokje == "D")
@@ -204,6 +205,12 @@ namespace Bankom.Class
                 ////Console.WriteLine(sql);
                 DataTable dt = db.ReturnDataTable(sql);
                 if (dt.Rows.Count > 0) uupit = dt.Rows[0]["upit"].ToString();
+                // Jovana 14.01.21 kad postoji order by
+                if (uupit.Contains("ORDER BY") == true)
+                {
+                    KrajUpita = uupit.Substring(uupit.IndexOf("ORDER BY"));
+                    uupit = uupit.Substring(0, uupit.IndexOf("ORDER BY") - 1);
+                }
             }
 
             foreach (var pb in forma.Controls.OfType<Field>())
@@ -284,9 +291,9 @@ namespace Bankom.Class
             }
 
             if (dokje == "P" && uupit.ToUpper().Contains("WHERE") == true)
-                PripremaidDokumentaZaPregled = uupit.Trim() + " AND " + WWhere;
+                PripremaidDokumentaZaPregled = uupit.Trim() + " AND " + WWhere + " " + KrajUpita;
             else
-                PripremaidDokumentaZaPregled = uupit.Trim() + " where " + WWhere;
+                PripremaidDokumentaZaPregled = uupit.Trim() + " where " + WWhere + " "+KrajUpita ;
 
             if (imedokumenta == "Dokumenta")
             {
