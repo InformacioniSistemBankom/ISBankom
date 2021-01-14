@@ -420,6 +420,6 @@ namespace Bankom
             else updateLot(currentLot, Convert.ToInt32(zempro.SelectedValue), datumIsteka.Value, Convert.ToInt32(proizvodjaci.SelectedValue), lotproizvodjaca.Text);
         }
 
-      
+        
     }
 }
