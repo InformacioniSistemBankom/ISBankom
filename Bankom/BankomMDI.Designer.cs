@@ -165,7 +165,7 @@ namespace Bankom
             this.OsnovniSifarnici.Name = "OsnovniSifarnici";
             this.OsnovniSifarnici.Size = new System.Drawing.Size(107, 23);
             this.OsnovniSifarnici.Text = "Osnovni šifarnici";
-            this.OsnovniSifarnici.Click += new System.EventHandler(this.OsnovniSifarnici_Click);
+            //this.OsnovniSifarnici.Click += new System.EventHandler(this.OsnovniSifarnici_Click);
             // 
             // Artikli
             // 

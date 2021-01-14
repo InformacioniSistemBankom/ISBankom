@@ -1550,25 +1550,21 @@ namespace Bankom
             //13.01.2021. tamara lotovi
             if (activeChild.Text == "LOT")
             {
+                //activeChild.Controls["OOperacija"].Text = "";
                 NoviLot unosNovog = new NoviLot();
                 unosNovog.FormBorderStyle = FormBorderStyle.FixedSingle;
                 unosNovog.Show();
                 clsRefreshForm rf = new clsRefreshForm();
                 rf.refreshform();
+                activeChild.Controls["OOperacija"].Text = "";
             }
-            if (activeChild != null)
+            else if (activeChild != null)
             {
                 activeChild.Controls["OOperacija"].Text = "UNOS";
             }
 
         }
-        private void OsnovniSifarnici_Click(object sender, EventArgs e)
-        {
-
-
-
-
-        }
+        
         private void PrenosiZaProdajnaMjesta_Click(object sender, EventArgs e)
         {
             Prenosi childForm = new Prenosi();

@@ -599,16 +599,7 @@ namespace Bankom.Class
             } // kraj za idNaziviNaFormi == "20" && tud != "0"
 
 
-            if (this.Text == "LOT")
-            {
-
-                foreach (var pb in this.Controls.OfType<Field>())
-                {
-                    string s = pb.IME;
-                    if (pb.cTip == 10 || pb.cTip == 8)
-                        pb.Enabled = false;
-                }
-            }
+           
         }
         private Control activeControl;
 
