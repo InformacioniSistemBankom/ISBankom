@@ -260,6 +260,9 @@ namespace Bankom.Class
                     //cekboks.Height = (int)visina;
                     cekboks.Height = (int)(visina * ofsety);
 
+                    //Djora 11.01.21
+                    cekboks.Width = (int)(sirina * ofset);
+
                     if (EnDis == "D")
                     {
                         cekboks.Enabled = false;
