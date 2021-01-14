@@ -129,38 +129,41 @@ namespace Bankom.Class
             ////{
             Console.WriteLine(IME);
 
-            if (PozicijaLabele != "2")        //   2- labela ne postoji ; 1 = ispred, 0= iznad
-            {                                // label postoji
-                label = new Label();
-                label.Text = ctekst;//label_text;
-                label.Anchor = AnchorStyles.Left;
-                label.TextAlign = ContentAlignment.MiddleCenter;    //MiddleLeft;
-                label.ForeColor = Color.Black;                                                   //Djora 26.09.20
-                                                                                                 //label.Height = (int)(visina * 1.2);
-                label.Font = new Font("TimesRoman", 13, FontStyle.Regular);
-                //label.Font = new Font("TimesRoman", 10.8F, FontStyle.Bold);
-
-                //Djora 26.09.20
-                PromenaFonta(label);
-                //Djora 26.09.20
-                label.Margin = new Padding(0, 0, 0, 0);
-
-                Controls.Add(label);
-            }
-            if (PozicijaLabele == "0")// labela je iznad
+            if (Tip != 24) //Djora 30.12.20
             {
-                label.Width = (int)Convert.ToDouble(sirina * ofset);
-                FlowDirection = FlowDirection.TopDown;
-            }
+                if (PozicijaLabele != "2")        //   2- labela ne postoji ; 1 = ispred, 0= iznad
+                {                                // label postoji
+                    label = new Label();
+                    label.Text = ctekst;//label_text;
+                    label.Anchor = AnchorStyles.Left;
+                    label.TextAlign = ContentAlignment.MiddleCenter;    //MiddleLeft;
+                    label.ForeColor = Color.Black;                                                   //Djora 26.09.20
+                                                                                                     //label.Height = (int)(visina * 1.2);
+                    label.Font = new Font("TimesRoman", 13, FontStyle.Regular);
+                    //label.Font = new Font("TimesRoman", 10.8F, FontStyle.Bold);
 
-            if (PozicijaLabele == "1") // labela je ispred
-            {
-                //Djora 09.07.20   
-                //label.Width = (int)sirina;
-                label.Width = (int)Convert.ToDouble((sirina * ofset) / 2);
-                label.TextAlign = ContentAlignment.MiddleLeft;
-                FlowDirection = FlowDirection.LeftToRight;
-                //label.Margin = new Padding(0, 0, 0, 0);
+                    //Djora 26.09.20
+                    PromenaFonta(label);
+                    //Djora 26.09.20
+                    label.Margin = new Padding(0, 0, 0, 0);
+
+                    Controls.Add(label);
+                }
+                if (PozicijaLabele == "0")// labela je iznad
+                {
+                    label.Width = (int)Convert.ToDouble(sirina * ofset);
+                    FlowDirection = FlowDirection.TopDown;
+                }
+
+                if (PozicijaLabele == "1") // labela je ispred
+                {
+                    //Djora 09.07.20   
+                    //label.Width = (int)sirina;
+                    label.Width = (int)Convert.ToDouble((sirina * ofset) / 2);
+                    label.TextAlign = ContentAlignment.MiddleLeft;
+                    FlowDirection = FlowDirection.LeftToRight;
+                    //label.Margin = new Padding(0, 0, 0, 0);
+                }
             }
             //}
             switch (Tip)
@@ -250,7 +253,9 @@ namespace Bankom.Class
 
                     cekboks.Name = Ime;
                     cekboks.Text = ctekst; //    label_text;
-                    cekboks.Height = (int)visina;
+                    //Djora 30.12.20
+                    //cekboks.Height = (int)visina;
+                    cekboks.Height = (int)(visina * ofsety);
 
                     if (EnDis == "D")
                     {
@@ -271,6 +276,10 @@ namespace Bankom.Class
 
                     //Ivana 14.12.2020.
                     cekboks.CheckedChanged += new EventHandler(checkBox_CheckedChanged);
+
+                    //Djora 30.12.20
+                    PromenaFonta(cekboks);
+
                     break;
                 default:
                     if (izborno != null && izborno.Trim() != "") // ima izborno
