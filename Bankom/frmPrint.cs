@@ -135,15 +135,13 @@ namespace Bankom
 
         public void btnEmail_Click(object sender, EventArgs e)
         {
-           
-
-                        //Djora 11.01.21 poc --------------------------------
-                        WebClient client = new WebClient();
+            //Djora 11.01.21 poc --------------------------------
+            WebClient client = new WebClient();
             client.UseDefaultCredentials = true;
             string putanjaPdf = "http://192.168.1.4/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprn" + imefajla + "&rs:Command=Render&rs:Format=PDF" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + ParamZaStampu;  // "&rs%3aFormat=PDF";
             byte[] bytes = client.DownloadData(putanjaPdf);
             MemoryStream ms = new MemoryStream(bytes);
-            SmtpClient server = new SmtpClient("mail.bankom.rs",587);
+            SmtpClient server = new SmtpClient("mail.bankom.rs");
             server.EnableSsl = true;
             server.UseDefaultCredentials = false;
             server.DeliveryMethod = SmtpDeliveryMethod.Network;
