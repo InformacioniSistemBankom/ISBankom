@@ -128,6 +128,7 @@ namespace Bankom
             
         }
 
+
         private void toolStripStatusLabel1_Click(object sender, EventArgs e)
         {
             webBrowser1.ShowSaveAsDialog();
@@ -138,7 +139,8 @@ namespace Bankom
             //Djora 11.01.21 poc --------------------------------
             WebClient client = new WebClient();
             client.UseDefaultCredentials = true;
-            string putanjaPdf = "http://192.168.1.4/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprn" + imefajla + "&rs:Command=Render&rs:Format=PDF" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + ParamZaStampu;  // "&rs%3aFormat=PDF";
+            string putanjaPdf = "http://192.168.1.4/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2f" + kojiprint + imefajla + "&rs:Command=Render&rs:Format=PDF" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + ParamZaStampu;  // "&rs%3aFormat=PDF";
+            //string putanjaPdf = "http://192.168.1.4/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2f" + kojiprint + imefajla + "&rs:Command=Render&rs:Format=PDF";
             byte[] bytes = client.DownloadData(putanjaPdf);
             MemoryStream ms = new MemoryStream(bytes);
             SmtpClient server = new SmtpClient("mail.bankom.rs");
@@ -150,8 +152,8 @@ namespace Bankom
             if (mejl != "")
             {
                 mail.To.Add(mejl);
-                mail.Subject = "bez mejla";
-                mail.Body = "Bez sifre";
+                mail.Subject = "Nov naslov";
+                mail.Body = "Tekst";
                 //mail.BodyFormat = MailFormat.Html;
                 mail.Attachments.Add(new Attachment(ms, "temp.pdf"));
                 try
@@ -166,6 +168,8 @@ namespace Bankom
             else
                 MessageBox.Show("Morate uneti e-mail!");
             btnEmail.Enabled = false;
+            MessageBox.Show("Uspešno ste poslali e-mail.");
+            cmbEmail.Text = "";
             //Djora 11.01.21 kraj --------------------------------
         }
         //Ivana 13.1.2021.

@@ -146,6 +146,7 @@ namespace Bankom
             this.sdfgghToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.DodajSliku = new System.Windows.Forms.ToolStripButton();
             this.ToolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -720,6 +721,7 @@ namespace Bankom
             this.Sstampa,
             this.Bbrisanje,
             this.toolStripTextBox1,
+            this.DodajSliku,
             this.Ggrupisi,
             this.Iimenik,
             this.Ssort,
@@ -1232,6 +1234,17 @@ namespace Bankom
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // DodajSliku
+            // 
+            this.DodajSliku.AutoSize = false;
+            this.DodajSliku.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DodajSliku.ForeColor = System.Drawing.Color.Snow;
+            this.DodajSliku.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DodajSliku.Name = "DodajSliku";
+            this.DodajSliku.Size = new System.Drawing.Size(90, 40);
+            this.DodajSliku.Text = "Dodaj sliku";
+            this.DodajSliku.Click += new System.EventHandler(this.DodajSliku_Click);
+            // 
             // BankomMDI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1384,6 +1397,7 @@ namespace Bankom
         private System.Windows.Forms.ToolStripButton Pporeklo;
         public System.Windows.Forms.MenuStrip menuStrip1;
         public System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        public System.Windows.Forms.ToolStripButton DodajSliku;
     }
 }
 

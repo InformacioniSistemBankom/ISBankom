@@ -162,6 +162,15 @@ namespace Bankom
             ToolStripButton itemB = new ToolStripButton();
             ToolStripSeparator itemnsep = new ToolStripSeparator();
             itemn.Text = forma.Text;
+            //zajedno 14.1.2021.
+            //DataTable dt = new DataTable();
+            //string upit = "Select NazivJavni from DokumentaStablo where Naziv=@param0";
+            //dt = db.ParamsQueryDT(upit, forma.Text);
+            //if(dt.Rows.Count>0)
+            //    itemn.Text = dt.Rows[0][0].ToString();
+            //itemn.Text = Program.AktivnaSifraIzvestaja;
+
+
             itemn.ToolTipText = imedokumenta;
             itemn.Name = forma.Text;
             itemB.Image = global::Bankom.Properties.Resources.del12;
@@ -242,6 +251,8 @@ namespace Bankom
 
             //tamara 22.10.2020.
             ToolBar.Enabled = true;
+            //zajedno 18.1.2021.
+            DodajSliku.Enabled = true;
             Console.WriteLine("ivana");
             clsObradaMenija obradaMenija = new clsObradaMenija(this);
             obradaMenija.CreateMenu();
@@ -3208,12 +3219,14 @@ namespace Bankom
 
                 }
                 Program.colname = "";
-
             }
-                
-            
-        
-
+        }
+        //zajedno 18.1.2021.
+        private void DodajSliku_Click(object sender, EventArgs e)
+        {
+            frmSlika slika = new frmSlika(DodajSliku);
+            slika.Show();
+            DodajSliku.Enabled = false;
         }
     }
 }
