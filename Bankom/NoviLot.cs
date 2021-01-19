@@ -16,6 +16,17 @@ namespace Bankom
     {
 
         string currentLot;
+        ToolStripDropDownButton btn;
+
+        public NoviLot(ToolStripDropDownButton unos)
+        {
+            btn = unos;
+            InitializeComponent();
+            rucnilot.Enabled = false;
+            // izmena.Enabled = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
+            InitializeLot();
+        }
         public NoviLot()
         {
             InitializeComponent();
@@ -258,7 +269,7 @@ namespace Bankom
             var greska = proveraLota();
             if (!String.IsNullOrEmpty(greska)) MessageBox.Show(greska);
             else UpisiNoviLot(Convert.ToInt32(zempro.SelectedValue), Convert.ToInt32(idArtikal.Text), datumProizvodnje.Value, datumIsteka.Value, Convert.ToInt32(proizvodjaci.SelectedValue), lotproizvodjaca.Text, skladista.SelectedValue.ToString());
-
+            btn.Enabled = true;
         }
 
         public void UpisiNoviLot(int idZemlja,int idArtikal,DateTime datPro, DateTime datIst,int idProizvodjac,string njihovBarKod,string oznakaSkladista)
@@ -423,6 +434,9 @@ namespace Bankom
             else updateLot(currentLot, Convert.ToInt32(zempro.SelectedValue), datumIsteka.Value, Convert.ToInt32(proizvodjaci.SelectedValue), lotproizvodjaca.Text);
         }
 
-        
+        private void NoviLot_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            btn.Enabled = true;
+        }
     }
 }

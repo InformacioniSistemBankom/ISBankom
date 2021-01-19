@@ -20,14 +20,16 @@ namespace Bankom.Class
                     {
                         case "Ddokum":
                         case "Iimenik":
+                            //zajedno 19.01.2021.
+                        case "DosajSliku":
                         case "Iizlaz":
                         case "Ccalc":
                         case "Ppotvrda":
                         case "Pprekid":
                         case "Mmagacin":
-                       
                         case "toolStripTextBox1":         
                             Program.Parent.ToolBar.Items[h].Enabled = true;
+                            Program.Parent.ToolBar.Items["DodajSliku"].Enabled = true;
                             break;
                         case "Ssort":
                             if (form1 != null)

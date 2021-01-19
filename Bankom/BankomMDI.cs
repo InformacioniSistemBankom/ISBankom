@@ -608,7 +608,10 @@ namespace Bankom
             toolStripTextBox1.Text = "";
             ToolStripButton tb = sender as ToolStripButton;
             string b = tb.Name;
-
+            if (b == "Imenik")
+            {
+                Iimenik.Enabled = true;
+            }
             toolStripTextBox1.Text = "";
             for (int j = 0; j < toolStrip1.Items.Count; j++)
             {
@@ -1568,7 +1571,8 @@ namespace Bankom
             if (activeChild.Text == "LOT")
             {
                 //activeChild.Controls["OOperacija"].Text = "";
-                NoviLot unosNovog = new NoviLot();
+                NoviLot unosNovog = new NoviLot(Uunos);
+                Uunos.Enabled = false;
                 unosNovog.FormBorderStyle = FormBorderStyle.FixedSingle;
                 unosNovog.Show();
                 clsRefreshForm rf = new clsRefreshForm();
@@ -1802,16 +1806,12 @@ namespace Bankom
         private void Iimenik_Click(object sender, EventArgs e)
         {
 
-            frmImenik frmi = new frmImenik();
+            frmImenik frmi = new frmImenik(Iimenik);
+            Iimenik.Enabled = false;
             frmi.FormBorderStyle = FormBorderStyle.None;
             frmi.Text = "Imenik";
-
             frmi.MdiParent = this;
-
-
             frmi.Dock = DockStyle.Fill;
-
-            
             if (this.IzborJezika.Text == "Српски-Ћирилица") { frmi.Text = this.VratiCirlilicu("Imenik"); }
             int sirina = (this.Width / 100) * 10;
             this.addFormTotoolstrip1(frmi, "Imenik");
