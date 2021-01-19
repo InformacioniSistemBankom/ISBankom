@@ -29,6 +29,7 @@ namespace Bankom
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSlika));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -45,7 +46,7 @@ namespace Bankom
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.pictureBox1.Location = new System.Drawing.Point(37, 148);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(517, 412);
@@ -58,21 +59,27 @@ namespace Bankom
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("TimesRoman", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
             this.label1.Location = new System.Drawing.Point(163, 343);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 25);
+            this.label1.Size = new System.Drawing.Size(202, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "Prevucite sliku ovde...";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(501, 41);
+            this.button1.BackColor = System.Drawing.Color.Snow;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("TimesRoman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.button1.Location = new System.Drawing.Point(493, 38);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(83, 29);
             this.button1.TabIndex = 2;
             this.button1.Text = "Snimi";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox1
@@ -80,9 +87,11 @@ namespace Bankom
             this.groupBox1.Controls.Add(this.rbSkl);
             this.groupBox1.Controls.Add(this.rbMagPolje);
             this.groupBox1.Controls.Add(this.rbArtikli);
-            this.groupBox1.Location = new System.Drawing.Point(37, 25);
+            this.groupBox1.Font = new System.Drawing.Font("TimesRoman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.groupBox1.Location = new System.Drawing.Point(12, 25);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(157, 94);
+            this.groupBox1.Size = new System.Drawing.Size(182, 94);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Izaberite kategoriju slike:";
@@ -92,11 +101,11 @@ namespace Bankom
             this.rbSkl.AutoSize = true;
             this.rbSkl.Location = new System.Drawing.Point(6, 65);
             this.rbSkl.Name = "rbSkl";
-            this.rbSkl.Size = new System.Drawing.Size(68, 17);
+            this.rbSkl.Size = new System.Drawing.Size(98, 23);
             this.rbSkl.TabIndex = 2;
             this.rbSkl.TabStop = true;
             this.rbSkl.Tag = "Skladiste";
-            this.rbSkl.Text = "Skladište";
+            this.rbSkl.Text = "Skladi{te";
             this.rbSkl.UseVisualStyleBackColor = true;
             // 
             // rbMagPolje
@@ -104,7 +113,7 @@ namespace Bankom
             this.rbMagPolje.AutoSize = true;
             this.rbMagPolje.Location = new System.Drawing.Point(6, 42);
             this.rbMagPolje.Name = "rbMagPolje";
-            this.rbMagPolje.Size = new System.Drawing.Size(108, 17);
+            this.rbMagPolje.Size = new System.Drawing.Size(164, 23);
             this.rbMagPolje.TabIndex = 1;
             this.rbMagPolje.TabStop = true;
             this.rbMagPolje.Tag = "MagacinskaPolja";
@@ -116,7 +125,7 @@ namespace Bankom
             this.rbArtikli.AutoSize = true;
             this.rbArtikli.Location = new System.Drawing.Point(6, 19);
             this.rbArtikli.Name = "rbArtikli";
-            this.rbArtikli.Size = new System.Drawing.Size(54, 17);
+            this.rbArtikli.Size = new System.Drawing.Size(83, 23);
             this.rbArtikli.TabIndex = 0;
             this.rbArtikli.TabStop = true;
             this.rbArtikli.Tag = "Artikli";
@@ -136,14 +145,17 @@ namespace Bankom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(588, 586);
             this.Controls.Add(this.cmbNazivSlike);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSlika";
-            this.Text = "frmSlika";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Slike";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSlika_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);

@@ -113,6 +113,7 @@ namespace Bankom
             this.Sstampa = new System.Windows.Forms.ToolStripButton();
             this.Bbrisanje = new System.Windows.Forms.ToolStripButton();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.DodajSliku = new System.Windows.Forms.ToolStripButton();
             this.Ggrupisi = new System.Windows.Forms.ToolStripDropDownButton();
             this.Ggrupisinp = new System.Windows.Forms.ToolStripMenuItem();
             this.premestiGrupuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -146,7 +147,6 @@ namespace Bankom
             this.sdfgghToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
-            this.DodajSliku = new System.Windows.Forms.ToolStripButton();
             this.ToolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -721,8 +721,8 @@ namespace Bankom
             this.Sstampa,
             this.Bbrisanje,
             this.toolStripTextBox1,
-            this.DodajSliku,
             this.Ggrupisi,
+            this.DodajSliku,
             this.Iimenik,
             this.Ssort,
             this.Ppotvrda,
@@ -849,6 +849,18 @@ namespace Bankom
             this.toolStripTextBox1.Name = "toolStripTextBox1";
             this.toolStripTextBox1.Size = new System.Drawing.Size(200, 43);
             this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
+            // 
+            // DodajSliku
+            // 
+            this.DodajSliku.AutoSize = false;
+            this.DodajSliku.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DodajSliku.ForeColor = System.Drawing.Color.Snow;
+            this.DodajSliku.Image = ((System.Drawing.Image)(resources.GetObject("DodajSliku.Image")));
+            this.DodajSliku.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DodajSliku.Name = "DodajSliku";
+            this.DodajSliku.Size = new System.Drawing.Size(120, 40);
+            this.DodajSliku.Text = "Dodaj sliku";
+            this.DodajSliku.Click += new System.EventHandler(this.DodajSliku_Click);
             // 
             // Ggrupisi
             // 
@@ -1233,17 +1245,6 @@ namespace Bankom
             this.button1.TabIndex = 42;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // DodajSliku
-            // 
-            this.DodajSliku.AutoSize = false;
-            this.DodajSliku.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DodajSliku.ForeColor = System.Drawing.Color.Snow;
-            this.DodajSliku.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DodajSliku.Name = "DodajSliku";
-            this.DodajSliku.Size = new System.Drawing.Size(90, 40);
-            this.DodajSliku.Text = "Dodaj sliku";
-            this.DodajSliku.Click += new System.EventHandler(this.DodajSliku_Click);
             // 
             // BankomMDI
             // 

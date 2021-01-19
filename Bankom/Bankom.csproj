@@ -308,7 +308,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\addnew.png" />
-    <Content Include="Resources\BankomLogin.jpg" />
     <None Include="Resources\BankomLogin1.jpg" />
     <Content Include="Resources\Calculator.png" />
     <Content Include="Resources\del12.png" />
