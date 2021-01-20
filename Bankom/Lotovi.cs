@@ -159,13 +159,13 @@ namespace Bankom
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (dataGridViewPaging1.DataGridView.CurrentCell.RowIndex > -1)
-            {
-                string cellValue = dataGridViewPaging1.DataGridView.Rows[dataGridViewPaging1.DataGridView.CurrentCell.RowIndex].Cells[0].Value.ToString();
-                NoviLot nl = new NoviLot(dataGridViewPaging1.DataGridView.Rows[dataGridViewPaging1.DataGridView.CurrentCell.RowIndex]);
-                nl.FormBorderStyle = FormBorderStyle.None;
-                nl.Show();
-            }
+            //if (dataGridViewPaging1.DataGridView.CurrentCell.RowIndex > -1)
+            //{
+            //    string cellValue = dataGridViewPaging1.DataGridView.Rows[dataGridViewPaging1.DataGridView.CurrentCell.RowIndex].Cells[0].Value.ToString();
+            //    NoviLot nl = new NoviLot(dataGridViewPaging1.DataGridView.Rows[dataGridViewPaging1.DataGridView.CurrentCell.RowIndex]);
+            //    nl.FormBorderStyle = FormBorderStyle.None;
+            //    nl.Show();
+            //}
 
         }
 

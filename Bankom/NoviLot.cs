@@ -15,67 +15,26 @@ namespace Bankom
     public partial class NoviLot : Form
     {
 
-        string currentLot;
         ToolStripDropDownButton btn;
 
         public NoviLot(ToolStripDropDownButton unos)
         {
             btn = unos;
             InitializeComponent();
-            rucnilot.Enabled = false;
-            // izmena.Enabled = false;
+            
+           
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeLot();
         }
         public NoviLot()
         {
             InitializeComponent();
-            rucnilot.Enabled = false;
-           // izmena.Enabled = false;
-            this.StartPosition = FormStartPosition.CenterScreen;
-            InitializeLot();
-        }
-        public NoviLot(DataGridViewRow dgrv)
-        {
-            InitializeComponent();
-            rucnilot.Enabled = false;
-            button1.Enabled = false;
-            this.idArtikal.Enabled = false;
-            this.artikli.Enabled = false;
-            this.datumProizvodnje.Enabled = false;
-            this.skladista.Enabled = false;
-
-
-            this.StartPosition = FormStartPosition.CenterScreen;
-            InitializeLot();
-            var db = new DataBaseBroker();
-            char oznaka = findFirstLetterInString(dgrv.Cells[0].Value.ToString()) ;
-            this.skladista.Text = db.ReturnString("SELECT NazivSkl FROM Skladiste where Oznaka ='" + oznaka +"'",0);
-            var idArt = db.ReturnInt("SELECT ID_Artikli from Artikli where NazivArtikla = '" + dgrv.Cells[1].Value.ToString() + "'", 0);
-            if (idArt != -1)
-            {
-                idArtikal.Text = Convert.ToString(idArt);
-                artikli.SelectionStart = 0;
-            }
-
-            currentLot = dgrv.Cells[0].Value.ToString();
-            this.artikli.Text = dgrv.Cells[1].Value.ToString();
-            this.datumProizvodnje.Value =(DateTime) dgrv.Cells[2].Value;
-            this.datumIsteka.Value = (DateTime)dgrv.Cells[3].Value;
-            this.proizvodjaci.Text = dgrv.Cells[4].Value.ToString();
-            this.zempro.Text = dgrv.Cells[5].Value.ToString();
-            this.lotproizvodjaca.Text = dgrv.Cells[6].Value.ToString();
-
-
-
-
-              
-
+          
            
-
-
-            
+            this.StartPosition = FormStartPosition.CenterScreen;
+            InitializeLot();
         }
+        
         private char findFirstLetterInString(string str)
         {
             for (int i = 0; i < str.Length; i++)
@@ -86,10 +45,7 @@ namespace Bankom
             return "".ToCharArray()[0];
 
         }
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
         private void InitializeLot()
         {
             skladista.AutoCompleteMode = AutoCompleteMode.None;
@@ -110,8 +66,7 @@ namespace Bankom
             datumProizvodnje.Format = DateTimePickerFormat.Custom;
             datumProizvodnje.CustomFormat = "dd.MM.yyyy";
             datumIsteka.CustomFormat = "dd.MM.yyyy";
-            // idArtikal.Enabled = false;
-
+          
             using (SqlConnection sqlConnection = new SqlConnection(Program.connectionString))
             {
 
@@ -127,9 +82,7 @@ namespace Bankom
                 sqlConnection.Close();
 
             }
-
-
-
+            
             using (SqlConnection sqlConnection = new SqlConnection(Program.connectionString))
             {
                 sqlConnection.Open();
@@ -142,8 +95,6 @@ namespace Bankom
                 skladista.DisplayMember = "NazivSkl";
                 skladista.SelectedIndex = -1;
                 sqlConnection.Close();
-
-
             }
 
             using (SqlConnection sqlConnection = new SqlConnection(Program.connectionString))
@@ -165,28 +116,7 @@ namespace Bankom
 
             }
         }
-
         
-
-        // 
-        public string Konverzija_u_yuscii(string word)
-        {
-            if (word.Trim() == String.Empty)
-                return String.Empty;
-
-            char[] unicode = { 'Đ', 'đ', 'Š', 'š', 'Ć', 'ć', 'Č', 'č', 'Ž', 'ž' };
-            char[] ascii = { '\\', '|', '[', '{', ']', '}', '^', '~', '@', '`' };
-
-            for (int i = 0; i < Math.Min(unicode.Length, ascii.Length); i++)
-            {
-                word = word.Replace(ascii[i], unicode[i]);
-            }
-
-
-
-            return word;
-        }
-
         private void artikli_TextUpdate(object sender, EventArgs e)
         {
             var pom = artikli.Text.ToString();
@@ -241,9 +171,7 @@ namespace Bankom
             artikli.SelectedIndex = -1;
 
         }
-
-    
-
+        
         private void idArtikal_Leave(object sender, EventArgs e)
 
         {
@@ -260,9 +188,7 @@ namespace Bankom
 
             }
         }
-
-       
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -352,7 +278,6 @@ namespace Bankom
                     if (dialogResult == DialogResult.OK || dialogResult == DialogResult.Cancel)
                     {
                         this.Close();
-                        Lotovi.innerReference.dataGridViewPaging1.Initialize(Lotovi.innerReference.count());
 
                     }
 
@@ -420,23 +345,18 @@ namespace Bankom
             this.Close();
         }
 
-        private void izmena_Click(object sender, EventArgs e)
-        {
-            var greska = proveraLota();
-            if (!String.IsNullOrEmpty(greska)) MessageBox.Show(greska);
-            //else izmeniLot();
-        }
-
-        private void izmena_Click_1(object sender, EventArgs e)
-        {
-            var greska = proveraLota();
-            if (!String.IsNullOrEmpty(greska)) MessageBox.Show(greska);
-            else updateLot(currentLot, Convert.ToInt32(zempro.SelectedValue), datumIsteka.Value, Convert.ToInt32(proizvodjaci.SelectedValue), lotproizvodjaca.Text);
-        }
 
         private void NoviLot_FormClosed(object sender, FormClosedEventArgs e)
         {
             btn.Enabled = true;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+                datumProizvodnje.Enabled = true;
+            else
+                datumProizvodnje.Enabled = false;
         }
     }
 }
