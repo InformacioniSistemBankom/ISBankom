@@ -113,10 +113,10 @@ namespace Bankom
             this.Sstampa = new System.Windows.Forms.ToolStripButton();
             this.Bbrisanje = new System.Windows.Forms.ToolStripButton();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
-            this.DodajSliku = new System.Windows.Forms.ToolStripButton();
             this.Ggrupisi = new System.Windows.Forms.ToolStripDropDownButton();
             this.Ggrupisinp = new System.Windows.Forms.ToolStripMenuItem();
             this.premestiGrupuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DodajSliku = new System.Windows.Forms.ToolStripButton();
             this.Iimenik = new System.Windows.Forms.ToolStripButton();
             this.Ssort = new System.Windows.Forms.ToolStripButton();
             this.Ppotvrda = new System.Windows.Forms.ToolStripButton();
@@ -724,11 +724,11 @@ namespace Bankom
             this.Ggrupisi,
             this.DodajSliku,
             this.Iimenik,
-            this.Ssort,
             this.Ppotvrda,
+            this.Ssort,
+            this.Iizlaz,
             this.Pprekid,
             this.Ccalc,
-            this.Iizlaz,
             this.Kknjzi,
             this.Ppredlogcena,
             this.Kkalki,
@@ -744,7 +744,7 @@ namespace Bankom
             this.Oorgsema});
             this.ToolBar.Location = new System.Drawing.Point(0, 0);
             this.ToolBar.Name = "ToolBar";
-            this.ToolBar.Size = new System.Drawing.Size(1378, 43);
+            this.ToolBar.Size = new System.Drawing.Size(1740, 43);
             this.ToolBar.TabIndex = 32;
             this.ToolBar.Text = "toolbar";
             // 
@@ -850,18 +850,6 @@ namespace Bankom
             this.toolStripTextBox1.Size = new System.Drawing.Size(200, 43);
             this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             // 
-            // DodajSliku
-            // 
-            this.DodajSliku.AutoSize = false;
-            this.DodajSliku.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DodajSliku.ForeColor = System.Drawing.Color.Snow;
-            this.DodajSliku.Image = ((System.Drawing.Image)(resources.GetObject("DodajSliku.Image")));
-            this.DodajSliku.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DodajSliku.Name = "DodajSliku";
-            this.DodajSliku.Size = new System.Drawing.Size(120, 40);
-            this.DodajSliku.Text = "Dodaj sliku";
-            this.DodajSliku.Click += new System.EventHandler(this.DodajSliku_Click);
-            // 
             // Ggrupisi
             // 
             this.Ggrupisi.AutoSize = false;
@@ -895,6 +883,18 @@ namespace Bankom
             this.premestiGrupuToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.premestiGrupuToolStripMenuItem.Text = "Premesti grupu";
             this.premestiGrupuToolStripMenuItem.Click += new System.EventHandler(this.premestiGrupuToolStripMenuItem_Click);
+            // 
+            // DodajSliku
+            // 
+            this.DodajSliku.AutoSize = false;
+            this.DodajSliku.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DodajSliku.ForeColor = System.Drawing.Color.Snow;
+            this.DodajSliku.Image = ((System.Drawing.Image)(resources.GetObject("DodajSliku.Image")));
+            this.DodajSliku.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DodajSliku.Name = "DodajSliku";
+            this.DodajSliku.Size = new System.Drawing.Size(120, 40);
+            this.DodajSliku.Text = "Dodaj sliku";
+            this.DodajSliku.Click += new System.EventHandler(this.DodajSliku_Click);
             // 
             // Iimenik
             // 
@@ -1251,7 +1251,7 @@ namespace Bankom
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Snow;
-            this.ClientSize = new System.Drawing.Size(1378, 781);
+            this.ClientSize = new System.Drawing.Size(1740, 781);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.toolStrip1);
