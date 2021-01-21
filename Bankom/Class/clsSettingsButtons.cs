@@ -21,7 +21,7 @@ namespace Bankom.Class
                         case "Ddokum":
                         case "Iimenik":
                             //zajedno 19.01.2021.
-                        case "DosajSliku":
+                        case "DodajSliku":
                         case "Iizlaz":
                         case "Ccalc":
                         case "Ppotvrda":
@@ -29,17 +29,16 @@ namespace Bankom.Class
                         case "Mmagacin":
                         case "toolStripTextBox1":         
                             Program.Parent.ToolBar.Items[h].Enabled = true;
-                            Program.Parent.ToolBar.Items["DodajSliku"].Enabled = true;
                             break;
                         case "Ssort":
                             if (form1 != null)
                             {
                                
                              if (Convert.ToString(((Bankom.frmChield)form1).VrstaPrikaza) != "TreeView" )
-                                    Program.Parent.ToolBar.Items[h].Enabled = true;
+                                 Program.Parent.ToolBar.Items[h].Enabled = true;
                             }
                             break;
-                        case "Sstampa":                           
+                        case "Sstampa":
                             if (form1 != null)
                             {
                                 //if (form1.Controls["OOperacija"].Text == "Unos" || form1.Controls["OOperacija"].Text == "Izmena")
