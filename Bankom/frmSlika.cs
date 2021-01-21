@@ -79,7 +79,7 @@ namespace Bankom
                 MessageBox.Show("Neophodno je da unesete sliku!");
             else
             {
-                if (File.Exists(@"\\SQL2016\\ISDokumenta2019\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg"))
+                if (File.Exists(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg"))
                 {
                     if (MessageBox.Show("Slika već postoji! Da li želite da je zamenite novom slikom?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
@@ -89,10 +89,10 @@ namespace Bankom
                             MessageBox.Show("Neispravan naziv slike!");
                         else
                         {
-                            pictureBox1.Image.Save(@"\\SQL2016\\ISDokumenta2019\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
+                            pictureBox1.Image.Save(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
                             MessageBox.Show("Uspesno ste sačuvali sliku.");
-                            dugme.Enabled = true;
-                            this.Close();
+                            pictureBox1.Image = null;
+                            cmbNazivSlike.Text = "";
                         }
                     }
                 }
@@ -104,11 +104,10 @@ namespace Bankom
                         MessageBox.Show("Neispravan naziv slike!");
                     else
                     {
-                        pictureBox1.Image.Save(@"\\SQL2016\\ISDokumenta2019\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
+                        pictureBox1.Image.Save(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
                         MessageBox.Show("Uspesno ste sačuvali sliku.");
-                        
-                        dugme.Enabled = true;
-                        this.Close();    
+                        pictureBox1.Image = null;
+                        cmbNazivSlike.Text = "";
                     }
                 }
             } 
