@@ -279,6 +279,8 @@ namespace Bankom.Class
                     }
                 }
             }
+            //zajedno 14.1.2021.
+            //Program.AktivnaSifraIzvestaja = e.Node.Text;
         }
 
         //zajedno 28.10.2020.

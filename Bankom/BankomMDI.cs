@@ -162,6 +162,15 @@ namespace Bankom
             ToolStripButton itemB = new ToolStripButton();
             ToolStripSeparator itemnsep = new ToolStripSeparator();
             itemn.Text = forma.Text;
+            //zajedno 14.1.2021.
+            //DataTable dt = new DataTable();
+            //string upit = "Select NazivJavni from DokumentaStablo where Naziv=@param0";
+            //dt = db.ParamsQueryDT(upit, forma.Text);
+            //if(dt.Rows.Count>0)
+            //    itemn.Text = dt.Rows[0][0].ToString();
+            //itemn.Text = Program.AktivnaSifraIzvestaja;
+
+
             itemn.ToolTipText = imedokumenta;
             itemn.Name = forma.Text;
             itemB.Image = global::Bankom.Properties.Resources.del12;
@@ -242,6 +251,8 @@ namespace Bankom
 
             //tamara 22.10.2020.
             ToolBar.Enabled = true;
+            //zajedno 18.1.2021.
+            DodajSliku.Enabled = true;
             Console.WriteLine("ivana");
             clsObradaMenija obradaMenija = new clsObradaMenija(this);
             obradaMenija.CreateMenu();
@@ -597,7 +608,10 @@ namespace Bankom
             toolStripTextBox1.Text = "";
             ToolStripButton tb = sender as ToolStripButton;
             string b = tb.Name;
-
+            if (b == "Imenik")
+            {
+                Iimenik.Enabled = true;
+            }
             toolStripTextBox1.Text = "";
             for (int j = 0; j < toolStrip1.Items.Count; j++)
             {
@@ -1557,7 +1571,8 @@ namespace Bankom
             if (activeChild.Text == "LOT")
             {
                 //activeChild.Controls["OOperacija"].Text = "";
-                NoviLot unosNovog = new NoviLot();
+                NoviLot unosNovog = new NoviLot(Uunos);
+                Uunos.Enabled = false;
                 unosNovog.FormBorderStyle = FormBorderStyle.FixedSingle;
                 unosNovog.Show();
                 clsRefreshForm rf = new clsRefreshForm();
@@ -1791,16 +1806,12 @@ namespace Bankom
         private void Iimenik_Click(object sender, EventArgs e)
         {
 
-            frmImenik frmi = new frmImenik();
+            frmImenik frmi = new frmImenik(Iimenik);
+            Iimenik.Enabled = false;
             frmi.FormBorderStyle = FormBorderStyle.None;
             frmi.Text = "Imenik";
-
             frmi.MdiParent = this;
-
-
             frmi.Dock = DockStyle.Fill;
-
-            
             if (this.IzborJezika.Text == "Српски-Ћирилица") { frmi.Text = this.VratiCirlilicu("Imenik"); }
             int sirina = (this.Width / 100) * 10;
             this.addFormTotoolstrip1(frmi, "Imenik");
@@ -3208,12 +3219,14 @@ namespace Bankom
 
                 }
                 Program.colname = "";
-
             }
-                
-            
-        
-
+        }
+        //zajedno 18.1.2021.
+        private void DodajSliku_Click(object sender, EventArgs e)
+        {
+            frmSlika slika = new frmSlika(DodajSliku);
+            slika.Show();
+            DodajSliku.Enabled = false;
         }
     }
 }

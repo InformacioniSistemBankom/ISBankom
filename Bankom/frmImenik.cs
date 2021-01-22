@@ -13,8 +13,14 @@ namespace Bankom
 {
     public partial class frmImenik : Form
     {
+        ToolStripButton dugme;
         public frmImenik()
         {
+            InitializeComponent();
+        }
+        public frmImenik(ToolStripButton btn)
+        {
+            dugme = btn;
             InitializeComponent();
         }
         public string connectionString = Program.connectionString;

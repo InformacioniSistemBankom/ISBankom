@@ -223,6 +223,8 @@ namespace Bankom.Class
         public void MenuItemClickHandler(object sender, EventArgs e)
         {
             string s = GetMenuNaziv(((ToolStripMenuItem)sender).Text);
+            //zajedno 14.1.2021.
+            //Program.AktivnaSifraIzvestaja = s;
             char slovo = UzmiSlovo(s);
             bool postoji;
             Program.KlasifikacijaSlovo = "";
@@ -744,13 +746,5 @@ namespace Bankom.Class
                     //    break;
             }
         }
-        
-
-       
-
-        
-
-        
-       
     }
 }

@@ -194,6 +194,12 @@
     <Compile Include="Class\KursnaLista.Designer.cs">
       <DependentUpon>KursnaLista.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSlika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSlika.Designer.cs">
+      <DependentUpon>frmSlika.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,6 +257,9 @@
       <DependentUpon>KursnaLista.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSlika.resx">
+      <DependentUpon>frmSlika.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -299,7 +308,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\addnew.png" />
-    <Content Include="Resources\BankomLogin.jpg" />
     <None Include="Resources\BankomLogin1.jpg" />
     <Content Include="Resources\Calculator.png" />
     <Content Include="Resources\del12.png" />
