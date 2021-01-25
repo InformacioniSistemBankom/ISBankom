@@ -253,7 +253,6 @@ namespace Bankom
             ToolBar.Enabled = true;
             //zajedno 18.1.2021.
             DodajSliku.Enabled = true;
-            Console.WriteLine("ivana");
             clsObradaMenija obradaMenija = new clsObradaMenija(this);
             obradaMenija.CreateMenu();
         }

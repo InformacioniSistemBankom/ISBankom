@@ -1786,13 +1786,17 @@ namespace Bankom.Class
         //zajedno 22.1.2021.
         private void comboBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            //ivana 25.1.2021. zabrana otvaranja vise prozora za prikazivanje slika
+            Form f = Application.OpenForms["frmSlika"];
+            if (f != null)
+                f.Close();
             if (e.KeyChar == (char)Keys.Enter)
             {
                 string tipFajla = "Slike";
                 string nazivFoldera = "";
                 string imeSlike = "";
-                frmSlika slika = new frmSlika();
                 string upit = "";
+                frmSlika slika = new frmSlika();
                 if (IME.Contains("NazivSkl"))
                 {
                     upit = "Select ID_Skladiste from Skladiste where NazivSkl=@param0";
@@ -1815,6 +1819,8 @@ namespace Bankom.Class
                 }
                 dt = db.ParamsQueryDT(upit, Vrednost);
                 imeSlike = dt.Rows[0][0].ToString();
+                if (slika.Visible)
+                    slika.Close();
                 if (File.Exists(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg"))
                 {
                     slika.groupBox1.Visible = false;
