@@ -134,7 +134,7 @@ namespace Bankom
                     imeSlike = dt.Rows[i][0].ToString();
         }
 
-        private void frmSlika_FormClosed(object sender, FormClosedEventArgs e)
+        public void frmSlika_FormClosed(object sender, FormClosedEventArgs e)
         {
             if(dugme!=null)
                 dugme.Enabled = true;
@@ -156,13 +156,10 @@ namespace Bankom
                     MessageBox.Show("Ne postoji slika za" + nazivKategorije);
             }
         }
-
         private void frmSlika_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Escape)
-            {
-                Close();
-            }
+                this.Close();
         }
     }
 }

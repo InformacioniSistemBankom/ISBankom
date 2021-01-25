@@ -118,11 +118,11 @@ namespace Bankom
             this.premestiGrupuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DodajSliku = new System.Windows.Forms.ToolStripButton();
             this.Iimenik = new System.Windows.Forms.ToolStripButton();
-            this.Ssort = new System.Windows.Forms.ToolStripButton();
             this.Ppotvrda = new System.Windows.Forms.ToolStripButton();
+            this.Ssort = new System.Windows.Forms.ToolStripButton();
+            this.Iizlaz = new System.Windows.Forms.ToolStripButton();
             this.Pprekid = new System.Windows.Forms.ToolStripButton();
             this.Ccalc = new System.Windows.Forms.ToolStripButton();
-            this.Iizlaz = new System.Windows.Forms.ToolStripButton();
             this.Kknjzi = new System.Windows.Forms.ToolStripButton();
             this.Ppredlogcena = new System.Windows.Forms.ToolStripButton();
             this.Kkalki = new System.Windows.Forms.ToolStripButton();
@@ -909,6 +909,19 @@ namespace Bankom
             this.Iimenik.ToolTipText = "Imenik";
             this.Iimenik.Click += new System.EventHandler(this.Iimenik_Click);
             // 
+            // Ppotvrda
+            // 
+            this.Ppotvrda.AutoSize = false;
+            this.Ppotvrda.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ppotvrda.ForeColor = System.Drawing.Color.Snow;
+            this.Ppotvrda.Image = ((System.Drawing.Image)(resources.GetObject("Ppotvrda.Image")));
+            this.Ppotvrda.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Ppotvrda.Name = "Ppotvrda";
+            this.Ppotvrda.Size = new System.Drawing.Size(60, 40);
+            this.Ppotvrda.Text = "Ok";
+            this.Ppotvrda.ToolTipText = "Potvrda zadate operacije";
+            this.Ppotvrda.Click += new System.EventHandler(this.Ppotvrda_Click_1);
+            // 
             // Ssort
             // 
             this.Ssort.AutoSize = false;
@@ -923,18 +936,18 @@ namespace Bankom
             this.Ssort.ToolTipText = "Sortiraj";
             this.Ssort.Click += new System.EventHandler(this.Ssort_Click);
             // 
-            // Ppotvrda
+            // Iizlaz
             // 
-            this.Ppotvrda.AutoSize = false;
-            this.Ppotvrda.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ppotvrda.ForeColor = System.Drawing.Color.Snow;
-            this.Ppotvrda.Image = ((System.Drawing.Image)(resources.GetObject("Ppotvrda.Image")));
-            this.Ppotvrda.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Ppotvrda.Name = "Ppotvrda";
-            this.Ppotvrda.Size = new System.Drawing.Size(60, 40);
-            this.Ppotvrda.Text = "Ok";
-            this.Ppotvrda.ToolTipText = "Potvrda zadate operacije";
-            this.Ppotvrda.Click += new System.EventHandler(this.Ppotvrda_Click_1);
+            this.Iizlaz.AutoSize = false;
+            this.Iizlaz.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Iizlaz.ForeColor = System.Drawing.Color.Snow;
+            this.Iizlaz.Image = ((System.Drawing.Image)(resources.GetObject("Iizlaz.Image")));
+            this.Iizlaz.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Iizlaz.Name = "Iizlaz";
+            this.Iizlaz.Size = new System.Drawing.Size(70, 40);
+            this.Iizlaz.Text = "Izlaz";
+            this.Iizlaz.ToolTipText = "Zatvaranje aktivne forme";
+            this.Iizlaz.Click += new System.EventHandler(this.Iizlaz_Click);
             // 
             // Pprekid
             // 
@@ -960,19 +973,6 @@ namespace Bankom
             this.Ccalc.Text = "Kalkulator";
             this.Ccalc.ToolTipText = "Kalkulator";
             this.Ccalc.Click += new System.EventHandler(this.Ccalc_Click);
-            // 
-            // Iizlaz
-            // 
-            this.Iizlaz.AutoSize = false;
-            this.Iizlaz.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Iizlaz.ForeColor = System.Drawing.Color.Snow;
-            this.Iizlaz.Image = ((System.Drawing.Image)(resources.GetObject("Iizlaz.Image")));
-            this.Iizlaz.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Iizlaz.Name = "Iizlaz";
-            this.Iizlaz.Size = new System.Drawing.Size(70, 40);
-            this.Iizlaz.Text = "Izlaz";
-            this.Iizlaz.ToolTipText = "Zatvaranje aktivne forme";
-            this.Iizlaz.Click += new System.EventHandler(this.Iizlaz_Click);
             // 
             // Kknjzi
             // 

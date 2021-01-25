@@ -1808,6 +1808,11 @@ namespace Bankom.Class
                     upit = "Select ID_Artikli from Artikli where NazivArtikla=@param0";
                     nazivFoldera = "Artikli";
                 }
+                else if (IME.Contains("Sifr"))
+                {
+                    upit = "Select ID_Artikli from Artikli where ID_Artikli=@param0";
+                    nazivFoldera = "Artikli";
+                }
                 dt = db.ParamsQueryDT(upit, Vrednost);
                 imeSlike = dt.Rows[0][0].ToString();
                 if (File.Exists(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg"))
@@ -1817,6 +1822,7 @@ namespace Bankom.Class
                     slika.button1.Visible = false;
                     slika.label1.Visible = false;
                     slika.button2.Visible = false;
+                    slika.label2.Visible = false;
                     slika.pictureBox1.Image = Image.FromFile(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
                     slika.Show();
                 }

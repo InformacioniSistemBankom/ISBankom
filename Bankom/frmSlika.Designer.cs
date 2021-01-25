@@ -189,6 +189,7 @@ namespace Bankom
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "frmSlika";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
