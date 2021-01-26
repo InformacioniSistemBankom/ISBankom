@@ -38,6 +38,8 @@ namespace Bankom
             this.rbMagPolje = new System.Windows.Forms.RadioButton();
             this.rbArtikli = new System.Windows.Forms.RadioButton();
             this.cmbNazivSlike = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +78,7 @@ namespace Bankom
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("TimesRoman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.button1.Location = new System.Drawing.Point(596, 38);
+            this.button1.Location = new System.Drawing.Point(494, 22);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(83, 29);
             this.button1.TabIndex = 2;
@@ -137,11 +139,38 @@ namespace Bankom
             // cmbNazivSlike
             // 
             this.cmbNazivSlike.FormattingEnabled = true;
-            this.cmbNazivSlike.Location = new System.Drawing.Point(239, 37);
+            this.cmbNazivSlike.Location = new System.Drawing.Point(230, 83);
             this.cmbNazivSlike.Name = "cmbNazivSlike";
-            this.cmbNazivSlike.Size = new System.Drawing.Size(339, 27);
+            this.cmbNazivSlike.Size = new System.Drawing.Size(449, 27);
             this.cmbNazivSlike.TabIndex = 4;
             this.cmbNazivSlike.SelectedIndexChanged += new System.EventHandler(this.cmbNazivSlike_SelectedIndexChanged);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Snow;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("TimesRoman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.button2.Location = new System.Drawing.Point(596, 22);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(83, 29);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Prika`i";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("TimesRoman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.label2.Location = new System.Drawing.Point(226, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(99, 19);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Naziv slike:";
             // 
             // frmSlika
             // 
@@ -149,6 +178,8 @@ namespace Bankom
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(713, 586);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.cmbNazivSlike);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
@@ -158,11 +189,13 @@ namespace Bankom
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "frmSlika";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSlika_FormClosed);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmSlika_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -172,14 +205,15 @@ namespace Bankom
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton rbSkl;
-        private System.Windows.Forms.RadioButton rbMagPolje;
-        private System.Windows.Forms.RadioButton rbArtikli;
-        private System.Windows.Forms.ComboBox cmbNazivSlike;
+        public System.Windows.Forms.Button button1;
+        public System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.RadioButton rbSkl;
+        public System.Windows.Forms.RadioButton rbMagPolje;
+        public System.Windows.Forms.RadioButton rbArtikli;
+        public System.Windows.Forms.ComboBox cmbNazivSlike;
+        public System.Windows.Forms.PictureBox pictureBox1;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Button button2;
+        public System.Windows.Forms.Label label2;
     }
 }

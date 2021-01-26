@@ -35,7 +35,7 @@ namespace Bankom
         {
             e.Effect = DragDropEffects.Copy;
         }
-        string imeSlike = "";
+        public string imeSlike = "";
         public void pictureBox1_DragDrop(object sender, DragEventArgs e)
         {
             string[] niz = (string[])e.Data.GetData(DataFormats.FileDrop);
@@ -48,6 +48,7 @@ namespace Bankom
             }
         }
         string nazivFoldera = "";
+        string nazivKategorije= "";
         public void PuniCombo(string rbNaziv)
         {
             string kolona = "";
@@ -56,18 +57,22 @@ namespace Bankom
             {
                 case "Artikli":
                     kolona = "NazivArtikla";
+                    nazivKategorije = " izabrani artikal!";
                     break;
                 case "MagacinskaPolja":
                     kolona = "NazivPolja";
+                    nazivKategorije = " izabrano magacinsko polje!";
                     break;
                 case "Skladiste":
                     kolona = "NazivSkl";
+                    nazivKategorije = " izabrano skladište!";
                     break;
             }
-            string upit = "Select "+  kolona + " from " + rbNaziv + " where CCopy=0";
+            string IdKolona = "ID_" + rbNaziv;
+            string upit = "Select "+ IdKolona + "," +  kolona + " from " + rbNaziv + " where CCopy=0";
             dt = db.ParamsQueryDT(upit);
             for (int i = 0; i < dt.Rows.Count; i++)
-                cmbNazivSlike.Items.Add(dt.Rows[i][0].ToString());
+                cmbNazivSlike.Items.Add(dt.Rows[i][1].ToString());
         }
 
         DataBaseBroker db = new DataBaseBroker();
@@ -92,6 +97,7 @@ namespace Bankom
                             pictureBox1.Image.Save(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
                             MessageBox.Show("Uspesno ste sačuvali sliku.");
                             pictureBox1.Image = null;
+                            label1.BringToFront();
                             cmbNazivSlike.Text = "";
                         }
                     }
@@ -107,10 +113,11 @@ namespace Bankom
                         pictureBox1.Image.Save(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
                         MessageBox.Show("Uspesno ste sačuvali sliku.");
                         pictureBox1.Image = null;
+                        label1.BringToFront();
                         cmbNazivSlike.Text = "";
                     }
                 }
-            } 
+            }
         }
         private void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -122,14 +129,37 @@ namespace Bankom
 
         private void cmbNazivSlike_SelectedIndexChanged(object sender, EventArgs e)
         {
-            imeSlike = cmbNazivSlike.SelectedItem.ToString();
+            for(int i=0;i<dt.Rows.Count; i++)
+                if(dt.Rows[i][1].ToString() == cmbNazivSlike.SelectedItem.ToString())
+                    imeSlike = dt.Rows[i][0].ToString();
         }
 
-        private void frmSlika_FormClosed(object sender, FormClosedEventArgs e)
+        public void frmSlika_FormClosed(object sender, FormClosedEventArgs e)
         {
-            dugme.Enabled = true;
+            if(dugme!=null)
+                dugme.Enabled = true;
         }
 
-      
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string tipFajla = "Slike";
+            if (nazivFoldera == "")
+                MessageBox.Show("Izaberite kategoriju slike!");
+            else
+            {
+                if (File.Exists(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg"))
+                {
+                    pictureBox1.Image = Image.FromFile(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
+                    label1.Visible = false;
+                }
+                else
+                    MessageBox.Show("Ne postoji slika za" + nazivKategorije);
+            }
+        }
+        private void frmSlika_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Escape)
+                this.Close();
+        }
     }
 }

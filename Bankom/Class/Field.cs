@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Bankom.Class;
 using System.Collections.Generic;
+using System.IO;
 //NOVI PROJEKAT
 
 namespace Bankom.Class
@@ -345,13 +346,13 @@ namespace Bankom.Class
                         //comboBox.GotFocus += new EventHandler(comboBox_GotFocus);
                         comboBox.MouseClick += new MouseEventHandler(comboBox_MouseClick);
                         //comboBox.TextUpdate += new EventHandler(comboBox_TextUpdate);
-
-                        //comboBox.SelectedIndexChanged += new EventHandler(ComboBox_SelectedIndexChanged);
+                        comboBox.KeyPress += new KeyPressEventHandler(comboBox_KeyPress);
+                        comboBox.SelectedIndexChanged += new EventHandler(ComboBox_SelectedIndexChanged);
                         comboBox.DropDown += new EventHandler(comboBox_DropDown);
                         comboBox.DropDownClosed += new EventHandler(comboBox_DropDownClosed);
                         //zajedno 24.12.2020.
                         string upit = "select count(*) from RecnikPodataka where AlijasPolja like 'NazivPolja%' and Dokument=@param0 and ID_TipoviPodataka=10 and TabIndex>=0";
-                        int broj = db.ParamsInsertScalar(upit,cDokument);
+                        int broj = db.ParamsInsertScalar(upit, cDokument);
 
                         string upit1 = "select AlijasPolja from RecnikPodataka where AlijasPolja like 'NazivSkl%' and Dokument=@param0 and ID_TipoviPodataka=10 and TabIndex>=0";
                         DataTable dt = db.ParamsQueryDT(upit1, cDokument);
@@ -367,7 +368,7 @@ namespace Bankom.Class
                         //    if (dt.Rows[i][0].ToString().Length > 8)
                         //        nastavakSkladista1 = dt.Rows[i][0].ToString().Substring(8);
                         //}
-                        if (IME.Contains("NazivSkl") && broj>0) //uci ce samo kada ima mag polje, a desavace se samo pri stvaranju comboBox-a NazivSkl
+                        if (IME.Contains("NazivSkl") && broj > 0) //uci ce samo kada ima mag polje, a desavace se samo pri stvaranju comboBox-a NazivSkl
                         {
                             ((Bankom.frmChield)forma).NazivSkladista = comboBox.Text;
                             comboBox.SelectedIndexChanged += new EventHandler(comboBox_SelectedIndexChanged);
@@ -465,7 +466,7 @@ namespace Bankom.Class
                         textBox.Parent.Name = Ime;
                     }
                     break;
-                  
+
 
             }
             //}// kraj za idNaziviNaFormi<>20
@@ -608,7 +609,7 @@ namespace Bankom.Class
             } // kraj za idNaziviNaFormi == "20" && tud != "0"
 
 
-           
+
         }
         private Control activeControl;
 
@@ -641,7 +642,7 @@ namespace Bankom.Class
         //zajedno 22.12.2020.
         public void comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(comboBox.Name.Length==8)
+            if (comboBox.Name.Length == 8)
                 ((Bankom.frmChield)forma).NazivSkladista = comboBox.Text;
             else if (((Bankom.frmChield)forma).nastavakSkladista1 == comboBox.Name.Substring(8))
             {
@@ -760,12 +761,36 @@ namespace Bankom.Class
                 case "14":
                     break;
             }
+            //zajedno 22.1.2021.
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                string tipFajla = "Slike";
+                string nazivFoldera = "";
+                if (IME.Contains("NazivSirovin") || IME.Contains("NazivArt") || IME.Contains("NazivProizv"))
+                {
+                    string upit = "Select ID_Artikli from Artikli where NazivArtikla=@param0";
+                    dt = db.ParamsQueryDT(upit, Vrednost);
+                    string imeSlike = dt.Rows[0][0].ToString();
+                    nazivFoldera = "Artikli";
+                    if (File.Exists(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg"))
+                    {
+                        frmSlika slika = new frmSlika();
+                        slika.groupBox1.Visible = false;
+                        slika.cmbNazivSlike.Visible = false;
+                        slika.button1.Visible = false;
+                        slika.label1.Visible = false;
+                        slika.button2.Visible = false;
+                        slika.pictureBox1.Image = Image.FromFile(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
+                        slika.Show();
+                    }
+                }
+            }
         }
+        string comboText = "";
         public void ComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-
-            //    ComboBox control = (ComboBox)sender;
-            //    //control.Text = sadrzaj;
+            ComboBox control = (ComboBox)sender;
+            comboText = control.Text;
         }
         //private void comboBox_TextUpdate(Object sender, EventArgs e)
         public new void Leave(object sender, EventArgs e)
@@ -805,7 +830,7 @@ namespace Bankom.Class
             {
                 if (rez.Rows.Count != 0)
                 {
-                    for (   int i = 0; i < rez.Rows.Count; i++)
+                    for (int i = 0; i < rez.Rows.Count; i++)
                         if (rez.Rows[i][0].ToString().ToLower().Contains(control.Text.ToLower()))
                         {
                             control.Items.Add(rez.Rows[i][0]);
@@ -860,7 +885,7 @@ namespace Bankom.Class
                     Console.WriteLine(forma.Controls["OOperacija"].Text.Trim());
                     if (control.SelectedIndex > -1)
                         if (forma.Controls["OOperacija"].Text.Trim() != "PREGLED") // BORKA da se ne bi u pregledu punila ostala polja za izabrano                        
-                                FillOtherControls(control, ID);
+                            FillOtherControls(control, ID);
 
                     control.SelectedIndex = -1;
                 }
@@ -902,61 +927,61 @@ namespace Bankom.Class
             string uuPIT = "";
             string Restrikcija = "";
             // zajedno 28.12.2020. dopuna, jer je pucao pri zatvaranju, kada je Me bilo null
-            if (control.Text.Trim() != "" && Me!=null)
+            if (control.Text.Trim() != "" && Me != null)
             {
-                    Field pb = (Field)Me.Controls[control.Name]; //  uzimamo kontrolu na formi  
-                    if (pb != null)
+                Field pb = (Field)Me.Controls[control.Name]; //  uzimamo kontrolu na formi  
+                if (pb != null)
+                {
+                    if (pb.cRestrikcije.Trim() != "")
                     {
-                        if (pb.cRestrikcije.Trim() != "")
-                        {
-                            Restrikcija = " AND " + pb.cRestrikcije;
-                        }
+                        Restrikcija = " AND " + pb.cRestrikcije;
+                    }
 
-                        if ((control.Text).Trim() == "")
+                    if ((control.Text).Trim() == "")
+                    {
+                        ID = "1";
+                        Vrednost = "";
+                    }
+                    else
+                    {
+                        if (pb.cIzborno.Contains("KKNJ"))
                         {
                             ID = "1";
-                            Vrednost = "";
                         }
-                        else
+                        else  // nisu kknjupiti
                         {
-                            if (pb.cIzborno.Contains("KKNJ"))
+                            if (pb.cTip == 25)
+                                uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + " Like N'%" + control.Text + "%'" + Restrikcija;
+                            else
+                                uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + "='" + control.Text + "'" + Restrikcija;
+                            Console.WriteLine(uuPIT);
+                            DataTable tt = db.ReturnDataTable(uuPIT);
+                            if (tt.Rows.Count > 0)
+                            {
+                                ID = tt.Rows[0]["idt"].ToString();
+                                Vrednost = tt.Rows[0]["polje"].ToString();
+                                if (pb.cTip == 25)
+                                    aaa = tt.Rows[0]["polje"].ToString().Substring(0, tt.Rows[0]["polje"].ToString().IndexOf(","));
+                                else
+                                    aaa = tt.Rows[0]["polje"].ToString();
+
+                                pb.ID = ID;
+                                control.Text = aaa;
+                                control.Refresh();
+
+                                control.ForeColor = Color.Black;
+                                if (forma.Controls["OOperacija"].Text.Trim() != "PREGLED") // BORKA da se ne bi u pregledu punila ostala polja za izabrano                        
+                                    FillOtherControls(control, ID);
+                            }
+                            else
                             {
                                 ID = "1";
-                            }
-                            else  // nisu kknjupiti
-                            {
-                                if (pb.cTip == 25)
-                                    uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + " Like N'%" + control.Text + "%'" + Restrikcija;
-                                else
-                                uuPIT = "SELECT ID_" + pb.cIzborno + " as idt," + pb.cPolje + " as polje from " + pb.cIzborno + " WHERE " + pb.cPolje + "='" + control.Text + "'" + Restrikcija;
-                                Console.WriteLine(uuPIT);
-                                DataTable tt = db.ReturnDataTable(uuPIT);
-                                if (tt.Rows.Count > 0)
-                                {
-                                    ID = tt.Rows[0]["idt"].ToString();
-                                    Vrednost = tt.Rows[0]["polje"].ToString();
-                                    if (pb.cTip == 25)
-                                        aaa = tt.Rows[0]["polje"].ToString().Substring(0, tt.Rows[0]["polje"].ToString().IndexOf(","));
-                                    else
-                                        aaa = tt.Rows[0]["polje"].ToString();
-
-                                    pb.ID = ID;
-                                    control.Text = aaa;
-                                    control.Refresh();
-
-                                    control.ForeColor = Color.Black;
-                                    if (forma.Controls["OOperacija"].Text.Trim() != "PREGLED") // BORKA da se ne bi u pregledu punila ostala polja za izabrano                        
-                                        FillOtherControls(control, ID);
-                                }
-                                else
-                                {
-                                    ID = "1";
-                                    Vrednost = "";
-                                    isfound = false;
-                                }
+                                Vrednost = "";
+                                isfound = false;
                             }
                         }
                     }
+                }
             }
             else
             {
@@ -1105,10 +1130,10 @@ namespace Bankom.Class
                 comboBox.Items.Clear();
                 string upit = "select NazivPolja from MagacinskaPoljaStavkeView where NazivSkl=@param0";
                 // jovana 13.01.21
-                if (((Bankom.frmChield)forma).nastavakSkladista2 != "" && ((Bankom.frmChield)forma).NazivSkladista2!=null && IME.Substring(10).Contains(((Bankom.frmChield)forma).nastavakSkladista2))
-                        rez = db.ParamsQueryDT(upit, ((Bankom.frmChield)forma).NazivSkladista2);
+                if (((Bankom.frmChield)forma).nastavakSkladista2 != "" && ((Bankom.frmChield)forma).NazivSkladista2 != null && IME.Substring(10).Contains(((Bankom.frmChield)forma).nastavakSkladista2))
+                    rez = db.ParamsQueryDT(upit, ((Bankom.frmChield)forma).NazivSkladista2);
                 else if (((Bankom.frmChield)forma).nastavakSkladista1 != "" && ((Bankom.frmChield)forma).NazivSkladista1 != null && IME.Substring(10).Contains(((Bankom.frmChield)forma).nastavakSkladista1))
-                            rez = db.ParamsQueryDT(upit, ((Bankom.frmChield)forma).NazivSkladista1);
+                    rez = db.ParamsQueryDT(upit, ((Bankom.frmChield)forma).NazivSkladista1);
                 else
                     rez = db.ParamsQueryDT(upit, ((Bankom.frmChield)forma).NazivSkladista);
             }
@@ -1196,7 +1221,7 @@ namespace Bankom.Class
             {
                 Field pb = (Field)Program.Parent.ActiveMdiChild.Controls[column.Name];
                 {
-                    if( pb !=null)
+                    if (pb != null)
                     {
                         if (pb.cTip == 25)
                         {
@@ -1208,7 +1233,7 @@ namespace Bankom.Class
                                 if (t.Rows.Count > 0)
                                 {
                                     pb.Vrednost = t.Rows[0]["barkod"].ToString();
-                                    pb.ID= t.Rows[0]["ID_LotView"].ToString();
+                                    pb.ID = t.Rows[0]["ID_LotView"].ToString();
                                 }
                             }
                         }
@@ -1295,11 +1320,11 @@ namespace Bankom.Class
             string mojestablo = Me.Controls["limestabla"].Text.Trim();
             int midstablo = Convert.ToInt32(Me.Controls["lidstablo"].Text);
 
-            ((Bankom.frmChield)Me).imegrida = control.Name; 
+            ((Bankom.frmChield)Me).imegrida = control.Name;
             ((Bankom.frmChield)Me).idReda = middok;
             ((Bankom.frmChield)Me).brdok = mbrdok;
 
-            string ddatum = mdatum.ToString("dd.MM.yy");            
+            string ddatum = mdatum.ToString("dd.MM.yy");
             string DokumentJe = ((Bankom.frmChield)Me).DokumentJe;
             if (mojestablo == "Dokumenta" && DokumentJe == "S")
             {
@@ -1333,7 +1358,7 @@ namespace Bankom.Class
             dv.BackgroundColor = Color.AliceBlue;
             Form Me = Program.Parent.ActiveMdiChild;
 
-            string[] separators = new[] { "," };           
+            string[] separators = new[] { "," };
             Form novaforma = new Form();
 
             string vl, ll, sts, ss;
@@ -1730,7 +1755,7 @@ namespace Bankom.Class
                     IdDokView = -1;
                 else
                     IdDokView = 0;
-            }           
+            }
         }
 
         //Djora 26.09.20
@@ -1756,6 +1781,57 @@ namespace Bankom.Class
             else
             {
                 kontrola.Font = new Font("TimesRoman", 13F);
+            }
+        }
+        //zajedno 22.1.2021.
+        private void comboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //ivana 25.1.2021. zabrana otvaranja vise prozora za prikazivanje slika
+            Form f = Application.OpenForms["frmSlika"];
+            if (f != null)
+                f.Close();
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                string tipFajla = "Slike";
+                string nazivFoldera = "";
+                string imeSlike = "";
+                string upit = "";
+                frmSlika slika = new frmSlika();
+                if (IME.Contains("NazivSkl"))
+                {
+                    upit = "Select ID_Skladiste from Skladiste where NazivSkl=@param0";
+                    nazivFoldera = "Skladiste";
+                }
+                else if (IME.Contains("NazivPolja"))
+                {
+                    upit = "Select ID_MagacinskaPolja from MagacinskaPolja where NazivPolja=@param0";
+                    nazivFoldera = "MagacinskaPolja";
+                }
+                else if (IME.Contains("NazivSirovin") || IME.Contains("NazivArt") || IME.Contains("NazivProizv"))
+                {
+                    upit = "Select ID_Artikli from Artikli where NazivArtikla=@param0";
+                    nazivFoldera = "Artikli";
+                }
+                else if (IME.Contains("Sifr"))
+                {
+                    upit = "Select ID_Artikli from Artikli where ID_Artikli=@param0";
+                    nazivFoldera = "Artikli";
+                }
+                dt = db.ParamsQueryDT(upit, Vrednost);
+                imeSlike = dt.Rows[0][0].ToString();
+                if (slika.Visible)
+                    slika.Close();
+                if (File.Exists(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg"))
+                {
+                    slika.groupBox1.Visible = false;
+                    slika.cmbNazivSlike.Visible = false;
+                    slika.button1.Visible = false;
+                    slika.label1.Visible = false;
+                    slika.button2.Visible = false;
+                    slika.label2.Visible = false;
+                    slika.pictureBox1.Image = Image.FromFile(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
+                    slika.Show();
+                }
             }
         }
     }
