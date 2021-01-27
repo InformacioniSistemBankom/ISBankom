@@ -770,18 +770,21 @@ namespace Bankom.Class
                 {
                     string upit = "Select ID_Artikli from Artikli where NazivArtikla=@param0";
                     dt = db.ParamsQueryDT(upit, Vrednost);
-                    string imeSlike = dt.Rows[0][0].ToString();
-                    nazivFoldera = "Artikli";
-                    if (File.Exists(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg"))
+                    if (dt.Rows.Count > 0)
                     {
-                        frmSlika slika = new frmSlika();
-                        slika.groupBox1.Visible = false;
-                        slika.cmbNazivSlike.Visible = false;
-                        slika.button1.Visible = false;
-                        slika.label1.Visible = false;
-                        slika.button2.Visible = false;
-                        slika.pictureBox1.Image = Image.FromFile(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
-                        slika.Show();
+                        string imeSlike = dt.Rows[0][0].ToString();
+                        nazivFoldera = "Artikli";
+                        if (File.Exists(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg"))
+                        {
+                            frmSlika slika = new frmSlika();
+                            slika.groupBox1.Visible = false;
+                            slika.cmbNazivSlike.Visible = false;
+                            slika.button1.Visible = false;
+                            slika.label1.Visible = false;
+                            slika.button2.Visible = false;
+                            slika.pictureBox1.Image = Image.FromFile(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
+                            slika.Show();
+                        }
                     }
                 }
             }
@@ -1817,20 +1820,26 @@ namespace Bankom.Class
                     upit = "Select ID_Artikli from Artikli where ID_Artikli=@param0";
                     nazivFoldera = "Artikli";
                 }
-                dt = db.ParamsQueryDT(upit, Vrednost);
-                imeSlike = dt.Rows[0][0].ToString();
-                if (slika.Visible)
-                    slika.Close();
-                if (File.Exists(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg"))
+                if (upit != "")
                 {
-                    slika.groupBox1.Visible = false;
-                    slika.cmbNazivSlike.Visible = false;
-                    slika.button1.Visible = false;
-                    slika.label1.Visible = false;
-                    slika.button2.Visible = false;
-                    slika.label2.Visible = false;
-                    slika.pictureBox1.Image = Image.FromFile(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
-                    slika.Show();
+                    dt = db.ParamsQueryDT(upit, Vrednost);
+                    if (dt.Rows.Count > 0)
+                    {
+                        imeSlike = dt.Rows[0][0].ToString();
+                        if (slika.Visible)
+                            slika.Close();
+                        if (File.Exists(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg"))
+                        {
+                            slika.groupBox1.Visible = false;
+                            slika.cmbNazivSlike.Visible = false;
+                            slika.button1.Visible = false;
+                            slika.label1.Visible = false;
+                            slika.button2.Visible = false;
+                            slika.label2.Visible = false;
+                            slika.pictureBox1.Image = Image.FromFile(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
+                            slika.Show();
+                        }
+                    }
                 }
             }
         }

@@ -98,19 +98,20 @@ namespace Bankom
             }
             updateToolStrip(ss);
         }
+        //ivana 26.1.2021.
+        int sirina = 0;
         public void updateToolStrip(string imedokumenta)
         {
             int a = toolStrip1.Items.Count;
-
             for (int i = 0; i < a; i++)
             {
-                //08.01.2021. tamara
-                //toolStrip1.Items[i].Width = 10;
                 toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 if (toolStrip1.Items[i].Text == imedokumenta)
                 {
                     toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
+                //ivana 26.1.2021.
+                sirina += toolStrip1.Items[i].Width;
             }
         }
         public bool DalijevecOtvoren(string dokumentje, string brojdokumenta, string imedokumenta)
@@ -169,11 +170,17 @@ namespace Bankom
             //if(dt.Rows.Count>0)
             //    itemn.Text = dt.Rows[0][0].ToString();
             //itemn.Text = Program.AktivnaSifraIzvestaja;
-
-
             itemn.ToolTipText = imedokumenta;
             itemn.Name = forma.Text;
             itemB.Image = global::Bankom.Properties.Resources.del12;
+
+            // ivana 26.1.2021.
+            itemn.TextAlign = ContentAlignment.MiddleLeft;
+            itemB.ImageAlign = ContentAlignment.MiddleRight;
+
+            itemB.Size = new Size(3, itemn.Height);
+            itemnsep.Size = new Size(2, itemn.Height);
+
             itemn.Click += new EventHandler(itemn_click);
             itemB.Click += new EventHandler(itemB_click);
             itemB.Name = forma.Text;
@@ -506,6 +513,7 @@ namespace Bankom
                 itemn.Text = item.Name;
                 itemn.Name = item.Name;
                 itemB.Image = global::Bankom.Properties.Resources.del12;
+
                 itemnsep.Name = "sep" + item.Name;
                 itemn.Click += new EventHandler(itemn_click);
 
@@ -515,6 +523,8 @@ namespace Bankom
                 toolStrip1.Items.Add(itemn);
                 toolStrip1.Items.Add(itemB);
                 toolStrip1.Items.Add(itemnsep);
+                //ivana 26.1.2021.
+                sirina += toolStrip1.Items["itemn"].Width;
             }
         }
 
@@ -527,34 +537,39 @@ namespace Bankom
             active.AutoScroll = true;
             active.FormBorderStyle = FormBorderStyle.None;
             int a = toolStrip1.Items.Count;
+            int c = 0;
             for (int i = 0; i < a; i++)
             {
-               
                 toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 if (toolStrip1.Items[i].Text == b)
                 {
                     toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
+                if (toolStrip1.Items[i] == toolStrip1.Items["itemn"])
+                    c++;
+                //ivana 26.1.2021.
+                //if (sirina > this.Width * 2)
+                //    toolStrip1.Items[i].Size = new Size(this.Width * 2 / a, toolStrip1.Items[i].Height);
             }
+            //for (int x = 0; x < toolStrip1.Items.Count; x++)
+            //{   
+            int n = MdiChildren.Count<Form>();
+            foreach (Form childForm in MdiChildren)
+            {
+                if (childForm.Text.ToUpper() == b.ToUpper())
+                {
+                    childForm.FormBorderStyle = FormBorderStyle.None;
+                    childForm.BackColor = System.Drawing.Color.Snow;
+                    //ivana 27.1.2021.
+                    ActivateMdiChild(childForm);
+                    childForm.Focus();
 
-            for (int x = 0; x < toolStrip1.Items.Count; x++)
-            {                  
-                    foreach (Form childForm in MdiChildren)
-                    {
-                        if (childForm.Text.ToUpper() == b.ToUpper())
-                        {
-                            childForm.FormBorderStyle = FormBorderStyle.None;
-                            childForm.BackColor = System.Drawing.Color.Snow;
-
-                            childForm.Activate();
-                            childForm.Focus();
-
-                            childForm.LayoutMdi(MdiLayout.TileVertical);
-                            childForm.WindowState = FormWindowState.Maximized;
-                            break;
-                        }
-                    }
+                    childForm.LayoutMdi(MdiLayout.TileVertical);
+                    childForm.WindowState = FormWindowState.Maximized;
+                    break;
+                }
             }
+            //}
             SrediFormu();
             //10.01.21 BORKA UMRTVILA  JER ZELIM DA SE KOD AKTIVACIJE FORME DOBIJEM IZGLED KAKAV JE BIO 
             //KAD SAM FORMU NAPUSTILA NPR AKO SAM  SORTIRALA DOKUMENTA  DA OSTANU SORTIRANA
