@@ -782,6 +782,7 @@ namespace Bankom.Class
                             slika.button1.Visible = false;
                             slika.label1.Visible = false;
                             slika.button2.Visible = false;
+                            slika.label2.Visible = false;
                             slika.pictureBox1.Image = Image.FromFile(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
                             slika.Show();
                         }
