@@ -93,6 +93,7 @@ namespace Bankom.Class
             tv.Nodes.Add(parent);
             tv.EndUpdate();
             tv.SelectedNode = parent;
+           
 
             int i = 0;
             int j = 0;
@@ -148,6 +149,7 @@ namespace Bankom.Class
             } while (i < ti.Rows.Count);  //kraj while po i
 
             tv.Height = forma.Height;
+          // ovde se podešava veličina tree view kontole ali za sada nije potrebno menjati 29.01.2021.
             tv.Width = forma.Width;
             tv.Top = 40;
             tv.Left = 25;
@@ -156,10 +158,12 @@ namespace Bankom.Class
             tv.BorderStyle = BorderStyle.None;
             form1.Controls.Add(tv);
 
-
+            
+           
             tv.Visible = true;
             tv.HideSelection = true;
             //tv.SelectedNode = null;
+
             tv.CollapseAll();
             tv.Sort();
         } // kraj obradastablaNew.

@@ -251,7 +251,7 @@ namespace Bankom
         private void BankomMDI_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            this.Text = "ISBankom - " +Program.NazivOrg + " - " + Program.imekorisnika;
+          this.Text = "ISBankom - " +Program.NazivOrg + " - " + Program.imekorisnika;
             addKombo();
             clsSettingsButtons sb = new clsSettingsButtons();
             sb.ToolBarItemsEnDis();
@@ -3199,11 +3199,11 @@ namespace Bankom
             Program.Parent.premestiGrupuToolStripMenuItem.Enabled = false;
             Program.Parent.premestiGrupuToolStripMenuItem.Visible = false;
         }
-        public static int i = 0;
+        public static int i = 1;
 
         private void Ssort_Click(object sender, EventArgs e)
         {
-            i++;
+            i*=-1;
             frmChield activeChild = (frmChield)this.ActiveMdiChild;
             string n = activeChild.Name.ToString();
             if (string.IsNullOrEmpty(Program.colname))
@@ -3218,7 +3218,7 @@ namespace Bankom
                 DataGridView dg = activeChild.Controls.Find(Program.imegrida, true).FirstOrDefault() as DataGridView;
                 if (dg != null)
                 {
-                    if (i % 2 == 0)
+                    if (i > 0)
                     {
                         Program.smer = " ASC ";
                         clsObradaOsnovnihSifarnika obs = new clsObradaOsnovnihSifarnika();

@@ -61,6 +61,7 @@ namespace Bankom
             this.FormBorderStyle = FormBorderStyle.None;
             this.BackColor = Color.Snow;
             this.AutoScroll = true;
+           
 
             intStart = 0;                
             toolStripStatusPrazno.Text = new String(' ', 150);            
@@ -267,57 +268,7 @@ namespace Bankom
             navigacija(pageno);
         }
 
-        private void ToolStripTextPos_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void statusStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void toolStripButton4_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-          
-
-        }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-
-          
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void toolStripLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ToolStripLblPos_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripTexIme_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
+       
 
         
         private void button1_Click(object sender, EventArgs e)
