@@ -227,6 +227,8 @@ namespace Bankom
 
         private void KursnaLista_Load(object sender, EventArgs e)
         {
+            //tamara 01.02.2021.
+            this.Text = "ISBankom - " + Program.NazivOrg + " - " + Program.imekorisnika;
             this.FormBorderStyle = FormBorderStyle.None;
             this.Dock = DockStyle.Fill;
         }
