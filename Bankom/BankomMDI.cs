@@ -547,10 +547,12 @@ namespace Bankom
                 }
                 if (toolStrip1.Items[i] == toolStrip1.Items["itemn"])
                     c++;
-                //ivana 26.1.2021.
-                //if (sirina > this.Width * 2)
-                //    toolStrip1.Items[i].Size = new Size(this.Width * 2 / a, toolStrip1.Items[i].Height);
             }
+            //ivana 26.1.2021.
+            //int sirinaforme = this.Width * 2;
+            //if (sirina > sirinaforme)
+            //    for(int i = 0; i < a; i++)
+            //        toolStrip1.Items[i].Size = new Size(sirinaforme / a, 0);
             //for (int x = 0; x < toolStrip1.Items.Count; x++)
             //{   
             int n = MdiChildren.Count<Form>();
@@ -1750,8 +1752,11 @@ namespace Bankom
             }
             else
             {
+                string ime = Me.Text;
+                //string iddok = Me.Tag.ToString();
 
-                string ime = Me.Controls["limedok"].Text;
+
+                ime = Me.Controls["limedok"].Text;
                 string iddok = Me.Controls["liddok"].Text;
 
                 //((Bankom.frmChield)forma).pparametri
