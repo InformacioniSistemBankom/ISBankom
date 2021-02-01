@@ -1829,13 +1829,13 @@ namespace Bankom
         private void Iimenik_Click(object sender, EventArgs e)
         {
 
-            frmImenik frmi = new frmImenik(Iimenik);
+            Imenik frmi = new Imenik(Iimenik);
             Iimenik.Enabled = false;
             frmi.FormBorderStyle = FormBorderStyle.None;
-            frmi.Text = "Imenik";
+            frmi.Name = "Imenik";
             frmi.MdiParent = this;
             frmi.Dock = DockStyle.Fill;
-            if (this.IzborJezika.Text == "Српски-Ћирилица") { frmi.Text = this.VratiCirlilicu("Imenik"); }
+            if (this.IzborJezika.Text == "Српски-Ћирилица") { frmi.Name = this.VratiCirlilicu("Imenik"); }
             int sirina = (this.Width / 100) * 10;
             this.addFormTotoolstrip1(frmi, "Imenik");
             this.updateToolStrip("Imenik");

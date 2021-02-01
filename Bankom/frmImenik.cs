@@ -11,14 +11,14 @@ using Bankom.Class;
 
 namespace Bankom
 {
-    public partial class frmImenik : Form
+    public partial class Imenik : Form
     {
         ToolStripButton dugme;
-        public frmImenik()
+        public Imenik()
         {
             InitializeComponent();
         }
-        public frmImenik(ToolStripButton btn)
+        public Imenik(ToolStripButton btn)
         {
             dugme = btn;
             InitializeComponent();
