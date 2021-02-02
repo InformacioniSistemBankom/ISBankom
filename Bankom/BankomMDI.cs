@@ -1403,7 +1403,7 @@ namespace Bankom
                 return;
             }
 
-            frmPrint fs = new frmPrint();
+            Print fs = new Print();
             fs.BackColor = System.Drawing.Color.Snow;
             fs.FormBorderStyle= FormBorderStyle.None;
             fs.MdiParent = this;
@@ -1488,7 +1488,7 @@ namespace Bankom
                 return;
             }
 
-            frmPrint fs = new frmPrint();
+            Print fs = new Print();
             fs.BackColor = System.Drawing.Color.Snow;
             fs.FormBorderStyle= FormBorderStyle.None;
             fs.MdiParent = this;
@@ -1770,7 +1770,7 @@ namespace Bankom
                 odgovor = DalijevecOtvoren("D", naslov, ime);
                 if (odgovor == false) //nije otvoren
                 {
-                    frmPrint fs = new frmPrint();
+                    Print fs = new Print();
                     fs.FormBorderStyle = FormBorderStyle.None;
                     fs.BackColor = System.Drawing.Color.Snow;
                     fs.MdiParent = this;
@@ -2277,7 +2277,7 @@ namespace Bankom
             }
             clsXmlPlacanja cxml = new clsXmlPlacanja();
             cxml.izborPlacanja(2, mg + svrsta);
-            frmPrint fs = new frmPrint();
+            Print fs = new Print();
             fs.BackColor = System.Drawing.Color.Snow;
 
             fs.MdiParent = this;
@@ -2323,7 +2323,7 @@ namespace Bankom
 
             clsXmlPlacanja cxml = new clsXmlPlacanja();
             cxml.izborPlacanja(0, mg);
-            frmPrint fs = new frmPrint();
+            Print fs = new Print();
             fs.BackColor = System.Drawing.Color.Snow;
 
             fs.MdiParent = this;
@@ -2369,7 +2369,7 @@ namespace Bankom
 
             clsXmlPlacanja cxml = new clsXmlPlacanja();
             cxml.izborPlacanja(1, mg);
-            frmPrint fs = new frmPrint();
+            Print fs = new Print();
             fs.BackColor = System.Drawing.Color.Snow;
             fs.kojiprint = "nag";
             fs.MdiParent = this;
