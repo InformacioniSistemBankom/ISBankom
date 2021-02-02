@@ -103,7 +103,7 @@ namespace Bankom
             updateToolStrip(ss);
         }
         //ivana 26.1.2021.
-        int sirina = 0;
+        int tabovi = 0;
         public void updateToolStrip(string imedokumenta)
         {
             int a = toolStrip1.Items.Count;
@@ -113,9 +113,9 @@ namespace Bankom
                 if (toolStrip1.Items[i].Text == imedokumenta)
                 {
                     toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                    //ivana 26.1.2021.
+                    tabovi += toolStrip1.Items[i].Width;
                 }
-                //ivana 26.1.2021.
-                sirina += toolStrip1.Items[i].Width;
             }
         }
         public bool DalijevecOtvoren(string dokumentje, string brojdokumenta, string imedokumenta)
@@ -528,7 +528,7 @@ namespace Bankom
                 toolStrip1.Items.Add(itemB);
                 toolStrip1.Items.Add(itemnsep);
                 //ivana 26.1.2021.
-                sirina += toolStrip1.Items["itemn"].Width;
+                tabovi += toolStrip1.Items["itemn"].Width;
             }
         }
 
