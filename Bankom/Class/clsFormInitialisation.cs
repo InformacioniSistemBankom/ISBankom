@@ -153,6 +153,8 @@ namespace Bankom.Class
                 {
                     case 5:
                     case 11:
+                    case 13:
+                    case 17:
                         polje = mValue.ToString("N2", CultureInfo.CurrentCulture);
                         break;
                     case 6:
