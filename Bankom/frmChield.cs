@@ -53,7 +53,7 @@ namespace Bankom
         }
         protected override void OnClosed(EventArgs e)
         {           
-            ((BankomMDI)this.MdiParent).itemB1_click(this.Text);            
+            ((BankomMDI)this.MdiParent).itemB1_click(this.Name);            
              base.OnClosed(e);
         }
         private void frmChield_Load(object sender, EventArgs e)
