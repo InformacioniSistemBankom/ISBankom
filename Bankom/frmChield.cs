@@ -61,7 +61,8 @@ namespace Bankom
             this.FormBorderStyle = FormBorderStyle.None;
             this.BackColor = Color.Snow;
             this.AutoScroll = true;
-           
+            ////tamara 01.02.2021.
+            //this.Text = ".";
 
             intStart = 0;                
             toolStripStatusPrazno.Text = new String(' ', 150);            

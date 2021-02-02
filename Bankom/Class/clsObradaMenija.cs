@@ -428,7 +428,7 @@ namespace Bankom.Class
                     }
                     clsXmlPlacanja cxml = new clsXmlPlacanja();
                     cxml.izborPlacanja(2, mg + svrsta);
-                    frmPrint fs = new frmPrint();
+                    Print fs = new Print();
                     fs.FormBorderStyle = FormBorderStyle.None;
 
                     fs.MdiParent = mdi;
@@ -479,7 +479,7 @@ namespace Bankom.Class
 
                     clsXmlPlacanja cxml1 = new clsXmlPlacanja();
                     cxml1.izborPlacanja(0, mg1);
-                    frmPrint fs1 = new frmPrint();
+                    Print fs1 = new Print();
 
                     fs1.MdiParent = mdi;
                     fs1.Text = "prevoz-" + mg1;
@@ -523,7 +523,7 @@ namespace Bankom.Class
 
                     clsXmlPlacanja cxml2 = new clsXmlPlacanja();
                     cxml2.izborPlacanja(1, mg2);
-                    frmPrint fs2 = new frmPrint();
+                    Print fs2 = new Print();
                     fs2.kojiprint = "nag";
                     fs2.MdiParent = mdi;
                     fs2.Text = "nagrade-" + mg2;

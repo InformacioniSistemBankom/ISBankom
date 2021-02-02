@@ -35,8 +35,9 @@ namespace Bankom.Class
 
             int idfirme = Program.idFirme;
             string idke = Program.idkadar.ToString();
+    
+            idstablo = forma.Controls["lidstablo"].Name;
             imestabla = forma.Controls["limestabla"].Text;
-            idstablo = forma.Controls["lidstablo"].Text;
             ZakljucenaGodina = false;
 
             string ssel = "";            

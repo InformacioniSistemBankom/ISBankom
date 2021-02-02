@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Bankom
 {
-    public partial class frmPrint : Form
+    public partial class Print : Form
     {
         public int intCurrentdok = 0;
         public string imefajla = "";
@@ -22,7 +22,7 @@ namespace Bankom
         //public string param { get; set; }
         //public string mparam;
         //public string mvred;
-        public frmPrint()
+        public Print()
         {
             InitializeComponent();
 

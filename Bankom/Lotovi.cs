@@ -112,7 +112,7 @@ namespace Bankom
                        string ime = "Lot";
                        string naslov = "print - " + ime;
                     
-                        frmPrint fs = new frmPrint();
+                        Print fs = new Print();
                         fs.FormBorderStyle = FormBorderStyle.None;
                         fs.BackColor = System.Drawing.Color.SeaShell;
                         fs.MdiParent = this.MdiParent;

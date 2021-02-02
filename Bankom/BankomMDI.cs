@@ -58,10 +58,13 @@ namespace Bankom
                 frmChield childForm = new frmChield();
                 childForm.MdiParent = this;
                 int sirina;
-                if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Text = VratiCirlilicu(imedokumenta); }
+                if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Name = VratiCirlilicu(imedokumenta);
+            }
                 sirina = (Width / 100) * 10;
-               
 
+                //tamara 01.02.2020.
+                
+        
                 childForm.imedokumenta = imedokumenta;
                 childForm.iddokumenta = iddokument;
                 childForm.idstablo = idstablo;
@@ -72,7 +75,8 @@ namespace Bankom
                 childForm.datum = datum;
 
                 childForm.toolStripTextBroj.Text = Convert.ToString(idstablo);
-                childForm.Text = ss;
+                //tamara 01.02.2020. Text je prebacen u prazno da se ne bi prikazivao u liniji, a zamenjen je sa Name i to u itemn, itemb, itemb1 click
+                childForm.Text = "";
                 childForm.Name = ss;
                 addFormTotoolstrip1(childForm, imedokumenta);
 
@@ -162,7 +166,7 @@ namespace Bankom
             ToolStripLabel itemn = new ToolStripLabel();
             ToolStripButton itemB = new ToolStripButton();
             ToolStripSeparator itemnsep = new ToolStripSeparator();
-            itemn.Text = forma.Text;
+            itemn.Text = forma.Name;
             //zajedno 14.1.2021.
             //DataTable dt = new DataTable();
             //string upit = "Select NazivJavni from DokumentaStablo where Naziv=@param0";
@@ -171,7 +175,7 @@ namespace Bankom
             //    itemn.Text = dt.Rows[0][0].ToString();
             //itemn.Text = Program.AktivnaSifraIzvestaja;
             itemn.ToolTipText = imedokumenta;
-            itemn.Name = forma.Text;
+            itemn.Name = forma.Name;
             itemB.Image = global::Bankom.Properties.Resources.del12;
 
             // ivana 26.1.2021.
@@ -183,8 +187,8 @@ namespace Bankom
 
             itemn.Click += new EventHandler(itemn_click);
             itemB.Click += new EventHandler(itemB_click);
-            itemB.Name = forma.Text;
-            itemnsep.Name = forma.Text;
+            itemB.Name = forma.Name;
+            itemnsep.Name = forma.Name;
 
             toolStrip1.Items.Add(itemn);
             toolStrip1.Items.Add(itemB);
@@ -541,7 +545,7 @@ namespace Bankom
             for (int i = 0; i < a; i++)
             {
                 toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                if (toolStrip1.Items[i].Text == b)
+                if (toolStrip1.Items[i].Name == b)
                 {
                     toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
@@ -558,7 +562,7 @@ namespace Bankom
             int n = MdiChildren.Count<Form>();
             foreach (Form childForm in MdiChildren)
             {
-                if (childForm.Text.ToUpper() == b.ToUpper())
+                if (childForm.Name.ToUpper() == b.ToUpper())
                 {
                     childForm.FormBorderStyle = FormBorderStyle.None;
                     childForm.BackColor = System.Drawing.Color.Snow;
@@ -589,7 +593,7 @@ namespace Bankom
            toolStripTextBox1.Text = "";
             for (int j = 0; j < toolStrip1.Items.Count; j++)
             {
-                if (this.MdiChildren[j].Text == imetula)
+                if (this.MdiChildren[j].Name == imetula)
                 {
                     this.ActivateMdiChild(this.MdiChildren[j]);
                     break;
@@ -631,7 +635,7 @@ namespace Bankom
             toolStripTextBox1.Text = "";
             for (int j = 0; j < toolStrip1.Items.Count; j++)
             {
-                if (this.MdiChildren[j].Text == b)
+                if (this.MdiChildren[j].Name == b)
                 {
                     this.ActivateMdiChild(this.MdiChildren[j]);
                     break;
@@ -1111,7 +1115,7 @@ namespace Bankom
         private void CloseActive_Click(object sender, EventArgs e)
         {
             Form childForm = ActiveMdiChild;
-            string b = childForm.Text;
+            string b = childForm.Name;
 
 
             if (childForm != null) { childForm.Close(); }
@@ -1399,7 +1403,7 @@ namespace Bankom
                 return;
             }
 
-            frmPrint fs = new frmPrint();
+            Print fs = new Print();
             fs.BackColor = System.Drawing.Color.Snow;
             fs.FormBorderStyle= FormBorderStyle.None;
             fs.MdiParent = this;
@@ -1484,7 +1488,7 @@ namespace Bankom
                 return;
             }
 
-            frmPrint fs = new frmPrint();
+            Print fs = new Print();
             fs.BackColor = System.Drawing.Color.Snow;
             fs.FormBorderStyle= FormBorderStyle.None;
             fs.MdiParent = this;
@@ -1766,7 +1770,7 @@ namespace Bankom
                 odgovor = DalijevecOtvoren("D", naslov, ime);
                 if (odgovor == false) //nije otvoren
                 {
-                    frmPrint fs = new frmPrint();
+                    Print fs = new Print();
                     fs.FormBorderStyle = FormBorderStyle.None;
                     fs.BackColor = System.Drawing.Color.Snow;
                     fs.MdiParent = this;
@@ -1825,17 +1829,17 @@ namespace Bankom
         private void Iimenik_Click(object sender, EventArgs e)
         {
 
-            frmImenik frmi = new frmImenik(Iimenik);
+            Imenik frmi = new Imenik(Iimenik);
             Iimenik.Enabled = false;
             frmi.FormBorderStyle = FormBorderStyle.None;
-            frmi.Text = "Imenik";
+            frmi.Name = "Imenik";
             frmi.MdiParent = this;
             frmi.Dock = DockStyle.Fill;
-            if (this.IzborJezika.Text == "Српски-Ћирилица") { frmi.Text = this.VratiCirlilicu("Imenik"); }
+            if (this.IzborJezika.Text == "Српски-Ћирилица") { frmi.Name = this.VratiCirlilicu("Imenik"); }
             int sirina = (this.Width / 100) * 10;
             this.addFormTotoolstrip1(frmi, "Imenik");
             this.updateToolStrip("Imenik");
-            frmi.StartPosition = FormStartPosition.CenterParent;
+            frmi.StartPosition = FormStartPosition.CenterScreen;
             frmi.Show();
         }
 
@@ -1846,7 +1850,7 @@ namespace Bankom
             if (this.ActiveMdiChild != null)
             {
                 Form childForm = this.ActiveMdiChild;
-                itemB1_click(childForm.Text);
+                itemB1_click(childForm.Name);
             }
             if (toolStrip1.Items.Count == 0)
             {
@@ -1903,7 +1907,7 @@ namespace Bankom
                 {
                     if (childForm == this.ActiveMdiChild)
                     {
-                        b = childForm.Text;
+                        b = childForm.Name;
                         childForm.Close();
                         childForm.Dispose();
                         return;
@@ -2273,7 +2277,7 @@ namespace Bankom
             }
             clsXmlPlacanja cxml = new clsXmlPlacanja();
             cxml.izborPlacanja(2, mg + svrsta);
-            frmPrint fs = new frmPrint();
+            Print fs = new Print();
             fs.BackColor = System.Drawing.Color.Snow;
 
             fs.MdiParent = this;
@@ -2319,7 +2323,7 @@ namespace Bankom
 
             clsXmlPlacanja cxml = new clsXmlPlacanja();
             cxml.izborPlacanja(0, mg);
-            frmPrint fs = new frmPrint();
+            Print fs = new Print();
             fs.BackColor = System.Drawing.Color.Snow;
 
             fs.MdiParent = this;
@@ -2365,7 +2369,7 @@ namespace Bankom
 
             clsXmlPlacanja cxml = new clsXmlPlacanja();
             cxml.izborPlacanja(1, mg);
-            frmPrint fs = new frmPrint();
+            Print fs = new Print();
             fs.BackColor = System.Drawing.Color.Snow;
             fs.kojiprint = "nag";
             fs.MdiParent = this;
