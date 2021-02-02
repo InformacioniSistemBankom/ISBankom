@@ -591,7 +591,7 @@ namespace Bankom
         public void itemB1_click(string imetula)  // zahtev za zatvaranje  forme klikom na tipku izlaz
         {
            toolStripTextBox1.Text = "";
-            for (int j = 0; j < toolStrip1.Items.Count; j++)
+            for (int j = 0; j < toolStrip1.Items.Count/3; j++)
             {
                 if (this.MdiChildren[j].Name == imetula)
                 {
