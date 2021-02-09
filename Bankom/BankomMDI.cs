@@ -127,7 +127,7 @@ namespace Bankom
                 if (dokumentje == "D")
                 {
                     ss = brojdokumenta;
-                    if (f.Text == ss)
+                    if (f.Name == ss)
                     {
                         MessageBox.Show("Ova forma je već otvorena.");
                         f.Focus();
@@ -143,7 +143,7 @@ namespace Bankom
                 {
                    
                     ss = imedokumenta;
-                    if (f.Text == ss)
+                    if (f.Name == ss)
                     {
                         MessageBox.Show("Ova forma je već otvorena.");
                         f.Focus();
@@ -158,6 +158,8 @@ namespace Bankom
             }
             return vrednost;
         }
+
+        string brojDok = "";
         public void addFormTotoolstrip1(Form forma, string imedokumenta)
         {
             //tamara 14.12.2020.
@@ -166,7 +168,19 @@ namespace Bankom
             ToolStripLabel itemn = new ToolStripLabel();
             ToolStripButton itemB = new ToolStripButton();
             ToolStripSeparator itemnsep = new ToolStripSeparator();
-            itemn.Text = forma.Name;
+            
+            Boolean result = char.IsNumber(forma.Name.ToCharArray().ElementAt(0));
+            if (result)
+            {
+                brojDok = forma.Name;
+            }
+            if (forma.Name == "Print")
+            {
+                forma.Name = "Print - " + brojDok;
+                itemn.Text = forma.Name;
+            }
+            else
+                itemn.Text = forma.Name;
             //zajedno 14.1.2021.
             //DataTable dt = new DataTable();
             //string upit = "Select NazivJavni from DokumentaStablo where Naziv=@param0";
@@ -1774,7 +1788,7 @@ namespace Bankom
                     fs.FormBorderStyle = FormBorderStyle.None;
                     fs.BackColor = System.Drawing.Color.Snow;
                     fs.MdiParent = this;
-                    fs.Text = naslov;
+                   // fs.Text = naslov;
                     fs.intCurrentdok = Convert.ToInt32(iddok); //id
                     fs.LayoutMdi(MdiLayout.TileVertical);
                     fs.imefajla = ime;

@@ -62,8 +62,9 @@ namespace Bankom.Class
                     t = db.ParamsQueryDT(sel, IdRacuna);
                     for (int i = 0; i < t.Rows.Count; i++)
                     {
-                        sel = "update RacunStavke set NabavnaCena=" + t.Rows[i]["Cena"] + t.Rows[i]["DodatakCene"];
+                        sel = "update RacunStavke set NabavnaCena=" + t.Rows[i]["Cena"].ToString().Replace(",", ".") + t.Rows[i]["DodatakCene"].ToString().Replace(",", ".");
                         sel += " FROM racunstavke as r where r.ID_RacunStavke=@param0";
+
                         int r = db.ParamsInsertScalar(sel, t.Rows[i]["iid"]);
                     }
                 }
