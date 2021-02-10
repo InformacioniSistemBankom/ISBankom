@@ -110,7 +110,7 @@ namespace Bankom
             for (int i = 0; i < a; i++)
             {
                 toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                if (toolStrip1.Items[i].Text == imedokumenta)
+                if (toolStrip1.Items[i].Name == imedokumenta)
                 {
                     toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
@@ -126,17 +126,35 @@ namespace Bankom
             {
                 if (dokumentje == "D")
                 {
-                    ss = brojdokumenta;
-                    if (f.Name == ss)
+                    //tamara 09.02.2021.
+                    if (brojdokumenta.Contains("print"))
                     {
-                        MessageBox.Show("Ova forma je već otvorena.");
-                        f.Focus();
-                        vrednost = true;
-                        break;
+                        if (f.Name == brojdokumenta)
+                        {
+                            MessageBox.Show("Ova forma je već otvorena.");
+                            f.Focus();
+                            vrednost = true;
+                            break;
+                        }
+                        else
+                        {
+                            vrednost = false;
+                        }
                     }
                     else
                     {
-                        vrednost = false;
+                        ss = brojdokumenta;
+                        if (f.Name == ss)
+                        {
+                            MessageBox.Show("Ova forma je već otvorena.");
+                            f.Focus();
+                            vrednost = true;
+                            break;
+                        }
+                        else
+                        {
+                            vrednost = false;
+                        }
                     }
                 }
                 else
@@ -1770,18 +1788,18 @@ namespace Bankom
             }
             else
             {
-                string ime = Me.Text;
+                string ime = Me.Name;
                 //string iddok = Me.Tag.ToString();
 
 
-                ime = Me.Controls["limedok"].Text;
+                string imePutanja = Me.Controls["limedok"].Text;
                 string iddok = Me.Controls["liddok"].Text;
 
                 //((Bankom.frmChield)forma).pparametri
 
-                string naslov = "print - " + ime;
+                string naslov = "Print - " + ime;
                 Boolean odgovor = false;
-                odgovor = DalijevecOtvoren("D", naslov, ime);
+                odgovor = DalijevecOtvoren("D",naslov,ime);
                 if (odgovor == false) //nije otvoren
                 {
                     Print fs = new Print();
@@ -1791,7 +1809,7 @@ namespace Bankom
                    // fs.Text = naslov;
                     fs.intCurrentdok = Convert.ToInt32(iddok); //id
                     fs.LayoutMdi(MdiLayout.TileVertical);
-                    fs.imefajla = ime;
+                    fs.imefajla = imePutanja;
                     switch (Me.Controls["ldokje"].Text)
                     {
                         case "I":
