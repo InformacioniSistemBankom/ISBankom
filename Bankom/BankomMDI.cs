@@ -58,8 +58,9 @@ namespace Bankom
                 frmChield childForm = new frmChield();
                 childForm.MdiParent = this;
                 int sirina;
-                if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Name = VratiCirlilicu(imedokumenta);
-            }
+                if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Name = VratiCirlilicu(imedokumenta);}
+                   
+       
                 sirina = (Width / 100) * 10;
 
                 //tamara 01.02.2020.
@@ -111,7 +112,7 @@ namespace Bankom
             for (int i = 0; i < a; i++)
             {
                 toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                if (toolStrip1.Items[i].Text == imedokumenta)
+                if (toolStrip1.Items[i].Name == imedokumenta)
                 {
                     toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
@@ -128,17 +129,35 @@ namespace Bankom
             {
                 if (dokumentje == "D")
                 {
-                    ss = brojdokumenta;
-                    if (f.Name == ss)
+                    //tamara 09.02.2021. fokus otvara nove forme bez taba
+                    if (brojdokumenta.Contains("print"))
                     {
-                        MessageBox.Show("Ova forma je već otvorena.");
-                        //f.Focus();
-                        vrednost = true;
-                        break;
+                        if (f.Name == brojdokumenta)
+                        {
+                            MessageBox.Show("Ova forma je već otvorena.");
+                           // f.Focus();
+                            vrednost = true;
+                            break;
+                        }
+                        else
+                        {
+                            vrednost = false;
+                        }
                     }
                     else
                     {
-                        vrednost = false;
+                        ss = brojdokumenta;
+                        if (f.Name == ss)
+                        {
+                            MessageBox.Show("Ova forma je već otvorena.");
+                           // f.Focus();
+                            vrednost = true;
+                            break;
+                        }
+                        else
+                        {
+                            vrednost = false;
+                        }
                     }
                 }
                 else
@@ -148,9 +167,10 @@ namespace Bankom
                     if (f.Name == ss)
                     {
                         MessageBox.Show("Ova forma je već otvorena.");
-                        //f.Focus();
+                       
                         vrednost = true;
-                        break;
+                        //f.Focus();
+                        break; 
                     }
                     else
                     {
@@ -160,6 +180,8 @@ namespace Bankom
             }
             return vrednost;
         }
+
+        string brojDok = "";
         public void addFormTotoolstrip1(Form forma, string imedokumenta)
         {
             //tamara 14.12.2020.
@@ -168,7 +190,19 @@ namespace Bankom
             ToolStripLabel itemn = new ToolStripLabel();
             ToolStripButton itemB = new ToolStripButton();
             ToolStripSeparator itemnsep = new ToolStripSeparator();
-            itemn.Text = forma.Name;
+            
+            Boolean result = char.IsNumber(forma.Name.ToCharArray().ElementAt(0));
+            if (result)
+            {
+                brojDok = forma.Name;
+            }
+            if (forma.Name == "Print")
+            {
+                forma.Name = "Print - " + brojDok;
+                itemn.Text = forma.Name;
+            }
+            else
+                itemn.Text = forma.Name;
             //zajedno 14.1.2021.
             //DataTable dt = new DataTable();
             //string upit = "Select NazivJavni from DokumentaStablo where Naziv=@param0";
@@ -1653,7 +1687,7 @@ namespace Bankom
         {
             Form activeChild = this.ActiveMdiChild;
             //13.01.2021. tamara
-            if (activeChild.Text == "LOT")
+            if (activeChild.Name == "LOT")
             {
 
                 foreach (var pb in activeChild.Controls.OfType<Field>())
@@ -1695,7 +1729,7 @@ namespace Bankom
             Form activeChild = this.ActiveMdiChild;
             activeChild.FormBorderStyle = FormBorderStyle.None;
             //13.01.2021. tamara
-            if (activeChild.Text == "LOT")
+            if (activeChild.Name == "LOT")
             {
 
                 foreach (var pb in activeChild.Controls.OfType<Field>())
@@ -1756,28 +1790,28 @@ namespace Bankom
             }
             else
             {
-                string ime = Me.Text;
+                string ime = Me.Name;
                 //string iddok = Me.Tag.ToString();
 
 
-                ime = Me.Controls["limedok"].Text;
+                string imePutanja = Me.Controls["limedok"].Text;
                 string iddok = Me.Controls["liddok"].Text;
 
                 //((Bankom.frmChield)forma).pparametri
 
-                string naslov = "print - " + ime;
+                string naslov = "Print - " + ime;
                 Boolean odgovor = false;
-                odgovor = DalijevecOtvoren("D", naslov, ime);
+                odgovor = DalijevecOtvoren("D",naslov,ime);
                 if (odgovor == false) //nije otvoren
                 {
                     Print fs = new Print();
                     fs.FormBorderStyle = FormBorderStyle.None;
                     fs.BackColor = System.Drawing.Color.Snow;
                     fs.MdiParent = this;
-                    fs.Text = naslov;
+                   // fs.Text = naslov;
                     fs.intCurrentdok = Convert.ToInt32(iddok); //id
                     fs.LayoutMdi(MdiLayout.TileVertical);
-                    fs.imefajla = ime;
+                    fs.imefajla = imePutanja;
                     switch (Me.Controls["ldokje"].Text)
                     {
                         case "I":
@@ -2988,7 +3022,7 @@ namespace Bankom
         {           
             Form forma = this.ActiveMdiChild;
             //13.01.2021. tamara
-            if (forma.Text == "LOT")
+            if (forma.Name == "LOT")
             {
 
                 foreach (var pb in forma.Controls.OfType<Field>())

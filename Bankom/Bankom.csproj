@@ -188,10 +188,10 @@
     <Compile Include="frmPrint.Designer.cs">
       <DependentUpon>frmPrint.cs</DependentUpon>
     </Compile>
-    <Compile Include="Class\KursnaLista.cs">
+    <Compile Include="KursnaLista.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Class\KursnaLista.Designer.cs">
+    <Compile Include="KursnaLista.Designer.cs">
       <DependentUpon>KursnaLista.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSlika.cs">
@@ -253,7 +253,7 @@
       <DependentUpon>frmPrint.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Class\KursnaLista.resx">
+    <EmbeddedResource Include="KursnaLista.resx">
       <DependentUpon>KursnaLista.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
