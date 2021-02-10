@@ -61,7 +61,7 @@ namespace Bankom
             //pictureBox1.Visible = false;
             aliasDatabase = new Dictionary<string, string>();
 
-            cmbBaze.Items.Clear();
+                cmbBaze.Items.Clear();
             CmbOrg.Items.Clear();
             CmbOrg.Visible = false;
 
@@ -233,9 +233,7 @@ namespace Bankom
                 DataView dv = IdOrg.Tables[0].DefaultView;
 
 
-                string str =
-                    "select v.ID_Sifrarnikvaluta,OznVal,ID_Zemlja from sifrarnikvaluta as v WITH (NOLOCK) ,Zemlja as z WITH (NOLOCK) ";
-                str += " where z.ID_Zemlja=" + Convert.ToString(dv[0]["ID_Zemlja"]);
+                string str ="select v.ID_Sifrarnikvaluta,OznVal,ID_Zemlja from sifrarnikvaluta as v WITH (NOLOCK) ,Zemlja as z WITH (NOLOCK)  where z.ID_Zemlja=" + Convert.ToString(dv[0]["ID_Zemlja"]);
                 str += " AND v.SifraZemlje=z.SifraZemlje";
                 DataTable RsValuta = DB.ReturnDataTable(str);
                 dv.Dispose();

@@ -58,8 +58,9 @@ namespace Bankom
                 frmChield childForm = new frmChield();
                 childForm.MdiParent = this;
                 int sirina;
-                if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Name = VratiCirlilicu(imedokumenta);
-            }
+                if (IzborJezika.Text == "Српски-Ћирилица") { childForm.Name = VratiCirlilicu(imedokumenta);}
+                   
+       
                 sirina = (Width / 100) * 10;
 
                 //tamara 01.02.2020.
@@ -126,13 +127,13 @@ namespace Bankom
             {
                 if (dokumentje == "D")
                 {
-                    //tamara 09.02.2021.
+                    //tamara 09.02.2021. fokus otvara nove forme bez taba
                     if (brojdokumenta.Contains("print"))
                     {
                         if (f.Name == brojdokumenta)
                         {
                             MessageBox.Show("Ova forma je već otvorena.");
-                            f.Focus();
+                           // f.Focus();
                             vrednost = true;
                             break;
                         }
@@ -147,7 +148,7 @@ namespace Bankom
                         if (f.Name == ss)
                         {
                             MessageBox.Show("Ova forma je već otvorena.");
-                            f.Focus();
+                           // f.Focus();
                             vrednost = true;
                             break;
                         }
@@ -164,9 +165,10 @@ namespace Bankom
                     if (f.Name == ss)
                     {
                         MessageBox.Show("Ova forma je već otvorena.");
-                        f.Focus();
+                       
                         vrednost = true;
-                        break;
+                        //f.Focus();
+                        break; 
                     }
                     else
                     {
@@ -1685,7 +1687,7 @@ namespace Bankom
         {
             Form activeChild = this.ActiveMdiChild;
             //13.01.2021. tamara
-            if (activeChild.Text == "LOT")
+            if (activeChild.Name == "LOT")
             {
 
                 foreach (var pb in activeChild.Controls.OfType<Field>())
@@ -1727,7 +1729,7 @@ namespace Bankom
             Form activeChild = this.ActiveMdiChild;
             activeChild.FormBorderStyle = FormBorderStyle.None;
             //13.01.2021. tamara
-            if (activeChild.Text == "LOT")
+            if (activeChild.Name == "LOT")
             {
 
                 foreach (var pb in activeChild.Controls.OfType<Field>())
@@ -3018,7 +3020,7 @@ namespace Bankom
         {           
             Form forma = this.ActiveMdiChild;
             //13.01.2021. tamara
-            if (forma.Text == "LOT")
+            if (forma.Name == "LOT")
             {
 
                 foreach (var pb in forma.Controls.OfType<Field>())
