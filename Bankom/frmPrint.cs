@@ -1,7 +1,6 @@
 ﻿using Bankom.Class;
 using System;
 using System.Data;
-using System.Drawing.Printing;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
@@ -149,28 +148,38 @@ namespace Bankom
             server.UseDefaultCredentials = false;
             server.DeliveryMethod = SmtpDeliveryMethod.Network;
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("ivana.jelic@bankom.rs");
-            if (mejl != "")
+            //ivana 9.2.2021. imacemo u bazi sve mejlove napisane, nece ici na ovaj nacin
+            string adresa = "";
+            string upit = "Select Ime, Prezime from KadrovskaEvidencija where Suser=@param0";
+            DataTable dt = db.ParamsQueryDT(upit,Program.imekorisnika);
+            if (dt.Rows.Count > 0)
             {
-                mail.To.Add(mejl);
-                mail.Subject = "Nov naslov";
-                mail.Body = "Tekst";
-                //mail.BodyFormat = MailFormat.Html;
-                mail.Attachments.Add(new Attachment(ms, "temp.pdf"));
-                try
+                adresa = dt.Rows[0][0].ToString() + "." + dt.Rows[0][1].ToString();
+                adresa = adresa.ToLower();
+                adresa += "@bankom.rs";
+                mail.From = new MailAddress(adresa);
+                if (mejl != "")
                 {
-                    server.Send(mail);
+                    mail.To.Add(mejl);
+                    mail.Subject = "Nov naslov";
+                    mail.Body = "Tekst";
+                    //mail.BodyFormat = MailFormat.Html;
+                    mail.Attachments.Add(new Attachment(ms, "temp.pdf"));
+                    try
+                    {
+                        server.Send(mail);
+                    }
+                    catch (SmtpFailedRecipientException error)
+                    {
+                        MessageBox.Show("error: " + error.Message + "\nFailing recipient: " + error.FailedRecipient);
+                    }
                 }
-                catch (SmtpFailedRecipientException error)
-                {
-                    MessageBox.Show("error: " + error.Message + "\nFailing recipient: " + error.FailedRecipient);
-                }
+                else
+                    MessageBox.Show("Morate uneti e-mail!");
+                btnEmail.Enabled = false;
+                MessageBox.Show("Uspešno ste poslali e-mail.");
+                cmbEmail.Text = "";
             }
-            else
-                MessageBox.Show("Morate uneti e-mail!");
-            btnEmail.Enabled = false;
-            MessageBox.Show("Uspešno ste poslali e-mail.");
-            cmbEmail.Text = "";
             //Djora 11.01.21 kraj --------------------------------
         }
         //Ivana 13.1.2021.

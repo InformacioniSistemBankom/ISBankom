@@ -106,9 +106,6 @@ namespace Bankom
                     }
 
                 }
-
-
-
                        string ime = "Lot";
                        string naslov = "print - " + ime;
                     
