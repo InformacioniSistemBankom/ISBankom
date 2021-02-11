@@ -29,7 +29,8 @@ namespace Bankom
         }
         private void OnClosed(EventArgs e)
         {
-            string b = this.Text;
+            //tamara 11.2.2021.
+            string b = this.Name;
 
             ((BankomMDI)this.MdiParent).itemB1_click(b);        
             ((BankomMDI)MdiParent).Controls["menuStrip"].Enabled = true;

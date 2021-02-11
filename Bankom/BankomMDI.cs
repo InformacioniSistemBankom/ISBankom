@@ -2966,7 +2966,7 @@ namespace Bankom
             "Odjava"
             );
             customMessage.StartPosition = FormStartPosition.CenterParent;
-     
+            customMessage.FormBorderStyle = FormBorderStyle.None;
 
             customMessage.ShowDialog();
 

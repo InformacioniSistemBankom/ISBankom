@@ -228,9 +228,11 @@ namespace Bankom
                 Console.WriteLine(cmbBaze.Text);
                 Console.WriteLine(CmbOrg.Text);
                 DataSet IdOrg = DB.ReturnDS(
-                    " select o.*,os.NazivJavni as Firma ,os.NazivStampaca, os.PutanjaStampaca,os.Pib from OrganizacionaStruktura as o WITH (NOLOCK) ,organizacionastrukturastablo os WITH (NOLOCK)  where o.Naziv='" +
+                    " select o.*,o.ID_Zemlja,os.NazivJavni as Firma ,os.NazivStampaca, os.PutanjaStampaca,os.Pib from OrganizacionaStruktura as o WITH (NOLOCK) ,organizacionastrukturastablo os WITH (NOLOCK)  where o.Naziv='" +
                     CmbOrg.Text + "' And o.ID_OrganizacionaStrukturaStablo=os.ID_OrganizacionaStrukturaStablo  ;");
                 DataView dv = IdOrg.Tables[0].DefaultView;
+
+                var zemlja = dv[0]["ID_Zemlja"];
 
 
                 string str ="select v.ID_Sifrarnikvaluta,OznVal,ID_Zemlja from sifrarnikvaluta as v WITH (NOLOCK) ,Zemlja as z WITH (NOLOCK)  where z.ID_Zemlja=" + Convert.ToString(dv[0]["ID_Zemlja"]);
