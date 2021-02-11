@@ -2968,7 +2968,8 @@ namespace Bankom
             "Odjava"
             );
             customMessage.StartPosition = FormStartPosition.CenterParent;
-            customMessage.FormBorderStyle = FormBorderStyle.None;
+            customMessage.FormBorderStyle = FormBorderStyle.Fixed3D;
+            customMessage.ControlBox = false;
 
             customMessage.ShowDialog();
 
@@ -3286,6 +3287,11 @@ namespace Bankom
             frmSlika slika = new frmSlika(DodajSliku);
             slika.Show();
             DodajSliku.Enabled = false;
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }
