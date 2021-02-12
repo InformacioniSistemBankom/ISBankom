@@ -39,7 +39,7 @@ namespace Bankom
             // 
             // cmbEmail
             // 
-            this.cmbEmail.Font = new System.Drawing.Font("Times New Roman", 9.75F);
+            this.cmbEmail.Font = new System.Drawing.Font("Times New Roman", 10F);
             this.cmbEmail.FormattingEnabled = true;
             this.cmbEmail.Location = new System.Drawing.Point(83, 23);
             this.cmbEmail.Name = "cmbEmail";
@@ -68,15 +68,15 @@ namespace Bankom
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(83, 65);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(554, 20);
+            this.textBox1.Size = new System.Drawing.Size(554, 23);
             this.textBox1.TabIndex = 9;
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(32, 110);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(605, 262);

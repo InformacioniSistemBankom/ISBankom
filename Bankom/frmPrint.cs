@@ -15,6 +15,7 @@ namespace Bankom
         public string kojiprint= "";
         public string kojinacin = "";
         public string izvor = "";
+        public string nazivForme = "";
         //Ivana 13.1.2021.
         DataBaseBroker db = new DataBaseBroker();
         DataTable rez = new DataTable();
@@ -133,9 +134,15 @@ namespace Bankom
                 f.Close();
             else
             {
-                Mail m = new Mail(kojiprint, imefajla, ParamZaStampu);
+                nazivForme = this.Name;
+                Mail m = new Mail(kojiprint, imefajla, ParamZaStampu, nazivForme);
                 m.ShowDialog();
             }
+            //////var url = "mailto:stevan.nikolic@bankom.rs?subject=Ovojenaslov&body=ovojeteloemaila&attachment=";
+            //////MemoryStream ms = new MemoryStream(bytes);
+            //////url.Attachments.Add(new Attachment(ms, nazivForme.Substring(8) + ".pdf"));
+            //////System.Diagnostics.Process.Start(url);
+            
         }
     }
 }

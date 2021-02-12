@@ -25,11 +25,13 @@ namespace Bankom
         string kojiprint;
         string imefajla;
         string ParamZaStampu;
-        public Mail(string kojiprint, string imefajla, string ParamZaStampu)
+        string nazivForme;
+        public Mail(string kojiprint, string imefajla, string ParamZaStampu, string nazivForme)
         {
             this.kojiprint = kojiprint;
             this.imefajla = imefajla;
             this.ParamZaStampu = ParamZaStampu;
+            this.nazivForme = nazivForme;
             InitializeComponent();
         }
         private void button1_Click(object sender, EventArgs e)
@@ -52,7 +54,8 @@ namespace Bankom
             if (dt.Rows.Count > 0)
             {
                 string adresa = dt.Rows[0][0].ToString();
-                server.Credentials = new NetworkCredential(adresa, dt.Rows[0][1].ToString());
+                string sifra = dt.Rows[0][1].ToString();
+                server.Credentials = new NetworkCredential(adresa, sifra);
                 mail.From = new MailAddress(adresa);
                 if (mejl != "")
                 {
@@ -60,7 +63,7 @@ namespace Bankom
                     mail.Subject = textBox1.Text;
                     mail.Body = richTextBox1.Text;
                     //mail.BodyFormat = MailFormat.Html;
-                    mail.Attachments.Add(new Attachment(ms, imefajla + ".pdf"));
+                    mail.Attachments.Add(new Attachment(ms, nazivForme.Substring(8) + ".pdf"));
                     try
                     {
                         server.Send(mail);
