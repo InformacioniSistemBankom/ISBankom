@@ -254,21 +254,7 @@ namespace Bankom
         {
             this.Close();
         }
-        private void CutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-        private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void PasteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void StatusBarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //statusStrip.Visible = statusBarToolStripMenuItem.Checked;
-        }
+        
         private void CascadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LayoutMdi(MdiLayout.Cascade);
@@ -722,10 +708,7 @@ namespace Bankom
 
         }
 
-        private void SrpskiCirilica_Click(object sender, EventArgs e)
-        {
-            
-        }
+        
 
         public BankomMDI(string connectionString,
             IContainer components,
@@ -1173,16 +1156,7 @@ namespace Bankom
             Program.ID_Jezik = 3;
             IzborJezika.Text = "Srpski-Latinica";
         }
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void windowsMenu_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void pretragaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1245,31 +1219,7 @@ namespace Bankom
             }
 
         }
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            // tamara 26.10.2020.
-
-        }
-
-        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripOpis_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void toolStripBrDok_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void PomocniSifarnici_Click(object sender, EventArgs e)
 
@@ -1349,10 +1299,7 @@ namespace Bankom
             ShowNewForm("Komitenti", 1, "Komitenti", 1, "", "", "S", "", "TreeView");
         }
 
-        private void editMenu_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
@@ -1569,15 +1516,7 @@ namespace Bankom
 
         }
 
-        private void toolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void toolsMenu_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void DozvoleToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1586,34 +1525,7 @@ namespace Bankom
 
         }
 
-        private void toolStripSplitStampa_ButtonClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Grupisi_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Imenik_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Dokument_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            // tamara 26.10.2020.
-
-
-        }
-
-     
+       
 
         private void Uunos_Click(object sender, EventArgs e)
         {
@@ -1687,7 +1599,7 @@ namespace Bankom
         {
             Form activeChild = this.ActiveMdiChild;
             //13.01.2021. tamara
-            if (activeChild.Name == "LOT")
+            if (activeChild != null && activeChild.Name == "LOT")
             {
 
                 foreach (var pb in activeChild.Controls.OfType<Field>())
@@ -1702,10 +1614,10 @@ namespace Bankom
                     if (pb.cTip == 8) pb.dtp.Enabled = false;
                 }
             }
-            activeChild.Controls["OOperacija"].Text = "PREKID";
+            
             if (activeChild != null)
             {
-                
+                activeChild.Controls["OOperacija"].Text = "PREKID";
                 activeChild.FormBorderStyle = FormBorderStyle.None;
                 
                 if (((Bankom.frmChield)activeChild).panel1.Visible == true) ((Bankom.frmChield)activeChild).panel1.Visible = false;
@@ -1773,10 +1685,7 @@ namespace Bankom
 
         }
 
-        private void toolStripSplitStampa_ButtonClick_1(object sender, EventArgs e)
-        {
-
-        }
+       
         DataTable rezProvere = new DataTable();
         private void Sstampa_Click(object sender, EventArgs e)
         {
@@ -1908,10 +1817,6 @@ namespace Bankom
             }
         }
 
-        private void windowsMenu_Click_1(object sender, EventArgs e)
-        {
-
-        }
 
         private void cascadeToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -2018,11 +1923,7 @@ namespace Bankom
             IzborJezika.Text = "Српски-Ћирилица";            
         }
 
-        private void statusBarToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            // statusStrip.Visible = statusBarToolStripMenuItem.Checked;
-        }
-
+       
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string strFileName = "";
@@ -2106,10 +2007,7 @@ namespace Bankom
             myProcess.Start();
         }
 
-        private void toolsMenu_Click_1(object sender, EventArgs e)
-        {
-
-        }
+    
 
         private void pretragaToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -2186,10 +2084,6 @@ namespace Bankom
         //    rf.refreshform();
         //}
 
-        private void IzborJezika_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void Ccalc_Click(object sender, EventArgs e)
         {
@@ -2200,10 +2094,7 @@ namespace Bankom
             myProcess.Start();
         }
 
-        private void newToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void Kknjzi_Click(object sender, EventArgs e)
         {
@@ -2215,10 +2106,7 @@ namespace Bankom
         }
 
 
-        private void Mmagacin_Click(object sender, EventArgs e)
-        {
-
-        }
+     
 
         private void Pposta_Click(object sender, EventArgs e)
         {
@@ -2483,22 +2371,7 @@ namespace Bankom
 
         }
 
-
-        private void RaznoMemuItem_Click(object sender, EventArgs e)
-        {
-            //    KursnaLista kl = new KursnaLista();
-            //    kl.Show();
-        }
-
-        private void PocesiranjeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PocetakGodine_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void KursnaListaZaCeluGodinu_Click(object sender, EventArgs e)
         {
@@ -2697,10 +2570,7 @@ namespace Bankom
             MessageBox.Show("Zavrseno!!");
         }
 
-        private void FormiranjePPPPDZaPrevoz_Click(object sender, EventArgs e)
-        {
-
-        }
+     
 
         private void PreuzimanjeManjkovaIViskova_Click_1(object sender, EventArgs e)
         {
@@ -2836,15 +2706,7 @@ namespace Bankom
             Program.ID_Jezik = 5;
         }
 
-        private void toolStrip_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void fileMenu_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void Ruski_Click_1(object sender, EventArgs e)
         {
@@ -2861,15 +2723,7 @@ namespace Bankom
             Preuzimanja.PreuzimanjeUplataKupacaIzBanaka();
         }
 
-        private void Oodjava_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void Oodjava_Click_1(object sender, EventArgs e)
         {
@@ -3289,10 +3143,7 @@ namespace Bankom
             DodajSliku.Enabled = false;
         }
 
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
+        
     }
 }
 

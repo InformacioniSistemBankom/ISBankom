@@ -304,7 +304,7 @@ namespace Bankom
             this.FormiranjePPPPDZaPrevoz.Name = "FormiranjePPPPDZaPrevoz";
             this.FormiranjePPPPDZaPrevoz.Size = new System.Drawing.Size(327, 22);
             this.FormiranjePPPPDZaPrevoz.Text = "Formiranje PPPPD za prevoz";
-            this.FormiranjePPPPDZaPrevoz.Click += new System.EventHandler(this.FormiranjePPPPDZaPrevoz_Click);
+//            this.FormiranjePPPPDZaPrevoz.Click += new System.EventHandler(this.FormiranjePPPPDZaPrevoz_Click);
             // 
             // Prevoz
             // 
@@ -386,7 +386,7 @@ namespace Bankom
             this.PocetakGodine.Name = "PocetakGodine";
             this.PocetakGodine.Size = new System.Drawing.Size(228, 22);
             this.PocetakGodine.Text = "Početak godine";
-            this.PocetakGodine.Click += new System.EventHandler(this.PocetakGodine_Click);
+           // this.PocetakGodine.Click += new System.EventHandler(this.PocetakGodine_Click);
             // 
             // UsaglasavanjeRobeIFinansija
             // 
@@ -416,7 +416,7 @@ namespace Bankom
             this.PocesiranjeToolStripMenuItem.Name = "PocesiranjeToolStripMenuItem";
             this.PocesiranjeToolStripMenuItem.Size = new System.Drawing.Size(83, 23);
             this.PocesiranjeToolStripMenuItem.Text = "Procesiranje";
-            this.PocesiranjeToolStripMenuItem.Click += new System.EventHandler(this.PocesiranjeToolStripMenuItem_Click);
+            //this.PocesiranjeToolStripMenuItem.Click += new System.EventHandler(this.PocesiranjeToolStripMenuItem_Click);
             // 
             // ProcesirajeDnevnogiIzvestaja
             // 
@@ -438,7 +438,7 @@ namespace Bankom
             this.Sort.Name = "Sort";
             this.Sort.Size = new System.Drawing.Size(40, 23);
             this.Sort.Text = "Sort";
-            this.Sort.Click += new System.EventHandler(this.RaznoMemuItem_Click);
+            //this.Sort.Click += new System.EventHandler(this.RaznoMemuItem_Click);
             // 
             // rastuci
             // 
@@ -469,7 +469,7 @@ namespace Bankom
             this.fileMenu.Name = "fileMenu";
             this.fileMenu.Size = new System.Drawing.Size(37, 23);
             this.fileMenu.Text = "&File";
-            this.fileMenu.Click += new System.EventHandler(this.fileMenu_Click);
+           // this.fileMenu.Click += new System.EventHandler(this.fileMenu_Click);
             // 
             // newToolStripMenuItem
             // 
@@ -478,7 +478,7 @@ namespace Bankom
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.newToolStripMenuItem.Text = "&New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click_1);
+           // this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click_1);
             // 
             // openToolStripMenuItem
             // 
@@ -546,7 +546,7 @@ namespace Bankom
             this.statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
             this.statusBarToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.statusBarToolStripMenuItem.Text = "&Status Bar";
-            this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click_1);
+            //this.statusBarToolStripMenuItem.Click += new System.EventHandler(this.statusBarToolStripMenuItem_Click_1);
             // 
             // toolsMenu
             // 
@@ -556,7 +556,7 @@ namespace Bankom
             this.toolsMenu.Name = "toolsMenu";
             this.toolsMenu.Size = new System.Drawing.Size(46, 23);
             this.toolsMenu.Text = "&Tools";
-            this.toolsMenu.Click += new System.EventHandler(this.toolsMenu_Click_1);
+           // this.toolsMenu.Click += new System.EventHandler(this.toolsMenu_Click_1);
             // 
             // pretragaToolStripMenuItem
             // 
@@ -582,7 +582,7 @@ namespace Bankom
             this.windowsMenu.Name = "windowsMenu";
             this.windowsMenu.Size = new System.Drawing.Size(68, 23);
             this.windowsMenu.Text = "&Windows";
-            this.windowsMenu.Click += new System.EventHandler(this.windowsMenu_Click_1);
+           // this.windowsMenu.Click += new System.EventHandler(this.windowsMenu_Click_1);
             // 
             // cascadeToolStripMenuItem
             // 
@@ -664,7 +664,7 @@ namespace Bankom
             this.IzborJezika.Name = "IzborJezika";
             this.IzborJezika.Size = new System.Drawing.Size(78, 23);
             this.IzborJezika.Text = "Izbor Jezika";
-            this.IzborJezika.Click += new System.EventHandler(this.IzborJezika_Click);
+            //this.IzborJezika.Click += new System.EventHandler(this.IzborJezika_Click);
             // 
             // SrpskiCirilica
             // 
@@ -673,7 +673,7 @@ namespace Bankom
             this.SrpskiCirilica.Size = new System.Drawing.Size(177, 22);
             this.SrpskiCirilica.Tag = "";
             this.SrpskiCirilica.Text = "Српски-Ћирилица";
-            this.SrpskiCirilica.Click += new System.EventHandler(this.SrpskiCirilica_Click);
+           // this.SrpskiCirilica.Click += new System.EventHandler(this.SrpskiCirilica_Click);
             // 
             // SrpskiLatinica
             // 
