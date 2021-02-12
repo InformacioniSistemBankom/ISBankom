@@ -1622,7 +1622,7 @@ namespace Bankom
             Form activeChild = this.ActiveMdiChild;
             activeChild.FormBorderStyle= FormBorderStyle.None;
             //13.01.2021. tamara lotovi
-            if (activeChild.Text == "LOT")
+            if (activeChild.Name == "LOT")
             {
                 //activeChild.Controls["OOperacija"].Text = "";
                 NoviLot unosNovog = new NoviLot(Uunos);
