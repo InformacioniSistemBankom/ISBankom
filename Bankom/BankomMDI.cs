@@ -587,9 +587,9 @@ namespace Bankom
                     c++;
             }
             //ivana 26.1.2021.
-            //int sirinaforme = this.Width * 2;
-            //if (sirina > sirinaforme)
-            //    for(int i = 0; i < a; i++)
+            //int sirinaforme = this.Width;
+            //if (tabovi > sirinaforme -25)
+            //    for (int i = 0; i < a; i++)
             //        toolStrip1.Items[i].Size = new Size(sirinaforme / a, 0);
             //for (int x = 0; x < toolStrip1.Items.Count; x++)
             //{   
