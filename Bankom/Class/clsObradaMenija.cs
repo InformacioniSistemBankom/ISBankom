@@ -154,8 +154,6 @@ namespace Bankom.Class
                 slovo = 'P';
             return slovo;
         }
-      
-
         //28.10.2020. Ivana
         public string SkiniKlasifikaciju(string s)
         {

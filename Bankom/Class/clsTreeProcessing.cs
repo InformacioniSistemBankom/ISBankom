@@ -182,20 +182,19 @@ namespace Bankom.Class
                 parentNode.Nodes.Add(nod);
                 tv.EndUpdate();
             }
-        }        
+        }
 
         private void tv_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-                //Djora 10.09.20
-                Program.AktivnaForma = e.Node.Text.Substring(e.Node.Text.IndexOf("-") + 1).Replace(" ", "");
+            //Djora 10.09.20
+            Program.AktivnaForma = e.Node.Text.Substring(e.Node.Text.IndexOf("-") + 1).Replace(" ", "");
 
             if (tv.SelectedNode != null)
             {
                 if (Convert.ToInt32(tv.SelectedNode.Tag) > 1)
                 {
-                    if (MojeStablo == "Izvestaj")
+                    if (MojeStablo == "Izvestaj" && mDokumentJe != "K")
                     {
-
                         //string pravoime = tv.SelectedNode.Name.Substring(4);
                         string ime = tv.SelectedNode.Name;
 
@@ -245,6 +244,7 @@ namespace Bankom.Class
                             }
                         }
                     }
+
                     else // nisu Izvestaji
                     {
                         //Djora 10.09.20
@@ -257,36 +257,36 @@ namespace Bankom.Class
                         st = db.ParamsQueryDT(q, tv.SelectedNode.Name);
                         if (st.Rows[0]["Vrstacvora"].ToString() != "f")
                         {
-                            switch (MojeStablo)
-                            {
-                                case "Dokumenta":
-                                case "PomocniSifarnici":
-                                    //q = "Select vrstacvora from "+MojeStablo+"Stablo where Naziv=@param0";
-                                    //DataTable st = new DataTable();
-                                    //st = db.ParamsQueryDT(q, tv.SelectedNode.Name);
-                                    //if (st.Rows[0]["Vrstacvora"].ToString() == "f")
-                                    //{
-                                    //     //MessageBox.Show("Pogresan izbor odabrali ste grupu!!");
-                                    //}
-                                    //else
-                                    Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-                                    break;
-                                case "Artikli":
-                                case "Komitenti":
-                                    Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), MojeStablo + "-" + tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-                                    break;
-                                default:
-                                    Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-                                    break;
-                            }
+                            if (mDokumentJe != "K")
+                                switch (MojeStablo)
+                                {
+                                    case "Dokumenta":
+                                    case "PomocniSifarnici":
+                                        //q = "Select vrstacvora from "+MojeStablo+"Stablo where Naziv=@param0";
+                                        //DataTable st = new DataTable();
+                                        //st = db.ParamsQueryDT(q, tv.SelectedNode.Name);
+                                        //if (st.Rows[0]["Vrstacvora"].ToString() == "f")
+                                        //{
+                                        //     //MessageBox.Show("Pogresan izbor odabrali ste grupu!!");
+                                        //}
+                                        //else
+                                        Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                                        break;
+                                    case "Artikli":
+                                    case "Komitenti":
+                                        Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), MojeStablo + "-" + tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                                        break;
+                                    default:
+                                        Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                                        break;
+                                }
                         }
                     }
+                    //zajedno 14.1.2021.
+                    //Program.AktivnaSifraIzvestaja = e.Node.Text;
                 }
             }
-            //zajedno 14.1.2021.
-            //Program.AktivnaSifraIzvestaja = e.Node.Text;
         }
-
         //zajedno 28.10.2020.
         public void tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
