@@ -136,6 +136,8 @@ namespace Bankom
             {
                 nazivForme = this.Name;
                 Mail m = new Mail(kojiprint, imefajla, ParamZaStampu, nazivForme);
+                m.Left = 800;
+                m.Top = 300;
                 m.ShowDialog();
             }
             //////var url = "mailto:stevan.nikolic@bankom.rs?subject=Ovojenaslov&body=ovojeteloemaila&attachment=";
