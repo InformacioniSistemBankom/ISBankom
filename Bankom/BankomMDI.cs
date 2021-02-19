@@ -34,6 +34,8 @@ namespace Bankom
         private AutoCompleteStringCollection DataCollectionSpisak = new AutoCompleteStringCollection();
 
         public static string imeDokumenta = "";
+        //ivana 18.2.2021.
+        clsObradaMenija obradaMenija;
         public BankomMDI()
         {
             InitializeComponent();
@@ -44,8 +46,11 @@ namespace Bankom
             string ss;
             if (dokumentje == "D")
             {
-                ss = brojdokumenta; 
+                ss = brojdokumenta;
             }
+            //ivana 18.2.2021.
+            else if (dokumentje == "K")
+                ss = "Klasifikacija" + imedokumenta;
             else
             {
                 ss = imedokumenta;
@@ -135,7 +140,7 @@ namespace Bankom
                         if (f.Name == brojdokumenta)
                         {
                             MessageBox.Show("Ova forma je već otvorena.");
-                           // f.Focus();
+                            // f.Focus();
                             vrednost = true;
                             break;
                         }
@@ -150,7 +155,7 @@ namespace Bankom
                         if (f.Name == ss)
                         {
                             MessageBox.Show("Ova forma je već otvorena.");
-                           // f.Focus();
+                            // f.Focus();
                             vrednost = true;
                             break;
                         }
@@ -159,18 +164,33 @@ namespace Bankom
                             vrednost = false;
                         }
                     }
+                }//merge zajednicki 19.02.2021.
+                else if (dokumentje == "I")
+                {
+                    if (f.Name == brojdokumenta)
+                    {
+                        MessageBox.Show("Ova forma je već otvorena.");
+
+                        vrednost = true;
+                        //f.Focus();
+                        break;
+                    }
+                    else
+                    {
+                        vrednost = false;
+                    }
                 }
                 else
                 {
-                   
+
                     ss = imedokumenta;
                     if (f.Name == ss)
                     {
                         MessageBox.Show("Ova forma je već otvorena.");
-                       
+
                         vrednost = true;
                         //f.Focus();
-                        break; 
+                        break;
                     }
                     else
                     {
@@ -179,6 +199,7 @@ namespace Bankom
                 }
             }
             return vrednost;
+
         }
 
         string brojDok = "";
@@ -195,10 +216,10 @@ namespace Bankom
             if (result)
             {
                 brojDok = forma.Name;
-            }
-            if (forma.Name == "Print")
+            }//merge zajednicki 19.02.2021.
+            if (forma.Name.Contains("Print"))
             {
-                forma.Name = "Print - " + brojDok;
+                forma.Name = "Print - " + imedokumenta;
                 itemn.Text = forma.Name;
             }
             else
@@ -206,7 +227,7 @@ namespace Bankom
             //zajedno 14.1.2021.
             //DataTable dt = new DataTable();
             //string upit = "Select NazivJavni from DokumentaStablo where Naziv=@param0";
-            //dt = db.ParamsQueryDT(upit, forma.Text);
+            //dt = db.ParamsQueryDT(upit, imedokumenta);
             //if(dt.Rows.Count>0)
             //    itemn.Text = dt.Rows[0][0].ToString();
             //itemn.Text = Program.AktivnaSifraIzvestaja;
@@ -277,7 +298,7 @@ namespace Bankom
         private void BankomMDI_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-          this.Text = "ISBankom - " +Program.NazivOrg + " - " + Program.imekorisnika;
+            this.Text = "ISBankom - " +Program.NazivOrg + " - " + Program.imekorisnika;
             addKombo();
             clsSettingsButtons sb = new clsSettingsButtons();
             sb.ToolBarItemsEnDis();
@@ -286,7 +307,8 @@ namespace Bankom
             ToolBar.Enabled = true;
             //zajedno 18.1.2021.
             DodajSliku.Enabled = true;
-            clsObradaMenija obradaMenija = new clsObradaMenija(this);
+            //ivana 18.2.2021.
+            obradaMenija = new clsObradaMenija(this);
             obradaMenija.CreateMenu();
         }
 
@@ -578,23 +600,23 @@ namespace Bankom
             //    for (int i = 0; i < a; i++)
             //        toolStrip1.Items[i].Size = new Size(sirinaforme / a, 0);
             //for (int x = 0; x < toolStrip1.Items.Count; x++)
-            //{   
-            int n = MdiChildren.Count<Form>();
-            foreach (Form childForm in MdiChildren)
-            {
-                if (childForm.Name.ToUpper() == b.ToUpper())
+            //{
+                //int n = MdiChildren.Count<Form>();
+                foreach (Form childForm in MdiChildren)
                 {
-                    childForm.FormBorderStyle = FormBorderStyle.None;
-                    childForm.BackColor = System.Drawing.Color.Snow;
-                    //ivana 27.1.2021.
-                    ActivateMdiChild(childForm);
-                    childForm.Focus();
+                    if (childForm.Name.ToUpper() == b.ToUpper())
+                    {
+                        childForm.FormBorderStyle = FormBorderStyle.None;
+                        childForm.BackColor = System.Drawing.Color.Snow;
+                        //ivana 27.1.2021.
+                        ActivateMdiChild(childForm);
+                        childForm.Focus();
 
-                    childForm.LayoutMdi(MdiLayout.TileVertical);
-                    childForm.WindowState = FormWindowState.Maximized;
-                    break;
+                        childForm.LayoutMdi(MdiLayout.TileVertical);
+                        childForm.WindowState = FormWindowState.Maximized;
+                        break;
+                    }
                 }
-            }
             //}
             SrediFormu();
             //10.01.21 BORKA UMRTVILA  JER ZELIM DA SE KOD AKTIVACIJE FORME DOBIJEM IZGLED KAKAV JE BIO 
@@ -1684,7 +1706,6 @@ namespace Bankom
             }
 
         }
-
        
         DataTable rezProvere = new DataTable();
         private void Sstampa_Click(object sender, EventArgs e)
@@ -1710,14 +1731,14 @@ namespace Bankom
 
                 string naslov = "Print - " + ime;
                 Boolean odgovor = false;
-                odgovor = DalijevecOtvoren("D",naslov,ime);
+                odgovor = DalijevecOtvoren("D", naslov, ime);
                 if (odgovor == false) //nije otvoren
                 {
                     Print fs = new Print();
                     fs.FormBorderStyle = FormBorderStyle.None;
                     fs.BackColor = System.Drawing.Color.Snow;
                     fs.MdiParent = this;
-                   // fs.Text = naslov;
+                    // fs.Text = naslov;
                     fs.intCurrentdok = Convert.ToInt32(iddok); //id
                     fs.LayoutMdi(MdiLayout.TileVertical);
                     fs.imefajla = imePutanja;
@@ -1753,8 +1774,6 @@ namespace Bankom
             }
         }
 
-
-
         private void Bbrisanje_Click(object sender, EventArgs e)
         {
             Form activeChild = this.ActiveMdiChild;
@@ -1774,18 +1793,22 @@ namespace Bankom
         private void Iimenik_Click(object sender, EventArgs e)
         {
 
-            Imenik frmi = new Imenik(Iimenik);
-            Iimenik.Enabled = false;
-            frmi.FormBorderStyle = FormBorderStyle.None;
-            frmi.Name = "Imenik";
-            frmi.MdiParent = this;
-            frmi.Dock = DockStyle.Fill;
-            if (this.IzborJezika.Text == "Српски-Ћирилица") { frmi.Name = this.VratiCirlilicu("Imenik"); }
-            int sirina = (this.Width / 100) * 10;
-            this.addFormTotoolstrip1(frmi, "Imenik");
-            this.updateToolStrip("Imenik");
-            frmi.StartPosition = FormStartPosition.CenterScreen;
-            frmi.Show();
+            //Form f = Application.OpenForms["Imenik"];
+            //if (f == null)
+            //{
+                frmChield frmi = new Imenik(Iimenik);
+                Iimenik.Enabled = false;
+                frmi.FormBorderStyle = FormBorderStyle.None;
+                frmi.Name = "Imenik";
+                frmi.MdiParent = this;
+                frmi.Dock = DockStyle.Fill;
+                if (this.IzborJezika.Text == "Српски-Ћирилица") { frmi.Name = this.VratiCirlilicu("Imenik"); }
+                this.addFormTotoolstrip1(frmi, "Imenik");
+                this.updateToolStrip("Imenik");
+                frmi.StartPosition = FormStartPosition.CenterScreen;
+            //puca kada se otovri iz pretrage, pogledacu t
+                frmi.Show();
+            //}
         }
 
         public static string cf;

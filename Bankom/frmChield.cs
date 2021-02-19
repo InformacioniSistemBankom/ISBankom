@@ -156,9 +156,9 @@ namespace Bankom
 
         }
         private void frmChield_Activated(object sender, EventArgs e)
-        {                 
+        { 
             Boolean provera = true;
-            clsSettingsButtons sb = new clsSettingsButtons();           
+            clsSettingsButtons sb = new clsSettingsButtons();
             clsProveraDozvola provdoz = new clsProveraDozvola();
             if (imestabla == "Artikli" || imestabla == "Komitenti")
             {
@@ -167,9 +167,9 @@ namespace Bankom
             }
             else
             {
-                if (OOperacija.Text != "PREGLED")
+                if (OOperacija.Text != "PREGLED" && sender.ToString()!= "Bankom.Imenik, Text: frmChield")
                     provera = provdoz.ProveriDozvole(imedokumenta, idstablo.ToString(), Convert.ToString(iddokumenta), DokumentJe);
-            }   
+            }
         }
         private void frmChield_Resize(object sender, EventArgs e)
         {

@@ -222,7 +222,7 @@ namespace Bankom.Class
                             else // izvestaj je excel
                             {
                                 string iddok = (tv.SelectedNode.Tag).ToString();
-                                string naslov = "print - " + ime;
+                                string naslov = "Print - " + ime;
                                 Boolean odgovor = false;
                                 odgovor = Program.Parent.DalijevecOtvoren("I", naslov, ime);
                                 if (odgovor == false)
@@ -232,6 +232,8 @@ namespace Bankom.Class
                                     fs.FormBorderStyle = FormBorderStyle.None;
                                     fs.MdiParent = Program.Parent;
                                     fs.Text = ime;
+                                    //merge zajednicki 19.02.2021.
+                                    fs.Name = naslov;
                                     fs.intCurrentdok = Convert.ToInt32(iddok); //id
                                     fs.LayoutMdi(MdiLayout.TileVertical);
                                     fs.imefajla = ime;  //ime  InoRacun
@@ -239,7 +241,7 @@ namespace Bankom.Class
                                     fs.kojinacin = "E";
                                     fs.izvor = t.Rows[0]["Izvor"].ToString();
                                     fs.Show();
-                                    Program.Parent.addFormTotoolstrip1(fs, naslov);
+                                    Program.Parent.addFormTotoolstrip1(fs, ime);
                                 }
                             }
                         }

@@ -155,42 +155,52 @@ namespace Bankom.Class
             return slovo;
         }
         //28.10.2020. Ivana
+        public bool pokazivac;
         public string SkiniKlasifikaciju(string s)
         {
+            //ivana 18.2.2021.
+            pokazivac = false;
             if (s == "KlasifikacijaOrgStrukture")
             {
                 Program.pomStablo = "OrganizacionaStrukturaStablo";
+                pokazivac = true;
                 return "OrganizacionaStruktura";
             }
             else if (s == "KlasifikacijaDokumenata")
             {
                 Program.pomStablo = "DokumentaStablo";
+                pokazivac = true;
                 return "Dokumenta";
             }
             else if (s == "KlasifikacijaArtikla")
             {
                 Program.pomStablo = "ArtikliStablo";
+                pokazivac = true;
                 return "Artikli";
             }
             else if (s == "KlasifikacijaKomitenata")
             {
                 Program.pomStablo = "KomitentiStablo";
+                pokazivac = true;
                 return "Komitenti";
             }
             else if (s == "KlasifikacijaIzvestaja")
             {
                 Program.pomStablo = "IzvestajStablo";
                 Program.pomIzv = "Izvestaj";
+                pokazivac = true;
                 return "Izvestaj";
             }
             else if (s == "KlasifikacijaMenija")
             {
                 Program.pomStablo = "MeniStablo";
+                pokazivac = true;
                 return "Meni";
             }
             else
             {
                 Program.pomStablo = "PomocniSifarniciStablo";
+                pokazivac = true;
                 return "PomocniSifarnici";
             }
         }

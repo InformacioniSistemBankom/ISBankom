@@ -11,7 +11,7 @@ using Bankom.Class;
 
 namespace Bankom
 {
-    public partial class Imenik : Form
+    public partial class Imenik : frmChield
     {
         ToolStripButton dugme;
         public Imenik()
