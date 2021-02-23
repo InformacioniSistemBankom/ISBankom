@@ -22,6 +22,9 @@ using Microsoft.VisualBasic;
 using System.Globalization;
 using System.Threading;
 
+//Djora 30.11.20
+using Bankom.Model;
+
 namespace Bankom
 {
     public partial class BankomMDI : Form
@@ -2912,7 +2915,11 @@ namespace Bankom
         }
 
         private void Ppotvrda_Click_1(object sender, EventArgs e)
-        {           
+        {
+            //Djora 30.11.20 Poziv 
+            clsForma aa = new clsForma();
+            mForma lis = aa.VirtualnaForma();
+
             Form forma = this.ActiveMdiChild;
             //13.01.2021. tamara
             if (forma.Name == "LOT")
@@ -3012,7 +3019,10 @@ namespace Bankom
                             }
                             break;
                         case "S":
-                            vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).idReda), ((Bankom.frmChield)forma).imestabla);
+                            //Djora 30.11.20
+                            //vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).idReda), ((Bankom.frmChield)forma).imestabla);
+                            vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).idReda), ((Bankom.frmChield)forma).imestabla, lis);
+
                             break;
                         case "K":
                             if (forma.Controls["OOperacija"].Text.Trim() == "UNOS")
@@ -3049,7 +3059,10 @@ namespace Bankom
                        
                             break;
                         case "D":
-                            vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
+                            //Djora 30.11.20
+                            //vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
+                            vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta, lis);
+
                             if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE") break;
                             if (vrati == false) break;// ovde se vraca tok 
 
@@ -3095,7 +3108,9 @@ namespace Bankom
                             }
                             break;
                         default:
-                           vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
+                            //Djora 30.11.20
+                            //vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
+                            vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta, lis);
 
                             break;
                     }
@@ -3181,7 +3196,51 @@ namespace Bankom
             DodajSliku.Enabled = false;
         }
 
-        
+        private void toolStripTextBox2_Click(object sender, EventArgs e)
+        {
+            clsForma aa = new clsForma();
+
+            aa.SkupiPromene();
+
+            Form forma = new Form();
+            forma = Program.Parent.ActiveMdiChild;
+
+            foreach (Control control in forma.Controls)
+            {
+                if (control.GetType() == typeof(Field))
+                {
+                    Field kontrola = (Field)forma.Controls[control.Name];
+
+                    Console.WriteLine("cPolje --> " + kontrola.cPolje);
+                    Console.WriteLine("cRestrikcije --> " + kontrola.cRestrikcije);
+                    Console.WriteLine("cSegment --> " + kontrola.cSegment);
+                    Console.WriteLine("cTabela --> " + kontrola.cTabela);
+                    Console.WriteLine("cTabelaVView --> " + kontrola.cTabelaVView);
+                    Console.WriteLine("cTabIndex --> " + kontrola.cTabIndex);
+                    Console.WriteLine("ctekst --> " + kontrola.ctekst);
+                    Console.WriteLine("cTip --> " + kontrola.cTip);
+                    Console.WriteLine("ID --> " + kontrola.ID);
+                    Console.WriteLine("IME --> " + kontrola.IME);
+                    Console.WriteLine("Stavke --> " + kontrola.Stavke);
+                    Console.WriteLine("TabelaVView --> " + kontrola.TabelaVView);
+                    Console.WriteLine("TabIndex --> " + kontrola.TabIndex);
+                    Console.WriteLine("Tag --> " + kontrola.Tag);
+                    Console.WriteLine("Vrednost --> " + kontrola.Vrednost);
+                    Console.WriteLine("VrstaKontrole --> " + kontrola.VrstaKontrole);
+                    Console.WriteLine("AlijasTabele --> " + kontrola.AlijasTabele);
+                    Console.WriteLine("cAlijasTabele --> " + kontrola.cAlijasTabele);
+                    Console.WriteLine("cDokument --> " + kontrola.cDokument);
+                    Console.WriteLine("cekboks --> " + kontrola.cekboks);
+                    Console.WriteLine("cEnDis --> " + kontrola.cEnDis);
+                    Console.WriteLine("cFormulaForme --> " + kontrola.cFormulaForme);
+                    Console.WriteLine("cIdNaziviNaFormi --> " + kontrola.cIdNaziviNaFormi);
+                    Console.WriteLine("cImaNaslov --> " + kontrola.cImaNaslov);
+                    Console.WriteLine("cIzborno --> " + kontrola.cIzborno);
+                    Console.WriteLine("comboBox --> " + kontrola.comboBox);
+                    Console.WriteLine("================================");
+                }
+            }
+        }
     }
 }
 
