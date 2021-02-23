@@ -599,13 +599,13 @@ namespace Bankom
             }
             //ivana 26.1.2021.
             //int sirinaforme = this.Width;
-            //if (tabovi > sirinaforme -25)
-            //    for (int i = 0; i < a; i++)
-            //        toolStrip1.Items[i].Size = new Size(sirinaforme / a, 0);
+            //if (tabovi > sirinaforme - 50)
+            //    for (int i = 0; i < toolStrip1.Items.Count; i++)
+            //        toolStrip1.Items[i].Size = new Size((sirinaforme - 50) / toolStrip1.Items.Count, 0);
             //for (int x = 0; x < toolStrip1.Items.Count; x++)
             //{
-                //int n = MdiChildren.Count<Form>();
-                foreach (Form childForm in MdiChildren)
+            //int n = MdiChildren.Count<Form>();
+            foreach (Form childForm in MdiChildren)
                 {
                     if (childForm.Name.ToUpper() == b.ToUpper())
                     {
@@ -1187,70 +1187,70 @@ namespace Bankom
             Program.ID_Jezik = 3;
             IzborJezika.Text = "Srpski-Latinica";
         }
-       
 
-        private void pretragaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        //zajedno 23.2.2021. zakomentarisale, jer ne sluzi nicemu
+        //private void pretragaToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
 
-            frmChield activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.FormBorderStyle= FormBorderStyle.None;
-            activeChild.BackColor = System.Drawing.Color.Snow;
-            DialogResult res = MsgBox.ShowDialog("Tekst pretrage:", "Pretraga", ((Bankom.frmChield)activeChild).toolStripTextFind.Text,
-            MsgBox.Icon.Question,
-            MsgBox.Buttons.OkCancel,
-            MsgBox.Type.TextBox,
-            MsgBox.Type.ComboBox, new string[] { "", "BrDok", "Datum", "Opis", "Ref.", "Likvidatura", "Status", "Porez", "DatumRada" }, true,
-            new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold));
+        //    frmChield activeChild = (frmChield)this.ActiveMdiChild;
+        //    activeChild.FormBorderStyle= FormBorderStyle.None;
+        //    activeChild.BackColor = System.Drawing.Color.Snow;
+        //    DialogResult res = MsgBox.ShowDialog("Tekst pretrage:", "Pretraga", ((Bankom.frmChield)activeChild).toolStripTextFind.Text,
+        //    MsgBox.Icon.Question,
+        //    MsgBox.Buttons.OkCancel,
+        //    MsgBox.Type.TextBox,
+        //    MsgBox.Type.ComboBox, new string[] { "", "BrDok", "Datum", "Opis", "Ref.", "Likvidatura", "Status", "Porez", "DatumRada" }, true,
+        //    new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold));
 
-            if (res == System.Windows.Forms.DialogResult.OK || res == System.Windows.Forms.DialogResult.Yes)
-            {
-                string strKolona = MsgBox.ResultValue;
-                string strfind = MsgBox.ResultFind;
+        //    if (res == System.Windows.Forms.DialogResult.OK || res == System.Windows.Forms.DialogResult.Yes)
+        //    {
+        //        string strKolona = MsgBox.ResultValue;
+        //        string strfind = MsgBox.ResultFind;
 
-                if (strfind == "Ponisti")
-                {
-                    strfind = "";
-                    ((Bankom.frmChield)activeChild).toolStripTextFind.Text = strfind;
-                    clsdokumentRefresh docref1 = new clsdokumentRefresh();
-                    string strstablo = ((Bankom.frmChield)activeChild).toolStripTextBroj.Text;
-                    ((Bankom.frmChield)activeChild).ToolStripTextPos.Text = "1";
-
-
-                    string str = "SELECT DISTINCT ID_Proknjizeno,ID_MesecPoreza,ID_Predhodni,ID_DokumentaStablo,IId,ID_KadrovskaEvidencija,ID_OrganizacionaStrukturaView,ID_LikvidacijaDokumenta, ID_DokumentaTotali  AS ID_GgRrDokumentaStavkeView,BrDok,Datum,Opis,Predhodni,LikvidacijaDokumenta,Proknjizeno,MesecPoreza,TTime,SifRadnika,NazivOrg,RB FROM DokumentaTotali  as s  WITH(NOLOCK)  WHERE s.ID_DokumentaStablo= " + strstablo + " and nazivorg in (Select nazivorg  from OrganizacionaStrukturaStavkeView where ID_OrganizacionaStrukturaStablo= 6)  order by  s.id_DokumentaTotali desc";
-                    docref1.refreshDokumentGrid(this,"Dokumenta", "1", str, "1", "S");
-                    DataBaseBroker db = new DataBaseBroker();
-                    DataTable tbb = db.ReturnDataTable("select  Count(*)  from Dokumentatotali where ID_DokumentaStablo=" + strstablo);
-
-                    if (tbb.Rows.Count > 0) { ((Bankom.frmChield)activeChild).ToolStripLblPos.Text = Convert.ToString(Convert.ToInt32(tbb.Rows[0][0]) / 25); }
-
-                    return;
-                }
-                if (strfind == "" || strKolona == "") { return; }
-                strfind = strfind.Replace("Likvidatura", "LikvidacijaDokumenta");
-                strfind = strfind.Replace("Ref.", "Predhodni");
-                strfind = strfind.Replace("Porez", "MesecPoreza");
-                strfind = strfind.Replace("Status", "Proknjizeno");
+        //        if (strfind == "Ponisti")
+        //        {
+        //            strfind = "";
+        //            ((Bankom.frmChield)activeChild).toolStripTextFind.Text = strfind;
+        //            clsdokumentRefresh docref1 = new clsdokumentRefresh();
+        //            string strstablo = ((Bankom.frmChield)activeChild).toolStripTextBroj.Text;
+        //            ((Bankom.frmChield)activeChild).ToolStripTextPos.Text = "1";
 
 
-                ((Bankom.frmChield)activeChild).toolStripTextFind.Text = strfind;
-                string c = ((Bankom.frmChield)activeChild).toolStripTexIme.Text;
-                string d = ((Bankom.frmChield)activeChild).toolStripTextBroj.Text;
-                long f = ((Bankom.frmChield)activeChild).iddokumenta;
-                string sprikaz = ((Bankom.frmChield)activeChild).VrstaPrikaza;
-                string dokumentje = ((Bankom.frmChield)activeChild).DokumentJe;
-                ((Bankom.frmChield)activeChild).ToolStripLblPos.Text = "1";
-                ((Bankom.frmChield)activeChild).ToolStripTextPos.Text = "1";
+        //            string str = "SELECT DISTINCT ID_Proknjizeno,ID_MesecPoreza,ID_Predhodni,ID_DokumentaStablo,IId,ID_KadrovskaEvidencija,ID_OrganizacionaStrukturaView,ID_LikvidacijaDokumenta, ID_DokumentaTotali  AS ID_GgRrDokumentaStavkeView,BrDok,Datum,Opis,Predhodni,LikvidacijaDokumenta,Proknjizeno,MesecPoreza,TTime,SifRadnika,NazivOrg,RB FROM DokumentaTotali  as s  WITH(NOLOCK)  WHERE s.ID_DokumentaStablo= " + strstablo + " and nazivorg in (Select nazivorg  from OrganizacionaStrukturaStavkeView where ID_OrganizacionaStrukturaStablo= 6)  order by  s.id_DokumentaTotali desc";
+        //            docref1.refreshDokumentGrid(this,"Dokumenta", "1", str, "1", "S");
+        //            DataBaseBroker db = new DataBaseBroker();
+        //            DataTable tbb = db.ReturnDataTable("select  Count(*)  from Dokumentatotali where ID_DokumentaStablo=" + strstablo);
+
+        //            if (tbb.Rows.Count > 0) { ((Bankom.frmChield)activeChild).ToolStripLblPos.Text = Convert.ToString(Convert.ToInt32(tbb.Rows[0][0]) / 25); }
+
+        //            return;
+        //        }
+        //        if (strfind == "" || strKolona == "") { return; }
+        //        strfind = strfind.Replace("Likvidatura", "LikvidacijaDokumenta");
+        //        strfind = strfind.Replace("Ref.", "Predhodni");
+        //        strfind = strfind.Replace("Porez", "MesecPoreza");
+        //        strfind = strfind.Replace("Status", "Proknjizeno");
+
+
+        //        ((Bankom.frmChield)activeChild).toolStripTextFind.Text = strfind;
+        //        string c = ((Bankom.frmChield)activeChild).toolStripTexIme.Text;
+        //        string d = ((Bankom.frmChield)activeChild).toolStripTextBroj.Text;
+        //        long f = ((Bankom.frmChield)activeChild).iddokumenta;
+        //        string sprikaz = ((Bankom.frmChield)activeChild).VrstaPrikaza;
+        //        string dokumentje = ((Bankom.frmChield)activeChild).DokumentJe;
+        //        ((Bankom.frmChield)activeChild).ToolStripLblPos.Text = "1";
+        //        ((Bankom.frmChield)activeChild).ToolStripTextPos.Text = "1";
 
 
 
-                clsdokumentRefresh docref = new clsdokumentRefresh();
-                docref.refreshDokumentGrid(this,"Dokumenta", "1", "SELECT DISTINCT ID_Proknjizeno, ID_MesecPoreza, ID_Predhodni, ID_DokumentaStablo, IId, ID_KadrovskaEvidencija, ID_OrganizacionaStrukturaView, ID_LikvidacijaDokumenta, ID_DokumentaTotali  AS ID_GgRrDokumentaStavkeView, BrDok, Datum, Opis, Predhodni, LikvidacijaDokumenta, Proknjizeno, MesecPoreza, TTime, SifRadnika, NazivOrg, RB FROM DokumentaTotali as s  WITH(NOLOCK)  WHERE s.ID_DokumentaStablo = " + Convert.ToString(d) + " and nazivorg in (Select nazivorg  from OrganizacionaStrukturaStavkeView where ID_OrganizacionaStrukturaStablo = 6)  order by  s.id_DokumentaTotali desc", "1", "S");
+        //        clsdokumentRefresh docref = new clsdokumentRefresh();
+        //        docref.refreshDokumentGrid(this,"Dokumenta", "1", "SELECT DISTINCT ID_Proknjizeno, ID_MesecPoreza, ID_Predhodni, ID_DokumentaStablo, IId, ID_KadrovskaEvidencija, ID_OrganizacionaStrukturaView, ID_LikvidacijaDokumenta, ID_DokumentaTotali  AS ID_GgRrDokumentaStavkeView, BrDok, Datum, Opis, Predhodni, LikvidacijaDokumenta, Proknjizeno, MesecPoreza, TTime, SifRadnika, NazivOrg, RB FROM DokumentaTotali as s  WITH(NOLOCK)  WHERE s.ID_DokumentaStablo = " + Convert.ToString(d) + " and nazivorg in (Select nazivorg  from OrganizacionaStrukturaStavkeView where ID_OrganizacionaStrukturaStablo = 6)  order by  s.id_DokumentaTotali desc", "1", "S");
 
 
-            }
+        //    }
 
-        }
-        
+        //}
+
 
         private void PomocniSifarnici_Click(object sender, EventArgs e)
 
@@ -2045,75 +2045,75 @@ namespace Bankom
         }
 
     
+        //zajedno 23.2.2021. zakomentarisale, jer ne sluzi nicemu
+        //private void pretragaToolStripMenuItem_Click_1(object sender, EventArgs e)
+        //{
+        //    frmChield activeChild = (frmChield)this.ActiveMdiChild;
+        //    activeChild.FormBorderStyle = FormBorderStyle.None;
+        //    activeChild.BackColor = System.Drawing.Color.Snow;
 
-        private void pretragaToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            frmChield activeChild = (frmChield)this.ActiveMdiChild;
-            activeChild.FormBorderStyle = FormBorderStyle.None;
-            activeChild.BackColor = System.Drawing.Color.Snow;
+        //    DialogResult res = MsgBox.ShowDialog("Tekst pretrage:", "Pretraga", ((Bankom.frmChield)activeChild).toolStripTextFind.Text,
+        //    MsgBox.Icon.Question,
+        //    MsgBox.Buttons.OkCancel,
+        //    MsgBox.Type.TextBox,
+        //    MsgBox.Type.ComboBox, new string[] { "", "BrDok", "Datum", "Opis", "Ref.", "Likvidatura", "Status", "Porez", "DatumRada" }, true,
+        //    new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold));
 
-            DialogResult res = MsgBox.ShowDialog("Tekst pretrage:", "Pretraga", ((Bankom.frmChield)activeChild).toolStripTextFind.Text,
-            MsgBox.Icon.Question,
-            MsgBox.Buttons.OkCancel,
-            MsgBox.Type.TextBox,
-            MsgBox.Type.ComboBox, new string[] { "", "BrDok", "Datum", "Opis", "Ref.", "Likvidatura", "Status", "Porez", "DatumRada" }, true,
-            new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold));
+        //    if (res == System.Windows.Forms.DialogResult.OK || res == System.Windows.Forms.DialogResult.Yes)
+        //    {
+        //        string strKolona = MsgBox.ResultValue;
+        //        string strfind = MsgBox.ResultFind;
 
-            if (res == System.Windows.Forms.DialogResult.OK || res == System.Windows.Forms.DialogResult.Yes)
-            {
-                string strKolona = MsgBox.ResultValue;
-                string strfind = MsgBox.ResultFind;
-
-                if (strfind == "Ponisti")
-                {
-                    strfind = "";
-                    ((Bankom.frmChield)activeChild).toolStripTextFind.Text = strfind;
-                    clsdokumentRefresh docref1 = new clsdokumentRefresh();
-                    string strstablo = ((Bankom.frmChield)activeChild).toolStripTextBroj.Text;
-                    ((Bankom.frmChield)activeChild).ToolStripTextPos.Text = "1";
-
-
-                    string str = "SELECT DISTINCT ID_Proknjizeno,ID_MesecPoreza,ID_Predhodni,ID_DokumentaStablo,IId,ID_KadrovskaEvidencija,ID_OrganizacionaStrukturaView,ID_LikvidacijaDokumenta, ID_DokumentaTotali  AS ID_GgRrDokumentaStavkeView,BrDok,Datum,Opis,Predhodni,LikvidacijaDokumenta,Proknjizeno,MesecPoreza,TTime,SifRadnika,NazivOrg,RB FROM DokumentaTotali  as s  WITH(NOLOCK)  WHERE s.ID_DokumentaStablo= " + strstablo + " and nazivorg in (Select nazivorg  from OrganizacionaStrukturaStavkeView where ID_OrganizacionaStrukturaStablo= 6)  order by  s.id_DokumentaTotali desc";
-                    docref1.refreshDokumentGrid(activeChild,"Dokumenta", "1", str, "1", "S");
-                    DataBaseBroker db = new DataBaseBroker();
-                    DataTable tbb = db.ReturnDataTable("select  Count(*)  from Dokumentatotali where ID_DokumentaStablo=" + strstablo);
-
-                    if (tbb.Rows.Count > 0) { ((Bankom.frmChield)activeChild).ToolStripLblPos.Text = Convert.ToString(Convert.ToInt32(tbb.Rows[0][0]) / 25); }
-
-                    return;
-                }
-                if (strfind == "" || strKolona == "") { return; }
-                strfind = strfind.Replace("Likvidatura", "LikvidacijaDokumenta");
-                strfind = strfind.Replace("Ref.", "Predhodni");
-                strfind = strfind.Replace("Porez", "MesecPoreza");
-                strfind = strfind.Replace("Status", "Proknjizeno");
+        //        if (strfind == "Ponisti")
+        //        {
+        //            strfind = "";
+        //            ((Bankom.frmChield)activeChild).toolStripTextFind.Text = strfind;
+        //            clsdokumentRefresh docref1 = new clsdokumentRefresh();
+        //            string strstablo = ((Bankom.frmChield)activeChild).toolStripTextBroj.Text;
+        //            ((Bankom.frmChield)activeChild).ToolStripTextPos.Text = "1";
 
 
+        //            string str = "SELECT DISTINCT ID_Proknjizeno,ID_MesecPoreza,ID_Predhodni,ID_DokumentaStablo,IId,ID_KadrovskaEvidencija,ID_OrganizacionaStrukturaView,ID_LikvidacijaDokumenta, ID_DokumentaTotali  AS ID_GgRrDokumentaStavkeView,BrDok,Datum,Opis,Predhodni,LikvidacijaDokumenta,Proknjizeno,MesecPoreza,TTime,SifRadnika,NazivOrg,RB FROM DokumentaTotali  as s  WITH(NOLOCK)  WHERE s.ID_DokumentaStablo= " + strstablo + " and nazivorg in (Select nazivorg  from OrganizacionaStrukturaStavkeView where ID_OrganizacionaStrukturaStablo= 6)  order by  s.id_DokumentaTotali desc";
+        //            docref1.refreshDokumentGrid(activeChild,"Dokumenta", "1", str, "1", "S");
+        //            DataBaseBroker db = new DataBaseBroker();
+        //            DataTable tbb = db.ReturnDataTable("select  Count(*)  from Dokumentatotali where ID_DokumentaStablo=" + strstablo);
+
+        //            if (tbb.Rows.Count > 0) { ((Bankom.frmChield)activeChild).ToolStripLblPos.Text = Convert.ToString(Convert.ToInt32(tbb.Rows[0][0]) / 25); }
+
+        //            return;
+        //        }
+        //        if (strfind == "" || strKolona == "") { return; }
+        //        strfind = strfind.Replace("Likvidatura", "LikvidacijaDokumenta");
+        //        strfind = strfind.Replace("Ref.", "Predhodni");
+        //        strfind = strfind.Replace("Porez", "MesecPoreza");
+        //        strfind = strfind.Replace("Status", "Proknjizeno");
 
 
 
 
-                ((Bankom.frmChield)activeChild).toolStripTextFind.Text = strfind;
-                string c = ((Bankom.frmChield)activeChild).toolStripTexIme.Text;
-                string d = ((Bankom.frmChield)activeChild).toolStripTextBroj.Text;
-                long f = ((Bankom.frmChield)activeChild).iddokumenta;
-                string sprikaz = ((Bankom.frmChield)activeChild).VrstaPrikaza;
-                string dokumentje = ((Bankom.frmChield)activeChild).DokumentJe;
-                //((Bankom.frmChield)activeChild).ToolStripLblPos.Text = "1";
-                ((Bankom.frmChield)activeChild).ToolStripTextPos.Text = "1";
-
-                //    clscontrolsOnForm cononf = new clscontrolsOnForm();
-                clsdokumentRefresh docref = new clsdokumentRefresh();
-                //cononf.addFormControls(activeChild, c, d.ToString(), "");
-                clsObradaStablaStipa procss = new clsObradaStablaStipa();
-                string supit = procss.Proces("Dokumenta", c, Convert.ToInt32(d));
-                docref.refreshDokumentGrid(activeChild, "Dokumenta", d.ToString(), supit, "1", "S");
-
-                //docref.refreshDokumentGrid(this, "Dokumenta", "1", "SELECT DISTINCT ID_Proknjizeno, ID_MesecPoreza, ID_Predhodni, ID_DokumentaStablo, IId, ID_KadrovskaEvidencija, ID_OrganizacionaStrukturaView, ID_LikvidacijaDokumenta, ID_DokumentaTotali  AS ID_GgRrDokumentaStavkeView, BrDok, Datum, Opis, Predhodni, LikvidacijaDokumenta, Proknjizeno, MesecPoreza, TTime, SifRadnika, NazivOrg, RB FROM DokumentaTotali as s  WITH(NOLOCK)  WHERE s.ID_DokumentaStablo = " + Convert.ToString(d) + " and nazivorg in (Select nazivorg  from OrganizacionaStrukturaStavkeView where ID_OrganizacionaStrukturaStablo = 6)  order by  s.id_DokumentaTotali desc", "S");
 
 
-            }
-        }
+        //        ((Bankom.frmChield)activeChild).toolStripTextFind.Text = strfind;
+        //        string c = ((Bankom.frmChield)activeChild).toolStripTexIme.Text;
+        //        string d = ((Bankom.frmChield)activeChild).toolStripTextBroj.Text;
+        //        long f = ((Bankom.frmChield)activeChild).iddokumenta;
+        //        string sprikaz = ((Bankom.frmChield)activeChild).VrstaPrikaza;
+        //        string dokumentje = ((Bankom.frmChield)activeChild).DokumentJe;
+        //        //((Bankom.frmChield)activeChild).ToolStripLblPos.Text = "1";
+        //        ((Bankom.frmChield)activeChild).ToolStripTextPos.Text = "1";
+
+        //        //    clscontrolsOnForm cononf = new clscontrolsOnForm();
+        //        clsdokumentRefresh docref = new clsdokumentRefresh();
+        //        //cononf.addFormControls(activeChild, c, d.ToString(), "");
+        //        clsObradaStablaStipa procss = new clsObradaStablaStipa();
+        //        string supit = procss.Proces("Dokumenta", c, Convert.ToInt32(d));
+        //        docref.refreshDokumentGrid(activeChild, "Dokumenta", d.ToString(), supit, "1", "S");
+
+        //        //docref.refreshDokumentGrid(this, "Dokumenta", "1", "SELECT DISTINCT ID_Proknjizeno, ID_MesecPoreza, ID_Predhodni, ID_DokumentaStablo, IId, ID_KadrovskaEvidencija, ID_OrganizacionaStrukturaView, ID_LikvidacijaDokumenta, ID_DokumentaTotali  AS ID_GgRrDokumentaStavkeView, BrDok, Datum, Opis, Predhodni, LikvidacijaDokumenta, Proknjizeno, MesecPoreza, TTime, SifRadnika, NazivOrg, RB FROM DokumentaTotali as s  WITH(NOLOCK)  WHERE s.ID_DokumentaStablo = " + Convert.ToString(d) + " and nazivorg in (Select nazivorg  from OrganizacionaStrukturaStavkeView where ID_OrganizacionaStrukturaStablo = 6)  order by  s.id_DokumentaTotali desc", "S");
+
+
+        //    }
+        //}
 
         //private void toolStripMenuRefresh_Click_1(object sender, EventArgs e)
         //{
