@@ -115,6 +115,7 @@
     <Compile Include="Class\clsBilansi.cs" />
     <Compile Include="Class\clsDokumentaStablo.cs" />
     <Compile Include="Class\clsEvaluation.cs" />
+    <Compile Include="Class\clsForma.cs" />
     <Compile Include="Class\clsIzvestaji.cs" />
     <Compile Include="Class\clsKnjizenje.cs" />
     <Compile Include="Class\clsKompenzacija.cs" />
@@ -212,6 +213,9 @@
     <Compile Include="Mail.Designer.cs">
       <DependentUpon>Mail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\mForma.cs" />
+    <Compile Include="Model\mGlobalne.cs" />
+    <Compile Include="Model\mKontrola.cs" />
     <Compile Include="NoviLot.cs">
       <SubType>Form</SubType>
     </Compile>

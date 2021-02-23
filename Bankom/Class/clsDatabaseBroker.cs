@@ -17,9 +17,22 @@ namespace Bankom.Class
 
     class DataBaseBroker
     {
-        //Djora 14.06.17
-      public string connstring = Program.connectionString;///@"Server = ""bankomw""; Database =""Bankom""; User Id = ""sa""; Password = ""password"";";
-        
+        //Djora 14.06.17 30.11.20
+        //public string connstring = Program.connectionString;///@"Server = ""bankomw""; Database =""Bankom""; User Id = ""sa""; Password = ""password"";";
+        public string connstring;
+
+        //Djora 30.11.20
+        public DataBaseBroker()
+        {
+            connstring = Program.connectionString;
+        }
+
+        //Djora 30.11.20
+        public DataBaseBroker(string cnn1)
+        {
+            connstring = cnn1;
+        }
+
         public DataTable ReturnDataTableWithParam(List<string[]> lista)
         {
             //listu cine dva inputa

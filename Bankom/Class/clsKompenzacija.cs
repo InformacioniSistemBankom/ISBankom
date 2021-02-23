@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+//Djora 30.11.20
+using Bankom.Model;
+
 //Djora 14.05.20
 namespace Bankom.Class
 {
@@ -12,6 +15,10 @@ namespace Bankom.Class
     {
         public void ObradiKomenzaciju()
         {
+            //Djora 30.11.20 Poziv 
+            clsForma aa = new clsForma();
+            mForma lis = aa.VirtualnaForma();
+
             DataBaseBroker db = new DataBaseBroker();
 
             Form forma = new Form();
@@ -31,7 +38,10 @@ namespace Bankom.Class
 
             Boolean vrati = new Boolean();
             CRUD ccrud = new CRUD();
-            vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
+            
+            //Djora 30.11.20
+            //vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta);
+            vrati = ccrud.DoIt(forma, Convert.ToString(((Bankom.frmChield)forma).iddokumenta), ((Bankom.frmChield)forma).imedokumenta, lis);
 
             //EXEC ObradiKompenzaciju 1422996, '01.01.2020', '21.04.2020', 204, 435, 3281, 'Bankom', 6
             db.ExecuteStoreProcedure("ObradiKompenzaciju", "FidDok:" + IdDokView.ToString(), "DoDatuma:" + Datum, "KontoDug:" + KontoDug, "KontoPot:" + KontoPot, "ID_Komitent:" + ID_Komitent.ToString(), "Firma:Bankom", "idFirme:" + Program.idFirme.ToString());
