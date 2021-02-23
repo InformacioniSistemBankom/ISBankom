@@ -1314,48 +1314,49 @@ namespace Bankom.Class
             DateTime mdatum = Convert.ToDateTime(System.DateTime.Now);
 
             control.ReadOnly = true;
-            string mimedok = Me.Controls["limedok"].Text.Trim();
+                string mimedok = Me.Controls["limedok"].Text.Trim();
 
-            //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
-            //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
+                //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
+                //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
 
-            FillControls(control, ref middok, ref mbrdok, ref mdatum, e);    // punjenje kontrola koje se odnose na stavku iz reda grida na koji smo kliknuli
+                FillControls(control, ref middok, ref mbrdok, ref mdatum, e);    // punjenje kontrola koje se odnose na stavku iz reda grida na koji smo kliknuli
 
-            string mojestablo = Me.Controls["limestabla"].Text.Trim();
-            int midstablo = Convert.ToInt32(Me.Controls["lidstablo"].Text);
+                string mojestablo = Me.Controls["limestabla"].Text.Trim();
+                int midstablo = Convert.ToInt32(Me.Controls["lidstablo"].Text);
 
-            ((Bankom.frmChield)Me).imegrida = control.Name;
-            ((Bankom.frmChield)Me).idReda = middok;
-            ((Bankom.frmChield)Me).brdok = mbrdok;
+                ((Bankom.frmChield)Me).imegrida = control.Name;
+                ((Bankom.frmChield)Me).idReda = middok;
+                ((Bankom.frmChield)Me).brdok = mbrdok;
 
-            string ddatum = mdatum.ToString("dd.MM.yy");
-            string DokumentJe = ((Bankom.frmChield)Me).DokumentJe;
-            if (mojestablo == "Dokumenta" && DokumentJe == "S")
-            {
-                ((Bankom.frmChield)Me).iddokumenta = middok;
-                ((Bankom.frmChield)Me).imedokumenta = ((Bankom.frmChield)Me).imestabla;
-            }
-
-
-            if (Me.Controls["OOperacija"].Text.Trim() == "") // nije odabrana operacija
-            {
-                if (mojestablo == "Dokumenta" && DokumentJe == "S") // kliknuli smo na spisak dokumenata i nismo odabrali operaciju
+                string ddatum = mdatum.ToString("dd.MM.yy");
+                string DokumentJe = ((Bankom.frmChield)Me).DokumentJe;
+                if (mojestablo == "Dokumenta" && DokumentJe == "S")
                 {
-                    // OTVARAMO NOVU FORMU NA KOJOJ CEMO PRIKAZATI DOKUMENT NA KOJI SMO KLIKNULI U SPISKU DOKUMENATA (RED U GRIDU)
-                    // NOVOJ FORMI PREDAJEMO SLEDECE PODATKE: imedokumenta,idstablo,iddokumenta,brojdokumenta,vrstudokumenta,zadatuoperaciju,vrstuprikaza 
-                    //jovana
-                    clsDokumentaStablo ds = new clsDokumentaStablo();
-                    if (ds.Obradi(middok, ref midstablo, ref mimedok, ref mbrdok) == false) return;
-                    Program.Parent.ShowNewForm(mojestablo, midstablo, mimedok, middok, mbrdok, ddatum, "D", "", "");
+                    ((Bankom.frmChield)Me).iddokumenta = middok;
+                    ((Bankom.frmChield)Me).imedokumenta = ((Bankom.frmChield)Me).imestabla;
+                }
+
+
+                if (Me.Controls["OOperacija"].Text.Trim() == "") // nije odabrana operacija
+                {
+                    if (mojestablo == "Dokumenta" && DokumentJe == "S") // kliknuli smo na spisak dokumenata i nismo odabrali operaciju
+                    {
+                        // OTVARAMO NOVU FORMU NA KOJOJ CEMO PRIKAZATI DOKUMENT NA KOJI SMO KLIKNULI U SPISKU DOKUMENATA (RED U GRIDU)
+                        // NOVOJ FORMI PREDAJEMO SLEDECE PODATKE: imedokumenta,idstablo,iddokumenta,brojdokumenta,vrstudokumenta,zadatuoperaciju,vrstuprikaza 
+                        //jovana
+                        clsDokumentaStablo ds = new clsDokumentaStablo();
+                        if (ds.Obradi(middok, ref midstablo, ref mimedok, ref mbrdok) == false) return;
+                        Program.Parent.ShowNewForm(mojestablo, midstablo, mimedok, middok, mbrdok, ddatum, "D", "", "");
+                    }
+                    else
+                        this.ObradiDupliKlik(control, mimedok, DokumentJe, "", e);
                 }
                 else
-                    this.ObradiDupliKlik(control, mimedok, DokumentJe, "", e);
-            }
-            else
-            {
-                //((Bankom.frmChield)Me).idReda = middok;
-            }
-            control.ReadOnly = false;
+                {
+                    //((Bankom.frmChield)Me).idReda = middok;
+                }
+
+                control.ReadOnly = false;
         }
         private void ObradiDupliKlik(DataGridView control, string Dokument, string DokumentJe, string OperacijaDokumenta, DataGridViewCellMouseEventArgs e)
         {

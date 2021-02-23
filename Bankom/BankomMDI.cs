@@ -140,7 +140,8 @@ namespace Bankom
                         if (f.Name == brojdokumenta)
                         {
                             MessageBox.Show("Ova forma je već otvorena.");
-                            // f.Focus();
+                            ActivateMdiChild(f);
+                            f.Focus();
                             vrednost = true;
                             break;
                         }
@@ -155,7 +156,8 @@ namespace Bankom
                         if (f.Name == ss)
                         {
                             MessageBox.Show("Ova forma je već otvorena.");
-                            // f.Focus();
+                            ActivateMdiChild(f);
+                            f.Focus();
                             vrednost = true;
                             break;
                         }
@@ -170,9 +172,9 @@ namespace Bankom
                     if (f.Name == brojdokumenta)
                     {
                         MessageBox.Show("Ova forma je već otvorena.");
-
                         vrednost = true;
-                        //f.Focus();
+                        ActivateMdiChild(f);
+                        f.Focus();
                         break;
                     }
                     else
@@ -187,9 +189,9 @@ namespace Bankom
                     if (f.Name == ss)
                     {
                         MessageBox.Show("Ova forma je već otvorena.");
-
                         vrednost = true;
-                        //f.Focus();
+                        ActivateMdiChild(f);
+                        f.Focus();
                         break;
                     }
                     else
@@ -576,6 +578,7 @@ namespace Bankom
 
         public void itemn_click(object sender, EventArgs e) // aktiviranje forme klikom na tab
         {
+            
             toolStripTextBox1.Text = "";
             string b = sender.ToString();
           
@@ -633,6 +636,7 @@ namespace Bankom
         public void itemB1_click(string imetula)  // zahtev za zatvaranje  forme klikom na tipku izlaz
         {
            toolStripTextBox1.Text = "";
+            //ivana 22.2.2021.
             for (int j = 0; j < toolStrip1.Items.Count/3; j++)
             {
                 if (this.MdiChildren[j].Name == imetula)
@@ -643,6 +647,8 @@ namespace Bankom
             }
 
             Form childForm1 = ActiveMdiChild;
+            //ivana 22.2.2021.
+            childForm1.Focus();
             childForm1.Visible = false;
             childForm1.Dispose();
 
@@ -675,7 +681,8 @@ namespace Bankom
                 Iimenik.Enabled = true;
             }
             toolStripTextBox1.Text = "";
-            for (int j = 0; j < toolStrip1.Items.Count; j++)
+            //ivana 22.2.2021.
+            for (int j = 0; j < toolStrip1.Items.Count/3; j++)
             {
                 if (this.MdiChildren[j].Name == b)
                 {
@@ -685,6 +692,8 @@ namespace Bankom
             }
 
             Form childForm1 = ActiveMdiChild;
+            //ivana 22.2.2021.
+            childForm1.Focus();
             childForm1.Visible = false;
             childForm1.Dispose();
             for (int x = 0; x < toolStrip1.Items.Count; x++)
@@ -1792,11 +1801,10 @@ namespace Bankom
 
         private void Iimenik_Click(object sender, EventArgs e)
         {
-
-            //Form f = Application.OpenForms["Imenik"];
-            //if (f == null)
-            //{
-                frmChield frmi = new Imenik(Iimenik);
+            Form f = Application.OpenForms["Imenik"];
+            frmChield frmi = new Imenik(Iimenik);
+            if (f == null)
+            {
                 Iimenik.Enabled = false;
                 frmi.FormBorderStyle = FormBorderStyle.None;
                 frmi.Name = "Imenik";
@@ -1806,9 +1814,15 @@ namespace Bankom
                 this.addFormTotoolstrip1(frmi, "Imenik");
                 this.updateToolStrip("Imenik");
                 frmi.StartPosition = FormStartPosition.CenterScreen;
-            //puca kada se otovri iz pretrage, pogledacu t
+                //puca kada se otovri iz pretrage, pogledacu t
                 frmi.Show();
-            //}
+            }
+            //ivana 22.2.2021.
+            else
+            {
+                itemn_click(sender, e);
+                f.Focus();
+            }
         }
 
         public static string cf;

@@ -171,7 +171,7 @@ namespace Bankom.Class
             if (brDokPopisa != "")
                 return false; // korisnik je unio broj i vracamo su u prethodnu funkciju i nastavljamo izvrsavanje
             // ReSharper disable once LocalizableElement
-            MessageBox.Show("Niste unijeli dokument rekapitulacije popisa!!!");
+            MessageBox.Show("Niste uneli dokument rekapitulacije popisa!!!");
             return true;
 
         }
