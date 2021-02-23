@@ -10,6 +10,8 @@ using System.Globalization;
 using System.Drawing;
 using Bankom.Class;
 
+//Djora 30.11.20
+using Bankom.Model;
 
 namespace Bankom.Class
 {
@@ -31,7 +33,10 @@ namespace Bankom.Class
         string operacija;
         List<string[]> lista = new List<string[]>();
         private string TrebaProvera = "0";
-        public bool DoIt(Form forma1, string iddok, string dokument1)
+        
+        //Djora 30.11.20
+        //public bool DoIt(Form forma1, string iddok, string dokument1)
+        public bool DoIt(Form forma1, string iddok, string dokument1, mForma mf)
         {
             lista.Clear();
             forma = forma1;

@@ -54,6 +54,9 @@ namespace Bankom.Class
         //public double ofsety = Program.RacioHeight * 1.3333333333333333;
         public double ofset = Program.RacioWith;
         public double ofsety = Program.RacioHeight;
+        
+        //Djora 30.11.20
+        public string Stavke { get; set; }
 
         public string cPolje;
         public string cIzborno;
@@ -110,6 +113,8 @@ namespace Bankom.Class
             this.BorderStyle = BorderStyle.None;
             //this.Margin= new Padding(0, 0, 0, 0);
 
+            //Djora 30.11.20
+            Stavke = "0";
 
             if (Ime == "Ugovor")
             {
