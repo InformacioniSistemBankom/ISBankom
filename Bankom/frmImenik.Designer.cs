@@ -414,7 +414,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Snow;
-            this.ClientSize = new System.Drawing.Size(1354, 992);
+            this.ClientSize = new System.Drawing.Size(1940, 992);
             this.Controls.Add(this.tbDrzava);
             this.Controls.Add(this.btnIzmena);
             this.Controls.Add(this.btnBrisanje);
