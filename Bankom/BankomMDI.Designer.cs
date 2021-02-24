@@ -136,7 +136,6 @@ namespace Bankom
             this.Pplati = new System.Windows.Forms.ToolStripButton();
             this.Oorigin = new System.Windows.Forms.ToolStripButton();
             this.Oorgsema = new System.Windows.Forms.ToolStripButton();
-            this.toolStripTextBox2 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -148,6 +147,7 @@ namespace Bankom
             this.sdfgghToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.toolStripTextBox2 = new System.Windows.Forms.ToolStripTextBox();
             this.ToolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -1155,15 +1155,6 @@ namespace Bankom
             this.Oorgsema.Text = "Org.šema";
             this.Oorgsema.ToolTipText = "Organizaciona {ema";
             // 
-            // toolStripTextBox2
-            // 
-            this.toolStripTextBox2.Font = new System.Drawing.Font("TimesRoman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripTextBox2.ForeColor = System.Drawing.Color.Maroon;
-            this.toolStripTextBox2.Name = "toolStripTextBox2";
-            this.toolStripTextBox2.Size = new System.Drawing.Size(100, 21);
-            this.toolStripTextBox2.Text = "TEST";
-            this.toolStripTextBox2.Click += new System.EventHandler(this.toolStripTextBox2_Click);
-            // 
             // toolStrip1
             // 
             this.toolStrip1.AutoSize = false;
@@ -1243,6 +1234,15 @@ namespace Bankom
             this.button1.TabIndex = 42;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // toolStripTextBox2
+            // 
+            this.toolStripTextBox2.Font = new System.Drawing.Font("TimesRoman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripTextBox2.ForeColor = System.Drawing.Color.Maroon;
+            this.toolStripTextBox2.Name = "toolStripTextBox2";
+            this.toolStripTextBox2.Size = new System.Drawing.Size(100, 21);
+            this.toolStripTextBox2.Text = "TEST";
+            this.toolStripTextBox2.Click += new System.EventHandler(this.toolStripTextBox2_Click);
             // 
             // BankomMDI
             // 

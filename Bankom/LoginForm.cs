@@ -76,7 +76,7 @@ namespace Bankom
                 Console.WriteLine(Application.StartupPath);
                 //Djora 30.11.20
                 //var fileReader = File.ReadAllText(Application.StartupPath+ @"\xxxx.ini");
-                var fileReader = File.ReadAllText(Application.StartupPath + @"\xxxx.ini");
+                var fileReader = File.ReadAllText(@"\\BANKOMW\Repozitorijum\ISBankom\XXXX\xxxxDjora.ini");
 
                 string[] separators11 = new[] { "[", "]" };
 

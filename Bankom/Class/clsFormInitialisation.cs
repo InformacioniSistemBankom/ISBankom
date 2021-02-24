@@ -148,36 +148,32 @@ namespace Bankom.Class
             {
                 if (polje.Trim() == "")
                     polje = "0";
-                //ivana 24.2.2021. pucao je kada kliknemo neko slovo pre nego sto postavimo fokus klikom misa, a ne nalazimo se na nekoj formi na kojoj je difoltno postavljen fokus na neko polje za unos
-                if (char.IsDigit(polje.ToString().ToCharArray()[0]))
+                mValue = Convert.ToDouble(polje);
+                switch (Tip)
                 {
-                    mValue = Convert.ToDouble(polje);
-                    switch (Tip)
-                    {
-                        case 5:
-                        case 11:
-                        case 13:
-                        case 17:
-                            polje = mValue.ToString("N2", CultureInfo.CurrentCulture);
-                            break;
-                        case 6:
-                            polje = mValue.ToString("N3", CultureInfo.CurrentCulture);
-                            break;
-                        case 7:
-                            polje = mValue.ToString("N4", CultureInfo.CurrentCulture);
-                            break;
-                        case 19:
-                            polje = mValue.ToString("N5", CultureInfo.CurrentCulture);
-                            break;
-                        case 20:
-                            polje = mValue.ToString("N7", CultureInfo.CurrentCulture);
-                            break;
-                        case 21:
-                            polje = mValue.ToString("N9", CultureInfo.CurrentCulture);
-                            break;
-                        default:
-                            break;
-                    }
+                    case 5:
+                    case 11:
+                    case 13:
+                    case 17:
+                        polje = mValue.ToString("N2", CultureInfo.CurrentCulture);
+                        break;
+                    case 6:
+                        polje = mValue.ToString("N3", CultureInfo.CurrentCulture);
+                        break;
+                    case 7:
+                        polje = mValue.ToString("N4", CultureInfo.CurrentCulture);
+                        break;
+                    case 19:
+                        polje = mValue.ToString("N5", CultureInfo.CurrentCulture);
+                        break;
+                    case 20:
+                        polje = mValue.ToString("N7", CultureInfo.CurrentCulture);
+                        break;
+                    case 21:
+                        polje = mValue.ToString("N9", CultureInfo.CurrentCulture);
+                        break;
+                    default:
+                        break;
                 }
             }
             //polje = polje.Replace(".", ",");
