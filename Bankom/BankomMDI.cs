@@ -147,6 +147,7 @@ namespace Bankom
                             f.Focus();
                             vrednost = true;
                             break;
+                           
                         }
                         else
                         {
