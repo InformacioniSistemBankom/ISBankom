@@ -218,26 +218,28 @@ namespace Bankom.Class
                             }
                             else // izvestaj je excel
                             {
-                                string iddok = (tv.SelectedNode.Tag).ToString();
-                                string naslov = "print - " + ime;
-                                Boolean odgovor = false;
-                                odgovor = Program.Parent.DalijevecOtvoren("I", naslov, ime);
-                                if (odgovor == false)
-                                {
-                                    frmPrint fs = new frmPrint();
-                                    fs.BackColor = Color.Snow;
-                                    fs.FormBorderStyle = FormBorderStyle.None;
-                                    fs.MdiParent = Program.Parent;
-                                    fs.Text = ime;
-                                    fs.intCurrentdok = Convert.ToInt32(iddok); //id
-                                    fs.LayoutMdi(MdiLayout.TileVertical);
-                                    fs.imefajla = ime;  //ime  InoRacun
-                                    fs.kojiprint = "rpt";
-                                    fs.kojinacin = "E";
-                                    fs.izvor = t.Rows[0]["Izvor"].ToString();
-                                    fs.Show();
-                                    Program.Parent.addFormTotoolstrip1(fs, naslov);
-                                }
+                                //Jovana 22.02.21
+                                Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", t.Rows[0]["nr"].ToString());
+                                //string iddok = (tv.SelectedNode.Tag).ToString();
+                                //string naslov = "print - " + ime;
+                                //Boolean odgovor = false;
+                                //odgovor = Program.Parent.DalijevecOtvoren("I", naslov, ime);
+                                //if (odgovor == false)
+                                //{
+                                //    frmPrint fs = new frmPrint();
+                                //    fs.BackColor = Color.Snow;
+                                //    fs.FormBorderStyle = FormBorderStyle.None;
+                                //    fs.MdiParent = Program.Parent;
+                                //    fs.Text = ime;
+                                //    fs.intCurrentdok = Convert.ToInt32(iddok); //id
+                                //    fs.LayoutMdi(MdiLayout.TileVertical);
+                                //    fs.imefajla = ime;  //ime  InoRacun
+                                //    fs.kojiprint = "rpt";
+                                //    fs.kojinacin = "E";
+                                //    fs.izvor = t.Rows[0]["Izvor"].ToString();
+                                //    fs.Show();
+                                //    Program.Parent.addFormTotoolstrip1(fs, naslov);
+                            //}
                             }
                         }
                     }
