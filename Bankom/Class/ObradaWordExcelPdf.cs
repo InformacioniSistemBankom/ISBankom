@@ -86,7 +86,7 @@ namespace Bankom.Class
             var parametri = db.ReturnDataTable("SELECT * FROM Parametri WHERE ImeRacunara ='" + Program.NazivRacunara + "'");
             if (parametri.Rows.Count == 0)
             {
-                MsgBox.ShowDialog("Nepoznati parametri o Wordu,Excelu, obratiti se administratoru!");
+                MsgBox.ShowDialog("Nepoznati parametri o Wordu, Excelu, obratiti se administratoru!");
                 return;
             }
             switch (vrstaDokumenta)

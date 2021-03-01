@@ -127,13 +127,6 @@ namespace Bankom
                 //ivana 26.1.2021.
                 tabovi += toolStrip1.Items[i].Width;
             }
-            int sirinaforme = toolStrip1.Width;
-            if (tabovi > sirinaforme - 50)
-                for (int i = 0; i < a; i++)
-                {
-                    toolStrip1.Items[i].Size = new Size(sirinaforme / a, 0);
-                    i += 2;
-                }
         }
 
         public bool DalijevecOtvoren(string dokumentje, string brojdokumenta, string imedokumenta)
@@ -609,10 +602,10 @@ namespace Bankom
                     c++;
             }
             //ivana 26.1.2021.
-            //int sirinaforme = toolStrip1.Width;
-            //if (tabovi > sirinaforme)
+            //int sirinaforme = this.Width;
+            //if (tabovi > sirinaforme - 50)
             //    for (int i = 0; i < toolStrip1.Items.Count; i++)
-            //        toolStrip1.Items[i].Size = new Size(sirinaforme / toolStrip1.Items.Count, 0);
+            //        toolStrip1.Items[i].Size = new Size((sirinaforme - 50) / toolStrip1.Items.Count, 0);
             //for (int x = 0; x < toolStrip1.Items.Count; x++)
             //{
             //int n = MdiChildren.Count<Form>();
@@ -3247,6 +3240,11 @@ namespace Bankom
                     Console.WriteLine("================================");
                 }
             }
+        }
+
+        private void toolStripTextBox1_Enter(object sender, EventArgs e)
+        {
+           // MessageBox.Show("asdf");
         }
     }
 }

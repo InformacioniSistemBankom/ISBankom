@@ -394,7 +394,12 @@ namespace Bankom.Class
                             ++ctr;
                         }
                         spisakKolona = spisakKolonaUluz.Split(new[] { '#' }, StringSplitOptions.RemoveEmptyEntries);
-                        spisakKolonaDB = spisakKolonaDB.Trim().Substring(0, spisakKolonaDB.Length - 1);
+                        //tamara 26.02.2021.
+                        if (spisakKolonaDB.Length > 0)
+                            spisakKolonaDB = spisakKolonaDB.Trim().Substring(0, spisakKolonaDB.Length - 1);
+                        else
+                            spisakKolonaDB = spisakKolonaDB.Trim();
+
                         DataBaseBroker db = new DataBaseBroker();
                         SqlCmd = "select COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, IS_NULLABLE, ";
                         SqlCmd += " DATETIME_PRECISION, IS_NULLABLE from INFORMATION_SCHEMA.COLUMNS";
