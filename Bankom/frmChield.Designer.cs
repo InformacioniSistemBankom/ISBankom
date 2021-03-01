@@ -90,9 +90,9 @@
             this.toolStripTextFind,
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 448);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 782);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1284, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1254, 22);
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
             this.statusStrip1.Visible = false;
@@ -128,11 +128,11 @@
             // 
             this.ToolStripTextPos.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.ToolStripTextPos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ToolStripTextPos.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.ToolStripTextPos.Name = "ToolStripTextPos";
             this.ToolStripTextPos.Size = new System.Drawing.Size(100, 22);
             this.ToolStripTextPos.Text = "1";
             this.ToolStripTextPos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ToolStripTextPos_KeyDown);
-            this.ToolStripTextPos.Click += new System.EventHandler(this.ToolStripTextPos_Click);
             this.ToolStripTextPos.DoubleClick += new System.EventHandler(this.ToolStripTextPos_DoubleClick);
             // 
             // ToolStripLblPos
@@ -143,7 +143,6 @@
             this.ToolStripLblPos.Size = new System.Drawing.Size(35, 20);
             this.ToolStripLblPos.Text = "of {0}";
             this.ToolStripLblPos.ToolTipText = "Broj stranica";
-            this.ToolStripLblPos.Click += new System.EventHandler(this.ToolStripLblPos_Click);
             // 
             // ToolStripButtNext
             // 
@@ -178,13 +177,13 @@
             this.toolStripTexIme.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.toolStripTexIme.Name = "toolStripTexIme";
             this.toolStripTexIme.ReadOnly = true;
-            this.toolStripTexIme.Size = new System.Drawing.Size(120, 22);
+            this.toolStripTexIme.Size = new System.Drawing.Size(400, 22);
             this.toolStripTexIme.Text = "1";
-            this.toolStripTexIme.Click += new System.EventHandler(this.toolStripTexIme_Click);
             // 
             // toolStripTextBroj
             // 
             this.toolStripTextBroj.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.toolStripTextBroj.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBroj.Name = "toolStripTextBroj";
             this.toolStripTextBroj.ReadOnly = true;
             this.toolStripTextBroj.Size = new System.Drawing.Size(100, 22);
@@ -195,6 +194,7 @@
             // 
             this.toolStripTextFind.BackColor = System.Drawing.SystemColors.Control;
             this.toolStripTextFind.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.toolStripTextFind.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextFind.Name = "toolStripTextFind";
             this.toolStripTextFind.Size = new System.Drawing.Size(300, 22);
             // 

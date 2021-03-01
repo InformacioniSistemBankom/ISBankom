@@ -1,7 +1,6 @@
 ﻿using Bankom.Class;
 using System;
 using System.Data;
-using System.Drawing.Printing;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
@@ -9,34 +8,36 @@ using System.Windows.Forms;
 
 namespace Bankom
 {
-    public partial class frmPrint : Form
+    public partial class Print : Form
     {
         public int intCurrentdok = 0;
         public string imefajla = "";
         public string kojiprint= "";
         public string kojinacin = "";
         public string izvor = "";
+        public string nazivForme = "";
         //Ivana 13.1.2021.
         DataBaseBroker db = new DataBaseBroker();
         DataTable rez = new DataTable();
         //public string param { get; set; }
         //public string mparam;
         //public string mvred;
-        public frmPrint()
+        public Print()
         {
             InitializeComponent();
 
         }
         private void OnClosed(EventArgs e)
         {
-            string b = this.Text;
+            //tamara 11.2.2021.
+            string b = this.Name;
 
             ((BankomMDI)this.MdiParent).itemB1_click(b);        
             ((BankomMDI)MdiParent).Controls["menuStrip"].Enabled = true;
             ((BankomMDI)MdiParent).Controls["menuStrip"].Enabled = true;
             base.OnClosed(e);
         }
-        string ParamZaStampu;
+        public string ParamZaStampu;
         private void frmPrint_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.None;
@@ -79,11 +80,6 @@ namespace Bankom
             {
                 case "prn":
                     putanja = "http://"+ LoginForm.ImeServera +"/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprn" + imefajla + "&rs:Command=Render" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + ParamZaStampu;
-                    //Ivana 13.1.2021.
-                    string upit = "select Email from Komitenti where Email<>''";
-                    rez = db.ParamsQueryDT(upit);
-                    for (int i = 0; i < rez.Rows.Count; i++)
-                        cmbEmail.Items.Add(rez.Rows[i][0].ToString());
                     break;
                 case "rpt":
                     putanja = "http://" + LoginForm.ImeServera + "/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2frpt" + imefajla + "&rs:Command=Render" + "&database=" + baza + ParamZaStampu;
@@ -118,17 +114,13 @@ namespace Bankom
                     putanja = "http://" + LoginForm.ImeServera + "/ReportServer/Pages/ReportViewer.aspx?/Izvestaji/prn" + imefajla + "&rs:Command=Render&id=" + Convert.ToString(intCurrentdok);
                     break;
             }
-
             //System.Diagnostics.Process.Start(putanja);
             webBrowser1.Navigate(putanja);
         }   
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            webBrowser1.Print();
-            
+            webBrowser1.Print();   
         }
-
-
         private void toolStripStatusLabel1_Click(object sender, EventArgs e)
         {
             webBrowser1.ShowSaveAsDialog();
@@ -136,55 +128,24 @@ namespace Bankom
 
         public void btnEmail_Click(object sender, EventArgs e)
         {
-            //Djora 11.01.21 poc --------------------------------
-            WebClient client = new WebClient();
-            client.UseDefaultCredentials = true;
-            string putanjaPdf = "http://192.168.1.4/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2f" + kojiprint + imefajla + "&rs:Command=Render&rs:Format=PDF" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + ParamZaStampu;  // "&rs%3aFormat=PDF";
-            //string putanjaPdf = "http://192.168.1.4/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2f" + kojiprint + imefajla + "&rs:Command=Render&rs:Format=PDF";
-            byte[] bytes = client.DownloadData(putanjaPdf);
-            MemoryStream ms = new MemoryStream(bytes);
-            SmtpClient server = new SmtpClient("mail.bankom.rs");
-            server.EnableSsl = true;
-            server.UseDefaultCredentials = false;
-            server.DeliveryMethod = SmtpDeliveryMethod.Network;
-            MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("ivana.jelic@bankom.rs");
-            if (mejl != "")
-            {
-                mail.To.Add(mejl);
-                mail.Subject = "Nov naslov";
-                mail.Body = "Tekst";
-                //mail.BodyFormat = MailFormat.Html;
-                mail.Attachments.Add(new Attachment(ms, "temp.pdf"));
-                try
-                {
-                    server.Send(mail);
-                }
-                catch (SmtpFailedRecipientException error)
-                {
-                    MessageBox.Show("error: " + error.Message + "\nFailing recipient: " + error.FailedRecipient);
-                }
-            }
+            //ivana 12.2.2021.
+            Form f = Application.OpenForms["Mail"];
+            if (f != null)
+                f.Close();
             else
-                MessageBox.Show("Morate uneti e-mail!");
-            btnEmail.Enabled = false;
-            MessageBox.Show("Uspešno ste poslali e-mail.");
-            cmbEmail.Text = "";
-            //Djora 11.01.21 kraj --------------------------------
-        }
-        //Ivana 13.1.2021.
-        string mejl = "";
-        private void cmbEmail_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            mejl = cmbEmail.SelectedItem.ToString();
-            btnEmail.Enabled = true;
-        }
-        private void cmbEmail_TextChanged(object sender, EventArgs e)
-        {
-            mejl = cmbEmail.Text;
-            btnEmail.Enabled = true;
+            {
+                nazivForme = this.Name;
+                Mail m = new Mail(kojiprint, imefajla, ParamZaStampu, nazivForme);
+                m.Left = 800;
+                m.Top = 300;
+                m.ShowDialog();
+            }
+            //////var url = "mailto:stevan.nikolic@bankom.rs?subject=Ovojenaslov&body=ovojeteloemaila&attachment=";
+            //////MemoryStream ms = new MemoryStream(bytes);
+            //////url.Attachments.Add(new Attachment(ms, nazivForme.Substring(8) + ".pdf"));
+            //////System.Diagnostics.Process.Start(url);
+            
         }
     }
-
 }
 

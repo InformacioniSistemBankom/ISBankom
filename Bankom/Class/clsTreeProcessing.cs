@@ -93,6 +93,7 @@ namespace Bankom.Class
             tv.Nodes.Add(parent);
             tv.EndUpdate();
             tv.SelectedNode = parent;
+           
 
             int i = 0;
             int j = 0;
@@ -148,6 +149,7 @@ namespace Bankom.Class
             } while (i < ti.Rows.Count);  //kraj while po i
 
             tv.Height = forma.Height;
+          // ovde se podešava veličina tree view kontole ali za sada nije potrebno menjati 29.01.2021.
             tv.Width = forma.Width;
             tv.Top = 40;
             tv.Left = 25;
@@ -156,10 +158,12 @@ namespace Bankom.Class
             tv.BorderStyle = BorderStyle.None;
             form1.Controls.Add(tv);
 
-
+            
+           
             tv.Visible = true;
             tv.HideSelection = true;
             //tv.SelectedNode = null;
+
             tv.CollapseAll();
             tv.Sort();
         } // kraj obradastablaNew.
@@ -178,20 +182,19 @@ namespace Bankom.Class
                 parentNode.Nodes.Add(nod);
                 tv.EndUpdate();
             }
-        }        
+        }
 
         private void tv_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-                //Djora 10.09.20
-                Program.AktivnaForma = e.Node.Text.Substring(e.Node.Text.IndexOf("-") + 1).Replace(" ", "");
+            //Djora 10.09.20
+            Program.AktivnaForma = e.Node.Text.Substring(e.Node.Text.IndexOf("-") + 1).Replace(" ", "");
 
             if (tv.SelectedNode != null)
             {
                 if (Convert.ToInt32(tv.SelectedNode.Tag) > 1)
                 {
-                    if (MojeStablo == "Izvestaj")
+                    if (MojeStablo == "Izvestaj" && mDokumentJe != "K")
                     {
-
                         //string pravoime = tv.SelectedNode.Name.Substring(4);
                         string ime = tv.SelectedNode.Name;
 
@@ -219,16 +222,18 @@ namespace Bankom.Class
                             else // izvestaj je excel
                             {
                                 string iddok = (tv.SelectedNode.Tag).ToString();
-                                string naslov = "print - " + ime;
+                                string naslov = "Print - " + ime;
                                 Boolean odgovor = false;
                                 odgovor = Program.Parent.DalijevecOtvoren("I", naslov, ime);
                                 if (odgovor == false)
                                 {
-                                    frmPrint fs = new frmPrint();
+                                    Print fs = new Print();
                                     fs.BackColor = Color.Snow;
                                     fs.FormBorderStyle = FormBorderStyle.None;
                                     fs.MdiParent = Program.Parent;
                                     fs.Text = ime;
+                                    //merge zajednicki 19.02.2021.
+                                    fs.Name = naslov;
                                     fs.intCurrentdok = Convert.ToInt32(iddok); //id
                                     fs.LayoutMdi(MdiLayout.TileVertical);
                                     fs.imefajla = ime;  //ime  InoRacun
@@ -236,11 +241,12 @@ namespace Bankom.Class
                                     fs.kojinacin = "E";
                                     fs.izvor = t.Rows[0]["Izvor"].ToString();
                                     fs.Show();
-                                    Program.Parent.addFormTotoolstrip1(fs, naslov);
+                                    Program.Parent.addFormTotoolstrip1(fs, ime);
                                 }
                             }
                         }
                     }
+
                     else // nisu Izvestaji
                     {
                         //Djora 10.09.20
@@ -253,36 +259,36 @@ namespace Bankom.Class
                         st = db.ParamsQueryDT(q, tv.SelectedNode.Name);
                         if (st.Rows[0]["Vrstacvora"].ToString() != "f")
                         {
-                            switch (MojeStablo)
-                            {
-                                case "Dokumenta":
-                                case "PomocniSifarnici":
-                                    //q = "Select vrstacvora from "+MojeStablo+"Stablo where Naziv=@param0";
-                                    //DataTable st = new DataTable();
-                                    //st = db.ParamsQueryDT(q, tv.SelectedNode.Name);
-                                    //if (st.Rows[0]["Vrstacvora"].ToString() == "f")
-                                    //{
-                                    //     //MessageBox.Show("Pogresan izbor odabrali ste grupu!!");
-                                    //}
-                                    //else
-                                    Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-                                    break;
-                                case "Artikli":
-                                case "Komitenti":
-                                    Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), MojeStablo + "-" + tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-                                    break;
-                                default:
-                                    Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
-                                    break;
-                            }
+                            if (mDokumentJe != "K")
+                                switch (MojeStablo)
+                                {
+                                    case "Dokumenta":
+                                    case "PomocniSifarnici":
+                                        //q = "Select vrstacvora from "+MojeStablo+"Stablo where Naziv=@param0";
+                                        //DataTable st = new DataTable();
+                                        //st = db.ParamsQueryDT(q, tv.SelectedNode.Name);
+                                        //if (st.Rows[0]["Vrstacvora"].ToString() == "f")
+                                        //{
+                                        //     //MessageBox.Show("Pogresan izbor odabrali ste grupu!!");
+                                        //}
+                                        //else
+                                        Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                                        break;
+                                    case "Artikli":
+                                    case "Komitenti":
+                                        Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), MojeStablo + "-" + tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                                        break;
+                                    default:
+                                        Program.Parent.ShowNewForm(MojeStablo, Convert.ToInt32(tv.SelectedNode.Tag), tv.SelectedNode.Name, 1, "", "", mDokumentJe, "", "");
+                                        break;
+                                }
                         }
                     }
+                    //zajedno 14.1.2021.
+                    //Program.AktivnaSifraIzvestaja = e.Node.Text;
                 }
             }
-            //zajedno 14.1.2021.
-            //Program.AktivnaSifraIzvestaja = e.Node.Text;
         }
-
         //zajedno 28.10.2020.
         public void tv_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {

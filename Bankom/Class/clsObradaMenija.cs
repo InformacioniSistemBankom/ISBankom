@@ -154,45 +154,53 @@ namespace Bankom.Class
                 slovo = 'P';
             return slovo;
         }
-      
-
         //28.10.2020. Ivana
+        public bool pokazivac;
         public string SkiniKlasifikaciju(string s)
         {
+            //ivana 18.2.2021.
+            pokazivac = false;
             if (s == "KlasifikacijaOrgStrukture")
             {
                 Program.pomStablo = "OrganizacionaStrukturaStablo";
+                pokazivac = true;
                 return "OrganizacionaStruktura";
             }
             else if (s == "KlasifikacijaDokumenata")
             {
                 Program.pomStablo = "DokumentaStablo";
+                pokazivac = true;
                 return "Dokumenta";
             }
             else if (s == "KlasifikacijaArtikla")
             {
                 Program.pomStablo = "ArtikliStablo";
+                pokazivac = true;
                 return "Artikli";
             }
             else if (s == "KlasifikacijaKomitenata")
             {
                 Program.pomStablo = "KomitentiStablo";
+                pokazivac = true;
                 return "Komitenti";
             }
             else if (s == "KlasifikacijaIzvestaja")
             {
                 Program.pomStablo = "IzvestajStablo";
                 Program.pomIzv = "Izvestaj";
+                pokazivac = true;
                 return "Izvestaj";
             }
             else if (s == "KlasifikacijaMenija")
             {
                 Program.pomStablo = "MeniStablo";
+                pokazivac = true;
                 return "Meni";
             }
             else
             {
                 Program.pomStablo = "PomocniSifarniciStablo";
+                pokazivac = true;
                 return "PomocniSifarnici";
             }
         }
@@ -428,7 +436,7 @@ namespace Bankom.Class
                     }
                     clsXmlPlacanja cxml = new clsXmlPlacanja();
                     cxml.izborPlacanja(2, mg + svrsta);
-                    frmPrint fs = new frmPrint();
+                    Print fs = new Print();
                     fs.FormBorderStyle = FormBorderStyle.None;
 
                     fs.MdiParent = mdi;
@@ -479,7 +487,7 @@ namespace Bankom.Class
 
                     clsXmlPlacanja cxml1 = new clsXmlPlacanja();
                     cxml1.izborPlacanja(0, mg1);
-                    frmPrint fs1 = new frmPrint();
+                    Print fs1 = new Print();
 
                     fs1.MdiParent = mdi;
                     fs1.Text = "prevoz-" + mg1;
@@ -523,7 +531,7 @@ namespace Bankom.Class
 
                     clsXmlPlacanja cxml2 = new clsXmlPlacanja();
                     cxml2.izborPlacanja(1, mg2);
-                    frmPrint fs2 = new frmPrint();
+                    Print fs2 = new Print();
                     fs2.kojiprint = "nag";
                     fs2.MdiParent = mdi;
                     fs2.Text = "nagrade-" + mg2;

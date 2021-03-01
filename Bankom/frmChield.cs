@@ -53,7 +53,7 @@ namespace Bankom
         }
         protected override void OnClosed(EventArgs e)
         {           
-            ((BankomMDI)this.MdiParent).itemB1_click(this.Text);            
+            ((BankomMDI)this.MdiParent).itemB1_click(this.Name);            
              base.OnClosed(e);
         }
         private void frmChield_Load(object sender, EventArgs e)
@@ -61,6 +61,8 @@ namespace Bankom
             this.FormBorderStyle = FormBorderStyle.None;
             this.BackColor = Color.Snow;
             this.AutoScroll = true;
+            ////tamara 01.02.2021.
+            //this.Text = ".";
 
             intStart = 0;                
             toolStripStatusPrazno.Text = new String(' ', 150);            
@@ -79,8 +81,6 @@ namespace Bankom
             lDatum.Text = datum;            
             panel1.Visible = false;
 
-            // Jovana 22.02.21
-           // If UCase(NacinRegistracije) = "E" Or UCase(NacinRegistracije) = "W" Or UCase(NacinRegistracije) = "P" Then Exit Sub
             switch (VrstaPrikaza)
             {
                 case "TreeView":
@@ -156,9 +156,9 @@ namespace Bankom
 
         }
         private void frmChield_Activated(object sender, EventArgs e)
-        {                 
+        { 
             Boolean provera = true;
-            clsSettingsButtons sb = new clsSettingsButtons();           
+            clsSettingsButtons sb = new clsSettingsButtons();
             clsProveraDozvola provdoz = new clsProveraDozvola();
             if (imestabla == "Artikli" || imestabla == "Komitenti")
             {
@@ -167,10 +167,9 @@ namespace Bankom
             }
             else
             {
-                if (OOperacija.Text != "PREGLED")
+                if (OOperacija.Text != "PREGLED" && sender.ToString()!= "Bankom.Imenik, Text: frmChield")
                     provera = provdoz.ProveriDozvole(imedokumenta, idstablo.ToString(), Convert.ToString(iddokumenta), DokumentJe);
             }
-           
         }
         private void frmChield_Resize(object sender, EventArgs e)
         {
@@ -270,57 +269,7 @@ namespace Bankom
             navigacija(pageno);
         }
 
-        private void ToolStripTextPos_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void statusStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void toolStripButton4_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-          
-
-        }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-
-          
-        }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void toolStripLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ToolStripLblPos_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripTexIme_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
+       
 
         
         private void button1_Click(object sender, EventArgs e)

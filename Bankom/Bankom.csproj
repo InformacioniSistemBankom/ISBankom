@@ -115,6 +115,7 @@
     <Compile Include="Class\clsBilansi.cs" />
     <Compile Include="Class\clsDokumentaStablo.cs" />
     <Compile Include="Class\clsEvaluation.cs" />
+    <Compile Include="Class\clsForma.cs" />
     <Compile Include="Class\clsIzvestaji.cs" />
     <Compile Include="Class\clsKnjizenje.cs" />
     <Compile Include="Class\clsKompenzacija.cs" />
@@ -189,10 +190,10 @@
     <Compile Include="frmPrint.Designer.cs">
       <DependentUpon>frmPrint.cs</DependentUpon>
     </Compile>
-    <Compile Include="Class\KursnaLista.cs">
+    <Compile Include="KursnaLista.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Class\KursnaLista.Designer.cs">
+    <Compile Include="KursnaLista.Designer.cs">
       <DependentUpon>KursnaLista.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSlika.cs">
@@ -207,12 +208,15 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Lotovi.cs">
+    <Compile Include="Mail.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Lotovi.Designer.cs">
-      <DependentUpon>Lotovi.cs</DependentUpon>
+    <Compile Include="Mail.Designer.cs">
+      <DependentUpon>Mail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\mForma.cs" />
+    <Compile Include="Model\mGlobalne.cs" />
+    <Compile Include="Model\mKontrola.cs" />
     <Compile Include="NoviLot.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,7 +258,7 @@
       <DependentUpon>frmPrint.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Class\KursnaLista.resx">
+    <EmbeddedResource Include="KursnaLista.resx">
       <DependentUpon>KursnaLista.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -265,8 +269,8 @@
       <DependentUpon>LoginForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Lotovi.resx">
-      <DependentUpon>Lotovi.cs</DependentUpon>
+    <EmbeddedResource Include="Mail.resx">
+      <DependentUpon>Mail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NoviLot.resx">
       <DependentUpon>NoviLot.cs</DependentUpon>

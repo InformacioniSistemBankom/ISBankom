@@ -54,6 +54,9 @@ namespace Bankom.Class
         //public double ofsety = Program.RacioHeight * 1.3333333333333333;
         public double ofset = Program.RacioWith;
         public double ofsety = Program.RacioHeight;
+        
+        //Djora 30.11.20
+        public string Stavke { get; set; }
 
         public string cPolje;
         public string cIzborno;
@@ -110,6 +113,8 @@ namespace Bankom.Class
             this.BorderStyle = BorderStyle.None;
             //this.Margin= new Padding(0, 0, 0, 0);
 
+            //Djora 30.11.20
+            Stavke = "0";
 
             if (Ime == "Ugovor")
             {
@@ -770,18 +775,22 @@ namespace Bankom.Class
                 {
                     string upit = "Select ID_Artikli from Artikli where NazivArtikla=@param0";
                     dt = db.ParamsQueryDT(upit, Vrednost);
-                    string imeSlike = dt.Rows[0][0].ToString();
-                    nazivFoldera = "Artikli";
-                    if (File.Exists(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg"))
+                    if (dt.Rows.Count > 0)
                     {
-                        frmSlika slika = new frmSlika();
-                        slika.groupBox1.Visible = false;
-                        slika.cmbNazivSlike.Visible = false;
-                        slika.button1.Visible = false;
-                        slika.label1.Visible = false;
-                        slika.button2.Visible = false;
-                        slika.pictureBox1.Image = Image.FromFile(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
-                        slika.Show();
+                        string imeSlike = dt.Rows[0][0].ToString();
+                        nazivFoldera = "Artikli";
+                        if (File.Exists(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg"))
+                        {
+                            frmSlika slika = new frmSlika();
+                            slika.groupBox1.Visible = false;
+                            slika.cmbNazivSlike.Visible = false;
+                            slika.button1.Visible = false;
+                            slika.label1.Visible = false;
+                            slika.button2.Visible = false;
+                            slika.label2.Visible = false;
+                            slika.pictureBox1.Image = Image.FromFile(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
+                            slika.Show();
+                        }
                     }
                 }
             }
@@ -1310,48 +1319,49 @@ namespace Bankom.Class
             DateTime mdatum = Convert.ToDateTime(System.DateTime.Now);
 
             control.ReadOnly = true;
-            string mimedok = Me.Controls["limedok"].Text.Trim();
+                string mimedok = Me.Controls["limedok"].Text.Trim();
 
-            //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
-            //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
+                //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
+                //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
 
-            FillControls(control, ref middok, ref mbrdok, ref mdatum, e);    // punjenje kontrola koje se odnose na stavku iz reda grida na koji smo kliknuli
+                FillControls(control, ref middok, ref mbrdok, ref mdatum, e);    // punjenje kontrola koje se odnose na stavku iz reda grida na koji smo kliknuli
 
-            string mojestablo = Me.Controls["limestabla"].Text.Trim();
-            int midstablo = Convert.ToInt32(Me.Controls["lidstablo"].Text);
+                string mojestablo = Me.Controls["limestabla"].Text.Trim();
+                int midstablo = Convert.ToInt32(Me.Controls["lidstablo"].Text);
 
-            ((Bankom.frmChield)Me).imegrida = control.Name;
-            ((Bankom.frmChield)Me).idReda = middok;
-            ((Bankom.frmChield)Me).brdok = mbrdok;
+                ((Bankom.frmChield)Me).imegrida = control.Name;
+                ((Bankom.frmChield)Me).idReda = middok;
+                ((Bankom.frmChield)Me).brdok = mbrdok;
 
-            string ddatum = mdatum.ToString("dd.MM.yy");
-            string DokumentJe = ((Bankom.frmChield)Me).DokumentJe;
-            if (mojestablo == "Dokumenta" && DokumentJe == "S")
-            {
-                ((Bankom.frmChield)Me).iddokumenta = middok;
-                ((Bankom.frmChield)Me).imedokumenta = ((Bankom.frmChield)Me).imestabla;
-            }
-
-
-            if (Me.Controls["OOperacija"].Text.Trim() == "") // nije odabrana operacija
-            {
-                if (mojestablo == "Dokumenta" && DokumentJe == "S") // kliknuli smo na spisak dokumenata i nismo odabrali operaciju
+                string ddatum = mdatum.ToString("dd.MM.yy");
+                string DokumentJe = ((Bankom.frmChield)Me).DokumentJe;
+                if (mojestablo == "Dokumenta" && DokumentJe == "S")
                 {
-                    // OTVARAMO NOVU FORMU NA KOJOJ CEMO PRIKAZATI DOKUMENT NA KOJI SMO KLIKNULI U SPISKU DOKUMENATA (RED U GRIDU)
-                    // NOVOJ FORMI PREDAJEMO SLEDECE PODATKE: imedokumenta,idstablo,iddokumenta,brojdokumenta,vrstudokumenta,zadatuoperaciju,vrstuprikaza 
-                    //jovana
-                    clsDokumentaStablo ds = new clsDokumentaStablo();
-                    if (ds.Obradi(middok, ref midstablo, ref mimedok, ref mbrdok) == false) return;
-                    Program.Parent.ShowNewForm(mojestablo, midstablo, mimedok, middok, mbrdok, ddatum, "D", "", "");
+                    ((Bankom.frmChield)Me).iddokumenta = middok;
+                    ((Bankom.frmChield)Me).imedokumenta = ((Bankom.frmChield)Me).imestabla;
+                }
+
+
+                if (Me.Controls["OOperacija"].Text.Trim() == "") // nije odabrana operacija
+                {
+                    if (mojestablo == "Dokumenta" && DokumentJe == "S") // kliknuli smo na spisak dokumenata i nismo odabrali operaciju
+                    {
+                        // OTVARAMO NOVU FORMU NA KOJOJ CEMO PRIKAZATI DOKUMENT NA KOJI SMO KLIKNULI U SPISKU DOKUMENATA (RED U GRIDU)
+                        // NOVOJ FORMI PREDAJEMO SLEDECE PODATKE: imedokumenta,idstablo,iddokumenta,brojdokumenta,vrstudokumenta,zadatuoperaciju,vrstuprikaza 
+                        //jovana
+                        clsDokumentaStablo ds = new clsDokumentaStablo();
+                        if (ds.Obradi(middok, ref midstablo, ref mimedok, ref mbrdok) == false) return;
+                        Program.Parent.ShowNewForm(mojestablo, midstablo, mimedok, middok, mbrdok, ddatum, "D", "", "");
+                    }
+                    else
+                        this.ObradiDupliKlik(control, mimedok, DokumentJe, "", e);
                 }
                 else
-                    this.ObradiDupliKlik(control, mimedok, DokumentJe, "", e);
-            }
-            else
-            {
-                //((Bankom.frmChield)Me).idReda = middok;
-            }
-            control.ReadOnly = false;
+                {
+                    //((Bankom.frmChield)Me).idReda = middok;
+                }
+
+                control.ReadOnly = false;
         }
         private void ObradiDupliKlik(DataGridView control, string Dokument, string DokumentJe, string OperacijaDokumenta, DataGridViewCellMouseEventArgs e)
         {
@@ -1817,20 +1827,26 @@ namespace Bankom.Class
                     upit = "Select ID_Artikli from Artikli where ID_Artikli=@param0";
                     nazivFoldera = "Artikli";
                 }
-                dt = db.ParamsQueryDT(upit, Vrednost);
-                imeSlike = dt.Rows[0][0].ToString();
-                if (slika.Visible)
-                    slika.Close();
-                if (File.Exists(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg"))
+                if (upit != "")
                 {
-                    slika.groupBox1.Visible = false;
-                    slika.cmbNazivSlike.Visible = false;
-                    slika.button1.Visible = false;
-                    slika.label1.Visible = false;
-                    slika.button2.Visible = false;
-                    slika.label2.Visible = false;
-                    slika.pictureBox1.Image = Image.FromFile(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
-                    slika.Show();
+                    dt = db.ParamsQueryDT(upit, Vrednost);
+                    if (dt.Rows.Count > 0)
+                    {
+                        imeSlike = dt.Rows[0][0].ToString();
+                        if (slika.Visible)
+                            slika.Close();
+                        if (File.Exists(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg"))
+                        {
+                            slika.groupBox1.Visible = false;
+                            slika.cmbNazivSlike.Visible = false;
+                            slika.button1.Visible = false;
+                            slika.label1.Visible = false;
+                            slika.button2.Visible = false;
+                            slika.label2.Visible = false;
+                            slika.pictureBox1.Image = Image.FromFile(@"\\SQL2016\\ISDokumenta\\" + Program.imeFirme + "\\" + tipFajla + "\\" + nazivFoldera + "\\" + imeSlike + ".jpg");
+                            slika.Show();
+                        }
+                    }
                 }
             }
         }
