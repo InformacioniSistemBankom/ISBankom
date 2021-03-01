@@ -140,6 +140,7 @@
     <Compile Include="Class\clsRefreshForm.cs" />
     <Compile Include="Class\clsResize.cs" />
     <Compile Include="Class\clsSettingsButtons.cs" />
+    <Compile Include="Class\clsSpornaPotrazivanja.cs" />
     <Compile Include="Class\clsStrucuraTipova.cs" />
     <Compile Include="Class\clsVratiKratkoIme.cs" />
     <Compile Include="Class\clsVratiStrukturu.cs" />

@@ -92,8 +92,9 @@ namespace Bankom.Class
             }
             if (NacinRegistracije == "W" || NacinRegistracije == "E" || NacinRegistracije == "P")
             {
-              
-                ObradaWordExcelPdf.OtvoriDokument(NacinRegistracije,PutanjaDokumenta,BrDok);
+
+                ObradaWordExcelPdf OWEP = new ObradaWordExcelPdf();
+                OWEP.OtvoriDokument(NacinRegistracije,PutanjaDokumenta,BrDok);
                 return false;
             }
 

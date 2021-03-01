@@ -79,6 +79,8 @@ namespace Bankom
             lDatum.Text = datum;            
             panel1.Visible = false;
 
+            // Jovana 22.02.21
+           // If UCase(NacinRegistracije) = "E" Or UCase(NacinRegistracije) = "W" Or UCase(NacinRegistracije) = "P" Then Exit Sub
             switch (VrstaPrikaza)
             {
                 case "TreeView":
@@ -167,7 +169,8 @@ namespace Bankom
             {
                 if (OOperacija.Text != "PREGLED")
                     provera = provdoz.ProveriDozvole(imedokumenta, idstablo.ToString(), Convert.ToString(iddokumenta), DokumentJe);
-            }   
+            }
+           
         }
         private void frmChield_Resize(object sender, EventArgs e)
         {

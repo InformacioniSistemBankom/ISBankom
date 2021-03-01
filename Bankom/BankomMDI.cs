@@ -105,7 +105,7 @@ namespace Bankom
             for (int i = 0; i < a; i++)
             {
                 //08.01.2021. tamara
-                //toolStrip1.Items[i].Width = 10;
+                Console.WriteLine(toolStrip1.Items[i].Width);
                 toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 if (toolStrip1.Items[i].Text == imedokumenta)
                 {
@@ -173,6 +173,7 @@ namespace Bankom
 
             itemn.ToolTipText = imedokumenta;
             itemn.Name = forma.Text;
+            Console.WriteLine(itemn.Width );
             itemB.Image = global::Bankom.Properties.Resources.del12;
             itemn.Click += new EventHandler(itemn_click);
             itemB.Click += new EventHandler(itemB_click);
@@ -182,6 +183,8 @@ namespace Bankom
             toolStrip1.Items.Add(itemn);
             toolStrip1.Items.Add(itemB);
             toolStrip1.Items.Add(itemnsep);
+            Console.WriteLine(itemB.Width);
+            Console.WriteLine(itemnsep.Width);
         }
         private void OpenFile(object sender, EventArgs e)
         {
@@ -522,14 +525,14 @@ namespace Bankom
         {
             toolStripTextBox1.Text = "";
             string b = sender.ToString();
-          
+
             frmChield active = new frmChield();
             active.AutoScroll = true;
             active.FormBorderStyle = FormBorderStyle.None;
             int a = toolStrip1.Items.Count;
             for (int i = 0; i < a; i++)
             {
-               
+
                 toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 if (toolStrip1.Items[i].Text == b)
                 {
@@ -538,33 +541,33 @@ namespace Bankom
             }
 
             for (int x = 0; x < toolStrip1.Items.Count; x++)
-            {                  
-                    foreach (Form childForm in MdiChildren)
+            {
+                foreach (Form childForm in MdiChildren)
+                {
+                    if (childForm.Text.ToUpper() == b.ToUpper())
                     {
-                        if (childForm.Text.ToUpper() == b.ToUpper())
-                        {
-                            childForm.FormBorderStyle = FormBorderStyle.None;
-                            childForm.BackColor = System.Drawing.Color.Snow;
+                        childForm.FormBorderStyle = FormBorderStyle.None;
+                        childForm.BackColor = System.Drawing.Color.Snow;
 
-                            childForm.Activate();
-                            childForm.Focus();
+                        childForm.Activate();
+                        childForm.Focus();
 
-                            childForm.LayoutMdi(MdiLayout.TileVertical);
-                            childForm.WindowState = FormWindowState.Maximized;
-                            break;
-                        }
+                        childForm.LayoutMdi(MdiLayout.TileVertical);
+                        childForm.WindowState = FormWindowState.Maximized;
+                        break;
                     }
+                }
             }
             SrediFormu();
-            //10.01.21 BORKA UMRTVILA  JER ZELIM DA SE KOD AKTIVACIJE FORME DOBIJEM IZGLED KAKAV JE BIO 
-            //KAD SAM FORMU NAPUSTILA NPR AKO SAM  SORTIRALA DOKUMENTA  DA OSTANU SORTIRANA
-            //zajedno 30.12.2020.
-            //if (!b.Contains("print")) 
-            //{
-            //    //jovana 24.12.2020.
-            //    clsRefreshForm rf = new clsRefreshForm();
-            //    rf.refreshform();
-            //}
+            ////10.01.21 BORKA UMRTVILA  JER ZELIM DA SE KOD AKTIVACIJE FORME DOBIJEM IZGLED KAKAV JE BIO
+            ////KAD SAM FORMU NAPUSTILA NPR AKO SAM SORTIRALA DOKUMENTA DA OSTANU SORTIRANA
+            ////zajedno 30.12.2020.
+            if (!b.Contains("print")&& !b.Contains("Imenik"))
+            {
+                ////jovana 24.12.2020.
+                //clsRefreshForm rf = new clsRefreshForm();
+                //rf.refreshform();
+            }
         }
 
         public void itemB1_click(string imetula)  // zahtev za zatvaranje  forme klikom na tipku izlaz
@@ -604,6 +607,7 @@ namespace Bankom
         }
         public void itemB_click(object sender, EventArgs e)  // zahtev za zatvaranje forme klikom na tab
         {
+
             toolStripTextBox1.Text = "";
             ToolStripButton tb = sender as ToolStripButton;
             string b = tb.Name;
@@ -3125,6 +3129,11 @@ namespace Bankom
                                     clsZatvaranjeIOtvaranjeStanja ZiO = new clsZatvaranjeIOtvaranjeStanja();
                                     vrati = ZiO.ObradiIspravku();
                                     break;
+                                //Jovana 23.02.21
+                                case "SpornaPotrazivanja":
+                                    clsSpornaPotrazivanja sp = new clsSpornaPotrazivanja();
+                                    vrati = sp.Obradi();
+                                    break;
                                 case "ObracunVrednostiZaliha":
                                     clsKorekcija Vrednost = new clsKorekcija();
                                     vrati = Vrednost.VrednostNaDan();
@@ -3227,6 +3236,24 @@ namespace Bankom
             slika.Show();
             DodajSliku.Enabled = false;
         }
+
+        //Jovana 18.02.21
+        private void Oorigin_Click(object sender, EventArgs e)
+        {
+////            BrojDok = PrviBezDrugogPDF(fform.Controls("ctBrDok").Vrednost, "/")
+////          '' 14.01.21
+////'            If Module1.File_Exists("\\" + ImeServera + "\ISDokumenta\" + Trim(Firma) + "\Pdf\" + Trim(Dokument) + "\" + BrojDok + ".pdf") Then
+////'                      Command = "\\" + ImeServera + "\ISDokumenta\" + Trim(Firma) + "\Pdf\" + Trim(Dokument) + "\" + BrojDok + ".pdf"
+////'                      Shell "cmd.exe /c " & Chr(34) & Command & Chr(34)
+////           If Module1.File_Exists("\\" + FileServer + "\ISDokumenta\" + Trim(Firma) + "\Pdf\" + Trim(Dokument) + "\" + BrojDok + ".pdf") Then
+////                      Command = "\\" + FileServer + "\ISDokumenta\" + Trim(Firma) + "\Pdf\" + Trim(Dokument) + "\" + BrojDok + ".pdf"
+////                      Shell "cmd.exe /c " & Chr(34) & Command & Chr(34)
+////           Else
+////                      MsgBox "Ne postoji original za " + fform.Controls("ctBrDok").Vrednost + " !"
+////           End If
+        }
+
+       
     }
 }
 
