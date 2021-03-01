@@ -256,6 +256,8 @@ namespace Bankom
             toolStrip1.Items.Add(itemn);
             toolStrip1.Items.Add(itemB);
             toolStrip1.Items.Add(itemnsep);
+            Console.WriteLine(itemB.Width);
+            Console.WriteLine(itemnsep.Width);
         }
         private void OpenFile(object sender, EventArgs e)
         {
@@ -585,7 +587,7 @@ namespace Bankom
             
             toolStripTextBox1.Text = "";
             string b = sender.ToString();
-          
+
             frmChield active = new frmChield();
             active.AutoScroll = true;
             active.FormBorderStyle = FormBorderStyle.None;
@@ -677,6 +679,7 @@ namespace Bankom
         }
         public void itemB_click(object sender, EventArgs e)  // zahtev za zatvaranje forme klikom na tab
         {
+
             toolStripTextBox1.Text = "";
             ToolStripButton tb = sender as ToolStripButton;
             string b = tb.Name;
@@ -3091,6 +3094,11 @@ namespace Bankom
                                     clsZatvaranjeIOtvaranjeStanja ZiO = new clsZatvaranjeIOtvaranjeStanja();
                                     vrati = ZiO.ObradiIspravku();
                                     break;
+                                //Jovana 23.02.21
+                                case "SpornaPotrazivanja":
+                                    clsSpornaPotrazivanja sp = new clsSpornaPotrazivanja();
+                                    vrati = sp.Obradi();
+                                    break;
                                 case "ObracunVrednostiZaliha":
                                     clsKorekcija Vrednost = new clsKorekcija();
                                     vrati = Vrednost.VrednostNaDan();
@@ -3246,6 +3254,24 @@ namespace Bankom
         {
            // MessageBox.Show("asdf");
         }
+
+        //Jovana 18.02.21
+        private void Oorigin_Click(object sender, EventArgs e)
+        {
+////            BrojDok = PrviBezDrugogPDF(fform.Controls("ctBrDok").Vrednost, "/")
+////          '' 14.01.21
+////'            If Module1.File_Exists("\\" + ImeServera + "\ISDokumenta\" + Trim(Firma) + "\Pdf\" + Trim(Dokument) + "\" + BrojDok + ".pdf") Then
+////'                      Command = "\\" + ImeServera + "\ISDokumenta\" + Trim(Firma) + "\Pdf\" + Trim(Dokument) + "\" + BrojDok + ".pdf"
+////'                      Shell "cmd.exe /c " & Chr(34) & Command & Chr(34)
+////           If Module1.File_Exists("\\" + FileServer + "\ISDokumenta\" + Trim(Firma) + "\Pdf\" + Trim(Dokument) + "\" + BrojDok + ".pdf") Then
+////                      Command = "\\" + FileServer + "\ISDokumenta\" + Trim(Firma) + "\Pdf\" + Trim(Dokument) + "\" + BrojDok + ".pdf"
+////                      Shell "cmd.exe /c " & Chr(34) & Command & Chr(34)
+////           Else
+////                      MsgBox "Ne postoji original za " + fform.Controls("ctBrDok").Vrednost + " !"
+////           End If
+        }
+
+       
     }
 }
 

@@ -31,6 +31,8 @@ namespace Bankom
         string strOrgDefaultText = "";// default OrganizacionogDela dela
         string strCurrentbaza = ""; //default baza 
         public static string ImeServera;
+        public static string FileServer;
+        public static string gDokumenti="";
         private int indexCurrentbaza = -1;
         private int indexOrgDefault = -1;
 
@@ -113,14 +115,25 @@ namespace Bankom
 
                         for (int j = 0; j < result1.Length; j++)
                         {
+                            //Jovana 19.02.21
+                            Console.WriteLine(result1[j]);
                             if (result1[j].Contains("Server="))
                             {
-                                ImeServera = result1[j].Substring(result1[j].IndexOf("=") + 1);
-                                break;
+                                if ( result1[j].IndexOf("Server=") == 0)
+                                   ImeServera = result1[j].Substring(result1[j].IndexOf("=") + 1);
+                                else
+                                    FileServer = result1[j].Substring(result1[j].IndexOf("=") + 1);
+                                //break;
+                            }
+                            if ((result1[j].Length > 8 && result1[j].Substring(0,9) == "Dokumenti"))
+                            {
+                                gDokumenti =  result1[j].Substring(result1[j].IndexOf("=") +3);
                             }
                         }
                     }
                 }
+                //Jovana 19.02.21
+                gDokumenti = "\\" + FileServer + gDokumenti;
 
                 //  char[] separators = { '#','=' };
                 char[] separators = { '#' };
@@ -166,6 +179,7 @@ namespace Bankom
                             strOrgDefaultText = result[n].Substring(result[n].IndexOf("=") + 1);
                             //grupa.AddItem(result[n].Substring(result[n].IndexOf("=") + 1));
                         }
+                      
                     }
                 }
 

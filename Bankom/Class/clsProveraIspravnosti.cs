@@ -328,7 +328,8 @@ namespace Bankom.Class
             forma = Program.Parent.ActiveMdiChild;
             string DokumentJe = Convert.ToString(((Bankom.frmChield)forma).DokumentJe);
             string Operacija = Convert.ToString(((Bankom.frmChield)forma).OOperacija.Text).ToUpper();
-            NazivKlona = ddokument;
+            //Jovana 28.01.21
+            //NazivKlona = ddokument;
             int idreda = ((Bankom.frmChield)forma).idReda;
             string idvlasnik = "";
           
@@ -480,8 +481,8 @@ namespace Bankom.Class
                     DateTime tdatum = Convert.ToDateTime(mdatum);
                     //Provera duplikata unesenog Originalnog broja ulaznog racuna za godinu u kojoj se unosi i zadatog komitenta, preskacuci prazne brojeve    
                     sql = " SELECT DISTINCT BrUr FROM " + NazivKlona + "Totali "
-                       + " WHERE BrUr != ''  AND BrUr = '" + mbrur + "' AND Datum.Year =" + tdatum.Year
-                       + " AND BrDok not like '%S%' AND NazivKom = mnazivkom  AND ID_" + NazivKlona.Trim() + "Totali != " + iddok;
+                       + " WHERE BrUr != ''  AND BrUr = '" + mbrur + "' AND year(Datum) =" + tdatum.Year
+                       + " AND BrDok not like '%S%' AND NazivKom = '" + mnazivkom + "'  AND ID_" + NazivKlona.Trim() + "Totali != " + iddok;
                     t = db.ReturnDataTable(sql);
                     if (t.Rows.Count > 0)
                     {
@@ -914,6 +915,18 @@ namespace Bankom.Class
 
                     }
 
+                    break;
+                case "PDVKalkulacijaUlaza":
+                    {
+                        sql = "Select distinct UlzniRacunBroj,BrDok from PDVKalkulacijaUlazaTotali where UlzniRacunBroj <>'' and BrDok not like '%S%' "
+                          + " and ID_UlazniRacunCeo = @param0 and ID_PDVKalkulacijaUlazaTotali <> @param1";
+                        DataTable dt1 = db.ParamsQueryDT(sql, forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "UlzniRacunBroj").ID,iddok);
+                        Console.WriteLine(forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "UlzniRacunBroj").ID);
+                        if (dt1.Rows.Count >= 1 && forma.Controls["OOperacija"].Text == "UNOS")
+                        {
+                            MessageBox.Show("Vec postoji kalkulacija za ovaj ulazni racun !");
+                        }
+                    }
                     break;
                 default:
                     break;

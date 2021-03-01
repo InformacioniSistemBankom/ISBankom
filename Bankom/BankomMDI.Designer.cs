@@ -1053,6 +1053,7 @@ namespace Bankom
             this.Ppotencijal.Text = "Potencijal";
             this.Ppotencijal.ToolTipText = "Potencijal";
             this.Ppotencijal.Visible = false;
+          
             // 
             // Pppppd
             // 
@@ -1142,6 +1143,7 @@ namespace Bankom
             this.Oorigin.Text = "Original";
             this.Oorigin.ToolTipText = "Original";
             this.Oorigin.Visible = false;
+            this.Oorigin.Click += new System.EventHandler(this.Oorigin_Click);
             // 
             // Oorgsema
             // 

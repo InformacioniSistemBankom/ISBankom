@@ -457,10 +457,14 @@ namespace Bankom.Class
                                         Vrati = cPI.PostojiKurs(dt6.Rows[0]["datumcarinjenja"].ToString(), dt6.Rows[0]["ID_SifrarnikValuta"].ToString(),kojavaluta, ref sKurs, ref Poruka);
                                         if (Vrati == true)
                                         {
-                                            sql = "update RacunStavke set NabavnaCena=(ProdajnaCena*((100-ProcenatRabata)/100))* @param0 "
+                                            sql = "update RacunStavke set NabavnaCena=(ProdajnaCena*((100-ProcenatRabata)/100))*  "+ sKurs
                                                 + " where  id_dokumentaview=@param1 ";
-                                            ret = db.ParamsInsertScalar(sql, sKurs, IDUR);
-                                        }
+                                            ret = db.ParamsInsertScalar(sql,  IDUR);
+                                    ////sql = "update RacunStavke set NabavnaCena=(ProdajnaCena*((100-ProcenatRabata)/100))* @param0 "
+                                    ////          + " where  id_dokumentaview=@param1 ";
+                                    ////ret = db.ParamsInsertScalar(sql, sKurs, IDUR);
+
+                                }
                                         //ret = db.ParamsInsertScalar(sql, sKurs, IdDokView); /// BORKA
                                         db.ExecuteStoreProcedure("TotaliZaDokument", "NazivDokumenta:KonacniUlazniRacun", "IdDokument:" +IDUR);
                                         db.ExecuteStoreProcedure("CeneArtikalaPoSkladistimaIStanje", "IdDokView:" + IDUR);
