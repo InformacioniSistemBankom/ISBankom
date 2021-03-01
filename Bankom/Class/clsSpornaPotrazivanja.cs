@@ -33,7 +33,7 @@ namespace Bankom.Class
                 string DatumZaObracun = forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "DatumZaObracun").Vrednost;
                 Int32 StarostSalda = Convert.ToInt32(forma.Controls.OfType<Field>().FirstOrDefault(n => n.IME == "StarostSalda").Vrednost);
 
-                 .ExecuteStoreProcedure("StarostSalda", "ZaFirmu:" + Program.imeFirme, "ZaKonto:" + konto.Trim(), "ZakljucnoSaDatumom:" + DatumZaObracun, "KojaStarost:" +  StarostSalda);
+                db.ExecuteStoreProcedure("StarostSalda", "ZaFirmu:" + Program.imeFirme, "ZaKonto:" + konto.Trim(), "ZakljucnoSaDatumom:" + DatumZaObracun, "KojaStarost:" +  StarostSalda);
                 sql = "insert into SaldaPrometaStavke(ID_DokumentaView,ID_KomitentiView,.ID_SifrarnikValuta,SaldoZaPrenos ) "
                     + " select distinct @param0, IdKom as ID_KomitentiView,IDval,Saldo "
                     + " from SaldaPoStarosti ";
