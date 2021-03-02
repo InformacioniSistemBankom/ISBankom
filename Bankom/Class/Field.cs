@@ -1311,14 +1311,16 @@ namespace Bankom.Class
         //Djora 14.05.20
         private void dv_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DataGridView control = (DataGridView)sender;
+            if (Program.brtabova < 10)
+            {
+                DataGridView control = (DataGridView)sender;
 
-            Form Me = Program.Parent.ActiveMdiChild;
-            int middok = 0; /// Convert.ToInt32(Me.Controls["liddok"].Text);
-            string mbrdok = "";
-            DateTime mdatum = Convert.ToDateTime(System.DateTime.Now);
+                Form Me = Program.Parent.ActiveMdiChild;
+                int middok = 0; /// Convert.ToInt32(Me.Controls["liddok"].Text);
+                string mbrdok = "";
+                DateTime mdatum = Convert.ToDateTime(System.DateTime.Now);
 
-            control.ReadOnly = true;
+                control.ReadOnly = true;
                 string mimedok = Me.Controls["limedok"].Text.Trim();
 
                 //  mimedok = Program.AktivnaSifraIzvestaja.ToString();
@@ -1362,6 +1364,9 @@ namespace Bankom.Class
                 }
 
                 control.ReadOnly = false;
+            }
+            else
+                MessageBox.Show("Imate dosta otvorenih formi, zatvorite neku od njih.");
         }
         private void ObradiDupliKlik(DataGridView control, string Dokument, string DokumentJe, string OperacijaDokumenta, DataGridViewCellMouseEventArgs e)
         {

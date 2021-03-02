@@ -50,6 +50,8 @@ namespace Bankom
         public static string colname { get; set; }
         public static DataGridView activecontrol { get; set; }
 
+        //ivana 2.3.2021.
+        public static int brtabova { get; set; }
 
         public static string connectionString = "Data Source=bankomw;Initial Catalog=BankomVeza;User ID=sa;password=password;";
        // public static string connectionString = "Data Source=Borka;Initial Catalog=dbbbTestNew2003Bankom;User ID=sa;password=password;";
