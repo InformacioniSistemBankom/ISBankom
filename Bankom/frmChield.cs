@@ -67,7 +67,7 @@ namespace Bankom
             intStart = 0;                
             toolStripStatusPrazno.Text = new String(' ', 150);            
             toolStripStatusprdva.Text = new String(' ', 50);
-
+        
             clscontrolsOnForm cononf = new clscontrolsOnForm();
             clsdokumentRefresh docref = new clsdokumentRefresh();
             DataBaseBroker db = new DataBaseBroker();

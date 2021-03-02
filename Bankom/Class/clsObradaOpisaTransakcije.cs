@@ -240,8 +240,9 @@ namespace Bankom.Class
                 {
                     if (row[dot.Columns[i].ToString()].ToString().Trim() != "")
                     {
-                        sql1 = "select * from Knj" + dot.Columns[i].ColumnName.ToString() + " where " + dot.Columns[i].ColumnName.ToString() + "='" + row[dot.Columns[i].ToString()].ToString()+"'";//dot.Columns[i].ToString();
+                        sql1 = "select * from Knj" + dot.Columns[i].ColumnName.ToString() + " where " + dot.Columns[i].ColumnName.ToString() + "='" + row[dot.Columns[i].ToString()].ToString().Trim()+"'";//dot.Columns[i].ToString();
                         DataTable dknj = db.ReturnDataTable(sql1);
+                        Console.WriteLine(sql1);
                         if (dknj.Rows.Count == 0)
                         {
                             MessageBox.Show(" Postoji greska za " + dot.Columns[i].ColumnName.ToString() + " , " + dot.Columns[i].ToString() + " ispravite !!");

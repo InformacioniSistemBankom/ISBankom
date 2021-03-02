@@ -12,19 +12,20 @@ namespace Bankom.Class
 {
     class ObradaWordExcelPdf
     {
-
-
-        public static void  OtvoriDokument(string vrstaDokumenta,string putanjaDokumenta,string brDok)
+        public event Microsoft.Office.Interop.Excel.DocEvents_SelectionChangeEventHandler SelectionChange;
+       Microsoft.Office.Interop.Excel.Application Excel = new Microsoft.Office.Interop.Excel.Application();
+        
+        public   void  OtvoriDokument(string vrstaDokumenta,string putanjaDokumenta,string brDok)
         {
 
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(Program.connectionString);
-            putanjaDokumenta = putanjaDokumenta.Replace("ImeServera", builder.DataSource).Replace("FFirma", Program.imeFirme);
-            putanjaDokumenta += brDok;
+            putanjaDokumenta = putanjaDokumenta.Replace("ImeServera", LoginForm.FileServer).Replace("FFirma", Program.imeFirme);
+           // putanjaDokumenta += brDok;
             switch (vrstaDokumenta)
                 
             {
                 case "W":
-                    putanjaDokumenta += ".doc";
+                    putanjaDokumenta += PrviBezDrugog(brDok, "/")+".doc";
                     
                 /*    var  wdApp = new Microsoft.Office.Interop.Word.Application
 
@@ -37,28 +38,32 @@ namespace Bankom.Class
                     
                     break;
                 case "E":
-                    putanjaDokumenta += ".xls";
-                   
-                  /*  var excelApp = new Microsoft.Office.Interop.Excel.Application
-                    {
-                        WindowState = XlWindowState.xlNormal,
-                        Visible = true
-                    };
-                    var books = excelApp.Workbooks;
-                    excelApp.Workbooks.Open(putanjaDokumenta);*/
-                    
+                    putanjaDokumenta += PrviBezDrugog(brDok, "/") + ".xls";
+
+                    /*  var excelApp = new Microsoft.Office.Interop.Excel.Application
+                      {
+                          WindowState = XlWindowState.xlNormal,
+                          Visible = true
+                      };
+                      var books = excelApp.Workbooks;
+                      excelApp.Workbooks.Open(putanjaDokumenta);*/
+                  
+                    Microsoft.Office.Interop.Excel.Workbook MyBook = Excel.Workbooks.Open(putanjaDokumenta);
+                    Microsoft.Office.Interop.Excel.Worksheet MySheet = MyBook.Sheets[1];
+                    Microsoft.Office.Interop.Excel.Range MyRange = MySheet.UsedRange;
 
                     break;
                 case "P":
-                    putanjaDokumenta += ".pdf";
+                    putanjaDokumenta += PrviBezDrugogPDF(brDok,"/") + ".pdf";
 
                 break;
             }
-            System.Diagnostics.Process.Start(putanjaDokumenta);
+            Console.WriteLine(putanjaDokumenta);
+           // System.Diagnostics.Process.Start(putanjaDokumenta);
 
         }
 
-        public static void BrisanjeWordExcel(string brojDok,string vrstaDokumenta,string nazivDokumenta)
+        public   void BrisanjeWordExcel(string brojDok,string vrstaDokumenta,string nazivDokumenta)
         {
             string putanja = "";
             string nazivWorda = brojDok.Replace('/', '%');
@@ -71,6 +76,20 @@ namespace Bankom.Class
 
             if (File.Exists(putanja)) File.Delete(putanja);
 
+        }
+
+        //Jovana 18.02.21
+        public string PrviBezDrugogPDF(string Prvi, string Drugi )
+        {
+            string Bez = "";
+            Bez = Prvi.Replace("/", "-");
+            return Bez;
+        }
+        public string PrviBezDrugog(string Prvi, string Drugi)
+        {
+            string Bez = "";
+            Bez = Prvi.Replace("/", "&");
+            return Bez;
         }
 
         public static void ObradiDokument(string brojDok,string vrstaDokumenta,string nazivDokumenta , string prethodni)
@@ -86,7 +105,7 @@ namespace Bankom.Class
             var parametri = db.ReturnDataTable("SELECT * FROM Parametri WHERE ImeRacunara ='" + Program.NazivRacunara + "'");
             if (parametri.Rows.Count == 0)
             {
-                MsgBox.ShowDialog("Nepoznati parametri o Wordu,Excelu, obratiti se administratoru!");
+                MsgBox.ShowDialog("Nepoznati parametri o Wordu, Excelu, obratiti se administratoru!");
                 return;
             }
             switch (vrstaDokumenta)
@@ -186,6 +205,17 @@ namespace Bankom.Class
             }
 
         }
-       
+        //private void WorksheetSelectionChange()
+        //{
+        //    this.SelectionChange +=
+        //        new Excel.DocEvents_SelectionChangeEventHandler(
+        //        Worksheet1_SelectionChange);
+        //}
+
+        void Worksheet1_SelectionChange(Microsoft.Office.Interop.Excel.Range Target)
+        {
+
+            Console.WriteLine(Target.get_Address(Excel.ActiveCell.Value));
+        }
     }
 }

@@ -128,7 +128,6 @@
             // 
             this.ToolStripTextPos.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.ToolStripTextPos.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ToolStripTextPos.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.ToolStripTextPos.Name = "ToolStripTextPos";
             this.ToolStripTextPos.Size = new System.Drawing.Size(100, 22);
             this.ToolStripTextPos.Text = "1";
@@ -183,7 +182,6 @@
             // toolStripTextBroj
             // 
             this.toolStripTextBroj.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.toolStripTextBroj.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBroj.Name = "toolStripTextBroj";
             this.toolStripTextBroj.ReadOnly = true;
             this.toolStripTextBroj.Size = new System.Drawing.Size(100, 22);
@@ -194,7 +192,6 @@
             // 
             this.toolStripTextFind.BackColor = System.Drawing.SystemColors.Control;
             this.toolStripTextFind.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.toolStripTextFind.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextFind.Name = "toolStripTextFind";
             this.toolStripTextFind.Size = new System.Drawing.Size(300, 22);
             // 
