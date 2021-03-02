@@ -60,7 +60,7 @@ namespace Bankom
             Boolean odgovor;
             odgovor = DalijevecOtvoren(dokumentje, brojdokumenta, imedokumenta);            //string ss;    
             //ivana 2.3.2021.
-            if (Program.brtabova < 10)
+            if (Program.brtabova < 10 && tabovi < toolStrip1.Width - 50)
             {
                 if (odgovor == false) ///nije vec otvoren
                 {
@@ -130,7 +130,7 @@ namespace Bankom
                     toolStrip1.Items[i].Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 }
                 //ivana 26.1.2021.
-                //tabovi += toolStrip1.Items[i].Width;
+                tabovi += toolStrip1.Items[i].Width;
             }
             //toolStrip1.AutoSize = false;
             //int sirinaforme = toolStrip1.Width;
@@ -1099,7 +1099,7 @@ namespace Bankom
 
         public void BrziPristup(object sender)
         {
-            if (Program.brtabova < 10)
+            if (Program.brtabova < 10 && tabovi<toolStrip1.Width - 50)
             {
                 DataBaseBroker db2 = new DataBaseBroker();
                 ToolStripTextBox item = sender as ToolStripTextBox;
@@ -1811,7 +1811,7 @@ namespace Bankom
                     else
                     {
                         //ivana 2.3.2021.
-                        if (Program.brtabova < 10)
+                        if (Program.brtabova < 10 && tabovi < toolStrip1.Width - 50)
                         {
                             fs.Show();
                             addFormTotoolstrip1(fs, ime);
@@ -1848,7 +1848,7 @@ namespace Bankom
             if (f == null)
             {
                 //ivana 2.3.2021.
-                if (Program.brtabova < 10)
+                if (Program.brtabova < 10 && tabovi < toolStrip1.Width - 50)
                 {
                     Iimenik.Enabled = false;
                     frmi.FormBorderStyle = FormBorderStyle.None;
