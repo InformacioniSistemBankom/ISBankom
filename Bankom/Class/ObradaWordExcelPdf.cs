@@ -19,7 +19,7 @@ namespace Bankom.Class
         {
 
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(Program.connectionString);
-            putanjaDokumenta = putanjaDokumenta.Replace("ImeServera", LoginForm.FileServer).Replace("FFirma", Program.imeFirme);
+            putanjaDokumenta = putanjaDokumenta.Replace("ImeServera", LoginForm.ImeServera.ToUpper()).Replace("FFirma", Program.imeFirme);
            // putanjaDokumenta += brDok;
             switch (vrstaDokumenta)
                 
@@ -59,7 +59,7 @@ namespace Bankom.Class
                 break;
             }
             Console.WriteLine(putanjaDokumenta);
-           // System.Diagnostics.Process.Start(putanjaDokumenta);
+           System.Diagnostics.Process.Start(putanjaDokumenta);
 
         }
 
