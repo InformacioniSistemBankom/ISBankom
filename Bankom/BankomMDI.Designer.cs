@@ -1053,7 +1053,6 @@ namespace Bankom
             this.Ppotencijal.Text = "Potencijal";
             this.Ppotencijal.ToolTipText = "Potencijal";
             this.Ppotencijal.Visible = false;
-          
             // 
             // Pppppd
             // 

@@ -189,9 +189,9 @@ namespace Bankom
                     if (f.Name == brojdokumenta)
                     {
                         MessageBox.Show("Ova forma je već otvorena.");
-                        vrednost = true;
                         ActivateMdiChild(f);
                         f.Focus();
+                        vrednost = true;
                         break;
                     }
                     else
@@ -206,9 +206,9 @@ namespace Bankom
                     if (f.Name == ss)
                     {
                         MessageBox.Show("Ova forma je već otvorena.");
-                        vrednost = true;
                         ActivateMdiChild(f);
                         f.Focus();
+                        vrednost = true;
                         break;
                     }
                     else
@@ -1822,6 +1822,8 @@ namespace Bankom
                             MessageBox.Show("Imate dosta otvorenih formi, zatvorite neku od njih.");
                     }
                 }
+                //ivana 3.3.2021.
+                itemn_click(naslov, e);
             }
         }
 
@@ -1844,7 +1846,7 @@ namespace Bankom
         private void Iimenik_Click(object sender, EventArgs e)
         {
             Form f = Application.OpenForms["Imenik"];
-            frmChield frmi = new Imenik(Iimenik);
+            Imenik frmi = new Imenik(Iimenik);
             if (f == null)
             {
                 //ivana 2.3.2021.

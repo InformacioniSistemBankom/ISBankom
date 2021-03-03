@@ -65,7 +65,6 @@
             this.tbNapomena1 = new System.Windows.Forms.TextBox();
             this.tbNapomena2 = new System.Windows.Forms.TextBox();
             this.tbDrzava = new System.Windows.Forms.ComboBox();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -474,10 +473,6 @@
             this.Controls.SetChildIndex(this.btnBrisanje, 0);
             this.Controls.SetChildIndex(this.btnIzmena, 0);
             this.Controls.SetChildIndex(this.tbDrzava, 0);
-            this.Controls.SetChildIndex(this.OOperacija, 0);
-            this.Controls.SetChildIndex(this.panel1, 0);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
