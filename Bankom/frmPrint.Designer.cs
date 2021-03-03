@@ -123,7 +123,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Print";
-            this.Text = "frmPrint";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmPrint_Load);
             this.statusPrint.ResumeLayout(false);
