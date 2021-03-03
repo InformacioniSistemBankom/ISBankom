@@ -741,8 +741,11 @@ namespace Bankom
             {
                 toolStrip1.Visible = false;
             }
-            updateToolStrip(b);
+            //updateToolStrip(b);
             SrediFormu();
+            //ivana 3.3.2021.
+            if (ActiveMdiChild != null)
+                itemn_click(ActiveMdiChild.Name, e);
         }
 
         private void toolStripLogin_Click(object sender, EventArgs e)
@@ -1884,6 +1887,9 @@ namespace Bankom
                 Form childForm = this.ActiveMdiChild;
                 itemB1_click(childForm.Name);
             }
+            //ivana 3.3.2021.
+            if (ActiveMdiChild != null)
+                itemn_click(ActiveMdiChild.Name, e);
             if (toolStrip1.Items.Count == 0)
             {
                 toolStrip1.Visible = false;
