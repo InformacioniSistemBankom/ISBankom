@@ -148,6 +148,7 @@ namespace Bankom
             this.sdfgghToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
+            this.Nnaloggk = new System.Windows.Forms.ToolStripButton();
             this.ToolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -715,6 +716,7 @@ namespace Bankom
             this.Iimenik,
             this.Ppotvrda,
             this.Ssort,
+            this.Nnaloggk,
             this.Iizlaz,
             this.Pprekid,
             this.Ccalc,
@@ -1246,6 +1248,18 @@ namespace Bankom
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // Nnaloggk
+            // 
+            this.Nnaloggk.AutoSize = false;
+            this.Nnaloggk.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Nnaloggk.ForeColor = System.Drawing.Color.Snow;
+            this.Nnaloggk.Image = ((System.Drawing.Image)(resources.GetObject("Nnaloggk.Image")));
+            this.Nnaloggk.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Nnaloggk.Name = "Nnaloggk";
+            this.Nnaloggk.Size = new System.Drawing.Size(100, 40);
+            this.Nnaloggk.Text = "Nalog Gk";
+            this.Nnaloggk.ToolTipText = "Prekid zadate operacije";
+            // 
             // BankomMDI
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1400,6 +1414,7 @@ namespace Bankom
         public System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         public System.Windows.Forms.ToolStripButton DodajSliku;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox2;
+        private System.Windows.Forms.ToolStripButton Nnaloggk;
     }
 }
 
