@@ -146,6 +146,7 @@ namespace Bankom
         {
             string ss;
             bool vrednost = true;
+            EventArgs e = new EventArgs();
             foreach (Form f in Application.OpenForms)
             {
                 if (dokumentje == "D")
@@ -156,8 +157,8 @@ namespace Bankom
                         if (f.Name == brojdokumenta)
                         {
                             MessageBox.Show("Ova forma je već otvorena.");
-                            ActivateMdiChild(f);
-                            f.Focus();
+                            //ivana 4.3.2021.
+                            itemn_click(imedokumenta, e);
                             vrednost = true;
                             break;
 
@@ -173,8 +174,8 @@ namespace Bankom
                         if (f.Name == ss)
                         {
                             MessageBox.Show("Ova forma je već otvorena.");
-                            ActivateMdiChild(f);
-                            f.Focus();
+                            //ivana 4.3.2021.
+                            itemn_click(imedokumenta, e);
                             vrednost = true;
                             break;
                         }
@@ -189,8 +190,8 @@ namespace Bankom
                     if (f.Name == brojdokumenta)
                     {
                         MessageBox.Show("Ova forma je već otvorena.");
-                        ActivateMdiChild(f);
-                        f.Focus();
+                        //ivana 4.3.2021.
+                        itemn_click(imedokumenta, e);
                         vrednost = true;
                         break;
                     }
@@ -206,8 +207,8 @@ namespace Bankom
                     if (f.Name == ss)
                     {
                         MessageBox.Show("Ova forma je već otvorena.");
-                        ActivateMdiChild(f);
-                        f.Focus();
+                        //ivana 4.3.2021.
+                        itemn_click(imedokumenta, e);
                         vrednost = true;
                         break;
                     }
@@ -608,6 +609,7 @@ namespace Bankom
         public void itemn_click(object sender, EventArgs e) // aktiviranje forme klikom na tab
         {
 
+            toolStripTextBox1.Text = "";
             toolStripTextBox1.Text = "";
             string b = sender.ToString();
 
