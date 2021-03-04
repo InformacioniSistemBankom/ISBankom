@@ -12,14 +12,14 @@ namespace Bankom.Class
 {
     class ObradaWordExcelPdf
     {
-       // public event Microsoft.Office.Interop.Excel.DocEvents_SelectionChangeEventHandler SelectionChange;
-       //Microsoft.Office.Interop.Excel.Application Excel = new Microsoft.Office.Interop.Excel.Application();
+        public event Microsoft.Office.Interop.Excel.DocEvents_SelectionChangeEventHandler SelectionChange;
+       Microsoft.Office.Interop.Excel.Application Excel = new Microsoft.Office.Interop.Excel.Application();
         
         public   void  OtvoriDokument(string vrstaDokumenta,string putanjaDokumenta,string brDok)
         {
 
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(Program.connectionString);
-            putanjaDokumenta = putanjaDokumenta.Replace("ImeServera", LoginForm.FileServer).Replace("FFirma", Program.imeFirme);
+            putanjaDokumenta = putanjaDokumenta.Replace("ImeServera", LoginForm.ImeServera.ToUpper()).Replace("FFirma", Program.imeFirme);
            // putanjaDokumenta += brDok;
             switch (vrstaDokumenta)
                 
@@ -48,7 +48,7 @@ namespace Bankom.Class
                       var books = excelApp.Workbooks;
                       excelApp.Workbooks.Open(putanjaDokumenta);*/
                   
-                    //Microsoft.Office.Interop.Excel.Workbook MyBook = Excel.Workbooks.Open(putanjaDokumenta);
+                    Microsoft.Office.Interop.Excel.Workbook MyBook = Excel.Workbooks.Open(putanjaDokumenta);
                     Microsoft.Office.Interop.Excel.Worksheet MySheet = MyBook.Sheets[1];
                     Microsoft.Office.Interop.Excel.Range MyRange = MySheet.UsedRange;
 
@@ -59,7 +59,7 @@ namespace Bankom.Class
                 break;
             }
             Console.WriteLine(putanjaDokumenta);
-            System.Diagnostics.Process.Start(putanjaDokumenta);
+           System.Diagnostics.Process.Start(putanjaDokumenta);
 
         }
 
@@ -215,7 +215,7 @@ namespace Bankom.Class
         void Worksheet1_SelectionChange(Microsoft.Office.Interop.Excel.Range Target)
         {
 
-            //Console.WriteLine(Target.get_Address(Excel.ActiveCell.Value));
+            Console.WriteLine(Target.get_Address(Excel.ActiveCell.Value));
         }
     }
 }
