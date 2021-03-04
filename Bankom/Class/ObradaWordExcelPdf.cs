@@ -13,7 +13,7 @@ namespace Bankom.Class
     class ObradaWordExcelPdf
     {
         public event Microsoft.Office.Interop.Excel.DocEvents_SelectionChangeEventHandler SelectionChange;
-       Microsoft.Office.Interop.Excel.Application Excel = new Microsoft.Office.Interop.Excel.Application();
+        Microsoft.Office.Interop.Excel.Application Excel = new Microsoft.Office.Interop.Excel.Application();
         
         public   void  OtvoriDokument(string vrstaDokumenta,string putanjaDokumenta,string brDok)
         {
@@ -59,7 +59,7 @@ namespace Bankom.Class
                 break;
             }
             Console.WriteLine(putanjaDokumenta);
-           System.Diagnostics.Process.Start(putanjaDokumenta);
+            System.Diagnostics.Process.Start(putanjaDokumenta);
 
         }
 
