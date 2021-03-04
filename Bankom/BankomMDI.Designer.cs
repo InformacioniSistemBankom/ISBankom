@@ -123,6 +123,7 @@ namespace Bankom
             this.Iizlaz = new System.Windows.Forms.ToolStripButton();
             this.Pprekid = new System.Windows.Forms.ToolStripButton();
             this.Ccalc = new System.Windows.Forms.ToolStripButton();
+            this.Nnaloggk = new System.Windows.Forms.ToolStripButton();
             this.Kknjzi = new System.Windows.Forms.ToolStripButton();
             this.Ppredlogcena = new System.Windows.Forms.ToolStripButton();
             this.Kkalki = new System.Windows.Forms.ToolStripButton();
@@ -718,6 +719,7 @@ namespace Bankom
             this.Iizlaz,
             this.Pprekid,
             this.Ccalc,
+            this.Nnaloggk,
             this.Kknjzi,
             this.Ppredlogcena,
             this.Kkalki,
@@ -880,6 +882,7 @@ namespace Bankom
             this.DodajSliku.AutoSize = false;
             this.DodajSliku.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DodajSliku.ForeColor = System.Drawing.Color.Snow;
+            this.DodajSliku.Image = ((System.Drawing.Image)(resources.GetObject("DodajSliku.Image")));
             this.DodajSliku.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DodajSliku.Name = "DodajSliku";
             this.DodajSliku.Size = new System.Drawing.Size(120, 40);
@@ -947,7 +950,7 @@ namespace Bankom
             this.Pprekid.Image = ((System.Drawing.Image)(resources.GetObject("Pprekid.Image")));
             this.Pprekid.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Pprekid.Name = "Pprekid";
-            this.Pprekid.Size = new System.Drawing.Size(75, 40);
+            this.Pprekid.Size = new System.Drawing.Size(80, 40);
             this.Pprekid.Text = "Prekid";
             this.Pprekid.ToolTipText = "Prekid zadate operacije";
             this.Pprekid.Click += new System.EventHandler(this.Pprekid_Click);
@@ -959,10 +962,22 @@ namespace Bankom
             this.Ccalc.ForeColor = System.Drawing.Color.Snow;
             this.Ccalc.Image = ((System.Drawing.Image)(resources.GetObject("Ccalc.Image")));
             this.Ccalc.Name = "Ccalc";
-            this.Ccalc.Size = new System.Drawing.Size(100, 40);
+            this.Ccalc.Size = new System.Drawing.Size(110, 40);
             this.Ccalc.Text = "Kalkulator";
             this.Ccalc.ToolTipText = "Kalkulator";
             this.Ccalc.Click += new System.EventHandler(this.Ccalc_Click);
+            // 
+            // Nnaloggk
+            // 
+            this.Nnaloggk.AutoSize = false;
+            this.Nnaloggk.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Nnaloggk.ForeColor = System.Drawing.Color.Snow;
+            this.Nnaloggk.Image = ((System.Drawing.Image)(resources.GetObject("Nnaloggk.Image")));
+            this.Nnaloggk.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Nnaloggk.Name = "Nnaloggk";
+            this.Nnaloggk.Size = new System.Drawing.Size(100, 40);
+            this.Nnaloggk.Text = "Nalog GK";
+            this.Nnaloggk.ToolTipText = "Nalog glavne knjige";
             // 
             // Kknjzi
             // 
@@ -1035,7 +1050,7 @@ namespace Bankom
             this.Pporeklo.Image = ((System.Drawing.Image)(resources.GetObject("Pporeklo.Image")));
             this.Pporeklo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Pporeklo.Name = "Pporeklo";
-            this.Pporeklo.Size = new System.Drawing.Size(80, 40);
+            this.Pporeklo.Size = new System.Drawing.Size(85, 40);
             this.Pporeklo.Text = "Poreklo";
             this.Pporeklo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Pporeklo.ToolTipText = "Poreklo robe";
@@ -1400,6 +1415,7 @@ namespace Bankom
         public System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         public System.Windows.Forms.ToolStripButton DodajSliku;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox2;
+        private System.Windows.Forms.ToolStripButton Nnaloggk;
     }
 }
 
