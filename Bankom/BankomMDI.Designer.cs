@@ -123,6 +123,7 @@ namespace Bankom
             this.Iizlaz = new System.Windows.Forms.ToolStripButton();
             this.Pprekid = new System.Windows.Forms.ToolStripButton();
             this.Ccalc = new System.Windows.Forms.ToolStripButton();
+            this.Nnaloggk = new System.Windows.Forms.ToolStripButton();
             this.Kknjzi = new System.Windows.Forms.ToolStripButton();
             this.Ppredlogcena = new System.Windows.Forms.ToolStripButton();
             this.Kkalki = new System.Windows.Forms.ToolStripButton();
@@ -148,7 +149,6 @@ namespace Bankom
             this.sdfgghToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.esfredstgrfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
-            this.Nnaloggk = new System.Windows.Forms.ToolStripButton();
             this.ToolBar.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -967,6 +967,18 @@ namespace Bankom
             this.Ccalc.ToolTipText = "Kalkulator";
             this.Ccalc.Click += new System.EventHandler(this.Ccalc_Click);
             // 
+            // Nnaloggk
+            // 
+            this.Nnaloggk.AutoSize = false;
+            this.Nnaloggk.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Nnaloggk.ForeColor = System.Drawing.Color.Snow;
+            this.Nnaloggk.Image = ((System.Drawing.Image)(resources.GetObject("Nnaloggk.Image")));
+            this.Nnaloggk.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Nnaloggk.Name = "Nnaloggk";
+            this.Nnaloggk.Size = new System.Drawing.Size(100, 40);
+            this.Nnaloggk.Text = "Nalog GK";
+            this.Nnaloggk.ToolTipText = "Nalog glavne knjige";
+            // 
             // Kknjzi
             // 
             this.Kknjzi.AutoSize = false;
@@ -1038,7 +1050,7 @@ namespace Bankom
             this.Pporeklo.Image = ((System.Drawing.Image)(resources.GetObject("Pporeklo.Image")));
             this.Pporeklo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Pporeklo.Name = "Pporeklo";
-            this.Pporeklo.Size = new System.Drawing.Size(80, 40);
+            this.Pporeklo.Size = new System.Drawing.Size(85, 40);
             this.Pporeklo.Text = "Poreklo";
             this.Pporeklo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Pporeklo.ToolTipText = "Poreklo robe";
@@ -1248,18 +1260,6 @@ namespace Bankom
             this.button1.TabIndex = 42;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // Nnaloggk
-            // 
-            this.Nnaloggk.AutoSize = false;
-            this.Nnaloggk.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Nnaloggk.ForeColor = System.Drawing.Color.Snow;
-            this.Nnaloggk.Image = ((System.Drawing.Image)(resources.GetObject("Nnaloggk.Image")));
-            this.Nnaloggk.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Nnaloggk.Name = "Nnaloggk";
-            this.Nnaloggk.Size = new System.Drawing.Size(100, 40);
-            this.Nnaloggk.Text = "Nalog GK";
-            this.Nnaloggk.ToolTipText = "Nalog glavne knjige";
             // 
             // BankomMDI
             // 
