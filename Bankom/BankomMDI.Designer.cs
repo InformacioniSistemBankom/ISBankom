@@ -882,6 +882,7 @@ namespace Bankom
             this.DodajSliku.AutoSize = false;
             this.DodajSliku.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DodajSliku.ForeColor = System.Drawing.Color.Snow;
+            this.DodajSliku.Image = ((System.Drawing.Image)(resources.GetObject("DodajSliku.Image")));
             this.DodajSliku.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DodajSliku.Name = "DodajSliku";
             this.DodajSliku.Size = new System.Drawing.Size(120, 40);
@@ -949,7 +950,7 @@ namespace Bankom
             this.Pprekid.Image = ((System.Drawing.Image)(resources.GetObject("Pprekid.Image")));
             this.Pprekid.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Pprekid.Name = "Pprekid";
-            this.Pprekid.Size = new System.Drawing.Size(75, 40);
+            this.Pprekid.Size = new System.Drawing.Size(80, 40);
             this.Pprekid.Text = "Prekid";
             this.Pprekid.ToolTipText = "Prekid zadate operacije";
             this.Pprekid.Click += new System.EventHandler(this.Pprekid_Click);
@@ -961,7 +962,7 @@ namespace Bankom
             this.Ccalc.ForeColor = System.Drawing.Color.Snow;
             this.Ccalc.Image = ((System.Drawing.Image)(resources.GetObject("Ccalc.Image")));
             this.Ccalc.Name = "Ccalc";
-            this.Ccalc.Size = new System.Drawing.Size(100, 40);
+            this.Ccalc.Size = new System.Drawing.Size(110, 40);
             this.Ccalc.Text = "Kalkulator";
             this.Ccalc.ToolTipText = "Kalkulator";
             this.Ccalc.Click += new System.EventHandler(this.Ccalc_Click);
@@ -1257,8 +1258,8 @@ namespace Bankom
             this.Nnaloggk.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.Nnaloggk.Name = "Nnaloggk";
             this.Nnaloggk.Size = new System.Drawing.Size(100, 40);
-            this.Nnaloggk.Text = "Nalog Gk";
-            this.Nnaloggk.ToolTipText = "Prekid zadate operacije";
+            this.Nnaloggk.Text = "Nalog GK";
+            this.Nnaloggk.ToolTipText = "Nalog glavne knjige";
             // 
             // BankomMDI
             // 
