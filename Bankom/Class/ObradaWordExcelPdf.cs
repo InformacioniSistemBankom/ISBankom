@@ -60,6 +60,7 @@ namespace Bankom.Class
             }
             Console.WriteLine(putanjaDokumenta);
            System.Diagnostics.Process.Start(putanjaDokumenta);
+            //"file:///C:\\Users\tamara.martinovic\\Desktop\\PlanMart2021.xls" lokalni file
 
         }
 

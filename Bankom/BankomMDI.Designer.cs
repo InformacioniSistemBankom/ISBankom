@@ -132,7 +132,7 @@ namespace Bankom
             this.Ppotencijal = new System.Windows.Forms.ToolStripButton();
             this.Pppppd = new System.Windows.Forms.ToolStripButton();
             this.Pposta = new System.Windows.Forms.ToolStripButton();
-            this.Ffajlovi = new System.Windows.Forms.ToolStripButton();
+            this.Mmagacin = new System.Windows.Forms.ToolStripButton();
             this.Oodobri = new System.Windows.Forms.ToolStripButton();
             this.Pplati = new System.Windows.Forms.ToolStripButton();
             this.Oorigin = new System.Windows.Forms.ToolStripButton();
@@ -728,7 +728,7 @@ namespace Bankom
             this.Ppotencijal,
             this.Pppppd,
             this.Pposta,
-            this.Ffajlovi,
+            this.Mmagacin,
             this.Oodobri,
             this.Pplati,
             this.Oorigin,
@@ -1099,18 +1099,19 @@ namespace Bankom
             this.Pposta.Visible = false;
             this.Pposta.Click += new System.EventHandler(this.Pposta_Click);
             // 
-            // Ffajlovi
+            // Mmagacin
             // 
-            this.Ffajlovi.AutoSize = false;
-            this.Ffajlovi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.Ffajlovi.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ffajlovi.ForeColor = System.Drawing.Color.Snow;
-            this.Ffajlovi.Image = ((System.Drawing.Image)(resources.GetObject("Ffajlovi.Image")));
-            this.Ffajlovi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Ffajlovi.Name = "Ffajlovi";
-            this.Ffajlovi.Size = new System.Drawing.Size(80, 40);
-            this.Ffajlovi.Text = "Fajlovi";
-            this.Ffajlovi.ToolTipText = "Rad sa fajlovima";
+            this.Mmagacin.AutoSize = false;
+            this.Mmagacin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.Mmagacin.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Mmagacin.ForeColor = System.Drawing.Color.Snow;
+            this.Mmagacin.Image = ((System.Drawing.Image)(resources.GetObject("Mmagacin.Image")));
+            this.Mmagacin.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Mmagacin.Name = "Mmagacin";
+            this.Mmagacin.Size = new System.Drawing.Size(100, 40);
+            this.Mmagacin.Text = "Magacin";
+            this.Mmagacin.ToolTipText = "Magacin";
+            this.Mmagacin.Click += new System.EventHandler(this.Mmagacin_Click);
             // 
             // Oodobri
             // 
@@ -1364,7 +1365,7 @@ namespace Bankom
         private System.Windows.Forms.ToolStripButton Ppotencijal;
         private System.Windows.Forms.ToolStripButton Pppppd;
         private System.Windows.Forms.ToolStripButton Pposta;
-        private System.Windows.Forms.ToolStripButton Ffajlovi;
+        private System.Windows.Forms.ToolStripButton Mmagacin;
         private System.Windows.Forms.ToolStripButton Oodobri;
         private System.Windows.Forms.ToolStripButton Pplati;
         private System.Windows.Forms.ToolStripButton Oorigin;
