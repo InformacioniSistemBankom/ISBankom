@@ -19,12 +19,12 @@ namespace Bankom.Class
                     switch (Program.Parent.ToolBar.Items[h].Name)
                     {
                         case "Ddokum":
+                        case "Ppotvrda":
                         case "Iimenik":
-                            //zajedno 19.01.2021.
+                        //zajedno 19.01.2021.
                         case "DodajSliku":
                         case "Iizlaz":
                         case "Ccalc":
-                        case "Ppotvrda":
                         case "Pprekid":
                         case "Mmagacin":
                         case "toolStripTextBox1":         

@@ -336,6 +336,7 @@ namespace Bankom
 
             //tamara 22.10.2020.
             ToolBar.Enabled = true;
+            Ppotvrda.Enabled = false;
             //zajedno 18.1.2021.
             DodajSliku.Enabled = true;
             //ivana 18.2.2021.
@@ -700,6 +701,38 @@ namespace Bankom
             }
             updateToolStrip(imetula);
             SrediFormu();
+
+            //tamara 05.03.2021.
+            if (this.ActiveMdiChild == null)
+            {
+                Uunos.Enabled = false;
+                Iizlaz.Enabled = false;
+                Sstorno.Enabled = false;
+                Sstampa.Enabled = false;
+                Bbrisanje.Enabled = false;  
+                Ggrupisi.Enabled = false;
+                Ppotvrda.Enabled = false;
+                Ppredlogcena.Enabled = false;
+                Ppotencijal.Enabled = false;
+                Ssort.Enabled = false;
+                Nnaloggk.Enabled = false;
+                Kkalki.Enabled = false;
+                Kkalku.Enabled = false;
+                Kknjzi.Enabled = false;
+                Pporeklo.Enabled = false;
+                Oorigin.Enabled = false;
+                Oodobri.Enabled = false;
+                Pplati.Enabled = false;
+                Pppppd.Enabled = false;
+                Pposta.Enabled = false;
+
+                Pprekid.Enabled = true;
+                Iimenik.Enabled = true;
+                toolStripTextBox1.Enabled = true;
+                Ccalc.Enabled = true;
+                Mmagacin.Enabled = true;
+            }
+
         }
         public void itemB_click(object sender, EventArgs e)  // zahtev za zatvaranje forme klikom na tab
         {
@@ -747,6 +780,36 @@ namespace Bankom
             //ivana 3.3.2021.
             if (ActiveMdiChild != null)
                 itemn_click(ActiveMdiChild.Name, e);
+            //tamara 05.03.2021.
+            if (this.ActiveMdiChild == null)
+            {
+                Uunos.Enabled = false;
+                Iizlaz.Enabled = false;
+                Sstorno.Enabled = false;
+                Sstampa.Enabled = false;
+                Bbrisanje.Enabled = false;
+                Ggrupisi.Enabled = false;
+                Ppotvrda.Enabled = false;
+                Ppredlogcena.Enabled = false;
+                Ppotencijal.Enabled = false;
+                Ssort.Enabled = false;
+                Nnaloggk.Enabled = false;
+                Kkalki.Enabled = false;
+                Kkalku.Enabled = false;
+                Kknjzi.Enabled = false;
+                Pporeklo.Enabled = false;
+                Oorigin.Enabled = false;
+                Oodobri.Enabled = false;
+                Pplati.Enabled = false;
+                Pppppd.Enabled = false;
+                Pposta.Enabled = false;
+
+                Pprekid.Enabled = true;
+                Iimenik.Enabled = true;
+                toolStripTextBox1.Enabled = true;
+                Ccalc.Enabled = true;
+                Mmagacin.Enabled = true;
+            }
         }
 
         private void toolStripLogin_Click(object sender, EventArgs e)
@@ -1881,6 +1944,7 @@ namespace Bankom
         public static string cf;
         private void Iizlaz_Click(object sender, EventArgs e)
         {
+           
             // ivana 24.11.2020.
             bool pomocna = true;
             if (ActiveMdiChild != null)
@@ -1906,6 +1970,7 @@ namespace Bankom
             }
             //ivana 2.3.2021.
             Program.brtabova--;
+            
         }
         private void unospb_Click(object sender, EventArgs e)
         {
@@ -3340,7 +3405,12 @@ namespace Bankom
 ////           End If
         }
 
-       
+        //tamara 04.03.2021.
+        private void Mmagacin_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http:\\192.168.1.71\\magacin");
+            
+        }
     }
 }
 
