@@ -160,46 +160,52 @@ namespace Bankom.Class
         {
             //ivana 18.2.2021.
             pokazivac = false;
-            if (s == "KlasifikacijaOrgStrukture")
+            if (s == "KlasifikacijaOrgStrukture" || s== "KlasifikacijaOrganizacionaStruktura")
             {
                 Program.pomStablo = "OrganizacionaStrukturaStablo";
+                Program.pomIzv = "";
                 pokazivac = true;
                 return "OrganizacionaStruktura";
             }
-            else if (s == "KlasifikacijaDokumenata")
+            else if (s.Contains("KlasifikacijaDokumen"))
             {
                 Program.pomStablo = "DokumentaStablo";
+                Program.pomIzv = "";
                 pokazivac = true;
                 return "Dokumenta";
             }
-            else if (s == "KlasifikacijaArtikla")
+            else if (s.Contains("KlasifikacijaArtikl"))
             {
                 Program.pomStablo = "ArtikliStablo";
+                Program.pomIzv = "";
                 pokazivac = true;
                 return "Artikli";
             }
-            else if (s == "KlasifikacijaKomitenata")
+            else if (s.Contains("KlasifikacijaKomiten"))
             {
                 Program.pomStablo = "KomitentiStablo";
+                Program.pomIzv = "";
                 pokazivac = true;
                 return "Komitenti";
             }
-            else if (s == "KlasifikacijaIzvestaja")
+            else if (s.Contains("KlasifikacijaIzvestaj"))
             {
                 Program.pomStablo = "IzvestajStablo";
                 Program.pomIzv = "Izvestaj";
                 pokazivac = true;
                 return "Izvestaj";
             }
-            else if (s == "KlasifikacijaMenija")
+            else if (s.Contains("KlasifikacijaMeni"))
             {
                 Program.pomStablo = "MeniStablo";
+                Program.pomIzv = "";
                 pokazivac = true;
                 return "Meni";
             }
             else
             {
                 Program.pomStablo = "PomocniSifarniciStablo";
+                Program.pomIzv = "";
                 pokazivac = true;
                 return "PomocniSifarnici";
             }
@@ -208,14 +214,14 @@ namespace Bankom.Class
         private bool IsOpen(string s)
         {
             bool pom = false;
+            EventArgs e = new EventArgs();
             foreach (Form f in Application.OpenForms)
             {
                 if (f.Text.Trim() == s)
                 {
                     pom = true;
                     MessageBox.Show("Već je otvorena ova forma!");
-                    f.Focus();
-                    mdi.updateToolStrip(s);
+                    mdi.itemn_click(s, e);
                     break;
                 }
             }
@@ -226,7 +232,7 @@ namespace Bankom.Class
             return pom;
         }
 
-     
+
 
         public void MenuItemClickHandler(object sender, EventArgs e)
         {

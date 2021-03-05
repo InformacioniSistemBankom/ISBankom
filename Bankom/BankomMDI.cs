@@ -58,7 +58,8 @@ namespace Bankom
                 ss = imedokumenta;
             }
             Boolean odgovor;
-            odgovor = DalijevecOtvoren(dokumentje, brojdokumenta, imedokumenta);            //string ss;    
+            //ivana 4.3.2021.
+            odgovor = DalijevecOtvoren(dokumentje, brojdokumenta, ss);            //string ss;    
             //ivana 2.3.2021.
             if (Program.brtabova < 10 && tabovi < toolStrip1.Width - 50)
             {
@@ -608,8 +609,6 @@ namespace Bankom
 
         public void itemn_click(object sender, EventArgs e) // aktiviranje forme klikom na tab
         {
-
-            toolStripTextBox1.Text = "";
             toolStripTextBox1.Text = "";
             string b = sender.ToString();
 
@@ -1603,7 +1602,6 @@ namespace Bankom
         private void Uunos_Click(object sender, EventArgs e)
         {
 
-
             Form activeChild = this.ActiveMdiChild;
             activeChild.FormBorderStyle = FormBorderStyle.None;
             //13.01.2021. tamara lotovi
@@ -1884,15 +1882,19 @@ namespace Bankom
         private void Iizlaz_Click(object sender, EventArgs e)
         {
             // ivana 24.11.2020.
-            if (this.ActiveMdiChild != null)
+            bool pomocna = true;
+            if (ActiveMdiChild != null)
             {
                 Form childForm = this.ActiveMdiChild;
                 itemB1_click(childForm.Name);
+                //ivana 5.3.2021.
+                if (childForm.Name.Contains("Klasifikacija"))
+                    pomocna = false;
             }
             //ivana 3.3.2021.
             if (ActiveMdiChild != null)
                 itemn_click(ActiveMdiChild.Name, e);
-            if (toolStrip1.Items.Count == 0)
+            if (toolStrip1.Items.Count == 0 && pomocna)
             {
                 toolStrip1.Visible = false;
                 if (MessageBox.Show("Izlaz iz programa?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -3034,7 +3036,7 @@ namespace Bankom
                 {
                     // POZIV KLASE CRUD ZA IZVRSENJE ZADATE OPERACIJE
                     CRUD ccrud = new CRUD();
-
+                    string zapamti;
                     switch (((Bankom.frmChield)forma).DokumentJe)
                     {
                         case "I":
@@ -3081,36 +3083,49 @@ namespace Bankom
 
                             break;
                         case "K":
+                            //ivana 5.3.2021.
                             if (forma.Controls["OOperacija"].Text.Trim() == "UNOS")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
                                 string d = toolStripTextBox1.Text;
                                 o.Klasifikacija_Click(d, Program.pomIzv, Program.pomStablo);
+                                zapamti = ActiveMdiChild.Name;
+                                Iizlaz_Click(zapamti, e);
+                                ShowNewForm(obradaMenija.SkiniKlasifikaciju(zapamti), 1, obradaMenija.SkiniKlasifikaciju(zapamti), 1, "", "", "K", "", "TreeView");
                             }
                             else if (forma.Controls["OOperacija"].Text.Trim() == "BRISANJE")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
                                 o.KlasifikacijaBrisanje(Program.pomIzv, Program.pomStablo);
+                                zapamti = ActiveMdiChild.Name;
+                                Iizlaz_Click(zapamti, e);
+                                ShowNewForm(obradaMenija.SkiniKlasifikaciju(zapamti), 1, obradaMenija.SkiniKlasifikaciju(zapamti), 1, "", "", "K", "", "TreeView");
                             }
                             else if (forma.Controls["OOperacija"].Text.Trim() == "IZMENA")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
                                 string d = toolStripTextBox1.Text;
                                 o.KlasifikacijaIzmena(d, Program.pomIzv, Program.pomStablo);
+                                zapamti = ActiveMdiChild.Name;
+                                Iizlaz_Click(zapamti, e);
+                                ShowNewForm(obradaMenija.SkiniKlasifikaciju(zapamti), 1, obradaMenija.SkiniKlasifikaciju(zapamti), 1, "", "", "K", "", "TreeView");
                             }
                             else if (forma.Controls["OOperacija"].Text.Trim() == "KOPIRAJ")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
                                 o.KlasifikacijaPremestiGrupu(Program.pomIzv, Program.pomStablo);
-
-
+                                zapamti = ActiveMdiChild.Name;
+                                Iizlaz_Click(zapamti, e);
+                                ShowNewForm(obradaMenija.SkiniKlasifikaciju(zapamti), 1, obradaMenija.SkiniKlasifikaciju(zapamti), 1, "", "", "K", "", "TreeView");
                                 //ovde smo stigle
                             }
                             else if (forma.Controls["OOperacija"].Text.Trim() == "NALEPI")
                             {
                                 clsObradaKlasifikacija o = new clsObradaKlasifikacija();
                                 o.KlasifikacijaNovaPozicija(Program.pomIzv, Program.pomStablo);
-
+                                zapamti = ActiveMdiChild.Name;
+                                Iizlaz_Click(zapamti, e);
+                                ShowNewForm(obradaMenija.SkiniKlasifikaciju(zapamti), 1, obradaMenija.SkiniKlasifikaciju(zapamti), 1, "", "", "K", "", "TreeView");
                             }
                        
                             break;
@@ -3185,7 +3200,8 @@ namespace Bankom
 
                     }
                 }
-                forma.Controls["OOperacija"].Text = "";
+                if(forma.Controls["OOperacija"] != null)
+                    forma.Controls["OOperacija"].Text = "";
             }
 
             // KRAJ else 
