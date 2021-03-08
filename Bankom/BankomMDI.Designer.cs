@@ -713,6 +713,7 @@ namespace Bankom
             this.toolStripTextBox1,
             this.Ggrupisi,
             this.DodajSliku,
+            this.Oorigin,
             this.Iimenik,
             this.Ppotvrda,
             this.Ssort,
@@ -731,12 +732,11 @@ namespace Bankom
             this.Mmagacin,
             this.Oodobri,
             this.Pplati,
-            this.Oorigin,
             this.Oorgsema,
             this.toolStripTextBox2});
             this.ToolBar.Location = new System.Drawing.Point(0, 0);
             this.ToolBar.Name = "ToolBar";
-            this.ToolBar.Size = new System.Drawing.Size(1740, 43);
+            this.ToolBar.Size = new System.Drawing.Size(1924, 43);
             this.ToolBar.TabIndex = 32;
             this.ToolBar.Text = "toolbar";
             // 
@@ -1267,7 +1267,7 @@ namespace Bankom
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Snow;
-            this.ClientSize = new System.Drawing.Size(1740, 781);
+            this.ClientSize = new System.Drawing.Size(1924, 781);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.toolStrip1);
