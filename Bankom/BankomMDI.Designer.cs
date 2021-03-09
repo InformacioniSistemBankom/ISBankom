@@ -117,6 +117,7 @@ namespace Bankom
             this.Ggrupisinp = new System.Windows.Forms.ToolStripMenuItem();
             this.premestiGrupuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DodajSliku = new System.Windows.Forms.ToolStripButton();
+            this.Oorigin = new System.Windows.Forms.ToolStripButton();
             this.Iimenik = new System.Windows.Forms.ToolStripButton();
             this.Ppotvrda = new System.Windows.Forms.ToolStripButton();
             this.Ssort = new System.Windows.Forms.ToolStripButton();
@@ -135,7 +136,6 @@ namespace Bankom
             this.Mmagacin = new System.Windows.Forms.ToolStripButton();
             this.Oodobri = new System.Windows.Forms.ToolStripButton();
             this.Pplati = new System.Windows.Forms.ToolStripButton();
-            this.Oorigin = new System.Windows.Forms.ToolStripButton();
             this.Oorgsema = new System.Windows.Forms.ToolStripButton();
             this.toolStripTextBox2 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -889,6 +889,22 @@ namespace Bankom
             this.DodajSliku.Text = "Dodaj sliku";
             this.DodajSliku.Click += new System.EventHandler(this.DodajSliku_Click);
             // 
+            // Oorigin
+            // 
+            this.Oorigin.AutoSize = false;
+            this.Oorigin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
+            this.Oorigin.Enabled = false;
+            this.Oorigin.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Oorigin.ForeColor = System.Drawing.Color.Snow;
+            this.Oorigin.Image = ((System.Drawing.Image)(resources.GetObject("Oorigin.Image")));
+            this.Oorigin.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Oorigin.Name = "Oorigin";
+            this.Oorigin.Size = new System.Drawing.Size(90, 40);
+            this.Oorigin.Text = "Original";
+            this.Oorigin.ToolTipText = "Original";
+            this.Oorigin.Visible = false;
+            this.Oorigin.Click += new System.EventHandler(this.Oorigin_Click);
+            // 
             // Iimenik
             // 
             this.Iimenik.AutoSize = false;
@@ -1144,22 +1160,6 @@ namespace Bankom
             this.Pplati.ToolTipText = "Plati deviznu doznaku";
             this.Pplati.Visible = false;
             // 
-            // Oorigin
-            // 
-            this.Oorigin.AutoSize = false;
-            this.Oorigin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(107)))), ((int)(((byte)(167)))));
-            this.Oorigin.Enabled = false;
-            this.Oorigin.Font = new System.Drawing.Font("TimesRoman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Oorigin.ForeColor = System.Drawing.Color.Snow;
-            this.Oorigin.Image = ((System.Drawing.Image)(resources.GetObject("Oorigin.Image")));
-            this.Oorigin.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Oorigin.Name = "Oorigin";
-            this.Oorigin.Size = new System.Drawing.Size(90, 40);
-            this.Oorigin.Text = "Original";
-            this.Oorigin.ToolTipText = "Original";
-            this.Oorigin.Visible = false;
-            this.Oorigin.Click += new System.EventHandler(this.Oorigin_Click);
-            // 
             // Oorgsema
             // 
             this.Oorgsema.AutoSize = false;
@@ -1178,7 +1178,7 @@ namespace Bankom
             this.toolStripTextBox2.Font = new System.Drawing.Font("TimesRoman", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripTextBox2.ForeColor = System.Drawing.Color.Maroon;
             this.toolStripTextBox2.Name = "toolStripTextBox2";
-            this.toolStripTextBox2.Size = new System.Drawing.Size(100, 21);
+            this.toolStripTextBox2.Size = new System.Drawing.Size(100, 43);
             this.toolStripTextBox2.Text = "TEST";
             this.toolStripTextBox2.Click += new System.EventHandler(this.toolStripTextBox2_Click);
             // 

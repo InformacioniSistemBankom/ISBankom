@@ -5,6 +5,9 @@ using System.IO;
 using System.Net;
 using System.Net.Mail;
 using System.Windows.Forms;
+using Win32Mapi;
+using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace Bankom
 {
@@ -48,7 +51,7 @@ namespace Bankom
             ParamZaStampu = "";
             string baza = "";
             panel1.Width = Width - 136;
-            panel1.Height = Height;
+            panel1.Height = Height - 30;
             if (izvor == "kocka")
                 baza = "";
             else
@@ -75,22 +78,31 @@ namespace Bankom
             {
                 ParamZaStampu += "&id=" + mid;
             }
+            // steva ; izvuci iz connection stringa username i pass
+            string[] niz = Program.connectionString.Split(';');
+            string DatabaseUsername = niz[2].Split('=')[1];
+            string DatabasePassword = niz[3].Split('=')[1];
             switch (kojiprint)
-
             {
                 case "prn":
-                    putanja = "http://"+ LoginForm.ImeServera +"/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprn" + imefajla + "&rs:Command=Render" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + ParamZaStampu;
+                    putanja = "http://" + LoginForm.ReportServer + "/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprn" + imefajla + "&rs:Command=Render" + "&database=" + Program.NazivBaze + "&server=" + LoginForm.ImeServera + "&username=" + DatabaseUsername + "&password=" + DatabasePassword + "&Firma=" + Program.imeFirme + "&slike=" + LoginForm.ReportSlike + ParamZaStampu;
+                    putanja = putanja.Replace("#", "%23").Replace("+", "%2b");//prilagodi specijalne karaktere kod passworda (znak + i # prave probleme)
+                    //Ivana 13.1.2021.
+                    string upit = "select Email from Komitenti where Email<>''";
+                    rez = db.ParamsQueryDT(upit);
+                    for (int i = 0; i < rez.Rows.Count; i++)
+                        cmbEmail.Items.Add(rez.Rows[i][0].ToString());
                     break;
                 case "rpt":
-                    putanja = "http://" + LoginForm.ImeServera + "/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2frpt" + imefajla + "&rs:Command=Render" + "&database=" + baza + ParamZaStampu;
-             
+                    putanja = "http://" + LoginForm.ReportServer + "/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2frpt" + imefajla + "&rs:Command=Render" + "&database=" + Program.NazivBaze + "&server=" + LoginForm.ImeServera + "&username=" + DatabaseUsername + "&password=" + DatabasePassword + "&slike=" + LoginForm.ReportSlike + ParamZaStampu;
+                    putanja = putanja.Replace("#", "%23").Replace("+", "%2b");//prilagodi specijalne karaktere kod passworda (znak + i # prave probleme)
                     break;
                 case "lot":
-                    putanja = @"http://" + LoginForm.ImeServera + "/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprnLot" + "&rs:Command=Render" + "&id_lot=" + intCurrentdok;
+                    putanja = @"http://" + LoginForm.ReportServer + "/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fprnLot" + "&rs:Command=Render" + "&id_lot=" + intCurrentdok;
                     break;
                 case "sif":
-                    putanja = "http://" + LoginForm.ImeServera + "/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fsif" + imefajla + "&rs:Command=Render";
-
+                    putanja = "http://" + LoginForm.ReportServer + "/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2fsif" + imefajla + "&rs:Command=Render";
+                    putanja = putanja.Replace("#", "%23").Replace("+", "%2b");//prilagodi specijalne karaktere kod passworda (znak + i # prave probleme)
                     break;
                 case "pre":
                 case "nag":
@@ -114,8 +126,9 @@ namespace Bankom
                     putanja = "http://" + LoginForm.ImeServera + "/ReportServer/Pages/ReportViewer.aspx?/Izvestaji/prn" + imefajla + "&rs:Command=Render&id=" + Convert.ToString(intCurrentdok);
                     break;
             }
-            //System.Diagnostics.Process.Start(putanja);
-            webBrowser1.Navigate(putanja);
+            System.Diagnostics.Process.Start(putanja);
+            //System.Diagnostics.Process.Start("C:\\Users\\ivana.jelic.BANKOM\\Desktop\\BrutoBilans.xls");
+            //webBrowser1.Navigate(putanja);
         }   
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -128,24 +141,72 @@ namespace Bankom
 
         public void btnEmail_Click(object sender, EventArgs e)
         {
-            //ivana 12.2.2021.
-            Form f = Application.OpenForms["Mail"];
-            if (f != null)
-                f.Close();
-            else
+            //pocetak attachmenta
+
+            OpenFileDialog af = new OpenFileDialog();
+            af.Title = "Attach File";
+            af.Filter = "Any File (*.*)|*.*";
+
+            //comboAttachm.Enabled = true;
+
+
+            WebClient client = new WebClient();
+            client.UseDefaultCredentials = true;
+
+            //dohvati lokalizaciju (sr-Lat-Sr)
+            var culture = System.Globalization.CultureInfo.CurrentCulture;
+
+            //putanja do stampe
+            var putanjaPdf = "http://" + LoginForm.ReportServer + "/ReportServer/Pages/ReportViewer.aspx?%2fIzvestaji%2f" + kojiprint + imefajla + "&rs:Command=Render&rs:Format=PDF" + "&database=" + Program.NazivBaze + "&Firma=" + Program.imeFirme + "&slike=" + LoginForm.ReportSlike + "&rs:ParameterLanguage=" + culture.ToString() + ParamZaStampu;
+            putanjaPdf = putanjaPdf.Replace("#", "%23").Replace("+", "%2b");//prilagodi specijalne karaktere kod passworda (znak + i # prave probleme)     
+
+            WebClient webClient = new WebClient();
+            client.Headers.Add("Accept-Language", culture.ToString());   //podesava da se zarezi i tacke kod brojeva vide u zavisnosti od jezika u browseru
+            webClient.UseDefaultCredentials = true;
+            // webClient.DownloadFile(putanjaPdf, @"d:\myfile1.pdf");
+
+            //stavi pdf u memoriju
+            byte[] bytes = client.DownloadData(putanjaPdf);
+            MemoryStream ms = new MemoryStream(bytes);
+            //skini pdf u lokalni folder u kome se nalazi projekat
+            using (FileStream file = new FileStream(imefajla + ".pdf", FileMode.Create, System.IO.FileAccess.Write))
             {
-                nazivForme = this.Name;
-                Mail m = new Mail(kojiprint, imefajla, ParamZaStampu, nazivForme);
-                m.Left = 800;
-                m.Top = 300;
-                m.ShowDialog();
+                ms.Read(bytes, 0, (int)ms.Length);
+                file.Write(bytes, 0, bytes.Length);
+                ms.Close();
+
+
+                //Simple Mapi za slanje maila
+                var mapi = new SimpleMapi();
+                mapi.AddRecipient(name: cmbEmail.SelectedIndex.ToString(), addr: null, cc: false);
+                mapi.Attach(filepath: file.Name);    //attachuj pdf
+                mapi.Send(subject: "", noteText: ""); // otvori mail client
+
+                //obrisi attachment sa racunara
+                file.Dispose();
+                File.Delete(@"" + file.Name);
+                //Kraj Simple Mapi za slanje maila
             }
-            //////var url = "mailto:stevan.nikolic@bankom.rs?subject=Ovojenaslov&body=ovojeteloemaila&attachment=";
-            //////MemoryStream ms = new MemoryStream(bytes);
-            //////url.Attachments.Add(new Attachment(ms, nazivForme.Substring(8) + ".pdf"));
-            //////System.Diagnostics.Process.Start(url);
-            
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("mailto:" + cmbEmail.SelectedIndex.ToString() + "?subject=&body=");
+        }
+        //</steva, otvori default mail client sa prozorom za pisanje novog maila>
+        //Ivana 13.1.2021.
+        string mejl = "";
+        private void cmbEmail_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mejl = cmbEmail.SelectedItem.ToString();
+            button1.Enabled = true;
+        }
+
+        private void cmbEmail_TextChanged(object sender, EventArgs e)
+        {
+            mejl = cmbEmail.Text;
+            button1.Enabled = true;
         }
     }
 }
-

@@ -33,6 +33,8 @@ namespace Bankom
         public static string ImeServera;
         public static string FileServer;
         public static string gDokumenti="";
+        public static string ReportServer; //adresa report servera steva 04.03.2021.
+        public static string ReportSlike; //adresa na kojoj se nalaze slike za header i footer izvestaja steva 04.03.2021.
         private int indexCurrentbaza = -1;
         private int indexOrgDefault = -1;
 
@@ -115,6 +117,18 @@ namespace Bankom
 
                         for (int j = 0; j < result1.Length; j++)
                         {
+                            //steva 04.03.2021.
+                            if (result1[j].Contains("RptSlike="))
+                            {
+                                ReportSlike = result1[j].Substring(result1[j].IndexOf("=") + 1);
+                                // break;
+                            }
+                            if (result1[j].Contains("Report="))
+                            {
+                                ReportServer = result1[j].Substring(result1[j].IndexOf("=") + 1);
+                                // break;
+                            }
+                            //kraj steva 04.03.2021.
                             //Jovana 19.02.21
                             Console.WriteLine(result1[j]);
                             if (result1[j].Contains("Server="))

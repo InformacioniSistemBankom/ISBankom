@@ -378,6 +378,14 @@ namespace Bankom.Class
                             ((Bankom.frmChield)forma).NazivSkladista = comboBox.Text;
                             comboBox.SelectedIndexChanged += new EventHandler(comboBox_SelectedIndexChanged);
                         }
+                        //zajedno 9.3.2021.
+                        upit = "Select barkod from Lot where Lot.ID_Artikli = @param0";
+                       // dt = db.ParamsQueryDT(upit, );
+                        if (IME.Contains("Artik") && broj > 0)
+                        {
+
+
+                        }
                         comboBox.Leave += new EventHandler(Leave);
                         comboBox.Validating += comboBox_Validating;
                     }

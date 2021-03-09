@@ -3275,7 +3275,7 @@ namespace Bankom
 
         private void Ggrupisinp_Click(object sender, EventArgs e)
         {
-            Form forma = this.ActiveMdiChild;
+           Form forma = this.ActiveMdiChild;
             forma.Controls["OOperacija"].Text = "NALEPI";
             forma.Controls["OOperacija"].Visible = false;
             Program.Parent.premestiGrupuToolStripMenuItem.Enabled = true;
@@ -3411,6 +3411,7 @@ namespace Bankom
             System.Diagnostics.Process.Start("http:\\192.168.1.71\\magacin");
             
         }
+
     }
 }
 

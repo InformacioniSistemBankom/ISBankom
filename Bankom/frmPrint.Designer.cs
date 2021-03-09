@@ -38,6 +38,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.btnEmail = new System.Windows.Forms.Button();
+            this.cmbEmail = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.statusPrint.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -99,13 +101,34 @@
             // 
             // btnEmail
             // 
-            this.btnEmail.Location = new System.Drawing.Point(925, 186);
+            this.btnEmail.Location = new System.Drawing.Point(988, 110);
             this.btnEmail.Name = "btnEmail";
             this.btnEmail.Size = new System.Drawing.Size(68, 32);
             this.btnEmail.TabIndex = 4;
             this.btnEmail.Text = "Send email";
             this.btnEmail.UseVisualStyleBackColor = true;
             this.btnEmail.Click += new System.EventHandler(this.btnEmail_Click);
+            // 
+            // cmbEmail
+            // 
+            this.cmbEmail.Font = new System.Drawing.Font("Times New Roman", 10F);
+            this.cmbEmail.FormattingEnabled = true;
+            this.cmbEmail.Location = new System.Drawing.Point(806, 172);
+            this.cmbEmail.Name = "cmbEmail";
+            this.cmbEmail.Size = new System.Drawing.Size(275, 23);
+            this.cmbEmail.TabIndex = 7;
+            this.cmbEmail.SelectedIndexChanged += new System.EventHandler(this.cmbEmail_SelectedIndexChanged);
+            this.cmbEmail.TextChanged += new System.EventHandler(this.cmbEmail_TextChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(833, 110);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(92, 32);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "New mail";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Print
             // 
@@ -115,6 +138,8 @@
             this.BackColor = System.Drawing.Color.Snow;
             this.ClientSize = new System.Drawing.Size(1274, 587);
             this.ControlBox = false;
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cmbEmail);
             this.Controls.Add(this.btnEmail);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusPrint);
@@ -143,5 +168,7 @@
         private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.WebBrowser webBrowser1;
         public System.Windows.Forms.Button btnEmail;
+        public System.Windows.Forms.ComboBox cmbEmail;
+        private System.Windows.Forms.Button button1;
     }
 }
