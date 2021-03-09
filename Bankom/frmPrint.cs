@@ -178,7 +178,7 @@ namespace Bankom
 
                 //Simple Mapi za slanje maila
                 var mapi = new SimpleMapi();
-                mapi.AddRecipient(name: cmbEmail.SelectedIndex.ToString(), addr: null, cc: false);
+                mapi.AddRecipient(name: cmbEmail.Text, addr: null, cc: false);
                 mapi.Attach(filepath: file.Name);    //attachuj pdf
                 mapi.Send(subject: "", noteText: ""); // otvori mail client
 
@@ -192,7 +192,7 @@ namespace Bankom
 
         private void button1_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("mailto:" + cmbEmail.SelectedIndex.ToString() + "?subject=&body=");
+            System.Diagnostics.Process.Start("mailto:" + cmbEmail.Text + "?subject=&body=");
         }
         //</steva, otvori default mail client sa prozorom za pisanje novog maila>
         //Ivana 13.1.2021.
